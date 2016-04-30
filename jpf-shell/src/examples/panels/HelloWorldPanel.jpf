@@ -1,0 +1,15 @@
+#
+# JPF launch configuration
+#
+
+# this specifies the class that should be run with JPF (mandatory)
+target = runnable.oldclassic
+
+shell=.shell.basicshell.BasicShell
+inspect.properties=${config}
+
+jpf.listener=.tools.DeadlockAnalyzer
+deadlock.format = essential
+
+shell.panels+= ,helloworld
+shell.helloworld=panels.HelloWorldPanel

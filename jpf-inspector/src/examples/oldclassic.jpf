@@ -1,0 +1,4 @@
+@using jpf-inspector
+shell=.shell.basicshell.BasicShell
+
+target = oldclassic

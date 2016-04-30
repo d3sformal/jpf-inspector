@@ -1,0 +1,5 @@
+target = runnable.Rand
+
+cg.enumerate_random = true
+report.console.property_violation=error,trace
+shell=.shell.basicshell.BasicShell

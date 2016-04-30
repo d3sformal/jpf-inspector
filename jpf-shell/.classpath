@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" output="build/main" path="src/main"/>
+	<classpathentry kind="src" output="build/examples" path="src/examples"/>
+	<classpathentry kind="lib" path="build/jpf-shell.jar"/>
+	<classpathentry kind="lib" path="lib/collections-generic-4.01.jar"/>
+	<classpathentry kind="lib" path="lib/colt-1.2.0.jar"/>
+	<classpathentry kind="lib" path="lib/jung-algorithms-2.0.jar"/>
+	<classpathentry kind="lib" path="lib/jung-api-2.0.jar"/>
+	<classpathentry kind="lib" path="lib/jung-graph-impl-2.0.jar"/>
+	<classpathentry kind="lib" path="lib/jung-visualization-2.0.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/jpf-core"/>
+	<classpathentry kind="output" path="build"/>
+</classpath>

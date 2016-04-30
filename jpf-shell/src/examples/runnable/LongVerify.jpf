@@ -1,0 +1,17 @@
+#
+# JPF launch configuration
+#
+
+# this specfies the class that should be run with JPF (mandatory)
+target = runnable.LongVerify
+
+classpath+=,build/examples
+cg.enumerate_random=true
+
+jpf.report.console.property_violation=error,snapshot
+
+# (optional) main(String[]) args for the target class
+#target_args = 
+
+netbeans.progress_timout_seconds = 10
+#shell=.shell.basicshell.BasicShell
