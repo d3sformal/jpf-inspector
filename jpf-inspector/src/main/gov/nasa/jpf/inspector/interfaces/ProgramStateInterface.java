@@ -37,7 +37,7 @@ public interface ProgramStateInterface {
   /**
    * Gets selected/all threads and their status.
    * 
-   * @param theadNum The thread we select. Or all thread if null.
+   * @param threadNum The thread we select. Or all thread if null.
    * @throws JPFInspectorGenericErrorException
    */
   public Map<Integer, PSEThread> getThreads (Integer threadNum) throws JPFInspectorException;
@@ -45,7 +45,7 @@ public interface ProgramStateInterface {
   /**
    * Gets selected/all threads and their PC.
    * 
-   * @param theadNum The thread we select. Or all thread if null.
+   * @param threadNum The thread we select. Or all thread if null.
    * @throws JPFInspectorGenericErrorException
    */
   public Map<Integer, InstructionPosition> getThreadsPC (Integer threadNum) throws JPFInspectorException;
