@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://www.netbeans.org/ns/project/1">
+    <type>org.netbeans.modules.ant.freeform</type>
+    <configuration>
+        <general-data xmlns="http://www.netbeans.org/ns/freeform-project/1">
+            <!-- Do not use Project Properties customizer when editing this file manually. -->
+            <name>jpf-shell</name>
+            <properties>
+                <property-file>${user.home}/.jpf/site.properties</property-file>
+                <property-file>${jpf-core}/jpf.properties</property-file>
+                <property-file>jpf.properties</property-file>
+            </properties>
+            <folders>
+                <source-folder>
+                    <label>src/main</label>
+                    <type>java</type>
+                    <location>src/main</location>
+                </source-folder>
+                <source-folder>
+                    <label>src/examples</label>
+                    <type>java</type>
+                    <location>src/examples</location>
+                </source-folder>
+            </folders>
+            <ide-actions>
+                <action name="build">
+                    <target>build</target>
+                </action>
+                <action name="clean">
+                    <target>clean</target>
+                </action>
+                <action name="test">
+                    <script>nbproject/ide-file-targets.xml</script>
+                    <target>test-project</target>
+                </action>
+                <action name="rebuild">
+                    <target>clean</target>
+                    <target>build</target>
+                </action>
+                <action name="run.single">
+                    <script>nbproject/ide-file-targets.xml</script>
+                    <target>run-selected-example-jpf</target>
+                    <context>
+                        <property>jpf.config</property>
+                        <folder>src/examples</folder>
+                        <pattern>\.jpf$</pattern>
+                        <format>absolute-path</format>
+                        <arity>
+                            <one-file-only/>
+                        </arity>
+                    </context>
+                </action>
+                <action name="javadoc">
+                    <target>doc</target>
+                </action>
+                <action name="debug">
+                    <script>nbproject/ide-file-targets.xml</script>
+                    <target>debug-nb</target>
+                </action>
+            </ide-actions>
+            <export>
+                <type>folder</type>
+                <location>build/main</location>
+                <build-target>build</build-target>
+            </export>
+            <export>
+                <type>folder</type>
+                <location>build/examples</location>
+                <build-target>build</build-target>
+            </export>
+            <view>
+                <items>
+                    <source-folder style="packages">
+                        <label>src/main</label>
+                        <location>src/main</location>
+                    </source-folder>
+                    <source-folder style="packages">
+                        <label>src/examples</label>
+                        <location>src/examples</location>
+                    </source-folder>
+                    <source-file>
+                        <location>build.xml</location>
+                    </source-file>
+                </items>
+                <context-menu>
+                    <ide-action name="build"/>
+                    <ide-action name="rebuild"/>
+                    <ide-action name="clean"/>
+                    <ide-action name="javadoc"/>
+                    <ide-action name="test"/>
+                    <ide-action name="debug"/>
+                </context-menu>
+            </view>
+            <subprojects/>
+        </general-data>
+        <java-data xmlns="http://www.netbeans.org/ns/freeform-project-java/2">
+            <compilation-unit>
+                <package-root>src/main</package-root>
+                <classpath mode="compile">${jpf-core.native_classpath}:lib/collections-generic-4.01.jar:lib/colt-1.2.0.jar:lib/jung-algorithms-2.0.jar:lib/jung-api-2.0.jar:lib/jung-graph-impl-2.0.jar:lib/jung-visualization-2.0.jar</classpath>
+                <built-to>build/main</built-to>
+                <javadoc-built-to>doc</javadoc-built-to>
+                <source-level>1.5</source-level>
+            </compilation-unit>
+            <compilation-unit>
+                <package-root>src/examples</package-root>
+                <classpath mode="compile">build/main:${jpf-core.native_classpath}</classpath>
+                <built-to>build/examples</built-to>
+                <javadoc-built-to>doc</javadoc-built-to>
+                <source-level>1.5</source-level>
+            </compilation-unit>
+        </java-data>
+        <preferences xmlns="http://www.netbeans.org/ns/auxiliary-configuration-preferences/1">
+            <module name="org-netbeans-modules-editor-indent"/>
+        </preferences>
+        <spellchecker-wordlist xmlns="http://www.netbeans.org/ns/spellchecker-wordlist/1">
+            <word>Config</word>
+            <word>browseable</word>
+        </spellchecker-wordlist>
+    </configuration>
+</project>

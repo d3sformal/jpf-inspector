@@ -1,0 +1,6 @@
+# JPF properties to run the oldclassic example with ExecTracker report
+target=oldclassic
+shell=.shell.basicshell.BasicShell
+shell.panels+=,searchgraph
+report.console.property_violation=error,snapshot
+shell=.shell.basicshell.BasicShell

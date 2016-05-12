@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project basedir=".." name="jpf-shell-IDE">
+    <property file="${user.home}/.jpf/site.properties"/>
+    <path id="base.path">
+        <fileset dir=".">
+            <include name="lib/*.jar"/>
+        </fileset>
+        <pathelement location="build/annotations"/>
+        <pathelement location="build/main"/>
+        <pathelement location="build/peers"/>
+        <pathelement location="build/classes"/>
+        <!-- add in what we need from the core -->
+        <pathelement location="${jpf.core}/build/main"/>
+        <pathelement location="${jpf.core}/build/peers"/>
+        <fileset dir="${jpf.core}">
+            <include name="lib/*.jar"/>
+        </fileset>
+    </path>
+    <import file="../build.xml" />
+    <target name="test-project">
+        <!-- we need to set the formatter 'usefile' attribute
+             or the NB test runner will not show any tests -->
+        <property name="junit.usefile" value="false"/>
+        <ant antfile="build.xml" inheritall="true" target="test"/>
+    </target>
+    <target name="run-selected-example-jpf">
+        <fail unless="jpf.config">Must set property 'jpf.config'</fail>
+        <ant antfile="build.xml" inheritall="false" target="compile"/>
+        <java classname="gov.nasa.jpf.Main" failonerror="true" fork="true">
+            <arg value="-show"/>
+            <arg value="${jpf.config}"/>
+            <classpath>
+                <path refid="base.path"/>
+                <pathelement location="build/examples"/>
+            </classpath>
+        </java>
+    </target>
+
+    <!-- TODO: edit the following target according to your needs -->
+    <!-- (more info: http://www.netbeans.org/kb/articles/freeform-config.html#debugj2se) -->
+    <target name="debug-nb">
+	 <nbjpdastart addressproperty="${debug_address}" name="jpf-shell" transport="dt_socket" />
+	 <antcall target="debug" />
+	 <!--
+        <path id="cp">
+        </path>
+        <nbjpdastart addressproperty="jpda.address" name="jpf-shell" transport="dt_socket">
+            <classpath refid="cp"/>
+        </nbjpdastart>
+        <java classname="some.main.Class" fork="true">
+            <classpath refid="cp"/>
+            <jvmarg value="-Xdebug"/>
+            <jvmarg value="-Xrunjdwp:transport=dt_socket,address=${jpda.address}"/>
+        </java> -->
+    </target>
+</project>

@@ -1,0 +1,4 @@
+target = runnable.DiningPhil
+
+search.class = .search.heuristic.BFSHeuristic
+shell=.shell.basicshell.BasicShell

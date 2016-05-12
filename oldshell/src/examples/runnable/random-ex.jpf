@@ -1,0 +1,7 @@
+target = runnable.RandomExample
+cg.enumerate_random=true
+shell.panels+=,searchgraph
+shell=.shell.basicshell.BasicShell
+listener=.listener.ExecTracker
+report.console.property_violation=error,snapshot
+shell=.shell.basicshell.BasicShell
