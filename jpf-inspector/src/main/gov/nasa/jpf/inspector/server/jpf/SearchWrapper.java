@@ -22,8 +22,8 @@ package gov.nasa.jpf.inspector.server.jpf;
 import gov.nasa.jpf.Config;
 import gov.nasa.jpf.Error;
 import gov.nasa.jpf.Property;
-import gov.nasa.jpf.jvm.JVM;
-import gov.nasa.jpf.jvm.Transition;
+import gov.nasa.jpf.vm.VM;
+import gov.nasa.jpf.vm.Transition;
 import gov.nasa.jpf.report.Reporter;
 import gov.nasa.jpf.search.Search;
 import gov.nasa.jpf.search.SearchListener;
@@ -59,12 +59,12 @@ public class SearchWrapper extends Search implements SearchInspectorExtension {
     }
   }
 
-  public SearchWrapper (Config config, JVM vm) {
+  public SearchWrapper (Config config, VM vm) {
     super(config, vm);
 
     Class<?>[] searchArgTypes = {
       Config.class,
-      JVM.class };
+      VM.class };
     Object[] searchArgs = {
       config,
       vm };
@@ -152,7 +152,7 @@ public class SearchWrapper extends Search implements SearchInspectorExtension {
   }
 
   @Override
-  public JVM getVM () {
+  public VM getVM () {
     return search.getVM();
   }
 

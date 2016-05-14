@@ -21,7 +21,7 @@ package gov.nasa.jpf.inspector.interfaces.exceptions;
 
 import gov.nasa.jpf.inspector.interfaces.JPFInspectorException;
 import gov.nasa.jpf.inspector.server.programstate.StateValue;
-import gov.nasa.jpf.jvm.ClassInfo;
+import gov.nasa.jpf.vm.ClassInfo;
 
 /**
  * Note: This is "internal" error and should not be thrown. (If thrown there is error in the implementation)

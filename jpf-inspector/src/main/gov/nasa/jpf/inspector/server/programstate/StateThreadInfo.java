@@ -25,10 +25,10 @@ import gov.nasa.jpf.inspector.server.expression.ExpressionParserInterface;
 import gov.nasa.jpf.inspector.server.jpf.JPFInspector;
 import gov.nasa.jpf.inspector.server.programstate.client.PSEMethod;
 import gov.nasa.jpf.inspector.server.programstate.client.PSEThread;
-import gov.nasa.jpf.jvm.JVM;
-import gov.nasa.jpf.jvm.ThreadInfo;
-import gov.nasa.jpf.jvm.ThreadInfo.State;
-import gov.nasa.jpf.jvm.ThreadList;
+import gov.nasa.jpf.vm.VM;
+import gov.nasa.jpf.vm.ThreadInfo;
+import gov.nasa.jpf.vm.ThreadInfo.State;
+import gov.nasa.jpf.vm.ThreadList;
 
 /**
  * @author Alf
@@ -38,11 +38,11 @@ public class StateThreadInfo extends StateNode {
 
   protected final ThreadInfo ti;
 
-  public StateThreadInfo (JPFInspector inspector, JVM vm, Integer threadNum) throws JPFInspectorException {
+  public StateThreadInfo (JPFInspector inspector, VM vm, Integer threadNum) throws JPFInspectorException {
     this(inspector, vm, threadNum, 2);
   }
 
-  public StateThreadInfo (JPFInspector inspector, JVM vm, Integer threadNum, int referenceDepth) throws JPFInspectorException {
+  public StateThreadInfo (JPFInspector inspector, VM vm, Integer threadNum, int referenceDepth) throws JPFInspectorException {
     super(inspector, referenceDepth);
     ThreadInfo ti = null;
     assert (vm != null);

@@ -32,15 +32,12 @@ import gov.nasa.jpf.inspector.server.jpf.StopHolder;
 import gov.nasa.jpf.inspector.server.programstate.StateValue;
 import gov.nasa.jpf.inspector.utils.ChoiceGeneratorWrapper;
 import gov.nasa.jpf.inspector.utils.InstructionWrapper;
-import gov.nasa.jpf.jvm.ChoiceGenerator;
-import gov.nasa.jpf.jvm.ClassInfo;
-import gov.nasa.jpf.jvm.JVM;
-import gov.nasa.jpf.jvm.MethodInfo;
-import gov.nasa.jpf.jvm.Path;
-import gov.nasa.jpf.jvm.ThreadChoiceGenerator;
-import gov.nasa.jpf.jvm.ThreadInfo;
-import gov.nasa.jpf.jvm.Transition;
-import gov.nasa.jpf.jvm.bytecode.Instruction;
+import gov.nasa.jpf.vm.*;
+import gov.nasa.jpf.vm.VM;
+import gov.nasa.jpf.vm.Path;
+import gov.nasa.jpf.vm.ThreadChoiceGenerator;
+import gov.nasa.jpf.vm.ThreadInfo;
+import gov.nasa.jpf.vm.Transition;
 
 import java.io.PrintStream;
 import java.util.ArrayList;
@@ -88,7 +85,7 @@ public class ChoiceGeneratorsManager implements ChoiceGeneratorsInterface, Choic
   public synchronized List<ChoiceGeneratorWrapper> getUsedChoiceGenerators (boolean wait) throws JPFInspectorException {
     cmdMgr.initialStopTest(wait, "cann't get choice generators");
 
-    JVM vm = stopHolder.getJVM();
+    VM vm = stopHolder.getJVM();
     JPFInspectorNoVMConnected.checkVM(vm);
 
     List<ChoiceGeneratorWrapper> result = new ArrayList<ChoiceGeneratorWrapper>(vm.getPathLength());
@@ -199,7 +196,7 @@ public class ChoiceGeneratorsManager implements ChoiceGeneratorsInterface, Choic
   @Override
   public void selectChoice (int selectedChoice) throws JPFInspectorGenericErrorException {
     cmdMgr.initialStopTest(false, "'cg select' command can by called only if execution is stopped");
-    JVM vm = stopHolder.getJVM();
+    VM vm = stopHolder.getJVM();
     assert vm != null;
 
     if (!waitForChoice) {

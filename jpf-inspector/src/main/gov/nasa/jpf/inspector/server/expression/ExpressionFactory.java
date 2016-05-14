@@ -73,7 +73,7 @@ import gov.nasa.jpf.inspector.utils.ClassName;
 import gov.nasa.jpf.inspector.utils.FieldName;
 import gov.nasa.jpf.inspector.utils.MethodName;
 import gov.nasa.jpf.inspector.utils.parser.GenericErrorRuntimeException;
-import gov.nasa.jpf.jvm.bytecode.Instruction;
+import gov.nasa.jpf.vm.Instruction;
 
 public class ExpressionFactory {
   private final JPFInspector inspector;

@@ -23,8 +23,8 @@ import gov.nasa.jpf.inspector.interfaces.exceptions.JPFInspectorIncompatibleType
 import gov.nasa.jpf.inspector.server.jpf.JPFInspector;
 import gov.nasa.jpf.inspector.server.programstate.StateReadableValueInterface;
 import gov.nasa.jpf.inspector.utils.ClassInfoCache;
-import gov.nasa.jpf.jvm.ClassInfo;
-import gov.nasa.jpf.jvm.JVM;
+import gov.nasa.jpf.vm.ClassInfo;
+import gov.nasa.jpf.vm.VM;
 
 /**
  * Base class for <, <=, >, >= operators.
@@ -41,7 +41,7 @@ public abstract class RelOpComparableBase implements RelationOperator {
     // Update the type cache if needed
     assert (inspector.getJPF() != null); // Breakpoint cannot be evaluated if there is no JPF instance
 
-    JVM currentVM = inspector.getJPF().getVM();
+    VM currentVM = inspector.getJPF().getVM();
     if (ciCache == null || ciCache.cacheValid(currentVM) == false) {
       ciCache = new ClassInfoCache(currentVM);
     }

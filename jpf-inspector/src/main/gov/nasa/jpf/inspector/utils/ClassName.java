@@ -19,7 +19,7 @@
 
 package gov.nasa.jpf.inspector.utils;
 
-import gov.nasa.jpf.jvm.ClassInfo;
+import gov.nasa.jpf.vm.ClassInfo;
 
 import java.util.HashMap;
 import java.util.Map;

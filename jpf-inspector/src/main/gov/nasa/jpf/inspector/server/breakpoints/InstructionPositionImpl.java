@@ -21,9 +21,9 @@ package gov.nasa.jpf.inspector.server.breakpoints;
 
 import gov.nasa.jpf.inspector.interfaces.InstructionPosition;
 import gov.nasa.jpf.inspector.utils.FileName;
-import gov.nasa.jpf.jvm.ClassInfo;
-import gov.nasa.jpf.jvm.MethodInfo;
-import gov.nasa.jpf.jvm.bytecode.Instruction;
+import gov.nasa.jpf.vm.ClassInfo;
+import gov.nasa.jpf.vm.MethodInfo;
+import gov.nasa.jpf.vm.Instruction;
 
 /**
  * Represents position of the instruction.

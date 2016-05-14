@@ -25,8 +25,8 @@ import gov.nasa.jpf.inspector.interfaces.exceptions.JPFInspectorNotInstanceExcep
 import gov.nasa.jpf.inspector.interfaces.exceptions.JPFInspectorNotSuperClassException;
 import gov.nasa.jpf.inspector.server.jpf.JPFInspector;
 import gov.nasa.jpf.inspector.server.programstate.client.PSEVariable;
-import gov.nasa.jpf.jvm.ClassInfo;
-import gov.nasa.jpf.jvm.ElementInfo;
+import gov.nasa.jpf.vm.ClassInfo;
+import gov.nasa.jpf.vm.ElementInfo;
 
 /**
  * @author Alf

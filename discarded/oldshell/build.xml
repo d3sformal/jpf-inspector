@@ -15,7 +15,7 @@
 		  (usually specified with -Dtargetfile="", mostly used by  IDEs)
 -->
 
-<project name="jpf-shell" default="build" basedir=".">
+<project name="Old Shell" default="build" basedir=".">
 
   <!-- ========================== COMMON SECTION ========================== -->
 

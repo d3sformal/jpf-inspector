@@ -22,8 +22,8 @@
  */
 package gov.nasa.jpf.inspector.server.expression;
 
-import gov.nasa.jpf.jvm.JVM;
-import gov.nasa.jpf.jvm.bytecode.Instruction;
+import gov.nasa.jpf.vm.VM;
+import gov.nasa.jpf.vm.Instruction;
 import gov.nasa.jpf.search.Search;
 
 import java.util.Map;
@@ -86,7 +86,7 @@ public interface InspectorState {
   // / For all threads gets previously executed instruction
   public Map<Integer, Instruction> getPreviousSteps ();
 
-  public JVM getJVM ();
+  public VM getJVM ();
 
   // Used search listener
   public Search getSearch ();

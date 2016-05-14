@@ -1,12 +1,12 @@
 package gov.nasa.jpf.inspector.server.pathanalysis;
 
-import gov.nasa.jpf.jvm.Step;
+import gov.nasa.jpf.vm.Step;
 import gov.nasa.jpf.jvm.bytecode.ARETURN;
 import gov.nasa.jpf.jvm.bytecode.DIRECTCALLRETURN;
 import gov.nasa.jpf.jvm.bytecode.DRETURN;
 import gov.nasa.jpf.jvm.bytecode.FRETURN;
 import gov.nasa.jpf.jvm.bytecode.IRETURN;
-import gov.nasa.jpf.jvm.bytecode.Instruction;
+import gov.nasa.jpf.vm.Instruction;
 import gov.nasa.jpf.jvm.bytecode.InstructionVisitorAdapter;
 import gov.nasa.jpf.jvm.bytecode.LRETURN;
 import gov.nasa.jpf.jvm.bytecode.NATIVERETURN;

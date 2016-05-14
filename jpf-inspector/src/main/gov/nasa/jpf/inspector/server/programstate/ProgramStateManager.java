@@ -31,10 +31,10 @@ import gov.nasa.jpf.inspector.server.expression.expressions.ExpressionStateAssig
 import gov.nasa.jpf.inspector.server.jpf.JPFInspector;
 import gov.nasa.jpf.inspector.server.jpf.StopHolder;
 import gov.nasa.jpf.inspector.server.programstate.client.PSEThread;
-import gov.nasa.jpf.jvm.JVM;
-import gov.nasa.jpf.jvm.ThreadInfo;
+import gov.nasa.jpf.vm.VM;
+import gov.nasa.jpf.vm.ThreadInfo;
 import gov.nasa.jpf.jvm.ThreadList;
-import gov.nasa.jpf.jvm.bytecode.Instruction;
+import gov.nasa.jpf.vm.Instruction;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -64,7 +64,7 @@ public class ProgramStateManager implements ProgramStateInterface {
     }
     Map<Integer, PSEThread> result = null;
 
-    JVM vm = getJVM();
+    VM vm = getJVM();
     if (vm == null) {
       return null;
     }
@@ -92,7 +92,7 @@ public class ProgramStateManager implements ProgramStateInterface {
     initialStopTest(true, "threads");
     Map<Integer, InstructionPosition> result = null;
 
-    JVM vm = getJVM();
+    VM vm = getJVM();
     if (vm == null) {
       return null;
     }
@@ -159,7 +159,7 @@ public class ProgramStateManager implements ProgramStateInterface {
   }
 
   private JVM getJVM () throws JPFInspectorGenericErrorException {
-    JVM vm = stopHolder.getJVM();
+    VM vm = stopHolder.getJVM();
     if (vm == null) {
       throw new JPFInspectorGenericErrorException("Internal error - JVM not as a part of the state (JPF is not connected");
     }

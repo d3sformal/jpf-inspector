@@ -21,7 +21,7 @@ package gov.nasa.jpf.inspector.interfaces.exceptions;
 
 import gov.nasa.jpf.inspector.interfaces.JPFInspectorException;
 import gov.nasa.jpf.inspector.server.programstate.StateValue;
-import gov.nasa.jpf.jvm.MethodInfo;
+import gov.nasa.jpf.vm.MethodInfo;
 
 /**
  * @author Alf

@@ -24,18 +24,18 @@ import gov.nasa.jpf.inspector.server.breakpoints.BreakPointModes;
 import gov.nasa.jpf.inspector.server.expression.ExpressionBooleanLeaf;
 import gov.nasa.jpf.inspector.server.expression.InspectorState;
 import gov.nasa.jpf.inspector.server.expression.InspectorState.ListenerMethod;
-import gov.nasa.jpf.jvm.JVM;
-import gov.nasa.jpf.jvm.bytecode.ArrayInstruction;
-import gov.nasa.jpf.jvm.bytecode.FieldInstruction;
+import gov.nasa.jpf.vm.VM;
+import gov.nasa.jpf.vm.bytecode.ArrayElementInstruction;
+import gov.nasa.jpf.vm.bytecode.FieldInstruction;
 import gov.nasa.jpf.jvm.bytecode.GETFIELD;
 import gov.nasa.jpf.jvm.bytecode.GETSTATIC;
 import gov.nasa.jpf.jvm.bytecode.IfInstruction;
-import gov.nasa.jpf.jvm.bytecode.Instruction;
-import gov.nasa.jpf.jvm.bytecode.InvokeInstruction;
+import gov.nasa.jpf.vm.Instruction;
+import gov.nasa.jpf.vm.bytecode.InvokeInstruction;
 import gov.nasa.jpf.jvm.bytecode.LockInstruction;
 import gov.nasa.jpf.jvm.bytecode.PUTFIELD;
 import gov.nasa.jpf.jvm.bytecode.PUTSTATIC;
-import gov.nasa.jpf.jvm.bytecode.ReturnInstruction;
+import gov.nasa.jpf.vm.bytecode.ReturnInstruction;
 
 public class ExpressionBreakpointInstructionType extends ExpressionBooleanLeaf {
 
@@ -52,7 +52,7 @@ public class ExpressionBreakpointInstructionType extends ExpressionBooleanLeaf {
     if (state.getListenerMethod() != ListenerMethod.LM_INSTRUCTION_EXECUTED) {
       return false;
     }
-    JVM vm = state.getJVM();
+    VM vm = state.getJVM();
     Instruction inst = vm.getLastInstruction();
 
     if (inst == null) {
@@ -60,7 +60,7 @@ public class ExpressionBreakpointInstructionType extends ExpressionBooleanLeaf {
     } else if (instType == InstructionTypes.IT_ANY) {
       return true;
     } else if (instType == InstructionTypes.IT_ARRAY) {
-      return (inst instanceof ArrayInstruction);
+      return (inst instanceof ArrayElementInstruction);
     } else if (instType == InstructionTypes.IT_FIELD_ACCESS) {
       return (inst instanceof FieldInstruction);
     } else if (instType == InstructionTypes.IT_FIELD_READ) {

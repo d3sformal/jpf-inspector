@@ -20,7 +20,7 @@
 package gov.nasa.jpf.inspector.interfaces.exceptions;
 
 import gov.nasa.jpf.inspector.interfaces.JPFInspectorException;
-import gov.nasa.jpf.jvm.JVM;
+import gov.nasa.jpf.vm.VM;
 
 /**
  * @author Alf
@@ -38,7 +38,7 @@ public class JPFInspectorNoVMConnected extends JPFInspectorException {
    * @param vm Checks if given VM is not null.
    * @throws JPFInspectorNoVMConnected
    */
-  public static void checkVM (JVM vm) throws JPFInspectorNoVMConnected {
+  public static void checkVM (VM vm) throws JPFInspectorNoVMConnected {
     if (vm == null) {
       throw new JPFInspectorNoVMConnected();
     }

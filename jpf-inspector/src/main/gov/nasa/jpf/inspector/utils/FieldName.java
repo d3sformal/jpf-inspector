@@ -19,7 +19,7 @@
 
 package gov.nasa.jpf.inspector.utils;
 
-import gov.nasa.jpf.jvm.FieldInfo;
+import gov.nasa.jpf.vm.FieldInfo;
 
 //Represents field name of a class in the expression
 public class FieldName {

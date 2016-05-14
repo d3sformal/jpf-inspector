@@ -21,8 +21,8 @@ package gov.nasa.jpf.inspector.server.programstate.relop;
 
 import gov.nasa.jpf.inspector.interfaces.exceptions.JPFInspectorIncompatibleTypesException;
 import gov.nasa.jpf.inspector.server.programstate.StateReadableValueInterface;
-import gov.nasa.jpf.jvm.ClassInfo;
-import gov.nasa.jpf.jvm.ElementInfo;
+import gov.nasa.jpf.vm.ClassInfo;
+import gov.nasa.jpf.vm.ElementInfo;
 
 /**
  * Base class for == and !=.

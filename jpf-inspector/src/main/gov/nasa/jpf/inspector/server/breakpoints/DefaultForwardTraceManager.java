@@ -2,10 +2,10 @@ package gov.nasa.jpf.inspector.server.breakpoints;
 
 import gov.nasa.jpf.inspector.interfaces.ChoiceGeneratorsInterface;
 import gov.nasa.jpf.inspector.server.jpf.JPFInspector;
-import gov.nasa.jpf.jvm.ChoiceGenerator;
-import gov.nasa.jpf.jvm.JVM;
-import gov.nasa.jpf.jvm.Transition;
-import gov.nasa.jpf.jvm.bytecode.Instruction;
+import gov.nasa.jpf.vm.ChoiceGenerator;
+import gov.nasa.jpf.vm.VM;
+import gov.nasa.jpf.vm.Transition;
+import gov.nasa.jpf.vm.Instruction;
 import gov.nasa.jpf.search.Search;
 
 import java.util.Arrays;
@@ -392,7 +392,7 @@ public class DefaultForwardTraceManager {
         destroyTrace(false);
       }
       // There is path in default forward trace -> force forward step
-      JVM vm = search.getVM();
+      VM vm = search.getVM();
       vm.forceState();
     }
   }

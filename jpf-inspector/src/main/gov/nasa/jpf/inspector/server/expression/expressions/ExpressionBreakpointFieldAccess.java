@@ -24,11 +24,11 @@ import gov.nasa.jpf.inspector.server.expression.ExpressionBooleanLeaf;
 import gov.nasa.jpf.inspector.server.expression.InspectorState;
 import gov.nasa.jpf.inspector.server.expression.InspectorState.ListenerMethod;
 import gov.nasa.jpf.inspector.utils.FieldName;
-import gov.nasa.jpf.jvm.JVM;
-import gov.nasa.jpf.jvm.bytecode.FieldInstruction;
+import gov.nasa.jpf.vm.VM;
+import gov.nasa.jpf.vm.bytecode.FieldInstruction;
 import gov.nasa.jpf.jvm.bytecode.GETFIELD;
 import gov.nasa.jpf.jvm.bytecode.GETSTATIC;
-import gov.nasa.jpf.jvm.bytecode.Instruction;
+import gov.nasa.jpf.vm.Instruction;
 import gov.nasa.jpf.jvm.bytecode.PUTFIELD;
 import gov.nasa.jpf.jvm.bytecode.PUTSTATIC;
 
@@ -64,7 +64,7 @@ public class ExpressionBreakpointFieldAccess extends ExpressionBooleanLeaf {
       return false;
     }
 
-    JVM vm = state.getJVM();
+    VM vm = state.getJVM();
     Instruction inst = vm.getLastInstruction();
 
     if (!(inst instanceof FieldInstruction)) {

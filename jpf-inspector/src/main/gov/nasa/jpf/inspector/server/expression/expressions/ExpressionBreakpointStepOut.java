@@ -26,11 +26,11 @@ import gov.nasa.jpf.inspector.server.expression.InspectorState;
 import gov.nasa.jpf.inspector.server.expression.InspectorState.ListenerMethod;
 import gov.nasa.jpf.inspector.server.jpf.JPFInspector;
 import gov.nasa.jpf.inspector.server.jpf.StopHolder;
-import gov.nasa.jpf.jvm.JVM;
-import gov.nasa.jpf.jvm.KernelState;
-import gov.nasa.jpf.jvm.StackFrame;
-import gov.nasa.jpf.jvm.ThreadInfo;
-import gov.nasa.jpf.jvm.ThreadList;
+import gov.nasa.jpf.vm.VM;
+import gov.nasa.jpf.vm.KernelState;
+import gov.nasa.jpf.vm.StackFrame;
+import gov.nasa.jpf.vm.ThreadInfo;
+import gov.nasa.jpf.vm.ThreadList;
 
 import java.util.Iterator;
 
@@ -80,7 +80,7 @@ public class ExpressionBreakpointStepOut extends ExpressionBooleanLeaf {
           "cannot create given breakpoint, JPF has to be connected and stopped - program state is required to create given breakpoint.");
     }
 
-    JVM vm = inspState.getJVM();
+    VM vm = inspState.getJVM();
     assert (vm != null);
 
     // Find thread with given ThreadID
@@ -117,7 +117,7 @@ public class ExpressionBreakpointStepOut extends ExpressionBooleanLeaf {
     assert state != null;
 
     if (state.getListenerMethod() == ListenerMethod.LM_INSTRUCTION_EXECUTED) {
-      JVM vm = state.getJVM();
+      VM vm = state.getJVM();
       assert vm != null;
 
       ThreadInfo ti = vm.getLastThreadInfo();

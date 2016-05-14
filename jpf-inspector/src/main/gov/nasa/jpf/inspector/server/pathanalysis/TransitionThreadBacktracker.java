@@ -1,7 +1,7 @@
 package gov.nasa.jpf.inspector.server.pathanalysis;
 
-import gov.nasa.jpf.jvm.Path;
-import gov.nasa.jpf.jvm.Transition;
+import gov.nasa.jpf.vm.Path;
+import gov.nasa.jpf.vm.Transition;
 
 import java.util.Iterator;
 

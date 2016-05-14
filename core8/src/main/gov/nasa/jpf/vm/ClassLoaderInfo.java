@@ -742,6 +742,7 @@ public class ClassLoaderInfo
       cp.addClassFileContainer(cfc);
     } else {
       log.warning("unknown classpath element: ", path);
+
     }
   }
   

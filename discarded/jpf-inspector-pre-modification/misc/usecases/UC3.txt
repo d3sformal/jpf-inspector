@@ -1,0 +1,183 @@
+target example: Print02
+
+
+command sequence
+----------------
+cr bp mi=Predecessor2:callMePred2
+
+run 
+ - normal breakpoint hit
+	INFO: Breakpoint hit [ 1 :  state=BP_STATE_ENABLED hits=1 hitsTotal=1 method_invoke=Predecessor2:callMePred2]
+
+si
+ - executed instruction
+	SuT  (Thread=0) executes the Print02.java:123 - getstatic source:     System.out.println("# Predecessor2.callMePred2(" + a + ")");
+
+sout
+ - executes all instructions in the current method
+	SuT  (Thread=0) executes the Print02.java:125 - return  Predecessor2.callMePred2(I)V source:   }
+
+thread_pc
+ - current location of the main thread
+	0 : Print02.java:78:    callMePred2(a + 1);
+		Predecessor1:callMePred1:16:invokevirtual Predecessor1.callMePred2(I)V
+
+bsi
+ - current instruction
+	INFO: SuT is stopped
+		SuT  (Thread=0) executes the Print02.java:69 - return  Predecessor1$InnerPred1.callMePred1I1(I)V source:     }
+
+print #thread[0].#stackFrame[0]
+ - local variables of current method and fields of the receiver object
+	Predecessor3$InnerPred3.callMePred1I1 - (in file Print02.java:147) -   public class InnerPred3 extends InnerPred2 {
+	Stack slots
+		0 : this (Predecessor3$InnerPred3) = Predecessor3$InnerPred3@171
+		1 : x0 (int) = 10003
+	Fields
+		0 : a (int) = 1001
+		1 : pred1i1_i1 (int) = 1101
+		2 : pred1i1_i2 (int) = 1102
+		3 : pred1i1_i3 (int) = 1103
+		4 : pred1i1_i4 (int) = 1104
+		5 : this$0 (Predecessor1) = Predecessor3@148
+		6 : a (int) = 1002
+		7 : pred2i2_i1 (int) = 1201
+		8 : pred2i2_i2 (int) = 1202
+		9 : pred2i2_i3 (int) = 1203
+		10 : pred2i2_i4 (int) = 1204
+		11 : this$0 (Predecessor2) = Predecessor3@148
+		12 : a (int) = 1003
+		13 : pred3i3_i1 (int) = 1301
+		14 : pred3i3_i2 (int) = 1302
+		15 : pred3i3_i3 (int) = 1303
+		16 : pred3i3_i4 (int) = 1304
+		17 : this$0 (Predecessor3) = Predecessor3@148
+
+so
+ - executed instruction
+	INFO: SuT is stopped
+		SuT  (Thread=0) executes the Print02.java:147 - return  Predecessor3$InnerPred3.callMePred1I1(I)V source:   public class InnerPred3 extends InnerPred2 {
+
+print #heap[0x148]
+ - all fields of given object (including superclasses) and their values
+	#heap[328] (Predecessor3) = Predecessor3@148
+  	  Instance fields
+		0 : pred1_i1 (int) = 101
+		1 : pred1_i2 (int) = 102
+		2 : pred1_i3 (int) = 103
+		3 : pred1_i4 (int) = 104
+		4 : a (int) = 1
+		5 : a (int) = 2
+		6 : pred2_i1 (int) = 201
+		7 : pred2_i2 (int) = 202
+		8 : pred2_i3 (int) = 203
+		9 : pred2_i4 (int) = 204
+		10 : a (int) = 3
+		11 : pred3_i1 (int) = 301
+		12 : pred3_i2 (int) = 302
+		13 : pred3_i3 (int) = 303
+		14 : pred3_i4 (int) = 304
+  	  Static fields
+		0 : pred3_i11 (int) = 311
+		1 : pred3_i12 (int) = 312
+		2 : pred3_i13 (int) = 313
+		3 : pred3_i14 (int) = 314
+
+set #heap[0x148].pred1_i4 = 44
+ - change field value
+	Value set successfully.
+
+cr bp method_invoke=Predecessor3:callMePred3
+
+print #heap[0x148]
+ - selected fields of given object (note tha different value for pred1_i4)
+	#heap[328] (Predecessor3) = Predecessor3@148
+	  Instance fields
+		0 : pred1_i1 (int) = 101
+		1 : pred1_i2 (int) = 102
+		2 : pred1_i3 (int) = 103
+		3 : pred1_i4 (int) = 44
+
+bso
+ - current position
+	INFO: SuT is stopped
+		SuT  (Thread=0) executes the Print02.java:189 - new Predecessor3$InnerPred3@171 source:     InnerPred3 inner = new InnerPred3();
+
+back_step_out
+ - current position
+	INFO: SuT is stopped
+		SuT  (Thread=0) executes the Print02.java:124 - invokevirtual Predecessor2.callMePred3(I)V source:     callMePred3(a + 1);
+
+run
+ - correct: no breakpoint hit
+	INFO: JPF Terminating
+
+run
+ - new run and breakpoint hit
+	INFO: JPF created and connected, SuT is started
+	INFO: Breakpoint hit [ 1 :  state=BP_STATE_ENABLED hits=1 hitsTotal=2 method_invoke=Predecessor2:callMePred2]
+
+print #heap[0x148]
+ - all fields of given object
+	#heap[328] (Predecessor3) = Predecessor3@148
+	  Instance fields
+		0 : pred1_i1 (int) = 101
+		1 : pred1_i2 (int) = 102
+		2 : pred1_i3 (int) = 103
+		3 : pred1_i4 (int) = 104
+		4 : a (int) = 1
+		5 : a (int) = 2
+		6 : pred2_i1 (int) = 201
+		7 : pred2_i2 (int) = 202
+		8 : pred2_i3 (int) = 203
+		9 : pred2_i4 (int) = 204
+		10 : a (int) = 3
+		11 : pred3_i1 (int) = 301
+		12 : pred3_i2 (int) = 302
+		13 : pred3_i3 (int) = 303
+		14 : pred3_i4 (int) = 304
+	  Static fields
+		0 : pred3_i11 (int) = 311
+		1 : pred3_i12 (int) = 312
+		2 : pred3_i13 (int) = 313
+		3 : pred3_i14 (int) = 314
+
+cr bp #heap[0x148].pred2_i1 > 45
+
+set #heap[0x148].pred2_i1 = 50
+ - new value that should trigger our breakpoint
+	Value set successfully.
+
+print #heap[0x148]
+ - field values (only selection)
+    ...
+	5 : a (int) = 2
+	6 : pred2_i1 (int) = 50
+	7 : pred2_i2 (int) = 202
+    ...
+
+print #heap[0x148].#static
+ - only static fields
+	#heap[328].Predecessor3 (Predecessor3) = Predecessor3
+	  No instance fields
+	  Static fields
+		0 : pred3_i11 (int) = 311
+		1 : pred3_i12 (int) = 312
+		2 : pred3_i13 (int) = 313
+		3 : pred3_i14 (int) = 314
+
+run
+ - breakpoint hit
+	INFO: Breakpoint hit [ 9 :  state=BP_STATE_ENABLED hits=1 hitsTotal=1 (#heap[328].pred2_i1 > 45)]
+
+thread_pc
+ - hit was immediate (no instruction executed since the previous hit)
+	0 : Print02.java:123:    System.out.println("# Predecessor2.callMePred2(" + a + ")");
+		Predecessor2:callMePred2:0:getstatic
+
+set #heap[0x148].pred2_i1 = 20
+
+run
+ - different breakpoint was hit (not the one with the condition "pred2_i1 > 45")
+	INFO: Breakpoint hit [ 6 :  state=BP_STATE_ENABLED hits=1 hitsTotal=1 method_invoke=Predecessor3:callMePred3]
+

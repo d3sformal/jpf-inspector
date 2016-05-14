@@ -26,12 +26,12 @@ import gov.nasa.jpf.inspector.server.programstate.client.PSEMethod;
 import gov.nasa.jpf.inspector.server.programstate.client.PSEVariable;
 import gov.nasa.jpf.inspector.server.programstate.client.PSEVariableObject;
 import gov.nasa.jpf.inspector.utils.InstructionWrapper;
-import gov.nasa.jpf.jvm.ClassInfo;
-import gov.nasa.jpf.jvm.LocalVarInfo;
-import gov.nasa.jpf.jvm.MethodInfo;
-import gov.nasa.jpf.jvm.StackFrame;
-import gov.nasa.jpf.jvm.ThreadInfo;
-import gov.nasa.jpf.jvm.bytecode.Instruction;
+import gov.nasa.jpf.vm.ClassInfo;
+import gov.nasa.jpf.vm.LocalVarInfo;
+import gov.nasa.jpf.vm.MethodInfo;
+import gov.nasa.jpf.vm.StackFrame;
+import gov.nasa.jpf.vm.ThreadInfo;
+import gov.nasa.jpf.vm.Instruction;
 
 /**
  * @author Alf

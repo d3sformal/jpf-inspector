@@ -1,6 +1,6 @@
 package gov.nasa.jpf.inspector.interfaces;
 
-import gov.nasa.jpf.jvm.ChoiceGenerator;
+import gov.nasa.jpf.vm.ChoiceGenerator;
 
 public interface ChoiceGeneratorState {
   

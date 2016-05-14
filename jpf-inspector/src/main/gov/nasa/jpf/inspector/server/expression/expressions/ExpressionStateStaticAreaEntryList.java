@@ -28,7 +28,7 @@ import gov.nasa.jpf.inspector.server.expression.Types;
 import gov.nasa.jpf.inspector.server.jpf.JPFInspector;
 import gov.nasa.jpf.inspector.server.programstate.StateHeapEntryList;
 import gov.nasa.jpf.inspector.utils.ClassName;
-import gov.nasa.jpf.jvm.JVM;
+import gov.nasa.jpf.vm.VM;
 
 /**
  * @author Alf
@@ -50,7 +50,7 @@ public class ExpressionStateStaticAreaEntryList extends ExpressionStateUnaryOper
   @Override
   public StateHeapEntryList getResultExpression (JPFInspector inspector, InspectorState state) throws JPFInspectorException {
 
-    JVM vm = state.getJVM();
+    VM vm = state.getJVM();
     JPFInspectorNoVMConnected.checkVM(vm);
 
     assert (heapItemsFilter != null);

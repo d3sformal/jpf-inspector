@@ -31,15 +31,15 @@ import gov.nasa.jpf.inspector.server.programstate.client.PSEVariableArray;
 import gov.nasa.jpf.inspector.server.programstate.client.PSEVariableObject;
 import gov.nasa.jpf.inspector.server.programstate.client.PSEVariablePrimitive;
 import gov.nasa.jpf.inspector.utils.ClassInfoCache;
-import gov.nasa.jpf.jvm.ClassInfo;
-import gov.nasa.jpf.jvm.DynamicElementInfo;
-import gov.nasa.jpf.jvm.ElementInfo;
-import gov.nasa.jpf.jvm.Heap;
-import gov.nasa.jpf.jvm.JVM;
-import gov.nasa.jpf.jvm.MJIEnv;
-import gov.nasa.jpf.jvm.MethodInfo;
-import gov.nasa.jpf.jvm.StaticElementInfo;
-import gov.nasa.jpf.jvm.Types;
+import gov.nasa.jpf.vm.ClassInfo;
+import gov.nasa.jpf.vm.DynamicElementInfo;
+import gov.nasa.jpf.vm.ElementInfo;
+import gov.nasa.jpf.vm.Heap;
+import gov.nasa.jpf.vm.VM;
+import gov.nasa.jpf.vm.MJIEnv;
+import gov.nasa.jpf.vm.MethodInfo;
+import gov.nasa.jpf.vm.StaticElementInfo;
+import gov.nasa.jpf.vm.Types;
 
 import java.util.Arrays;
 
@@ -60,7 +60,7 @@ public abstract class StateValue extends StateNode implements StateReadableValue
 
     this.ci = ci;
 
-    JVM currentVM = sni.getInspector().getJPF().getVM();
+    VM currentVM = sni.getInspector().getJPF().getVM();
     if (ciCache == null || ciCache.cacheValid(currentVM) == false) {
       ciCache = new ClassInfoCache(currentVM);
     }
@@ -513,7 +513,7 @@ public abstract class StateValue extends StateNode implements StateReadableValue
             sb.append("null");
           } else {
             // value stored in array at index i
-            ElementInfo eiArr = JVM.getVM().getHeap().get(refArr[i]);
+            ElementInfo eiArr = VM.getVM().getHeap().get(refArr[i]);
             assert (eiArr != null);
 
             sb.append(elementInfo2String(eiArr));

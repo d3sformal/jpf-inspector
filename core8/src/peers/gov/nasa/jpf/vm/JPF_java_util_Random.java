@@ -201,7 +201,6 @@ public class JPF_java_util_Random extends NativePeer {
   public int nextInt__I__I (MJIEnv env, int objRef, int n){
     if (enumerateRandom){
       return JPF_gov_nasa_jpf_vm_Verify.getInt__II__I(env,-1,0,n-1);
-      
     } else {
       restoreRandomState(env, objRef, delegatee);
       int ret = delegatee.nextInt(n);

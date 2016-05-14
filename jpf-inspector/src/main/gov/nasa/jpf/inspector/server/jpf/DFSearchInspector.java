@@ -20,7 +20,7 @@
 package gov.nasa.jpf.inspector.server.jpf;
 
 import gov.nasa.jpf.Config;
-import gov.nasa.jpf.jvm.JVM;
+import gov.nasa.jpf.vm.VM;
 import gov.nasa.jpf.search.DFSearch;
 
 /**
@@ -30,7 +30,7 @@ public class DFSearchInspector extends DFSearch implements SearchInspectorExtens
   private JPFInspector inspector = null;
 
   // Copied DFSSearch with necessary modifications
-  public DFSearchInspector (Config config, JVM vm) {
+  public DFSearchInspector (Config config, VM vm) {
     super(config, vm);
   }
 

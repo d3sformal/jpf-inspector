@@ -1,11 +1,11 @@
 package gov.nasa.jpf.inspector.server.pathanalysis;
 
-import gov.nasa.jpf.jvm.Step;
+import gov.nasa.jpf.vm.Step;
 import gov.nasa.jpf.jvm.bytecode.ATHROW;
-import gov.nasa.jpf.jvm.bytecode.Instruction;
-import gov.nasa.jpf.jvm.bytecode.InstructionVisitorAdapter;
+import gov.nasa.jpf.jvm.bytecode.JVMInstruction;
+import gov.nasa.jpf.jvm.bytecode.JVMInstructionVisitorAdapter;
 
-public class CheckThrowInstruction extends InstructionVisitorAdapter {
+public class CheckThrowInstruction extends JVMInstructionVisitorAdapter {
   private boolean isThrowInstr = false;
 
   public boolean isThrowStep(Step step) {
@@ -13,7 +13,7 @@ public class CheckThrowInstruction extends InstructionVisitorAdapter {
     return isThrowInstruction(step.getInstruction());
   }
 
-  public boolean isThrowInstruction(Instruction inst) {
+  public boolean isThrowInstruction(JVMInstruction inst) {
     assert(inst != null);
     isThrowInstr = false;
     inst.accept(this);

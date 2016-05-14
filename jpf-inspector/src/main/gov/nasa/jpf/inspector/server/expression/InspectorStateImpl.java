@@ -19,8 +19,8 @@
 
 package gov.nasa.jpf.inspector.server.expression;
 
-import gov.nasa.jpf.jvm.JVM;
-import gov.nasa.jpf.jvm.bytecode.Instruction;
+import gov.nasa.jpf.vm.VM;
+import gov.nasa.jpf.vm.Instruction;
 import gov.nasa.jpf.search.Search;
 
 import java.util.HashMap;
@@ -29,7 +29,7 @@ import java.util.Map;
 public class InspectorStateImpl implements InspectorState {
 
   private final Map<Integer, Instruction> lastExecutedInstructions = new HashMap<Integer, Instruction>();
-  private JVM jvm;
+  private VM jvm;
   private Search search; // / Holds search class from last executed step
 
   private Instruction currentInstruction = null; //
@@ -38,7 +38,7 @@ public class InspectorStateImpl implements InspectorState {
   private InspectorState.ListenerMethod listenerMethod = ListenerMethod.LM_NOT_IN_LIST;
 
   @Override
-  public JVM getJVM () {
+  public VM getJVM () {
     return jvm;
   }
 
@@ -58,7 +58,7 @@ public class InspectorStateImpl implements InspectorState {
   }
 
   // Has to be called after each executed instruction
-  public void instructionExecuted (JVM newJVM) {
+  public void instructionExecuted (VM newJVM) {
     this.jvm = newJVM;
 
     lastExecutedInstructions.put(currentThread, currentInstruction);
@@ -74,7 +74,7 @@ public class InspectorStateImpl implements InspectorState {
     this.listenerMethod = listenerMethod;
   }
 
-  public void notifyListenerMethodCall (ListenerMethod listenerMethod, JVM jvm) {
+  public void notifyListenerMethodCall (ListenerMethod listenerMethod, VM jvm) {
     this.listenerMethod = listenerMethod;
     this.jvm = jvm;
   }

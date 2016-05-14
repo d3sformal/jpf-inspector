@@ -22,7 +22,7 @@ package gov.nasa.jpf.inspector.interfaces.exceptions;
 import gov.nasa.jpf.inspector.interfaces.JPFInspectorException;
 import gov.nasa.jpf.inspector.server.programstate.StateValue;
 import gov.nasa.jpf.inspector.server.programstate.relop.RelationOperator;
-import gov.nasa.jpf.jvm.ClassInfo;
+import gov.nasa.jpf.vm.ClassInfo;
 
 /**
  * @author Alf

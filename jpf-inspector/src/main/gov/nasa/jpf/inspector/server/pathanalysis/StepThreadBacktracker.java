@@ -1,9 +1,9 @@
 package gov.nasa.jpf.inspector.server.pathanalysis;
 
-import gov.nasa.jpf.jvm.Path;
-import gov.nasa.jpf.jvm.Step;
-import gov.nasa.jpf.jvm.Transition;
-import gov.nasa.jpf.jvm.bytecode.Instruction;
+import gov.nasa.jpf.vm.Path;
+import gov.nasa.jpf.vm.Step;
+import gov.nasa.jpf.vm.Transition;
+import gov.nasa.jpf.vm.Instruction;
 
 /**
  * Backward step iterator for given thread. Seamlessly hides transition boundaries and repetition of instruction at transition boundaries. (Top/Bottom halves)

@@ -24,7 +24,7 @@ import gov.nasa.jpf.inspector.server.breakpoints.BreakPointHandler;
 import gov.nasa.jpf.inspector.server.breakpoints.CommandsManager;
 import gov.nasa.jpf.inspector.server.breakpoints.DefaultForwardTraceManager;
 import gov.nasa.jpf.inspector.server.choicegenerators.ChoiceGeneratorNotifications;
-import gov.nasa.jpf.jvm.JVM;
+import gov.nasa.jpf.vm.VM;
 import gov.nasa.jpf.report.Publisher;
 import gov.nasa.jpf.search.Search;
 
@@ -91,142 +91,142 @@ public class InspectorListener extends ListenerAdapter {
   }
 
   @Override
-  public void instructionExecuted (JVM vm) {
+  public void instructionExecuted (VM vm) {
     mode.instructionExecuted(vm);
   }
 
   @Override
-  public void executeInstruction (JVM vm) {
+  public void executeInstruction (VM vm) {
     mode.executeInstruction(vm);
   }
 
   @Override
-  public void threadStarted (JVM vm) {
+  public void threadStarted (VM vm) {
     mode.threadStarted(vm);
   }
 
   @Override
-  public void threadWaiting (JVM vm) {
+  public void threadWaiting (VM vm) {
     mode.threadWaiting(vm);
   }
 
   @Override
-  public void threadNotified (JVM vm) {
+  public void threadNotified (VM vm) {
     mode.threadNotified(vm);
   }
 
   @Override
-  public void threadInterrupted (JVM vm) {
+  public void threadInterrupted (VM vm) {
     mode.threadInterrupted(vm);
   }
 
   @Override
-  public void threadScheduled (JVM vm) {
+  public void threadScheduled (VM vm) {
     mode.threadScheduled(vm);
   }
 
   @Override
-  public void threadBlocked (JVM vm) {
+  public void threadBlocked (VM vm) {
     mode.threadBlocked(vm);
   }
 
   @Override
-  public void threadTerminated (JVM vm) {
+  public void threadTerminated (VM vm) {
     mode.threadTerminated(vm);
   }
 
   @Override
-  public void classLoaded (JVM vm) {
+  public void classLoaded (VM vm) {
     mode.classLoaded(vm);
   }
 
   @Override
-  public void objectCreated (JVM vm) {
+  public void objectCreated (VM vm) {
     mode.objectCreated(vm);
   }
 
   @Override
-  public void objectReleased (JVM vm) {
+  public void objectReleased (VM vm) {
     mode.objectReleased(vm);
   }
 
   @Override
-  public void objectLocked (JVM vm) {
+  public void objectLocked (VM vm) {
     mode.objectLocked(vm);
   }
 
   @Override
-  public void objectUnlocked (JVM vm) {
+  public void objectUnlocked (VM vm) {
     mode.objectUnlocked(vm);
   }
 
   @Override
-  public void objectWait (JVM vm) {
+  public void objectWait (VM vm) {
     mode.objectWait(vm);
   }
 
   @Override
-  public void objectNotify (JVM vm) {
+  public void objectNotify (VM vm) {
     mode.objectNotify(vm);
   }
 
   @Override
-  public void objectNotifyAll (JVM vm) {
+  public void objectNotifyAll (VM vm) {
     mode.objectNotifyAll(vm);
   }
 
   @Override
-  public void gcBegin (JVM vm) {
+  public void gcBegin (VM vm) {
     mode.gcBegin(vm);
   }
 
   @Override
-  public void gcEnd (JVM vm) {
+  public void gcEnd (VM vm) {
     mode.gcEnd(vm);
   }
 
   @Override
-  public void exceptionThrown (JVM vm) {
+  public void exceptionThrown (VM vm) {
     mode.exceptionThrown(vm);
   }
 
   @Override
-  public void exceptionBailout (JVM vm) {
+  public void exceptionBailout (VM vm) {
     mode.exceptionBailout(vm);
   }
 
   @Override
-  public void exceptionHandled (JVM vm) {
+  public void exceptionHandled (VM vm) {
     mode.exceptionHandled(vm);
   }
 
   @Override
-  public void choiceGeneratorRegistered (JVM vm) {
+  public void choiceGeneratorRegistered (VM vm) {
     mode.choiceGeneratorRegistered(vm);
   }
 
   @Override
-  public void choiceGeneratorSet (JVM vm) {
+  public void choiceGeneratorSet (VM vm) {
     mode.choiceGeneratorSet(vm);
   }
 
   @Override
-  public void choiceGeneratorAdvanced (JVM vm) {
+  public void choiceGeneratorAdvanced (VM vm) {
     mode.choiceGeneratorAdvanced(vm);
   }
 
   @Override
-  public void choiceGeneratorProcessed (JVM vm) {
+  public void choiceGeneratorProcessed (VM vm) {
     mode.choiceGeneratorProcessed(vm);
   }
 
   @Override
-  public void methodEntered (JVM vm) {
+  public void methodEntered (VM vm) {
     mode.methodEntered(vm);
   }
 
   @Override
-  public void methodExited (JVM vm) {
+  public void methodExited (VM vm) {
     mode.methodExited(vm);
   }
 

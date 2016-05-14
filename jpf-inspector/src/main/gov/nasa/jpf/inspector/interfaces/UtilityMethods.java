@@ -19,7 +19,7 @@
 
 package gov.nasa.jpf.inspector.interfaces;
 
-import gov.nasa.jpf.jvm.JVM;
+import gov.nasa.jpf.vm.VM;
 
 /**
  * TODO - Move methods into final place
@@ -39,6 +39,6 @@ public interface UtilityMethods {
    * 
    * @param vm
    */
-  public InstructionPosition geCurrentInstructionPosition (JVM vm);
+  public InstructionPosition geCurrentInstructionPosition (VM vm);
 
 }

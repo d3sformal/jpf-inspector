@@ -69,14 +69,15 @@ public class VerifyCommand extends ShellCommand{
     if (running){
       if (jpf != null)
         jpf.getSearch().terminate();
+        // TODO (sooth): shouldn't "running" be falsified here?
     }
   }
 
   @Override
   public boolean prepare(){
     if (running){
-      if (JOptionPane.showConfirmDialog(ShellManager.getManager().getShell(),
-	  "Are you sure that you want to cancel JPF?")==JOptionPane.YES_OPTION)
+      if ( JOptionPane.showConfirmDialog(ShellManager.getManager().getShell(),
+      	  "Are you sure that you want to cancel JPF?") == JOptionPane.YES_OPTION )
         cancelVerify();
       return false;
     }

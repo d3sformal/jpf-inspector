@@ -20,13 +20,14 @@
 package gov.nasa.jpf.inspector.server.choicegenerators;
 
 import gov.nasa.jpf.inspector.server.expression.InspectorState;
-import gov.nasa.jpf.jvm.ChoiceGenerator;
-import gov.nasa.jpf.jvm.VMListener;
+import gov.nasa.jpf.vm.ChoiceGenerator;
+import gov.nasa.jpf.vm.VMListener;
 
 public interface ChoiceGeneratorNotifications {
 
+  // TODO something fishy may be going on here
   /**
-   * JPF Calls {@link VMListener#choiceGeneratorAdvanced(gov.nasa.jpf.jvm.JVM)}
+   * JPF Calls {@link VMListener#choiceGeneratorAdvanced(gov.nasa.jpf.vm.VM)}
    * 
    * @param cg Choice generator that should by advanced
    * @param inspState Representation of the JPF inspector and its state if CG.advance() occurs.

@@ -28,7 +28,7 @@ import gov.nasa.jpf.inspector.server.expression.Types;
 import gov.nasa.jpf.inspector.server.jpf.JPFInspector;
 import gov.nasa.jpf.inspector.server.programstate.StateElementInfo;
 import gov.nasa.jpf.inspector.server.programstate.StateNodeInterface;
-import gov.nasa.jpf.jvm.JVM;
+import gov.nasa.jpf.vm.VM;
 
 /**
  * Represents expression #heap[int]
@@ -59,7 +59,7 @@ public class ExpressionStateHeap extends ExpressionStateUnaryOperator<Expression
   public StateNodeInterface getResultExpression (JPFInspector inspector, InspectorState state) throws JPFInspectorException {
     assert state != null;
 
-    JVM vm = state.getJVM();
+    VM vm = state.getJVM();
     JPFInspectorNoVMConnected.checkVM(vm);
 
     ExpressionStateValue child = getChild();

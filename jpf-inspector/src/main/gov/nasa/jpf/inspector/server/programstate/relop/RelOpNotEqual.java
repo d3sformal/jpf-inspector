@@ -19,7 +19,7 @@
 
 package gov.nasa.jpf.inspector.server.programstate.relop;
 
-import gov.nasa.jpf.jvm.ElementInfo;
+import gov.nasa.jpf.vm.ElementInfo;
 
 /**
  * @author Alf

@@ -30,14 +30,14 @@ import gov.nasa.jpf.inspector.server.expression.InspectorState.ListenerMethod;
 import gov.nasa.jpf.inspector.server.jpf.JPFInspector;
 import gov.nasa.jpf.inspector.server.jpf.SearchInspectorExtension;
 import gov.nasa.jpf.inspector.server.jpf.StopHolder;
-import gov.nasa.jpf.jvm.JVM;
-import gov.nasa.jpf.jvm.Path;
-import gov.nasa.jpf.jvm.StackFrame;
-import gov.nasa.jpf.jvm.ThreadInfo;
-import gov.nasa.jpf.jvm.Transition;
-import gov.nasa.jpf.jvm.bytecode.Instruction;
-import gov.nasa.jpf.jvm.bytecode.InvokeInstruction;
-import gov.nasa.jpf.jvm.bytecode.ReturnInstruction;
+import gov.nasa.jpf.vm.VM;
+import gov.nasa.jpf.vm.Path;
+import gov.nasa.jpf.vm.StackFrame;
+import gov.nasa.jpf.vm.ThreadInfo;
+import gov.nasa.jpf.vm.Transition;
+import gov.nasa.jpf.vm.Instruction;
+import gov.nasa.jpf.vm.bytecode.InvokeInstruction; // TODO change of invoke here
+import gov.nasa.jpf.vm.bytecode.ReturnInstruction;
 import gov.nasa.jpf.search.DFSearch;
 import gov.nasa.jpf.search.Search;
 
@@ -83,7 +83,7 @@ public class ExpressionBreakpointSingleStep extends ExpressionBooleanLeaf {
           "cannot create breakpoint, JPF has to be connected and stopped - program state is required to create given breakpoint.");
     }
 
-    JVM vm = inspState.getJVM();
+    VM vm = inspState.getJVM();
     assert (vm != null);
 
     LocationTypes lt = null;
@@ -105,7 +105,7 @@ public class ExpressionBreakpointSingleStep extends ExpressionBooleanLeaf {
    * @param vm Virtual machine where to obtain current position. Cann't be null.
    * @param posHandling The way how Instruction position is used.
    */
-  public ExpressionBreakpointSingleStep (JPFInspector inspector, JVM vm, LocationTypes posHandling) {
+  public ExpressionBreakpointSingleStep (JPFInspector inspector, VM vm, LocationTypes posHandling) {
     // InstructionPosition pos, int threadNum, Transition reqTransition,
     assert vm != null;
     assert inspector != null;
@@ -152,7 +152,7 @@ public class ExpressionBreakpointSingleStep extends ExpressionBooleanLeaf {
       return false;
     }
 
-    JVM vm = state.getJVM();
+    VM vm = state.getJVM();
     assert vm != null;
 
     // Check if we are in the same thread
@@ -249,7 +249,7 @@ public class ExpressionBreakpointSingleStep extends ExpressionBooleanLeaf {
    * @param tr Transition to search.
    * @return True if the path contains the transition
    */
-  private static boolean checkPath (JVM jvm, Transition tr) {
+  private static boolean checkPath (VM jvm, Transition tr) {
     assert jvm != null;
     Transition curTr = jvm.getCurrentTransition();
     if (curTr.equals(tr)) {

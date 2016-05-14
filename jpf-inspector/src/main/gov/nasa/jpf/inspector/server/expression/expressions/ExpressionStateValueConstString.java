@@ -27,10 +27,10 @@ import gov.nasa.jpf.inspector.server.jpf.JPFInspector;
 import gov.nasa.jpf.inspector.server.programstate.StateNodeInterface;
 import gov.nasa.jpf.inspector.server.programstate.StateReadableConstValue;
 import gov.nasa.jpf.inspector.utils.parser.JPFInspectorRuntimeParsingException;
-import gov.nasa.jpf.jvm.ClassInfo;
-import gov.nasa.jpf.jvm.ElementInfo;
-import gov.nasa.jpf.jvm.Heap;
-import gov.nasa.jpf.jvm.JVM;
+import gov.nasa.jpf.vm.ClassInfo;
+import gov.nasa.jpf.vm.ElementInfo;
+import gov.nasa.jpf.vm.Heap;
+import gov.nasa.jpf.vm.VM;
 
 /**
  * @author Alf
@@ -117,9 +117,12 @@ public class ExpressionStateValueConstString extends ExpressionStateValueConst {
   public StateNodeInterface getResultExpression (JPFInspector inspector, InspectorState state) throws JPFInspectorException {
 
     // Create representation for the string in the JPF state.
-    JVM vm = state.getJVM();
+    VM vm = state.getJVM();
     Heap heap = vm.getHeap();
-    int ref = heap.newString(value, null);
+    /*
+     TODO change happened here: previously, there was no "getObjectRef".
+     */
+    int ref = heap.newString(value, null).getObjectRef();
     ElementInfo ei = heap.get(ref);
 
     return new StateReadableConstValue(inspector, 1, ClassInfo.getResolvedClassInfo("java.lang.String"), ei);

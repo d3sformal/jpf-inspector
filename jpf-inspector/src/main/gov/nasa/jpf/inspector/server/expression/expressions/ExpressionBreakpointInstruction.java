@@ -28,13 +28,13 @@ import gov.nasa.jpf.inspector.server.jpf.JPFInspector;
 import gov.nasa.jpf.inspector.server.jpf.StopHolder;
 import gov.nasa.jpf.inspector.utils.ClassName;
 import gov.nasa.jpf.inspector.utils.MethodName;
-import gov.nasa.jpf.jvm.ClassInfo;
-import gov.nasa.jpf.jvm.JVM;
-import gov.nasa.jpf.jvm.MethodInfo;
-import gov.nasa.jpf.jvm.Step;
-import gov.nasa.jpf.jvm.ThreadInfo;
-import gov.nasa.jpf.jvm.Transition;
-import gov.nasa.jpf.jvm.bytecode.Instruction;
+import gov.nasa.jpf.vm.ClassInfo;
+import gov.nasa.jpf.vm.VM;
+import gov.nasa.jpf.vm.MethodInfo;
+import gov.nasa.jpf.vm.Step;
+import gov.nasa.jpf.vm.ThreadInfo;
+import gov.nasa.jpf.vm.Transition;
+import gov.nasa.jpf.vm.Instruction;
 
 /**
  * Used for internal Inspector purposes to implement backward single instruction steps.
@@ -102,7 +102,7 @@ public class ExpressionBreakpointInstruction extends ExpressionBooleanLeaf {
   @Override
   public boolean evaluateExpression (InspectorState state) {
     if (state.getListenerMethod() == ListenerMethod.LM_INSTRUCTION_EXECUTED) {
-      JVM vm = state.getJVM();
+      VM vm = state.getJVM();
       assert vm != null;
       ThreadInfo ti = vm.getCurrentThread();
       if (ti.getId() == threadNum) {
@@ -142,7 +142,7 @@ public class ExpressionBreakpointInstruction extends ExpressionBooleanLeaf {
       throw new JPFInspectorGenericErrorException("Cannot find specified instruction - JPF is not connected to Inspector or execution is not stopped");
     }
 
-    JVM vm = inspState.getJVM();
+    VM vm = inspState.getJVM();
     assert (vm != null);
 
     assert (methodSpec != null);

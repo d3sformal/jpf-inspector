@@ -30,8 +30,8 @@ import gov.nasa.jpf.inspector.server.programstate.StateStackFrame;
 import gov.nasa.jpf.inspector.server.programstate.StateValue;
 import gov.nasa.jpf.inspector.server.programstate.StateValueElementInfoField;
 import gov.nasa.jpf.inspector.server.programstate.StateValueStackSlot;
-import gov.nasa.jpf.jvm.ClassInfo;
-import gov.nasa.jpf.jvm.FieldInfo;
+import gov.nasa.jpf.vm.ClassInfo;
+import gov.nasa.jpf.vm.FieldInfo;
 import gov.nasa.jpf.jvm.StaticArea;
 import gov.nasa.jpf.jvm.StaticElementInfo;
 

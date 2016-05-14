@@ -19,7 +19,7 @@
 
 package gov.nasa.jpf.inspector.interfaces;
 
-import gov.nasa.jpf.jvm.bytecode.Instruction;
+import gov.nasa.jpf.vm.Instruction;
 
 public interface InstructionPosition {
 

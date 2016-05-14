@@ -25,14 +25,14 @@ import gov.nasa.jpf.inspector.server.expression.ExpressionBooleanLeaf;
 import gov.nasa.jpf.inspector.server.expression.InspectorState;
 import gov.nasa.jpf.inspector.server.expression.InspectorState.ListenerMethod;
 import gov.nasa.jpf.inspector.server.jpf.JPFInspector;
-import gov.nasa.jpf.jvm.JVM;
-import gov.nasa.jpf.jvm.Path;
-import gov.nasa.jpf.jvm.Transition;
-import gov.nasa.jpf.jvm.bytecode.Instruction;
+import gov.nasa.jpf.vm.VM;
+import gov.nasa.jpf.vm.Path;
+import gov.nasa.jpf.vm.Transition;
+import gov.nasa.jpf.vm.Instruction;
 import gov.nasa.jpf.jvm.bytecode.JSR;
 import gov.nasa.jpf.jvm.bytecode.JSR_W;
 import gov.nasa.jpf.jvm.bytecode.RET;
-import gov.nasa.jpf.jvm.bytecode.ReturnInstruction;
+import gov.nasa.jpf.vm.bytecode.ReturnInstruction;
 
 /**
  * Represent expression (Breakpoint) that stops on given position in the program.
@@ -50,7 +50,7 @@ public class ExpressionBreakpointPosition extends ExpressionBooleanLeaf {
    * 
    * @param pos
    *        Position where stop execution. Cann't be null.
-   * @param posHandling
+   * TODO oldparam _param posHandling
    *        The way how Instruction position is used.
    */
   public ExpressionBreakpointPosition (JPFInspector inspector, InstructionPosition pos) {
@@ -80,7 +80,7 @@ public class ExpressionBreakpointPosition extends ExpressionBooleanLeaf {
       return false;
     }
 
-    JVM vm = state.getJVM();
+    VM vm = state.getJVM();
     assert vm != null;
 
     int lastThread = vm.getThreadNumber();

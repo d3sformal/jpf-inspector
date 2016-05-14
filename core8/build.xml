@@ -12,7 +12,7 @@
     buildinfo         create buildinfo properties file
 -->
 
-<project name="jpf-core" default="build" basedir=".">
+<project name="core8" default="build" basedir=".">
 
   <!-- ===================== ===== COMMON SECTION ========================== -->
 

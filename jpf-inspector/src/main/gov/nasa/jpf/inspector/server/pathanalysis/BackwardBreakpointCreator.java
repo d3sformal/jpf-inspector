@@ -9,10 +9,10 @@ import gov.nasa.jpf.inspector.server.breakpoints.InstructionPositionImpl;
 import gov.nasa.jpf.inspector.server.expression.ExpressionBoolean;
 import gov.nasa.jpf.inspector.server.expression.InspectorState;
 import gov.nasa.jpf.inspector.server.expression.expressions.ExpressionBreakpointInstruction;
-import gov.nasa.jpf.jvm.JVM;
-import gov.nasa.jpf.jvm.Path;
-import gov.nasa.jpf.jvm.Step;
-import gov.nasa.jpf.jvm.Transition;
+import gov.nasa.jpf.vm.VM;
+import gov.nasa.jpf.vm.Path;
+import gov.nasa.jpf.vm.Step;
+import gov.nasa.jpf.vm.Transition;
 
 public class BackwardBreakpointCreator {
 
@@ -205,7 +205,7 @@ public class BackwardBreakpointCreator {
   // }
 
   static private Path getPath (InspectorState insp) {
-    JVM vm = insp.getJVM();
+    VM vm = insp.getJVM();
     vm.updatePath();
     return vm.getPath();
   }

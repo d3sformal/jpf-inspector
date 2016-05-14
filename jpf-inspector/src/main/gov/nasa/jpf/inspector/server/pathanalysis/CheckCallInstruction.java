@@ -1,12 +1,12 @@
 package gov.nasa.jpf.inspector.server.pathanalysis;
 
-import gov.nasa.jpf.jvm.Step;
+import gov.nasa.jpf.vm.Step;
 import gov.nasa.jpf.jvm.bytecode.INVOKECLINIT;
 import gov.nasa.jpf.jvm.bytecode.INVOKEINTERFACE;
 import gov.nasa.jpf.jvm.bytecode.INVOKESPECIAL;
 import gov.nasa.jpf.jvm.bytecode.INVOKESTATIC;
 import gov.nasa.jpf.jvm.bytecode.INVOKEVIRTUAL;
-import gov.nasa.jpf.jvm.bytecode.Instruction;
+import gov.nasa.jpf.vm.Instruction;
 import gov.nasa.jpf.jvm.bytecode.InstructionVisitorAdapter;
 import gov.nasa.jpf.jvm.bytecode.InvokeInstruction;
 

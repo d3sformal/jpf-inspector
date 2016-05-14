@@ -7,7 +7,7 @@ import gov.nasa.jpf.inspector.server.breakpoints.DefaultForwardTraceManager;
 import gov.nasa.jpf.inspector.server.choicegenerators.ChoiceGeneratorNotifications;
 import gov.nasa.jpf.inspector.server.expression.InspectorState.ListenerMethod;
 import gov.nasa.jpf.inspector.server.expression.InspectorStateImpl;
-import gov.nasa.jpf.jvm.JVM;
+import gov.nasa.jpf.vm.VM;
 import gov.nasa.jpf.search.Search;
 
 /**
@@ -105,7 +105,7 @@ public class InspectorListenerModeNotifications extends ListenerAdapter {
   }
 
   @Override
-  public void instructionExecuted (JVM vm) {
+  public void instructionExecuted (VM vm) {
     if (DEBUG) {
       inspector.getDebugPrintStream().println(
           this.getClass().getSimpleName() + ".instructionExecuted(lastInstr=" + vm.getLastInstruction() + ", loc=" + vm.getLastInstruction().getFileLocation()
@@ -116,14 +116,14 @@ public class InspectorListenerModeNotifications extends ListenerAdapter {
   }
 
   @Override
-  public void classLoaded (JVM vm) {
+  public void classLoaded (VM vm) {
     if (DEBUG) {
       inspector.getDebugPrintStream().println(this.getClass().getSimpleName() + ".classLoaded()");
     }
   }
 
   @Override
-  public void gcBegin (JVM vm) {
+  public void gcBegin (VM vm) {
     if (DEBUG) {
       inspector.getDebugPrintStream().println(this.getClass().getSimpleName() + ".gcBegin()");
     }
@@ -132,7 +132,7 @@ public class InspectorListenerModeNotifications extends ListenerAdapter {
   }
 
   @Override
-  public void gcEnd (JVM vm) {
+  public void gcEnd (VM vm) {
     if (DEBUG) {
       inspector.getDebugPrintStream().println(this.getClass().getSimpleName() + ".gcEnd()");
     }
@@ -141,7 +141,7 @@ public class InspectorListenerModeNotifications extends ListenerAdapter {
   }
 
   @Override
-  public void objectCreated (JVM vm) {
+  public void objectCreated (VM vm) {
     if (DEBUG) {
       inspector.getDebugPrintStream().println(this.getClass().getSimpleName() + ".objectCreated()");
     }
@@ -150,7 +150,7 @@ public class InspectorListenerModeNotifications extends ListenerAdapter {
   }
 
   @Override
-  public void objectReleased (JVM vm) {
+  public void objectReleased (VM vm) {
     if (DEBUG) {
       inspector.getDebugPrintStream().println(this.getClass().getSimpleName() + ".objectCreated()");
     }
@@ -159,7 +159,7 @@ public class InspectorListenerModeNotifications extends ListenerAdapter {
   }
 
   @Override
-  public void exceptionThrown (JVM vm) {
+  public void exceptionThrown (VM vm) {
     if (DEBUG) {
       inspector.getDebugPrintStream().println(this.getClass().getSimpleName() + ".objectCreated()");
     }
@@ -168,7 +168,7 @@ public class InspectorListenerModeNotifications extends ListenerAdapter {
   }
 
   @Override
-  public void choiceGeneratorSet (JVM vm) {
+  public void choiceGeneratorSet (VM vm) {
     if (DEBUG) {
       inspector.getDebugPrintStream().println(
           this.getClass().getSimpleName() + ".choiceGeneratorSet() - cg=" + vm.getLastChoiceGenerator() + " processedChoices="
@@ -177,7 +177,7 @@ public class InspectorListenerModeNotifications extends ListenerAdapter {
   }
 
   @Override
-  public void choiceGeneratorAdvanced (JVM vm) {
+  public void choiceGeneratorAdvanced (VM vm) {
     if (DEBUG) {
       inspector.getDebugPrintStream().println(
           this.getClass().getSimpleName() + ".choiceGeneratorAdvanced() - cg=" + vm.getLastChoiceGenerator() + " processedChoices="
@@ -190,7 +190,7 @@ public class InspectorListenerModeNotifications extends ListenerAdapter {
   }
 
   @Override
-  public void choiceGeneratorRegistered (JVM vm) {
+  public void choiceGeneratorRegistered (VM vm) {
     if (DEBUG) {
       inspector.getDebugPrintStream().println(
           this.getClass().getSimpleName() + ".choiceGeneratorRegistered() - cg=" + vm.getLastChoiceGenerator() + " processedChoices="
@@ -199,7 +199,7 @@ public class InspectorListenerModeNotifications extends ListenerAdapter {
   }
 
   @Override
-  public void choiceGeneratorProcessed (JVM vm) {
+  public void choiceGeneratorProcessed (VM vm) {
     if (DEBUG) {
       inspector.getDebugPrintStream().println(
           this.getClass().getSimpleName() + ".choiceGeneratorProcessed() - cg=" + vm.getLastChoiceGenerator() + " processedChoices="
@@ -208,7 +208,7 @@ public class InspectorListenerModeNotifications extends ListenerAdapter {
   }
 
   @Override
-  public void threadScheduled (JVM vm) {
+  public void threadScheduled (VM vm) {
     if (DEBUG) {
       inspector.getDebugPrintStream().println(this.getClass().getSimpleName() + ".threadScheduled()");
     }

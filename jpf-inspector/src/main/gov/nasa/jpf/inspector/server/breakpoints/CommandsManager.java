@@ -37,8 +37,8 @@ import gov.nasa.jpf.inspector.server.jpf.InspectorListenerModeSilent;
 import gov.nasa.jpf.inspector.server.jpf.JPFInspector;
 import gov.nasa.jpf.inspector.server.jpf.StopHolder;
 import gov.nasa.jpf.inspector.server.pathanalysis.BackwardBreakpointCreator;
-import gov.nasa.jpf.jvm.ThreadInfo;
-import gov.nasa.jpf.jvm.ChoiceGenerator;
+import gov.nasa.jpf.vm.ThreadInfo;
+import gov.nasa.jpf.vm.ChoiceGenerator;
 import gov.nasa.jpf.search.Search;
 
 /**

@@ -26,12 +26,12 @@ import gov.nasa.jpf.inspector.interfaces.exceptions.JPFInspectorNoSuperClassExce
 import gov.nasa.jpf.inspector.interfaces.exceptions.JPFInspectorNotInstanceException;
 import gov.nasa.jpf.inspector.interfaces.exceptions.JPFInspectorNotSuperClassException;
 import gov.nasa.jpf.inspector.server.programstate.client.PSEVariable;
-import gov.nasa.jpf.jvm.ClassInfo;
-import gov.nasa.jpf.jvm.ElementInfo;
-import gov.nasa.jpf.jvm.LocalVarInfo;
-import gov.nasa.jpf.jvm.MethodInfo;
-import gov.nasa.jpf.jvm.StackFrame;
-import gov.nasa.jpf.jvm.Types;
+import gov.nasa.jpf.vm.ClassInfo;
+import gov.nasa.jpf.vm.ElementInfo;
+import gov.nasa.jpf.vm.LocalVarInfo;
+import gov.nasa.jpf.vm.MethodInfo;
+import gov.nasa.jpf.vm.StackFrame;
+import gov.nasa.jpf.vm.Types;
 
 /**
  * @author Alf
@@ -99,7 +99,7 @@ public class StateValueStackSlot extends StateValue {
    * @param ssf
    * @param slotIndex
    * @param referenceDepth
-   * @param ci Type of the entry. Have to be super type of the slot type. If null real type of the value is used.
+   * TODO This param no longer exists:  _param ci Type of the entry. Have to be super type of the slot type. If null real type of the value is used.
    * @param stateExpression
    * 
    * @throws JPFInspectorInvalidSlotIndexException

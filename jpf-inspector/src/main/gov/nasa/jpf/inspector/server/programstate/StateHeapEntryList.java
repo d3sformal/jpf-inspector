@@ -24,10 +24,10 @@ import gov.nasa.jpf.inspector.server.jpf.JPFInspector;
 import gov.nasa.jpf.inspector.server.programstate.client.PSEHeapEntryList;
 import gov.nasa.jpf.inspector.server.programstate.client.PSEVariable;
 import gov.nasa.jpf.inspector.utils.ClassName;
-import gov.nasa.jpf.jvm.ClassInfo;
-import gov.nasa.jpf.jvm.ElementInfo;
-import gov.nasa.jpf.jvm.Heap;
-import gov.nasa.jpf.jvm.JVM;
+import gov.nasa.jpf.vm.ClassInfo;
+import gov.nasa.jpf.vm.ElementInfo;
+import gov.nasa.jpf.vm.Heap;
+import gov.nasa.jpf.vm.VM;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -42,7 +42,7 @@ public class StateHeapEntryList extends StateNode {
 
   private final List<StateElementInfo> heapEntries;
 
-  public StateHeapEntryList (JPFInspector inspector, ClassName cn, JVM vm, int referenceDepth) {
+  public StateHeapEntryList (JPFInspector inspector, ClassName cn, VM vm, int referenceDepth) {
     super(inspector, referenceDepth);
 
     setStateExpr(PSEVariable.EXPRESSION_VARIABLE_HEAP + '[' + cn.getClassName() + ']');

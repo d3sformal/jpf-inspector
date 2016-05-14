@@ -8,9 +8,9 @@ import gov.nasa.jpf.inspector.server.breakpoints.CommandsManager;
 import gov.nasa.jpf.inspector.server.breakpoints.DefaultForwardTraceManager;
 import gov.nasa.jpf.inspector.server.expression.InspectorState.ListenerMethod;
 import gov.nasa.jpf.inspector.server.expression.InspectorStateImpl;
-import gov.nasa.jpf.jvm.ChoiceGenerator;
-import gov.nasa.jpf.jvm.JVM;
-import gov.nasa.jpf.jvm.SystemState;
+import gov.nasa.jpf.vm.ChoiceGenerator;
+import gov.nasa.jpf.vm.VM;
+import gov.nasa.jpf.vm.SystemState;
 import gov.nasa.jpf.search.Search;
 
 /**
@@ -109,7 +109,7 @@ public class InspectorListenerModeSilent extends ListenerAdapter {
     if (backwardStepsCnt > 0) {
       dftMgf.extendTrace(search.getTransition());
 
-      JVM vm = search.getVM();
+      VM vm = search.getVM();
       // SystemState ss = vm.getSystemState();
       // ss.setBoring(true); // Force backtracking
       // Force backtracking
@@ -132,7 +132,7 @@ public class InspectorListenerModeSilent extends ListenerAdapter {
     }
     if (backwardStepsCnt == 0) {
       // Backtracking terminated, use the same choices before
-      JVM vm = search.getVM();
+      VM vm = search.getVM();
       SystemState ss = vm.getSystemState();
       ChoiceGenerator<?> cg = ss.getChoiceGenerator();
       
@@ -162,7 +162,7 @@ public class InspectorListenerModeSilent extends ListenerAdapter {
   }
 
   @Override
-  public void instructionExecuted (JVM vm) {
+  public void instructionExecuted (VM vm) {
     if (DEBUG) {
     	if ((vm.getLastInstruction().getMethodInfo().getClassInfo() != null) && (vm.getLastInstruction().getMethodInfo().getClassInfo().getSourceFileName() != null))
     	{
@@ -194,7 +194,7 @@ public class InspectorListenerModeSilent extends ListenerAdapter {
   }
 
   @Override
-  public void choiceGeneratorRegistered (JVM vm) {
+  public void choiceGeneratorRegistered (VM vm) {
     if (DEBUG) {
       ChoiceGenerator<?> cg = vm.getLastChoiceGenerator();
       inspector.getDebugPrintStream().println(
@@ -203,7 +203,7 @@ public class InspectorListenerModeSilent extends ListenerAdapter {
   }
 
   @Override
-  public void choiceGeneratorSet (JVM vm) {
+  public void choiceGeneratorSet (VM vm) {
     if (DEBUG) {
       ChoiceGenerator<?> cg = vm.getLastChoiceGenerator();
       inspector.getDebugPrintStream().println(
@@ -212,7 +212,7 @@ public class InspectorListenerModeSilent extends ListenerAdapter {
   }
 
   @Override
-  public void choiceGeneratorAdvanced (JVM vm) {
+  public void choiceGeneratorAdvanced (VM vm) {
     if (DEBUG) {
       ChoiceGenerator<?> cg = vm.getLastChoiceGenerator();
       inspector.getDebugPrintStream().println(
@@ -221,7 +221,7 @@ public class InspectorListenerModeSilent extends ListenerAdapter {
   }
 
   @Override
-  public void choiceGeneratorProcessed (JVM vm) {
+  public void choiceGeneratorProcessed (VM vm) {
     if (DEBUG) {
       ChoiceGenerator<?> cg = vm.getLastChoiceGenerator();
       inspector.getDebugPrintStream().println(

@@ -24,9 +24,9 @@ import gov.nasa.jpf.inspector.server.expression.ExpressionBooleanLeaf;
 import gov.nasa.jpf.inspector.server.expression.InspectorState;
 import gov.nasa.jpf.inspector.server.expression.InspectorState.ListenerMethod;
 import gov.nasa.jpf.inspector.utils.ClassName;
-import gov.nasa.jpf.jvm.ClassInfo;
-import gov.nasa.jpf.jvm.ElementInfo;
-import gov.nasa.jpf.jvm.JVM;
+import gov.nasa.jpf.vm.ClassInfo;
+import gov.nasa.jpf.vm.ElementInfo;
+import gov.nasa.jpf.vm.VM;
 
 public class ExpressionBreakpointSpecificClass extends ExpressionBooleanLeaf {
   public enum Mode {
@@ -54,7 +54,7 @@ public class ExpressionBreakpointSpecificClass extends ExpressionBooleanLeaf {
         || (mode == Mode.SC_MODE_EXCEPTION_THROWN && state.getListenerMethod() != ListenerMethod.LM_EXCEPTION_THROWN)) {
       return false;
     }
-    JVM vm = state.getJVM();
+    VM vm = state.getJVM();
     assert vm != null;
 
     ElementInfo ei = vm.getLastElementInfo();

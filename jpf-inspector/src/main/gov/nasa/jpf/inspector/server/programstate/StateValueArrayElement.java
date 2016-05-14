@@ -28,11 +28,11 @@ import gov.nasa.jpf.inspector.interfaces.exceptions.JPFInspectorNotSuperClassExc
 import gov.nasa.jpf.inspector.interfaces.exceptions.JPFInspectorNullValueException;
 import gov.nasa.jpf.inspector.server.expression.InspectorState;
 import gov.nasa.jpf.inspector.server.programstate.client.PSEVariable;
-import gov.nasa.jpf.jvm.ArrayFields;
-import gov.nasa.jpf.jvm.ClassInfo;
-import gov.nasa.jpf.jvm.ElementInfo;
-import gov.nasa.jpf.jvm.Fields;
-import gov.nasa.jpf.jvm.Heap;
+import gov.nasa.jpf.vm.ArrayFields;
+import gov.nasa.jpf.vm.ClassInfo;
+import gov.nasa.jpf.vm.ElementInfo;
+import gov.nasa.jpf.vm.Fields;
+import gov.nasa.jpf.vm.Heap;
 
 /**
  * @author Alf

@@ -20,6 +20,7 @@ package gov.nasa.jpf.shell;
 
 import gov.nasa.jpf.JPFShell;
 import gov.nasa.jpf.Config;
+import gov.nasa.jpf.shell.basicshell.BasicShell;
 import gov.nasa.jpf.shell.panels.ConfigPanel;
 import gov.nasa.jpf.shell.panels.PropertiesPanel;
 import gov.nasa.jpf.shell.panels.ReportPanel;

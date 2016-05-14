@@ -23,8 +23,8 @@ import gov.nasa.jpf.ListenerAdapter;
 import gov.nasa.jpf.inspector.interfaces.CommandsInterface.InspectorStates;
 import gov.nasa.jpf.inspector.interfaces.InspectorCallBacks;
 import gov.nasa.jpf.inspector.server.expression.InspectorState;
-import gov.nasa.jpf.jvm.JVM;
-import gov.nasa.jpf.jvm.bytecode.Instruction;
+import gov.nasa.jpf.vm.VM;
+import gov.nasa.jpf.vm.Instruction;
 
 /**
  * When execution is stopped. The JPF thread is suspended in this class.
@@ -59,7 +59,7 @@ public class StopHolder {
    * Note: To prevent deadlocks cannot hold any lock if this methods is called.
    * 
    * @param inspState Current state of the JVM and Inspector. Cann't be null.
-   * @param silent Specify whether notify client about stopping or process silently.
+   * TODO this parameter no longer exists: _param silent Specify whether notify client about stopping or process silently.
    */
   public void stopExecution (InspectorState inspState) {
     assert inspState != null;
@@ -109,7 +109,7 @@ public class StopHolder {
   /**
    * Gets current state of the SuT or NULL if execution not stopped.
    */
-  public JVM getJVM () {
+  public VM getJVM () {
     return inspState.getJVM();
   }
 
@@ -153,7 +153,7 @@ public class StopHolder {
   static public String getLocationDetails (InspectorState inspState) {
     StringBuffer sb = new StringBuffer(100);
 
-    JVM vm = inspState.getJVM();
+    VM vm = inspState.getJVM();
     assert vm != null;
     Instruction instr = vm.getLastInstruction();
     if (instr == null) {

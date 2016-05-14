@@ -19,9 +19,10 @@
 
 package gov.nasa.jpf.inspector.utils;
 
-import gov.nasa.jpf.jvm.ClassInfo;
-import gov.nasa.jpf.jvm.FieldInfo;
-import gov.nasa.jpf.jvm.JVM;
+import gov.nasa.jpf.vm.ClassInfo;
+import gov.nasa.jpf.vm.ClassLoaderInfo;
+import gov.nasa.jpf.vm.FieldInfo;
+import gov.nasa.jpf.vm.VM;
 
 /**
  * Caches ClassInfos of primitive types and wrappers.
@@ -31,7 +32,7 @@ import gov.nasa.jpf.jvm.JVM;
  * @author Alf
  */
 public class ClassInfoCache {
-  private final JVM vm; // VM to which cached values are related to.
+  private final VM vm; // VM to which cached values are related to.
 
   // Primitive types
   public final ClassInfo ci_boolean;
@@ -65,19 +66,29 @@ public class ClassInfoCache {
 
   public final ClassInfo ci_String;
 
-  public ClassInfoCache (JVM vm) {
+  /**
+   * Replaces the call <code>ClassInfo.getResolvedClassInfo("arg")</code> that was in this file in the previous version of JPF.
+   * @param type The argument that was there previously.
+   * @return I suppose that a representation of the given system type.
+   */
+  private static ClassInfo upgradedGetResolvedClassInfo(String type) {
+    // TODO This probably does not work. It's just my guess as to what new thing replaces the old one.
+    return ClassLoaderInfo.getSystemResolvedClassInfo(type);
+  }
+
+  public ClassInfoCache (VM vm) {
     assert (vm != null);
 
     this.vm = vm;
 
-    ci_boolean = ClassInfo.getResolvedClassInfo("boolean");
-    ci_byte = ClassInfo.getResolvedClassInfo("byte");
-    ci_char = ClassInfo.getResolvedClassInfo("char");
-    ci_short = ClassInfo.getResolvedClassInfo("short");
-    ci_int = ClassInfo.getResolvedClassInfo("int");
-    ci_long = ClassInfo.getResolvedClassInfo("long");
-    ci_float = ClassInfo.getResolvedClassInfo("float");
-    ci_double = ClassInfo.getResolvedClassInfo("double");
+    ci_boolean = upgradedGetResolvedClassInfo("boolean");
+    ci_byte = upgradedGetResolvedClassInfo("byte");
+    ci_char = upgradedGetResolvedClassInfo("char");
+    ci_short = upgradedGetResolvedClassInfo("short");
+    ci_int = upgradedGetResolvedClassInfo("int");
+    ci_long = upgradedGetResolvedClassInfo("long");
+    ci_float = upgradedGetResolvedClassInfo("float");
+    ci_double = upgradedGetResolvedClassInfo("double");
 
     assert (ci_boolean != null);
     assert (ci_byte != null);
@@ -88,14 +99,14 @@ public class ClassInfoCache {
     assert (ci_float != null);
     assert (ci_double != null);
 
-    ci_Boolean = ClassInfo.getResolvedClassInfo("java.lang.Boolean");
-    ci_Byte = ClassInfo.getResolvedClassInfo("java.lang.Byte");
-    ci_Char = ClassInfo.getResolvedClassInfo("java.lang.Character");
-    ci_Short = ClassInfo.getResolvedClassInfo("java.lang.Short");
-    ci_Int = ClassInfo.getResolvedClassInfo("java.lang.Integer");
-    ci_Long = ClassInfo.getResolvedClassInfo("java.lang.Long");
-    ci_Float = ClassInfo.getResolvedClassInfo("java.lang.Float");
-    ci_Double = ClassInfo.getResolvedClassInfo("java.lang.Double");
+    ci_Boolean = upgradedGetResolvedClassInfo("java.lang.Boolean");
+    ci_Byte = upgradedGetResolvedClassInfo("java.lang.Byte");
+    ci_Char = upgradedGetResolvedClassInfo("java.lang.Character");
+    ci_Short = upgradedGetResolvedClassInfo("java.lang.Short");
+    ci_Int = upgradedGetResolvedClassInfo("java.lang.Integer");
+    ci_Long = upgradedGetResolvedClassInfo("java.lang.Long");
+    ci_Float = upgradedGetResolvedClassInfo("java.lang.Float");
+    ci_Double = upgradedGetResolvedClassInfo("java.lang.Double");
 
     assert (ci_Boolean != null);
     assert (ci_Byte != null);
@@ -115,7 +126,7 @@ public class ClassInfoCache {
     fi_val_Float = ci_Float.getInstanceField("value");
     fi_val_Double = ci_Double.getInstanceField("value");
 
-    ci_String = ClassInfo.getResolvedClassInfo("java.lang.String");
+    ci_String = upgradedGetResolvedClassInfo("java.lang.String");
 
     assert (ci_String != null);
   }
@@ -128,7 +139,7 @@ public class ClassInfoCache {
   /**
    * @return Gets true if cache is valid(holds proper instances of ClassInfos) for given instance of JVM.
    */
-  public boolean cacheValid (JVM vm) {
+  public boolean cacheValid (VM vm) {
     return vm == this.vm;
   }
 

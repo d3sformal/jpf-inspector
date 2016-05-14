@@ -19,7 +19,7 @@
 
 package gov.nasa.jpf.inspector.interfaces;
 
-import gov.nasa.jpf.jvm.ChoiceGenerator;
+import gov.nasa.jpf.vm.ChoiceGenerator;
 
 /**
  * Call backs to the client part. Used to notify client about interesting events.

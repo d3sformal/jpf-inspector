@@ -22,8 +22,8 @@ package gov.nasa.jpf.inspector.server.programstate.client;
 import gov.nasa.jpf.inspector.interfaces.JPFInspectorException;
 import gov.nasa.jpf.inspector.server.programstate.ProgramStateEntry;
 import gov.nasa.jpf.inspector.server.programstate.StateNode;
-import gov.nasa.jpf.jvm.ThreadInfo;
-import gov.nasa.jpf.jvm.ThreadInfo.State;
+import gov.nasa.jpf.vm.ThreadInfo;
+import gov.nasa.jpf.vm.ThreadInfo.State;
 
 /**
  * Represents thread and its state
