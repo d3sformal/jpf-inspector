@@ -178,7 +178,7 @@ cmd:> print #thread[0]
 
 where `0` is thread index and `main` is the thread's name. The call stack of the thread is printed. The `DiningPhil.main(String[])` fragment contains signature of a method on the call stack (class name, method name and parameter types). The `DiningPhil.java:54` fragment contains file name and source code line where the program counter is, and the `for (int i = 0; i < N; i++) {` fragment is the actual line from the source file.
 
-**** Objects and methods
+#### Objects and methods
 
 Output of the `print #thread[0].#stackFrame[0]` (or the `print` command without any parameters or `print #heap[315]`) looks like this:
 
