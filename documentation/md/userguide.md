@@ -1,3 +1,5 @@
+[(click to return to main readme file)](../../README.md)
+
 # JPF Inspector user guide
 
 This user guide assumes you have already the [User Guide](http://babelfish.arc.nasa.gov/trac/jpf/wiki/user/start) for JPF proper.
