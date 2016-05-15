@@ -4,7 +4,7 @@ This user guide assumes you have already the [User Guide](http://babelfish.arc.n
 
 To interact with the JPF Inspector, you use a text console embedded into a new shell panel. Use of the `jpf-shell` module is mandatory, thus far, although it is planned to allow for independent command-line execution. This console behaves in an expected way - a user writes commands and the console prints results (command output). It looks like this:
 
-![JPF Inspector screenshot](documentation/img/console.png?raw=true "JPG Inspector screenshot")
+![JPF Inspector screenshot](../img/console.png?raw=true "JPG Inspector screenshot")
 
 ## Enabling jpf-inspector
 
