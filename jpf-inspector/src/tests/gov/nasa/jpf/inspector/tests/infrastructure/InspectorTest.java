@@ -61,7 +61,7 @@ public class InspectorTest extends TestJPF {
       // Create Callbacks
       Class<? extends InspectorTestCallbacks> inspectorCallbacksCls = null;
       try {
-        inspectorCallbacksCls = inspectorCallbacksClsSpec.asSubclass(InspectorTestCallbacks.class);
+        inspectorCallbacksCls = inspectorCallbacksClsSpec.asNativeSubclass(InspectorTestCallbacks.class);
       } catch (ClassCastException e) {
         fail("not a InspectorClassBacks type: " + inspectorCallbacksClsSpec);
       } catch (ClassNotFoundException cnfx) {
@@ -76,7 +76,7 @@ public class InspectorTest extends TestJPF {
       // Create test driver
       Class<? extends InspectorTestDriver> testDriverCls = null;
       try {
-        testDriverCls = inspectorTestDriverClsSpec.asSubclass(InspectorTestDriver.class);
+        testDriverCls = inspectorTestDriverClsSpec.asNativeSubclass(InspectorTestDriver.class);
       } catch (ClassCastException e) {
         fail("not a InspectorTestDriver type: " + inspectorTestDriverClsSpec);
       } catch (ClassNotFoundException e) {
@@ -100,12 +100,16 @@ public class InspectorTest extends TestJPF {
       testDriver.init();
 
       // Create and set JPF to inspector
+      /*
+      TODO clean up this thing before migration:
       StackTraceElement caller = Reflection.getCallerElement(testMethodDepth);
       jpfArgs = appendTestClass(jpfArgs, caller);
-
+      createAndRunJPF()
+      */
+      StackTraceElement caller = Reflection.getCallerElement(testMethodDepth);
       report(jpfArgs);
 
-      JPF jpf = createJPF(jpfArgs);
+      JPF jpf = createJPF(caller, jpfArgs);
       jpf.getVM().recordSteps(true);
       try {
         inspector.bindWithJPF(jpf);
@@ -114,7 +118,7 @@ public class InspectorTest extends TestJPF {
       }
 
       try {
-        runJPF(jpf);
+        jpf.run(); // runJPF(jpf);
       } catch (Throwable t) {
         t.printStackTrace();
         fail("JPF internal exception executing: ", jpfArgs, t.toString());

@@ -8,7 +8,7 @@ import gov.nasa.jpf.inspector.tests.infrastructure.Breakpoint;
 import gov.nasa.jpf.inspector.tests.infrastructure.InspectorTest;
 import gov.nasa.jpf.inspector.tests.infrastructure.InspectorTestCallbacks;
 import gov.nasa.jpf.inspector.tests.infrastructure.InspectorTestDriver;
-import gov.nasa.jpf.jvm.Verify;
+import gov.nasa.jpf.vm.Verify;
 import gov.nasa.jpf.util.TypeRef;
 
 import org.junit.Test;

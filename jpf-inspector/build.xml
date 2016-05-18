@@ -44,7 +44,7 @@
   <property name="dir-server-expression-grammar-target" location="src/main/gov/nasa/jpf/inspector/server/expression/parser"/>
 
   <!-- compiler settings -->
-  <property name="src_level"     value="6"/>
+  <property name="src_level"     value="8"/>
   <property name="debug"         value="on"/>
   <property name="deprecation"   value="on"/>
 
