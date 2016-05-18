@@ -19,6 +19,7 @@
 
 package gov.nasa.jpf.inspector.server.expression.expressions;
 
+import gov.nasa.jpf.inspector.migration.MigrationUtilities;
 import gov.nasa.jpf.inspector.server.breakpoints.BreakPointModes;
 import gov.nasa.jpf.inspector.server.expression.ExpressionBooleanLeaf;
 import gov.nasa.jpf.inspector.server.expression.InspectorState;
@@ -59,7 +60,7 @@ public class ExpressionBreakpointMethodInvoke extends ExpressionBooleanLeaf {
     }
 
     VM vm = state.getJVM();
-    Instruction inst = vm.getLastInstruction();
+    Instruction inst = MigrationUtilities.getLastInstruction(vm);
 
     if (!(inst instanceof InvokeInstruction)) {
       return false;

@@ -20,6 +20,7 @@
 package gov.nasa.jpf.inspector.server.expression.expressions;
 
 import gov.nasa.jpf.inspector.interfaces.exceptions.JPFInspectorGenericErrorException;
+import gov.nasa.jpf.inspector.migration.MigrationUtilities;
 import gov.nasa.jpf.inspector.server.breakpoints.BreakPointModes;
 import gov.nasa.jpf.inspector.server.expression.ExpressionBooleanLeaf;
 import gov.nasa.jpf.inspector.server.expression.InspectorState;
@@ -106,7 +107,7 @@ public class ExpressionBreakpointInstruction extends ExpressionBooleanLeaf {
       assert vm != null;
       ThreadInfo ti = vm.getCurrentThread();
       if (ti.getId() == threadNum) {
-        Instruction executedInstr = vm.getLastInstruction();
+        Instruction executedInstr = MigrationUtilities.getLastInstruction(vm);
         if (instr.equals(executedInstr)) {
           count++;
           return count == hitCount;
@@ -148,7 +149,7 @@ public class ExpressionBreakpointInstruction extends ExpressionBooleanLeaf {
     assert (methodSpec != null);
     ClassName classSpec = methodSpec.getClassNameClass();
 
-    ClassInfo[] cis = ClassInfo.getLoadedClasses();
+    ClassInfo[] cis = MigrationUtilities.getLoadedClasses();
     for (ClassInfo ci : cis) {
       assert (ci != null);
       if (classSpec.isSameClass(ci)) {

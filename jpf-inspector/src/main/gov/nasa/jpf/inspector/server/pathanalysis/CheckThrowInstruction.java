@@ -1,5 +1,6 @@
 package gov.nasa.jpf.inspector.server.pathanalysis;
 
+import gov.nasa.jpf.vm.Instruction;
 import gov.nasa.jpf.vm.Step;
 import gov.nasa.jpf.jvm.bytecode.ATHROW;
 import gov.nasa.jpf.jvm.bytecode.JVMInstruction;
@@ -13,10 +14,11 @@ public class CheckThrowInstruction extends JVMInstructionVisitorAdapter {
     return isThrowInstruction(step.getInstruction());
   }
 
-  public boolean isThrowInstruction(JVMInstruction inst) {
+  public boolean isThrowInstruction(Instruction inst) {
     assert(inst != null);
     isThrowInstr = false;
-    inst.accept(this);
+    assert (inst instanceof JVMInstruction);
+    ((JVMInstruction)inst).accept(this);
     return isThrowInstr;
   }
 

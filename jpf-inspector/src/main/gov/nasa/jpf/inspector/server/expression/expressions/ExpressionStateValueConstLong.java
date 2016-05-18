@@ -21,6 +21,7 @@ package gov.nasa.jpf.inspector.server.expression.expressions;
 
 import gov.nasa.jpf.inspector.interfaces.JPFInspectorException;
 import gov.nasa.jpf.inspector.interfaces.exceptions.JPFInspectorParsingErrorException;
+import gov.nasa.jpf.inspector.migration.MigrationUtilities;
 import gov.nasa.jpf.inspector.server.expression.InspectorState;
 import gov.nasa.jpf.inspector.server.jpf.JPFInspector;
 import gov.nasa.jpf.inspector.server.programstate.StateNodeInterface;
@@ -104,7 +105,7 @@ public class ExpressionStateValueConstLong extends ExpressionStateValueConst {
    */
   @Override
   public StateNodeInterface getResultExpression (JPFInspector inspector, InspectorState state) throws JPFInspectorException {
-    return new StateReadableConstValue(inspector, 1, ClassInfo.getResolvedClassInfo("long"), Long.valueOf(value));
+    return new StateReadableConstValue(inspector, 1, MigrationUtilities.getResolvedClassInfo("long"), Long.valueOf(value));
   }
 
   /* @see gov.nasa.jpf.inspector.server.expression.ExpressionNodeInterface#getNormalizedExpression() */

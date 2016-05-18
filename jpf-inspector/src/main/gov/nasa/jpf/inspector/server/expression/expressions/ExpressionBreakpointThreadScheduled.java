@@ -19,6 +19,7 @@
 
 package gov.nasa.jpf.inspector.server.expression.expressions;
 
+import gov.nasa.jpf.inspector.migration.MigrationUtilities;
 import gov.nasa.jpf.inspector.server.breakpoints.BreakPointModes;
 import gov.nasa.jpf.inspector.server.expression.ExpressionBooleanLeaf;
 import gov.nasa.jpf.inspector.server.expression.InspectorState;
@@ -60,11 +61,11 @@ public class ExpressionBreakpointThreadScheduled extends ExpressionBooleanLeaf {
       Transition tr = vm.getLastTransition();
       ThreadInfo prevTi = (tr != null ? tr.getThreadInfo() : null);
 
-      return ((vm.getLastThreadInfo().getId() == threadNum) // Newly planned thread
+      return ((MigrationUtilities.getLastThreadInfo(vm).getId() == threadNum) // Newly planned thread
       || ((prevTi != null) && (prevTi.getId() == threadNum))); // / Previous thread if exists
 
     } else if (bpMode == BreakPointModes.BP_MODE_THREAD_SCHEDULED_IN) {
-      return vm.getLastThreadInfo().getId() == threadNum;
+      return MigrationUtilities.getLastThreadInfo(vm).getId() == threadNum;
 
     } else if (bpMode == BreakPointModes.BP_MODE_THREAD_SCHEDULED_OUT) {
       Transition tr = vm.getLastTransition();

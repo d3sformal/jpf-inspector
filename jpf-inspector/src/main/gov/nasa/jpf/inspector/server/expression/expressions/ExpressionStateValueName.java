@@ -22,6 +22,7 @@ package gov.nasa.jpf.inspector.server.expression.expressions;
 import gov.nasa.jpf.JPF;
 import gov.nasa.jpf.inspector.interfaces.JPFInspectorException;
 import gov.nasa.jpf.inspector.interfaces.exceptions.JPFInspectorInvalidNameException;
+import gov.nasa.jpf.inspector.migration.MigrationUtilities;
 import gov.nasa.jpf.inspector.server.programstate.StateElementInfo;
 import gov.nasa.jpf.inspector.server.programstate.StateNodeInterface;
 import gov.nasa.jpf.inspector.server.programstate.StateReadableConstValue;
@@ -31,9 +32,10 @@ import gov.nasa.jpf.inspector.server.programstate.StateValue;
 import gov.nasa.jpf.inspector.server.programstate.StateValueElementInfoField;
 import gov.nasa.jpf.inspector.server.programstate.StateValueStackSlot;
 import gov.nasa.jpf.vm.ClassInfo;
+import gov.nasa.jpf.vm.ClassLoaderInfo;
 import gov.nasa.jpf.vm.FieldInfo;
-import gov.nasa.jpf.jvm.StaticArea;
-import gov.nasa.jpf.jvm.StaticElementInfo;
+import gov.nasa.jpf.vm.StaticElementInfo;
+import gov.nasa.jpf.vm.Statics;
 
 /**
  * Name resolution order: (After Stack frame)
@@ -126,14 +128,14 @@ public class ExpressionStateValueName extends ExpressionStateValue {
   private StateReadableValueInterface tryApplyDoubleHacks (StateNodeInterface sni) {
     // Double hacks.
     if (TOKEN_IDF_NAN.equals(varName)) {
-      return new StateReadableConstValue(sni.getInspector(), 1, ClassInfo.getResolvedClassInfo("double"), Double.valueOf(Double.NaN));
+      return new StateReadableConstValue(sni.getInspector(), 1, MigrationUtilities.getResolvedClassInfo("double"), Double.valueOf(Double.NaN));
     }
 
     if (TOKEN_IDF_NEGATIVE_INFINITY1_FULL.equals(varName) || TOKEN_IDF_NEGATIVE_INFINITY1_SHORT.equals(varName)) {
-      return new StateReadableConstValue(sni.getInspector(), 1, ClassInfo.getResolvedClassInfo("double"), Double.valueOf(Double.POSITIVE_INFINITY));
+      return new StateReadableConstValue(sni.getInspector(), 1, MigrationUtilities.getResolvedClassInfo("double"), Double.valueOf(Double.POSITIVE_INFINITY));
     }
     if (TOKEN_IDF_INFINITY.equals(varName) || TOKEN_IDF_POSITIVE_INFINITY1_FULL.equals(varName) || TOKEN_IDF_POSITIVE_INFINITY1_SHORT.equals(varName)) {
-      return new StateReadableConstValue(sni.getInspector(), 1, ClassInfo.getResolvedClassInfo("double"), Double.valueOf(Double.POSITIVE_INFINITY));
+      return new StateReadableConstValue(sni.getInspector(), 1, MigrationUtilities.getResolvedClassInfo("double"), Double.valueOf(Double.POSITIVE_INFINITY));
     }
 
     return null;
@@ -188,6 +190,14 @@ public class ExpressionStateValueName extends ExpressionStateValue {
           }
         } else {
           // Not a predecessor class (any other class)
+          StaticElementInfo sei = MigrationUtilities.getStaticElementInfoFromName(varName);
+
+          if (sei != null) {
+            // Class with given name exists
+            srvi = StateElementInfo.createStaticClass(ssf, sei.getClassInfo());
+          }
+          /*
+          Code before migration:
           JPF jpf = ssf.getInspector().getJPF();
           StaticArea sa = jpf.getVM().getStaticArea();
           StaticElementInfo sei = sa.get(varName);
@@ -195,6 +205,7 @@ public class ExpressionStateValueName extends ExpressionStateValue {
             // Class with given name exists
             srvi = StateElementInfo.createStaticClass(ssf, sei.getClassInfo());
           }
+           */
         }
       }
     }

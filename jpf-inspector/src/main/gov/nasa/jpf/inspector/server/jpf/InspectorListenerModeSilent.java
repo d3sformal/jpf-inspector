@@ -3,20 +3,22 @@ package gov.nasa.jpf.inspector.server.jpf;
 import gov.nasa.jpf.ListenerAdapter;
 import gov.nasa.jpf.inspector.interfaces.BreakPointCreate;
 import gov.nasa.jpf.inspector.interfaces.CommandsInterface;
+import gov.nasa.jpf.inspector.migration.MigrationUtilities;
 import gov.nasa.jpf.inspector.server.breakpoints.BreakPointHandler;
 import gov.nasa.jpf.inspector.server.breakpoints.CommandsManager;
 import gov.nasa.jpf.inspector.server.breakpoints.DefaultForwardTraceManager;
 import gov.nasa.jpf.inspector.server.expression.InspectorState.ListenerMethod;
 import gov.nasa.jpf.inspector.server.expression.InspectorStateImpl;
-import gov.nasa.jpf.vm.ChoiceGenerator;
-import gov.nasa.jpf.vm.VM;
-import gov.nasa.jpf.vm.SystemState;
+import gov.nasa.jpf.vm.*;
 import gov.nasa.jpf.search.Search;
 
 /**
  * InspectorListener mode which is enabled during backward steps processing. Notification only to the specified {@link CommandsInterface} are sent
  * 
  * @author Alf
+ *
+ * Sooth:
+ * In this class, vm.getLastInstruction() calls and similar ones were replaced by arguments from the newer methods.
  * 
  */
 public class InspectorListenerModeSilent extends ListenerAdapter {
@@ -162,22 +164,23 @@ public class InspectorListenerModeSilent extends ListenerAdapter {
   }
 
   @Override
-  public void instructionExecuted (VM vm) {
+
+  public void instructionExecuted(VM vm, ThreadInfo currentThread, Instruction nextInstruction, Instruction executedInstruction) {
     if (DEBUG) {
-    	if ((vm.getLastInstruction().getMethodInfo().getClassInfo() != null) && (vm.getLastInstruction().getMethodInfo().getClassInfo().getSourceFileName() != null))
-    	{
-    		inspector.getDebugPrintStream().println(
-    			this.getClass().getSimpleName() + ".instructionExecuted() inst=" + vm.getLastInstruction() + ", loc=" + vm.getLastInstruction().getFilePos());
-    	}
+      if ((executedInstruction.getMethodInfo().getClassInfo() != null) && (executedInstruction.getMethodInfo().getClassInfo().getSourceFileName() != null))
+      {
+        inspector.getDebugPrintStream().println(
+                this.getClass().getSimpleName() + ".instructionExecuted() inst=" + executedInstruction + ", loc=" + executedInstruction.getFilePos());
+      }
     }
-    
+
     // backward step was issued at a transition boundary
     // ignore the first instruction of a new transition
     // we must backtrack over one additional transition
-    if ((state == InternalState.IS_TRANSITION_END) && vm.getLastThreadInfo().isFirstStepInsn())
+    if ((state == InternalState.IS_TRANSITION_END) && currentThread.isFirstStepInsn())
     {
-    	backwardStepsCnt++;
-    	return;
+      backwardStepsCnt++;
+      return;
     }
 
     if (state != InternalState.IS_FORWARD_STEPS) {
@@ -193,39 +196,44 @@ public class InspectorListenerModeSilent extends ListenerAdapter {
     }
   }
 
+
   @Override
-  public void choiceGeneratorRegistered (VM vm) {
+  public void choiceGeneratorRegistered(VM vm, ChoiceGenerator<?> nextCG, ThreadInfo currentThread, Instruction executedInstruction) {
     if (DEBUG) {
-      ChoiceGenerator<?> cg = vm.getLastChoiceGenerator();
+      ChoiceGenerator<?> cg = nextCG;
       inspector.getDebugPrintStream().println(
-          this.getClass().getSimpleName() + ".choiceGeneratorRegistered - cg=" + cg + " processedChoices=" + cg.getProcessedNumberOfChoices());
+              this.getClass().getSimpleName() + ".choiceGeneratorRegistered - cg=" + cg + " processedChoices=" + cg.getProcessedNumberOfChoices());
     }
   }
 
+
   @Override
-  public void choiceGeneratorSet (VM vm) {
+  public void choiceGeneratorSet(VM vm, ChoiceGenerator<?> newCG) {
     if (DEBUG) {
-      ChoiceGenerator<?> cg = vm.getLastChoiceGenerator();
+      ChoiceGenerator<?> cg = newCG;
       inspector.getDebugPrintStream().println(
-          this.getClass().getSimpleName() + ".choiceGeneratorSet - cg=" + cg + " processedChoices=" + cg.getProcessedNumberOfChoices());
+              this.getClass().getSimpleName() + ".choiceGeneratorSet - cg=" + cg + " processedChoices=" + cg.getProcessedNumberOfChoices());
     }
   }
 
+
   @Override
-  public void choiceGeneratorAdvanced (VM vm) {
+  public void choiceGeneratorAdvanced(VM vm, ChoiceGenerator<?> currentCG) {
     if (DEBUG) {
-      ChoiceGenerator<?> cg = vm.getLastChoiceGenerator();
+      ChoiceGenerator<?> cg = currentCG;
       inspector.getDebugPrintStream().println(
-          this.getClass().getSimpleName() + ".choiceGeneratorAdvanced - cg=" + cg + " processedChoices=" + cg.getProcessedNumberOfChoices());
+              this.getClass().getSimpleName() + ".choiceGeneratorAdvanced - cg=" + cg + " processedChoices=" + cg.getProcessedNumberOfChoices());
     }
   }
 
+
   @Override
-  public void choiceGeneratorProcessed (VM vm) {
+  public void choiceGeneratorProcessed(VM vm, ChoiceGenerator<?> processedCG) {
     if (DEBUG) {
-      ChoiceGenerator<?> cg = vm.getLastChoiceGenerator();
+      ChoiceGenerator<?> cg = processedCG;
+      //ChoiceGenerator<?> cg = MigrationUtilities.getLastChoiceGenerator(vm);
       inspector.getDebugPrintStream().println(
-          this.getClass().getSimpleName() + ".choiceGeneratorProcessed - cg=" + cg + " processedChoices=" + cg.getProcessedNumberOfChoices());
+              this.getClass().getSimpleName() + ".choiceGeneratorProcessed - cg=" + cg + " processedChoices=" + cg.getProcessedNumberOfChoices());
     }
   }
 

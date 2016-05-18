@@ -25,6 +25,7 @@ import gov.nasa.jpf.inspector.interfaces.exceptions.JPFInspectorInvalidSlotIndex
 import gov.nasa.jpf.inspector.interfaces.exceptions.JPFInspectorNoSuperClassException;
 import gov.nasa.jpf.inspector.interfaces.exceptions.JPFInspectorNotInstanceException;
 import gov.nasa.jpf.inspector.interfaces.exceptions.JPFInspectorNotSuperClassException;
+import gov.nasa.jpf.inspector.migration.MigrationUtilities;
 import gov.nasa.jpf.inspector.server.programstate.client.PSEVariable;
 import gov.nasa.jpf.vm.ClassInfo;
 import gov.nasa.jpf.vm.ElementInfo;
@@ -131,7 +132,7 @@ public class StateValueStackSlot extends StateValue {
       ssf.getInspector().getDebugPrintStream().println(StateValueStackSlot.class.getSimpleName() + ".createSVSSInstance - className=" + className);
     }
     // Can throw NoClassInfoException -> in such a case it is internal error
-    ClassInfo ciReal = ClassInfo.getResolvedClassInfo(className);
+    ClassInfo ciReal = MigrationUtilities.getResolvedClassInfo_StateValueStackSlot(className);
 
     assert (ciReal != null);
     assert (StateValue.isPredecessor(ciReal, ciReal));

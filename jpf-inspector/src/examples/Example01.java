@@ -1,4 +1,4 @@
-import gov.nasa.jpf.jvm.Verify;
+import gov.nasa.jpf.vm.Verify;
 // Suitable for manual single stepping tests
 //  See example of JPF Commands
 //
@@ -73,7 +73,7 @@ public class Example01 {
    * @param args
    */
   public static void main(String[] args) {
-    Verify.breakTransition();
+    Verify.breakTransition("In JPF8, a reason is required.");
     for (int i = 0; i < 2; i++) {
       System.out.println("Before compute01");
       compute01();

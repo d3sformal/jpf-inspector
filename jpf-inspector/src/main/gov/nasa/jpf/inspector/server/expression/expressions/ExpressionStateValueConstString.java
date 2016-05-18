@@ -21,6 +21,7 @@ package gov.nasa.jpf.inspector.server.expression.expressions;
 
 import gov.nasa.jpf.inspector.interfaces.JPFInspectorException;
 import gov.nasa.jpf.inspector.interfaces.exceptions.JPFInspectorParsingErrorException;
+import gov.nasa.jpf.inspector.migration.MigrationUtilities;
 import gov.nasa.jpf.inspector.server.expression.InspectorState;
 import gov.nasa.jpf.inspector.server.expression.expressions.ExpressionStateValueConstChar.CharParsingState;
 import gov.nasa.jpf.inspector.server.jpf.JPFInspector;
@@ -125,7 +126,7 @@ public class ExpressionStateValueConstString extends ExpressionStateValueConst {
     int ref = heap.newString(value, null).getObjectRef();
     ElementInfo ei = heap.get(ref);
 
-    return new StateReadableConstValue(inspector, 1, ClassInfo.getResolvedClassInfo("java.lang.String"), ei);
+    return new StateReadableConstValue(inspector, 1, MigrationUtilities.getResolvedClassInfo("java.lang.String"), ei);
   }
 
   /* @see gov.nasa.jpf.inspector.server.expression.ExpressionNodeInterface#getNormalizedExpression() */

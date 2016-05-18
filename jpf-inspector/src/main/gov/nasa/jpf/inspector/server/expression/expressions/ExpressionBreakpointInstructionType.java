@@ -20,6 +20,7 @@
 package gov.nasa.jpf.inspector.server.expression.expressions;
 
 import gov.nasa.jpf.inspector.interfaces.InstructionTypes;
+import gov.nasa.jpf.inspector.migration.MigrationUtilities;
 import gov.nasa.jpf.inspector.server.breakpoints.BreakPointModes;
 import gov.nasa.jpf.inspector.server.expression.ExpressionBooleanLeaf;
 import gov.nasa.jpf.inspector.server.expression.InspectorState;
@@ -53,7 +54,7 @@ public class ExpressionBreakpointInstructionType extends ExpressionBooleanLeaf {
       return false;
     }
     VM vm = state.getJVM();
-    Instruction inst = vm.getLastInstruction();
+    Instruction inst = MigrationUtilities.getLastInstruction(vm);
 
     if (inst == null) {
       return false;
@@ -92,7 +93,7 @@ public class ExpressionBreakpointInstructionType extends ExpressionBooleanLeaf {
   @Override
   public String getDetails (InspectorState state) {
     if (state != null && evaluateExpression(state)) {
-      Instruction instr = state.getJVM().getLastInstruction();
+      Instruction instr = MigrationUtilities.getLastInstruction(state.getJVM());
       return "SuT (Thread=" + state.getJVM().getCurrentThread().getId() + ") executes the " + instr.getMethodInfo().getSourceFileName() + ":"
           + instr.getLineNumber() + " - " + instr.toString();
     }

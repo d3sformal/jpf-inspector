@@ -22,6 +22,7 @@ package gov.nasa.jpf.inspector.server.expression.expressions;
 import gov.nasa.jpf.inspector.interfaces.CommandsInterface.StepType;
 import gov.nasa.jpf.inspector.interfaces.InstructionPosition;
 import gov.nasa.jpf.inspector.interfaces.exceptions.JPFInspectorGenericErrorException;
+import gov.nasa.jpf.inspector.migration.MigrationUtilities;
 import gov.nasa.jpf.inspector.server.breakpoints.BreakPointModes;
 import gov.nasa.jpf.inspector.server.breakpoints.InstructionPositionImpl;
 import gov.nasa.jpf.inspector.server.expression.ExpressionBooleanLeaf;
@@ -113,9 +114,9 @@ public class ExpressionBreakpointSingleStep extends ExpressionBooleanLeaf {
     this.inspector = inspector;
     this.posHandling = posHandling;
 
-    this.instPos = InstructionPositionImpl.getInstructionPosition(vm.getLastInstruction());
+    this.instPos = InstructionPositionImpl.getInstructionPosition(MigrationUtilities.getLastInstruction(vm));
     this.threadNum = vm.getCurrentThread().getId();
-    if (vm.getLastInstruction() instanceof InvokeInstruction) {
+    if (MigrationUtilities.getLastInstruction(vm) instanceof InvokeInstruction) {
       // Stack frame for called method is already created - of the of top2 stack frame, which represents the method with invoke instruction
       this.topStackFrame = vm.getCurrentThread().getTopFrame().getPrevious();
     } else {
@@ -156,7 +157,7 @@ public class ExpressionBreakpointSingleStep extends ExpressionBooleanLeaf {
     assert vm != null;
 
     // Check if we are in the same thread
-    int lastThread = vm.getThreadNumber();
+    int lastThread = MigrationUtilities.getThreadNumber(vm);
     if (lastThread != threadNum) {
       return false;
     }
@@ -167,7 +168,7 @@ public class ExpressionBreakpointSingleStep extends ExpressionBooleanLeaf {
     }
 
     final Path path = vm.getPath();
-    final Instruction lastInstr = vm.getLastInstruction();
+    final Instruction lastInstr = MigrationUtilities.getLastInstruction(vm);
     // final Step lastStep = vm.getSystemState().getTrail().getLastStep();
     // final Instruction xxx = lastStep.getInstruction();
     // assert lastInstr.equals(xxx);

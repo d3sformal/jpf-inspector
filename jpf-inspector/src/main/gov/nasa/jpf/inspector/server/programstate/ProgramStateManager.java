@@ -33,7 +33,7 @@ import gov.nasa.jpf.inspector.server.jpf.StopHolder;
 import gov.nasa.jpf.inspector.server.programstate.client.PSEThread;
 import gov.nasa.jpf.vm.VM;
 import gov.nasa.jpf.vm.ThreadInfo;
-import gov.nasa.jpf.jvm.ThreadList;
+import gov.nasa.jpf.vm.ThreadList;
 import gov.nasa.jpf.vm.Instruction;
 
 import java.util.HashMap;
@@ -158,7 +158,7 @@ public class ProgramStateManager implements ProgramStateInterface {
     return wasStopped;
   }
 
-  private JVM getJVM () throws JPFInspectorGenericErrorException {
+  private VM getJVM () throws JPFInspectorGenericErrorException {
     VM vm = stopHolder.getJVM();
     if (vm == null) {
       throw new JPFInspectorGenericErrorException("Internal error - JVM not as a part of the state (JPF is not connected");

@@ -23,7 +23,7 @@ import gov.nasa.jpf.inspector.interfaces.JPFInspectorException;
 import gov.nasa.jpf.inspector.server.programstate.ProgramStateEntry;
 import gov.nasa.jpf.inspector.server.programstate.StateNode;
 import gov.nasa.jpf.inspector.utils.InstructionWrapper;
-import gov.nasa.jpf.jvm.StackFrame;
+import gov.nasa.jpf.vm.StackFrame;
 
 /**
  * Method on the stack (equivalent of the {@link StackFrame})

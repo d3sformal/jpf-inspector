@@ -25,6 +25,7 @@ import gov.nasa.jpf.inspector.interfaces.CommandsInterface;
 import gov.nasa.jpf.inspector.interfaces.InspectorCallBacks;
 import gov.nasa.jpf.inspector.interfaces.InstructionTypes;
 import gov.nasa.jpf.inspector.interfaces.exceptions.JPFInspectorGenericErrorException;
+import gov.nasa.jpf.inspector.migration.MigrationUtilities;
 import gov.nasa.jpf.inspector.server.expression.ExpressionBoolean;
 import gov.nasa.jpf.inspector.server.expression.InspectorState;
 import gov.nasa.jpf.inspector.server.expression.expressions.ExpressionBreakpointChoiceGenerator;
@@ -187,7 +188,7 @@ public class CommandsManager implements CommandsInterface {
     } else if (type == StepType.ST_STEP_IN) {
       bpExpression = new ExpressionBreakpointSingleStep(inspector, stopHolder.getJVM(), LocationTypes.LT_POSITION_LEAVED_STEP_IN);
     } else if (type == StepType.ST_STEP_OUT) {
-      ThreadInfo ti = stopHolder.getJVM().getLastThreadInfo();
+      ThreadInfo ti = MigrationUtilities.getLastThreadInfo(stopHolder.getJVM());
       bpExpression = ExpressionBreakpointStepOut.getStepOutToCaller(ti);
     } else {
       throw new RuntimeException("Unsupported " + type.getClass().getSimpleName() + " entry " + type);

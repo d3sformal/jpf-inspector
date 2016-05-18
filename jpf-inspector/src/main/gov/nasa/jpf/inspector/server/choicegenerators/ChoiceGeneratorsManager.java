@@ -24,6 +24,7 @@ import gov.nasa.jpf.inspector.interfaces.InspectorCallBacks;
 import gov.nasa.jpf.inspector.interfaces.JPFInspectorException;
 import gov.nasa.jpf.inspector.interfaces.exceptions.JPFInspectorGenericErrorException;
 import gov.nasa.jpf.inspector.interfaces.exceptions.JPFInspectorNoVMConnected;
+import gov.nasa.jpf.inspector.migration.MigrationUtilities;
 import gov.nasa.jpf.inspector.server.breakpoints.CommandsManager;
 import gov.nasa.jpf.inspector.server.breakpoints.DefaultForwardTraceManager;
 import gov.nasa.jpf.inspector.server.expression.InspectorState;
@@ -203,7 +204,7 @@ public class ChoiceGeneratorsManager implements ChoiceGeneratorsInterface, Choic
       throw new JPFInspectorGenericErrorException("JPF has not been stopped by CG.Advanced call");
     }
 
-    ChoiceGenerator<?> cg = vm.getLastChoiceGenerator();
+    ChoiceGenerator<?> cg = MigrationUtilities.getLastChoiceGenerator(vm);
 
     if (cg == null) {
       return;
