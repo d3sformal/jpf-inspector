@@ -413,10 +413,4 @@
     </junit>
    
   </target>
-
-  <!-- TODO REMOVE THIS RULE AND UPDATE DEFUALT !-->
-  <target name="AlfBuild" depends="compile" description="Alf - REMOVE ME - defualt rule - compile grammar and remove compiled files">
-    <delete dir="build" />
-  </target>
-
 </project>
