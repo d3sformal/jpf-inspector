@@ -316,8 +316,8 @@ public class JPFSiteUtils {
   
   /**
    * locate the site.properties. Start with the current dir, go upwards until the
-   * user.home is reached. If site.properties isn't found there, look for '.jpf' and
-   * 'jpf' dirs within the home dir. If no site.properties is found there either, give up
+   * root directory is reached. If site.properties isn't found there, look for '.jpf' and
+   * 'jpf' dirs within the user's home dir. If no site.properties is found there either, give up
    */
   public static File getStandardSiteProperties(){    
     String userDir = System.getProperty("user.dir");

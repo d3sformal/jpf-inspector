@@ -23,5 +23,15 @@
       </library>
     </orderEntry>
     <orderEntry type="module" module-name="core8" />
+    <orderEntry type="library" name="lib" level="application" />
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="jar://$APPLICATION_HOME_DIR$/lib/junit.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
   </component>
 </module>

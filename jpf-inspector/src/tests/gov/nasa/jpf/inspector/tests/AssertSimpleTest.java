@@ -36,14 +36,20 @@ import gov.nasa.jpf.util.TypeRef;
 
 import java.util.Map;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 /**
  * @author Alf
  * 
  */
-public class AssertSimpleTest extends InspectorTest {
+public class AssertSimpleTest extends InspectorTest  {
   private final static int ASSERT_TEST_01_RANDOM_MAX = 5;
+
+  @Test
+  public void junitIsWorkingTest() {
+    Assert.assertTrue(true);
+  }
 
   @Test
   public void test01 () {

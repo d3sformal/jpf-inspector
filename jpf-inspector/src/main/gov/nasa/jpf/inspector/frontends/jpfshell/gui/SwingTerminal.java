@@ -136,12 +136,14 @@ public class SwingTerminal extends Terminal {
 
     try {
       creader = new ConsoleReader(pipeKeyListener2JLine.getInputStream(), new PromptWriter(), null, this);
+      creader.setBellEnabled(false);
     } catch (IOException e) {
       e.printStackTrace();
     }
 
     listener = new ConsoleKeyListener(creader, pipeKeyListener2JLine.getOutpoutStream());
     console.addKeyListener(listener);
+
 
     outUserTextPrintStream = new PrintStream(new JLineUserTextOutputStream(interpreter, console));
 
@@ -479,7 +481,7 @@ public class SwingTerminal extends Terminal {
    * 
    */
   static public class JLineUserTextOutputStream extends OutputStream {
-    private static final boolean DEBUG = false;
+    private static final boolean DEBUG = true;
 
     private final TextComponentFeeder interpreter;
     private final JTextComponent console;
