@@ -1,1 +1,1 @@
-@using jpf-inspectortarget = DiningPhiljpf-core.classpath+=;\  ../sooth-examplesjpf-core.sourcepath+=;\  ../sooth-examplesshell=.shell.basicshell.BasicShell
+@using jpf-inspectortarget = DiningPhiljpf-core.classpath+=;\  ../sooth-examplesjpf-core.sourcepath+=;\  ../sooth-examplesshell=.shell.basicshell.BasicShell

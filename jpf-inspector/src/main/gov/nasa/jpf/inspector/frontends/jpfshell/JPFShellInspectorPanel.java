@@ -26,6 +26,7 @@ import gov.nasa.jpf.inspector.client.JPFInspectorClientInterface;
 import gov.nasa.jpf.inspector.frontends.jpfshell.commands.completors.CmdRunCompletor;
 import gov.nasa.jpf.inspector.frontends.jpfshell.gui.SwingTerminal;
 import gov.nasa.jpf.inspector.interfaces.exceptions.JPFInspectorGenericErrorException;
+import gov.nasa.jpf.inspector.utils.Debugging;
 import gov.nasa.jpf.shell.ShellManager;
 import gov.nasa.jpf.shell.ShellPanel;
 import gov.nasa.jpf.shell.commands.VerifyCommand;
@@ -36,6 +37,8 @@ import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
 import java.io.IOException;
 import java.io.PrintStream;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import jline.ConsoleReader;
 
@@ -45,6 +48,7 @@ import jline.ConsoleReader;
  * 
  */
 public class JPFShellInspectorPanel extends ShellPanel implements VerifyCommandListener {
+  static Logger log = Debugging.getLogger(ShellManager.getManager().getConfig());
   // predefined commands       
   private static final String[] INITIAL_COMMANDS = {};
 
@@ -65,31 +69,28 @@ public class JPFShellInspectorPanel extends ShellPanel implements VerifyCommandL
    */
   public JPFShellInspectorPanel () {
     super("JPF Inspector", null, "JPF Inspector command console");
-
     Config config = ShellManager.getManager().getConfig();
+
+    // Create terminal with specified theme
     if (config.get("jpf-inspector.theme").equals("white_on_black")) {
       terminal = SwingTerminal.getSwingTerminalBlack();
-      if (DEBUG) {
-        System.out.println("Theme: white-on-black.");
-      }
+      log.info("JPF Inspector theme: white-on-black.");
     } else if (config.get("jpf-inspector.theme").equals("black_on_white")) {
       terminal = SwingTerminal.getSwingTerminalWhite();
-      if (DEBUG) {
-        System.out.println("Theme: black-on-white.");
-      }
+      log.info("JPF Inspector theme: black-on-white.");
     }
     else {
       terminal = SwingTerminal.getSwingTerminalWhite();
-      if (DEBUG) {
-        System.out.println("Theme '" + config.get("jpf-inspector.theme") + "' not recognized. Defaulting to black-on-white.");
-      }
+      log.warning("Theme '" + config.get("jpf-inspector.theme") + "' not recognized. Defaulting to black-on-white.");
     }
 
     addComponentListener(new PanelComponentListener());
 
     consolePrintStream = terminal.getUserTextPrintStream();
+    PrintStream startingInfoStream = terminal.getSimplePrintStream();
 
     String target = config.getTarget();
+
     // Initialize server part
     inspector = JPFInspectorFacade.getInspectorClient(target, consolePrintStream);
 
@@ -100,8 +101,9 @@ public class JPFShellInspectorPanel extends ShellPanel implements VerifyCommandL
     add(terminal.getScrollPanel());
 
     // TODO document that multiple calls to consolePrintStream.println will fail because of how text is appended/inserted in TextComponentFeeder::getPositionBeforePrompt.
-    // TODO add the possibility to print NewLines in this way.
-    consolePrintStream.println("This is the JPF Inspector console for debugging the target \"" + target + "\". Type \"help\" to get a list of commands.");
+    startingInfoStream.println("This is the JPF Inspector console for debugging the target \"" + target + "\".");
+    startingInfoStream.println("Type \"hello\" to test if the Inspector is working or \"help\" to get a list of commands.");
+    startingInfoStream.println();
 
     console = terminal.getConsoleReader();
 

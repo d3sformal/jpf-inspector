@@ -31,6 +31,8 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintStream;
 import java.io.Writer;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.swing.JEditorPane;
 import javax.swing.JScrollPane;
@@ -39,6 +41,8 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.text.DefaultCaret;
 import javax.swing.text.JTextComponent;
 
+import gov.nasa.jpf.inspector.utils.Debugging;
+import gov.nasa.jpf.shell.ShellManager;
 import jline.ConsoleOperations;
 import jline.ConsoleReader;
 import jline.Terminal;
@@ -50,7 +54,7 @@ import jline.Terminal;
  * 
  * The terminal creates own {@link ConsoleReader}. To get user input call {@code SwingTerminal.getConsoleReader().readline()}
  * 
- * The {@link #getUsetTextPrintStream()} print stream can be used to print additional output to the console (just above the prompt line).
+ * The {@link #getUserTextPrintStream()} print stream can be used to print additional output to the console (just above the prompt line).
  * 
  */
 public class SwingTerminal extends Terminal {
@@ -74,6 +78,7 @@ public class SwingTerminal extends Terminal {
   private final TextComponentFeeder interpreter;
 
   private final PrintStream outUserTextPrintStream; // Stream used by users to log(print writer) into console (just before the prompt line)
+  private final PrintStream outSimplePrintStream;
 
   /**
    * @return Creates new terminal with white background and black text.
@@ -146,7 +151,7 @@ public class SwingTerminal extends Terminal {
 
 
     outUserTextPrintStream = new PrintStream(new JLineUserTextOutputStream(interpreter, console));
-
+    outSimplePrintStream = new PrintStream(new JLineSimpleOutputStream(interpreter, console));
   }
 
   @Override
@@ -184,6 +189,14 @@ public class SwingTerminal extends Terminal {
    */
   public PrintStream getUserTextPrintStream () {
     return outUserTextPrintStream;
+  }
+  /**
+   * Stream where you can log/write writer which should be shown in the Shell Panel. The writer is written just before prompt line.
+   *
+   * @return Stream where you can log/write writer which should be shown in the Shell Panel.
+   */
+  public PrintStream getSimplePrintStream () {
+    return outSimplePrintStream;
   }
 
   // ***************************************************************************
@@ -319,7 +332,7 @@ public class SwingTerminal extends Terminal {
 
     /**
      * @param cr Console used to resolve key mappings.
-     * @param writer Stream where send pressed keys.
+     * @param output Stream where send pressed keys.
      */
     public ConsoleKeyListener (ConsoleReader cr, OutputStream output) {
       assert (output != null);
@@ -474,6 +487,37 @@ public class SwingTerminal extends Terminal {
     }
   }
 
+  static public class JLineSimpleOutputStream extends OutputStream {
+    private static Logger log = Debugging.getLogger(ShellManager.getManager().getConfig());
+
+    private final TextComponentFeeder interpreter;
+    private final JTextComponent console;
+
+    @Override
+    public void write (int b) throws IOException {
+      if (log.isLoggable(Level.FINE)) {
+        log.fine(this.getClass().getSimpleName() + "write(b=" + ((char) b) + ")");
+      }
+      char c[] = new char[1];
+      c[0] = (char) b;
+      interpreter.addTextAtTheVeryEnd(new String(c), console);
+    }
+
+    @Override
+    public void write (byte b[], int off, int len) throws IOException {
+      String str = new String(b, off, len);
+      if (log.isLoggable(Level.FINE)) {
+        log.fine(this.getClass().getSimpleName() + "write( str=" + str + ")");
+      }
+      interpreter.addTextAtTheVeryEnd(str, console);
+    }
+
+    public JLineSimpleOutputStream(TextComponentFeeder interpreter, JTextComponent console) {
+      super();
+      this.console = console;
+      this.interpreter = interpreter;
+    }
+  }
   /**
    * Stream which can be used to add/log text into JLineConsole (just before the prompt line)
    * 
@@ -481,7 +525,7 @@ public class SwingTerminal extends Terminal {
    * 
    */
   static public class JLineUserTextOutputStream extends OutputStream {
-    private static final boolean DEBUG = true;
+    private static Logger log = Debugging.getLogger(ShellManager.getManager().getConfig());
 
     private final TextComponentFeeder interpreter;
     private final JTextComponent console;
@@ -494,8 +538,8 @@ public class SwingTerminal extends Terminal {
 
     @Override
     public void write (int b) throws IOException {
-      if (DEBUG) {
-        System.out.println(this.getClass().getSimpleName() + "write(b=" + ((char) b) + ")");
+      if (log.isLoggable(Level.FINE)) {
+        log.fine(this.getClass().getSimpleName() + "write(b=" + ((char) b) + ")");
       }
       char c[] = new char[1];
       c[0] = (char) b;
@@ -505,11 +549,10 @@ public class SwingTerminal extends Terminal {
     @Override
     public void write (byte b[], int off, int len) throws IOException {
       String str = new String(b, off, len);
-      if (DEBUG) {
-        System.out.println(this.getClass().getSimpleName() + "write( str=" + str + ")");
+      if (log.isLoggable(Level.FINE)) {
+        log.fine(this.getClass().getSimpleName() + "write( str=" + str + ")");
       }
       interpreter.addUserText(str, console);
     }
   }
-
 }
