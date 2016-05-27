@@ -91,18 +91,23 @@ public class CommandRecorder {
     addComment("Recording started because of user-initiated clear command.");
   }
 
+  /**
+   * Saves the contents of the current command recorder to a file. If we cannot write to the specified filename (invalid characters, bad permissions, ...), the method returns false.
+   * @param fileName Name of the file where the commands should be written to.
+   * @return Returns true if the commands were successfully saved to the file; returns false otherwise.
+   */
   public synchronized boolean saveRecordedCommmands (String fileName) {
     try {
       PrintStream outFile = new PrintStream(fileName);
-      Iterator<String> it = commands.iterator();
-      while (it.hasNext()) {
-        outFile.print(it.next());
+      for (String command : commands) {
+        outFile.print(command);
       }
       outFile.close();
 
       return true;
+
     } catch (FileNotFoundException e) {
-      outStream.println("ERR: Cannot write to " + fileName + " file. \n\t" + e.getMessage());
+      outStream.println("ERR: Could not write to the file '" + fileName + "'. Recording not saved.\n\t" + e.getMessage());
       return false;
     }
   }
