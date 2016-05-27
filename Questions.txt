@@ -1,0 +1,12 @@
+A running list of questions for my mentor:
+------------------------------------------
+
+Coding style: Put space between method name and opening parenthesis in declaration? It seems to be like 50/50 in jpf-core and in the inspector. Java guidelines prefer no space, but the example source code at http://babelfish.arc.nasa.gov/trac/jpf/wiki/devel/coding_conventions does show a space.
+
+The JLine library jar has "-Inspector" appended to its name. Was it modified from its original distribution? If so, why and how?
+
+Can the system under test ever accept user input (via System.in)?
+
+
+
+
