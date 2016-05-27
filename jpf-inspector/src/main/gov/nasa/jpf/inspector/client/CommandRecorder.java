@@ -146,7 +146,6 @@ public class CommandRecorder {
   @Override
   public String toString () {
     StringBuilder sb = new StringBuilder();
-    sb.append("# CommandRecorder - executed commands\n");
 
     Iterator<String> it = commands.iterator();
     while (it.hasNext()) {
