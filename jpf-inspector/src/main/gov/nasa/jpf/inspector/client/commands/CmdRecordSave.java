@@ -44,7 +44,7 @@ public class CmdRecordSave extends ClientCommand {
     CommandRecorder rec = client.getCommandRecorder();
     if (rec.saveRecordedCommmands(fileName)) {
       // Successfully saved
-      outStream.println("List of executed successfully saved to " + fileName + " file");
+      outStream.println("List of executed commands was successfully saved to the file '" + fileName + "'.");
     } else {
       // The called method already printed the error message to the console.
     }
