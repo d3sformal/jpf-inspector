@@ -28,8 +28,8 @@ import gov.nasa.jpf.inspector.interfaces.InstructionPosition;
 import gov.nasa.jpf.inspector.interfaces.JPFInspectorException;
 import gov.nasa.jpf.inspector.interfaces.exceptions.JPFInspectorGenericErrorException;
 import gov.nasa.jpf.inspector.interfaces.exceptions.JPFInspectorParsingErrorException;
-import gov.nasa.jpf.inspector.server.programstate.ProgramStateEntry;
-import gov.nasa.jpf.inspector.server.programstate.client.PSEThread;
+import gov.nasa.jpf.inspector.common.pse.ProgramStateEntry;
+import gov.nasa.jpf.inspector.common.pse.PSEThread;
 import gov.nasa.jpf.inspector.utils.ChoiceGeneratorWrapper;
 
 import java.util.List;

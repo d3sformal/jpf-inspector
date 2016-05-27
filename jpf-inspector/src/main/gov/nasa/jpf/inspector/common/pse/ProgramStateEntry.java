@@ -17,11 +17,11 @@
 // DOCUMENTATION, IF PROVIDED, WILL CONFORM TO THE SUBJECT SOFTWARE.
 //  
 
-package gov.nasa.jpf.inspector.server.programstate;
+package gov.nasa.jpf.inspector.common.pse;
 
 import gov.nasa.jpf.inspector.interfaces.JPFInspectorBackEndInterface;
 import gov.nasa.jpf.inspector.interfaces.JPFInspectorException;
-import gov.nasa.jpf.inspector.server.programstate.client.PSEVisitor;
+import gov.nasa.jpf.inspector.server.programstate.StateNodeInterface;
 
 import java.io.Serializable;
 

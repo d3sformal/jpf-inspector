@@ -17,10 +17,9 @@
 // DOCUMENTATION, IF PROVIDED, WILL CONFORM TO THE SUBJECT SOFTWARE.
 //  
 
-package gov.nasa.jpf.inspector.server.programstate.client;
+package gov.nasa.jpf.inspector.common.pse;
 
 import gov.nasa.jpf.inspector.interfaces.JPFInspectorException;
-import gov.nasa.jpf.inspector.server.programstate.ProgramStateEntry;
 import gov.nasa.jpf.inspector.server.programstate.StateNode;
 import gov.nasa.jpf.vm.ThreadInfo;
 import gov.nasa.jpf.vm.ThreadInfo.State;

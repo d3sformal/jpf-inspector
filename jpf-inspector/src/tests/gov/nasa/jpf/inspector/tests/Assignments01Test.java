@@ -26,8 +26,8 @@ import gov.nasa.jpf.inspector.interfaces.exceptions.JPFInspectorArrayIndexOutOut
 import gov.nasa.jpf.inspector.interfaces.exceptions.JPFInspectorAssignmentOutOfRangeException;
 import gov.nasa.jpf.inspector.interfaces.exceptions.JPFInspectorIncompatibleTypesException;
 import gov.nasa.jpf.inspector.server.jpf.JPFInspector;
-import gov.nasa.jpf.inspector.server.programstate.ProgramStateEntry;
-import gov.nasa.jpf.inspector.server.programstate.client.PSEVariable;
+import gov.nasa.jpf.inspector.common.pse.ProgramStateEntry;
+import gov.nasa.jpf.inspector.common.pse.PSEVariable;
 import gov.nasa.jpf.inspector.tests.infrastructure.Breakpoint;
 import gov.nasa.jpf.inspector.tests.infrastructure.InspectorTest;
 import gov.nasa.jpf.inspector.tests.infrastructure.InspectorTestCallbacks;

@@ -20,8 +20,8 @@
 package gov.nasa.jpf.inspector.interfaces;
 
 import gov.nasa.jpf.inspector.interfaces.exceptions.JPFInspectorGenericErrorException;
-import gov.nasa.jpf.inspector.server.programstate.ProgramStateEntry;
-import gov.nasa.jpf.inspector.server.programstate.client.PSEThread;
+import gov.nasa.jpf.inspector.common.pse.ProgramStateEntry;
+import gov.nasa.jpf.inspector.common.pse.PSEThread;
 
 import java.util.Map;
 

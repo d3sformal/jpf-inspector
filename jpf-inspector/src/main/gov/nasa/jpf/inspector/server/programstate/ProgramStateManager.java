@@ -19,6 +19,7 @@
 
 package gov.nasa.jpf.inspector.server.programstate;
 
+import gov.nasa.jpf.inspector.common.pse.ProgramStateEntry;
 import gov.nasa.jpf.inspector.interfaces.InstructionPosition;
 import gov.nasa.jpf.inspector.interfaces.JPFInspectorException;
 import gov.nasa.jpf.inspector.interfaces.ProgramStateInterface;
@@ -30,7 +31,7 @@ import gov.nasa.jpf.inspector.server.expression.ExpressionStateRootNode;
 import gov.nasa.jpf.inspector.server.expression.expressions.ExpressionStateAssignment;
 import gov.nasa.jpf.inspector.server.jpf.JPFInspector;
 import gov.nasa.jpf.inspector.server.jpf.StopHolder;
-import gov.nasa.jpf.inspector.server.programstate.client.PSEThread;
+import gov.nasa.jpf.inspector.common.pse.PSEThread;
 import gov.nasa.jpf.vm.VM;
 import gov.nasa.jpf.vm.ThreadInfo;
 import gov.nasa.jpf.vm.ThreadList;

@@ -23,7 +23,7 @@ import gov.nasa.jpf.inspector.client.ClientCommand;
 import gov.nasa.jpf.inspector.client.JPFInspectorClient;
 import gov.nasa.jpf.inspector.interfaces.JPFInspectorBackEndInterface;
 import gov.nasa.jpf.inspector.interfaces.JPFInspectorException;
-import gov.nasa.jpf.inspector.server.programstate.client.PSEThread;
+import gov.nasa.jpf.inspector.common.pse.PSEThread;
 
 import java.io.PrintStream;
 import java.util.Map;
