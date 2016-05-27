@@ -121,7 +121,7 @@ public class JPFClientCallbackHandler implements InspectorCallBacks {
       if (bp.getState() == BreakPointStates.BP_STATE_LOGGING) {
         message = "Logging breakpoint hit";
       }
-      out.println("INFO: " + message + " [ " + CmdBreakpointShow.breakpointToString(bp) + "]");
+      out.println("INFO: " + message + " [" + CmdBreakpointShow.breakpointToString(bp) + "]");
       String details = bp.getDetails();
       if (details != null && !details.trim().isEmpty()) {
         out.println("\t" + details);

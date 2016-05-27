@@ -5,6 +5,7 @@ import gov.nasa.jpf.inspector.client.JPFInspectorClient;
 import gov.nasa.jpf.inspector.interfaces.JPFInspectorBackEndInterface;
 
 import java.io.PrintStream;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -20,7 +21,9 @@ public class CmdHelp extends ClientCommand {
     informationalCommands.add(new CommandHelpInfo("quit", "exit", "Closes the shell and terminates the process."));
 
     categories.put("Informational commands", informationalCommands);
-    categories.put("Breakpoint-related commands", new ArrayList<>());
+    ArrayList<CommandHelpInfo> breakpointCommands = new ArrayList<>();
+    breakpointCommands.add(new CommandHelpInfo("create breakpoint [properties...] [hit condition]", "cr bp", "Creates a new breakpoint."));
+    categories.put("Breakpoint-related commands", breakpointCommands);
     categories.put("Stepping-related commands", new ArrayList<>());
 
     outStream.println("You may use the following commands in this console:\n");

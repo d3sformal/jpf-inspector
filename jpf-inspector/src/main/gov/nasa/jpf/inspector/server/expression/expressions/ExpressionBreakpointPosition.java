@@ -118,7 +118,7 @@ public class ExpressionBreakpointPosition extends ExpressionBooleanLeaf {
   @Override
   public String getDetails (InspectorState state) {
     if (state != null && evaluateExpression(state)) {
-      return "SuT enters the " + instPos.toString();
+      return "SuT will now enter the position " + instPos.toString();
     }
     return "";
   }
