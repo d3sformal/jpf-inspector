@@ -20,7 +20,9 @@ import java.util.regex.Pattern;
 
 /**
  * Stores and replays executed commands.
- * 
+ *
+ * The command recorder stores only commands, not their results, but it does store comments that are sometimes generated automatically by some commands. The contents of a command recorder may be erased, stores to a file or replayed with commands in the Inspector console.
+ *
  * @author Alf
  */
 public class CommandRecorder {
@@ -64,7 +66,7 @@ public class CommandRecorder {
     Date now = new Date();
     String userName = System.getProperty("user.name");
 
-    addComment("Recorded at " + df.format(now) + (userName != null ? " by " + userName : "") + ".");
+    addComment("Recording starts at " + df.format(now) + (userName != null ? " by " + userName : "") + ".");
     addComment("Target: " + target);
     addComment("");
   }
@@ -81,10 +83,12 @@ public class CommandRecorder {
 
   }
 
+  /**
+   * Reinitializes the command recorder (forgets all recorded commands and creates a new header for the recorded data, including a new timestamp).
+   */
   public synchronized void clearRecordedCommands () {
     init();
-
-    addComment("Cleared");
+    addComment("Recording started because of user-initiated clear command.");
   }
 
   public synchronized boolean saveRecordedCommmands (String fileName) {

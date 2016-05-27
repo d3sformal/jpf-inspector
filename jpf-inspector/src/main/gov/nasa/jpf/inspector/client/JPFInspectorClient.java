@@ -150,6 +150,11 @@ public class JPFInspectorClient implements JPFInspectorClientInterface {
     recorder.addComment(message);
   }
 
+  /**
+   * Gets the command recorder.
+   *
+   * The command recorder is created once, in the constructor.
+   */
   public CommandRecorder getCommandRecorder () {
     return recorder;
   }

@@ -27,11 +27,9 @@ import gov.nasa.jpf.inspector.interfaces.JPFInspectorBackEndInterface;
 import java.io.PrintStream;
 
 /**
+ * Represents the 'record clear' command that destroys the contents of the current command recorder's memory.
  * 
- * Clears recorded executed commands
- * 
- * @author Alf
- * 
+ * @author Alf *
  */
 public class CmdRecordClear extends ClientCommand {
 
@@ -39,12 +37,12 @@ public class CmdRecordClear extends ClientCommand {
   public void executeCommands (JPFInspectorClient client, JPFInspectorBackEndInterface inspector, PrintStream outStream) {
     CommandRecorder rec = client.getCommandRecorder();
     rec.clearRecordedCommands();
-    outStream.println("List of executed commands cleared");
+    outStream.println("List of recorded commands has been cleared.");
   }
 
   @Override
   public String getNormalizedCommand () {
-    return "record record";
+    return "record clear";
   }
 
 }
