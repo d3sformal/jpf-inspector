@@ -16,16 +16,12 @@
 // THE SUBJECT SOFTWARE WILL BE ERROR FREE, OR ANY WARRANTY THAT
 // DOCUMENTATION, IF PROVIDED, WILL CONFORM TO THE SUBJECT SOFTWARE.
 //  
-
 grammar ConsoleGrammar;
- 
 options {
     language=Java;
 }
-
-@header{ 
+@header{
 package gov.nasa.jpf.inspector.client.parser;
-
 import gov.nasa.jpf.inspector.interfaces.*;
 import gov.nasa.jpf.inspector.interfaces.CommandsInterface.InspectorStates;
 import gov.nasa.jpf.inspector.interfaces.InspectorCallBacks.CB_METHODS;
@@ -36,11 +32,9 @@ import gov.nasa.jpf.inspector.client.commands.CmdBreakpointCreate.ConsoleBreakpo
 import gov.nasa.jpf.inspector.interfaces.CommandsInterface.StepType;
 import gov.nasa.jpf.inspector.utils.parser.RecognitionRuntimeException;
 }
-
 @lexer::header {
 package gov.nasa.jpf.inspector.client.parser;
 }
-
 @members {
 
     public void displayRecognitionError(String[] tokenNames,
@@ -51,7 +45,6 @@ package gov.nasa.jpf.inspector.client.parser;
     }
 
 }
-
 
 // Keywords and commands
 TOKEN_ALL : 'all' ;
@@ -124,18 +117,15 @@ anyWord returns [String text]
     : IDF                           { $text = $IDF.text; }
     | allKeyWords                   { $text = $allKeyWords.text; }
     ;
-    
 allKeyWords returns [String text]
     : a=TOKEN_HIT_COUNT             { $text = $a.text; }
     | allKeyWordsWithoutHitCountBP  { $text = $allKeyWordsWithoutHitCountBP.text; }
     ;
-
 allKeyWordsWithoutHitCountBP returns [String text]
     : a=TOKEN_NAME                  { $text = $a.text; }
     | a=TOKEN_STATE                 { $text = $a.text; }
     | allKeyWordsWithoutCreateBPandHitCount { $text = $allKeyWordsWithoutCreateBPandHitCount.text; }
     ;
-
 allKeyWordsWithoutCreateBPandHitCount returns [String text]
     : TOKEN_ALL
     | TOKEN_ASK
@@ -197,11 +187,9 @@ clientCommandWithCB returns [ClientCommand value]
     : clientCommands { $value = $clientCommands.value; } EOF
     | WS? cmdCallback WS? { $value = $cmdCallback.value; }
     ;
-
 clientCommands returns [ClientCommand value]
     : WS? clientCommands1 EOF { $value = $clientCommands1.value; }
     ;
-
 clientCommands1 returns [ClientCommand value]
     : TOKEN_RUN              WS? { $value = new CmdRun(CmdRunTypes.RUN); }
     | TOKEN_CONTINUE         WS? { $value = new CmdRun(CmdRunTypes.RUN); }
@@ -220,13 +208,11 @@ cmdBreakpoints returns [ClientCommand value]
     | TOKEN_DELETE WS? TOKEN_BREAKPOINT WS? INT     { $value = new CmdBreakpointDelete($INT.text); }
     | TOKEN_CREATE WS? TOKEN_BREAKPOINT             { ConsoleBreakpointCreate  bpCreate = new ConsoleBreakpointCreate(); } ( WS? cmdCreateBP[bpCreate])* WS bpExpression { bpCreate.setBPExpression($bpExpression.expr); $value = new CmdBreakpointCreate(bpCreate); }
     ;
-
 cmdCreateBP [ConsoleBreakpointCreate bpCreate]
     : TOKEN_NAME  WS? SIGN_EQUAL WS? anyWord { $bpCreate.setName($anyWord.text); }
     | TOKEN_STATE WS? SIGN_EQUAL WS? cmdBreakpointsStates { $bpCreate.setState($cmdBreakpointsStates.bpState); }
     | (lower=intValue  WS? signLess=LESS WS?)? TOKEN_HIT_COUNT (WS? signHigh=LESS WS? upper=intValue)? { $bpCreate.setBounds( $lower.value, (signLess!=null?$signLess.text:null), (signHigh!=null?$signHigh.text:null), $upper.value); }
     ;
-
 cmdBreakpointsStates returns [BreakPointStates bpState]
     : TOKEN_DISABLE         { $bpState = BreakPointStates.BP_STATE_DISABLED; }
     | TOKEN_LOG             { $bpState = BreakPointStates.BP_STATE_LOGGING; }
@@ -236,13 +222,12 @@ cmdBreakpointsStates returns [BreakPointStates bpState]
 // We have to solve collision between bpExpression and "hitCountExpression" expression
 // Note: Not precise, however due to structure of the bpExpressions it is enough
 // Special handling of "name" "hitCount" "state" and  '+' '-' INT HEX
+
 bpExpression returns [String expr]
     : allKeyWordsWithoutCreateBPandHitCount     b01=allTextWS?        { $expr = $allKeyWordsWithoutCreateBPandHitCount.text +  ($b01.text!=null?$b01.text:""); }
     | allNonKeywordsRulesBase                   b02=allTextWS?        { $expr = $allNonKeywordsRulesBase.text +                ($b02.text!=null?$b02.text:""); }
     | IDF                                       b03=allTextWS?        { $expr = $IDF.text +                                    ($b03.text!=null?$b03.text:""); }
     ;
-
-
 cmdSingleSteps returns [CmdSingleStepping value]
     : TOKEN_STEP_INSTRUCTION                      intValue?  { $value = new CmdSingleStepping(true, StepType.ST_INSTRUCTION,   $intValue.value); }
     | TOKEN_STEP_OVER                             intValue?  { $value = new CmdSingleStepping(true, StepType.ST_LINE,          $intValue.value); }
@@ -255,13 +240,12 @@ cmdSingleSteps returns [CmdSingleStepping value]
     | TOKEN_BACK_STEP_OUT                         intValue?  { $value = new CmdSingleStepping(false, StepType.ST_STEP_OUT,     $intValue.value); }
     | TOKEN_BACK_STEP_TRANSITION (WS? c=cgType)?  intValue?  { $value = CmdSingleStepping.createCmdSingleSteppingTransition(false, $c.cgsType, $intValue.value); }
     ;
-
 cmdInformational returns [ClientCommand value]
   : TOKEN_HELLO  { $value = new CmdHello(); }
   | TOKEN_HELP   { $value = new CmdHelp(); }
   | TOKEN_QUIT    { $value = new CmdQuit(); }
   ;
-   
+
 cmdProgramState returns [ClientCommand value]
   : TOKEN_THREAD    (WS? intValue)?   { $value = new CmdStatusThreads($intValue.value); }
   | TOKEN_PRINT     (WS? allText)?    { $value = new CmdPrint($allText.text!=null?$allText.text:""); }
@@ -272,7 +256,7 @@ cmdProgramState returns [ClientCommand value]
 
 cmdChoiceGenerators returns [ClientCommand value]
     : TOKEN_USED WS? TOKEN_CHOICE_GENERATORS { $value = new CmdUsedChoiceGenerators(); }
-    | a=mode  WS? (b=cgMode WS?)? (c=cgType WS?)? TOKEN_CHOICE_GENERATORS  { $value = new CmdChoiceGeneratorsTracking( ($c.cgsType!=null ? $c.cgsType : CmdChoiceGeneratorsTracking.CGTypeSpec.CGS_ALL), ($b.cg_mode != null ? $b.cg_mode : ChoiceGeneratorsInterface.CGMode.CG_MODE_PRINT), $a.mode); }
+    | a=enableOrDisable  WS? (b=cgMode WS?)? (c=cgType WS?)? TOKEN_CHOICE_GENERATORS  { $value = new CmdChoiceGeneratorsTracking( ($c.cgsType!=null ? $c.cgsType : CmdChoiceGeneratorsTracking.CGTypeSpec.CGS_ALL), ($b.cg_mode != null ? $b.cg_mode : ChoiceGeneratorsInterface.CGMode.CG_MODE_PRINT), $a.enableOrDisable); }
     | TOKEN_CHOICE_GENERATORS WS? TOKEN_SELECT cgChoice { $value = new CmdChoiceSelect($cgChoice.choice); }
     ;
 
@@ -287,9 +271,9 @@ cgMode returns [ChoiceGeneratorsInterface.CGMode cg_mode]
     | TOKEN_PRINT    { $cg_mode =  ChoiceGeneratorsInterface.CGMode.CG_MODE_PRINT; }
     ;
 
-mode returns [boolean mode]
-    : TOKEN_ENABLE   { $mode = true; }
-    | TOKEN_DISABLE  { $mode = false; }
+enableOrDisable returns [boolean enableOrDisable]
+    : TOKEN_ENABLE   { $enableOrDisable = true; }
+    | TOKEN_DISABLE  { $enableOrDisable = false; }
     ;
 
 cgChoice returns [int choice]
@@ -324,7 +308,7 @@ cmdRecord returns [ClientCommand value]
     ;
 
 cmdAssertions returns [ClientCommand value]
-    : TOKEN_ASSERTIONS WS mode          (WS b=allText)?       { $value = new CmdAssertions($mode.mode, $b.expr); }
+    : TOKEN_ASSERTIONS WS enableOrDisable          (WS b=allText)?       { $value = new CmdAssertions($enableOrDisable.enableOrDisable, $b.expr); }
     | TOKEN_ASSERT     WS a=allTextNoWS  WS b=allText         { $value = new CmdAssertionsBreakpoint($a.expr /* fileName:line */, $b.expr /* state expression like  var_i != 10 */); }
     ;
 
