@@ -112,15 +112,24 @@ public class CommandRecorder {
     }
   }
 
+  /**
+   * Loads the contents of a recording from a file and executes all commands from that recording, in order. If we cannot read the specified file (it does not exist, for example), the method returns false.
+   *
+   * We read the file as we go. If at any point we lose access to the file, the replay terminates and we return false.
+   * @param fileName Filename of the file that contains the recording to play.
+   * @param client The current JPFInspectorClient.
+   * @return Returns true when all loaded commands are executed. Returns false if the file could not be read.
+   */
   public boolean executeCommands (String fileName, JPFInspectorClient client) {
     BufferedReader in = null;
     try {
       in = new BufferedReader(new FileReader(fileName));
     } catch (FileNotFoundException e) {
-      outStream.println("ERR: Cannot found " + fileName + " file. \n\t" + e.getMessage());
+      outStream.println("ERR: Could not read the file '" + fileName + "'. Recording will not play.\n\t" + e.getMessage());
       return false;
     }
     try {
+
       CallbackExecutionDecorator cb = client.getDecoratedCallbacks();
       WORKING_MODE oldWorkMode = cb.setNewMode(WORKING_MODE.WM_EXECUTION_RECORD);
       String line;
@@ -134,15 +143,16 @@ public class CommandRecorder {
       // Restore original mode
       cb.setNewMode(oldWorkMode);
       return true;
+
     } catch (IOException e) {
-      outStream.println("ERR: Cannot read " + fileName + " file. \n\t" + e.getMessage());
+      outStream.println("ERR: Could not read the file '" + fileName + "'. Recording will not play.\n\t" + e.getMessage());
       return false;
     }
 
   }
 
   /**
-   * @return Dumps all recorded events
+   * Dumps all recorded events as a multi-line string.
    */
   public String getRecordedEvents () {
     return toString();
