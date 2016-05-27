@@ -52,8 +52,8 @@ package gov.nasa.jpf.inspector.client.parser;
 
 }
 
-//class ConsoleCommandParser extends Parser;
 
+// Keywords and commands
 TOKEN_ALL : 'all' ;
 TOKEN_ASK : 'ask';
 TOKEN_ASSERT : 'assert' ;
@@ -91,6 +91,7 @@ TOKEN_THREAD : 'thread' | 'ti' ;
 TOKEN_THREAD_PC : 'thread_pc' | 'thpc' ;
 TOKEN_X : 'x' | 'X' ;
 
+// Stepping-related keywords
 TOKEN_STEP_INSTRUCTION : 'step_instruction' | 'sins' ;
 TOKEN_STEP_OVER : 'step_over' | 'so' ;
 TOKEN_STEP_IN : 'step_in' | 'si' ;
@@ -102,6 +103,7 @@ TOKEN_BACK_STEP_IN : 'back_step_in' | 'bsi' ;
 TOKEN_BACK_STEP_OUT : 'back_step_out' | 'bsout' ;
 TOKEN_BACK_STEP_TRANSITION : 'back_step_transition' | 'bst' ;
 
+// Callback-related keywords
 TOKEN_CB_STATE_CHANGE : 'callback_state_change' | 'cb_state_changed' ; 
 TOKEN_CB_GENERIC_ERROR : 'callback_generic_error' | 'cb_gen_error' ;
 TOKEN_CB_GENERIC_INFO : 'callback_generic_info' | 'cg_gen_info' ;
@@ -109,6 +111,13 @@ TOKEN_CB_BREAKPOINT_HIT : 'callback_breakpoint_hit' | 'cb_bp_hit' ;
 TOKEN_CB_CG_NEW_CHOICE : 'callback_choice_generator_new_choice' | 'cb_cg_new_choice' ;
 TOKEN_CB_CG_CHOICE_TO_USE : 'callback_choice_generator_choice_to_use' | 'cb_cg_choice_to_use' ;
 TOKEN_CB_CG_USED_CHOICE : 'callback_choice_generator_used_choice' | 'cb_cg_used_choice' ;
+
+// Informational commmands
+TOKEN_HELLO : 'hello';
+TOKEN_HELP : 'help';
+TOKEN_QUIT : 'quit' | 'exit';
+
+// End of keywords.
 
 // Identifies of keyword as text
 anyWord returns [String text]
@@ -178,6 +187,9 @@ allKeyWordsWithoutCreateBPandHitCount returns [String text]
     | TOKEN_CB_CG_NEW_CHOICE
     | TOKEN_CB_CG_CHOICE_TO_USE
     | TOKEN_CB_CG_USED_CHOICE
+    | TOKEN_QUIT
+    | TOKEN_HELLO
+    | TOKEN_HELP
     ;
 
 // Can parse all Client commands as well as text representation of Callbacks - used for Record&Replay approach
@@ -200,6 +212,7 @@ clientCommands1 returns [ClientCommand value]
     | cmdChoiceGenerators    WS? { $value = $cmdChoiceGenerators.value; }
     | cmdRecord              WS? { $value = $cmdRecord.value; }
     | cmdAssertions          WS? { $value = $cmdAssertions.value; }
+    | cmdInformational       WS? { $value = $cmdInformational.value; }
     ;
  
 cmdBreakpoints returns [ClientCommand value]
@@ -221,7 +234,7 @@ cmdBreakpointsStates returns [BreakPointStates bpState]
     ;
 
 // We have to solve collision between bpExpression and "hitCountExpression" expression
-// Note: Not precise, however due to structure of the bpExpressions it is enought
+// Note: Not precise, however due to structure of the bpExpressions it is enough
 // Special handling of "name" "hitCount" "state" and  '+' '-' INT HEX
 bpExpression returns [String expr]
     : allKeyWordsWithoutCreateBPandHitCount     b01=allTextWS?        { $expr = $allKeyWordsWithoutCreateBPandHitCount.text +  ($b01.text!=null?$b01.text:""); }
@@ -243,6 +256,11 @@ cmdSingleSteps returns [CmdSingleStepping value]
     | TOKEN_BACK_STEP_TRANSITION (WS? c=cgType)?  intValue?  { $value = CmdSingleStepping.createCmdSingleSteppingTransition(false, $c.cgsType, $intValue.value); }
     ;
 
+cmdInformational returns [ClientCommand value]
+  : TOKEN_HELLO  { $value = new CmdHello(); }
+  | TOKEN_HELP   { $value = new CmdHelp(); }
+  | TOKEN_QUIT    { $value = new CmdQuit(); }
+  ;
    
 cmdProgramState returns [ClientCommand value]
   : TOKEN_THREAD    (WS? intValue)?   { $value = new CmdStatusThreads($intValue.value); }
@@ -376,6 +394,7 @@ intValue returns [Integer value]
     | SIGN_MINUS HEX { $value = -Integer.valueOf(($HEX.text).substring(2), 16); }
     ;
 
+// Whitespace
 WS     :   (' '|'\n'|'\r'|'\t')+ ;
 
 // Any characters not matched before
