@@ -92,7 +92,7 @@ public class JPFInspectorClient implements JPFInspectorClientInterface {
       recordComment("ERR:  Error parsing \"" + cmdStr + "\" command");
 
       recordComment(e.getMessage());
-      recordComment(e.expressError(JPFInspectorParsingErrorException.DEFAULT_LINE_LENGHT));
+      recordComment(e.expressError(JPFInspectorParsingErrorException.DEFAULT_LINE_LENGTH));
     }
     return cmd;
   }

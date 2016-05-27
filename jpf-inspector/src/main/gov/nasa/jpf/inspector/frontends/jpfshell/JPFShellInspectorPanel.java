@@ -141,7 +141,7 @@ public class JPFShellInspectorPanel extends ShellPanel implements VerifyCommandL
               sleep(1500);
               s = INITIAL_COMMANDS[initialCmdProcessed++];
             } else {
-              s = console.readLine("?:>");
+              s = console.readLine("cmd>");
             }
             String sTrimmed = s.trim();
             if (sTrimmed.length() == 0) {

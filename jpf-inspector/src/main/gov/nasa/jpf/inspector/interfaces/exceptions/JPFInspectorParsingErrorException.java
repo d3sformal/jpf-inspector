@@ -25,7 +25,7 @@ import org.antlr.runtime.RecognitionException;
 
 public class JPFInspectorParsingErrorException extends JPFInspectorException {
 
-  public static final int DEFAULT_LINE_LENGHT = 80;
+  public static final int DEFAULT_LINE_LENGTH = 80;
 
   private static final long serialVersionUID = 4938978736234959309L;
 

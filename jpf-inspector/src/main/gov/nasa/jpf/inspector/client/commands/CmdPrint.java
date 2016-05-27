@@ -69,7 +69,7 @@ public class CmdPrint extends ClientCommand {
       outStream.println(e.expressError(50));
 
       client.recordComment(e.getMessage());
-      client.recordComment(e.expressError(JPFInspectorParsingErrorException.DEFAULT_LINE_LENGHT));
+      client.recordComment(e.expressError(JPFInspectorParsingErrorException.DEFAULT_LINE_LENGTH));
     } catch (JPFInspectorException e) {
       outStream.print(e.getMessage());
       client.recordComment(e.getMessage());
