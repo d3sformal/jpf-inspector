@@ -1,9 +1,0 @@
-syntax: glob
-jpf-shell.zip
-nbproject/private/*
-build/*
-dist/*
-doc/*
-*.class
-*~
-*.orig
