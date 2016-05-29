@@ -8,4 +8,5 @@ public class Constants {
    * ThreadInfo object does not have an associated class info.
    */
   public static final String UNKNOWN_THREAD_TYPE_NAME = "(unspecified class)";
+  public static final String PROMPT = "cmd>";
 }

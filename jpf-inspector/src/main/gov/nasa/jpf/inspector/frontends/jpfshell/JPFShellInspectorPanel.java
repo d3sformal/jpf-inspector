@@ -23,6 +23,7 @@ import gov.nasa.jpf.Config;
 import gov.nasa.jpf.JPF;
 import gov.nasa.jpf.inspector.JPFInspectorFacade;
 import gov.nasa.jpf.inspector.client.JPFInspectorClientInterface;
+import gov.nasa.jpf.inspector.common.Constants;
 import gov.nasa.jpf.inspector.frontends.jpfshell.commands.completors.CmdRunCompletor;
 import gov.nasa.jpf.inspector.frontends.jpfshell.gui.SwingTerminal;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorGenericErrorException;
@@ -141,11 +142,11 @@ public class JPFShellInspectorPanel extends ShellPanel implements VerifyCommandL
               sleep(1500);
               s = INITIAL_COMMANDS[initialCmdProcessed++];
             } else {
-              s = console.readLine("cmd>");
+              s = console.readLine(Constants.PROMPT);
             }
             String sTrimmed = s.trim();
             if (sTrimmed.length() == 0) {
-              consolePrintStream.println();
+              consolePrintStream.println("\n" + Constants.PROMPT);
             }
             if (s.trim().length() > 0) {
               consolePrintStream.println();
