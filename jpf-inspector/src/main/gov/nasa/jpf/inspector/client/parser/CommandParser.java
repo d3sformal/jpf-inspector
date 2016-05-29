@@ -36,6 +36,7 @@ public abstract class CommandParser implements CommandParserInterface {
 
   protected ConsoleGrammarParser getParser (String expr) throws JPFInspectorParsingErrorException {
     try {
+      ;
       StringReader sr = new StringReader(expr);
       ANTLRReaderStream input;
       input = new ANTLRReaderStream(sr);
