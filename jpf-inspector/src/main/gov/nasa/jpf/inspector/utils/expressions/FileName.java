@@ -17,7 +17,7 @@
 //DOCUMENTATION, IF PROVIDED, WILL CONFORM TO THE SUBJECT SOFTWARE.
 //
 
-package gov.nasa.jpf.inspector.utils;
+package gov.nasa.jpf.inspector.utils.expressions;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -25,8 +25,9 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 
-//Represents file name in the expressions
-//Note: It caches the previous results
+/**
+ * Represents the expression syntax expression for a file name.
+ */
 public class FileName {
 
   private String fileName;

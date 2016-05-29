@@ -2,12 +2,12 @@
 // Copyright (C) 2010 United States Government as represented by the
 // Administrator of the National Aeronautics and Space Administration
 // (NASA).  All Rights Reserved.
-//
+// 
 // This software is distributed under the NASA Open Source Agreement
 // (NOSA), version 1.3.  The NOSA has been approved by the Open Source
 // Initiative.  See the file NOSA-1.3-JPF at the top of the distribution
 // directory tree for the complete NOSA document.
-//
+// 
 // THE SUBJECT SOFTWARE IS PROVIDED "AS IS" WITHOUT ANY WARRANTY OF ANY
 // KIND, EITHER EXPRESSED, IMPLIED, OR STATUTORY, INCLUDING, BUT NOT
 // LIMITED TO, ANY WARRANTY THAT THE SUBJECT SOFTWARE WILL CONFORM TO
@@ -17,26 +17,28 @@
 // DOCUMENTATION, IF PROVIDED, WILL CONFORM TO THE SUBJECT SOFTWARE.
 //  
 
-package gov.nasa.jpf.inspector.utils;
+package gov.nasa.jpf.inspector.utils.expressions;
 
-import gov.nasa.jpf.vm.MethodInfo;
+import gov.nasa.jpf.vm.FieldInfo;
 
-//Represents method name of a class in the expression
-public class MethodName {
+/**
+ * Represents the expression syntax expression for a qualified field name.
+ */
+public class FieldName {
 
-  private String methodName;
-  private ClassName className;
+  private final String fieldName;
+  private final ClassName className;
   
-  public MethodName(String methodName, ClassName className) {
-    assert methodName != null;
+  public FieldName(String fieldName, ClassName className) {
+    assert fieldName != null;
     assert className != null;
 
-    this.methodName = methodName;
+    this.fieldName = fieldName;
     this.className = className;
   }
   
-  final public String getMethodName() {
-    return methodName;
+  final public String getFieldName() {
+    return fieldName;
   }
   
   final public String getClassName() {
@@ -47,9 +49,14 @@ public class MethodName {
     return className;
   }
   
-  public boolean isSameMethod(MethodInfo mi) {
-    assert mi != null;
-    return methodName.equals(mi.getName()) && className.isSameClass(mi.getClassInfo());
+  public boolean isSameField(FieldInfo fi) {
+    assert fi != null;
+    return fieldName.equals(fi.getName()) && className.isSameClass(fi.getClassInfo());
+  }
+  
+  @Override
+  public String toString() {
+    return className.getClassName() + ':' + fieldName;
   }
   
 }

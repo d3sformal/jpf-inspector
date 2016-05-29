@@ -46,7 +46,7 @@ public final class InstructionWrapper implements Serializable {
   /**
    * Maximal printed length of source line or value
    */
-  public static final int MAX_LEN = 50;
+  private static final int MAX_LEN = 50;
 
   public InstructionWrapper (String instructionName, String className, String methodName, int instructionPosition, String fileName, int currLine,
       String currLineSource) {

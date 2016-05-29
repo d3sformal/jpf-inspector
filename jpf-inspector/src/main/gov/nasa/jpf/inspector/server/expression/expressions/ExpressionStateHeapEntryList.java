@@ -27,7 +27,7 @@ import gov.nasa.jpf.inspector.server.expression.InspectorState;
 import gov.nasa.jpf.inspector.server.expression.Types;
 import gov.nasa.jpf.inspector.server.jpf.JPFInspector;
 import gov.nasa.jpf.inspector.server.programstate.StateHeapEntryList;
-import gov.nasa.jpf.inspector.utils.ClassName;
+import gov.nasa.jpf.inspector.utils.expressions.ClassName;
 import gov.nasa.jpf.vm.VM;
 
 public class ExpressionStateHeapEntryList extends ExpressionStateUnaryOperator<ExpressionStateValue> implements ExpressionStateRootNode<ExpressionStateValue> {

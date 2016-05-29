@@ -69,9 +69,9 @@ import gov.nasa.jpf.inspector.server.expression.expressions.ExpressionStateValue
 import gov.nasa.jpf.inspector.server.jpf.JPFInspector;
 import gov.nasa.jpf.inspector.server.programstate.relop.RelationOperator;
 import gov.nasa.jpf.inspector.server.programstate.relop.RelationOperatorFactory;
-import gov.nasa.jpf.inspector.utils.ClassName;
-import gov.nasa.jpf.inspector.utils.FieldName;
-import gov.nasa.jpf.inspector.utils.MethodName;
+import gov.nasa.jpf.inspector.utils.expressions.ClassName;
+import gov.nasa.jpf.inspector.utils.expressions.FieldName;
+import gov.nasa.jpf.inspector.utils.expressions.MethodName;
 import gov.nasa.jpf.inspector.utils.parser.GenericErrorRuntimeException;
 import gov.nasa.jpf.vm.Instruction;
 

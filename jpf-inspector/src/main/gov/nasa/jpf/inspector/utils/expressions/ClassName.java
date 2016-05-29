@@ -17,7 +17,7 @@
 // DOCUMENTATION, IF PROVIDED, WILL CONFORM TO THE SUBJECT SOFTWARE.
 //  
 
-package gov.nasa.jpf.inspector.utils;
+package gov.nasa.jpf.inspector.utils.expressions;
 
 import gov.nasa.jpf.vm.ClassInfo;
 
@@ -26,7 +26,9 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-//Represents class name in the expression
+/**
+ * Represents a class by name extracted from the user input by the server expression parser.
+ */
 public class ClassName {
   private final String className;
   
@@ -48,7 +50,15 @@ public class ClassName {
   final public String getClassName() {
     return className;
   }
-  
+
+  /**
+   * Returns true if this expression represents the specified class.
+   * Comparison is done based on string names, except that the class name expression might not be a simple name
+   * but can be more complex (see the documentation on expressions; this is taken into account here).
+   *
+   * Performs caching.
+   * @param ci The class that should be tested for name equality with this expression.
+   */
   public boolean isSameClass(ClassInfo ci) {
     String cn = ci.getName();
     

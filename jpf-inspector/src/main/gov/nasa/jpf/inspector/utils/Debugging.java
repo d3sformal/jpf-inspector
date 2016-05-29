@@ -2,6 +2,7 @@ package gov.nasa.jpf.inspector.utils;
 
 import gov.nasa.jpf.Config;
 import gov.nasa.jpf.JPF;
+import gov.nasa.jpf.shell.ShellManager;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -29,5 +30,14 @@ public class Debugging {
       logger.warning("The log level from configuration files (" + config.getString("log.level") + ") does not exist.");
     }
     return logger;
+  }
+
+  /**
+   * Gets the logger that should be used inside JPF Inspector if the Inspector is launched via a Shell handled by
+   * the Shell Manager (e.g. a graphical Swing shell).
+   * @return A logger for JPF Inspector.
+   */
+  public static Logger getSwingShellLogger() {
+    return getLogger(ShellManager.getManager().getConfig());
   }
 }
