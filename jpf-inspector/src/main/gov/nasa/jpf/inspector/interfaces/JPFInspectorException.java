@@ -20,16 +20,16 @@ package gov.nasa.jpf.inspector.interfaces;
 
 /**
  * 
- * Generic predecessor of all exception thrown by JPF-Inspector (by the {@link JPFInspectorBackEndInterface})
+ * Generic predecessor of all exceptions thrown by {@link JPFInspectorBackEndInterface}) implementors.
  * 
- * Successors reports invalid usage of the Inspector.
+ * The subclass exceptions usually represent an error while executing a user command, for example a semantic error.
  * 
- * (All other exceptions thrown by {@link JPFInspectorBackEndInterface} are internal back-end errors)
- * 
+ * (All other exceptions thrown by {@link JPFInspectorBackEndInterface} are internal back-end errors.)
+ *
  * @author Alf
- * 
+ *
  */
-public class JPFInspectorException extends Exception {
+public abstract class JPFInspectorException extends Exception {
 
   private static final long serialVersionUID = -1872156091293046263L;
 
