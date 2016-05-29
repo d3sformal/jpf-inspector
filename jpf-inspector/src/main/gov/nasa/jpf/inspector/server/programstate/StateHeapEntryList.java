@@ -20,7 +20,7 @@
 package gov.nasa.jpf.inspector.server.programstate;
 
 import gov.nasa.jpf.inspector.common.pse.ProgramStateEntry;
-import gov.nasa.jpf.inspector.interfaces.JPFInspectorException;
+import gov.nasa.jpf.inspector.exceptions.JPFInspectorException;
 import gov.nasa.jpf.inspector.server.jpf.JPFInspector;
 import gov.nasa.jpf.inspector.common.pse.PSEHeapEntryList;
 import gov.nasa.jpf.inspector.common.pse.PSEVariable;

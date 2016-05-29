@@ -20,7 +20,7 @@
 package gov.nasa.jpf.inspector.interfaces;
 
 import gov.nasa.jpf.JPF;
-import gov.nasa.jpf.inspector.interfaces.exceptions.JPFInspectorGenericErrorException;
+import gov.nasa.jpf.inspector.exceptions.JPFInspectorGenericErrorException;
 
 /**
  * Interface provided by JPFInspector back-end ("server") part. Low level interface.

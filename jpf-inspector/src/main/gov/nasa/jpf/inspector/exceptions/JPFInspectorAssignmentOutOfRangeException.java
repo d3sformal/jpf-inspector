@@ -17,28 +17,18 @@
 // DOCUMENTATION, IF PROVIDED, WILL CONFORM TO THE SUBJECT SOFTWARE.
 //  
 
-package gov.nasa.jpf.inspector.interfaces.exceptions;
-
-import gov.nasa.jpf.inspector.interfaces.JPFInspectorException;
-import gov.nasa.jpf.inspector.server.programstate.StateValue;
-import gov.nasa.jpf.vm.ClassInfo;
+package gov.nasa.jpf.inspector.exceptions;
 
 /**
  * @author Alf
  * 
  */
-public class JPFInspectorNoStaticElementInfoException extends JPFInspectorException {
+public class JPFInspectorAssignmentOutOfRangeException extends JPFInspectorException {
 
-  private static final long serialVersionUID = 9103065793392778213L;
+  private static final long serialVersionUID = 2883871629361802228L;
 
-  /**
-   * 
-   * @param ci Class Info without static element info
-   */
-  public JPFInspectorNoStaticElementInfoException (ClassInfo ci) {
-    super("The class \"" + StateValue.getSimpleName(ci) + "\" does not have a static representation.");
-
-    assert (ci.getStaticElementInfo() == null);
+  public JPFInspectorAssignmentOutOfRangeException (Long newVal, String name) {
+    super("Cannot assign value. Value " + newVal + " is out of the range of the type " + name + ".");
   }
 
 }

@@ -19,8 +19,8 @@
 
 package gov.nasa.jpf.inspector.server.programstate;
 
-import gov.nasa.jpf.inspector.interfaces.JPFInspectorException;
-import gov.nasa.jpf.inspector.interfaces.exceptions.JPFInspectorInvalidStackFrame;
+import gov.nasa.jpf.inspector.exceptions.JPFInspectorException;
+import gov.nasa.jpf.inspector.exceptions.JPFInspectorInvalidStackFrame;
 import gov.nasa.jpf.inspector.server.choicegenerators.ChoiceGeneratorsManager;
 import gov.nasa.jpf.inspector.common.pse.PSEMethod;
 import gov.nasa.jpf.inspector.common.pse.PSEVariable;

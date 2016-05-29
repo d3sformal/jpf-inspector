@@ -17,20 +17,18 @@
 // DOCUMENTATION, IF PROVIDED, WILL CONFORM TO THE SUBJECT SOFTWARE.
 //  
 
-package gov.nasa.jpf.inspector.interfaces.exceptions;
-
-import gov.nasa.jpf.inspector.interfaces.JPFInspectorException;
+package gov.nasa.jpf.inspector.exceptions;
 
 /**
  * @author Alf
  * 
  */
-public class JPFInspectorNotValueException extends JPFInspectorException {
+public class JPFInspectorNotLValueException extends JPFInspectorException {
 
-  private static final long serialVersionUID = -2740290995233090890L;
+  private static final long serialVersionUID = 723624681728912295L;
 
-  public JPFInspectorNotValueException (String expr) {
-    super("Given expression (" + expr + ") does not represent a value.");
+  public JPFInspectorNotLValueException (String expr) {
+    super("The expression (" + expr + ") does not represent an assignable value (l-value).");
   }
 
 }

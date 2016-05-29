@@ -17,20 +17,27 @@
 // DOCUMENTATION, IF PROVIDED, WILL CONFORM TO THE SUBJECT SOFTWARE.
 //  
 
-package gov.nasa.jpf.inspector.interfaces.exceptions;
+package gov.nasa.jpf.inspector.exceptions;
 
-import gov.nasa.jpf.inspector.interfaces.JPFInspectorException;
+import gov.nasa.jpf.inspector.server.programstate.StateValue;
+import gov.nasa.jpf.vm.ClassInfo;
 
 /**
  * @author Alf
  * 
  */
-public class JPFInspectorInvalidStackFrame extends JPFInspectorException {
+public class JPFInspectorNoStaticElementInfoException extends JPFInspectorException {
 
-  private static final long serialVersionUID = -8634324755539310998L;
+  private static final long serialVersionUID = 9103065793392778213L;
 
-  public JPFInspectorInvalidStackFrame (int threadNum, int stackFrameDepth) {
-    super("No stack frame at depth " + stackFrameDepth + " in thread " + threadNum + ".");
+  /**
+   * 
+   * @param ci Class Info without static element info
+   */
+  public JPFInspectorNoStaticElementInfoException (ClassInfo ci) {
+    super("The class \"" + StateValue.getSimpleName(ci) + "\" does not have a static representation.");
+
+    assert (ci.getStaticElementInfo() == null);
   }
 
 }

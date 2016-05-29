@@ -17,21 +17,17 @@
 // DOCUMENTATION, IF PROVIDED, WILL CONFORM TO THE SUBJECT SOFTWARE.
 //  
 
-package gov.nasa.jpf.inspector.interfaces.exceptions;
-
-import gov.nasa.jpf.inspector.interfaces.JPFInspectorException;
+package gov.nasa.jpf.inspector.exceptions;
 
 /**
  * @author Alf
  * 
  */
-public class JPFInspectorInvalidFieldNameException extends JPFInspectorException {
+public class JPFInspectorNotStackException extends JPFInspectorException {
 
-  private static final long serialVersionUID = 809081725571153994L;
+  private static final long serialVersionUID = -2717013729314327067L;
 
-  public JPFInspectorInvalidFieldNameException (String varName) {
-    super("No field (instance) with the name \"" + varName + "\" exists.");
-    // TODO (sooth): does it mean "no instance field" or "no field or instance"? Probably the first one.
+  public JPFInspectorNotStackException () {
+    super("Invalid state expression. Only stack has stack slots.");
   }
-
 }

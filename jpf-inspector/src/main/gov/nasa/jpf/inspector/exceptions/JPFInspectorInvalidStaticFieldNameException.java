@@ -1,5 +1,5 @@
 //
-// Copyright (C) 2010 United States Government as represented by the
+// Copyright (C) 2011 United States Government as represented by the
 // Administrator of the National Aeronautics and Space Administration
 // (NASA).  All Rights Reserved.
 // 
@@ -17,20 +17,18 @@
 // DOCUMENTATION, IF PROVIDED, WILL CONFORM TO THE SUBJECT SOFTWARE.
 //  
 
-package gov.nasa.jpf.inspector.interfaces.exceptions;
-
-import gov.nasa.jpf.inspector.interfaces.JPFInspectorException;
+package gov.nasa.jpf.inspector.exceptions;
 
 /**
  * @author Alf
  * 
  */
-public class JPFInspectorGenericErrorException extends JPFInspectorException {
+public class JPFInspectorInvalidStaticFieldNameException extends JPFInspectorException {
 
-  private static final long serialVersionUID = -6481916514185941490L;
+  private static final long serialVersionUID = 1261735920614343594L;
 
-  public JPFInspectorGenericErrorException (String msg) {
-    super(msg);
+  public JPFInspectorInvalidStaticFieldNameException (String varName) {
+    super("No static field with the name \"" + varName + "\" exists.");
   }
 
 }

@@ -20,11 +20,11 @@
 package gov.nasa.jpf.inspector.server.programstate;
 
 import gov.nasa.jpf.JPFException;
-import gov.nasa.jpf.inspector.interfaces.JPFInspectorException;
-import gov.nasa.jpf.inspector.interfaces.exceptions.JPFInspectorAssignmentOutOfRangeException;
-import gov.nasa.jpf.inspector.interfaces.exceptions.JPFInspectorIncompatibleTypesException;
-import gov.nasa.jpf.inspector.interfaces.exceptions.JPFInspectorNotSuperClassException;
-import gov.nasa.jpf.inspector.interfaces.exceptions.JPFInspectorNullValueException;
+import gov.nasa.jpf.inspector.exceptions.JPFInspectorException;
+import gov.nasa.jpf.inspector.exceptions.JPFInspectorAssignmentOutOfRangeException;
+import gov.nasa.jpf.inspector.exceptions.JPFInspectorIncompatibleTypesException;
+import gov.nasa.jpf.inspector.exceptions.JPFInspectorNotSuperClassException;
+import gov.nasa.jpf.inspector.exceptions.JPFInspectorNullValueException;
 import gov.nasa.jpf.inspector.server.expression.InspectorState;
 import gov.nasa.jpf.inspector.common.pse.PSEVariable;
 import gov.nasa.jpf.inspector.common.pse.PSEVariableArray;

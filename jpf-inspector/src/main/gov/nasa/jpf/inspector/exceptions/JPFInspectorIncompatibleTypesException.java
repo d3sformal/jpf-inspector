@@ -17,21 +17,30 @@
 // DOCUMENTATION, IF PROVIDED, WILL CONFORM TO THE SUBJECT SOFTWARE.
 //  
 
-package gov.nasa.jpf.inspector.interfaces.exceptions;
+package gov.nasa.jpf.inspector.exceptions;
 
-import gov.nasa.jpf.inspector.interfaces.JPFInspectorException;
 import gov.nasa.jpf.inspector.server.programstate.StateValue;
+import gov.nasa.jpf.inspector.server.programstate.relop.RelationOperator;
 import gov.nasa.jpf.vm.ClassInfo;
 
 /**
  * @author Alf
  * 
  */
-public class JPFInspectorNotInnerClassException extends JPFInspectorException {
+public class JPFInspectorIncompatibleTypesException extends JPFInspectorException {
 
-  private static final long serialVersionUID = -569592958049144555L;
+  private static final long serialVersionUID = -6306195283207523411L;
 
-  public JPFInspectorNotInnerClassException (ClassInfo ci) {
-    super("The class \"" + StateValue.getSimpleName(ci) + "\" is not an inner class.");
+  // Incompatible types when assigning
+  public JPFInspectorIncompatibleTypesException (ClassInfo ci, ClassInfo newValCI) {
+    super("Cannot assign new value. The value of the \"" + StateValue.demangleTypeName(ci.getSignature()) + "\" type cannot be assigned to the value of the \""
+        + StateValue.demangleTypeName(newValCI.getSignature()) + "\" type.");
   }
+
+  // Incompatible type when comparing
+  public JPFInspectorIncompatibleTypesException (RelationOperator relOper, ClassInfo ci, ClassInfo newValCI) {
+    super("Cannot compare value of given types - incompatible types. \"" + StateValue.demangleTypeName(ci.getSignature()) + "\" " + relOper.getNormalizedText()
+        + " \"" + StateValue.demangleTypeName(newValCI.getSignature()) + "\"");
+  }
+
 }

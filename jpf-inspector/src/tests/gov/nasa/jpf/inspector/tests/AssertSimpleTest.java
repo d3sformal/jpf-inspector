@@ -23,7 +23,7 @@ import gov.nasa.jpf.inspector.client.commands.CmdAssertionsBreakpoint;
 import gov.nasa.jpf.inspector.interfaces.AssertCreate;
 import gov.nasa.jpf.inspector.interfaces.CommandsInterface.InspectorStates;
 import gov.nasa.jpf.inspector.interfaces.InstructionPosition;
-import gov.nasa.jpf.inspector.interfaces.JPFInspectorException;
+import gov.nasa.jpf.inspector.exceptions.JPFInspectorException;
 import gov.nasa.jpf.inspector.server.jpf.JPFInspector;
 import gov.nasa.jpf.inspector.common.pse.ProgramStateEntry;
 import gov.nasa.jpf.inspector.common.pse.PSEVariable;

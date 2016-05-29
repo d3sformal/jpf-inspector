@@ -2,7 +2,7 @@ package gov.nasa.jpf.inspector.tests.cmd2text;
 
 import gov.nasa.jpf.inspector.client.ClientCommandInterface;
 import gov.nasa.jpf.inspector.client.parser.CommandParserFactory;
-import gov.nasa.jpf.inspector.interfaces.exceptions.JPFInspectorParsingErrorException;
+import gov.nasa.jpf.inspector.exceptions.JPFInspectorParsingErrorException;
 import gov.nasa.jpf.inspector.tests.infrastructure.InspectorTest;
 
 import java.io.PrintStream;

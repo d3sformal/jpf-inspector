@@ -16,7 +16,9 @@
 // THE SUBJECT SOFTWARE WILL BE ERROR FREE, OR ANY WARRANTY THAT
 // DOCUMENTATION, IF PROVIDED, WILL CONFORM TO THE SUBJECT SOFTWARE.
 //  
-package gov.nasa.jpf.inspector.interfaces;
+package gov.nasa.jpf.inspector.exceptions;
+
+import gov.nasa.jpf.inspector.interfaces.JPFInspectorBackEndInterface;
 
 /**
  * 

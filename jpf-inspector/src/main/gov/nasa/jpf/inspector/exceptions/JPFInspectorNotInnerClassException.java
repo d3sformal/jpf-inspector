@@ -17,20 +17,20 @@
 // DOCUMENTATION, IF PROVIDED, WILL CONFORM TO THE SUBJECT SOFTWARE.
 //  
 
-package gov.nasa.jpf.inspector.interfaces.exceptions;
+package gov.nasa.jpf.inspector.exceptions;
 
-import gov.nasa.jpf.inspector.interfaces.JPFInspectorException;
+import gov.nasa.jpf.inspector.server.programstate.StateValue;
+import gov.nasa.jpf.vm.ClassInfo;
 
-//TODO Rename (add Suffix exception and move to (.interfaces.exceptions)
 /**
  * @author Alf
+ * 
  */
-public class JPFInspectorInvalidHeapReferenceException extends JPFInspectorException {
+public class JPFInspectorNotInnerClassException extends JPFInspectorException {
 
-  private static final long serialVersionUID = -2362760976190122253L;
+  private static final long serialVersionUID = -569592958049144555L;
 
-  public JPFInspectorInvalidHeapReferenceException (int heapElementIndex) {
-    super("Heap doesn't contain object with address/objref " + heapElementIndex);
+  public JPFInspectorNotInnerClassException (ClassInfo ci) {
+    super("The class \"" + StateValue.getSimpleName(ci) + "\" is not an inner class.");
   }
-
 }

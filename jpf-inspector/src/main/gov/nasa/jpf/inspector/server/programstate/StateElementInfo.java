@@ -19,12 +19,12 @@
 
 package gov.nasa.jpf.inspector.server.programstate;
 
-import gov.nasa.jpf.inspector.interfaces.JPFInspectorException;
-import gov.nasa.jpf.inspector.interfaces.exceptions.JPFInspectorInvalidHeapReferenceException;
-import gov.nasa.jpf.inspector.interfaces.exceptions.JPFInspectorNoSuperClassException;
-import gov.nasa.jpf.inspector.interfaces.exceptions.JPFInspectorNotInnerClassException;
-import gov.nasa.jpf.inspector.interfaces.exceptions.JPFInspectorNotInstanceException;
-import gov.nasa.jpf.inspector.interfaces.exceptions.JPFInspectorNotSuperClassException;
+import gov.nasa.jpf.inspector.exceptions.JPFInspectorException;
+import gov.nasa.jpf.inspector.exceptions.JPFInspectorInvalidHeapReferenceException;
+import gov.nasa.jpf.inspector.exceptions.JPFInspectorNoSuperClassException;
+import gov.nasa.jpf.inspector.exceptions.JPFInspectorNotInnerClassException;
+import gov.nasa.jpf.inspector.exceptions.JPFInspectorNotInstanceException;
+import gov.nasa.jpf.inspector.exceptions.JPFInspectorNotSuperClassException;
 import gov.nasa.jpf.inspector.server.jpf.JPFInspector;
 import gov.nasa.jpf.inspector.common.pse.PSEVariable;
 import gov.nasa.jpf.vm.ClassInfo;

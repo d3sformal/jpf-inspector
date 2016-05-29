@@ -1,5 +1,5 @@
 //
-// Copyright (C) 2010 United States Government as represented by the
+// Copyright (C) 2011 United States Government as represented by the
 // Administrator of the National Aeronautics and Space Administration
 // (NASA).  All Rights Reserved.
 // 
@@ -17,42 +17,18 @@
 // DOCUMENTATION, IF PROVIDED, WILL CONFORM TO THE SUBJECT SOFTWARE.
 //  
 
-package gov.nasa.jpf.inspector.interfaces;
+package gov.nasa.jpf.inspector.exceptions;
 
+//TODO Rename (add Suffix exception and move to (.interfaces.exceptions)
+/**
+ * @author Alf
+ */
+public class JPFInspectorInvalidHeapReferenceException extends JPFInspectorException {
 
-import gov.nasa.jpf.inspector.exceptions.JPFInspectorException;
+  private static final long serialVersionUID = -2362760976190122253L;
 
-public interface CommandsInterface {
-
-  static public enum InspectorStates {
-    JPF_STARTED,
-    JPF_RUNNING,
-    JPF_STOPPED,
-    JPF_TERMINATING
+  public JPFInspectorInvalidHeapReferenceException (int heapElementIndex) {
+    super("Heap doesn't contain object with address/objref " + heapElementIndex);
   }
-
-  /**
-   * Stops an execution (like on breakpoint)
-   */
-  public void stop () throws JPFInspectorException;
-
-  /**
-   * Resumes stopped execution
-   */
-  public void start () throws JPFInspectorException;
-
-  static public enum StepType {
-    ST_TRANSITION_ALL,
-    ST_TRANSITION_DATA,
-    ST_TRANSITION_SCHED,
-    ST_INSTRUCTION,
-    ST_LINE,
-    ST_STEP_IN,
-    ST_STEP_OUT
-  }
-
-  public void forwardStep (StepType type) throws JPFInspectorException;
-
-  public void backwardStep (StepType type) throws JPFInspectorException;
 
 }

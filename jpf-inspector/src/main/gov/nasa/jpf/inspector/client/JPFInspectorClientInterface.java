@@ -1,7 +1,7 @@
 package gov.nasa.jpf.inspector.client;
 
 import gov.nasa.jpf.JPF;
-import gov.nasa.jpf.inspector.interfaces.exceptions.JPFInspectorGenericErrorException;
+import gov.nasa.jpf.inspector.exceptions.JPFInspectorGenericErrorException;
 
 public interface JPFInspectorClientInterface {
   /**

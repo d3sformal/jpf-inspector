@@ -17,20 +17,18 @@
 // DOCUMENTATION, IF PROVIDED, WILL CONFORM TO THE SUBJECT SOFTWARE.
 //  
 
-package gov.nasa.jpf.inspector.interfaces.exceptions;
-
-import gov.nasa.jpf.inspector.interfaces.JPFInspectorException;
+package gov.nasa.jpf.inspector.exceptions;
 
 /**
  * @author Alf
  * 
  */
-public class JPFInspectorAssignmentOutOfRangeException extends JPFInspectorException {
+public class JPFInspectorNotValueException extends JPFInspectorException {
 
-  private static final long serialVersionUID = 2883871629361802228L;
+  private static final long serialVersionUID = -2740290995233090890L;
 
-  public JPFInspectorAssignmentOutOfRangeException (Long newVal, String name) {
-    super("Cannot assign value. Value " + newVal + " is out of the range of the type " + name + ".");
+  public JPFInspectorNotValueException (String expr) {
+    super("Given expression (" + expr + ") does not represent a value.");
   }
 
 }

@@ -17,20 +17,23 @@
 // DOCUMENTATION, IF PROVIDED, WILL CONFORM TO THE SUBJECT SOFTWARE.
 //  
 
-package gov.nasa.jpf.inspector.interfaces.exceptions;
+package gov.nasa.jpf.inspector.exceptions;
 
-import gov.nasa.jpf.inspector.interfaces.JPFInspectorException;
+import gov.nasa.jpf.inspector.server.programstate.StateValue;
+import gov.nasa.jpf.vm.ClassInfo;
 
 /**
+ * Note: This is "internal" error and should not be thrown. (If thrown there is error in the implementation)
+ * 
  * @author Alf
  * 
  */
-public class JPFInspectorInvalidStaticFieldNameException extends JPFInspectorException {
+public class JPFInspectorNotSuperClassException extends JPFInspectorException {
 
-  private static final long serialVersionUID = 1261735920614343594L;
+  private static final long serialVersionUID = 7785538860963123962L;
 
-  public JPFInspectorInvalidStaticFieldNameException (String varName) {
-    super("No static field with the name \"" + varName + "\" exists.");
+  public JPFInspectorNotSuperClassException (ClassInfo ciSuper, ClassInfo ciBase) {
+    super("The class \"" + StateValue.getSimpleName(ciSuper) + "\" is not a superclass of the \"" + StateValue.getSimpleName(ciBase) + "\" class.");
   }
 
 }

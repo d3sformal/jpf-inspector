@@ -1,5 +1,5 @@
 //
-// Copyright (C) 2011 United States Government as represented by the
+// Copyright (C) 2010 United States Government as represented by the
 // Administrator of the National Aeronautics and Space Administration
 // (NASA).  All Rights Reserved.
 // 
@@ -17,22 +17,18 @@
 // DOCUMENTATION, IF PROVIDED, WILL CONFORM TO THE SUBJECT SOFTWARE.
 //  
 
-package gov.nasa.jpf.inspector.interfaces.exceptions;
-
-import gov.nasa.jpf.inspector.interfaces.JPFInspectorException;
-import gov.nasa.jpf.inspector.server.programstate.StateValue;
-import gov.nasa.jpf.vm.ClassInfo;
+package gov.nasa.jpf.inspector.exceptions;
 
 /**
  * @author Alf
  * 
  */
-public class JPFInspectorInvalidFieldIndexException extends JPFInspectorException {
+public class JPFInspectorGenericErrorException extends JPFInspectorException {
 
-  private static final long serialVersionUID = -5693739959557847503L;
+  private static final long serialVersionUID = -6481916514185941490L;
 
-  public JPFInspectorInvalidFieldIndexException (int fieldIndex, ClassInfo ci) {
-    super("Invalid field index (" + fieldIndex + "). \"" + StateValue.getSimpleName(ci) + "\" has only " + ci.getNumberOfInstanceFields() + " fields.");
+  public JPFInspectorGenericErrorException (String msg) {
+    super(msg);
   }
 
 }

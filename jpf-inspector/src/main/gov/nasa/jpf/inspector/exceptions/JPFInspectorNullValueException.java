@@ -17,9 +17,8 @@
 // DOCUMENTATION, IF PROVIDED, WILL CONFORM TO THE SUBJECT SOFTWARE.
 //  
 
-package gov.nasa.jpf.inspector.interfaces.exceptions;
+package gov.nasa.jpf.inspector.exceptions;
 
-import gov.nasa.jpf.inspector.interfaces.JPFInspectorException;
 import gov.nasa.jpf.inspector.server.programstate.StateValue;
 import gov.nasa.jpf.vm.ClassInfo;
 
@@ -27,12 +26,25 @@ import gov.nasa.jpf.vm.ClassInfo;
  * @author Alf
  * 
  */
-public class JPFInspectorInvalidStaticFieldIndexException extends JPFInspectorException {
+public class JPFInspectorNullValueException extends JPFInspectorException {
 
-  private static final long serialVersionUID = -1862875986676694215L;
+  private static final long serialVersionUID = -2461536983888931586L;
 
-  public JPFInspectorInvalidStaticFieldIndexException (int fieldIndex, ClassInfo ci) {
-    super("Static field index " + fieldIndex + " is out of bounds. The class \"" + StateValue.getSimpleName(ci) + "\" has only " + ci.getNumberOfStaticFields()
-        + " static fields.");
+  public JPFInspectorNullValueException (String varName, ClassInfo ci) {
+    super("Dereferencing null value. Trying to dereference the field \"" + varName + "\" of class \"" + StateValue.getSimpleName(ci) + "\" which is null.");
   }
+
+  // Dereferencing null array
+  public JPFInspectorNullValueException (int arrayElementIndex, ClassInfo ci) {
+    super("Dereferencing null value. Trying to access an array (at index " + arrayElementIndex + ") while the (\"" + StateValue.getSimpleName(ci)
+        + "\") while the array is null.");
+    // TODO when does this occur?
+  }
+
+  // While assigning value - Dereferencing null during unboxing of the value.
+  public JPFInspectorNullValueException (ClassInfo ci) {
+    super("Dereferencing null pointer when unboxin value of the " + StateValue.getSimpleName(ci) + " type.");
+    // TODO when does this cocur?
+  }
+
 }

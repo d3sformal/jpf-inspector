@@ -1,5 +1,5 @@
 //
-// Copyright (C) 2011 United States Government as represented by the
+// Copyright (C) 2010 United States Government as represented by the
 // Administrator of the National Aeronautics and Space Administration
 // (NASA).  All Rights Reserved.
 // 
@@ -17,22 +17,31 @@
 // DOCUMENTATION, IF PROVIDED, WILL CONFORM TO THE SUBJECT SOFTWARE.
 //  
 
-package gov.nasa.jpf.inspector.interfaces.exceptions;
+package gov.nasa.jpf.inspector.exceptions;
 
-import gov.nasa.jpf.inspector.interfaces.JPFInspectorException;
-import gov.nasa.jpf.inspector.server.programstate.StateValue;
-import gov.nasa.jpf.vm.ClassInfo;
+import gov.nasa.jpf.vm.VM;
 
 /**
  * @author Alf
  * 
  */
-public class JPFInspectorNoSuperClassException extends JPFInspectorException {
+public class JPFInspectorNoVMConnected extends JPFInspectorException {
 
-  private static final long serialVersionUID = -7845838121196830746L;
+  private static final long serialVersionUID = -3191601258737187433L;
 
-  public JPFInspectorNoSuperClassException (ClassInfo ci) {
-    super("The class \"" + StateValue.getSimpleName(ci) + "\" does not have a super class.");
+  public JPFInspectorNoVMConnected () {
+    super("JVM not as a part of the state (JPF not connected)");
+    // TODO when does this occur?
   }
 
+  /**
+   * @param vm Checks if given VM is not null.
+   * @throws JPFInspectorNoVMConnected
+   */
+  public static void checkVM (VM vm) throws JPFInspectorNoVMConnected {
+    if (vm == null) {
+      throw new JPFInspectorNoVMConnected();
+    }
+
+  }
 }

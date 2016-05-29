@@ -17,9 +17,8 @@
 // DOCUMENTATION, IF PROVIDED, WILL CONFORM TO THE SUBJECT SOFTWARE.
 //  
 
-package gov.nasa.jpf.inspector.interfaces.exceptions;
+package gov.nasa.jpf.inspector.exceptions;
 
-import gov.nasa.jpf.inspector.interfaces.JPFInspectorException;
 import gov.nasa.jpf.inspector.server.programstate.StateValue;
 import gov.nasa.jpf.vm.ClassInfo;
 
@@ -27,11 +26,12 @@ import gov.nasa.jpf.vm.ClassInfo;
  * @author Alf
  * 
  */
-public class JPFInspectorNotArrayException extends JPFInspectorException {
+public class JPFInspectorInvalidFieldIndexException extends JPFInspectorException {
 
-  private static final long serialVersionUID = -8797241683724627609L;
+  private static final long serialVersionUID = -5693739959557847503L;
 
-  public JPFInspectorNotArrayException (ClassInfo ci) {
-    super("\"" + StateValue.getSimpleName(ci) + "\" is not an array.");
+  public JPFInspectorInvalidFieldIndexException (int fieldIndex, ClassInfo ci) {
+    super("Invalid field index (" + fieldIndex + "). \"" + StateValue.getSimpleName(ci) + "\" has only " + ci.getNumberOfInstanceFields() + " fields.");
   }
+
 }

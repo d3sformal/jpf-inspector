@@ -17,28 +17,20 @@
 // DOCUMENTATION, IF PROVIDED, WILL CONFORM TO THE SUBJECT SOFTWARE.
 //  
 
-package gov.nasa.jpf.inspector.interfaces.exceptions;
+package gov.nasa.jpf.inspector.exceptions;
 
-import gov.nasa.jpf.inspector.interfaces.JPFInspectorException;
 import gov.nasa.jpf.inspector.server.programstate.StateValue;
 import gov.nasa.jpf.vm.ClassInfo;
-import gov.nasa.jpf.vm.MethodInfo;
 
 /**
  * @author Alf
  * 
  */
-public class JPFInspectorNotInstanceException extends JPFInspectorException {
+public class JPFInspectorNotArrayException extends JPFInspectorException {
 
-  private static final long serialVersionUID = -8178100800086257124L;
+  private static final long serialVersionUID = -8797241683724627609L;
 
-  public JPFInspectorNotInstanceException (MethodInfo mi) {
-    super("Not an instance (\"this\" field is not acessible). " + StateValue.getSimpleMethodName(mi) + " is a static method (this)");
-    // TODO what does it mean?
-  }
-
-  public JPFInspectorNotInstanceException (ClassInfo ci) {
-    super("Not an instance (this is not acessible). " + StateValue.getSimpleName(ci) + " is not and object");
-    // TODO when does this occur?
+  public JPFInspectorNotArrayException (ClassInfo ci) {
+    super("\"" + StateValue.getSimpleName(ci) + "\" is not an array.");
   }
 }

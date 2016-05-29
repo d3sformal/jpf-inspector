@@ -17,20 +17,21 @@
 // DOCUMENTATION, IF PROVIDED, WILL CONFORM TO THE SUBJECT SOFTWARE.
 //  
 
-package gov.nasa.jpf.inspector.interfaces.exceptions;
+package gov.nasa.jpf.inspector.exceptions;
 
-import gov.nasa.jpf.inspector.interfaces.JPFInspectorException;
+import gov.nasa.jpf.inspector.server.programstate.StateValue;
+import gov.nasa.jpf.vm.ClassInfo;
 
 /**
  * @author Alf
  * 
  */
-public class JPFInspectorNotLValueException extends JPFInspectorException {
+public class JPFInspectorArrayIndexOutOutRangeException extends JPFInspectorException {
 
-  private static final long serialVersionUID = 723624681728912295L;
+  private static final long serialVersionUID = 5051922385794644916L;
 
-  public JPFInspectorNotLValueException (String expr) {
-    super("The expression (" + expr + ") does not represent an assignable value (l-value).");
+  public JPFInspectorArrayIndexOutOutRangeException (int elementIndex, int arrayLen, ClassInfo arrayCi) {
+    super("Array index out of bound. Dereferencing array index " + elementIndex + ", but the array (" + StateValue.getSimpleName(arrayCi) + ")'s length is "
+        + arrayLen + ".");
   }
-
 }

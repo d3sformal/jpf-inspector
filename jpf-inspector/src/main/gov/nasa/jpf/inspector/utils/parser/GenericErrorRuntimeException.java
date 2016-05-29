@@ -19,7 +19,7 @@
 
 package gov.nasa.jpf.inspector.utils.parser;
 
-import gov.nasa.jpf.inspector.interfaces.exceptions.JPFInspectorGenericErrorException;
+import gov.nasa.jpf.inspector.exceptions.JPFInspectorGenericErrorException;
 import gov.nasa.jpf.inspector.server.expression.ExpressionFactory;
 
 /**

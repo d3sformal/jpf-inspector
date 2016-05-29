@@ -1,5 +1,5 @@
 //
-// Copyright (C) 2010 United States Government as represented by the
+// Copyright (C) 2011 United States Government as represented by the
 // Administrator of the National Aeronautics and Space Administration
 // (NASA).  All Rights Reserved.
 // 
@@ -17,32 +17,18 @@
 // DOCUMENTATION, IF PROVIDED, WILL CONFORM TO THE SUBJECT SOFTWARE.
 //  
 
-package gov.nasa.jpf.inspector.interfaces.exceptions;
-
-import gov.nasa.jpf.inspector.interfaces.JPFInspectorException;
-import gov.nasa.jpf.vm.VM;
+package gov.nasa.jpf.inspector.exceptions;
 
 /**
  * @author Alf
  * 
  */
-public class JPFInspectorNoVMConnected extends JPFInspectorException {
+public class JPFInspectorInvalidStackFrame extends JPFInspectorException {
 
-  private static final long serialVersionUID = -3191601258737187433L;
+  private static final long serialVersionUID = -8634324755539310998L;
 
-  public JPFInspectorNoVMConnected () {
-    super("JVM not as a part of the state (JPF not connected)");
-    // TODO when does this occur?
+  public JPFInspectorInvalidStackFrame (int threadNum, int stackFrameDepth) {
+    super("No stack frame at depth " + stackFrameDepth + " in thread " + threadNum + ".");
   }
 
-  /**
-   * @param vm Checks if given VM is not null.
-   * @throws JPFInspectorNoVMConnected
-   */
-  public static void checkVM (VM vm) throws JPFInspectorNoVMConnected {
-    if (vm == null) {
-      throw new JPFInspectorNoVMConnected();
-    }
-
-  }
 }

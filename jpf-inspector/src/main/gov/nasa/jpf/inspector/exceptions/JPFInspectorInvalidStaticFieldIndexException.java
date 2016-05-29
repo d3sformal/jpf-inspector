@@ -17,9 +17,8 @@
 // DOCUMENTATION, IF PROVIDED, WILL CONFORM TO THE SUBJECT SOFTWARE.
 //  
 
-package gov.nasa.jpf.inspector.interfaces.exceptions;
+package gov.nasa.jpf.inspector.exceptions;
 
-import gov.nasa.jpf.inspector.interfaces.JPFInspectorException;
 import gov.nasa.jpf.inspector.server.programstate.StateValue;
 import gov.nasa.jpf.vm.ClassInfo;
 
@@ -27,12 +26,12 @@ import gov.nasa.jpf.vm.ClassInfo;
  * @author Alf
  * 
  */
-public class JPFInspectorArrayIndexOutOutRangeException extends JPFInspectorException {
+public class JPFInspectorInvalidStaticFieldIndexException extends JPFInspectorException {
 
-  private static final long serialVersionUID = 5051922385794644916L;
+  private static final long serialVersionUID = -1862875986676694215L;
 
-  public JPFInspectorArrayIndexOutOutRangeException (int elementIndex, int arrayLen, ClassInfo arrayCi) {
-    super("Array index out of bound. Dereferencing array index " + elementIndex + ", but the array (" + StateValue.getSimpleName(arrayCi) + ")'s length is "
-        + arrayLen + ".");
+  public JPFInspectorInvalidStaticFieldIndexException (int fieldIndex, ClassInfo ci) {
+    super("Static field index " + fieldIndex + " is out of bounds. The class \"" + StateValue.getSimpleName(ci) + "\" has only " + ci.getNumberOfStaticFields()
+        + " static fields.");
   }
 }

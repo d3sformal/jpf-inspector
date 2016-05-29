@@ -19,7 +19,7 @@
 
 package gov.nasa.jpf.inspector.client.parser;
 
-import gov.nasa.jpf.inspector.interfaces.exceptions.JPFInspectorParsingErrorException;
+import gov.nasa.jpf.inspector.exceptions.JPFInspectorParsingErrorException;
 
 import java.io.IOException;
 import java.io.StringReader;

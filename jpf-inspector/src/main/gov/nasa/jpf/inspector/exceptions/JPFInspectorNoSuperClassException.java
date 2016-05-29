@@ -1,5 +1,5 @@
 //
-// Copyright (C) 2010 United States Government as represented by the
+// Copyright (C) 2011 United States Government as represented by the
 // Administrator of the National Aeronautics and Space Administration
 // (NASA).  All Rights Reserved.
 // 
@@ -17,24 +17,21 @@
 // DOCUMENTATION, IF PROVIDED, WILL CONFORM TO THE SUBJECT SOFTWARE.
 //  
 
-package gov.nasa.jpf.inspector.interfaces.exceptions;
+package gov.nasa.jpf.inspector.exceptions;
 
-import gov.nasa.jpf.inspector.interfaces.JPFInspectorException;
+import gov.nasa.jpf.inspector.server.programstate.StateValue;
+import gov.nasa.jpf.vm.ClassInfo;
 
 /**
  * @author Alf
  * 
  */
-public class JPFInspectorNoThread extends JPFInspectorException {
+public class JPFInspectorNoSuperClassException extends JPFInspectorException {
 
-  private static final long serialVersionUID = -381631487175268967L;
+  private static final long serialVersionUID = -7845838121196830746L;
 
-  public JPFInspectorNoThread () {
-    super("There is no default thread (is execution started?).");
-  }
-
-  public JPFInspectorNoThread (int threadNum) {
-    super("There is no thread with the index " + threadNum + ".");
+  public JPFInspectorNoSuperClassException (ClassInfo ci) {
+    super("The class \"" + StateValue.getSimpleName(ci) + "\" does not have a super class.");
   }
 
 }

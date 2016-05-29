@@ -1,7 +1,7 @@
 package gov.nasa.jpf.inspector.tests.infrastructure;
 
 import gov.nasa.jpf.JPF;
-import gov.nasa.jpf.inspector.interfaces.exceptions.JPFInspectorGenericErrorException;
+import gov.nasa.jpf.inspector.exceptions.JPFInspectorGenericErrorException;
 import gov.nasa.jpf.inspector.server.jpf.JPFInspector;
 import gov.nasa.jpf.inspector.server.jpf.JPFInspectorParallel;
 import gov.nasa.jpf.util.Reflection;

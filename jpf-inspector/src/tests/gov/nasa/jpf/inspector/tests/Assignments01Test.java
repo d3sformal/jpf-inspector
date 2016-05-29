@@ -21,10 +21,10 @@ package gov.nasa.jpf.inspector.tests;
 
 import gov.nasa.jpf.inspector.client.commands.CmdBreakpointCreate;
 import gov.nasa.jpf.inspector.interfaces.CommandsInterface.InspectorStates;
-import gov.nasa.jpf.inspector.interfaces.JPFInspectorException;
-import gov.nasa.jpf.inspector.interfaces.exceptions.JPFInspectorArrayIndexOutOutRangeException;
-import gov.nasa.jpf.inspector.interfaces.exceptions.JPFInspectorAssignmentOutOfRangeException;
-import gov.nasa.jpf.inspector.interfaces.exceptions.JPFInspectorIncompatibleTypesException;
+import gov.nasa.jpf.inspector.exceptions.JPFInspectorException;
+import gov.nasa.jpf.inspector.exceptions.JPFInspectorArrayIndexOutOutRangeException;
+import gov.nasa.jpf.inspector.exceptions.JPFInspectorAssignmentOutOfRangeException;
+import gov.nasa.jpf.inspector.exceptions.JPFInspectorIncompatibleTypesException;
 import gov.nasa.jpf.inspector.server.jpf.JPFInspector;
 import gov.nasa.jpf.inspector.common.pse.ProgramStateEntry;
 import gov.nasa.jpf.inspector.common.pse.PSEVariable;
