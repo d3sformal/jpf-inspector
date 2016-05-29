@@ -34,7 +34,7 @@ public class JPFInspectorNotSuperClassException extends JPFInspectorException {
   private static final long serialVersionUID = 7785538860963123962L;
 
   public JPFInspectorNotSuperClassException (ClassInfo ciSuper, ClassInfo ciBase) {
-    super("The \"" + StateValue.getSimpleName(ciSuper) + "\" is not a superclass of the \"" + StateValue.getSimpleName(ciBase) + "\" class.");
+    super("The class \"" + StateValue.getSimpleName(ciSuper) + "\" is not a superclass of the \"" + StateValue.getSimpleName(ciBase) + "\" class.");
   }
 
 }

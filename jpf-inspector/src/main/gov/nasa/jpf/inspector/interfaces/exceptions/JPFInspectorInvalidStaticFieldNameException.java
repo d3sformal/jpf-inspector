@@ -30,7 +30,7 @@ public class JPFInspectorInvalidStaticFieldNameException extends JPFInspectorExc
   private static final long serialVersionUID = 1261735920614343594L;
 
   public JPFInspectorInvalidStaticFieldNameException (String varName) {
-    super("No static field with \"" + varName + "\" name exists");
+    super("No static field with the name \"" + varName + "\" exists.");
   }
 
 }

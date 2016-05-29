@@ -32,7 +32,7 @@ public class JPFInspectorArrayIndexOutOutRangeException extends JPFInspectorExce
   private static final long serialVersionUID = 5051922385794644916L;
 
   public JPFInspectorArrayIndexOutOutRangeException (int elementIndex, int arrayLen, ClassInfo arrayCi) {
-    super("Array index out of bound. Dereferencing array index ( " + elementIndex + "), but the array (" + StateValue.getSimpleName(arrayCi) + ") length is "
+    super("Array index out of bound. Dereferencing array index " + elementIndex + ", but the array (" + StateValue.getSimpleName(arrayCi) + ")'s length is "
         + arrayLen + ".");
   }
 }

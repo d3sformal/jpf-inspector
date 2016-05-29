@@ -30,11 +30,11 @@ public class JPFInspectorNoThread extends JPFInspectorException {
   private static final long serialVersionUID = -381631487175268967L;
 
   public JPFInspectorNoThread () {
-    super("There is no default thread (Is execution started?)");
+    super("There is no default thread (is execution started?).");
   }
 
   public JPFInspectorNoThread (int threadNum) {
-    super("There is no thread with index " + threadNum);
+    super("There is no thread with the index " + threadNum + ".");
   }
 
 }

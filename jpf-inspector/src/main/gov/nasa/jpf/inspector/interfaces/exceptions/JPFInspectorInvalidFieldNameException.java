@@ -30,7 +30,8 @@ public class JPFInspectorInvalidFieldNameException extends JPFInspectorException
   private static final long serialVersionUID = 809081725571153994L;
 
   public JPFInspectorInvalidFieldNameException (String varName) {
-    super("No field (instance) with \"" + varName + "\" name exists");
+    super("No field (instance) with the name \"" + varName + "\" exists.");
+    // TODO (sooth): does it mean "no instance field" or "no field or instance"? Probably the first one.
   }
 
 }

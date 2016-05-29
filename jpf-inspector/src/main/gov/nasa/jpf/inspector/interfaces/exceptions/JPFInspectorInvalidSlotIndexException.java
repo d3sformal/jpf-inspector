@@ -32,7 +32,7 @@ public class JPFInspectorInvalidSlotIndexException extends JPFInspectorException
   private static final long serialVersionUID = 1492748869545243159L;
 
   public JPFInspectorInvalidSlotIndexException (int slotIndex, MethodInfo mi, int maxSlotIndex) {
-    super("Stask slot index (" + slotIndex + ") is out of range. Method " + StateValue.getSimpleMethodName(mi) + " supports up to " + maxSlotIndex + ".");
+    super("Stack slot index " + slotIndex + " is out of range. Method " + StateValue.getSimpleMethodName(mi) + " supports up to " + maxSlotIndex + ".");
   }
 
 }

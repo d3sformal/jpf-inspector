@@ -34,9 +34,11 @@ public class JPFInspectorNotInstanceException extends JPFInspectorException {
 
   public JPFInspectorNotInstanceException (MethodInfo mi) {
     super("Not an instance (\"this\" field is not acessible). " + StateValue.getSimpleMethodName(mi) + " is a static method (this)");
+    // TODO what does it mean?
   }
 
   public JPFInspectorNotInstanceException (ClassInfo ci) {
     super("Not an instance (this is not acessible). " + StateValue.getSimpleName(ci) + " is not and object");
+    // TODO when does this occur?
   }
 }

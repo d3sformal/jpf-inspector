@@ -32,6 +32,6 @@ public class JPFInspectorNotArrayException extends JPFInspectorException {
   private static final long serialVersionUID = -8797241683724627609L;
 
   public JPFInspectorNotArrayException (ClassInfo ci) {
-    super("The \"" + StateValue.getSimpleName(ci) + "\" is not an array.");
+    super("\"" + StateValue.getSimpleName(ci) + "\" is not an array.");
   }
 }

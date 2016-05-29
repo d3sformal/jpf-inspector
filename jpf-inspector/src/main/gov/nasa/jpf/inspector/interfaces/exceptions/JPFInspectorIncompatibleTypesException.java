@@ -40,7 +40,7 @@ public class JPFInspectorIncompatibleTypesException extends JPFInspectorExceptio
 
   // Incompatible type when comparing
   public JPFInspectorIncompatibleTypesException (RelationOperator relOper, ClassInfo ci, ClassInfo newValCI) {
-    super("Cannot compare value of given types - incompatible type. \"" + StateValue.demangleTypeName(ci.getSignature()) + "\" " + relOper.getNormalizedText()
+    super("Cannot compare value of given types - incompatible types. \"" + StateValue.demangleTypeName(ci.getSignature()) + "\" " + relOper.getNormalizedText()
         + " \"" + StateValue.demangleTypeName(newValCI.getSignature()) + "\"");
   }
 

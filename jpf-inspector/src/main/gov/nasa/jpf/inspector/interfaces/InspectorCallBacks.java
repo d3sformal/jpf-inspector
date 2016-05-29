@@ -30,7 +30,7 @@ import gov.nasa.jpf.vm.ChoiceGenerator;
 public interface InspectorCallBacks {
 
   // List of possible CB types
-  public enum CB_METHODS {
+  enum CB_METHODS {
     CB_ANY, CB_STATE_CHANGE, CB_GENERIC_ERROR, CB_GENERIC_INFO, CB_BREAKPOINT_HIT, CB_CG_NEW_CHOICE, CB_CG_CHOICE_TO_USE, CB_CG_USED_CHOICE
   }
 
@@ -38,14 +38,14 @@ public interface InspectorCallBacks {
    * Called when state of the inspector is modified - paused, resumed, property
    * violated
    */
-  public void notifyStateChange (CommandsInterface.InspectorStates newState, String details);
+  void notifyStateChange(CommandsInterface.InspectorStates newState, String details);
 
   /**
    * Inspector detected unrecoverable error that should be reported to user.
    * 
    * @param msg Message to print.
    */
-  public void genericError (String msg);
+  void genericError(String msg);
 
   /**
    * Channel used for sending various messages for the user.
@@ -53,14 +53,14 @@ public interface InspectorCallBacks {
    * 
    * @param msg Message to print.
    */
-  public void genericInfo (String msg);
+  void genericInfo(String msg);
 
   /**
    * Called when breakpoint is hitted.
    * 
    * @param bp Breakpoint that is reached.
    */
-  public void notifyBreakpointHit (BreakPointStatus bp);
+  void notifyBreakpointHit(BreakPointStatus bp);
 
   /**
    * Notification from the server that ChoiceGenerator is asked for new value. {@link ChoiceGenerator#advance()} is called.
@@ -72,19 +72,19 @@ public interface InspectorCallBacks {
    * @param nextChoice Index of selected choice. (Choice which will be selected after the {@link ChoiceGenerator#advance()} call
    * @param defaultChoice Value of default choice, if any. ({@link ChoiceGeneratorsInterface#NO_DEFAULT_CHOICE} is used if no default choice exists)
    */
-  public void notifyChoiceGeneratorNewChoice (ChoiceGeneratorsInterface.CGTypes cgType, String cgName, int cgId, String[] choices, int nextChoice,
-      int defaultChoice);
+  void notifyChoiceGeneratorNewChoice(ChoiceGeneratorsInterface.CGTypes cgType, String cgName, int cgId, String[] choices, int nextChoice,
+                                      int defaultChoice);
 
   /**
    * Callback used to print prompt(notification) to user that execution is stopped and you should specify which choice to use.
    * 
    * <br>Note: This method is called after
-   * {@link #notifyChoiceGeneratorNewChoice(gov.nasa.jpf.inspector.interfaces.ChoiceGeneratorsInterface.CGTypes, String, int, String[], int)} which shows
+   * {@link #notifyChoiceGeneratorNewChoice(ChoiceGeneratorsInterface.CGTypes, String, int, String[], int, int)} which shows
    * possible choices
    * 
    * @param maxChoiceIndex - specifies maximum allowed index of the choice
    */
-  public void specifyChoiceToUse (int maxChoiceIndex);
+  void specifyChoiceToUse(int maxChoiceIndex);
 
   /**
    * Notification from the server with used choice.
@@ -95,6 +95,6 @@ public interface InspectorCallBacks {
    * @param usedChoiceIndex Index of used choice in {@link ChoiceGenerator}
    * @param usedChoice Used choice - text representation of used choice
    */
-  public void notifyUsedChoice (ChoiceGeneratorsInterface.CGTypes cgType, String cgName, int cgId, int usedChoiceIndex, String usedChoice);
+  void notifyUsedChoice(ChoiceGeneratorsInterface.CGTypes cgType, String cgName, int cgId, int usedChoiceIndex, String usedChoice);
 
 }

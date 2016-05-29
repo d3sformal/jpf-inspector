@@ -30,7 +30,7 @@ public class JPFInspectorNotLValueException extends JPFInspectorException {
   private static final long serialVersionUID = 723624681728912295L;
 
   public JPFInspectorNotLValueException (String expr) {
-    super("Given expression (" + expr + ") does not represent an assignable value (l-value).");
+    super("The expression (" + expr + ") does not represent an assignable value (l-value).");
   }
 
 }

@@ -30,7 +30,7 @@ public class JPFInspectorInvalidStackFrame extends JPFInspectorException {
   private static final long serialVersionUID = -8634324755539310998L;
 
   public JPFInspectorInvalidStackFrame (int threadNum, int stackFrameDepth) {
-    super("No stack frame at depth " + stackFrameDepth + " in thread " + threadNum);
+    super("No stack frame at depth " + stackFrameDepth + " in thread " + threadNum + ".");
   }
 
 }

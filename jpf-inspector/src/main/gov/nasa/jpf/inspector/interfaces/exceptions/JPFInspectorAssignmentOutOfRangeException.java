@@ -30,7 +30,7 @@ public class JPFInspectorAssignmentOutOfRangeException extends JPFInspectorExcep
   private static final long serialVersionUID = 2883871629361802228L;
 
   public JPFInspectorAssignmentOutOfRangeException (Long newVal, String name) {
-    super("Cannot assign value. Value " + newVal + " is out of the range of the " + name + " type");
+    super("Cannot assign value. Value " + newVal + " is out of the range of the type " + name + ".");
   }
 
 }

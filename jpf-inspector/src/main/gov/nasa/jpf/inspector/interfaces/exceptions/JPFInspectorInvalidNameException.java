@@ -30,7 +30,7 @@ public class JPFInspectorInvalidNameException extends JPFInspectorException {
   private static final long serialVersionUID = -3334686833820140601L;
 
   public JPFInspectorInvalidNameException (String varName) {
-    super("No entry (field, local variable, parameter) with the name \"" + varName + "\" exists (maybe we are inside a native method)");
+    super("No entry (field, local variable, parameter) with the name \"" + varName + "\" exists (maybe we are inside a native method).");
   }
 
 }

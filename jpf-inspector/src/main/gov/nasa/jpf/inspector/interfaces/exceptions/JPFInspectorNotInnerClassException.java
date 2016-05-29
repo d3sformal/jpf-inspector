@@ -32,6 +32,6 @@ public class JPFInspectorNotInnerClassException extends JPFInspectorException {
   private static final long serialVersionUID = -569592958049144555L;
 
   public JPFInspectorNotInnerClassException (ClassInfo ci) {
-    super("The \"" + StateValue.getSimpleName(ci) + "\" is not an inner class");
+    super("The class \"" + StateValue.getSimpleName(ci) + "\" is not an inner class.");
   }
 }

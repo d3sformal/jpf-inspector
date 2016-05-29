@@ -36,7 +36,7 @@ public class JPFInspectorNoStaticElementInfoException extends JPFInspectorExcept
    * @param ci Class Info without static element info
    */
   public JPFInspectorNoStaticElementInfoException (ClassInfo ci) {
-    super("The \"" + StateValue.getSimpleName(ci) + "\" class does not have static representation.");
+    super("The class \"" + StateValue.getSimpleName(ci) + "\" does not have a static representation.");
 
     assert (ci.getStaticElementInfo() == null);
   }

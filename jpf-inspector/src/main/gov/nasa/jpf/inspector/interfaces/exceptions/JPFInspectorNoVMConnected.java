@@ -32,6 +32,7 @@ public class JPFInspectorNoVMConnected extends JPFInspectorException {
 
   public JPFInspectorNoVMConnected () {
     super("JVM not as a part of the state (JPF not connected)");
+    // TODO when does this occur?
   }
 
   /**

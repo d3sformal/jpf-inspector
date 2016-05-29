@@ -32,7 +32,7 @@ public class JPFInspectorNoSuperClassException extends JPFInspectorException {
   private static final long serialVersionUID = -7845838121196830746L;
 
   public JPFInspectorNoSuperClassException (ClassInfo ci) {
-    super("The \"" + StateValue.getSimpleName(ci) + "\" does not have super class.");
+    super("The class \"" + StateValue.getSimpleName(ci) + "\" does not have a super class.");
   }
 
 }
