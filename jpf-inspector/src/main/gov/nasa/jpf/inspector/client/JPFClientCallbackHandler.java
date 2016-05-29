@@ -31,7 +31,9 @@ import gov.nasa.jpf.inspector.interfaces.InspectorCallBacks;
 import java.io.PrintStream;
 
 /**
- * Handles notifications from the JPFInspector server part.
+ * Handles notifications from the JPFInspector server.
+ *
+ * This class is created by the client.
  */
 public class JPFClientCallbackHandler implements InspectorCallBacks {
   private final PrintStream out; // Console where print server notifications
@@ -50,7 +52,12 @@ public class JPFClientCallbackHandler implements InspectorCallBacks {
   @Override
   public void genericInfo (String msg) {
     out.println("INFO: " + msg);
-    // prevCB = CB_METHODS.CB_GENERIC_INFO;
+
+    // Previously, this line was commented out. The prevCB field is used to distinguish whether information
+    // about state change should be printed out. This may therefore cause some state changes to be printed
+    // or, conversely, to be omitted. I don't know what's better so I'll just leave this in for now and
+    // see if something breaks.
+    prevCB = CB_METHODS.CB_GENERIC_INFO;
   }
 
   private static boolean checkIfShowStateChangeNofitication (CB_METHODS prevCB, InspectorStates newState) {
@@ -66,6 +73,7 @@ public class JPFClientCallbackHandler implements InspectorCallBacks {
       return false; // Don't show stop notification after breakpoint hit
     }
 
+    //noinspection RedundantIfStatement
     if (InspectorStates.JPF_RUNNING.equals(newState) && CB_METHODS.CB_STATE_CHANGE.equals(prevCB)) {
       // Suppose previous SB was JPF Stopped ad next command started JPF execution (run, (back_)step_over, )
       // --> hide obvious JPF started notification
@@ -109,17 +117,17 @@ public class JPFClientCallbackHandler implements InspectorCallBacks {
     if (bp instanceof AssertStatus) {
       AssertStatus as = (AssertStatus) bp;
 
-      String message = "Assertion violated";
+      String message = "Assertion violated.";
       if (bp.getState() == BreakPointStates.BP_STATE_LOGGING) {
-        message = "Logging assertion violation";
+        message = "Logging assertion violated";
       }
-      out.println("INFO: " + message + " [ assert " + as.getNormalizedPosition() + " " + as.getNormalizedCondition() + " ]");
+      out.println("INFO: " + message + " [assert " + as.getNormalizedPosition() + " " + as.getNormalizedCondition() + "]");
 
     } else {
       // Standard breakpoint
-      String message = "Breakpoint hit";
+      String message = "Breakpoint hit.";
       if (bp.getState() == BreakPointStates.BP_STATE_LOGGING) {
-        message = "Logging breakpoint hit";
+        message = "Logging breakpoint hit.";
       }
       out.println("INFO: " + message + " [" + CmdBreakpointShow.breakpointToString(bp) + "]");
       String details = bp.getDetails();
@@ -182,7 +190,7 @@ public class JPFClientCallbackHandler implements InspectorCallBacks {
     String userText = "Execution is halted. Specify which choice to use (0-" + (maxChoiceIndex) + ")";
     if (showHintCgSelect) {
       showHintCgSelect = false;
-      userText += "\n\tHint: Use 'cg select CHOICE_INDEX' command";
+      userText += "\n\tHint: Use the command 'cg select CHOICE_INDEX'.";
       // TODO create command which will print list of possible choices
       // userText += "\n\tHint: Use 'cg select CHOICE_INDEX' command\n";
     }

@@ -8,9 +8,9 @@ import gov.nasa.jpf.inspector.interfaces.InspectorCallBacks;
 
 /**
  * Monitors and records callbacks into list of executed commands.
+ * These recorded callbacks are "hidden commands" that are not displayed to the user.
  * 
- * @author Alf
- * 
+ * @author Alf *
  */
 public class CallbackRecordingDecorator implements InspectorCallBacks {
 

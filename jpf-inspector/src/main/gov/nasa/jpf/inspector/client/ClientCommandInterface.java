@@ -19,41 +19,42 @@
 
 package gov.nasa.jpf.inspector.client;
 
+import gov.nasa.jpf.inspector.client.commands.CmdCallback;
 import gov.nasa.jpf.inspector.interfaces.JPFInspectorBackEndInterface;
 
 import java.io.PrintStream;
 
 /**
- * Interface that implements all user commands from console
+ * A command typed by the user in the JPF Inspector console.
  */
-
 public interface ClientCommandInterface {
 
   /**
-   * Sent command to the server part and parses the result.
-   * 
-   * @param inspector JPF inspector server part that serves commands.
+   * Sends the command to the server and prints the result into a stream.
+   *
+   * @param client JPF Inspector client
+   * @param inspector JPF inspector server
    * @param outStream Stream where results (output and errors) of the executed command are printed.
    */
-  public void executeCommands (JPFInspectorClient client, JPFInspectorBackEndInterface inspector, PrintStream outStream);
+  void executeCommands(JPFInspectorClient client, JPFInspectorBackEndInterface inspector, PrintStream outStream);
 
   /**
-   * Converts command to string. The string has to represent the command with long version of options. Note: Given string has to be parsable by the command
-   * parse.
+   * Converts the command to a string. The string must represent the command using non-abbreviated versions of all keywords. The returned string must be a legal command that, if parsed, would result in the same ClientCommandInterface object.
    * 
-   * @return Textual parsable representation of the command.
+   * @return Text parseable representation of the command.
    */
-  public String getNormalizedCommand ();
+  String getNormalizedCommand();
 
   /**
-   * Method used to record executed command
+   * Records the command into the record log.
    * 
    * @param rec Recorder where the command should be recorded.
    */
-  public void recordCommand (CommandRecorder rec);
+  void recordCommand(CommandRecorder rec);
 
   /**
-   * @return Gets true if command execution of the command should not be reported to user.
+   * Returns true if command execution of the command should not be reported to user.
+   * Only {@link CmdCallback} is a hidden command.
    */
-  public boolean isHiddenCommand ();
+  boolean isHiddenCommand();
 }

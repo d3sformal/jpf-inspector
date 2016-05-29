@@ -22,12 +22,13 @@ package gov.nasa.jpf.inspector.interfaces;
 import gov.nasa.jpf.inspector.server.breakpoints.BreakPointModes;
 
 /**
- * Represents status of the Breakpoint during run of the JPF.
+ * All information about a specific breakpoint. The user of this interface can merely read the information,
+ * as this interface only provides getters.
  */
 public interface BreakPointStatus extends BreakPointCreate {
 
   /**
-   * Get unique BP identifier
+   * Gets the breakpoint's unique identifier.
    */
   @Override
   public int getBPID ();

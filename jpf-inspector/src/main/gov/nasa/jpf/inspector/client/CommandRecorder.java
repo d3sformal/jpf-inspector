@@ -6,15 +6,10 @@ import gov.nasa.jpf.inspector.client.commands.CmdCallback;
 import gov.nasa.jpf.inspector.interfaces.BreakPointStatus;
 import gov.nasa.jpf.inspector.interfaces.JPFInspectorBackEndInterface;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.PrintStream;
+import java.io.*;
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
 import java.util.regex.Pattern;
 
@@ -35,12 +30,8 @@ public class CommandRecorder {
   private final Pattern patternLineStart = Pattern.compile("\n"); // Used in recordComment add add "# " at the beginning of each line
   private final String target;
 
-  private boolean deterministicBehaviour; // Is recorded execution deterministics (all commands are sent if JPF is not running)
-  private boolean jpfStartRecorded; // Begins record with start of the JPF (not record while in the middle of the execution)
   private ClientCommandInterface lastCommand;
   private int lastCommandIndex;
-
-  private int commandCount; // Number of recorded commands
 
   private final PrintStream outStream;
 
@@ -49,7 +40,7 @@ public class CommandRecorder {
    * @param outStream Stream where report results of commands
    */
   public CommandRecorder (String target, PrintStream outStream) {
-    this.commands = new ArrayList<String>();
+    this.commands = new ArrayList<>();
     this.outStream = outStream;
     this.target = target;
     init();
@@ -57,11 +48,8 @@ public class CommandRecorder {
 
   private void init () {
     commands.clear();
-    deterministicBehaviour = true;
-    jpfStartRecorded = false;
     lastCommand = null;
     lastCommandIndex = 0;
-    commandCount = 0;
     DateFormat df = DateFormat.getInstance();
     Date now = new Date();
     String userName = System.getProperty("user.name");
@@ -71,6 +59,13 @@ public class CommandRecorder {
     addComment("");
   }
 
+  /**
+   * Writes information on all breakpoints into the record log as comments.
+   * This is used for debugging only.
+   *
+   * @param inspector The Inspector server.
+   */
+  @SuppressWarnings("unused")
   private void dumpBackendState (JPFInspectorBackEndInterface inspector) {
     // Dumping existing breakpoints
     List<BreakPointStatus> bps = inspector.getBreakPoints();
@@ -78,9 +73,6 @@ public class CommandRecorder {
       String bpStrCommand = CmdBreakpointCreate.ConsoleBreakpointCreate.getNormalizedExpressionPrefix(bp) + ' ' + bp.getNormalizedBreakpointExpression();
       addComment(bpStrCommand);
     }
-
-    // Dumping notification state
-
   }
 
   /**
@@ -121,7 +113,7 @@ public class CommandRecorder {
    * @return Returns true when all loaded commands are executed. Returns false if the file could not be read.
    */
   public boolean executeCommands (String fileName, JPFInspectorClient client) {
-    BufferedReader in = null;
+    BufferedReader in;
     try {
       in = new BufferedReader(new FileReader(fileName));
     } catch (FileNotFoundException e) {
@@ -162,9 +154,8 @@ public class CommandRecorder {
   public String toString () {
     StringBuilder sb = new StringBuilder();
 
-    Iterator<String> it = commands.iterator();
-    while (it.hasNext()) {
-      sb.append(it.next());
+    for (String command : commands) {
+      sb.append(command);
     }
 
     return sb.toString();
@@ -200,7 +191,6 @@ public class CommandRecorder {
     commands.add(cmdStr);
     lastCommand = cmd;
     lastCommandIndex = commands.size() - 1;
-    commandCount++;
   }
 
   // Updates only if it is the last recorded command

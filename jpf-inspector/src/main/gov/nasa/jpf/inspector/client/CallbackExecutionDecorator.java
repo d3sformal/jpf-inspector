@@ -29,12 +29,14 @@ import java.io.PrintStream;
 
 /**
  * 
- * Decorator used during (re)execution of recorded commands. It is used to postpone command thread until expected callback is sent.
+ * Decorator used during (re)execution of recorded commands.
+ * It is used to postpone command thread until expected callback is sent.
  * (wait until Breakpoint hits, single step is executed, etc.)
  * 
  * Note: Used by {@link CmdCallback}
  * 
- * Has 2 working modes - pass through {@link WORKING_MODE#WM_USER_COMMANDS} or blocking {@link WORKING_MODE#WM_EXECUTION_RECORD}.
+ * Has 2 working modes - pass through {@link WORKING_MODE#WM_USER_COMMANDS}
+ * or blocking {@link WORKING_MODE#WM_EXECUTION_RECORD}.
  * 
  * @author Alf
  * 
@@ -56,7 +58,7 @@ public class CallbackExecutionDecorator implements InspectorCallBacks {
 
     /**
      * In this mode (equivalent to replay/execution of recorded trace)
-     * callbacks blocks, until nextCB_* method is called (randevous)
+     * callbacks blocks, until nextCB_* method is called (rendezvous)
      */
     WM_EXECUTION_RECORD,
   }

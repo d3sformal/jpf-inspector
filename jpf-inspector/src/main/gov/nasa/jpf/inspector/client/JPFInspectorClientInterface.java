@@ -3,11 +3,15 @@ package gov.nasa.jpf.inspector.client;
 import gov.nasa.jpf.JPF;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorGenericErrorException;
 
+/**
+ * The client part of the JPF Inspector.
+ * This part takes input from the user and passes it, after parsing, to the server.
+ */
 public interface JPFInspectorClientInterface {
   /**
-   * Parse and execute given command in JPF Shell.
+   * Parse and execute a command given by the user.
    * 
-   * @param cmd Text with command to execute.
+   * @param cmd The command to execute.
    */
 
   public void executeCommand (String cmd);

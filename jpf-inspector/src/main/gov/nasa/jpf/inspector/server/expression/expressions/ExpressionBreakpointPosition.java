@@ -118,7 +118,7 @@ public class ExpressionBreakpointPosition extends ExpressionBooleanLeaf {
   @Override
   public String getDetails (InspectorState state) {
     if (state != null && evaluateExpression(state)) {
-      return "SuT will now enter the position " + instPos.toString();
+      return "SuT will now enter the position " + instPos.toString(); // TODO is it really "will now enter" or is it "had already evaluated at least part of it"?
     }
     return "";
   }

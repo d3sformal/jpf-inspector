@@ -12,6 +12,9 @@ import gov.nasa.jpf.inspector.exceptions.JPFInspectorParsingErrorException;
 
 import java.io.PrintStream;
 
+/**
+ * Represents the JPF Inspector client.
+ */
 public class JPFInspectorClient implements JPFInspectorClientInterface {
   private final PrintStream outputStream;
   private final JPFInspectorBackEndInterface inspector;
@@ -54,7 +57,7 @@ public class JPFInspectorClient implements JPFInspectorClientInterface {
     executeCommand(cmd);
   }
 
-  public ClientCommandInterface parseCommand (String cmdStr, CommandParserInterface parser) {
+  private ClientCommandInterface parseCommand(String cmdStr, CommandParserInterface parser) {
     // Prepare the input
 
     // Trim left white space
@@ -97,23 +100,23 @@ public class JPFInspectorClient implements JPFInspectorClientInterface {
     return cmd;
   }
 
-  public void executeCommand (ClientCommandInterface cmd) {
+  private void executeCommand(ClientCommandInterface cmd) {
     if (cmd == null) {
       return;
     }
     // To serialize recordingof executed commands and commands related to command execution
     synchronized (recorder) {
       try {
-        if (cmd.isHiddenCommand() == false) {
+        if (!cmd.isHiddenCommand()) {
           outputStream.println("cmd>" + cmd.getNormalizedCommand());
         }
         cmd.recordCommand(recorder);
         cmd.executeCommands(this, inspector, outputStream);
       } catch (Throwable e) {
-        outputStream.println("ERR: Generic error while processing command");
+        outputStream.println("ERR: Generic error while processing command:");
         e.printStackTrace(outputStream);
 
-        recordComment("ERR: Generic error while processing command");
+        recordComment("ERR: Generic error while processing command:");
         recordComment(e.getMessage());
       }
     }
@@ -122,11 +125,11 @@ public class JPFInspectorClient implements JPFInspectorClientInterface {
   @Override
   public void connect2JPF (JPF jpf) throws JPFInspectorGenericErrorException {
     if (jpf == null) {
-      throw new IllegalArgumentException("JPF parameter cannot be null");
+      throw new IllegalArgumentException("JPF parameter cannot be null.");
     }
 
     if (jpf.getStatus() != Status.NEW) {
-      throw new IllegalArgumentException("Invalied JPF state. JPF is running or terminated model checking.");
+      throw new IllegalArgumentException("Invalid JPF state. JPF is running or terminated model checking.");
     }
 
     // TODO - Record current state of JPF (breakpoints and CG notifications)
@@ -136,7 +139,7 @@ public class JPFInspectorClient implements JPFInspectorClientInterface {
     } catch (JPFInspectorGenericErrorException e) {
       outputStream.println(e.getMessage());
 
-      recordComment("Error while connection JPF");
+      recordComment("Error while connecting to JPF:");
       recordComment(e.getMessage());
 
       throw e;
