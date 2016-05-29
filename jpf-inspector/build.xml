@@ -145,14 +145,17 @@
           description="compile all JPF Inspector sources" >
   </target>
 
+  <!--
+  This is probably meaningless:
   <path id="classpath">
     <fileset dir="${dir.lib}">
       <include name="**/*.jar"/>
     </fileset>
   </path>
+  -->
 
-  <!-- GRAMMAR GENERATIONG PARTS !-->
-
+  <!-- GRAMMAR GENERATING PARTS !-->
+  <!-- Console grammar -->
   <fileset id="-generate-main-console-grammar-generated-files" dir="${dir-console-grammar-target}">
     <include name="ConsoleGrammar*.java"/>
     <include name="ConsoleGrammar*.tokens"/>
@@ -162,7 +165,7 @@
     <!-- Removes generated grammar files if outdated !-->
     <dependset>
       <srcfilelist dir = "${dir-console-grammar-source}">
-        <file name="ConsoleGrammar.g"/>
+        <file name="ConsoleGrammar.g4"/>
       </srcfilelist>
       <targetfileset refid="-generate-main-console-grammar-generated-files"/>
     </dependset>
@@ -173,19 +176,27 @@
     <condition property="-generate-main-console-grammar-generate">
       <not>
         <available file="${dir-console-grammar-target}/ConsoleGrammarLexer.java"/>
-        <!-- if not found than parser not generated or was outdate and thus removed by -grammar.outdated target !-->
+        <!-- if not found than parser not generated or was outdated and thus removed by -grammar.outdated target !-->
       </not>
     </condition>
   </target>
   
   <target name="-generate-main-console-grammar" depends="-generate-main-console-grammar-check" if="-generate-main-console-grammar-generate">
-    <!-- Running ATNRL generator !-->
-    <java classname="org.antlr.Tool"  fork="yes" failonerror="yes">
+    <!-- Running ATNLR generator !-->
+    <java classname="org.antlr.v4.Tool"  fork="yes" failonerror="yes">
       <classpath refid="tools.path"/>
-      <arg line="-fo ${dir-console-grammar-target} ${dir-console-grammar-source}/ConsoleGrammar.g"/>
+      <arg line="-o ${dir-console-grammar-target} ${dir-console-grammar-source}/ConsoleGrammar.g4"/>
     </java>
-  </target> 
+  </target>
 
+
+
+
+
+
+
+
+  <!-- Expression grammar -->
   <fileset id="-generate-main-server-expression-grammar-generated-files" dir="${dir-server-expression-grammar-target}">
     <include name="ExpressionGrammar*.java"/>
     <include name="ExpressionGrammar*.tokens"/>
@@ -195,7 +206,7 @@
     <!-- Removes generated grammar files if outdated !-->
     <dependset>
       <srcfilelist dir = "${dir-server-expression-grammar-source}">
-        <file name="ExpressionGrammar.g"/>
+        <file name="ExpressionGrammar.g4"/>
       </srcfilelist>
       <targetfileset refid="-generate-main-server-expression-grammar-generated-files"/>
     </dependset>
@@ -213,9 +224,9 @@
   
   <target name="-generate-main-server-expression-grammar" depends="-generate-main-server-expression-grammar-check" if="--generate-main-server-expression-grammar-generate">
     <!-- Running ATNRL generator !-->
-    <java classname="org.antlr.Tool"  fork="yes" failonerror="yes">
+    <java classname="org.antlr.v4.Tool"  fork="yes" failonerror="yes">
       <classpath refid="tools.path"/>
-      <arg line="-fo ${dir-server-expression-grammar-target} ${dir-server-expression-grammar-source}/ExpressionGrammar.g"/>
+      <arg line="-o ${dir-server-expression-grammar-target} ${dir-server-expression-grammar-source}/ExpressionGrammar.g4"/>
     </java>
   </target>
   

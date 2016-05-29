@@ -15,6 +15,7 @@
         <CLASSES>
           <root url="jar://$MODULE_DIR$/lib/jline-0.9.94-Inspector.jar!/" />
           <root url="jar://$MODULE_DIR$/lib/antlr-3.5.2-runtime.jar!/" />
+          <root url="jar://$MODULE_DIR$/lib/antlr-4.5.3-complete.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES>

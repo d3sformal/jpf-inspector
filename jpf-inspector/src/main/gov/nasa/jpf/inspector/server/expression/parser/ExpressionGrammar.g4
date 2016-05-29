@@ -32,10 +32,12 @@ options {
     import gov.nasa.jpf.inspector.server.breakpoints.*;
     import gov.nasa.jpf.inspector.utils.parser.*;
     import gov.nasa.jpf.inspector.utils.*;
+    import gov.nasa.jpf.inspector.utils.expressions.*;
     import gov.nasa.jpf.inspector.interfaces.*;
     import gov.nasa.jpf.inspector.interfaces.CommandsInterface.StepType;
     
 }
+/*
 @lexer::header {package gov.nasa.jpf.inspector.server.expression.parser;}
 
 @members {
@@ -46,102 +48,8 @@ options {
         throw new RecognitionRuntimeException(hdr + " " + msg, e);
     }
 }
+*/
 
-TOKEN_AND                       : 'and' ;
-TOKEN_ANY                       : 'any' ;
-TOKEN_ARRAY                     : 'array' ;
-TOKEN_ASSERT                    : 'assert' ;
-TOKEN_B                         : 'b' ;
-TOKEN_BEGIN                     : 'begin' ;
-TOKEN_BOTH                      : 'both' ; 
-TOKEN_CHOICE_GENERATOR          : 'choice_generator' | 'cg' ; 
-TOKEN_CONDITION                 : 'condition' | 'cond' ;
-TOKEN_D                         : 'd' | 'D' ;
-TOKEN_DATA                      : 'data' ;
-TOKEN_E                         : 'e' | 'E' ;
-TOKEN_F                         : 'f' | 'F' ;
-TOKEN_END                       : 'end' ;
-TOKEN_EXCEPTION_THROWN          : 'exception_thrown' | 'et' ;
-TOKEN_FALSE                     : 'false' ;
-TOKEN_FIELD_ACCESS              : 'field_access' | 'field' | 'fa' ;
-TOKEN_FIELD_READ                : 'field_read' | 'fr' ;
-TOKEN_FIELD_WRITE               : 'field_write' | 'fw' ;
-TOKEN_GARBAGE_COLLECTION        : 'garbage_collection' | 'gc' ;
-TOKEN_HASH_FIELD                : '#field' ;
-TOKEN_HASH_HEAP                 : '#heap' ;
-TOKEN_HASH_OUTER_CLASS          : '#outerClass' ;
-TOKEN_HASH_STACK_FRAME          : '#stackFrame' ;
-TOKEN_HASH_STACK_SLOT           : '#stackSlot' ;
-TOKEN_HASH_THREAD               : '#thread' ;
-TOKEN_HASH_THIS                 : '#this' ;
-TOKEN_HASH_STATIC               : '#static' ;
-TOKEN_HASH_SUPER                : '#super' ;
-TOKEN_HIT_COUNT                 : 'hit_count' | 'hc' ;
-TOKEN_IN                        : 'in' ;
-TOKEN_INFINITY                  : 'Infinity' ;
-TOKEN_INSTRUCTION               : 'instruction' | 'inst' ;
-TOKEN_INSTRUCTION_TYPE          : 'instruction_type' | 'inst_type' | 'it' ;
-TOKEN_INVOKE                    : 'invoke' | 'inv' ; 
-TOKEN_L                         : 'l' | 'L' ;
-TOKEN_LOCK                      : 'lock' ;
-TOKEN_NAN                       : 'NaN' ; // Not-a-number
-TOKEN_NEGATIVE_INFINITY1        : 'negative_infinity' | 'neg_inf' ;
-TOKEN_NEGATIVE_INFINITY2        : '-inf' ;
-TOKEN_NONE                      : 'none' ;
-TOKEN_NOT_A_NUMBER              : 'not-a-number' ;
-TOKEN_NOTIFY                    : 'notify' ;
-TOKEN_NULL                      : 'null' ;
-TOKEN_METHOD_INVOKE             : 'method_invoke' | 'mi' ;
-TOKEN_OBJECT_CREATED            : 'object_created' | 'objc' ;
-TOKEN_OBJECT_RELEASED           : 'object_released' | 'objr' ;
-TOKEN_OR                        : 'or' ;
-TOKEN_OUT                       : 'out' ;
-TOKEN_POSITION                  : 'position' | 'pos' ;
-TOKEN_POSITIVE_INFINITY1        : 'positive_infinity' | 'pos_inf' ;
-TOKEN_POSITIVE_INFINITY2        : '+inf' ;
-TOKEN_PROPERTY_VIOLATED         : 'property_violated' | 'pv' ;
-TOKEN_RETURN                    : 'return' | 'ret' ;
-TOKEN_SCHEDULING                : 'scheduling' | 'sched' ;
-TOKEN_SPECIFIC_INSTRUCTION      : 'specific_instruction' ;
-TOKEN_STACK_FRAME               : 'stack_frame' | 'sf' ;
-TOKEN_STATE_ADVANCED            : 'state_advanced' | 'sa' ;
-TOKEN_STEP_IN                   : 'step_in' | 'si' ;
-TOKEN_STEP_OUT                  : 'step_out' | 'sout' ;
-TOKEN_STEP_OVER                 : 'step_over' | 'so' ;
-TOKEN_SYNC_BLOCK                : 'sync_block' | 'sb' ;
-TOKEN_THREAD                    : 'thread' | 'ti' ;
-TOKEN_THREAD_SCHEDULED          : 'thread_scheduled' | 'ts' ;
-TOKEN_TRUE                      : 'true' ;
-TOKEN_X                         : 'x' | 'X' ;
-
-SIGN_ASTERISK                   : '*' ;
-SIGN_BACK_SHLASH                : '\\' ;
-SIGN_DOLAR                      : '$' ;
-SIGN_DOT                        : '.' ;
-SIGN_DOUBLE_QUOTE               : '"' ;
-SIGN_EQUALS                     : '=' ;
-SIGN_MINUS                      : '-' ;
-SIGN_PLUS                       : '+' ;
-SIGN_SINGLE_QUOTE               : '\'' ;
-
-
-ESCAPE_SEQ_B                    : '\\b' ;
-ESCAPE_SEQ_T                    : '\\t' ;
-ESCAPE_SEQ_N                    : '\\n' ;
-ESCAPE_SEQ_F                    : '\\f' ;
-ESCAPE_SEQ_R                    : '\\r' ;
-ESCAPE_SEQ_DOUBLE_QUOTE         : '\\"' ;
-ESCAPE_SEQ_SINGLE_QUOTE         : '\\\'' ;
-ESCAPE_SEQ_BACKSLASH            : '\\\\' ;
-ESCAPE_SEQ_OCTAL                : '\\' ((('0' .. '3')( '0' .. '7')('0' .. '7')) | (( '0' .. '7')('0' .. '7')) | ( '0' .. '7'));
-ESCAPE_SEQ_UNICODE              : '\\u' ('0' .. '9' | 'a' .. 'f' | 'A' .. 'F') ('0' .. '9' | 'a' .. 'f' | 'A' .. 'F') ('0' .. '9' | 'a' .. 'f' | 'A' .. 'F') ('0' .. '9' | 'a' .. 'f' | 'A' .. 'F') ;
-
-RELOP_EQUAL                     : '==' ;
-RELOP_NOT_EQUAL                 : '!=' ;
-RELOP_LESS_THAN                 : '<'  ;
-RELOP_LESS_OR_EQUAL_THAN        : '<=' ;
-RELOP_GREATER_THAN              : '>'  ;
-RELOP_GREATER_OR_EQUAL_THAN     : '>=' ;
 
 allKeyWordsIDFLike
     : TOKEN_AND
@@ -487,7 +395,6 @@ relOp  [ExpressionFactory expFactory] returns [RelationOperator relop]
     | RELOP_GREATER_OR_EQUAL_THAN       { $relop = expFactory.getRelopFactory().getRelOpGreaterEqual(); }
     ;
 
-WS      :   (' '|'\n'|'\r'|'\t')+ ; 
 
 booleanValue returns [boolean value]
     : TOKEN_TRUE          { $value = true; }
@@ -568,6 +475,106 @@ fileNameText
     | SIGN_ASTERISK  classNameText? // Regular expression extension
     ;
 
+//**************
+// LEXER
+
+WS      :   (' '|'\n'|'\r'|'\t')+ ;
+
+TOKEN_AND                       : 'and' ;
+TOKEN_ANY                       : 'any' ;
+TOKEN_ARRAY                     : 'array' ;
+TOKEN_ASSERT                    : 'assert' ;
+TOKEN_B                         : 'b' ;
+TOKEN_BEGIN                     : 'begin' ;
+TOKEN_BOTH                      : 'both' ;
+TOKEN_CHOICE_GENERATOR          : 'choice_generator' | 'cg' ;
+TOKEN_CONDITION                 : 'condition' | 'cond' ;
+TOKEN_D                         : 'd' | 'D' ;
+TOKEN_DATA                      : 'data' ;
+TOKEN_E                         : 'e' | 'E' ;
+TOKEN_F                         : 'f' | 'F' ;
+TOKEN_END                       : 'end' ;
+TOKEN_EXCEPTION_THROWN          : 'exception_thrown' | 'et' ;
+TOKEN_FALSE                     : 'false' ;
+TOKEN_FIELD_ACCESS              : 'field_access' | 'field' | 'fa' ;
+TOKEN_FIELD_READ                : 'field_read' | 'fr' ;
+TOKEN_FIELD_WRITE               : 'field_write' | 'fw' ;
+TOKEN_GARBAGE_COLLECTION        : 'garbage_collection' | 'gc' ;
+TOKEN_HASH_FIELD                : '#field' ;
+TOKEN_HASH_HEAP                 : '#heap' ;
+TOKEN_HASH_OUTER_CLASS          : '#outerClass' ;
+TOKEN_HASH_STACK_FRAME          : '#stackFrame' ;
+TOKEN_HASH_STACK_SLOT           : '#stackSlot' ;
+TOKEN_HASH_THREAD               : '#thread' ;
+TOKEN_HASH_THIS                 : '#this' ;
+TOKEN_HASH_STATIC               : '#static' ;
+TOKEN_HASH_SUPER                : '#super' ;
+TOKEN_HIT_COUNT                 : 'hit_count' | 'hc' ;
+TOKEN_IN                        : 'in' ;
+TOKEN_INFINITY                  : 'Infinity' ;
+TOKEN_INSTRUCTION               : 'instruction' | 'inst' ;
+TOKEN_INSTRUCTION_TYPE          : 'instruction_type' | 'inst_type' | 'it' ;
+TOKEN_INVOKE                    : 'invoke' | 'inv' ;
+TOKEN_L                         : 'l' | 'L' ;
+TOKEN_LOCK                      : 'lock' ;
+TOKEN_NAN                       : 'NaN' ; // Not-a-number
+TOKEN_NEGATIVE_INFINITY1        : 'negative_infinity' | 'neg_inf' ;
+TOKEN_NEGATIVE_INFINITY2        : '-inf' ;
+TOKEN_NONE                      : 'none' ;
+TOKEN_NOT_A_NUMBER              : 'not-a-number' ;
+TOKEN_NOTIFY                    : 'notify' ;
+TOKEN_NULL                      : 'null' ;
+TOKEN_METHOD_INVOKE             : 'method_invoke' | 'mi' ;
+TOKEN_OBJECT_CREATED            : 'object_created' | 'objc' ;
+TOKEN_OBJECT_RELEASED           : 'object_released' | 'objr' ;
+TOKEN_OR                        : 'or' ;
+TOKEN_OUT                       : 'out' ;
+TOKEN_POSITION                  : 'position' | 'pos' ;
+TOKEN_POSITIVE_INFINITY1        : 'positive_infinity' | 'pos_inf' ;
+TOKEN_POSITIVE_INFINITY2        : '+inf' ;
+TOKEN_PROPERTY_VIOLATED         : 'property_violated' | 'pv' ;
+TOKEN_RETURN                    : 'return' | 'ret' ;
+TOKEN_SCHEDULING                : 'scheduling' | 'sched' ;
+TOKEN_SPECIFIC_INSTRUCTION      : 'specific_instruction' ;
+TOKEN_STACK_FRAME               : 'stack_frame' | 'sf' ;
+TOKEN_STATE_ADVANCED            : 'state_advanced' | 'sa' ;
+TOKEN_STEP_IN                   : 'step_in' | 'si' ;
+TOKEN_STEP_OUT                  : 'step_out' | 'sout' ;
+TOKEN_STEP_OVER                 : 'step_over' | 'so' ;
+TOKEN_SYNC_BLOCK                : 'sync_block' | 'sb' ;
+TOKEN_THREAD                    : 'thread' | 'ti' ;
+TOKEN_THREAD_SCHEDULED          : 'thread_scheduled' | 'ts' ;
+TOKEN_TRUE                      : 'true' ;
+TOKEN_X                         : 'x' | 'X' ;
+
+SIGN_ASTERISK                   : '*' ;
+SIGN_BACK_SHLASH                : '\\' ;
+SIGN_DOLAR                      : '$' ;
+SIGN_DOT                        : '.' ;
+SIGN_DOUBLE_QUOTE               : '"' ;
+SIGN_EQUALS                     : '=' ;
+SIGN_MINUS                      : '-' ;
+SIGN_PLUS                       : '+' ;
+SIGN_SINGLE_QUOTE               : '\'' ;
+
+
+ESCAPE_SEQ_B                    : '\\b' ;
+ESCAPE_SEQ_T                    : '\\t' ;
+ESCAPE_SEQ_N                    : '\\n' ;
+ESCAPE_SEQ_F                    : '\\f' ;
+ESCAPE_SEQ_R                    : '\\r' ;
+ESCAPE_SEQ_DOUBLE_QUOTE         : '\\"' ;
+ESCAPE_SEQ_SINGLE_QUOTE         : '\\\'' ;
+ESCAPE_SEQ_BACKSLASH            : '\\\\' ;
+ESCAPE_SEQ_OCTAL                : '\\' ((('0' .. '3')( '0' .. '7')('0' .. '7')) | (( '0' .. '7')('0' .. '7')) | ( '0' .. '7'));
+ESCAPE_SEQ_UNICODE              : '\\u' ('0' .. '9' | 'a' .. 'f' | 'A' .. 'F') ('0' .. '9' | 'a' .. 'f' | 'A' .. 'F') ('0' .. '9' | 'a' .. 'f' | 'A' .. 'F') ('0' .. '9' | 'a' .. 'f' | 'A' .. 'F') ;
+
+RELOP_EQUAL                     : '==' ;
+RELOP_NOT_EQUAL                 : '!=' ;
+RELOP_LESS_THAN                 : '<'  ;
+RELOP_LESS_OR_EQUAL_THAN        : '<=' ;
+RELOP_GREATER_THAN              : '>'  ;
+RELOP_GREATER_OR_EQUAL_THAN     : '>=' ;
 
 // **************************************************************************************
 // **************************************************************************************
@@ -582,13 +589,13 @@ IDF_TEXT_INTERNAL : ('a'..'z' | 'A'..'Z' | '_') ('a'..'z' | 'A'..'Z' | '_' | '0'
 
 CHAR 
     : SIGN_SINGLE_QUOTE ( 
-         (~SIGN_BACK_SHLASH) |     // All non excape characters
+         (~'\\') |     // All non excape characters
          ( ESCAPE_SEQ_B | ESCAPE_SEQ_T | ESCAPE_SEQ_N | ESCAPE_SEQ_F | ESCAPE_SEQ_R | ESCAPE_SEQ_DOUBLE_QUOTE | ESCAPE_SEQ_SINGLE_QUOTE | ESCAPE_SEQ_BACKSLASH | ESCAPE_SEQ_OCTAL | ESCAPE_SEQ_UNICODE )
        ) SIGN_SINGLE_QUOTE ;
 
 STRING
     : SIGN_DOUBLE_QUOTE (
-         (~SIGN_BACK_SHLASH) |     // All non excape characters
+         (~'\\') |     // All non excape characters
          ( ESCAPE_SEQ_B | ESCAPE_SEQ_T | ESCAPE_SEQ_N | ESCAPE_SEQ_F | ESCAPE_SEQ_R | ESCAPE_SEQ_DOUBLE_QUOTE | ESCAPE_SEQ_SINGLE_QUOTE | ESCAPE_SEQ_BACKSLASH | ESCAPE_SEQ_OCTAL | ESCAPE_SEQ_UNICODE )
     )* SIGN_DOUBLE_QUOTE ;
 
