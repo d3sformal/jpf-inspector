@@ -93,7 +93,7 @@ public class JPFInspectorClient implements JPFInspectorClientInterface {
       // TODO - Extend/replace outStream to be able to report line length - not use magic constant 50
       outputStream.println(e.expressError(50));
 
-      recordComment("ERR:  Error parsing \"" + cmdStr + "\" command");
+      recordComment("ERR:  Error parsing the command \"" + cmdStr + "\".");
 
       recordComment(e.getMessage());
       recordComment(e.expressError(JPFInspectorParsingErrorException.DEFAULT_LINE_LENGTH));

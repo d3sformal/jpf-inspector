@@ -185,9 +185,9 @@ cmdInformational returns [ClientCommand value]
   ;
 
 cmdProgramState returns [ClientCommand value]
-  : TOKEN_THREAD    (WS? intValue)?   { $value = new CmdStatusThreads($intValue.value); }
-  | TOKEN_PRINT     (WS? allText)?    { $value = new CmdPrint($allText.text!=null?$allText.text:""); }
-  | TOKEN_THREAD_PC (WS? intValue)?   { $value = new CmdThreadsPC($intValue.value); }
+  : TOKEN_THREAD    (WS? intValue)?   { $value = new CmdStatusThreads($intValue.ctx != null ? $intValue.value : null); }
+  | TOKEN_PRINT     (WS? allText)?    { $value = new CmdPrint($allText.text!=null? $allText.text : ""); }
+  | TOKEN_THREAD_PC (WS? intValue)?   { $value = new CmdThreadsPC($intValue.ctx != null ? $intValue.value : null); }
   | TOKEN_SET        WS? allText      { $value = new CmdSet($allText.text); }
   ;
   
