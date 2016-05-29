@@ -26,7 +26,10 @@ import gov.nasa.jpf.inspector.server.programstate.StateNodeInterface;
 import java.io.Serializable;
 
 /**
- * Abstract class that holds properties common to all program state entries
+ * Abstract class that holds properties common to all program state entries.
+ *
+ * A program state entry is created by the server in response to the "print" command and sent back. The
+ * print command then prints the program state entry as a string. That is the only use of this class.
  */
 public abstract class ProgramStateEntry implements Serializable {
   protected static final boolean DEBUG = true;
