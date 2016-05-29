@@ -1,0 +1,367 @@
+/* For documentation purposes only */
+/* converted on Sun May 29, 2016, 09:56 (UTC+02) by antlr_3-to-w3c v0.38 which is Copyright (c) 2011-2016 by Gunther Rademacher <grd@gmx.net> */
+
+allKeyWordsIDFLike
+         ::= 'and'
+           | 'any'
+           | 'array'
+           | 'assert'
+           | 'begin'
+           | 'both'
+           | TOKEN_CHOICE_GENERATOR
+           | TOKEN_CONDITION
+           | TOKEN_D
+           | 'data'
+           | TOKEN_E
+           | TOKEN_F
+           | 'end'
+           | TOKEN_EXCEPTION_THROWN
+           | TOKEN_FIELD_ACCESS
+           | TOKEN_FIELD_READ
+           | TOKEN_FIELD_WRITE
+           | TOKEN_GARBAGE_COLLECTION
+           | TOKEN_HIT_COUNT
+           | 'in'
+           | 'Infinity'
+           | TOKEN_INSTRUCTION
+           | TOKEN_INSTRUCTION_TYPE
+           | TOKEN_INVOKE
+           | TOKEN_L
+           | 'lock'
+           | 'NaN'
+           | TOKEN_NEGATIVE_INFINITY1
+           | 'none'
+           | 'notify'
+           | TOKEN_METHOD_INVOKE
+           | TOKEN_OBJECT_CREATED
+           | TOKEN_OBJECT_RELEASED
+           | 'or'
+           | TOKEN_POSITION
+           | TOKEN_POSITIVE_INFINITY1
+           | TOKEN_PROPERTY_VIOLATED
+           | TOKEN_RETURN
+           | TOKEN_SCHEDULING
+           | TOKEN_STACK_FRAME
+           | TOKEN_STATE_ADVANCED
+           | TOKEN_STEP_IN
+           | TOKEN_STEP_OUT
+           | TOKEN_STEP_OVER
+           | TOKEN_SYNC_BLOCK
+           | TOKEN_THREAD
+           | TOKEN_THREAD_SCHEDULED
+           | TOKEN_X
+javaKeyWords
+         ::= 'false'
+           | 'null'
+           | 'true'
+allKeywordsOther
+         ::= '#field'
+           | '#heap'
+           | '#stackFrame'
+           | '#stackSlot'
+           | '#thread'
+           | '#this'
+           | '#static'
+           | '#super'
+           | '-inf'
+           | 'not-a-number'
+           | '+inf'
+           | '*'
+           | '\'
+           | '$'
+           | '.'
+           | '"'
+           | '='
+           | '-'
+           | '+'
+           | "'"
+           | '\b'
+           | '\t'
+           | '\n'
+           | '\f'
+           | '\r'
+           | '\"'
+           | "\'"
+           | '\\'
+           | ESCAPE_SEQ_OCTAL
+           | ESCAPE_SEQ_UNICODE
+           | '=='
+           | '!='
+           | '<'
+           | '<='
+           | '>'
+           | '>='
+className
+         ::= classNameText
+fileName ::= ( idf ( '.' | '\' | '/' | ':' | '*' ) )* ( idf ( '.' | '\' | '/' | ':' | '*' )? | ( '.' | '\' | '/' | '*' ) classNameText? )
+fieldName
+         ::= idf
+methodName
+         ::= idf
+cmdBreakpointsCreateParams
+         ::= cmdBreakpointsCreateParams1 EOF
+cmdBreakpointsCreateParams1
+         ::= ( ( cmdBreakpoinstCreateParamsAtomNotTerminateIDF | cmdBreakpoinstCreateParamsAtomTerminateIDF WS ) ( 'and' | 'or' ) )* ( cmdBreakpoinstCreateParamsAtomNotTerminateIDF | cmdBreakpoinstCreateParamsAtomTerminateIDF )
+cmdBreakpointsCreateParamsAtom
+         ::= ( cmdBreakpoinstCreateParamsAtomNotTerminateIDF | cmdBreakpoinstCreateParamsAtomTerminateIDF ) EOF
+cmdBreakpoinstCreateParamsAtomNotTerminateIDF
+         ::= WS? ( ( TOKEN_GARBAGE_COLLECTION WS? '=' WS? cmdGarbageCollectionSpec | TOKEN_CHOICE_GENERATOR WS? '=' WS? cmdChoiceGeneratorType | TOKEN_INSTRUCTION_TYPE WS? '=' WS? cmdInstructionTypes | ( TOKEN_POSITION WS? '=' WS? fileName WS? ':' | ( TOKEN_STEP_OUT WS? TOKEN_THREAD WS? '=' WS? intValue WS? TOKEN_STACK_FRAME | 'specific_instruction' WS? TOKEN_THREAD WS? '=' WS? intValue WS? TOKEN_INSTRUCTION WS? '=' WS? className WS? ':' WS? methodName WS? ':' WS? intValue WS? TOKEN_HIT_COUNT ) WS? '=' ) WS? intValue | TOKEN_PROPERTY_VIOLATED | TOKEN_STATE_ADVANCED | TOKEN_STEP_IN | TOKEN_STEP_OVER | '(' cmdBreakpointsCreateParams1 ')' | TOKEN_THREAD_SCHEDULED WS? '=' WS? cmdThreadScheduledDirection ( WS? ':' WS? intValue )? ) WS? | 'assert' WS? '(' fileName WS? ':' WS? intValue WS? ')' WS? '(' cmdBreakpointsCreateParams1 ')' )
+cmdBreakpoinstCreateParamsAtomTerminateIDF
+         ::= WS? ( fieldAccess WS? '=' WS? className WS? ':' WS? fieldName | TOKEN_METHOD_INVOKE WS? '=' WS? className WS? ':' WS? methodName | ( TOKEN_OBJECT_CREATED | TOKEN_OBJECT_RELEASED | TOKEN_EXCEPTION_THROWN ) WS? '=' WS? className ) WS?
+           | cmdStateExpression1Value relOp cmdStateExpression1Value
+allKeyWords
+         ::= allKeyWordsIDFLike
+           | allKeywordsOther
+           | javaKeyWords
+fieldAccess
+         ::= TOKEN_FIELD_ACCESS
+           | TOKEN_FIELD_READ
+           | TOKEN_FIELD_WRITE
+cmdGarbageCollectionSpec
+         ::= 'begin'
+           | 'end'
+           | 'both'
+cmdChoiceGeneratorType
+         ::= 'data'
+           | TOKEN_SCHEDULING
+           | 'both'
+cmdInstructionTypes
+         ::= 'any'
+           | 'none'
+           | TOKEN_INVOKE
+           | TOKEN_RETURN
+           | TOKEN_FIELD_ACCESS
+           | TOKEN_FIELD_READ
+           | TOKEN_FIELD_WRITE
+           | TOKEN_CONDITION
+           | 'lock'
+           | 'array'
+cmdThreadScheduledDirection
+         ::= 'in'
+           | 'out'
+           | 'both'
+cmdStateAssignment
+         ::= cmdStateExpression1 '=' cmdStateExpression1 EOF
+cmdStateExpression
+         ::= cmdStateExpression1 EOF
+cmdStateExpression1
+         ::= WS? ( cmdStateExpressionThread | cmdStateExpressionHeap | cmdStateConstValue WS? )
+cmdStateExpression1Value
+         ::= WS? ( cmdStateExpressionThreadValue | cmdStateExpressionHeapValue | cmdStateConstValue WS? )
+cmdStateExpressionThread
+         ::= '#thread' WS? ( '[' WS? intValue WS? ']' WS? )? ( '.' WS? cmdStateExpressionStackFrame )?
+           | cmdStateExpressionStackFrame
+cmdStateExpressionThreadValue
+         ::= ( '#thread' WS? ( '[' WS? intValue WS? ']' WS? )? '.' WS? )? cmdStateExpressionStackFrameValue
+cmdStateExpressionStackFrame
+         ::= ( '#stackFrame' WS? ( '[' WS? intValue WS? ']' WS? )? ( '.' WS? cmdStateExpressionStackFrame1 )? | cmdStateExpressionStackFrame1 )?
+cmdStateExpressionStackFrameValue
+         ::= ( '#stackFrame' WS? ( '[' WS? intValue WS? ']' WS? )? '.' WS? )? cmdStateExpressionStackFrame1
+cmdStateExpressionStackFrame1
+         ::= cmdStateExpressionValueStackFrameSlot
+           | cmdStateExpressionValueName
+           | cmdStateExpressionValueAfterStackFrame
+           | cmdStateExpressionValueStatic
+cmdStateExpressionValueAfterStackFrame
+         ::= cmdStateExpressionValueFieldIndex
+           | cmdStateExpressionValueOuterClass
+           | cmdStateExpressionValueSuper
+           | cmdStateExpressionValueThis
+cmdStateExpressionValueFieldIndex
+         ::= '#field' WS? '[' WS? intValue WS? ']' WS? cmdStateExpressionValue?
+cmdStateExpressionValueName
+         ::= idf_fieldName WS? cmdStateExpressionValue?
+cmdStateExpressionValueOuterClass
+         ::= '#outerClass' WS? cmdStateExpressionValue?
+cmdStateExpressionValueStatic
+         ::= '#static' WS? ( '[' WS? intValue WS? ']' WS? cmdStateExpressionValue? | cmdStateExpressionClass )?
+cmdStateExpressionValueStackFrameSlot
+         ::= '#stackSlot' WS? '[' WS? intValue WS? ']' WS? cmdStateExpressionValue?
+cmdStateExpressionValueSuper
+         ::= '#super' WS? cmdStateExpressionValue?
+cmdStateExpressionValueThis
+         ::= '#this' WS? cmdStateExpressionValue?
+cmdStateExpressionValueArray
+         ::= '[' WS? intValue WS? ']' WS? cmdStateExpressionValue?
+cmdStateExpressionValue
+         ::= cmdStateExpressionClass
+           | cmdStateExpressionValueArray
+cmdStateExpressionClass
+         ::= '.' WS? ( cmdStateExpressionValueFieldIndex | cmdStateExpressionValueName | cmdStateExpressionValueOuterClass | cmdStateExpressionValueSuper | cmdStateExpressionValueThis | cmdStateExpressionValueStatic )
+cmdStateExpressionHeap
+         ::= ( '#heap' WS? '[' WS? ( intValue | className ) | '#static' WS? '[' WS? className ) WS? ']' WS? cmdStateExpressionValue?
+cmdStateExpressionHeapValue
+         ::= '#heap' WS? '[' WS? intValue WS? ']' WS? cmdStateExpressionValue?
+cmdStateConstValue
+         ::= booleanValue
+           | charValue
+           | intValue
+           | longValue
+           | floatValue
+           | doubleValueLimited
+           | stringValue
+           | 'null'
+relOp    ::= '=='
+           | '!='
+           | '<'
+           | '<='
+           | '>'
+           | '>='
+booleanValue
+         ::= 'true'
+           | 'false'
+charValue
+         ::= CHAR
+stringValue
+         ::= STRING
+intValue ::= INT_TEXT
+           | INT
+           | HEX
+longValue
+         ::= LONG_TEXT
+doubleValue
+         ::= doubleText
+floatValue
+         ::= FLOAT_TEXT
+doubleValueLimited
+         ::= DOUBLE_TEXT_LIMITTED
+           | 'not-a-number'
+           | '-inf'
+           | '+inf'
+doubleValueExtended
+         ::= doubleText
+           | 'not-a-number'
+           | TOKEN_NEGATIVE_INFINITY1
+           | '-inf'
+           | TOKEN_POSITIVE_INFINITY1
+           | '+inf'
+doubleText
+         ::= DOUBLE_TEXT_LIMITTED
+           | 'NaN'
+           | 'Infinity'
+idf      ::= idf_fieldName
+           | javaKeyWords
+idf_fieldName
+         ::= IDF_TEXT_INTERNAL
+           | allKeyWordsIDFLike
+classNameText
+         ::= ( idf? ( '$' | '.' | '*' ) )* ( idf ( '$' | '.' | '*' )? | '$' | '.' | '*' )
+
+<?TOKENS?>
+
+TOKEN_CHOICE_GENERATOR
+         ::= 'choice_generator'
+           | 'cg'
+TOKEN_CONDITION
+         ::= 'condition'
+           | 'cond'
+TOKEN_D  ::= 'd'
+           | 'D'
+TOKEN_E  ::= 'e'
+           | 'E'
+TOKEN_F  ::= 'f'
+           | 'F'
+TOKEN_EXCEPTION_THROWN
+         ::= 'exception_thrown'
+           | 'et'
+TOKEN_FIELD_ACCESS
+         ::= 'field_access'
+           | 'field'
+           | 'fa'
+TOKEN_FIELD_READ
+         ::= 'field_read'
+           | 'fr'
+TOKEN_FIELD_WRITE
+         ::= 'field_write'
+           | 'fw'
+TOKEN_GARBAGE_COLLECTION
+         ::= 'garbage_collection'
+           | 'gc'
+TOKEN_HIT_COUNT
+         ::= 'hit_count'
+           | 'hc'
+TOKEN_INSTRUCTION
+         ::= 'instruction'
+           | 'inst'
+TOKEN_INSTRUCTION_TYPE
+         ::= 'instruction_type'
+           | 'inst_type'
+           | 'it'
+TOKEN_INVOKE
+         ::= 'invoke'
+           | 'inv'
+TOKEN_L  ::= 'l'
+           | 'L'
+TOKEN_NEGATIVE_INFINITY1
+         ::= 'negative_infinity'
+           | 'neg_inf'
+TOKEN_METHOD_INVOKE
+         ::= 'method_invoke'
+           | 'mi'
+TOKEN_OBJECT_CREATED
+         ::= 'object_created'
+           | 'objc'
+TOKEN_OBJECT_RELEASED
+         ::= 'object_released'
+           | 'objr'
+TOKEN_POSITION
+         ::= 'position'
+           | 'pos'
+TOKEN_POSITIVE_INFINITY1
+         ::= 'positive_infinity'
+           | 'pos_inf'
+TOKEN_PROPERTY_VIOLATED
+         ::= 'property_violated'
+           | 'pv'
+TOKEN_RETURN
+         ::= 'return'
+           | 'ret'
+TOKEN_SCHEDULING
+         ::= 'scheduling'
+           | 'sched'
+TOKEN_STACK_FRAME
+         ::= 'stack_frame'
+           | 'sf'
+TOKEN_STATE_ADVANCED
+         ::= 'state_advanced'
+           | 'sa'
+TOKEN_STEP_IN
+         ::= 'step_in'
+           | 'si'
+TOKEN_STEP_OUT
+         ::= 'step_out'
+           | 'sout'
+TOKEN_STEP_OVER
+         ::= 'step_over'
+           | 'so'
+TOKEN_SYNC_BLOCK
+         ::= 'sync_block'
+           | 'sb'
+TOKEN_THREAD
+         ::= 'thread'
+           | 'ti'
+TOKEN_THREAD_SCHEDULED
+         ::= 'thread_scheduled'
+           | 'ts'
+TOKEN_X  ::= 'x'
+           | 'X'
+ESCAPE_SEQ_OCTAL
+         ::= '\' ( [0-3]? [0-7] )? [0-7]
+ESCAPE_SEQ_UNICODE
+         ::= '\u' [0-9a-fA-F] [0-9a-fA-F] [0-9a-fA-F] [0-9a-fA-F]
+WS       ::= [ #xA#xD#x9]+
+HEX      ::= '0' TOKEN_X [0-9A-Fa-f]+
+INT      ::= [0-9]+
+IDF_TEXT_INTERNAL
+         ::= [a-zA-Z_] [a-zA-Z_0-9]*
+CHAR     ::= "'" ( [^\] | '\b' | '\t' | '\n' | '\f' | '\r' | '\"' | "\'" | '\\' | ESCAPE_SEQ_OCTAL | ESCAPE_SEQ_UNICODE ) "'"
+STRING   ::= '"' ( [^\] | '\b' | '\t' | '\n' | '\f' | '\r' | '\"' | "\'" | '\\' | ESCAPE_SEQ_OCTAL | ESCAPE_SEQ_UNICODE )* '"'
+INT_TEXT ::= ( '+' | '-' ) ( INT | HEX )
+LONG_TEXT
+         ::= ( '+' | '-' )? ( INT | HEX ) TOKEN_L
+FLOAT_TEXT
+         ::= ( '+' | '-' )? ( INT ( '.' INT? )? | '.' INT ) ( TOKEN_E ( '+' | '-' )? INT )? TOKEN_F
+DOUBLE_TEXT_LIMITTED
+         ::= ( '+' | '-' )? ( INT ( ( '.' INT? ( TOKEN_E ( '+' | '-' )? INT )? | TOKEN_E ( '+' | '-' )? INT ) TOKEN_D? | TOKEN_D ) | '.' INT ( TOKEN_E ( '+' | '-' )? INT )? TOKEN_D? )
+           | ( '+' | '-' ) ( 'NaN' | 'Infinity' )
+EOF      ::= $
