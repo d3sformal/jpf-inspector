@@ -19,6 +19,7 @@
 
 package gov.nasa.jpf.inspector.server.programstate;
 
+import gov.nasa.jpf.inspector.common.Constants;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorException;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorNoThread;
 import gov.nasa.jpf.inspector.server.expression.ExpressionParserInterface;
@@ -75,7 +76,10 @@ public class StateThreadInfo extends StateNode {
     int threadNum = ti.getId();
     State state = ti.getState();
     String threadName = ti.getName();
-    String threadTypeName = ti.getClassInfo().getName();
+    String threadTypeName = Constants.UNKNOWN_THREAD_TYPE_NAME;
+    if (ti.getClassInfo() != null) {
+      threadTypeName = ti.getClassInfo().getName();
+    }
 
     boolean isDaemon = ti.isDaemon();
     int priority = ti.getPriority();

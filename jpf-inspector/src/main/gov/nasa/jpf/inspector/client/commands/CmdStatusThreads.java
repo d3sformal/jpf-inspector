@@ -28,13 +28,19 @@ import gov.nasa.jpf.inspector.common.pse.PSEThread;
 import java.io.PrintStream;
 import java.util.Map;
 
+/**
+ * Represents the "thread" command that gives basic information about threads in the system under test.
+ */
 public class CmdStatusThreads extends ClientCommand {
 
+  /**
+   * Index of the thread we are interested in, or null for "all threads".
+   */
   private final Integer tn;
 
   /**
-   * @param tn
-   *        Specify the thread we get the information. Null means all threads.
+   * Initializes a new instance of the command.
+   * @param tn Index of the thread we want information on. Null value means "all threads".
    */
   public CmdStatusThreads (Integer tn) {
     this.tn = tn;
@@ -59,7 +65,7 @@ public class CmdStatusThreads extends ClientCommand {
         return;
       }
       if (threads.size() == 0) {
-        outStream.println("No thread");
+        outStream.println("No thread exists.");
         return;
       }
 

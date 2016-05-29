@@ -59,10 +59,8 @@ public class ProgramStateManager implements ProgramStateInterface {
 
   @Override
   public Map<Integer, PSEThread> getThreads (Integer threadNum) throws JPFInspectorException {
-    final Boolean wasStopped = initialStopTest(true, "threads");
-    if (wasStopped == null) {
-      return null;
-    }
+    initialStopTest(true, "threads");
+
     Map<Integer, PSEThread> result = null;
 
     VM vm = getJVM();
@@ -81,7 +79,7 @@ public class ProgramStateManager implements ProgramStateInterface {
 
       for (ThreadInfo ti : tl) {
         StateThreadInfo sti = new StateThreadInfo(inspector, vm, ti.getId(), 2);
-        result.put(Integer.valueOf(ti.getId()), sti.getResultExpression("", 0));
+        result.put(ti.getId(), sti.getResultExpression("", 0));
       }
     }
 
