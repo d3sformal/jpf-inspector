@@ -47,8 +47,12 @@ import jline.ConsoleReader;
  * 
  */
 public class JPFShellInspectorPanel extends ShellPanel implements VerifyCommandListener {
-  static Logger log = Debugging.getLogger(ShellManager.getManager().getConfig());
-  // predefined commands       
+  private static Logger log = Debugging.getLogger(ShellManager.getManager().getConfig());
+  /**
+   * Commands that should be run at the beginning of a JPF Inspector session.
+   * This is used for debugging only.
+   */
+  @SuppressWarnings("MismatchedReadAndWriteOfArray")
   private static final String[] INITIAL_COMMANDS = {};
 
   private int initialCmdProcessed = 0;
@@ -113,17 +117,13 @@ public class JPFShellInspectorPanel extends ShellPanel implements VerifyCommandL
     console.addCompletor(CmdRunCompletor.getInstance());
   }
 
-  public SwingTerminal getTerminal () {
-    return terminal;
-  }
-
   /**
    * Main command processing thread with main command loop.
    * 
    * Parses and executes user commands.
    * 
    */
-  class CommandProcessingThread extends Thread {
+  private class CommandProcessingThread extends Thread {
     public CommandProcessingThread () {
       super(CommandProcessingThread.class.getSimpleName());
     }
@@ -131,6 +131,7 @@ public class JPFShellInspectorPanel extends ShellPanel implements VerifyCommandL
     @Override
     public void run () {
       try {
+        //noinspection InfiniteLoopStatement
         while (true) {
           try {
             String s;
@@ -158,7 +159,7 @@ public class JPFShellInspectorPanel extends ShellPanel implements VerifyCommandL
       } catch (InterruptedException e) {
         // Terminate the command loop
       }
-    };
+    }
   }
 
   @Override
@@ -187,14 +188,13 @@ public class JPFShellInspectorPanel extends ShellPanel implements VerifyCommandL
 
   @Override
   public void exceptionDuringVerify (Exception ex) {
-    System.out.println(ex);
     ex.printStackTrace();
-  };
+  }
 
   /**
    * If JPFInspector panel selected then sets focus directly into terminal.
    */
-  class PanelComponentListener implements ComponentListener {
+  private class PanelComponentListener implements ComponentListener {
 
     @Override
     public void componentShown (ComponentEvent e) {

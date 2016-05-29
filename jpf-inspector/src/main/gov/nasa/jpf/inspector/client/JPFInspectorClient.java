@@ -14,6 +14,7 @@ import java.io.PrintStream;
 
 /**
  * Represents the JPF Inspector client.
+ * All the commands use this concrete class rather than the interface.
  */
 public class JPFInspectorClient implements JPFInspectorClientInterface {
   private final PrintStream outputStream;
@@ -32,7 +33,7 @@ public class JPFInspectorClient implements JPFInspectorClientInterface {
     }
 
     if (callbacks == null) {
-      throw new IllegalArgumentException("callbacks not specified (null)");
+      throw new IllegalArgumentException("Callbacks not specified (null)");
     }
 
     this.outputStream = outStream;
