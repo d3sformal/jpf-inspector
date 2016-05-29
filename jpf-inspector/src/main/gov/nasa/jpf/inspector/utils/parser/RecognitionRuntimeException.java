@@ -23,7 +23,8 @@ import org.antlr.runtime.RecognitionException;
 
 /**
  * Internal class. Is used to traverse errors between parser and parser facade.
- * It throws generated parsers only.
+ * The ANTLR-generated parsers throw a RecognitionException when they encoutner a parse error
+ * and this class merely wraps that exception as a RuntimeException (the original exception is not unchecked).
  */
 public class RecognitionRuntimeException extends RuntimeException {
   private static final long serialVersionUID = 20100602L;
