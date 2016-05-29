@@ -191,9 +191,9 @@ clientCommands returns [ClientCommand value]
     : WS? clientCommands1 EOF { $value = $clientCommands1.value; }
     ;
 clientCommands1 returns [ClientCommand value]
-    : TOKEN_RUN              WS? { $value = new CmdRun(CmdRunTypes.RUN); }
-    | TOKEN_CONTINUE         WS? { $value = new CmdRun(CmdRunTypes.RUN); }
-    | TOKEN_BREAK            WS? { $value = new CmdRun(CmdRunTypes.STOP); }
+    : TOKEN_RUN              WS? { $value = new CmdRun(CmdRunTypes.RUN, "run"); }
+    | TOKEN_CONTINUE         WS? { $value = new CmdRun(CmdRunTypes.RUN, "continue"); }
+    | TOKEN_BREAK            WS? { $value = new CmdRun(CmdRunTypes.STOP, "break"); }
     | cmdBreakpoints         WS? { $value = $cmdBreakpoints.value; }
     | cmdSingleSteps         WS? { $value = $cmdSingleSteps.value; }
     | cmdProgramState        WS? { $value = $cmdProgramState.value; }

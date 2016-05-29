@@ -30,7 +30,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 /**
- * Show position for all/selected thread.
+ * Represents the "thread_pc" command that shows the current instruction of a thread (or all threads).
  */
 public class CmdThreadsPC extends ClientCommand {
 
@@ -51,7 +51,7 @@ public class CmdThreadsPC extends ClientCommand {
         return;
       }
       if (places.size() == 0) {
-        outStream.println("No thread with valid PC");
+        outStream.println("No thread with a valid program counter.");
         return;
       }
 
@@ -81,7 +81,7 @@ public class CmdThreadsPC extends ClientCommand {
    *        Representation of the instruction position
    * @return String representation of the position
    */
-  public static String instructionPosition2String (InstructionPosition ip) {
+  private static String instructionPosition2String(InstructionPosition ip) {
     StringBuilder sb = new StringBuilder(200);
     sb.append(ip.getFileName());
     sb.append(':');

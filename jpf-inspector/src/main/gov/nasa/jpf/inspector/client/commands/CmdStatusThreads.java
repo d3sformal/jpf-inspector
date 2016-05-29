@@ -86,9 +86,9 @@ public class CmdStatusThreads extends ClientCommand {
    *        The thread description to convert.
    * @return String with short description of the thread properties (doesn't show the call stack)
    */
-  static public String thread2String (PSEThread thread) {
+  private static String thread2String(PSEThread thread) {
     assert thread != null;
-    StringBuffer sb = new StringBuffer(120);
+    StringBuilder sb = new StringBuilder(120);
     sb.append(thread.getThreadNum());
     sb.append(" :");
     String tn = thread.getThreadName();

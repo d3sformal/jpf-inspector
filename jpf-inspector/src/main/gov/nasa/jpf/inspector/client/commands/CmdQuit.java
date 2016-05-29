@@ -6,6 +6,9 @@ import gov.nasa.jpf.inspector.interfaces.JPFInspectorBackEndInterface;
 
 import java.io.PrintStream;
 
+/**
+ * Represents the "quit" command that terminates the program.
+ */
 public class CmdQuit extends ClientCommand {
 
   @Override

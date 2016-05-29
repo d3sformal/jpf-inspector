@@ -98,9 +98,9 @@ public class ProgramStateManager implements ProgramStateInterface {
 
     ThreadList tl = vm.getThreadList();
     if (threadNum != null) {
-      result = new HashMap<Integer, InstructionPosition>(1);
+      result = new HashMap<>(1);
     } else {
-      result = new HashMap<Integer, InstructionPosition>(tl.length());
+      result = new HashMap<>(tl.length());
     }
 
     for (ThreadInfo ti : tl) {
@@ -112,7 +112,7 @@ public class ProgramStateManager implements ProgramStateInterface {
         // Terminated threads -> no position to store
         continue;
       }
-      result.put(Integer.valueOf(ti.getId()), InstructionPositionImpl.getInstructionPosition(pc));
+      result.put(ti.getId(), InstructionPositionImpl.getInstructionPosition(pc));
     }
     return result;
   }
