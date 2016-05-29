@@ -57,11 +57,13 @@ public class CommandParserRecordedCommands extends CommandParser {
 
     try {
       ConsoleGrammarParser parser = getParser(cmd);
-      return parser.clientCommandWithCB();
+      return parser.clientCommandWithCB().value;
     } catch (RecognitionRuntimeException e) {
       throw new JPFInspectorParsingErrorException("Invalid input" + (e.getMessage() != null ? " - " + e.getMessage() : ""), cmd, e.getRecognitionException());
-    } catch (RecognitionException e) {
-      throw new JPFInspectorParsingErrorException("Invalid input" + (e.getMessage() != null ? " - " + e.getMessage() : ""), cmd, e);
+    } catch (Exception e) {
+      throw e; // TODO this was recongition exception
+      /*
+      throw new JPFInspectorParsingErrorException("Invalid input" + (e.getMessage() != null ? " - " + e.getMessage() : ""), cmd, e);*/
     }
   }
 }

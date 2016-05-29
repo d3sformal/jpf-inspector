@@ -21,12 +21,15 @@ package gov.nasa.jpf.inspector.client.parser;
 
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorParsingErrorException;
 
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.StringReader;
+import java.nio.charset.StandardCharsets;
 
-import org.antlr.runtime.ANTLRReaderStream;
-import org.antlr.runtime.CommonTokenStream;
-import org.antlr.runtime.Lexer;
+import org.antlr.v4.runtime.ANTLRInputStream;
+import org.antlr.v4.runtime.CommonTokenStream;
+import org.antlr.v4.runtime.TokenStream;
 
 /**
  * @author Alf
@@ -35,18 +38,9 @@ import org.antlr.runtime.Lexer;
 public abstract class CommandParser implements CommandParserInterface {
 
   protected ConsoleGrammarParser getParser (String expr) throws JPFInspectorParsingErrorException {
-    try {
-      ;
-      StringReader sr = new StringReader(expr);
-      ANTLRReaderStream input;
-      input = new ANTLRReaderStream(sr);
-      Lexer lexer = new ConsoleGrammarLexer(input);
+      org.antlr.v4.runtime.Lexer lexer = new ConsoleGrammarLexer(new ANTLRInputStream(expr));
       CommonTokenStream tokens = new CommonTokenStream(lexer);
       ConsoleGrammarParser parser = new ConsoleGrammarParser(tokens);
       return parser;
-    } catch (IOException e) {
-      throw new JPFInspectorParsingErrorException("IOException while parsing - " + e.getMessage(), expr, -1);
-    }
   }
-
 }

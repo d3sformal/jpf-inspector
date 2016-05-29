@@ -36,6 +36,7 @@ import org.antlr.runtime.ANTLRReaderStream;
 import org.antlr.runtime.CommonTokenStream;
 import org.antlr.runtime.Lexer;
 import org.antlr.runtime.RecognitionException;
+import org.antlr.v4.runtime.ANTLRInputStream;
 
 public class ExpressionParser implements ExpressionParserInterface {
 
@@ -60,15 +61,15 @@ public class ExpressionParser implements ExpressionParserInterface {
 
     final ExpressionGrammarParser parser = getParser(expr);
     try {
-      return parser.cmdStateExpression(expFactory);
+      return parser.cmdStateExpression(expFactory).expr; // TODO change here
 
     } catch (RecognitionRuntimeException e) {
       throw new JPFInspectorParsingErrorException("Invalid input - " + e.getMessage(), expr, e.getRecognitionException());
 
-    } catch (RecognitionException e) {
+    } /*catch (RecognitionException e) {
       throw new JPFInspectorParsingErrorException("Invalid input - " + e.getMessage(), expr, e);
-
-    } catch (GenericErrorRuntimeException e) {
+// TODO remove here
+    } */catch (GenericErrorRuntimeException e) {
       // Unwrap checked exception
       throw e.getWrappedException();
 
@@ -92,15 +93,16 @@ public class ExpressionParser implements ExpressionParserInterface {
 
     final ExpressionGrammarParser parser = getParser(expr);
     try {
-      return parser.cmdBreakpointsCreateParams(expFactory);
+      return parser.cmdBreakpointsCreateParams(expFactory).bp;
 
-    } catch (RecognitionRuntimeException e) {
+    }/* catch (RecognitionRuntimeException e) {
+    // TODO change
       throw new JPFInspectorParsingErrorException("Invalid input - " + e.getMessage(), expr, e.getRecognitionException());
 
     } catch (RecognitionException e) {
       throw new JPFInspectorParsingErrorException("Invalid input - " + e.getMessage(), expr, e);
 
-    } catch (GenericErrorRuntimeException e) {
+    } */catch (GenericErrorRuntimeException e) {
       // Unwrap checked exception
       throw e.getWrappedException();
 
@@ -112,17 +114,10 @@ public class ExpressionParser implements ExpressionParserInterface {
   }
 
   private ExpressionGrammarParser getParser (String expr) throws JPFInspectorParsingErrorException, JPFInspectorGenericErrorException {
-    try {
-      StringReader sr = new StringReader(expr);
-      ANTLRReaderStream input;
-      input = new ANTLRReaderStream(sr);
-      Lexer lexer = new ExpressionGrammarLexer(input);
-      CommonTokenStream tokens = new CommonTokenStream(lexer);
+      ExpressionGrammarLexer lexer = new ExpressionGrammarLexer(new ANTLRInputStream(expr));
+      org.antlr.v4.runtime.CommonTokenStream tokens = new org.antlr.v4.runtime.CommonTokenStream(lexer);
       ExpressionGrammarParser parser = new ExpressionGrammarParser(tokens);
       return parser;
-    } catch (IOException e) {
-      throw new JPFInspectorParsingErrorException("IOException while parsing- " + e.getMessage(), expr, -1);
-    }
   }
 
   /* @see gov.nasa.jpf.inspector.server.expression.ExpressionParserInterface#getExpressionAssignment(java.lang.String) */
@@ -136,15 +131,16 @@ public class ExpressionParser implements ExpressionParserInterface {
 
     final ExpressionGrammarParser parser = getParser(expr);
     try {
-      return parser.cmdStateAssignment(expFactory);
+      return parser.cmdStateAssignment(expFactory).expr; // TODO modification here
 
     } catch (RecognitionRuntimeException e) {
       throw new JPFInspectorParsingErrorException("Invalid input - " + e.getMessage(), expr, e.getRecognitionException());
 
-    } catch (RecognitionException e) {
-      throw new JPFInspectorParsingErrorException("Invalid input - " + e.getMessage(), expr, e);
+    }/* catch (RuntimeException e) {
+      throw e; // TODO this was recongition exception
+      //throw new JPFInspectorParsingErrorException("Invalid input - " + e.getMessage(), expr, e);
 
-    } catch (GenericErrorRuntimeException e) {
+    } */ catch (GenericErrorRuntimeException e) {
       // Unwrap checked exception
       throw e.getWrappedException();
 

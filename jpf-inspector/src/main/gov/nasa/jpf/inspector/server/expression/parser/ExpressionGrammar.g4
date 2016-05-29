@@ -177,16 +177,16 @@ cmdBreakpointsCreateParams1 [ExpressionFactory expFactory] returns [ExpressionBo
            ( (TOKEN_AND b=cmdBreakpointsCreateParams1[expFactory] { $bp = expFactory.getBreakpointOperatorAnd($a.bp, $b.bp); } ) |
              (TOKEN_OR  b=cmdBreakpointsCreateParams1[expFactory] { $bp = expFactory.getBreakpointOperatorOr ($a.bp, $b.bp); } )
            )?
-    | a=cmdBreakpoinstCreateParamsAtomTerminateIDF[expFactory] {$bp = $a.bp; }
-           ( (WS TOKEN_AND b=cmdBreakpointsCreateParams1[expFactory] { $bp = expFactory.getBreakpointOperatorAnd($a.bp, $b.bp); } ) |
-             (WS TOKEN_OR  b=cmdBreakpointsCreateParams1[expFactory] { $bp = expFactory.getBreakpointOperatorOr ($a.bp, $b.bp); } )
+    | a2=cmdBreakpoinstCreateParamsAtomTerminateIDF[expFactory] {$bp = $a2.bp; }
+           ( (WS TOKEN_AND b2=cmdBreakpointsCreateParams1[expFactory] { $bp = expFactory.getBreakpointOperatorAnd($a2.bp, $b2.bp); } ) |
+             (WS TOKEN_OR  b2=cmdBreakpointsCreateParams1[expFactory] { $bp = expFactory.getBreakpointOperatorOr ($a2.bp, $b2.bp); } )
            )?
     ;
 
 
 cmdBreakpointsCreateParamsAtom [ExpressionFactory expFactory] returns [ExpressionBoolean bp]
     : a=cmdBreakpoinstCreateParamsAtomNotTerminateIDF[expFactory]                                       { $bp = $a.bp; } EOF
-    | a=cmdBreakpoinstCreateParamsAtomTerminateIDF[expFactory]                                          { $bp = $a.bp; } EOF
+    | b=cmdBreakpoinstCreateParamsAtomTerminateIDF[expFactory]                                          { $bp = $b.bp; } EOF
     ;
 
 cmdBreakpoinstCreateParamsAtomNotTerminateIDF [ExpressionFactory expFactory] returns [ExpressionBoolean bp]
@@ -216,8 +216,8 @@ cmdBreakpoinstCreateParamsAtomTerminateIDF [ExpressionFactory expFactory] return
 
 allKeyWords returns [String text]
     : a=allKeyWordsIDFLike                  { $text = $a.text; }
-    | a=allKeywordsOther                    { $text = $a.text; }
-    | a=javaKeyWords                        { $text = $a.text; }
+    | b=allKeywordsOther                    { $text = $b.text; }
+    | c=javaKeyWords                        { $text = $c.text; }
     ;
 
 fieldAccess returns [BreakPointModes bpMode] 
@@ -332,7 +332,7 @@ cmdStateExpressionValueOuterClass [ExpressionFactory expFactory] returns [Expres
 
 cmdStateExpressionValueStatic [ExpressionFactory expFactory] returns [ExpressionStateValueStatic expr]
     : TOKEN_HASH_STATIC WS? '[' WS? intValue WS? ']' WS? a=cmdStateExpressionValue[$expFactory]?    { $expr = $expFactory.getStateValueStaticArea($intValue.value,  $a.expr); }
-    | TOKEN_HASH_STATIC                              WS? a=cmdStateExpressionClass[$expFactory]?    { $expr = $expFactory.getStateValueStaticArea(null,             $a.expr); }
+    | TOKEN_HASH_STATIC                              WS? b=cmdStateExpressionClass[$expFactory]?    { $expr = $expFactory.getStateValueStaticArea(null,             $b.expr); }
     ;
     
 cmdStateExpressionValueStackFrameSlot [ExpressionFactory expFactory] returns [ExpressionStateStackFrameSlot expr]
