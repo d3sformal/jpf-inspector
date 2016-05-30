@@ -5,9 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1bb13837-3373-4c0e-b913-a784e8239749" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documentation/wiki/User-Guide.md" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/documentation/wiki/Hit-Condition-Expression-Syntax.md" afterPath="$PROJECT_DIR$/documentation/wiki/Hit-Condition-Expression-Syntax.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jpf-inspector/jpf.properties" afterPath="$PROJECT_DIR$/jpf-inspector/jpf.properties" />
     </list>
     <ignored path="gsoc.iws" />
     <ignored path="$PROJECT_DIR$/out/" />
@@ -42,18 +41,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="ExpressionParser.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/jpf-inspector/src/main/gov/nasa/jpf/inspector/server/expression/ExpressionParser.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="383">
-              <caret line="89" column="32" selection-start-line="89" selection-start-column="32" selection-end-line="89" selection-end-column="32" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="ExpressionGrammarParser.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/jpf-inspector/src/main/gov/nasa/jpf/inspector/server/expression/parser/ExpressionGrammarParser.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -89,10 +76,7 @@
             <state relative-caret-position="-19355">
               <caret line="1" column="11" selection-start-line="1" selection-start-column="11" selection-end-line="1" selection-end-column="11" />
               <folding>
-                <marker date="1464628766924" expanded="true" signature="84537:84556" ph="..." />
-                <marker date="1464628766924" expanded="true" signature="84537:84574" ph="..." />
-                <marker date="1464628766924" expanded="true" signature="84537:84587" ph="..." />
-                <marker date="1464628766924" expanded="true" signature="84537:84602" ph="..." />
+                <marker date="1464629097883" expanded="true" signature="84500:84565" ph="..." />
               </folding>
             </state>
           </provider>
@@ -114,7 +98,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Hit-Condition-Expression-Syntax.md" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Hit-Condition-Expression-Syntax.md" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/documentation/wiki/Hit-Condition-Expression-Syntax.md">
           <provider editor-type-id="MarkdownFxPreviewEditor">
             <state />
@@ -126,6 +110,16 @@
                 <folding />
               </first_editor>
               <second_editor />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="jpf.properties" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/jpf-inspector/jpf.properties">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="238">
+              <caret line="14" column="19" selection-start-line="14" selection-start-column="19" selection-end-line="14" selection-end-column="19" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -185,7 +179,7 @@
     </leaf>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/documentation/wiki" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GradleLocalSettings">
     <option name="externalProjectsViewState">
@@ -235,7 +229,6 @@
         <option value="$PROJECT_DIR$/jpf-inspector/src/main/gov/nasa/jpf/inspector/client/parser/CommandParserRecordedCommands.java" />
         <option value="$PROJECT_DIR$/jpf-inspector/src/main/gov/nasa/jpf/inspector/server/expression/ExpressionParser.java" />
         <option value="$PROJECT_DIR$/jpf-inspector/src/main/gov/nasa/jpf/inspector/client/JPFClientCallbackHandler.java" />
-        <option value="$PROJECT_DIR$/jpf-inspector/jpf.properties" />
         <option value="$PROJECT_DIR$/jpf-inspector/src/main/gov/nasa/jpf/inspector/common/ConsoleInformation.java" />
         <option value="$PROJECT_DIR$/jpf-inspector/src/main/gov/nasa/jpf/inspector/client/parser/ConsoleGrammar.g4" />
         <option value="$PROJECT_DIR$/jpf-inspector/src/main/gov/nasa/jpf/inspector/client/commands/CmdBreakpointCreate.java" />
@@ -246,6 +239,7 @@
         <option value="$PROJECT_DIR$/documentation/wiki/Commands.md" />
         <option value="$PROJECT_DIR$/documentation/wiki/User-Guide.md" />
         <option value="$PROJECT_DIR$/documentation/wiki/Hit-Condition-Expression-Syntax.md" />
+        <option value="$PROJECT_DIR$/jpf-inspector/jpf.properties" />
       </list>
     </option>
   </component>
@@ -344,11 +338,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="documentation" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="wiki" />
+              <option name="myItemId" value="jpf-inspector" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -362,7 +352,11 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="documentation" />
+              <option name="myItemId" value="jpf-inspector" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -702,7 +696,7 @@
       <updated>1464614594931</updated>
       <workItem from="1464614599034" duration="2086000" />
       <workItem from="1464616703659" duration="1091000" />
-      <workItem from="1464618022351" duration="10237000" />
+      <workItem from="1464618022351" duration="10640000" />
     </task>
     <task id="LOCAL-00001" summary="add JUnit libraries, IDE reset">
       <created>1464614713273</created>
@@ -774,11 +768,18 @@
       <option name="project" value="LOCAL" />
       <updated>1464626902680</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="hit condition wiki">
+      <created>1464628775908</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1464628775908</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="13414000" />
+    <option name="totallyTimeSpent" value="13817000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1696" height="1026" extended-state="6" />
@@ -833,7 +834,6 @@
       <path value="$PROJECT_DIR$/jpf-inspector" />
       <path value="$PROJECT_DIR$/jpf-shell" />
     </ignored-roots>
-    <MESSAGE value="making it compile" />
     <MESSAGE value="site.properties" />
     <MESSAGE value="adding old shell" />
     <MESSAGE value="refactoring for JPF8" />
@@ -858,7 +858,8 @@
     <MESSAGE value="some refactoring in grammar" />
     <MESSAGE value="adding wiki" />
     <MESSAGE value="wiki Commands test" />
-    <option name="LAST_COMMIT_MESSAGE" value="wiki Commands test" />
+    <MESSAGE value="hit condition wiki" />
+    <option name="LAST_COMMIT_MESSAGE" value="hit condition wiki" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -1279,14 +1280,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/jpf-inspector/jpf.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="612">
-          <caret line="45" column="31" selection-start-line="45" selection-start-column="31" selection-end-line="45" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/jpf-inspector/src/main/gov/nasa/jpf/inspector/client/commands/CmdBreakpointShow.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
@@ -1423,10 +1416,7 @@
         <state relative-caret-position="-19355">
           <caret line="1" column="11" selection-start-line="1" selection-start-column="11" selection-end-line="1" selection-end-column="11" />
           <folding>
-            <marker date="1464628766924" expanded="true" signature="84537:84556" ph="..." />
-            <marker date="1464628766924" expanded="true" signature="84537:84574" ph="..." />
-            <marker date="1464628766924" expanded="true" signature="84537:84587" ph="..." />
-            <marker date="1464628766924" expanded="true" signature="84537:84602" ph="..." />
+            <marker date="1464629097883" expanded="true" signature="84500:84565" ph="..." />
           </folding>
         </state>
       </provider>
@@ -1492,6 +1482,14 @@
             <folding />
           </first_editor>
           <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jpf-inspector/jpf.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="19" selection-start-line="14" selection-start-column="19" selection-end-line="14" selection-end-column="19" />
+          <folding />
         </state>
       </provider>
     </entry>
