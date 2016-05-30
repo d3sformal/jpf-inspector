@@ -24,32 +24,32 @@ import java.io.Serializable;
 /**
  * Class the stores data needed to create or modify breakpoint.
  */
-public interface BreakPointCreate extends Serializable {
+public interface BreakPointCreationInformation extends Serializable {
 
-  public static final Integer DEFAULT_LOWER_BOUND = 0; // Default value of the lower bound of the hit counter
-  public static final Integer DEFAULT_UPPER_BOUND = Integer.MAX_VALUE;
+  Integer DEFAULT_LOWER_BOUND = 0; // Default value of the lower bound of the hit counter
+  Integer DEFAULT_UPPER_BOUND = Integer.MAX_VALUE;
 
   /**
    * Used as undefined value of the breakpoint ID. This value specify that you
    * creates new breakpoint and Inspector assign ID alone.
    * The JPF never returns breakpoint with this ID.
    */
-  public static final int BP_ID_NOT_DEFINED = -1;
+  int BP_ID_NOT_DEFINED = -1;
 
   /**
    * Get unique BP identifier
    */
-  public int getBPID ();
+  int getBPID();
 
   /**
    * @return String representation of the expression used to create/update the breakpoint.
    *         Note: This expression is parsed by the server part.
    */
-  public String getBPExpression ();
+  String getBPExpression();
 
-  public String getName ();
+  String getName();
 
-  public BreakPointStates getState ();
+  BreakPointStates getState();
 
   /**
    * Specify lower bound for breakpoint's hitCounter.
@@ -58,7 +58,7 @@ public interface BreakPointCreate extends Serializable {
    * 
    * @return Lower bound of hitCounter to hit the breakpoint.
    */
-  public Integer bpHitCountLowerBound ();
+  Integer bpHitCountLowerBound();
 
   /**
    * Specify upper bound for breakpoint's hitCounter.
@@ -67,6 +67,6 @@ public interface BreakPointCreate extends Serializable {
    * 
    * @return Upper bound of hitCounter to hit the breakpoint.
    */
-  public Integer bpHitCountUpperBound ();
+  Integer bpHitCountUpperBound();
 
 }
