@@ -312,43 +312,44 @@ cmdStateExpressionValueFieldIndex [ExpressionFactory expFactory] returns [Expres
       { $expr = $expFactory.getStateValueFieldIndex($intValue.ctx!=null?$intValue.value:null, $a.ctx != null ? $a.expr : null); }
     ;
 
-// TODO check nullity
 cmdStateExpressionValueName [ExpressionFactory expFactory] returns [ExpressionStateValueName expr]
-    : idf_fieldName WS? a=cmdStateExpressionValue[$expFactory]?                                                  { $expr = $expFactory.getStateValueName($idf_fieldName.text, $a.expr); }
+    : idf_fieldName WS? a=cmdStateExpressionValue[$expFactory]?
+     { $expr = $expFactory.getStateValueName($idf_fieldName.text, $a.ctx != null ? $a.expr : null); }
     ;
 
-// TODO check nullity
 cmdStateExpressionValueOuterClass [ExpressionFactory expFactory] returns [ExpressionStateValueOuterClass expr]
-    : TOKEN_HASH_OUTER_CLASS WS? a=cmdStateExpressionValue[$expFactory]?                               { $expr = $expFactory.getStateValueOuterClass($a.expr); }
+    : TOKEN_HASH_OUTER_CLASS WS? a=cmdStateExpressionValue[$expFactory]?
+    { $expr = $expFactory.getStateValueOuterClass($a.ctx != null ? $a.expr : null); }
     ;
 
-// TODO check nullity
 cmdStateExpressionValueStatic [ExpressionFactory expFactory] returns [ExpressionStateValueStatic expr]
-    : TOKEN_HASH_STATIC WS? '[' WS? intValue WS? ']' WS? a=cmdStateExpressionValue[$expFactory]?    { $expr = $expFactory.getStateValueStaticArea($intValue.value,  $a.expr); }
-    | TOKEN_HASH_STATIC                              WS? b=cmdStateExpressionClass[$expFactory]?    { $expr = $expFactory.getStateValueStaticArea(null,             $b.expr); }
+    : TOKEN_HASH_STATIC WS? '[' WS? intValue WS? ']' WS? a=cmdStateExpressionValue[$expFactory]?
+    { $expr = $expFactory.getStateValueStaticArea($intValue.value,  $a.ctx != null ? $a.expr : null); }
+    | TOKEN_HASH_STATIC                              WS? b=cmdStateExpressionClass[$expFactory]?
+     { $expr = $expFactory.getStateValueStaticArea(null,            $b.ctx != null ? $b.expr : null); }
     ;
 
-// TODO check nullity
 cmdStateExpressionValueStackFrameSlot [ExpressionFactory expFactory] returns [ExpressionStateStackFrameSlot expr]
-    : TOKEN_HASH_STACK_SLOT WS? '[' WS? intValue WS? ']' WS?  a=cmdStateExpressionValue[$expFactory]?  { $expr = $expFactory.getStateValueStackFrameSlot($intValue.value, $a.expr); }
+    : TOKEN_HASH_STACK_SLOT WS? '[' WS? intValue WS? ']' WS?  a=cmdStateExpressionValue[$expFactory]?
+     { $expr = $expFactory.getStateValueStackFrameSlot($intValue.value, $a.ctx != null ? $a.expr : null); }
     ;
 
-// TODO check nullity
 cmdStateExpressionValueSuper [ExpressionFactory expFactory] returns [ExpressionStateValueSuper expr]
-    : TOKEN_HASH_SUPER WS?  a=cmdStateExpressionValue[$expFactory]?  { $expr = $expFactory.getStateValueSuper($a.expr); }
+    : TOKEN_HASH_SUPER WS?  a=cmdStateExpressionValue[$expFactory]?
+      { $expr = $expFactory.getStateValueSuper($a.ctx != null ? $a.expr : null); }
     ;
 
-// TODO check nullity
+
 cmdStateExpressionValueThis [ExpressionFactory expFactory] returns [ExpressionStateValueThis expr]
-    : TOKEN_HASH_THIS WS? a=cmdStateExpressionValue[$expFactory]?   { $expr = $expFactory.getStateValueThis($a.expr); }
+    : TOKEN_HASH_THIS WS? a=cmdStateExpressionValue[$expFactory]?
+    { $expr = $expFactory.getStateValueThis($a.ctx != null ? $a.expr : null); }
     ;
 
-// TODO check nullity
 cmdStateExpressionValueArray [ExpressionFactory expFactory] returns [ExpressionStateValue expr]
-    : '[' WS? intValue WS? ']' WS? a=cmdStateExpressionValue[$expFactory]?                  { $expr = $expFactory.getStateValueArrayIndex($a.expr, $intValue.value); }
+    : '[' WS? intValue WS? ']' WS? a=cmdStateExpressionValue[$expFactory]?
+     { $expr = $expFactory.getStateValueArrayIndex($a.ctx != null ? $a.expr : null, $intValue.value); }
     ;
 
-// TODO check nullity
 cmdStateExpressionValue [ExpressionFactory expFactory] returns [ExpressionStateValue expr]
     : a=cmdStateExpressionClass[$expFactory]       { $expr = $a.expr; }
     | b=cmdStateExpressionValueArray[$expFactory]  { $expr = $b.expr; }

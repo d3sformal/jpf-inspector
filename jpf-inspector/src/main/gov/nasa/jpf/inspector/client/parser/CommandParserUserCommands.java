@@ -56,11 +56,7 @@ public class CommandParserUserCommands extends CommandParser {
     } catch (RecognitionRuntimeException e) {
       throw new JPFInspectorParsingErrorException("Invalid input" + (e.getMessage() != null ? " - " + e.getMessage() : ""), cmd, e.getRecognitionException());
     } catch (AntlrParseException e) {
-      throw new JPFInspectorParsingErrorException(e.getMessage(), cmd, e.getColumn());
-      // TODO this used to be RecognitionException.
-      /*
-      throw new JPFInspectorParsingErrorException("Invalid input" + (e.getMessage() != null ? " - " + e.getMessage() : ""), cmd, e);*/
-     // throw e;
+      throw new JPFInspectorParsingErrorException("Parse error: " + e.getMessage(), cmd, e.getColumn());
     }
   }
 

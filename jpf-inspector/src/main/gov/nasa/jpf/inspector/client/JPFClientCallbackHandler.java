@@ -57,7 +57,11 @@ public class JPFClientCallbackHandler implements InspectorCallBacks {
     // about state change should be printed out. This may therefore cause some state changes to be printed
     // or, conversely, to be omitted. I don't know what's better so I'll just leave this in for now and
     // see if something breaks.
-    prevCB = CB_METHODS.CB_GENERIC_INFO;
+
+    // On second thought, let's leave it commented out. Weird things are happening and until we fully understand
+    // the code, we shouldn't be making uneasy changes.
+
+    // prevCB = CB_METHODS.CB_GENERIC_INFO;
   }
 
   private static boolean checkIfShowStateChangeNofitication (CB_METHODS prevCB, InspectorStates newState) {

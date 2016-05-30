@@ -5,6 +5,8 @@ import gov.nasa.jpf.JPF.Status;
 import gov.nasa.jpf.inspector.JPFInspectorFacade;
 import gov.nasa.jpf.inspector.client.parser.CommandParserFactory;
 import gov.nasa.jpf.inspector.client.parser.CommandParserInterface;
+import gov.nasa.jpf.inspector.common.ConsoleInformation;
+import gov.nasa.jpf.inspector.common.Constants;
 import gov.nasa.jpf.inspector.interfaces.InspectorCallBacks;
 import gov.nasa.jpf.inspector.interfaces.JPFInspectorBackEndInterface;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorGenericErrorException;
@@ -89,9 +91,7 @@ public class JPFInspectorClient implements JPFInspectorClientInterface {
     } catch (JPFInspectorParsingErrorException e) {
       outputStream.println("cmd>" + cmdStr);
       outputStream.println(e.getMessage());
-
-      // TODO - Extend/replace outStream to be able to report line length - not use magic constant 50
-      outputStream.println(e.expressError(50));
+      outputStream.println(e.expressError(ConsoleInformation.MAX_ERROR_LINE_LENGTH));
 
       recordComment("ERR:  Error parsing the command \"" + cmdStr + "\".");
 

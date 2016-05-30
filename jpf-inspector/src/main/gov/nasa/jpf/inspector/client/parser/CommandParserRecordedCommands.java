@@ -20,6 +20,7 @@
 package gov.nasa.jpf.inspector.client.parser;
 
 import gov.nasa.jpf.inspector.client.ClientCommandInterface;
+import gov.nasa.jpf.inspector.common.AntlrParseException;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorParsingErrorException;
 import gov.nasa.jpf.inspector.utils.parser.RecognitionRuntimeException;
 
@@ -60,10 +61,8 @@ public class CommandParserRecordedCommands extends CommandParser {
       return parser.clientCommandWithCB().value;
     } catch (RecognitionRuntimeException e) {
       throw new JPFInspectorParsingErrorException("Invalid input" + (e.getMessage() != null ? " - " + e.getMessage() : ""), cmd, e.getRecognitionException());
-    } catch (Exception e) {
-      throw e; // TODO this was recongition exception
-      /*
-      throw new JPFInspectorParsingErrorException("Invalid input" + (e.getMessage() != null ? " - " + e.getMessage() : ""), cmd, e);*/
+    } catch (AntlrParseException e) {
+      throw new JPFInspectorParsingErrorException("Parse error: " + e.getMessage(), cmd, e.getColumn());
     }
   }
 }
