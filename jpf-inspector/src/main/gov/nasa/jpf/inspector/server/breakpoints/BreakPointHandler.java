@@ -22,7 +22,7 @@ package gov.nasa.jpf.inspector.server.breakpoints;
 import gov.nasa.jpf.ListenerAdapter;
 import gov.nasa.jpf.inspector.interfaces.AssertCreate;
 import gov.nasa.jpf.inspector.interfaces.AssertStatus;
-import gov.nasa.jpf.inspector.interfaces.BreakPointCreate;
+import gov.nasa.jpf.inspector.interfaces.BreakPointCreationInformation;
 import gov.nasa.jpf.inspector.interfaces.BreakPointManagerInterface;
 import gov.nasa.jpf.inspector.interfaces.BreakPointStatus;
 import gov.nasa.jpf.inspector.interfaces.InspectorCallBacks;
@@ -103,13 +103,13 @@ public class BreakPointHandler implements BreakPointManagerInterface {
   }
 
   /**
-   * Creates new (if breakpoint ID is set {@link BreakPointCreate#BP_ID_NOT_DEFINED} or modifies existing breakpoint ( with same breakpoint ID)
+   * Creates new (if breakpoint ID is set {@link BreakPointCreationInformation#BP_ID_NOT_DEFINED} or modifies existing breakpoint ( with same breakpoint ID)
    * 
    * @param newBP Structure with new information about new BP.
    * @return Get informations about state of the created/modified breakpoint or null if error takes place.
    */
   @Override
-  public BreakPointStatus createBreakPoint (BreakPointCreate newBP) throws JPFInspectorParsingErrorException, JPFInspectorGenericErrorException {
+  public BreakPointStatus createBreakPoint (BreakPointCreationInformation newBP) throws JPFInspectorParsingErrorException, JPFInspectorGenericErrorException {
 
     ExpressionBooleanInterface newBPExpression = expParser.getBreakpointExpression(newBP.getBPExpression());
 
@@ -134,14 +134,14 @@ public class BreakPointHandler implements BreakPointManagerInterface {
    * @param newBPExpression Parsed expression from the newBP create. Is passed separately to be handle internal BP, which are not supported by in Expression
    *        grammar.
    */
-  private BreakPointStatus createBreakPointImpl (BreakPointCreate newBP, ExpressionBooleanInterface newBPExpression, boolean hidden, boolean firstHit)
+  private BreakPointStatus createBreakPointImpl (BreakPointCreationInformation newBP, ExpressionBooleanInterface newBPExpression, boolean hidden, boolean firstHit)
       throws JPFInspectorGenericErrorException {
     assert newBP != null;
     assert newBPExpression != null;
 
     synchronized (breakpoints) {
       InternalBreakpointHolder ibp = null;
-      if (newBP.getBPID() != BreakPointCreate.BP_ID_NOT_DEFINED) {
+      if (newBP.getBPID() != BreakPointCreationInformation.BP_ID_NOT_DEFINED) {
         ibp = breakpoints.get(newBP.getBPID());
         if (ibp == null) {
           throw new JPFInspectorGenericErrorException("Breakpoint with ID=" + newBP.getBPID() + " not exists --> cann't be modified");
@@ -172,7 +172,7 @@ public class BreakPointHandler implements BreakPointManagerInterface {
 
     synchronized (breakpoints) {
       InternalAssertHolder iah = null;
-      if (newAssert.getBPID() != BreakPointCreate.BP_ID_NOT_DEFINED) {
+      if (newAssert.getBPID() != BreakPointCreationInformation.BP_ID_NOT_DEFINED) {
         InternalBreakpointHolder ibp = breakpoints.get(newAssert.getBPID());
         if (ibp == null) {
           throw new JPFInspectorGenericErrorException("Assertion with ID=" + newAssert.getBPID() + " not exists --> cann't be modified");
@@ -212,7 +212,7 @@ public class BreakPointHandler implements BreakPointManagerInterface {
    * @param singleHit If set then the breakpoint is automatically removed after first hit of any breakpoint
    * @return
    */
-  public BreakPointStatus createInternalBreakpoint (BreakPointCreate newBP, ExpressionBooleanInterface newBPExpression, boolean singleHit) {
+  public BreakPointStatus createInternalBreakpoint (BreakPointCreationInformation newBP, ExpressionBooleanInterface newBPExpression, boolean singleHit) {
     try {
       return createBreakPointImpl(newBP, newBPExpression, true, singleHit);
     } catch (JPFInspectorGenericErrorException e) {

@@ -31,8 +31,10 @@ import java.io.PrintStream;
 //TODO implement step count (there are 2 possibilities)
 // a) add cycle into execute command + (wait until sJPF is stoped) + comment (with original repetition count)
 // b) update normalized expression + pass stepCnt to the JPFInspectorBackEnd + implement there
+
 /**
- * Handle single step commands (si, so, sins) etc.
+ * Represents a single-stepping command such as "step_in" or "step_over". All such commands, including back-stepping
+ * commands, are handled by this class.
  */
 public class CmdSingleStepping extends ClientCommand {
 
@@ -60,11 +62,7 @@ public class CmdSingleStepping extends ClientCommand {
 
   public CmdSingleStepping (boolean forward, StepType stepType, Integer repeatCnt) {
     assert stepType != null;
-
-    if (repeatCnt == null) {
-      // Use default value
-      repeatCnt = Integer.valueOf(1);
-    }
+    assert repeatCnt != null;
 
     this.forward = forward;
     this.stepType = stepType;
@@ -74,7 +72,7 @@ public class CmdSingleStepping extends ClientCommand {
   @Override
   public void executeCommands (JPFInspectorClient client, JPFInspectorBackEndInterface inspector, PrintStream outStream) {
     assert inspector != null;
-    // TODO
+
     if (stepCnt != 1) {
       outStream.println("ERR: StepCount not implemented yet. Repeat command manually.");
     }
@@ -115,7 +113,7 @@ public class CmdSingleStepping extends ClientCommand {
     case ST_TRANSITION_SCHED:
       return result + "step_transition scheduling";
     default:
-      throw new RuntimeException("Internal error: Unkwnow " + stepType.getClass().getName() + " entry: " + stepType);
+      throw new RuntimeException("Internal error: Unknown " + stepType.getClass().getName() + " entry: " + stepType);
     }
   }
 }

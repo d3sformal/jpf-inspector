@@ -22,7 +22,7 @@ package gov.nasa.jpf.inspector.interfaces;
 import java.io.Serializable;
 
 /**
- * Class the stores data needed to create or modify breakpoint.
+ * All information typed by the user who executed the "create breakpoint" command.
  */
 public interface BreakPointCreationInformation extends Serializable {
 

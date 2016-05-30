@@ -21,7 +21,7 @@ package gov.nasa.jpf.inspector.client.commands;
 
 import gov.nasa.jpf.inspector.client.ClientCommand;
 import gov.nasa.jpf.inspector.client.JPFInspectorClient;
-import gov.nasa.jpf.inspector.interfaces.BreakPointCreate;
+import gov.nasa.jpf.inspector.interfaces.BreakPointCreationInformation;
 import gov.nasa.jpf.inspector.interfaces.BreakPointStatus;
 import gov.nasa.jpf.inspector.interfaces.JPFInspectorBackEndInterface;
 
@@ -76,12 +76,12 @@ public class CmdBreakpointShow extends ClientCommand {
       bpText.append(' ');
       Integer lowerBound = bp.bpHitCountLowerBound();
       Integer upperBound = bp.bpHitCountUpperBound();
-      if (lowerBound != null && (!lowerBound.equals(BreakPointCreate.DEFAULT_LOWER_BOUND))) {
+      if (lowerBound != null && (!lowerBound.equals(BreakPointCreationInformation.DEFAULT_LOWER_BOUND))) {
         bpText.append(lowerBound);
         bpText.append("<=");
       }
       bpText.append("hit_count");
-      if (upperBound != null && (!upperBound.equals(BreakPointCreate.DEFAULT_UPPER_BOUND))) {
+      if (upperBound != null && (!upperBound.equals(BreakPointCreationInformation.DEFAULT_UPPER_BOUND))) {
         bpText.append("<=");
         bpText.append(upperBound);
       }

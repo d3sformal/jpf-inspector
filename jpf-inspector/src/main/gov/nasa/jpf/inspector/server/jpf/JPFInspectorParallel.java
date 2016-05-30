@@ -21,7 +21,7 @@ package gov.nasa.jpf.inspector.server.jpf;
 
 import gov.nasa.jpf.inspector.interfaces.AssertCreate;
 import gov.nasa.jpf.inspector.interfaces.AssertStatus;
-import gov.nasa.jpf.inspector.interfaces.BreakPointCreate;
+import gov.nasa.jpf.inspector.interfaces.BreakPointCreationInformation;
 import gov.nasa.jpf.inspector.interfaces.BreakPointStatus;
 import gov.nasa.jpf.inspector.interfaces.InspectorCallBacks;
 import gov.nasa.jpf.inspector.interfaces.InstructionPosition;
@@ -52,7 +52,7 @@ public class JPFInspectorParallel extends JPFInspector {
   }
 
   @Override
-  public BreakPointStatus createBreakPoint (BreakPointCreate newBP) throws JPFInspectorParsingErrorException, JPFInspectorGenericErrorException {
+  public BreakPointStatus createBreakPoint (BreakPointCreationInformation newBP) throws JPFInspectorParsingErrorException, JPFInspectorGenericErrorException {
     return breakpointMgr.createBreakPoint(newBP);
   }
 

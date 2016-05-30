@@ -19,7 +19,7 @@
 
 package gov.nasa.jpf.inspector.server.breakpoints;
 
-import gov.nasa.jpf.inspector.interfaces.BreakPointCreate;
+import gov.nasa.jpf.inspector.interfaces.BreakPointCreationInformation;
 import gov.nasa.jpf.inspector.interfaces.BreakPointStates;
 import gov.nasa.jpf.inspector.interfaces.BreakPointStatus;
 import gov.nasa.jpf.inspector.interfaces.InspectorCallBacks;
@@ -74,7 +74,7 @@ class InternalBreakpointHolder implements Comparable<InternalBreakpointHolder> {
    *        This breakpoint should be removed if the first breakpoint hits (this or some other BP)
    */
   public InternalBreakpointHolder (int newID, InspectorCallBacks callbacks, boolean userBP, boolean sigleHitBP) {
-    if (newID == BreakPointCreate.BP_ID_NOT_DEFINED) {
+    if (newID == BreakPointCreationInformation.BP_ID_NOT_DEFINED) {
       newID = getNextBpID();
     } else {
       synchronized (bpIDCounterLock) {
@@ -90,7 +90,7 @@ class InternalBreakpointHolder implements Comparable<InternalBreakpointHolder> {
     this.sigleHitBP = sigleHitBP;
   }
 
-  public void modifyBPSettings (BreakPointCreate newSettings, ExpressionBooleanInterface newBPExpression) {
+  public void modifyBPSettings (BreakPointCreationInformation newSettings, ExpressionBooleanInterface newBPExpression) {
     assert newSettings != null;
 
     if (newSettings.getName() != null) {

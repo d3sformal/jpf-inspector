@@ -23,7 +23,7 @@ package gov.nasa.jpf.inspector.interfaces;
  * @author Alf
  * 
  */
-public interface AssertCreate extends BreakPointCreate {
+public interface AssertCreate extends BreakPointCreationInformation {
 
   /**
    * Gets string which specification of the position where assertion should hit. FileName.java:lineNum

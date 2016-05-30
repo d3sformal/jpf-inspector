@@ -32,15 +32,15 @@ public interface BreakPointManagerInterface {
   public List<BreakPointStatus> getBreakPoints ();
 
   /**
-   * Creates new (if breakpoint ID is set {@link BreakPointCreate#BP_ID_NOT_DEFINED} or modifies existing breakpoint ( with same breakpoint ID)
+   * Creates new (if breakpoint ID is set {@link BreakPointCreationInformation#BP_ID_NOT_DEFINED} or modifies existing breakpoint ( with same breakpoint ID)
    * 
    * @param newBP Structure with new information about new BP.
    * @return Get informations about state of the created/modified breakpoint or null if error takes place.
    */
-  public BreakPointStatus createBreakPoint (BreakPointCreate newBP) throws JPFInspectorParsingErrorException, JPFInspectorGenericErrorException;
+  public BreakPointStatus createBreakPoint (BreakPointCreationInformation newBP) throws JPFInspectorParsingErrorException, JPFInspectorGenericErrorException;
 
   /**
-   * Creates new assertion (if breakpoint ID is set {@link BreakPointCreate#BP_ID_NOT_DEFINED} or modifies existing assertion ( with same ID)
+   * Creates new assertion (if breakpoint ID is set {@link BreakPointCreationInformation#BP_ID_NOT_DEFINED} or modifies existing assertion ( with same ID)
    * 
    * @param newAssert Structure with new information about new Assert.
    * @return Get informations about state of the created/modified assertion or null if error takes place.

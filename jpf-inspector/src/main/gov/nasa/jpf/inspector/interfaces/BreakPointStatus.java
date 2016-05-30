@@ -25,7 +25,7 @@ import gov.nasa.jpf.inspector.server.breakpoints.BreakPointModes;
  * All information about a specific breakpoint. The user of this interface can merely read the information,
  * as this interface only provides getters.
  */
-public interface BreakPointStatus extends BreakPointCreate {
+public interface BreakPointStatus extends BreakPointCreationInformation {
 
   /**
    * Gets the breakpoint's unique identifier.
@@ -47,8 +47,6 @@ public interface BreakPointStatus extends BreakPointCreate {
 
   /**
    * Additional information about the Breakpoint for user.
-   * 
-   * @return
    */
   public String getDetails ();
 
