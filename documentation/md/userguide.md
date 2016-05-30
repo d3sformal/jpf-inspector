@@ -182,6 +182,7 @@ where `0` is thread index and `main` is the thread's name. The call stack of the
 
 Output of the `print #thread[0].#stackFrame[0]` (or the `print` command without any parameters or `print #heap[315]`) looks like this:
 
+
 ```
 ?:>print
 cmd:> print
