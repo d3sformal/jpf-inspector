@@ -19,7 +19,6 @@
 
 package gov.nasa.jpf.inspector.utils;
 
-import gov.nasa.jpf.inspector.migration.MigrationUtilities;
 import gov.nasa.jpf.vm.ClassInfo;
 import gov.nasa.jpf.vm.ClassLoaderInfo;
 import gov.nasa.jpf.vm.FieldInfo;
@@ -73,7 +72,8 @@ public class ClassInfoCache {
    * @return I suppose that a representation of the given system type.
    */
   private static ClassInfo upgradedGetResolvedClassInfo(String type) {
-    // TODO This possibly does not work. It's just my guess as to what new thing replaces the old one.
+    // Vetted by the mentor and should work.
+    // TODO If no errors manifest by end of June, inline this.
     return ClassLoaderInfo.getSystemResolvedClassInfo(type);
   }
 
