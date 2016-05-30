@@ -119,8 +119,7 @@ public class InspectorListenerModeNotifications extends ListenerAdapter {
   @Override
   public void classLoaded(VM vm, ClassInfo loadedClass) {
     if (DEBUG) {
-      // Previously, it was this.getClass().getSimpleName()
-      inspector.getDebugPrintStream().println(loadedClass.getSimpleName() + ".classLoaded()");
+      inspector.getDebugPrintStream().println(this.getClass().getSimpleName() + ".classLoaded()");
     }
   }
 
