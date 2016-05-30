@@ -36,19 +36,20 @@ import gov.nasa.jpf.vm.Instruction;
  */
 public class StopHolder {
 
-  // private final WaitingJPFStopNotificationThread stoppedNotifyThread; /// Notifies that JPF is stopped
-
-  private InspectorState inspState; // / State of the stopped JVM
-
+  /**
+   * State of the stopped JVM.
+   */
+  private InspectorState inspState;
+  /**
+   * Inspector server.
+   */
   private final JPFInspector inspector;
   private final InspectorCallBacks callbacks;
 
   private boolean terminating = false;
   private boolean terminatingClientNotified = false;
-
   private boolean stopped = false;
-
-  private boolean condTerminateAfterResunme;
+  private boolean condTerminateAfterResume = false;
 
   public StopHolder (JPFInspector inspector, InspectorCallBacks callbacks) {
     this.inspector = inspector;
@@ -59,13 +60,13 @@ public class StopHolder {
    * 
    * Note: To prevent deadlocks cannot hold any lock if this methods is called.
    * 
-   * @param inspState Current state of the JVM and Inspector. Cann't be null.
-   * TODO this parameter no longer exists: _param silent Specify whether notify client about stopping or process silently.
+   * @param inspState Current state of the JVM and Inspector. Can't be null.
    */
   public void stopExecution (InspectorState inspState) {
     assert inspState != null;
 
     boolean terminate; // Local synchronized version of this.terminating variable
+    // TODO (globally): make a map of threads and figure out how multithreading the Inspector works. Make a model, maybe :).
     synchronized (this) {
       terminate = terminating; // Use single value even if we leave synchronized block
 
@@ -88,7 +89,7 @@ public class StopHolder {
       } catch (InterruptedException e) {
         stopped = false;
       }
-    } // End of synchronized bloc
+    } // End of synchronized block
 
     // Cannot be in synchronized block when send and callback
     if (terminate) {
@@ -186,15 +187,15 @@ public class StopHolder {
    * <p>Note: If more such "hook are required use Command pattern"
    */
   public void terminateAfterResume () {
-    condTerminateAfterResunme = true;
+    condTerminateAfterResume = true;
   }
 
   /**
    * Check if terminate the search if forward step is planned.
    */
   private void checkConditionTerminateAfterResume () {
-    if (condTerminateAfterResunme) {
-      condTerminateAfterResunme = false;
+    if (condTerminateAfterResume) {
+      condTerminateAfterResume = false;
 
       // Check which step is planned after the resume
       InspectorListener listener = inspector.getInspectorListener();

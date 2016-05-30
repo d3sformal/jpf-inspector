@@ -147,7 +147,8 @@ public abstract class JPFInspector implements JPFInspectorBackEndInterface {
     jpf.getVM().recordSteps(true);
     Config jpfCfg = jpf.getConfig();
 
-    // TODO - Temporarily commend - until changes will be propagated to the main trunk
+    // TODO - Temporarily comment - until changes will be propagated to the main trunk
+    // TODO This may actually explain some things. Have a look at this later.
     // boolean originalSearchMultipleErrors = jpfCfg.getBoolean(Search.SEARCH_MULTIPLE_ERRORS);
     // jpfCfg.setProperty(Search.SEARCH_MULTIPLE_ERRORS, Config.TRUE);
     boolean originalSearchMultipleErrors = jpfCfg.getBoolean("search.multiple_errors");
@@ -168,14 +169,13 @@ public abstract class JPFInspector implements JPFInspectorBackEndInterface {
     Search search = jpf.getSearch();
     if (!(search instanceof SearchInspectorExtension)) {
       // There is no way how to swap search objects
-      getCallBack().genericInfo("Unsupported search class (not all features will be available) - Use DFSearchInspector");
+      getCallBack().genericInfo("Unsupported search class (not all features will be available).\nUse 'gov.nasa.jpf.inspector.server.jpf.DFSearchInspector' or have your class implement the 'gov.nasa.jpf.inspector.server.jpf.SearchInspectorExtension' interface.");
     } else {
       final SearchInspectorExtension searchInspector = (SearchInspectorExtension) search;
       searchInspector.setInspector(this);
     }
 
     // Notify all managers that there is new JPF instance (to be able to update its states)
-    // TODO
     cmdMgr.newJPF();
     stopHolder.newJPF();
     breakpointMgr.newJPF();

@@ -47,8 +47,17 @@ import gov.nasa.jpf.search.Search;
  */
 public class CommandsManager implements CommandsInterface {
 
-  private boolean run = true; // / Values specify whether the inspector should run and continue execution of stop on next step (because of user command (not
-                              // breakpoint))
+  /**
+   *  If true, then the inspector should run and continue execution.
+   *  If false, it should stop on next step because of a user command (not breakpoint).
+   *  Calling "break" is the primary way to set this variable to false.
+   *
+   *  Note: The Inspector thread sets this variable, the JPF thread reads this variable. It's not really thread-safe,
+   *  but we only use it to break a running program and don't care about a few instructions here or there and also the
+   *  user is unlikely to type commands quickly enough for it to be a problem.
+   */
+  private boolean run = true;
+
   private final JPFInspector inspector;
   private final StopHolder stopHolder;
   private final InspectorCallBacks callbacks;
@@ -68,7 +77,7 @@ public class CommandsManager implements CommandsInterface {
   @Override
   public synchronized void start () throws JPFInspectorGenericErrorException {
     if (inspector.getJPF() == null) {
-      throw new JPFInspectorGenericErrorException("No instance to start");
+      throw new JPFInspectorGenericErrorException("No JPF instance to start");
     }
     run = true;
     stopHolder.resumeExecution();
@@ -91,7 +100,7 @@ public class CommandsManager implements CommandsInterface {
   }
 
   /**
-   * Reinitializion. Reset instance into startup state.
+   * Reinitialization. Reset instance into startup state.
    */
   public void newJPF () {
     run = true;

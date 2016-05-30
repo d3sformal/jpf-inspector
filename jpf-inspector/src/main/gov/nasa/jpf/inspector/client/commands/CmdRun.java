@@ -51,6 +51,7 @@ public class CmdRun extends ClientCommand {
   @Override
   public void executeCommands (JPFInspectorClient client, JPFInspectorBackEndInterface inspector, final PrintStream outStream) {
     if (type == CmdRunTypes.RUN) {
+      // TODO this will need to be changed for command line execution because we won't be able to use ShellManager there
       final ShellManager shellMgr = ShellManager.getManager();
       // Check whether JPF is running or not (if not we start them)
       final List<VerifyCommand> vcList = shellMgr.getCommands(VerifyCommand.class);
@@ -62,8 +63,6 @@ public class CmdRun extends ClientCommand {
         // Executes the JPF in the separate thread
         new Thread(() -> {
           try {
-            // TODO this will need to be changed for command line execution
-            // Because we won't be able to use ShellManager there
             ShellManager.getManager().fireCommand(vc);
           } catch (Throwable t) {
             outStream.println("Exception while starting/resuming JPF.");

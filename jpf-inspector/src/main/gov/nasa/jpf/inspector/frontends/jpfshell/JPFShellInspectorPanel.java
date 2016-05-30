@@ -105,6 +105,8 @@ public class JPFShellInspectorPanel extends ShellPanel implements VerifyCommandL
     add(terminal.getScrollPanel());
 
     // TODO document that multiple calls to consolePrintStream.println will fail because of how text is appended/inserted in TextComponentFeeder::getPositionBeforePrompt.
+    // TODO Alternatively, make the output stream work better so that it does not insert before prompt, but prompt is just intelligently
+    // displayed after
     startingInfoStream.println("This is the JPF Inspector console for debugging the target \"" + target + "\".");
     startingInfoStream.println("Type \"hello\" to test if the Inspector is working or \"help\" to get a list of commands.");
     startingInfoStream.println();
