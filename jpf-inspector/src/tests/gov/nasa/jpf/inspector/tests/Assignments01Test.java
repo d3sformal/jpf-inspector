@@ -265,7 +265,7 @@ public class Assignments01Test extends InspectorTest {
     public void driveInspector () throws JPFInspectorException {
       System.out.println("InspectorDriver");
 
-      CmdBreakpointCreate.ConsoleBreakpointCreate bpC = Breakpoint.getBreakpoint();
+      CmdBreakpointCreate.ConsoleBreakpointCreationExpression bpC = Breakpoint.getBreakpoint();
       System.out.println("\tCreating breakpoint " + bpC);
       System.out.println("\tinspector.createBreakPoint(bpC) ... " + inspector.createBreakPoint(bpC));
 

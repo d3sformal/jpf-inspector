@@ -28,7 +28,7 @@ import gov.nasa.jpf.inspector.interfaces.InspectorCallBacks.CB_METHODS;
 import gov.nasa.jpf.inspector.client.*;
 import gov.nasa.jpf.inspector.client.commands.*;
 import gov.nasa.jpf.inspector.client.commands.CmdRun.CmdRunTypes;
-import gov.nasa.jpf.inspector.client.commands.CmdBreakpointCreate.ConsoleBreakpointCreate;
+import gov.nasa.jpf.inspector.client.commands.CmdBreakpointCreate.ConsoleBreakpointCreationExpression;
 import gov.nasa.jpf.inspector.interfaces.CommandsInterface.StepType;
 import gov.nasa.jpf.inspector.utils.parser.RecognitionRuntimeException;
 }
@@ -132,10 +132,10 @@ clientCommands1 returns [ClientCommand value]
 cmdBreakpoints returns [ClientCommand value]
     : TOKEN_SHOW   WS? TOKEN_BREAKPOINT             { $value = new CmdBreakpointShow(); }
     | TOKEN_DELETE WS? TOKEN_BREAKPOINT WS? INT     { $value = new CmdBreakpointDelete($INT.text); }
-    | TOKEN_CREATE WS? TOKEN_BREAKPOINT             { ConsoleBreakpointCreate  bpCreate = new ConsoleBreakpointCreate(); } ( WS? cmdCreateBP[bpCreate])* WS bpExpression { bpCreate.setBPExpression($bpExpression.expr); $value = new CmdBreakpointCreate(bpCreate); }
+    | TOKEN_CREATE WS? TOKEN_BREAKPOINT             { ConsoleBreakpointCreationExpression  bpCreate = new ConsoleBreakpointCreationExpression(); } ( WS? cmdCreateBP[bpCreate])* WS bpExpression { bpCreate.setBPExpression($bpExpression.expr); $value = new CmdBreakpointCreate(bpCreate); }
     ;
 
-cmdCreateBP [ConsoleBreakpointCreate bpCreate]
+cmdCreateBP [ConsoleBreakpointCreationExpression bpCreate]
     : TOKEN_NAME  WS? SIGN_EQUAL WS? anyWord { $bpCreate.setName($anyWord.text); }
     | TOKEN_STATE WS? SIGN_EQUAL WS? cmdBreakpointsStates { $bpCreate.setState($cmdBreakpointsStates.bpState); }
     | (lower=intValue  WS? signLess=LESS WS?)? TOKEN_HIT_COUNT (WS? signHigh=LESS WS? upper=intValue)?

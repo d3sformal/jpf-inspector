@@ -21,6 +21,7 @@ package gov.nasa.jpf.inspector.client.commands;
 
 import gov.nasa.jpf.inspector.client.ClientCommand;
 import gov.nasa.jpf.inspector.client.JPFInspectorClient;
+import gov.nasa.jpf.inspector.common.ConsoleInformation;
 import gov.nasa.jpf.inspector.interfaces.BreakPointCreationInformation;
 import gov.nasa.jpf.inspector.interfaces.BreakPointStates;
 import gov.nasa.jpf.inspector.interfaces.BreakPointStatus;
@@ -31,15 +32,17 @@ import gov.nasa.jpf.inspector.exceptions.JPFInspectorParsingErrorException;
 import java.io.PrintStream;
 
 /**
- * Handles create breakpoint command
+ * Represents the "create breakpoint" command that creates a new breakpoint.
  */
 public class CmdBreakpointCreate extends ClientCommand {
 
-  private final ConsoleBreakpointCreate creator;
+  // TODO (elsewhere): The gramamr for this command is kinda fishy. Test if it's really okay.
+
+  private final ConsoleBreakpointCreationExpression creationExpression;
   private BreakPointStatus createdBP;
 
-  public CmdBreakpointCreate (ConsoleBreakpointCreate creator) {
-    this.creator = creator;
+  public CmdBreakpointCreate (ConsoleBreakpointCreationExpression creationExpression) {
+    this.creationExpression = creationExpression;
     createdBP = null;
   }
 
@@ -47,9 +50,9 @@ public class CmdBreakpointCreate extends ClientCommand {
   public void executeCommands (JPFInspectorClient client, JPFInspectorBackEndInterface inspector, PrintStream outStream) {
     createdBP = null;
     try {
-      createdBP = inspector.createBreakPoint(creator);
+      createdBP = inspector.createBreakPoint(creationExpression);
       if (createdBP != null) {
-        outStream.println("New breakpoint succesfully created with ID=" + createdBP.getBPID());
+        outStream.println("New breakpoint successfully created with ID " + createdBP.getBPID() + ".");
       }
 
       if (rec != null) {
@@ -57,11 +60,8 @@ public class CmdBreakpointCreate extends ClientCommand {
       }
 
     } catch (JPFInspectorParsingErrorException e) {
-
       outStream.println(e.getMessage());
-      // TODO - Extend/replace outStream to be able to report line length - not use magic constant 50
-      outStream.println(e.expressError(50));
-
+      outStream.println(e.expressError(ConsoleInformation.MAX_ERROR_LINE_LENGTH));
       client.recordComment(e.getMessage());
       client.recordComment(e.expressError(JPFInspectorParsingErrorException.DEFAULT_LINE_LENGTH));
     } catch (JPFInspectorGenericErrorException e) {
@@ -72,9 +72,10 @@ public class CmdBreakpointCreate extends ClientCommand {
   }
 
   /**
-   * Holds parameters defined by user in the create breakpoint command.
+   * Represents the "create breakpoint" command arguments.
+   * This class is instantiated in the ANTLR console grammar: take care when refactoring.
    */
-  public static class ConsoleBreakpointCreate implements BreakPointCreationInformation {
+  public static class ConsoleBreakpointCreationExpression implements BreakPointCreationInformation {
 
     private static final long serialVersionUID = -2742213729061140415L;
 
@@ -87,7 +88,7 @@ public class CmdBreakpointCreate extends ClientCommand {
     private Integer lowerBound = null;
     private Integer upperBound = null;
 
-    public ConsoleBreakpointCreate () {
+    public ConsoleBreakpointCreationExpression() {
     }
 
     @Override
@@ -231,9 +232,9 @@ public class CmdBreakpointCreate extends ClientCommand {
   @Override
   public String getNormalizedCommand () {
     if (createdBP == null) {
-      return ConsoleBreakpointCreate.getNormalizedExpressionPrefix(creator) + ' ' + creator.getBPExpression();
+      return ConsoleBreakpointCreationExpression.getNormalizedExpressionPrefix(creationExpression) + ' ' + creationExpression.getBPExpression();
     } else {
-      return ConsoleBreakpointCreate.getNormalizedExpressionPrefix(creator) + ' ' + createdBP.getNormalizedBreakpointExpression();
+      return ConsoleBreakpointCreationExpression.getNormalizedExpressionPrefix(creationExpression) + ' ' + createdBP.getNormalizedBreakpointExpression();
     }
   }
 

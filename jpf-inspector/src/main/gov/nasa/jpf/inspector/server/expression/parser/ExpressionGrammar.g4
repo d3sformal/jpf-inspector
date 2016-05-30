@@ -155,11 +155,11 @@ cmdBreakpointsCreateParams [ExpressionFactory expFactory] returns [ExpressionBoo
     ;
 
 cmdBreakpointsCreateParams1 [ExpressionFactory expFactory] returns [ExpressionBoolean bp]
-    : a=cmdBreakpoinstCreateParamsAtomNotTerminateIDF[expFactory] {$bp = $a.bp; }
+    : a=cmdBreakpointsCreateParamsAtomNotTerminateIDF[expFactory] {$bp = $a.bp; }
            ( (TOKEN_AND b=cmdBreakpointsCreateParams1[expFactory] { $bp = expFactory.getBreakpointOperatorAnd($a.bp, $b.bp); } ) |
              (TOKEN_OR  b=cmdBreakpointsCreateParams1[expFactory] { $bp = expFactory.getBreakpointOperatorOr ($a.bp, $b.bp); } )
            )?
-    | a2=cmdBreakpoinstCreateParamsAtomTerminateIDF[expFactory] {$bp = $a2.bp; }
+    | a2=cmdBreakpointsCreateParamsAtomTerminateIDF[expFactory] {$bp = $a2.bp; }
            ( (WS TOKEN_AND b2=cmdBreakpointsCreateParams1[expFactory] { $bp = expFactory.getBreakpointOperatorAnd($a2.bp, $b2.bp); } ) |
              (WS TOKEN_OR  b2=cmdBreakpointsCreateParams1[expFactory] { $bp = expFactory.getBreakpointOperatorOr ($a2.bp, $b2.bp); } )
            )?
@@ -167,11 +167,11 @@ cmdBreakpointsCreateParams1 [ExpressionFactory expFactory] returns [ExpressionBo
 
 
 cmdBreakpointsCreateParamsAtom [ExpressionFactory expFactory] returns [ExpressionBoolean bp]
-    : a=cmdBreakpoinstCreateParamsAtomNotTerminateIDF[expFactory]                                       { $bp = $a.bp; } EOF
-    | b=cmdBreakpoinstCreateParamsAtomTerminateIDF[expFactory]                                          { $bp = $b.bp; } EOF
+    : a=cmdBreakpointsCreateParamsAtomNotTerminateIDF[expFactory]                                       { $bp = $a.bp; } EOF
+    | b=cmdBreakpointsCreateParamsAtomTerminateIDF[expFactory]                                          { $bp = $b.bp; } EOF
     ;
 
-cmdBreakpoinstCreateParamsAtomNotTerminateIDF [ExpressionFactory expFactory] returns [ExpressionBoolean bp]
+cmdBreakpointsCreateParamsAtomNotTerminateIDF [ExpressionFactory expFactory] returns [ExpressionBoolean bp]
     : WS? TOKEN_GARBAGE_COLLECTION   WS? '=' WS? cmdGarbageCollectionSpec WS?                             { $bp = expFactory.getBreakpointGarbageCollection($cmdGarbageCollectionSpec.bpMode); }
     | WS? TOKEN_CHOICE_GENERATOR     WS? '=' WS? cmdChoiceGeneratorType WS?                               { $bp = expFactory.getBreakpointChoiceGenerator($cmdChoiceGeneratorType.bpMode); }
     | WS? TOKEN_INSTRUCTION_TYPE     WS? '=' WS? cmdInstructionTypes WS?                                  { $bp = expFactory.getBreakpointInstructionType($cmdInstructionTypes.instructionType); }
@@ -188,13 +188,19 @@ cmdBreakpoinstCreateParamsAtomNotTerminateIDF [ExpressionFactory expFactory] ret
     | WS? TOKEN_ASSERT               WS? '(' fileName WS? ':' WS? intValue WS? ')' WS? '(' cmdBreakpointsCreateParams1[expFactory] ')'                                                                                                           { $bp = expFactory.getBreakpointAssert(expFactory.getExpBreakpointPosition($fileName.text, $intValue.value), $cmdBreakpointsCreateParams1.bp); }
     ;
 
-cmdBreakpoinstCreateParamsAtomTerminateIDF [ExpressionFactory expFactory] returns [ExpressionBoolean bp]
-    : WS? fieldAccess              WS? '=' WS? className WS? ':' WS? fieldName[$className.cn] WS?       { $bp = expFactory.getBreakpointFieldAccess($fieldAccess.bpMode, $fieldName.fn); }
-    | WS? TOKEN_METHOD_INVOKE      WS? '=' WS? className WS? ':' WS? methodName[$className.cn] WS?      { $bp = expFactory.getBreakpointMethodInvoke(BreakPointModes.BP_MODE_METHOD_INVOKE, $methodName.mn); }
-    | WS? TOKEN_OBJECT_CREATED     WS? '=' WS? className WS?                                            { $bp = expFactory.getBreakpointObjectCreated($className.cn); }
-    | WS? TOKEN_OBJECT_RELEASED    WS? '=' WS? className WS?                                            { $bp = expFactory.getBreakpointObjectReleased($className.cn); }
-    | WS? TOKEN_EXCEPTION_THROWN   WS? '=' WS? className WS?                                            { $bp = expFactory.getBreakpointExpecptionThrown($className.cn); }
-    | l=cmdStateExpression1Value[expFactory]  relOp[expFactory] r=cmdStateExpression1Value[expFactory]  { $bp = expFactory.getBreakpointCompare($l.expr, $relOp.relop, $r.expr); }
+cmdBreakpointsCreateParamsAtomTerminateIDF [ExpressionFactory expFactory] returns [ExpressionBoolean bp]
+    : WS? fieldAccess              WS? '=' WS? className WS? ':' WS? fieldName[$className.cn] WS?
+    { $bp = expFactory.getBreakpointFieldAccess($fieldAccess.bpMode, $fieldName.fn); }
+    | WS? TOKEN_METHOD_INVOKE      WS? '=' WS? className WS? ':' WS? methodName[$className.cn] WS?
+    { $bp = expFactory.getBreakpointMethodInvoke(BreakPointModes.BP_MODE_METHOD_INVOKE, $methodName.mn); }
+    | WS? TOKEN_OBJECT_CREATED     WS? '=' WS? className WS?
+    { $bp = expFactory.getBreakpointObjectCreated($className.cn); }
+    | WS? TOKEN_OBJECT_RELEASED    WS? '=' WS? className WS?
+    { $bp = expFactory.getBreakpointObjectReleased($className.cn); }
+    | WS? TOKEN_EXCEPTION_THROWN   WS? '=' WS? className WS?
+    { $bp = expFactory.getBreakpointExpecptionThrown($className.cn); }
+    | l=cmdStateExpression1Value[expFactory]  relOp[expFactory] r=cmdStateExpression1Value[expFactory]
+    { $bp = expFactory.getBreakpointCompare($l.expr, $relOp.relop, $r.expr); }
     ;
 
 allKeyWords returns [String text]

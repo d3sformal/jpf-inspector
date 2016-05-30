@@ -35,7 +35,7 @@ public class BackwardBreakpointCreator {
    */
   public int createBreakpoint (BreakPointHandler breakpointMgr) {
     // TODO Create inspector.server class copy ... don't use inspector.client package version !!
-    CmdBreakpointCreate.ConsoleBreakpointCreate newBP = new CmdBreakpointCreate.ConsoleBreakpointCreate();
+    CmdBreakpointCreate.ConsoleBreakpointCreationExpression newBP = new CmdBreakpointCreate.ConsoleBreakpointCreationExpression();
     newBP.setBounds(1, 1);
     newBP.setState(BreakPointStates.BP_STATE_ENABLED);
 

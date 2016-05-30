@@ -21,7 +21,7 @@ package gov.nasa.jpf.inspector.client.commands;
 
 import gov.nasa.jpf.inspector.client.ClientCommand;
 import gov.nasa.jpf.inspector.client.JPFInspectorClient;
-import gov.nasa.jpf.inspector.client.commands.CmdBreakpointCreate.ConsoleBreakpointCreate;
+import gov.nasa.jpf.inspector.client.commands.CmdBreakpointCreate.ConsoleBreakpointCreationExpression;
 import gov.nasa.jpf.inspector.interfaces.AssertCreate;
 import gov.nasa.jpf.inspector.interfaces.AssertStatus;
 import gov.nasa.jpf.inspector.interfaces.JPFInspectorBackEndInterface;
@@ -89,7 +89,7 @@ public class CmdAssertionsBreakpoint extends ClientCommand {
     }
   }
 
-  static public class ConsoleAssertionCreator extends ConsoleBreakpointCreate implements AssertCreate {
+  static public class ConsoleAssertionCreator extends ConsoleBreakpointCreationExpression implements AssertCreate {
 
     private static final long serialVersionUID = -7840321111358650898L;
 

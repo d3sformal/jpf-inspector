@@ -88,7 +88,7 @@ public class DefaultTraceTest extends InspectorTest {
      */
     private void initializePath () throws JPFInspectorException {
       // Breakpoint which breaks after i3 at breakMe
-      CmdBreakpointCreate.ConsoleBreakpointCreate bpC = Breakpoint.getBreakpoint();
+      CmdBreakpointCreate.ConsoleBreakpointCreationExpression bpC = Breakpoint.getBreakpoint();
       bpC.setBounds(3, BreakPointStatus.DEFAULT_UPPER_BOUND); // Break after i3
       System.out.println("\tCreating breakpoint " + bpC);
       try {

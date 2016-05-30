@@ -14,8 +14,8 @@ public class Breakpoint {
     System.out.println("Break me");
   }
 
-  public static CmdBreakpointCreate.ConsoleBreakpointCreate getBreakpoint () {
-    CmdBreakpointCreate.ConsoleBreakpointCreate result = new CmdBreakpointCreate.ConsoleBreakpointCreate();
+  public static CmdBreakpointCreate.ConsoleBreakpointCreationExpression getBreakpoint () {
+    CmdBreakpointCreate.ConsoleBreakpointCreationExpression result = new CmdBreakpointCreate.ConsoleBreakpointCreationExpression();
     result.setName(Breakpoint.class.getSimpleName() + ".breakMe:" + BREAKME_LINE);
     result.setState(BreakPointStates.BP_STATE_ENABLED);
     result.setBounds(BreakPointCreationInformation.DEFAULT_LOWER_BOUND, BreakPointCreationInformation.DEFAULT_UPPER_BOUND);

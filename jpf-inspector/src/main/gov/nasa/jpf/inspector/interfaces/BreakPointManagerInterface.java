@@ -24,12 +24,15 @@ import gov.nasa.jpf.inspector.exceptions.JPFInspectorParsingErrorException;
 
 import java.util.List;
 
+/**
+ * Server-side component that handles breakpoint management.
+ */
 public interface BreakPointManagerInterface {
 
   /**
    * @return Gets list with currently existing Breakpoints. Never gets null, if no breakpoint exists, then empty list is returned.
    */
-  public List<BreakPointStatus> getBreakPoints ();
+  List<BreakPointStatus> getBreakPoints();
 
   /**
    * Creates new (if breakpoint ID is set {@link BreakPointCreationInformation#BP_ID_NOT_DEFINED} or modifies existing breakpoint ( with same breakpoint ID)
@@ -37,7 +40,7 @@ public interface BreakPointManagerInterface {
    * @param newBP Structure with new information about new BP.
    * @return Get informations about state of the created/modified breakpoint or null if error takes place.
    */
-  public BreakPointStatus createBreakPoint (BreakPointCreationInformation newBP) throws JPFInspectorParsingErrorException, JPFInspectorGenericErrorException;
+  BreakPointStatus createBreakPoint(BreakPointCreationInformation newBP) throws JPFInspectorParsingErrorException, JPFInspectorGenericErrorException;
 
   /**
    * Creates new assertion (if breakpoint ID is set {@link BreakPointCreationInformation#BP_ID_NOT_DEFINED} or modifies existing assertion ( with same ID)
@@ -45,7 +48,7 @@ public interface BreakPointManagerInterface {
    * @param newAssert Structure with new information about new Assert.
    * @return Get informations about state of the created/modified assertion or null if error takes place.
    */
-  public AssertStatus createAssert (AssertCreate newAssert) throws JPFInspectorParsingErrorException, JPFInspectorGenericErrorException;
+  AssertStatus createAssert(AssertCreate newAssert) throws JPFInspectorParsingErrorException, JPFInspectorGenericErrorException;
 
   /**
    * Deletes the breakpoint with specified ID.
@@ -53,6 +56,6 @@ public interface BreakPointManagerInterface {
    * @param bpID Identification of the Breakpoint to delete
    * @return true if Breakpoint with given bpID exists, false if BP not found.
    */
-  public boolean deleteBreakPoint (int bpID);
+  boolean deleteBreakPoint(int bpID);
 
 }

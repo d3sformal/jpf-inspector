@@ -24,6 +24,9 @@ import gov.nasa.jpf.inspector.server.expression.ExpressionBoolean;
 import gov.nasa.jpf.inspector.server.expression.ExpressionBooleanBinaryOperator;
 import gov.nasa.jpf.inspector.server.expression.InspectorState;
 
+/**
+ * Represents the breakpoint expression "(hit condition 1) and (hit condition 2)".
+ */
 public class ExpressionBreakpointOperatorAnd extends ExpressionBooleanBinaryOperator {
 
   public ExpressionBreakpointOperatorAnd (ExpressionBoolean left, ExpressionBoolean right) {
@@ -36,10 +39,7 @@ public class ExpressionBreakpointOperatorAnd extends ExpressionBooleanBinaryOper
     assert children.size() == 2;
     assert children.get(0) != null && children.get(1) != null;
 
-    if (!children.get(0).evaluateExpression(state)) {
-      return false;
-    }
-    return children.get(1).evaluateExpression(state);
+    return children.get(0).evaluateExpression(state) && children.get(1).evaluateExpression(state);
   }
 
   @Override
@@ -71,14 +71,13 @@ public class ExpressionBreakpointOperatorAnd extends ExpressionBooleanBinaryOper
 
   @Override
   public String getNormalizedExpression () {
-    StringBuffer sb = new StringBuffer();
-    sb.append("( ");
-    sb.append(children.get(0).getNormalizedExpression());
-    sb.append(" ) and ( ");
-    sb.append(children.get(1).getNormalizedExpression());
-    sb.append(" )");
+    String sb = "( " +
+            children.get(0).getNormalizedExpression() +
+            " ) and ( " +
+            children.get(1).getNormalizedExpression() +
+            " )";
 
-    return sb.toString();
+    return sb;
   }
 
 }

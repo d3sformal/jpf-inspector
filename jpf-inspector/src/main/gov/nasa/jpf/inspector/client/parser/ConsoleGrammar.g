@@ -28,7 +28,7 @@ import gov.nasa.jpf.inspector.interfaces.InspectorCallBacks.CB_METHODS;
 import gov.nasa.jpf.inspector.client.*;
 import gov.nasa.jpf.inspector.client.commands.*;
 import gov.nasa.jpf.inspector.client.commands.CmdRun.CmdRunTypes;
-import gov.nasa.jpf.inspector.client.commands.CmdBreakpointCreate.ConsoleBreakpointCreate;
+import gov.nasa.jpf.inspector.client.commands.CmdBreakpointCreate.ConsoleBreakpointCreationExpression;
 import gov.nasa.jpf.inspector.interfaces.CommandsInterface.StepType;
 import gov.nasa.jpf.inspector.utils.parser.RecognitionRuntimeException;
 }

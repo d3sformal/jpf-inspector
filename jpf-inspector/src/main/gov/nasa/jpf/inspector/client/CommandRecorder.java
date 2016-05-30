@@ -70,7 +70,7 @@ public class CommandRecorder {
     // Dumping existing breakpoints
     List<BreakPointStatus> bps = inspector.getBreakPoints();
     for (BreakPointStatus bp : bps) {
-      String bpStrCommand = CmdBreakpointCreate.ConsoleBreakpointCreate.getNormalizedExpressionPrefix(bp) + ' ' + bp.getNormalizedBreakpointExpression();
+      String bpStrCommand = CmdBreakpointCreate.ConsoleBreakpointCreationExpression.getNormalizedExpressionPrefix(bp) + ' ' + bp.getNormalizedBreakpointExpression();
       addComment(bpStrCommand);
     }
   }
