@@ -51,9 +51,6 @@
   <!-- generic classpath settings -->
   <path id="lib.path">
 
-    <pathelement location="C:/junit/junit.jar" />
-    <pathelement location="C:/junit/hamcrest-all-1.3.jar" />
-
     <!-- our own classes and libs come first -->
     <pathelement location="build/main"/>
     <!-- we don't have these
