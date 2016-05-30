@@ -9,10 +9,10 @@ import gov.nasa.jpf.vm.VM;
 import gov.nasa.jpf.vm.MethodInfo;
 import gov.nasa.jpf.vm.Step;
 import gov.nasa.jpf.vm.ThreadInfo;
-//HUDECEK: import gov.nasa.jpf.jvm.bytecode.FieldInstruction;
-//HUDECEK: import gov.nasa.jpf.jvm.bytecode.InstanceFieldInstruction;
+import gov.nasa.jpf.vm.bytecode.FieldInstruction;
+import gov.nasa.jpf.vm.bytecode.InstanceFieldInstruction;
 import gov.nasa.jpf.vm.Instruction;
-//HUDECEK: import gov.nasa.jpf.jvm.bytecode.InvokeInstruction;
+import gov.nasa.jpf.vm.bytecode.InvokeInstruction;
 import gov.nasa.jpf.jvm.bytecode.LockInstruction;
 import gov.nasa.jpf.search.Search;
 import gov.nasa.jpf.shell.ShellManager;
@@ -177,7 +177,6 @@ public class SearchGraphTracker extends ListenerAdapter{
     currentEdge.appendInstructionText(insnOwner,"] ");
     currentEdge.appendInstructionText(insnOwner,insn.toString());
 
-      /* HUDECEK:
     // annotate (some of) the bytecode insns with their arguments
     if (insn instanceof InvokeInstruction) {
       MethodInfo callee = ((InvokeInstruction)insn).getInvokedMethod();
@@ -200,7 +199,7 @@ public class SearchGraphTracker extends ListenerAdapter{
       currentEdge.appendInstructionText(srcOwner, linePrefix);
       currentEdge.appendInstructionText(srcOwner, lockObjectDescr);
     }
-      */
+
     currentEdge.appendInstructionText(insnOwner, "\n");
   }
 
