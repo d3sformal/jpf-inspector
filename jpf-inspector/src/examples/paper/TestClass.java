@@ -18,7 +18,7 @@
 //
 package paper;
 
-import gov.nasa.jpf.jvm.Verify;
+import gov.nasa.jpf.vm.Verify;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -202,7 +202,7 @@ final class FileLoader extends Thread {
           int readed = 0;
           byte[] buf = new byte[len];
           InputStream fis = new FileInputStream(file);
-          Verify.breakTransition();
+          Verify.breakTransition("In JPF8, a reason is required.");
           while (readed < len) {
             int lastRead = fis.read(buf, readed, len - readed);
             if (lastRead == -1) {

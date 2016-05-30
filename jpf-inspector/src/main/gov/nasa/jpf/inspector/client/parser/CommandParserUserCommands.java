@@ -20,10 +20,12 @@
 package gov.nasa.jpf.inspector.client.parser;
 
 import gov.nasa.jpf.inspector.client.ClientCommandInterface;
-import gov.nasa.jpf.inspector.interfaces.exceptions.JPFInspectorParsingErrorException;
+import gov.nasa.jpf.inspector.common.AntlrParseException;
+import gov.nasa.jpf.inspector.exceptions.JPFInspectorParsingErrorException;
 import gov.nasa.jpf.inspector.utils.parser.RecognitionRuntimeException;
 
 import org.antlr.runtime.RecognitionException;
+import org.antlr.v4.runtime.misc.ParseCancellationException;
 
 /**
  * @author Alf
@@ -50,11 +52,15 @@ public class CommandParserUserCommands extends CommandParser {
 
     try {
       ConsoleGrammarParser parser = getParser(cmd);
-      return parser.clientCommands();
+      return parser.clientCommands().value;
     } catch (RecognitionRuntimeException e) {
       throw new JPFInspectorParsingErrorException("Invalid input" + (e.getMessage() != null ? " - " + e.getMessage() : ""), cmd, e.getRecognitionException());
-    } catch (RecognitionException e) {
-      throw new JPFInspectorParsingErrorException("Invalid input" + (e.getMessage() != null ? " - " + e.getMessage() : ""), cmd, e);
+    } catch (AntlrParseException e) {
+      throw new JPFInspectorParsingErrorException(e.getMessage(), cmd, e.getColumn());
+      // TODO this used to be RecognitionException.
+      /*
+      throw new JPFInspectorParsingErrorException("Invalid input" + (e.getMessage() != null ? " - " + e.getMessage() : ""), cmd, e);*/
+     // throw e;
     }
   }
 

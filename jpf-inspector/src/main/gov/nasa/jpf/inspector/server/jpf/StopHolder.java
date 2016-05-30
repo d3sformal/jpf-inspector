@@ -22,6 +22,7 @@ package gov.nasa.jpf.inspector.server.jpf;
 import gov.nasa.jpf.ListenerAdapter;
 import gov.nasa.jpf.inspector.interfaces.CommandsInterface.InspectorStates;
 import gov.nasa.jpf.inspector.interfaces.InspectorCallBacks;
+import gov.nasa.jpf.inspector.migration.MigrationUtilities;
 import gov.nasa.jpf.inspector.server.expression.InspectorState;
 import gov.nasa.jpf.vm.VM;
 import gov.nasa.jpf.vm.Instruction;
@@ -155,7 +156,7 @@ public class StopHolder {
 
     VM vm = inspState.getJVM();
     assert vm != null;
-    Instruction instr = vm.getLastInstruction();
+    Instruction instr = MigrationUtilities.getLastInstruction(vm);
     if (instr == null) {
       return null;
     }

@@ -1,16 +1,10 @@
 package gov.nasa.jpf.inspector.server.pathanalysis;
 
+import gov.nasa.jpf.jvm.bytecode.*;
 import gov.nasa.jpf.vm.Step;
-import gov.nasa.jpf.jvm.bytecode.INVOKECLINIT;
-import gov.nasa.jpf.jvm.bytecode.INVOKEINTERFACE;
-import gov.nasa.jpf.jvm.bytecode.INVOKESPECIAL;
-import gov.nasa.jpf.jvm.bytecode.INVOKESTATIC;
-import gov.nasa.jpf.jvm.bytecode.INVOKEVIRTUAL;
 import gov.nasa.jpf.vm.Instruction;
-import gov.nasa.jpf.jvm.bytecode.InstructionVisitorAdapter;
-import gov.nasa.jpf.jvm.bytecode.InvokeInstruction;
 
-public class CheckCallInstruction extends InstructionVisitorAdapter {
+public class CheckCallInstruction extends JVMInstructionVisitorAdapter {
   private boolean isCallInstr = false;
   
   public boolean isCallStep(Step step) {
@@ -21,7 +15,8 @@ public class CheckCallInstruction extends InstructionVisitorAdapter {
   public boolean isCallInstruction(Instruction inst) {
     assert(inst != null);
     isCallInstr = false;
-    inst.accept(this);
+    assert(inst instanceof JVMInstruction);
+    ((JVMInstruction)inst).accept(this);
     
     return isCallInstr;
   }
@@ -32,7 +27,7 @@ public class CheckCallInstruction extends InstructionVisitorAdapter {
   }
   
   @Override
-  public void visit(InvokeInstruction ins) {
+  public void visit(JVMInvokeInstruction ins) {
     isCallInstr = true;
   }
   

@@ -19,11 +19,12 @@
 
 package gov.nasa.jpf.inspector.server.programstate;
 
-import gov.nasa.jpf.inspector.interfaces.JPFInspectorException;
+import gov.nasa.jpf.inspector.common.pse.ProgramStateEntry;
+import gov.nasa.jpf.inspector.exceptions.JPFInspectorException;
 import gov.nasa.jpf.inspector.server.jpf.JPFInspector;
-import gov.nasa.jpf.inspector.server.programstate.client.PSEHeapEntryList;
-import gov.nasa.jpf.inspector.server.programstate.client.PSEVariable;
-import gov.nasa.jpf.inspector.utils.ClassName;
+import gov.nasa.jpf.inspector.common.pse.PSEHeapEntryList;
+import gov.nasa.jpf.inspector.common.pse.PSEVariable;
+import gov.nasa.jpf.inspector.utils.expressions.ClassName;
 import gov.nasa.jpf.vm.ClassInfo;
 import gov.nasa.jpf.vm.ElementInfo;
 import gov.nasa.jpf.vm.Heap;

@@ -19,6 +19,7 @@
 
 package gov.nasa.jpf.inspector.server.expression;
 
+import gov.nasa.jpf.inspector.migration.MigrationUtilities;
 import gov.nasa.jpf.vm.VM;
 import gov.nasa.jpf.vm.Instruction;
 import gov.nasa.jpf.search.Search;
@@ -62,8 +63,8 @@ public class InspectorStateImpl implements InspectorState {
     this.jvm = newJVM;
 
     lastExecutedInstructions.put(currentThread, currentInstruction);
-    currentInstruction = newJVM.getLastInstruction();
-    currentThread = newJVM.getLastThreadInfo().getId();
+    currentInstruction = MigrationUtilities.getLastInstruction(newJVM);
+    currentThread = MigrationUtilities.getLastThreadInfo(newJVM).getId();
     this.listenerMethod = ListenerMethod.LM_INSTRUCTION_EXECUTED;
 
   }

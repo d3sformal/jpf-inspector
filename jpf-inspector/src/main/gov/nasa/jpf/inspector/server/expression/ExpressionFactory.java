@@ -22,7 +22,7 @@ package gov.nasa.jpf.inspector.server.expression;
 import gov.nasa.jpf.inspector.interfaces.CommandsInterface.StepType;
 import gov.nasa.jpf.inspector.interfaces.InstructionPosition;
 import gov.nasa.jpf.inspector.interfaces.InstructionTypes;
-import gov.nasa.jpf.inspector.interfaces.exceptions.JPFInspectorGenericErrorException;
+import gov.nasa.jpf.inspector.exceptions.JPFInspectorGenericErrorException;
 import gov.nasa.jpf.inspector.server.breakpoints.BreakPointModes;
 import gov.nasa.jpf.inspector.server.breakpoints.InstructionPositionImpl;
 import gov.nasa.jpf.inspector.server.expression.expressions.ExpressionBreakpointAssert;
@@ -69,9 +69,9 @@ import gov.nasa.jpf.inspector.server.expression.expressions.ExpressionStateValue
 import gov.nasa.jpf.inspector.server.jpf.JPFInspector;
 import gov.nasa.jpf.inspector.server.programstate.relop.RelationOperator;
 import gov.nasa.jpf.inspector.server.programstate.relop.RelationOperatorFactory;
-import gov.nasa.jpf.inspector.utils.ClassName;
-import gov.nasa.jpf.inspector.utils.FieldName;
-import gov.nasa.jpf.inspector.utils.MethodName;
+import gov.nasa.jpf.inspector.utils.expressions.ClassName;
+import gov.nasa.jpf.inspector.utils.expressions.FieldName;
+import gov.nasa.jpf.inspector.utils.expressions.MethodName;
 import gov.nasa.jpf.inspector.utils.parser.GenericErrorRuntimeException;
 import gov.nasa.jpf.vm.Instruction;
 

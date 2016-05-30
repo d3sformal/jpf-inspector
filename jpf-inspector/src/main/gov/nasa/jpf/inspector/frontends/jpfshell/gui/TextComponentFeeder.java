@@ -4,7 +4,13 @@ import javax.swing.text.BadLocationException;
 import javax.swing.text.Document;
 import javax.swing.text.JTextComponent;
 
+import gov.nasa.jpf.inspector.utils.Debugging;
+import gov.nasa.jpf.shell.ShellManager;
+import gov.nasa.jpf.util.LogManager;
 import jline.ConsoleOperations;
+
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Adds text into the Editor panel.
@@ -13,15 +19,28 @@ import jline.ConsoleOperations;
  * 
  */
 public class TextComponentFeeder {
+  private static Logger log = Debugging.getLogger(ShellManager.getManager().getConfig());
 
   private int moveCursorLeft = 0;
 
+  public void addTextAtTheVeryEnd(String s, JTextComponent console) {
+    Document doc = console.getDocument();
+    try {
+        doc.insertString(doc.getLength(), s, null);
+    } catch (BadLocationException e) {
+      // Problem with added - ignore this part of the text
+      e.printStackTrace();
+    }
+  }
   /**
    * Adds text into line before the prompt line (the last line)
    * 
    * @param str Text to add
    */
   public synchronized void addUserText (String str, JTextComponent console) {
+    if (log.isLoggable(Level.FINER)) {
+      log.fine("addUserText:" + str);
+    }
     Document doc = console.getDocument();
     try {
       // Before prompt index
@@ -41,19 +60,18 @@ public class TextComponentFeeder {
 
   /**
    * 
-   * @param doc
-   *        Document to analyze.
-   * @return Gets position after the last character before the command prompt line (the last but one line of the document) or end of the document if empty or
-   *         single line document. (no prompt shown)
-   * @throws BadLocationException
+   * @param doc Document to analyze.
+   * @return Gets position after the last character before the command prompt line (the last but one line of the document) or end of the document if empty or single line document. (no prompt shown)
+   * @throws BadLocationException This exception should not be thrown.
    */
-  protected static int getIndexBeforeThePrompt (Document doc) throws BadLocationException {
+  private static int getIndexBeforeThePrompt(Document doc) throws BadLocationException {
     String docText = doc.getText(0, doc.getLength());
     int lastLineStart = docText.lastIndexOf('\n');
     if (lastLineStart == -1) {
-      // New line not found -> append into the end
+      // New line not found - the document is either empty or is single-line.
       lastLineStart = docText.length();
     } else if (lastLineStart > 0) {
+      // The document contains at least one newline.
       // Add just before last new line (new line of the command prompt)
       if (docText.charAt(lastLineStart - 1) == '\r') {
         lastLineStart--;
@@ -67,7 +85,10 @@ public class TextComponentFeeder {
    * 
    * <br>Note: Not intended to be used by users.
    */
-  public synchronized void addPromptText (String response, JTextComponent console) {
+  synchronized void addPromptText(String response, JTextComponent console) {
+    if (log.isLoggable(Level.FINE)) {
+      log.fine("addPromptText:" + response);
+    }
     try {
       Document doc = console.getDocument();
 
@@ -95,7 +116,7 @@ public class TextComponentFeeder {
           moveCursorLeft++;
 
         } else if (c == ConsoleOperations.KEYBOARD_BELL) {
-
+          // Ignore bell.
         } else {
           // Standard character
 
@@ -118,4 +139,6 @@ public class TextComponentFeeder {
       e.printStackTrace();
     }
   }
+
+
 }

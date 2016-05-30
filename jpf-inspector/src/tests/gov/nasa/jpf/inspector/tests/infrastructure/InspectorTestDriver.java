@@ -1,6 +1,6 @@
 package gov.nasa.jpf.inspector.tests.infrastructure;
 
-import gov.nasa.jpf.inspector.interfaces.JPFInspectorException;
+import gov.nasa.jpf.inspector.exceptions.JPFInspectorException;
 import gov.nasa.jpf.inspector.server.jpf.JPFInspector;
 
 abstract public class InspectorTestDriver {

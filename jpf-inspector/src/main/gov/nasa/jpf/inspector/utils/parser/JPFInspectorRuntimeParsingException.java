@@ -19,11 +19,13 @@
 
 package gov.nasa.jpf.inspector.utils.parser;
 
-import gov.nasa.jpf.inspector.interfaces.exceptions.JPFInspectorParsingErrorException;
+import gov.nasa.jpf.inspector.exceptions.JPFInspectorParsingErrorException;
 
 /**
- * @author Alf
- * 
+ * This exception is thrown when the expression parser attempts to parse an int, long, char or string,
+ * but fails because the user's input is incorrect.
+ *
+ * @author Alf *
  */
 public class JPFInspectorRuntimeParsingException extends RuntimeException {
 

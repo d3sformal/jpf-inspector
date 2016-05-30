@@ -19,8 +19,8 @@
 
 package gov.nasa.jpf.inspector.server.expression.expressions;
 
-import gov.nasa.jpf.inspector.interfaces.JPFInspectorException;
-import gov.nasa.jpf.inspector.interfaces.exceptions.JPFInspectorNotStackException;
+import gov.nasa.jpf.inspector.exceptions.JPFInspectorException;
+import gov.nasa.jpf.inspector.exceptions.JPFInspectorNotStackException;
 import gov.nasa.jpf.inspector.server.programstate.StateReadableValueInterface;
 import gov.nasa.jpf.inspector.server.programstate.StateStackFrame;
 import gov.nasa.jpf.inspector.server.programstate.StateValueStackSlot;

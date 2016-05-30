@@ -1,6 +1,6 @@
 package gov.nasa.jpf.inspector.tests.infrastructure;
 
-import gov.nasa.jpf.jvm.MJIEnv;
+import gov.nasa.jpf.vm.MJIEnv;
 
 public class JPF_gov_nasa_jpf_inspector_tests_infrastructure_InspectorTest {
 

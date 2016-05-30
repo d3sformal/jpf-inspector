@@ -7,7 +7,7 @@ import gov.nasa.jpf.inspector.server.breakpoints.DefaultForwardTraceManager;
 import gov.nasa.jpf.inspector.server.choicegenerators.ChoiceGeneratorNotifications;
 import gov.nasa.jpf.inspector.server.expression.InspectorState.ListenerMethod;
 import gov.nasa.jpf.inspector.server.expression.InspectorStateImpl;
-import gov.nasa.jpf.vm.VM;
+import gov.nasa.jpf.vm.*;
 import gov.nasa.jpf.search.Search;
 
 /**
@@ -105,10 +105,11 @@ public class InspectorListenerModeNotifications extends ListenerAdapter {
   }
 
   @Override
-  public void instructionExecuted (VM vm) {
+  public void instructionExecuted(VM vm, ThreadInfo currentThread, Instruction nextInstruction, Instruction executedInstruction) {
+
     if (DEBUG) {
       inspector.getDebugPrintStream().println(
-          this.getClass().getSimpleName() + ".instructionExecuted(lastInstr=" + vm.getLastInstruction() + ", loc=" + vm.getLastInstruction().getFileLocation()
+          this.getClass().getSimpleName() + ".instructionExecuted(lastInstr=" + executedInstruction + ", loc=" + executedInstruction.getFileLocation()
               + ")");
     }
     inspState.instructionExecuted(vm);
@@ -116,9 +117,10 @@ public class InspectorListenerModeNotifications extends ListenerAdapter {
   }
 
   @Override
-  public void classLoaded (VM vm) {
+  public void classLoaded(VM vm, ClassInfo loadedClass) {
     if (DEBUG) {
-      inspector.getDebugPrintStream().println(this.getClass().getSimpleName() + ".classLoaded()");
+      // Previously, it was this.getClass().getSimpleName()
+      inspector.getDebugPrintStream().println(loadedClass.getSimpleName() + ".classLoaded()");
     }
   }
 
@@ -141,7 +143,7 @@ public class InspectorListenerModeNotifications extends ListenerAdapter {
   }
 
   @Override
-  public void objectCreated (VM vm) {
+  public void objectCreated(VM vm, ThreadInfo currentThread, ElementInfo newObject) {
     if (DEBUG) {
       inspector.getDebugPrintStream().println(this.getClass().getSimpleName() + ".objectCreated()");
     }
@@ -150,7 +152,7 @@ public class InspectorListenerModeNotifications extends ListenerAdapter {
   }
 
   @Override
-  public void objectReleased (VM vm) {
+  public void objectReleased(VM vm, ThreadInfo currentThread, ElementInfo releasedObject) {
     if (DEBUG) {
       inspector.getDebugPrintStream().println(this.getClass().getSimpleName() + ".objectCreated()");
     }
@@ -159,7 +161,7 @@ public class InspectorListenerModeNotifications extends ListenerAdapter {
   }
 
   @Override
-  public void exceptionThrown (VM vm) {
+  public void exceptionThrown(VM vm, ThreadInfo currentThread, ElementInfo thrownException) {
     if (DEBUG) {
       inspector.getDebugPrintStream().println(this.getClass().getSimpleName() + ".objectCreated()");
     }
@@ -168,47 +170,47 @@ public class InspectorListenerModeNotifications extends ListenerAdapter {
   }
 
   @Override
-  public void choiceGeneratorSet (VM vm) {
+  public void choiceGeneratorSet(VM vm, ChoiceGenerator<?> newCG) {
     if (DEBUG) {
       inspector.getDebugPrintStream().println(
-          this.getClass().getSimpleName() + ".choiceGeneratorSet() - cg=" + vm.getLastChoiceGenerator() + " processedChoices="
-              + vm.getLastChoiceGenerator().getProcessedNumberOfChoices());
+          this.getClass().getSimpleName() + ".choiceGeneratorSet() - cg=" + newCG + " processedChoices="
+              + newCG.getProcessedNumberOfChoices());
     }
   }
 
   @Override
-  public void choiceGeneratorAdvanced (VM vm) {
+  public void choiceGeneratorAdvanced(VM vm, ChoiceGenerator<?> currentCG) {
     if (DEBUG) {
       inspector.getDebugPrintStream().println(
-          this.getClass().getSimpleName() + ".choiceGeneratorAdvanced() - cg=" + vm.getLastChoiceGenerator() + " processedChoices="
-              + vm.getLastChoiceGenerator().getProcessedNumberOfChoices());
+          this.getClass().getSimpleName() + ".choiceGeneratorAdvanced() - cg=" + currentCG + " processedChoices="
+              + currentCG.getProcessedNumberOfChoices());
     }
     inspState.notifyListenerMethodCall(ListenerMethod.LM_CHOICE_GENERATOR_ADVANCED, vm);
-    cgNotify.notifyChoiceGeneratorAdvance(vm.getLastChoiceGenerator(), inspState);
+    cgNotify.notifyChoiceGeneratorAdvance(currentCG, inspState);
     bpMgr.checkBreakpoints(inspState);
 
   }
 
   @Override
-  public void choiceGeneratorRegistered (VM vm) {
+  public void choiceGeneratorRegistered(VM vm, ChoiceGenerator<?> nextCG, ThreadInfo currentThread, Instruction executedInstruction) {
     if (DEBUG) {
       inspector.getDebugPrintStream().println(
-          this.getClass().getSimpleName() + ".choiceGeneratorRegistered() - cg=" + vm.getLastChoiceGenerator() + " processedChoices="
-              + vm.getLastChoiceGenerator().getProcessedNumberOfChoices());
+          this.getClass().getSimpleName() + ".choiceGeneratorRegistered() - cg=" + nextCG + " processedChoices="
+              + nextCG.getProcessedNumberOfChoices());
     }
   }
 
   @Override
-  public void choiceGeneratorProcessed (VM vm) {
+  public void choiceGeneratorProcessed(VM vm, ChoiceGenerator<?> processedCG) {
     if (DEBUG) {
       inspector.getDebugPrintStream().println(
-          this.getClass().getSimpleName() + ".choiceGeneratorProcessed() - cg=" + vm.getLastChoiceGenerator() + " processedChoices="
-              + vm.getLastChoiceGenerator().getProcessedNumberOfChoices());
+          this.getClass().getSimpleName() + ".choiceGeneratorProcessed() - cg=" + processedCG + " processedChoices="
+              + processedCG.getProcessedNumberOfChoices());
     }
   }
 
   @Override
-  public void threadScheduled (VM vm) {
+  public void threadScheduled(VM vm, ThreadInfo scheduledThread) {
     if (DEBUG) {
       inspector.getDebugPrintStream().println(this.getClass().getSimpleName() + ".threadScheduled()");
     }

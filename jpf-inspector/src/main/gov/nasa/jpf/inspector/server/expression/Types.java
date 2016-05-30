@@ -19,8 +19,6 @@
 
 package gov.nasa.jpf.inspector.server.expression;
 
-/**
- */
 public enum Types {
   ET_BOOLEAN,
 

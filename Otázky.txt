@@ -1,0 +1,34 @@
+Má být mezi jméneme metody a otevírací závorkou v deklaraci mezera? V jpf-core i v inspectoru je to tak půl na půl. Javovské konvence doporučují žádnou mezeru, ale zase ukázkový dokument na http://babelfish.arc.nasa.gov/trac/jpf/wiki/devel/coding_conventions obsahuje mezeru.
+
+JAR archiv knihovny JLine se jmenuje "jline-0.9.94-Inspector.jar". Byl modifikován oproti původní distribuci? Pokud ano, jak a proč? Hodilo by se mi knihovnu upgradovat, ale bojím se, že ztratím nějakou změnu.
+
+Může system-under-test přijímat vstup od uživatele (přes System.in), nebo mohu počítat s tím, že to dělat nebude?
+
+Automatické testy se mi zatím nepodařio spustit, a use-casy mají často jiný výsledek než je předpokládaný. Myslím, že částečně to bude způsobené ne chybami při migraci nebo změnou jpf-core, ale tím, že javac 8 generuje jiný bajtkód než kompilátor Javy 6, takže se prochází přes jiné instrukce. Z tohoto pohledu bych byl rád, kdybyste mohl například projít use case 2 a říct mi, jestli se chová podle očekávání nebo kde se teď inspector chová jinak než by měl.
+
+V projektovém dokumentu jsem napsal, že budu opravovat několik malých chyb, přidávat několik malých featur a dělat nějaký refactoring doporučený mentorem. Byl bych rád, kdybyste mi mohl dát nějaké podrobnosti k těmto úkolům.
+Z vašich poznámek mi k tomu přišlo relevantní následující:
+
+BUGY
+- žádné jsem nenašel v souboru s poznámkami
+
+MALÉ FEATURY
+- Tisknout prefix 0x u všech hexadecimálních čísel.
+- Přidat možnost ignorovat breakpointy uvnitř balíčků java.* a javax.*.
+- Přidat testy pro složené breakpointy.
+- Přidat možnost zobrazovat, enablovat, disablovat a odstraňovat asserty podobně breakpointy.
+- Přidat breakpoint hit condition pro "čtení nebo zápis lokální proměnné"
+
+Prozatím složité:
+- Příkaz "bst".
+- Příkaz "backward step to previous breakpoint hit"
+- Příkaz "single step with repetition"
+- Hit condition "variable value equals constant"
+- wow složitý příkaz
+- Příkaz "pozastavit/spustit vlákno"
+
+REFACTORING
+- Přesunout PSE třídy ze serverového balíčku do balíčku pod inspector.common.
+
+Máte ještě nějaké další informace buď k něčemu, co jsem uvedl výše nebo ještě nějaké další bugy/small features/refactoring ideas?
+

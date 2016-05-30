@@ -20,7 +20,7 @@
 package gov.nasa.jpf.inspector.client.parser;
 
 import gov.nasa.jpf.inspector.client.ClientCommandInterface;
-import gov.nasa.jpf.inspector.interfaces.exceptions.JPFInspectorParsingErrorException;
+import gov.nasa.jpf.inspector.exceptions.JPFInspectorParsingErrorException;
 import gov.nasa.jpf.inspector.utils.parser.RecognitionRuntimeException;
 
 import org.antlr.runtime.RecognitionException;
@@ -57,11 +57,13 @@ public class CommandParserRecordedCommands extends CommandParser {
 
     try {
       ConsoleGrammarParser parser = getParser(cmd);
-      return parser.clientCommandWithCB();
+      return parser.clientCommandWithCB().value;
     } catch (RecognitionRuntimeException e) {
       throw new JPFInspectorParsingErrorException("Invalid input" + (e.getMessage() != null ? " - " + e.getMessage() : ""), cmd, e.getRecognitionException());
-    } catch (RecognitionException e) {
-      throw new JPFInspectorParsingErrorException("Invalid input" + (e.getMessage() != null ? " - " + e.getMessage() : ""), cmd, e);
+    } catch (Exception e) {
+      throw e; // TODO this was recongition exception
+      /*
+      throw new JPFInspectorParsingErrorException("Invalid input" + (e.getMessage() != null ? " - " + e.getMessage() : ""), cmd, e);*/
     }
   }
 }

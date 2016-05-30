@@ -22,8 +22,8 @@ package gov.nasa.jpf.inspector.client.commands;
 import gov.nasa.jpf.inspector.client.ClientCommand;
 import gov.nasa.jpf.inspector.client.JPFInspectorClient;
 import gov.nasa.jpf.inspector.interfaces.JPFInspectorBackEndInterface;
-import gov.nasa.jpf.inspector.interfaces.JPFInspectorException;
-import gov.nasa.jpf.inspector.interfaces.exceptions.JPFInspectorParsingErrorException;
+import gov.nasa.jpf.inspector.exceptions.JPFInspectorException;
+import gov.nasa.jpf.inspector.exceptions.JPFInspectorParsingErrorException;
 
 import java.io.PrintStream;
 
@@ -56,7 +56,7 @@ public class CmdSet extends ClientCommand {
       outStream.println(e.expressError(50));
 
       client.recordComment(e.getMessage());
-      client.recordComment(e.expressError(JPFInspectorParsingErrorException.DEFAULT_LINE_LENGHT));
+      client.recordComment(e.expressError(JPFInspectorParsingErrorException.DEFAULT_LINE_LENGTH));
     } catch (JPFInspectorException e) {
       outStream.print(e.getMessage());
       client.recordComment(e.getMessage());

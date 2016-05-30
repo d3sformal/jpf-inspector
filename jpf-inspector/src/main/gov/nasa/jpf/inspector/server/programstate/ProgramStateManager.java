@@ -19,10 +19,11 @@
 
 package gov.nasa.jpf.inspector.server.programstate;
 
+import gov.nasa.jpf.inspector.common.pse.ProgramStateEntry;
 import gov.nasa.jpf.inspector.interfaces.InstructionPosition;
-import gov.nasa.jpf.inspector.interfaces.JPFInspectorException;
+import gov.nasa.jpf.inspector.exceptions.JPFInspectorException;
 import gov.nasa.jpf.inspector.interfaces.ProgramStateInterface;
-import gov.nasa.jpf.inspector.interfaces.exceptions.JPFInspectorGenericErrorException;
+import gov.nasa.jpf.inspector.exceptions.JPFInspectorGenericErrorException;
 import gov.nasa.jpf.inspector.server.breakpoints.InstructionPositionImpl;
 import gov.nasa.jpf.inspector.server.expression.ExpressionParser;
 import gov.nasa.jpf.inspector.server.expression.ExpressionParserInterface;
@@ -30,10 +31,10 @@ import gov.nasa.jpf.inspector.server.expression.ExpressionStateRootNode;
 import gov.nasa.jpf.inspector.server.expression.expressions.ExpressionStateAssignment;
 import gov.nasa.jpf.inspector.server.jpf.JPFInspector;
 import gov.nasa.jpf.inspector.server.jpf.StopHolder;
-import gov.nasa.jpf.inspector.server.programstate.client.PSEThread;
+import gov.nasa.jpf.inspector.common.pse.PSEThread;
 import gov.nasa.jpf.vm.VM;
 import gov.nasa.jpf.vm.ThreadInfo;
-import gov.nasa.jpf.jvm.ThreadList;
+import gov.nasa.jpf.vm.ThreadList;
 import gov.nasa.jpf.vm.Instruction;
 
 import java.util.HashMap;
@@ -58,10 +59,8 @@ public class ProgramStateManager implements ProgramStateInterface {
 
   @Override
   public Map<Integer, PSEThread> getThreads (Integer threadNum) throws JPFInspectorException {
-    final Boolean wasStopped = initialStopTest(true, "threads");
-    if (wasStopped == null) {
-      return null;
-    }
+    initialStopTest(true, "threads");
+
     Map<Integer, PSEThread> result = null;
 
     VM vm = getJVM();
@@ -80,7 +79,7 @@ public class ProgramStateManager implements ProgramStateInterface {
 
       for (ThreadInfo ti : tl) {
         StateThreadInfo sti = new StateThreadInfo(inspector, vm, ti.getId(), 2);
-        result.put(Integer.valueOf(ti.getId()), sti.getResultExpression("", 0));
+        result.put(ti.getId(), sti.getResultExpression("", 0));
       }
     }
 
@@ -99,9 +98,9 @@ public class ProgramStateManager implements ProgramStateInterface {
 
     ThreadList tl = vm.getThreadList();
     if (threadNum != null) {
-      result = new HashMap<Integer, InstructionPosition>(1);
+      result = new HashMap<>(1);
     } else {
-      result = new HashMap<Integer, InstructionPosition>(tl.length());
+      result = new HashMap<>(tl.length());
     }
 
     for (ThreadInfo ti : tl) {
@@ -113,7 +112,7 @@ public class ProgramStateManager implements ProgramStateInterface {
         // Terminated threads -> no position to store
         continue;
       }
-      result.put(Integer.valueOf(ti.getId()), InstructionPositionImpl.getInstructionPosition(pc));
+      result.put(ti.getId(), InstructionPositionImpl.getInstructionPosition(pc));
     }
     return result;
   }
@@ -158,7 +157,7 @@ public class ProgramStateManager implements ProgramStateInterface {
     return wasStopped;
   }
 
-  private JVM getJVM () throws JPFInspectorGenericErrorException {
+  private VM getJVM () throws JPFInspectorGenericErrorException {
     VM vm = stopHolder.getJVM();
     if (vm == null) {
       throw new JPFInspectorGenericErrorException("Internal error - JVM not as a part of the state (JPF is not connected");

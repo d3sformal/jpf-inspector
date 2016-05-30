@@ -19,7 +19,7 @@
 
 package gov.nasa.jpf.inspector.tests.parsing;
 
-import gov.nasa.jpf.inspector.interfaces.exceptions.JPFInspectorParsingErrorException;
+import gov.nasa.jpf.inspector.exceptions.JPFInspectorParsingErrorException;
 import gov.nasa.jpf.inspector.server.expression.expressions.ExpressionStateValueConstChar;
 import gov.nasa.jpf.inspector.server.expression.expressions.ExpressionStateValueConstString;
 import gov.nasa.jpf.inspector.tests.infrastructure.InspectorTest;

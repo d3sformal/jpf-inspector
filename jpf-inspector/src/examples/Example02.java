@@ -1,4 +1,4 @@
-import gov.nasa.jpf.jvm.Verify;
+import gov.nasa.jpf.vm.Verify;
 
 //
 // Copyright (C) 2011 United States Government as represented by the

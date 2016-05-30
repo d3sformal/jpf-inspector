@@ -19,15 +19,15 @@
 
 package gov.nasa.jpf.inspector.server.programstate;
 
-import gov.nasa.jpf.inspector.interfaces.JPFInspectorException;
-import gov.nasa.jpf.inspector.interfaces.exceptions.JPFInspectorArrayIndexOutOutRangeException;
-import gov.nasa.jpf.inspector.interfaces.exceptions.JPFInspectorNoSuperClassException;
-import gov.nasa.jpf.inspector.interfaces.exceptions.JPFInspectorNotArrayException;
-import gov.nasa.jpf.inspector.interfaces.exceptions.JPFInspectorNotInstanceException;
-import gov.nasa.jpf.inspector.interfaces.exceptions.JPFInspectorNotSuperClassException;
-import gov.nasa.jpf.inspector.interfaces.exceptions.JPFInspectorNullValueException;
+import gov.nasa.jpf.inspector.exceptions.JPFInspectorException;
+import gov.nasa.jpf.inspector.exceptions.JPFInspectorArrayIndexOutOutRangeException;
+import gov.nasa.jpf.inspector.exceptions.JPFInspectorNoSuperClassException;
+import gov.nasa.jpf.inspector.exceptions.JPFInspectorNotArrayException;
+import gov.nasa.jpf.inspector.exceptions.JPFInspectorNotInstanceException;
+import gov.nasa.jpf.inspector.exceptions.JPFInspectorNotSuperClassException;
+import gov.nasa.jpf.inspector.exceptions.JPFInspectorNullValueException;
 import gov.nasa.jpf.inspector.server.expression.InspectorState;
-import gov.nasa.jpf.inspector.server.programstate.client.PSEVariable;
+import gov.nasa.jpf.inspector.common.pse.PSEVariable;
 import gov.nasa.jpf.vm.ArrayFields;
 import gov.nasa.jpf.vm.ClassInfo;
 import gov.nasa.jpf.vm.ElementInfo;

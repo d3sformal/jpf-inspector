@@ -29,7 +29,7 @@ import java.io.PrintStream;
 import java.util.List;
 
 /**
- * Handles show breakpoint command
+ * Represents the "show breakpoint" command that prints all existing breakpoints.
  */
 public class CmdBreakpointShow extends ClientCommand {
 
@@ -40,7 +40,7 @@ public class CmdBreakpointShow extends ClientCommand {
       outStream.println(breakpointToString(bp));
     }
     if (bps.size() == 0) {
-      outStream.println("No breakpoints");
+      outStream.println("No breakpoints.");
     }
   }
 
@@ -52,8 +52,7 @@ public class CmdBreakpointShow extends ClientCommand {
   /**
    * Transforms breakpoint representation into the string.
    * 
-   * @param bp
-   *        Breakpoint representations (state informations)
+   * @param bp Information about a breakpoint.
    * @return String representation of the brekapoint status.
    */
   static public String breakpointToString (BreakPointStatus bp) {
@@ -77,12 +76,12 @@ public class CmdBreakpointShow extends ClientCommand {
       bpText.append(' ');
       Integer lowerBound = bp.bpHitCountLowerBound();
       Integer upperBound = bp.bpHitCountUpperBound();
-      if (lowerBound != null && (lowerBound.equals(BreakPointCreate.DEFAULT_LOWER_BOUND) == false)) {
+      if (lowerBound != null && (!lowerBound.equals(BreakPointCreate.DEFAULT_LOWER_BOUND))) {
         bpText.append(lowerBound);
         bpText.append("<=");
       }
       bpText.append("hit_count");
-      if (upperBound != null && (upperBound.equals(BreakPointCreate.DEFAULT_UPPER_BOUND) == false)) {
+      if (upperBound != null && (!upperBound.equals(BreakPointCreate.DEFAULT_UPPER_BOUND))) {
         bpText.append("<=");
         bpText.append(upperBound);
       }

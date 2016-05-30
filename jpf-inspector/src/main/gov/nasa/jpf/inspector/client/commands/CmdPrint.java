@@ -21,24 +21,25 @@ package gov.nasa.jpf.inspector.client.commands;
 
 import gov.nasa.jpf.inspector.client.ClientCommand;
 import gov.nasa.jpf.inspector.client.JPFInspectorClient;
+import gov.nasa.jpf.inspector.common.ConsoleInformation;
 import gov.nasa.jpf.inspector.interfaces.JPFInspectorBackEndInterface;
-import gov.nasa.jpf.inspector.interfaces.JPFInspectorException;
-import gov.nasa.jpf.inspector.interfaces.exceptions.JPFInspectorParsingErrorException;
-import gov.nasa.jpf.inspector.server.programstate.ProgramStateEntry;
-import gov.nasa.jpf.inspector.server.programstate.client.PSEHeapEntryList;
-import gov.nasa.jpf.inspector.server.programstate.client.PSEMethod;
-import gov.nasa.jpf.inspector.server.programstate.client.PSEThread;
-import gov.nasa.jpf.inspector.server.programstate.client.PSEVariable;
-import gov.nasa.jpf.inspector.server.programstate.client.PSEVariableArray;
-import gov.nasa.jpf.inspector.server.programstate.client.PSEVariableObject;
-import gov.nasa.jpf.inspector.server.programstate.client.PSEVariablePrimitive;
-import gov.nasa.jpf.inspector.server.programstate.client.PSEVisitor;
+import gov.nasa.jpf.inspector.exceptions.JPFInspectorException;
+import gov.nasa.jpf.inspector.exceptions.JPFInspectorParsingErrorException;
+import gov.nasa.jpf.inspector.common.pse.ProgramStateEntry;
+import gov.nasa.jpf.inspector.common.pse.PSEHeapEntryList;
+import gov.nasa.jpf.inspector.common.pse.PSEMethod;
+import gov.nasa.jpf.inspector.common.pse.PSEThread;
+import gov.nasa.jpf.inspector.common.pse.PSEVariable;
+import gov.nasa.jpf.inspector.common.pse.PSEVariableArray;
+import gov.nasa.jpf.inspector.common.pse.PSEVariableObject;
+import gov.nasa.jpf.inspector.common.pse.PSEVariablePrimitive;
+import gov.nasa.jpf.inspector.common.pse.PSEVisitor;
 import gov.nasa.jpf.inspector.utils.InstructionWrapper;
 
 import java.io.PrintStream;
 
 /**
- * Represents the print command that can be used to show variables values as well as call stack.
+ * Represents the "print" command that can be used to print variables' values.
  */
 public class CmdPrint extends ClientCommand {
 
@@ -65,16 +66,13 @@ public class CmdPrint extends ClientCommand {
 
     } catch (JPFInspectorParsingErrorException e) {
       outStream.println(e.getMessage());
-      // TODO - Extend/replace outStream to be able to report line length - not use magic constant 50
-      outStream.println(e.expressError(50));
-
+      outStream.println(e.expressError(ConsoleInformation.MAX_ERROR_LINE_LENGTH));
       client.recordComment(e.getMessage());
-      client.recordComment(e.expressError(JPFInspectorParsingErrorException.DEFAULT_LINE_LENGHT));
+      client.recordComment(e.expressError(ConsoleInformation.MAX_ERROR_LINE_LENGTH));
     } catch (JPFInspectorException e) {
       outStream.print(e.getMessage());
       client.recordComment(e.getMessage());
     }
-
   }
 
   @Override
@@ -82,20 +80,14 @@ public class CmdPrint extends ClientCommand {
     return "print " + expression;
   }
 
-  public static class ValuePrinter implements PSEVisitor<StringBuilder> {
+  private static class ValuePrinter implements PSEVisitor<StringBuilder> {
 
     /**
-     * Maximal printed length of source line or value
+     * Maximum length of a value before it is truncated
      */
     public static final int MAX_LEN = 50;
 
     private final StringBuilder sb;
-
-    public ValuePrinter (StringBuilder sb) {
-      super();
-
-      this.sb = sb;
-    }
 
     public ValuePrinter () {
       super();
@@ -126,10 +118,7 @@ public class CmdPrint extends ClientCommand {
       sb.append('\n');
     }
 
-    /*
-     * @see
-     * gov.nasa.jpf.inspector.server.programstate.client.PSEVisitor#visitPSEHeapEntryList(gov.nasa.jpf.inspector.server.programstate.client.PSEHeapEntryList)
-     */
+
     @Override
     public StringBuilder visitPSEHeapEntryList (PSEHeapEntryList entry) throws JPFInspectorException {
 
@@ -139,7 +128,6 @@ public class CmdPrint extends ClientCommand {
       return sb;
     }
 
-    /* @see gov.nasa.jpf.inspector.server.programstate.client.PSEVisitor#visitPSEMethod(gov.nasa.jpf.inspector.server.programstate.client.PSEMethod) */
     @Override
     public StringBuilder visitPSEMethod (PSEMethod pse) throws JPFInspectorException {
       InstructionWrapper.toStringBuffer(pse.getCallInstruction(), sb);
@@ -148,8 +136,8 @@ public class CmdPrint extends ClientCommand {
       PSEVariable[] localVars = pse.getLocals();
       if (localVars.length > 0) {
         sb.append("Stack slots\n");
-        for (int i = 0; i < localVars.length; i++) {
-          printVariableBasic(localVars[i]);
+        for (PSEVariable localVar : localVars) {
+          printVariableBasic(localVar);
         }
       }
 
@@ -159,15 +147,15 @@ public class CmdPrint extends ClientCommand {
         PSEVariable[] fields = sfThis.getFields();
         if (fields.length > 0) {
           sb.append("Fields\n");
-          for (int i = 0; i < fields.length; i++) {
-            printVariableBasic(fields[i]);
+          for (PSEVariable field : fields) {
+            printVariableBasic(field);
           }
         }
       }
       return sb;
     }
 
-    /* @see gov.nasa.jpf.inspector.server.programstate.client.PSEVisitor#visitPSEThread(gov.nasa.jpf.inspector.server.programstate.client.PSEThread) */
+
     @Override
     public StringBuilder visitPSEThread (PSEThread pse) throws JPFInspectorException {
       sb.append(pse.getThreadNum());
@@ -199,10 +187,7 @@ public class CmdPrint extends ClientCommand {
       return sb;
     }
 
-    /*
-     * @see
-     * gov.nasa.jpf.inspector.server.programstate.client.PSEVisitor#visitPSEVariableArray(gov.nasa.jpf.inspector.server.programstate.client.PSEVariableArray)
-     */
+
     @Override
     public StringBuilder visitPSEVariableArray (PSEVariableArray var) throws JPFInspectorException {
       sb.append(var.getVarName());
@@ -221,16 +206,13 @@ public class CmdPrint extends ClientCommand {
       sb.append('\n');
 
       PSEVariable[] elements = var.getArrayItems();
-      for (int i = 0; i < elements.length; i++) {
-        printVariableBasic(elements[i]);
+      for (PSEVariable element : elements) {
+        printVariableBasic(element);
       }
       return sb;
     }
 
-    /*
-     * @see
-     * gov.nasa.jpf.inspector.server.programstate.client.PSEVisitor#visitPSEVariableObject(gov.nasa.jpf.inspector.server.programstate.client.PSEVariableObject)
-     */
+
     @Override
     public StringBuilder visitPSEVariableObject (PSEVariableObject var) throws JPFInspectorException {
       sb.append(var.getVarName());
@@ -251,32 +233,27 @@ public class CmdPrint extends ClientCommand {
 
       if (fields.length > 0) {
         sb.append("  Instance fields\n");
-        for (int i = 0; i < fields.length; i++) {
-          printVariableBasic(fields[i]);
+        for (PSEVariable field : fields) {
+          printVariableBasic(field);
         }
       } else {
         if (staticFields.length > 0) {
           sb.append("  No instance fields\n");
         } else {
-          sb.append("  No instance and static fields\n");
+          sb.append("  No instance or static fields\n");
         }
       }
 
       if (staticFields.length > 0) {
         sb.append("  Static fields\n");
-        for (int i = 0; i < staticFields.length; i++) {
-          printVariableBasic(staticFields[i]);
+        for (PSEVariable staticField : staticFields) {
+          printVariableBasic(staticField);
         }
       }
 
       return sb;
     }
 
-    /*
-     * @see
-     * gov.nasa.jpf.inspector.server.programstate.client.PSEVisitor#visitPSEVariablePrimitive(gov.nasa.jpf.inspector.server.programstate.client.PSEVariablePrimitive
-     * )
-     */
     @Override
     public StringBuilder visitPSEVariablePrimitive (PSEVariablePrimitive var) {
       printVariableBasic(var);

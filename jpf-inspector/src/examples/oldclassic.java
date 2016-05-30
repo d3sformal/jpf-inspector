@@ -79,21 +79,23 @@ class Event {
     try {
       wait();
     } catch (InterruptedException e) {
+      // Ignored.
     }
   }
 }
 
 //------- the two concurrent threads using the monitors
 class FirstTask extends Thread {
-  Event event1;
-  Event event2;
-  int   count = 0;  // bad optimization - local cache of event1 internals
+  private Event event1;
+  private Event event2;
+  private int   count = 0;  // bad optimization - local cache of event1 internals
 
   public FirstTask (Event e1, Event e2) {
     this.event1 = e1;
     this.event2 = e2;
   }
 
+  @Override
   public void run () {
     count = event1.count;          // <race> violates event1 monitor encapsulation
 

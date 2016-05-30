@@ -19,14 +19,13 @@
 
 package gov.nasa.jpf.inspector.utils.parser;
 
-import gov.nasa.jpf.inspector.interfaces.exceptions.JPFInspectorGenericErrorException;
+import gov.nasa.jpf.inspector.exceptions.JPFInspectorGenericErrorException;
 import gov.nasa.jpf.inspector.server.expression.ExpressionFactory;
 
 /**
  * Runtime wrapper for {@link JPFInspectorGenericErrorException}.
- * It is thrown by generated parser/{@link ExpressionFactory} and caught and unwrapped in the ParserFasade
- * into original non {@link RuntimeException}
- * 
+ * It is thrown by {@link ExpressionFactory} and caught and unwrapped in the ParserFasade
+ * into the original non {@link RuntimeException}.
  */
 public class GenericErrorRuntimeException extends RuntimeException {
 

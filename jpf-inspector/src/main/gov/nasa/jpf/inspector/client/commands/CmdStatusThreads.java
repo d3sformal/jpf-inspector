@@ -22,19 +22,25 @@ package gov.nasa.jpf.inspector.client.commands;
 import gov.nasa.jpf.inspector.client.ClientCommand;
 import gov.nasa.jpf.inspector.client.JPFInspectorClient;
 import gov.nasa.jpf.inspector.interfaces.JPFInspectorBackEndInterface;
-import gov.nasa.jpf.inspector.interfaces.JPFInspectorException;
-import gov.nasa.jpf.inspector.server.programstate.client.PSEThread;
+import gov.nasa.jpf.inspector.exceptions.JPFInspectorException;
+import gov.nasa.jpf.inspector.common.pse.PSEThread;
 
 import java.io.PrintStream;
 import java.util.Map;
 
+/**
+ * Represents the "thread" command that gives basic information about threads in the system under test.
+ */
 public class CmdStatusThreads extends ClientCommand {
 
+  /**
+   * Index of the thread we are interested in, or null for "all threads".
+   */
   private final Integer tn;
 
   /**
-   * @param tn
-   *        Specify the thread we get the information. Null means all threads.
+   * Initializes a new instance of the command.
+   * @param tn Index of the thread we want information on. Null value means "all threads".
    */
   public CmdStatusThreads (Integer tn) {
     this.tn = tn;
@@ -59,7 +65,7 @@ public class CmdStatusThreads extends ClientCommand {
         return;
       }
       if (threads.size() == 0) {
-        outStream.println("No thread");
+        outStream.println("No thread exists.");
         return;
       }
 
@@ -80,9 +86,9 @@ public class CmdStatusThreads extends ClientCommand {
    *        The thread description to convert.
    * @return String with short description of the thread properties (doesn't show the call stack)
    */
-  static public String thread2String (PSEThread thread) {
+  private static String thread2String(PSEThread thread) {
     assert thread != null;
-    StringBuffer sb = new StringBuffer(120);
+    StringBuilder sb = new StringBuilder(120);
     sb.append(thread.getThreadNum());
     sb.append(" :");
     String tn = thread.getThreadName();

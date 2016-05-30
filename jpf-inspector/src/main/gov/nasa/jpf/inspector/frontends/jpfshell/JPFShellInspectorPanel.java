@@ -19,12 +19,15 @@
 
 package gov.nasa.jpf.inspector.frontends.jpfshell;
 
+import gov.nasa.jpf.Config;
 import gov.nasa.jpf.JPF;
 import gov.nasa.jpf.inspector.JPFInspectorFacade;
 import gov.nasa.jpf.inspector.client.JPFInspectorClientInterface;
+import gov.nasa.jpf.inspector.common.Constants;
 import gov.nasa.jpf.inspector.frontends.jpfshell.commands.completors.CmdRunCompletor;
 import gov.nasa.jpf.inspector.frontends.jpfshell.gui.SwingTerminal;
-import gov.nasa.jpf.inspector.interfaces.exceptions.JPFInspectorGenericErrorException;
+import gov.nasa.jpf.inspector.exceptions.JPFInspectorGenericErrorException;
+import gov.nasa.jpf.inspector.utils.Debugging;
 import gov.nasa.jpf.shell.ShellManager;
 import gov.nasa.jpf.shell.ShellPanel;
 import gov.nasa.jpf.shell.commands.VerifyCommand;
@@ -35,6 +38,7 @@ import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
 import java.io.IOException;
 import java.io.PrintStream;
+import java.util.logging.Logger;
 
 import jline.ConsoleReader;
 
@@ -44,12 +48,17 @@ import jline.ConsoleReader;
  * 
  */
 public class JPFShellInspectorPanel extends ShellPanel implements VerifyCommandListener {
-  // predefined commands       
+  private static Logger log = Debugging.getLogger(ShellManager.getManager().getConfig());
+  /**
+   * Commands that should be run at the beginning of a JPF Inspector session.
+   * This is used for debugging only.
+   */
+  @SuppressWarnings("MismatchedReadAndWriteOfArray")
   private static final String[] INITIAL_COMMANDS = {};
 
   private int initialCmdProcessed = 0;
 
-  private static final boolean DEBUG = false;
+  private static final boolean DEBUG = true;
 
   private static final long serialVersionUID = 20110715L;
 
@@ -63,16 +72,29 @@ public class JPFShellInspectorPanel extends ShellPanel implements VerifyCommandL
    * Creates the JPFInspector - front end
    */
   public JPFShellInspectorPanel () {
-    super("Inspector", null, "JPF Inspector textual console");
+    super("JPF Inspector", null, "JPF Inspector command console");
+    Config config = ShellManager.getManager().getConfig();
 
-    terminal = SwingTerminal.getSwingTerminalWhite();
-    // terminal = SwingTerminal.getSwingTerminalBlack();
+    // Create terminal with specified theme
+    if (config.get("jpf-inspector.theme").equals("white_on_black")) {
+      terminal = SwingTerminal.getSwingTerminalBlack();
+      log.info("JPF Inspector theme: white-on-black.");
+    } else if (config.get("jpf-inspector.theme").equals("black_on_white")) {
+      terminal = SwingTerminal.getSwingTerminalWhite();
+      log.info("JPF Inspector theme: black-on-white.");
+    }
+    else {
+      terminal = SwingTerminal.getSwingTerminalWhite();
+      log.warning("Theme '" + config.get("jpf-inspector.theme") + "' not recognized. Defaulting to black-on-white.");
+    }
 
     addComponentListener(new PanelComponentListener());
 
     consolePrintStream = terminal.getUserTextPrintStream();
+    PrintStream startingInfoStream = terminal.getSimplePrintStream();
 
-    String target = ShellManager.getManager().getConfig().getTarget();
+    String target = config.getTarget();
+
     // Initialize server part
     inspector = JPFInspectorFacade.getInspectorClient(target, consolePrintStream);
 
@@ -82,8 +104,10 @@ public class JPFShellInspectorPanel extends ShellPanel implements VerifyCommandL
 
     add(terminal.getScrollPanel());
 
-    consolePrintStream.println("The Inspector console: " + target);
-    consolePrintStream.println();
+    // TODO document that multiple calls to consolePrintStream.println will fail because of how text is appended/inserted in TextComponentFeeder::getPositionBeforePrompt.
+    startingInfoStream.println("This is the JPF Inspector console for debugging the target \"" + target + "\".");
+    startingInfoStream.println("Type \"hello\" to test if the Inspector is working or \"help\" to get a list of commands.");
+    startingInfoStream.println();
 
     console = terminal.getConsoleReader();
 
@@ -94,17 +118,13 @@ public class JPFShellInspectorPanel extends ShellPanel implements VerifyCommandL
     console.addCompletor(CmdRunCompletor.getInstance());
   }
 
-  public SwingTerminal getTerminal () {
-    return terminal;
-  }
-
   /**
    * Main command processing thread with main command loop.
    * 
    * Parses and executes user commands.
    * 
    */
-  class CommandProcessingThread extends Thread {
+  private class CommandProcessingThread extends Thread {
     public CommandProcessingThread () {
       super(CommandProcessingThread.class.getSimpleName());
     }
@@ -112,6 +132,7 @@ public class JPFShellInspectorPanel extends ShellPanel implements VerifyCommandL
     @Override
     public void run () {
       try {
+        //noinspection InfiniteLoopStatement
         while (true) {
           try {
             String s;
@@ -121,11 +142,11 @@ public class JPFShellInspectorPanel extends ShellPanel implements VerifyCommandL
               sleep(1500);
               s = INITIAL_COMMANDS[initialCmdProcessed++];
             } else {
-              s = console.readLine("?:>");
+              s = console.readLine(Constants.PROMPT);
             }
             String sTrimmed = s.trim();
             if (sTrimmed.length() == 0) {
-              consolePrintStream.println();
+              consolePrintStream.println("\n" + Constants.PROMPT);
             }
             if (s.trim().length() > 0) {
               consolePrintStream.println();
@@ -139,7 +160,7 @@ public class JPFShellInspectorPanel extends ShellPanel implements VerifyCommandL
       } catch (InterruptedException e) {
         // Terminate the command loop
       }
-    };
+    }
   }
 
   @Override
@@ -168,14 +189,13 @@ public class JPFShellInspectorPanel extends ShellPanel implements VerifyCommandL
 
   @Override
   public void exceptionDuringVerify (Exception ex) {
-    System.out.println(ex);
     ex.printStackTrace();
-  };
+  }
 
   /**
    * If JPFInspector panel selected then sets focus directly into terminal.
    */
-  class PanelComponentListener implements ComponentListener {
+  private class PanelComponentListener implements ComponentListener {
 
     @Override
     public void componentShown (ComponentEvent e) {

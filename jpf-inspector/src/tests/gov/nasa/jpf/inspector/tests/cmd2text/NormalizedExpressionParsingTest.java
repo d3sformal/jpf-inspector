@@ -1,7 +1,7 @@
 package gov.nasa.jpf.inspector.tests.cmd2text;
 
 import gov.nasa.jpf.inspector.interfaces.CommandsInterface.InspectorStates;
-import gov.nasa.jpf.inspector.interfaces.JPFInspectorException;
+import gov.nasa.jpf.inspector.exceptions.JPFInspectorException;
 import gov.nasa.jpf.inspector.server.expression.ExpressionBooleanInterface;
 import gov.nasa.jpf.inspector.server.expression.ExpressionParser;
 import gov.nasa.jpf.inspector.server.jpf.JPFInspector;
@@ -186,6 +186,10 @@ public class NormalizedExpressionParsingTest extends InspectorTest {
     testCommands(breakpointInstructionExprs);
   }
 
+  /**
+   * This driver is created by reflection which is why the IDE reports it unused.
+   */
+  @SuppressWarnings("unused")
   static public class NormalizedExpressionParsingTestDriver extends InspectorTestDriver {
     private static final boolean DEBUG = true;
 
@@ -211,18 +215,17 @@ public class NormalizedExpressionParsingTest extends InspectorTest {
 
       ExpressionParser parser = new ExpressionParser(inspector);
 
-      for (int i = 0; i < exprs.length; i++) {
+      for (String expr : exprs) {
         try {
-          String origExpr = exprs[i];
 
           if (DEBUG) {
-            out.println("Parsing \"" + origExpr + "\"");
+            out.println("Parsing \"" + expr + "\"");
           }
 
-          ExpressionBooleanInterface exprBool = parser.getBreakpointExpression(origExpr);
+          ExpressionBooleanInterface exprBool = parser.getBreakpointExpression(expr);
 
           if (exprBool == null) {
-            fail("Initial boolean breakpoint expression has not been parsed successfully: " + origExpr);
+            fail("Initial boolean breakpoint expression has not been parsed successfully: " + expr);
           }
 
           if (DEBUG) {
@@ -237,7 +240,7 @@ public class NormalizedExpressionParsingTest extends InspectorTest {
           ExpressionBooleanInterface normalizedExprBool = parser.getBreakpointExpression(normalizedExpression);
 
           if (normalizedExprBool == null) {
-            fail("Normalized boolean breakpoint expression has not been parsed successfully: " + origExpr);
+            fail("Normalized boolean breakpoint expression has not been parsed successfully: " + expr);
 
           }
           if (DEBUG) {
@@ -256,7 +259,7 @@ public class NormalizedExpressionParsingTest extends InspectorTest {
 
   }
 
-  protected void testCommands (String[] exprs) {
+  private void testCommands(String[] exprs) {
     if (runInspectorTest(
         new TypeRef("gov.nasa.jpf.inspector.tests.infrastructure.InspectorTestCallbacks"),
         new TypeRef("gov.nasa.jpf.inspector.tests.cmd2text.NormalizedExpressionParsingTest$NormalizedExpressionParsingTestDriver"),
@@ -265,7 +268,6 @@ public class NormalizedExpressionParsingTest extends InspectorTest {
         2)) {
       // JPF Test
       Breakpoint.breakMe();
-      return;
     }
 
     // Test is done in the test driver

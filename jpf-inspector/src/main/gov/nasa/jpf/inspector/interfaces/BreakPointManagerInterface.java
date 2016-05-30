@@ -19,8 +19,8 @@
 
 package gov.nasa.jpf.inspector.interfaces;
 
-import gov.nasa.jpf.inspector.interfaces.exceptions.JPFInspectorGenericErrorException;
-import gov.nasa.jpf.inspector.interfaces.exceptions.JPFInspectorParsingErrorException;
+import gov.nasa.jpf.inspector.exceptions.JPFInspectorGenericErrorException;
+import gov.nasa.jpf.inspector.exceptions.JPFInspectorParsingErrorException;
 
 import java.util.List;
 
@@ -48,7 +48,8 @@ public interface BreakPointManagerInterface {
   public AssertStatus createAssert (AssertCreate newAssert) throws JPFInspectorParsingErrorException, JPFInspectorGenericErrorException;
 
   /**
-   * 
+   * Deletes the breakpoint with specified ID.
+   *
    * @param bpID Identification of the Breakpoint to delete
    * @return true if Breakpoint with given bpID exists, false if BP not found.
    */

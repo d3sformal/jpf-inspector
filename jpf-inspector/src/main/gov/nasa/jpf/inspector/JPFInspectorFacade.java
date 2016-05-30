@@ -28,25 +28,28 @@ import gov.nasa.jpf.inspector.server.jpf.JPFInspectorParallel;
 import java.io.PrintStream;
 
 /**
- * Class that should be used to obtain Inspector instance
+ * Class that should be used to obtain instances of the client and the server.
+ *
+ * The only implemented server is the {@link JPFInspectorParallel}.
+ * The only implemented client is the {@link JPFInspectorClient}.
+ * This class merely constructs those classes by calling constructors directly.
  */
 public class JPFInspectorFacade {
 
   /**
-   * Creates instance of the JPFInspector back-end (server part)
+   * Creates an instance of the JPFInspector back-end (server part).
    * 
    * @param callBacks Where error and other notification should be reported.
-   * @return New instance of the server part of the JPFInspector
+   * @return New instance of the server part of the JPFInspector.
    */
   public static JPFInspectorBackEndInterface getInspectorBackend (InspectorCallBacks callBacks) {
     return new JPFInspectorParallel(callBacks);
   }
 
   /**
-   * @param target Name of the target (.jpf file name). For logging purposes only.
-   * @param out Stream where report output to user.
-   * @return New instance of high level client part of the JPF Inspector.
-   * 
+   * @param target Name of the target (.jpf file name, without the .jpf extension). For logging purposes only.
+   * @param out Stream where command output should be printed.
+   * @return New instance of high level client part of the JPF Inspector.   *
    */
   public static JPFInspectorClientInterface getInspectorClient (String target, PrintStream out) {
     return new JPFInspectorClient(target, out);

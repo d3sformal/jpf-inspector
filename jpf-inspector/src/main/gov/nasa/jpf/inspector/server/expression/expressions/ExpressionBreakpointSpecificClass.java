@@ -19,11 +19,12 @@
 
 package gov.nasa.jpf.inspector.server.expression.expressions;
 
+import gov.nasa.jpf.inspector.migration.MigrationUtilities;
 import gov.nasa.jpf.inspector.server.breakpoints.BreakPointModes;
 import gov.nasa.jpf.inspector.server.expression.ExpressionBooleanLeaf;
 import gov.nasa.jpf.inspector.server.expression.InspectorState;
 import gov.nasa.jpf.inspector.server.expression.InspectorState.ListenerMethod;
-import gov.nasa.jpf.inspector.utils.ClassName;
+import gov.nasa.jpf.inspector.utils.expressions.ClassName;
 import gov.nasa.jpf.vm.ClassInfo;
 import gov.nasa.jpf.vm.ElementInfo;
 import gov.nasa.jpf.vm.VM;
@@ -57,7 +58,7 @@ public class ExpressionBreakpointSpecificClass extends ExpressionBooleanLeaf {
     VM vm = state.getJVM();
     assert vm != null;
 
-    ElementInfo ei = vm.getLastElementInfo();
+    ElementInfo ei = MigrationUtilities.getLastElementInfo(vm);
     ClassInfo ci = ei.getClassInfo();
     return cn.isSameClass(ci);
   }

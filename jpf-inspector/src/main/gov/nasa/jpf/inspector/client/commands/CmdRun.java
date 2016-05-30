@@ -22,7 +22,7 @@ package gov.nasa.jpf.inspector.client.commands;
 import gov.nasa.jpf.inspector.client.ClientCommand;
 import gov.nasa.jpf.inspector.client.JPFInspectorClient;
 import gov.nasa.jpf.inspector.interfaces.JPFInspectorBackEndInterface;
-import gov.nasa.jpf.inspector.interfaces.JPFInspectorException;
+import gov.nasa.jpf.inspector.exceptions.JPFInspectorException;
 import gov.nasa.jpf.shell.ShellManager;
 import gov.nasa.jpf.shell.commands.VerifyCommand;
 
@@ -30,33 +30,21 @@ import java.io.PrintStream;
 import java.util.List;
 
 /**
- * Handles Run, Continue and pause commands.
+ * Represents the commands "run", "continue" and "break".
+ * "run" is merely an alias of "continue".
  */
 public class CmdRun extends ClientCommand {
 
   public enum CmdRunTypes {
-    RUN("continue"),
-    STOP("break");
-
-    private String grammarNormalText; // Key used in console grammar for given type
-
-    private CmdRunTypes (String grammarNormalText) {
-      this.grammarNormalText = grammarNormalText;
-    }
-
-    /**
-     * Gets string which is used in command line to create given enum entry.
-     * 
-     * @return
-     */
-    public String getGrammerText () {
-      return grammarNormalText;
-    }
+    RUN,
+    STOP
   }
 
   private final CmdRunTypes type;
+  private final String commandName;
 
-  public CmdRun (CmdRunTypes type) {
+  public CmdRun (CmdRunTypes type, String commandName) {
+    this.commandName = commandName;
     this.type = type;
   }
 
@@ -70,18 +58,17 @@ public class CmdRun extends ClientCommand {
       assert vcList.size() > 0; // Verify command exists
 
       final VerifyCommand vc = vcList.get(0);
-      if (vc.isVerifying() == false) {
+      if (!vc.isVerifying()) {
         // Executes the JPF in the separate thread
-        new Thread(new Runnable() {
-          @Override
-          public void run () {
-            try {
-              ShellManager.getManager().fireCommand(vc);
-            } catch (Throwable t) {
-              outStream.println("Exception while starting/running JPF");
-              outStream.println(t.getMessage());
-              t.printStackTrace(outStream);
-            }
+        new Thread(() -> {
+          try {
+            // TODO this will need to be changed for command line execution
+            // Because we won't be able to use ShellManager there
+            ShellManager.getManager().fireCommand(vc);
+          } catch (Throwable t) {
+            outStream.println("Exception while starting/resuming JPF.");
+            outStream.println(t.getMessage());
+            t.printStackTrace(outStream);
           }
         }).start();
       } else {
@@ -107,7 +94,7 @@ public class CmdRun extends ClientCommand {
 
   @Override
   public String getNormalizedCommand () {
-    return type.getGrammerText();
+    return commandName;
   }
 
 }

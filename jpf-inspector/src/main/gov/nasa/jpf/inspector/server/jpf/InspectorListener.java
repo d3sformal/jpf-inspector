@@ -24,7 +24,8 @@ import gov.nasa.jpf.inspector.server.breakpoints.BreakPointHandler;
 import gov.nasa.jpf.inspector.server.breakpoints.CommandsManager;
 import gov.nasa.jpf.inspector.server.breakpoints.DefaultForwardTraceManager;
 import gov.nasa.jpf.inspector.server.choicegenerators.ChoiceGeneratorNotifications;
-import gov.nasa.jpf.vm.VM;
+import gov.nasa.jpf.jvm.ClassFile;
+import gov.nasa.jpf.vm.*;
 import gov.nasa.jpf.report.Publisher;
 import gov.nasa.jpf.search.Search;
 
@@ -90,6 +91,18 @@ public class InspectorListener extends ListenerAdapter {
     mode.stateAdvanced(search);
   }
 
+  @Override
+  public void instructionExecuted(VM vm, ThreadInfo currentThread, Instruction nextInstruction, Instruction executedInstruction) {
+    mode.instructionExecuted(vm, currentThread, nextInstruction, executedInstruction);
+  }
+
+  
+  
+  
+  
+  /*
+  
+  Before migration, these were the overriding methods:
   @Override
   public void instructionExecuted (VM vm) {
     mode.instructionExecuted(vm);
@@ -175,15 +188,6 @@ public class InspectorListener extends ListenerAdapter {
     mode.objectNotifyAll(vm);
   }
 
-  @Override
-  public void gcBegin (VM vm) {
-    mode.gcBegin(vm);
-  }
-
-  @Override
-  public void gcEnd (VM vm) {
-    mode.gcEnd(vm);
-  }
 
   @Override
   public void exceptionThrown (VM vm) {
@@ -230,6 +234,26 @@ public class InspectorListener extends ListenerAdapter {
     mode.methodExited(vm);
   }
 
+
+*/
+
+
+
+
+  @Override
+  public void gcBegin (VM vm) {
+    mode.gcBegin(vm);
+  }
+
+  @Override
+  public void gcEnd (VM vm) {
+    mode.gcEnd(vm);
+  }
+  
+  
+  
+  
+  
   @Override
   public void stateProcessed (Search search) {
     mode.stateProcessed(search);
@@ -300,5 +324,163 @@ public class InspectorListener extends ListenerAdapter {
   @Override
   public void publishFinished (Publisher publisher) {
     mode.publishFinished(publisher);
+  }
+  
+  
+  //********************** METHODS OVERRIDEN DURING MIGRATION *********************/
+
+  @Override
+  public void vmInitialized(VM vm) {
+    mode.vmInitialized(vm);
+  }
+
+  @Override
+  public void executeInstruction(VM vm, ThreadInfo currentThread, Instruction instructionToExecute) {
+    mode.executeInstruction(vm, currentThread, instructionToExecute);
+  }
+
+  @Override
+  public void threadStarted(VM vm, ThreadInfo startedThread) {
+    mode.threadStarted(vm, startedThread);
+  }
+
+  @Override
+  public void threadWaiting(VM vm, ThreadInfo waitingThread) {
+    mode.threadWaiting(vm, waitingThread);
+  }
+
+  @Override
+  public void threadNotified(VM vm, ThreadInfo notifiedThread) {
+    mode.threadNotified(vm, notifiedThread);
+  }
+
+  @Override
+  public void threadInterrupted(VM vm, ThreadInfo interruptedThread) {
+    mode.threadInterrupted(vm, interruptedThread);
+  }
+
+  @Override
+  public void threadScheduled(VM vm, ThreadInfo scheduledThread) {
+    mode.threadScheduled(vm, scheduledThread);
+  }
+
+  @Override
+  public void threadBlocked(VM vm, ThreadInfo blockedThread, ElementInfo lock) {
+    mode.threadBlocked(vm, blockedThread, lock);
+  }
+
+  @Override
+  public void threadTerminated(VM vm, ThreadInfo terminatedThread) {
+    mode.threadTerminated(vm, terminatedThread);
+  }
+
+  @Override
+  public void loadClass(VM vm, ClassFile cf) {
+    mode.loadClass(vm, cf);
+  }
+
+  @Override
+  public void classLoaded(VM vm, ClassInfo loadedClass) {
+    mode.classLoaded(vm, loadedClass);
+  }
+
+  @Override
+  public void objectCreated(VM vm, ThreadInfo currentThread, ElementInfo newObject) {
+    mode.objectCreated(vm, currentThread, newObject);
+  }
+
+  @Override
+  public void objectReleased(VM vm, ThreadInfo currentThread, ElementInfo releasedObject) {
+    mode.objectReleased(vm, currentThread, releasedObject);
+  }
+
+  @Override
+  public void objectLocked(VM vm, ThreadInfo currentThread, ElementInfo lockedObject) {
+    mode.objectLocked(vm, currentThread, lockedObject);
+  }
+
+  @Override
+  public void objectUnlocked(VM vm, ThreadInfo currentThread, ElementInfo unlockedObject) {
+    mode.objectUnlocked(vm, currentThread, unlockedObject);
+  }
+
+  @Override
+  public void objectWait(VM vm, ThreadInfo currentThread, ElementInfo waitingObject) {
+    mode.objectWait(vm, currentThread, waitingObject);
+  }
+
+  @Override
+  public void objectNotify(VM vm, ThreadInfo currentThread, ElementInfo notifyingObject) {
+    mode.objectNotify(vm, currentThread, notifyingObject);
+  }
+
+  @Override
+  public void objectNotifyAll(VM vm, ThreadInfo currentThread, ElementInfo notifyingObject) {
+    mode.objectNotifyAll(vm, currentThread, notifyingObject);
+  }
+
+  @Override
+  public void objectExposed(VM vm, ThreadInfo currentThread, ElementInfo fieldOwnerObject, ElementInfo exposedObject) {
+    mode.objectExposed(vm, currentThread, fieldOwnerObject, exposedObject);
+  }
+
+  @Override
+  public void objectShared(VM vm, ThreadInfo currentThread, ElementInfo sharedObject) {
+    mode.objectShared(vm, currentThread, sharedObject);
+  }
+
+  @Override
+  public void exceptionThrown(VM vm, ThreadInfo currentThread, ElementInfo thrownException) {
+    mode.exceptionThrown(vm, currentThread, thrownException);
+  }
+
+  @Override
+  public void exceptionBailout(VM vm, ThreadInfo currentThread) {
+    mode.exceptionBailout(vm, currentThread);
+  }
+
+  @Override
+  public void exceptionHandled(VM vm, ThreadInfo currentThread) {
+    mode.exceptionHandled(vm, currentThread);
+  }
+
+  @Override
+  public void choiceGeneratorRegistered(VM vm, ChoiceGenerator<?> nextCG, ThreadInfo currentThread, Instruction executedInstruction) {
+    mode.choiceGeneratorRegistered(vm, nextCG, currentThread, executedInstruction);
+  }
+
+  @Override
+  public void choiceGeneratorSet(VM vm, ChoiceGenerator<?> newCG) {
+    mode.choiceGeneratorSet(vm, newCG);
+  }
+
+  @Override
+  public void choiceGeneratorAdvanced(VM vm, ChoiceGenerator<?> currentCG) {
+    mode.choiceGeneratorAdvanced(vm, currentCG);
+  }
+
+  @Override
+  public void choiceGeneratorProcessed(VM vm, ChoiceGenerator<?> processedCG) {
+    mode.choiceGeneratorProcessed(vm, processedCG);
+  }
+
+  @Override
+  public void methodEntered(VM vm, ThreadInfo currentThread, MethodInfo enteredMethod) {
+    mode.methodEntered(vm, currentThread, enteredMethod);
+  }
+
+  @Override
+  public void methodExited(VM vm, ThreadInfo currentThread, MethodInfo exitedMethod) {
+    mode.methodExited(vm, currentThread, exitedMethod);
+  }
+
+  @Override
+  public void searchProbed(Search search) {
+    mode.searchProbed(search);
+  }
+
+  @Override
+  public void publishProbe(Publisher publisher) {
+    mode.publishProbe(publisher);
   }
 }

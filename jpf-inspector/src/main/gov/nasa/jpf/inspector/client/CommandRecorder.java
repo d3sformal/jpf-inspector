@@ -6,21 +6,18 @@ import gov.nasa.jpf.inspector.client.commands.CmdCallback;
 import gov.nasa.jpf.inspector.interfaces.BreakPointStatus;
 import gov.nasa.jpf.inspector.interfaces.JPFInspectorBackEndInterface;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.PrintStream;
+import java.io.*;
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
 import java.util.regex.Pattern;
 
 /**
  * Stores and replays executed commands.
- * 
+ *
+ * The command recorder stores only commands, not their results, but it does store comments that are sometimes generated automatically by some commands. The contents of a command recorder may be erased, stores to a file or replayed with commands in the Inspector console.
+ *
  * @author Alf
  */
 public class CommandRecorder {
@@ -33,12 +30,8 @@ public class CommandRecorder {
   private final Pattern patternLineStart = Pattern.compile("\n"); // Used in recordComment add add "# " at the beginning of each line
   private final String target;
 
-  private boolean deterministicBehaviour; // Is recorded execution deterministics (all commands are sent if JPF is not running)
-  private boolean jpfStartRecorded; // Begins record with start of the JPF (not record while in the middle of the execution)
   private ClientCommandInterface lastCommand;
   private int lastCommandIndex;
-
-  private int commandCount; // Number of recorded commands
 
   private final PrintStream outStream;
 
@@ -47,7 +40,7 @@ public class CommandRecorder {
    * @param outStream Stream where report results of commands
    */
   public CommandRecorder (String target, PrintStream outStream) {
-    this.commands = new ArrayList<String>();
+    this.commands = new ArrayList<>();
     this.outStream = outStream;
     this.target = target;
     init();
@@ -55,20 +48,24 @@ public class CommandRecorder {
 
   private void init () {
     commands.clear();
-    deterministicBehaviour = true;
-    jpfStartRecorded = false;
     lastCommand = null;
     lastCommandIndex = 0;
-    commandCount = 0;
     DateFormat df = DateFormat.getInstance();
     Date now = new Date();
     String userName = System.getProperty("user.name");
 
-    addComment("Recorded at " + df.format(now) + (userName != null ? " by " + userName : "") + ".");
+    addComment("Recording starts at " + df.format(now) + (userName != null ? " by " + userName : "") + ".");
     addComment("Target: " + target);
     addComment("");
   }
 
+  /**
+   * Writes information on all breakpoints into the record log as comments.
+   * This is used for debugging only.
+   *
+   * @param inspector The Inspector server.
+   */
+  @SuppressWarnings("unused")
   private void dumpBackendState (JPFInspectorBackEndInterface inspector) {
     // Dumping existing breakpoints
     List<BreakPointStatus> bps = inspector.getBreakPoints();
@@ -76,42 +73,55 @@ public class CommandRecorder {
       String bpStrCommand = CmdBreakpointCreate.ConsoleBreakpointCreate.getNormalizedExpressionPrefix(bp) + ' ' + bp.getNormalizedBreakpointExpression();
       addComment(bpStrCommand);
     }
-
-    // Dumping notification state
-
   }
 
+  /**
+   * Reinitializes the command recorder (forgets all recorded commands and creates a new header for the recorded data, including a new timestamp).
+   */
   public synchronized void clearRecordedCommands () {
     init();
-
-    addComment("Cleared");
+    addComment("Recording started because of user-initiated clear command.");
   }
 
+  /**
+   * Saves the contents of the current command recorder to a file. If we cannot write to the specified filename (invalid characters, bad permissions, ...), the method returns false.
+   * @param fileName Name of the file where the commands should be written to.
+   * @return Returns true if the commands were successfully saved to the file; returns false otherwise.
+   */
   public synchronized boolean saveRecordedCommmands (String fileName) {
     try {
       PrintStream outFile = new PrintStream(fileName);
-      Iterator<String> it = commands.iterator();
-      while (it.hasNext()) {
-        outFile.print(it.next());
+      for (String command : commands) {
+        outFile.print(command);
       }
       outFile.close();
 
       return true;
+
     } catch (FileNotFoundException e) {
-      outStream.println("ERR: Cannot write to " + fileName + " file. \n\t" + e.getMessage());
+      outStream.println("ERR: Could not write to the file '" + fileName + "'. Recording not saved.\n\t" + e.getMessage());
       return false;
     }
   }
 
+  /**
+   * Loads the contents of a recording from a file and executes all commands from that recording, in order. If we cannot read the specified file (it does not exist, for example), the method returns false.
+   *
+   * We read the file as we go. If at any point we lose access to the file, the replay terminates and we return false.
+   * @param fileName Filename of the file that contains the recording to play.
+   * @param client The current JPFInspectorClient.
+   * @return Returns true when all loaded commands are executed. Returns false if the file could not be read.
+   */
   public boolean executeCommands (String fileName, JPFInspectorClient client) {
-    BufferedReader in = null;
+    BufferedReader in;
     try {
       in = new BufferedReader(new FileReader(fileName));
     } catch (FileNotFoundException e) {
-      outStream.println("ERR: Cannot found " + fileName + " file. \n\t" + e.getMessage());
+      outStream.println("ERR: Could not read the file '" + fileName + "'. Recording will not play.\n\t" + e.getMessage());
       return false;
     }
     try {
+
       CallbackExecutionDecorator cb = client.getDecoratedCallbacks();
       WORKING_MODE oldWorkMode = cb.setNewMode(WORKING_MODE.WM_EXECUTION_RECORD);
       String line;
@@ -125,15 +135,16 @@ public class CommandRecorder {
       // Restore original mode
       cb.setNewMode(oldWorkMode);
       return true;
+
     } catch (IOException e) {
-      outStream.println("ERR: Cannot read " + fileName + " file. \n\t" + e.getMessage());
+      outStream.println("ERR: Could not read the file '" + fileName + "'. Recording will not play.\n\t" + e.getMessage());
       return false;
     }
 
   }
 
   /**
-   * @return Dumps all recorded events
+   * Dumps all recorded events as a multi-line string.
    */
   public String getRecordedEvents () {
     return toString();
@@ -142,11 +153,9 @@ public class CommandRecorder {
   @Override
   public String toString () {
     StringBuilder sb = new StringBuilder();
-    sb.append("# CommandRecorder - executed commands\n");
 
-    Iterator<String> it = commands.iterator();
-    while (it.hasNext()) {
-      sb.append(it.next());
+    for (String command : commands) {
+      sb.append(command);
     }
 
     return sb.toString();
@@ -182,7 +191,6 @@ public class CommandRecorder {
     commands.add(cmdStr);
     lastCommand = cmd;
     lastCommandIndex = commands.size() - 1;
-    commandCount++;
   }
 
   // Updates only if it is the last recorded command

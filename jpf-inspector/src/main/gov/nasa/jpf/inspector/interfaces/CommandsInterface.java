@@ -20,6 +20,8 @@
 package gov.nasa.jpf.inspector.interfaces;
 
 
+import gov.nasa.jpf.inspector.exceptions.JPFInspectorException;
+
 public interface CommandsInterface {
 
   static public enum InspectorStates {

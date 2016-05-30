@@ -26,11 +26,11 @@ import gov.nasa.jpf.inspector.interfaces.JPFInspectorBackEndInterface;
 import java.io.PrintStream;
 
 /**
- * Handles delete breakpoint INT command
+ * Represents the "delete breakpoint" command that deletes the breakpoint with the specified index.
  */
 public class CmdBreakpointDelete extends ClientCommand {
 
-  final String bpID; // / Identifier of the Breakpoint {@link BreakPoint#getBPID()}
+  private final String bpID; // / Identifier of the Breakpoint {@link BreakPoint#getBPID()}
 
   public CmdBreakpointDelete (String bpID) {
     this.bpID = bpID;
@@ -41,13 +41,13 @@ public class CmdBreakpointDelete extends ClientCommand {
     try {
       int bpIDint = Integer.parseInt(bpID);
       final boolean rc = inspector.deleteBreakPoint(bpIDint);
-      if (rc == false) {
-        outStream.println("Breakpoint with ID = " + bpIDint + " not exists");
+      if (!rc) {
+        outStream.println("Breakpoint with ID = " + bpIDint + " does not exist.");
       } else {
-        outStream.println("Breakpoint with ID = " + bpIDint + " delete succesfully");
+        outStream.println("Breakpoint with ID = " + bpIDint + " successfully deleted.");
       }
     } catch (NumberFormatException e) {
-      outStream.println("Malformated breakpoint identifier - use number (" + bpID + ")");
+      outStream.println("Malformed breakpoint identifier - \"" + bpID + "\" is not an integer.");
     }
   }
 

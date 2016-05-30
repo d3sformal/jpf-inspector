@@ -27,8 +27,8 @@ import gov.nasa.jpf.inspector.interfaces.JPFInspectorBackEndInterface;
 import java.io.PrintStream;
 
 /**
- * @author Alf
- * 
+ * Represents the 'record execute' command that loads a recording from a file and immediately replays it.
+ * @author Alf *
  */
 public class CmdRecordExecute extends ClientCommand {
 
@@ -39,28 +39,17 @@ public class CmdRecordExecute extends ClientCommand {
     this.filename = filename;
   }
 
-  /*
-   * (non-Javadoc)
-   * 
-   * @see gov.nasa.jpf.inspector.client.ClientCommandInterface#executeCommands(gov.nasa.jpf.inspector.client.JPFInspectorClient,
-   * gov.nasa.jpf.inspector.interfaces.JPFInspectorBackEndInterface, java.io.PrintStream)
-   */
   @Override
   public void executeCommands (JPFInspectorClient client, JPFInspectorBackEndInterface inspector, PrintStream outStream) {
 
     CommandRecorder rec = client.getCommandRecorder();
     rec.executeCommands(filename, client);
 
-    rec.addComment("execution of " + filename + " file finished");
+    rec.addComment("Execution of the recording '" + filename + "' has finished.");
     rec.addComment("------------------------------------------------------------------------------");
 
   }
 
-  /*
-   * (non-Javadoc)
-   * 
-   * @see gov.nasa.jpf.inspector.client.ClientCommandInterface#getNormalizedCommand()
-   */
   @Override
   public String getNormalizedCommand () {
     return "record execute " + filename;
@@ -68,6 +57,7 @@ public class CmdRecordExecute extends ClientCommand {
 
   @Override
   public void recordCommand (CommandRecorder rec) {
+    // We record this only as a comment, otherwise we might get stuck in an infinite replay loop.
     rec.addComment("------------------------------------------------------------------------------");
     rec.addComment(getNormalizedCommand());
   }

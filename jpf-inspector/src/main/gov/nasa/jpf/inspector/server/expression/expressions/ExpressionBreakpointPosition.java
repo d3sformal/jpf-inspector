@@ -20,6 +20,7 @@
 package gov.nasa.jpf.inspector.server.expression.expressions;
 
 import gov.nasa.jpf.inspector.interfaces.InstructionPosition;
+import gov.nasa.jpf.inspector.migration.MigrationUtilities;
 import gov.nasa.jpf.inspector.server.breakpoints.BreakPointModes;
 import gov.nasa.jpf.inspector.server.expression.ExpressionBooleanLeaf;
 import gov.nasa.jpf.inspector.server.expression.InspectorState;
@@ -83,10 +84,10 @@ public class ExpressionBreakpointPosition extends ExpressionBooleanLeaf {
     VM vm = state.getJVM();
     assert vm != null;
 
-    int lastThread = vm.getThreadNumber();
+    int lastThread = MigrationUtilities.getThreadNumber(vm);
 
     final Path path = vm.getPath();
-    final Instruction lastInstr = vm.getLastInstruction();
+    final Instruction lastInstr = MigrationUtilities.getLastInstruction(vm);
 
     final boolean lastInstrHitPos = instPos.hitPosition(lastInstr);
     if (DEBUG) {
@@ -117,7 +118,7 @@ public class ExpressionBreakpointPosition extends ExpressionBooleanLeaf {
   @Override
   public String getDetails (InspectorState state) {
     if (state != null && evaluateExpression(state)) {
-      return "SuT enters the " + instPos.toString();
+      return "SuT will now enter the position " + instPos.toString(); // TODO is it really "will now enter" or is it "had already evaluated at least part of it"?
     }
     return "";
   }

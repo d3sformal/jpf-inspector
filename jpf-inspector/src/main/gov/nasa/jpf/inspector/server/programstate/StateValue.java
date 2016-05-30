@@ -20,16 +20,16 @@
 package gov.nasa.jpf.inspector.server.programstate;
 
 import gov.nasa.jpf.JPFException;
-import gov.nasa.jpf.inspector.interfaces.JPFInspectorException;
-import gov.nasa.jpf.inspector.interfaces.exceptions.JPFInspectorAssignmentOutOfRangeException;
-import gov.nasa.jpf.inspector.interfaces.exceptions.JPFInspectorIncompatibleTypesException;
-import gov.nasa.jpf.inspector.interfaces.exceptions.JPFInspectorNotSuperClassException;
-import gov.nasa.jpf.inspector.interfaces.exceptions.JPFInspectorNullValueException;
+import gov.nasa.jpf.inspector.exceptions.JPFInspectorException;
+import gov.nasa.jpf.inspector.exceptions.JPFInspectorAssignmentOutOfRangeException;
+import gov.nasa.jpf.inspector.exceptions.JPFInspectorIncompatibleTypesException;
+import gov.nasa.jpf.inspector.exceptions.JPFInspectorNotSuperClassException;
+import gov.nasa.jpf.inspector.exceptions.JPFInspectorNullValueException;
 import gov.nasa.jpf.inspector.server.expression.InspectorState;
-import gov.nasa.jpf.inspector.server.programstate.client.PSEVariable;
-import gov.nasa.jpf.inspector.server.programstate.client.PSEVariableArray;
-import gov.nasa.jpf.inspector.server.programstate.client.PSEVariableObject;
-import gov.nasa.jpf.inspector.server.programstate.client.PSEVariablePrimitive;
+import gov.nasa.jpf.inspector.common.pse.PSEVariable;
+import gov.nasa.jpf.inspector.common.pse.PSEVariableArray;
+import gov.nasa.jpf.inspector.common.pse.PSEVariableObject;
+import gov.nasa.jpf.inspector.common.pse.PSEVariablePrimitive;
 import gov.nasa.jpf.inspector.utils.ClassInfoCache;
 import gov.nasa.jpf.vm.ClassInfo;
 import gov.nasa.jpf.vm.DynamicElementInfo;

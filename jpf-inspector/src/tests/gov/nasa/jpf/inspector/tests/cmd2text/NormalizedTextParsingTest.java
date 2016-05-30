@@ -2,7 +2,7 @@ package gov.nasa.jpf.inspector.tests.cmd2text;
 
 import gov.nasa.jpf.inspector.client.ClientCommandInterface;
 import gov.nasa.jpf.inspector.client.parser.CommandParserFactory;
-import gov.nasa.jpf.inspector.interfaces.exceptions.JPFInspectorParsingErrorException;
+import gov.nasa.jpf.inspector.exceptions.JPFInspectorParsingErrorException;
 import gov.nasa.jpf.inspector.tests.infrastructure.InspectorTest;
 
 import java.io.PrintStream;
@@ -137,10 +137,9 @@ public class NormalizedTextParsingTest extends InspectorTest {
     testCommands(usedCGcmds);
   }
 
-  protected void testCommands (String[] cmds) {
+  private void testCommands(String[] cmds) {
 
-    for (int i = 0; i < cmds.length; i++) {
-      String origCmd = cmds[i];
+    for (String origCmd : cmds) {
       if (DEBUG) {
         out.println("Parsing \"" + origCmd + "\"");
       }
@@ -164,7 +163,7 @@ public class NormalizedTextParsingTest extends InspectorTest {
         out.println("\tNormalized command version \"" + normalizedText + "\"");
       }
       try {
-        cmd = CommandParserFactory.getClientCommandParser().parseCommands(normalizedText);
+        CommandParserFactory.getClientCommandParser().parseCommands(normalizedText);
       } catch (JPFInspectorParsingErrorException e) {
         fail("Error while parsing normalized command: " + origCmd + " error" + e.getMessage());
       }

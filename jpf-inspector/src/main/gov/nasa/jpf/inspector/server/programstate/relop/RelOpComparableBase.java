@@ -19,7 +19,7 @@
 
 package gov.nasa.jpf.inspector.server.programstate.relop;
 
-import gov.nasa.jpf.inspector.interfaces.exceptions.JPFInspectorIncompatibleTypesException;
+import gov.nasa.jpf.inspector.exceptions.JPFInspectorIncompatibleTypesException;
 import gov.nasa.jpf.inspector.server.jpf.JPFInspector;
 import gov.nasa.jpf.inspector.server.programstate.StateReadableValueInterface;
 import gov.nasa.jpf.inspector.utils.ClassInfoCache;

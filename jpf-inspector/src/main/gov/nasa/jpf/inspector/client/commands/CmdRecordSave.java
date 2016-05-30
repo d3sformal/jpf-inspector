@@ -27,8 +27,8 @@ import gov.nasa.jpf.inspector.interfaces.JPFInspectorBackEndInterface;
 import java.io.PrintStream;
 
 /**
+ * Represents the 'record save' command that saves the contents of the command recorder into a file.
  * @author Alf
- * 
  */
 public class CmdRecordSave extends ClientCommand {
 
@@ -39,26 +39,17 @@ public class CmdRecordSave extends ClientCommand {
     this.fileName = fileName;
   }
 
-  /*
-   * (non-Javadoc)
-   * 
-   * @see gov.nasa.jpf.inspector.client.ClientCommandInterface#executeCommands(gov.nasa.jpf.inspector.client.JPFInspectorClient,
-   * gov.nasa.jpf.inspector.interfaces.JPFInspectorBackEndInterface, java.io.PrintStream)
-   */
   @Override
   public void executeCommands (JPFInspectorClient client, JPFInspectorBackEndInterface inspector, PrintStream outStream) {
     CommandRecorder rec = client.getCommandRecorder();
     if (rec.saveRecordedCommmands(fileName)) {
       // Successfully saved
-      outStream.println("List of executed successfully saved to " + fileName + " file");
+      outStream.println("List of executed commands was successfully saved to the file '" + fileName + "'.");
+    } else {
+      // The called method already printed the error message to the console.
     }
   }
 
-  /*
-   * (non-Javadoc)
-   * 
-   * @see gov.nasa.jpf.inspector.client.ClientCommandInterface#getNormalizedCommand()
-   */
   @Override
   public String getNormalizedCommand () {
     return "record save " + fileName;
@@ -66,7 +57,9 @@ public class CmdRecordSave extends ClientCommand {
 
   @Override
   public void recordCommand (CommandRecorder rec) {
-    rec.addComment(getNormalizedCommand());
+    // We record this command only as a comment because when executing a recording,
+    // we don't want the file to be overwritten, as per the documentation.
+    rec.addComment("Recorded command: " + getNormalizedCommand());
   }
 
 }

@@ -1,19 +1,10 @@
 package gov.nasa.jpf.inspector.server.pathanalysis;
 
+import gov.nasa.jpf.jvm.bytecode.*;
 import gov.nasa.jpf.vm.Step;
-import gov.nasa.jpf.jvm.bytecode.ARETURN;
-import gov.nasa.jpf.jvm.bytecode.DIRECTCALLRETURN;
-import gov.nasa.jpf.jvm.bytecode.DRETURN;
-import gov.nasa.jpf.jvm.bytecode.FRETURN;
-import gov.nasa.jpf.jvm.bytecode.IRETURN;
 import gov.nasa.jpf.vm.Instruction;
-import gov.nasa.jpf.jvm.bytecode.InstructionVisitorAdapter;
-import gov.nasa.jpf.jvm.bytecode.LRETURN;
-import gov.nasa.jpf.jvm.bytecode.NATIVERETURN;
-import gov.nasa.jpf.jvm.bytecode.RETURN;
-import gov.nasa.jpf.jvm.bytecode.ReturnInstruction;
 
-class CheckReturnInstruction extends InstructionVisitorAdapter {
+class CheckReturnInstruction extends JVMInstructionVisitorAdapter {
   private boolean isReturnInstr = false;
   
   public boolean isReturnStep(Step step) {
@@ -24,12 +15,13 @@ class CheckReturnInstruction extends InstructionVisitorAdapter {
   public boolean isReturnInstruction(Instruction inst) {
     assert(inst != null);
     isReturnInstr = false;
-    inst.accept(this);
+    assert (inst instanceof JVMInstruction);
+    ((JVMInstruction)inst).accept(this);
     return isReturnInstr;
   }
   
   @Override
-  public void visit(ReturnInstruction ins) {
+  public void visit(JVMReturnInstruction ins) {
     isReturnInstr = true;
   }
 

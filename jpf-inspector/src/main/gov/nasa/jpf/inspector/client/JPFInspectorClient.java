@@ -7,11 +7,15 @@ import gov.nasa.jpf.inspector.client.parser.CommandParserFactory;
 import gov.nasa.jpf.inspector.client.parser.CommandParserInterface;
 import gov.nasa.jpf.inspector.interfaces.InspectorCallBacks;
 import gov.nasa.jpf.inspector.interfaces.JPFInspectorBackEndInterface;
-import gov.nasa.jpf.inspector.interfaces.exceptions.JPFInspectorGenericErrorException;
-import gov.nasa.jpf.inspector.interfaces.exceptions.JPFInspectorParsingErrorException;
+import gov.nasa.jpf.inspector.exceptions.JPFInspectorGenericErrorException;
+import gov.nasa.jpf.inspector.exceptions.JPFInspectorParsingErrorException;
 
 import java.io.PrintStream;
 
+/**
+ * Represents the JPF Inspector client.
+ * All the commands use this concrete class rather than the interface.
+ */
 public class JPFInspectorClient implements JPFInspectorClientInterface {
   private final PrintStream outputStream;
   private final JPFInspectorBackEndInterface inspector;
@@ -29,7 +33,7 @@ public class JPFInspectorClient implements JPFInspectorClientInterface {
     }
 
     if (callbacks == null) {
-      throw new IllegalArgumentException("callbacks not specified (null)");
+      throw new IllegalArgumentException("Callbacks not specified (null)");
     }
 
     this.outputStream = outStream;
@@ -54,7 +58,7 @@ public class JPFInspectorClient implements JPFInspectorClientInterface {
     executeCommand(cmd);
   }
 
-  public ClientCommandInterface parseCommand (String cmdStr, CommandParserInterface parser) {
+  private ClientCommandInterface parseCommand(String cmdStr, CommandParserInterface parser) {
     // Prepare the input
 
     // Trim left white space
@@ -89,31 +93,31 @@ public class JPFInspectorClient implements JPFInspectorClientInterface {
       // TODO - Extend/replace outStream to be able to report line length - not use magic constant 50
       outputStream.println(e.expressError(50));
 
-      recordComment("ERR:  Error parsing \"" + cmdStr + "\" command");
+      recordComment("ERR:  Error parsing the command \"" + cmdStr + "\".");
 
       recordComment(e.getMessage());
-      recordComment(e.expressError(JPFInspectorParsingErrorException.DEFAULT_LINE_LENGHT));
+      recordComment(e.expressError(JPFInspectorParsingErrorException.DEFAULT_LINE_LENGTH));
     }
     return cmd;
   }
 
-  public void executeCommand (ClientCommandInterface cmd) {
+  private void executeCommand(ClientCommandInterface cmd) {
     if (cmd == null) {
       return;
     }
     // To serialize recordingof executed commands and commands related to command execution
     synchronized (recorder) {
       try {
-        if (cmd.isHiddenCommand() == false) {
+        if (!cmd.isHiddenCommand()) {
           outputStream.println("cmd>" + cmd.getNormalizedCommand());
         }
         cmd.recordCommand(recorder);
         cmd.executeCommands(this, inspector, outputStream);
       } catch (Throwable e) {
-        outputStream.println("ERR: Generic error while processing command");
+        outputStream.println("ERR: Generic error while processing command:");
         e.printStackTrace(outputStream);
 
-        recordComment("ERR: Generic error while processing command");
+        recordComment("ERR: Generic error while processing command:");
         recordComment(e.getMessage());
       }
     }
@@ -122,11 +126,11 @@ public class JPFInspectorClient implements JPFInspectorClientInterface {
   @Override
   public void connect2JPF (JPF jpf) throws JPFInspectorGenericErrorException {
     if (jpf == null) {
-      throw new IllegalArgumentException("JPF parameter cannot be null");
+      throw new IllegalArgumentException("JPF parameter cannot be null.");
     }
 
     if (jpf.getStatus() != Status.NEW) {
-      throw new IllegalArgumentException("Invalied JPF state. JPF is running or terminated model checking.");
+      throw new IllegalArgumentException("Invalid JPF state. JPF is running or terminated model checking.");
     }
 
     // TODO - Record current state of JPF (breakpoints and CG notifications)
@@ -136,7 +140,7 @@ public class JPFInspectorClient implements JPFInspectorClientInterface {
     } catch (JPFInspectorGenericErrorException e) {
       outputStream.println(e.getMessage());
 
-      recordComment("Error while connection JPF");
+      recordComment("Error while connecting to JPF:");
       recordComment(e.getMessage());
 
       throw e;
@@ -150,6 +154,11 @@ public class JPFInspectorClient implements JPFInspectorClientInterface {
     recorder.addComment(message);
   }
 
+  /**
+   * Gets the command recorder.
+   *
+   * The command recorder is created once, in the constructor.
+   */
   public CommandRecorder getCommandRecorder () {
     return recorder;
   }

@@ -19,7 +19,7 @@
 
 package gov.nasa.jpf.inspector.server.expression;
 
-import gov.nasa.jpf.inspector.interfaces.JPFInspectorException;
+import gov.nasa.jpf.inspector.exceptions.JPFInspectorException;
 import gov.nasa.jpf.inspector.server.breakpoints.BreakPointModes;
 
 /**

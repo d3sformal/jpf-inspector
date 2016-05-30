@@ -1,0 +1,104 @@
+organization
+============
+zaridit opravu chyb a malych nedostatku
+	- take pridavat nove featury a dalsi prikazy, ktere mohou byt nejak uzitecne (viz seznam dole)
+	- po kazde zmene provest rucne vsechny use cases a vsechny automaticke unit testy (pres Ant)
+
+
+main todo list
+==============
+implementovat prikaz "bst" a potom dukladne otestovat na UC4
+	- staci nejspis jen vyrobit odpovidajici metodu tridy BackwardBreakpointCreator ktera vrati novou instanci a urcit tam skok zpet o jednu transition
+	- potom zkontrolovat celou UC4 (jestli vsechny prikazy funguji spravne) a doplnit ocekavany vystup pro zbytek souboru misc/usecases/UC4.txt
+
+print vypisuje adresy defaultne v hexadecimalni notaci ale bez predpony "0x", coz je dost matouci
+	- typicky vystup je: <class name>@<index>, kde hodnota "index" je v hexadecimalni notaci
+	- ale pokud je hodnota nejakeho fieldu reference, tak je pro zmenu vypsana v desitkove soustave
+	- pouzit jednu z moznych notaci (vsude stejnou) -> nejspis tisknout prefix "0x" u vsech hexadecimalnich cisel
+
+udelat package "inspector.common" a presunout tam tridy z existujiciho package "inspector.server.programstate.client" (PSEThread, PSEMethod, apod)
+	- take presunout jejich superclass "ProgramStateEntry"
+	- zmenit vsechny mista, kde se tyto tridy pouzivaji
+
+implementovat konfiguracni option pro ignorovani breakpointu uvnitr Java core libraries (java.*, javax.*)
+
+otestovat slozene breakpoints (asi pridat do nejake existujici usecase nebo vyrobit dalsi)
+	- jde udelat breakpoint typu "x == 10" (if the current value of the variable 'x' is 10) a take composite breakpoint "pos=Example02.java:33 and j == -1"
+
+vylepsit podporu assertions over the program state at given code locations
+	- pridat dynamicke vypinani a zapinani existujicich (uzivatelem definovanych) assertions podle jejich ID
+
+pure command-line interface
+	- mode that does not need jpf-shell
+	- batch execution of a given command sequence (predefined script) that prints all outputs
+		- useful to get comparison of two states, where the other commands put the analyzed Java program into the right state
+
+print attributes that are associated with elements of program state (heap objects, fields, and local variables) and changing attribute values
+	- this will improve usability of Inspector together with JPF-SE (symbolic execution) -> printing and changing symbolic values
+
+support for symbolic values (Symbolic JPF)
+	- includes: printing symbolic values and path conditions, assigning new symbolic values to program variables, breakpoints over symbolic variables
+
+breakpoint pro cteni nebo zapis lokalni promenne (bytecode load/store)
+	- udelat podobne jako breakpoint na field access (inspirace) a vyrobit prislusny unit test (jen na tento breakpoint)
+
+nove prikazy (varianty existujicich)
+	1) backward steps to the previous breakpoint hit (ignoring hit counts)
+		- possible syntax: back_breakpoint_hit [bhit]
+	2) single step commands with repetition count
+		- example: "step_out 10" means going forward for 10 lines
+		- implementation: client sends the command 10 times and breaks if some error occurs
+ 		- motivation: easy backtracking to interesting places in the program state space
+	3) break if variable value equals or not equals to given constant
+		- example syntax: cr bp #this.x == 10
+		- custom assertions muzou byt specifikovane jako tento breakpoint
+		- current version supports breaking on variable access with any value
+	4) automated backtracking to the scheduling choice point that is associated with access to some field
+		- it may be useful in search for root causes of atomicity errors
+		- possible syntax: back_step_choice field="<class name>.<field name>"
+	5) temporary disabling of some thread and later enabling
+		- use case: disable specific thread (it will not be scheduled from now on) and make few steps to see what happens (e.g., if a deadlock occurs or some error disappears)
+
+state comparison ("program state diff")
+	- motivation: discovering causes of state explosion (e.g., if the value of some variable changes too often)
+		- sometimes it is not clear why there are so many program states (why the states at certain program locations differ)
+		- find the names of variables that mainly increase the state space size (that are cause of the most state differences)
+	- goal 1: print differences between two states on the current execution path (e.g., display names of variables that have different values and both values for such variables)
+	- goal 2: compare states that are associated with the same program location (source code line) and print their differences (the states may be on different state space branches)
+	- there are more ways to compare states (each seems to be interesting for different purposes)
+		- state matching perspective: simulate the state matching (with canonicalization) as close as possible and show all differences (reasons why the states are not the same)
+		- programmer's perspective: try to find all changes made by the program which cause the states to be different
+	- in general, we should compare states by the sections (heap, statics, threads); for thread, there should be separate subsections for state, locks, and call stacks (stack frames)
+	- bude nutne ukladat vsechny stavy kompletni (nebo aspon stavy pro danou source code line) -> tedy ne jen stavy na current execution path (aktualni path in the state space path)
+		- pro ziskani kompletnich stavu na jinych execution paths musime napsat vlastni state storage (tridy jako StateSerializer, CollapsingRestorer, Backtracker), nebo listener ktery se o vsechno ukladani postara (navic muze ulozit jen vybrane informace podle nejakeho filtru a ty pak srovnavat)
+	- muzeme definovat prikaz "record state", ktery nekam ulozi kompletni stav a zobrazi jeho id, a take prikaz "compare states <id_1> <id_2>"
+		- another option: napsat metodu "Verify.markState(id)" pro ulozeni aktualniho stavu pod danym id -> uzivateli potom jen staci prikaz "compare states"
+	- related work: there exists recently implemented DebugJenkinsStateSet that allows ASCII comparison of program states via textual "diff" (unix command)
+
+improved extensibility
+	- defining custom breakpoints via special interface derived from ListenerAdapter that will contain the method "boolean testBreakpoint(JVM)"
+	- each custom breakpoint must support this interface -> they will be registered somehow
+		- it can decide whether the current instruction matches the breakpoint on the basis based of the current program state and execution history
+	- example: breaking only when the given sequence of events occurred on the current execution path (trace)
+
+extending program state modification (probably through methods of the MJIEnv class)
+	- creating new heap objects -> discuss possible use cases (if it may be useful)
+		- syntax: create object <class name> <arguments for constructor>
+		- it allocates new object, invokes constructor, and returns the index (reference)
+		- arguments may be some constants and names of existing variables
+	- more difficult commands: new stack frames, invoking some method at the current position
+		- we would have to discuss syntax and reasonable constraints
+
+JPF introspection
+	- displaying values of internal data structures of JPF and its extensions (e.g., raw state of choice generators and listeners)
+	- technical approach: use normal Java introspection pro ziskani hodnot fieldu (jmena zada uzivatel v ramci prikazu)
+
+more fancy GUI (breakpoint manager, source code view, program state explorer (tree view of heap graph), buttons for commands that are used often)
+	- klikatelny explorer aktualniho heapu: bude mit stromovou strukturu, ktera odpovida strukture heapu, a jednotlive urovne pujdou rozbalovat a zabalovat pomoci [+] a [-]
+	- listy stromu budou variables of primitive types, string variables, and references (just the index of the object pointed to by the reference)
+
+
+related work
+============
+model checker SPIN umoznuje provadet nejakou simulaci checkovani, ale to je nepouzitelne pro netrivialni modely a velke stavove prostory
+

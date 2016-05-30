@@ -1,5 +1,6 @@
 package gov.nasa.jpf.inspector.interfaces;
 
+import gov.nasa.jpf.inspector.exceptions.JPFInspectorException;
 import gov.nasa.jpf.inspector.utils.ChoiceGeneratorWrapper;
 import gov.nasa.jpf.vm.ChoiceGenerator;
 

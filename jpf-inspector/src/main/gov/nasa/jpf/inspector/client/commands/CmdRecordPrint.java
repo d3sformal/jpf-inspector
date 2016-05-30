@@ -27,30 +27,23 @@ import gov.nasa.jpf.inspector.interfaces.JPFInspectorBackEndInterface;
 import java.io.PrintStream;
 
 /**
- * @author Alf
- * 
+ * Represents the 'record print' command that prints all recorded commands to the Inspector console.
+ * @author Alf *
  */
 public class CmdRecordPrint extends ClientCommand {
 
-  /*
-   * (non-Javadoc)
-   * 
-   * @see gov.nasa.jpf.inspector.client.ClientCommandInterface#executeCommands(gov.nasa.jpf.inspector.client.JPFInspectorClient,
-   * gov.nasa.jpf.inspector.interfaces.JPFInspectorBackEndInterface, java.io.PrintStream)
-   */
   @Override
   public void executeCommands (JPFInspectorClient client, JPFInspectorBackEndInterface inspector, PrintStream outStream) {
     CommandRecorder rec = client.getCommandRecorder();
     String recordedCmds = rec.getRecordedEvents();
     outStream.print(recordedCmds);
-    rec.addComment(recordedCmds);
+
+    // Previously, this line was not commented.
+    // This caused the recorded commands to be printed into the log again, which does not seem very useful.
+    // However, it may be useful for some use cases I could not think of so I'll leave it here for now.
+    // rec.addComment(recordedCmds);
   }
 
-  /*
-   * (non-Javadoc)
-   * 
-   * @see gov.nasa.jpf.inspector.client.ClientCommandInterface#getNormalizedCommand()
-   */
   @Override
   public String getNormalizedCommand () {
     return "record print";

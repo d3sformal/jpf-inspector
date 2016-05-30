@@ -25,8 +25,8 @@ import gov.nasa.jpf.inspector.interfaces.BreakPointCreate;
 import gov.nasa.jpf.inspector.interfaces.BreakPointStates;
 import gov.nasa.jpf.inspector.interfaces.BreakPointStatus;
 import gov.nasa.jpf.inspector.interfaces.JPFInspectorBackEndInterface;
-import gov.nasa.jpf.inspector.interfaces.exceptions.JPFInspectorGenericErrorException;
-import gov.nasa.jpf.inspector.interfaces.exceptions.JPFInspectorParsingErrorException;
+import gov.nasa.jpf.inspector.exceptions.JPFInspectorGenericErrorException;
+import gov.nasa.jpf.inspector.exceptions.JPFInspectorParsingErrorException;
 
 import java.io.PrintStream;
 
@@ -63,7 +63,7 @@ public class CmdBreakpointCreate extends ClientCommand {
       outStream.println(e.expressError(50));
 
       client.recordComment(e.getMessage());
-      client.recordComment(e.expressError(JPFInspectorParsingErrorException.DEFAULT_LINE_LENGHT));
+      client.recordComment(e.expressError(JPFInspectorParsingErrorException.DEFAULT_LINE_LENGTH));
     } catch (JPFInspectorGenericErrorException e) {
       outStream.append(e.getMessage());
       client.recordComment(e.getMessage());

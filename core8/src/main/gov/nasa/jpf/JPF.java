@@ -242,6 +242,7 @@ public class JPF implements Runnable {
   public JPF(Config conf) {
     config = conf;
 
+
     setNativeClassPath(config); // before we do anything else
 
     if (logger == null) { // maybe somebody created a JPF object explicitly
