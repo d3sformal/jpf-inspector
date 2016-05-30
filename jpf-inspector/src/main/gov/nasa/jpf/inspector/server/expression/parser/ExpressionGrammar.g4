@@ -37,19 +37,6 @@ options {
     import gov.nasa.jpf.inspector.interfaces.CommandsInterface.StepType;
     
 }
-/*
-@lexer::header {package gov.nasa.jpf.inspector.server.expression.parser;}
-
-@members {
-    public void displayRecognitionError(String[] tokenNames,
-                                        RecognitionException e) {
-        String hdr = getErrorHeader(e);
-        String msg = getErrorMessage(e, tokenNames); 
-        throw new RecognitionRuntimeException(hdr + " " + msg, e);
-    }
-}
-*/
-
 
 allKeyWordsIDFLike
     : TOKEN_AND
@@ -149,24 +136,19 @@ allKeywordsOther
     | RELOP_GREATER_OR_EQUAL_THAN
     ;
 
-
 className returns [ClassName cn]
     : classNameText         { $cn = new ClassName($classNameText.text); }
     ;
-
-fileName returns [String text] 
+fileName returns [String text]
     : fileNameText          { $text = $fileNameText.text; }
     ;
-
-fieldName [ClassName cn] returns [FieldName fn] 
+fieldName [ClassName cn] returns [FieldName fn]
     : idf                   { $fn = new FieldName($idf.text, cn); }
     ;
-
-methodName [ClassName cn] returns [MethodName mn] 
+methodName [ClassName cn] returns [MethodName mn]
     : idf                   { $mn = new MethodName($idf.text, cn); }
     ;
     
-
 
 cmdBreakpointsCreateParams [ExpressionFactory expFactory] returns [ExpressionBoolean bp]
     : a=cmdBreakpointsCreateParams1[expFactory]  {$bp = $a.bp; } EOF 
@@ -195,7 +177,8 @@ cmdBreakpoinstCreateParamsAtomNotTerminateIDF [ExpressionFactory expFactory] ret
     | WS? TOKEN_INSTRUCTION_TYPE     WS? '=' WS? cmdInstructionTypes WS?                                  { $bp = expFactory.getBreakpointInstructionType($cmdInstructionTypes.instructionType); }
     | WS? TOKEN_POSITION             WS? '=' WS? fileName WS? ':' WS? intValue WS?                        { $bp = expFactory.getExpBreakpointPosition($fileName.text, $intValue.value); }
     | WS? TOKEN_PROPERTY_VIOLATED    WS?                                                                  { $bp = expFactory.getBreakpoointPropertyViolated(); }
-    | WS? TOKEN_THREAD_SCHEDULED     WS? '=' WS? cmdThreadScheduledDirection WS? (':' WS? intValue WS?)?  { $bp = expFactory.getBreakpointThreadScheduled($cmdThreadScheduledDirection.bpMode, ($intValue.value!=null? $intValue.value : null)); }
+    | WS? TOKEN_THREAD_SCHEDULED     WS? '=' WS? cmdThreadScheduledDirection WS? (':' WS? intValue WS?)?
+     { $bp = expFactory.getBreakpointThreadScheduled($cmdThreadScheduledDirection.bpMode, ($intValue.value!=null? $intValue.value : null)); }
     | WS? TOKEN_STATE_ADVANCED       WS?                                                                  { $bp = expFactory.getBreakpointStateAdvanced(); }
     | WS? TOKEN_STEP_IN              WS?                                                                  { $bp = expFactory.getBreakpointSingleStep(StepType.ST_STEP_IN); }
     | WS? TOKEN_STEP_OVER            WS?                                                                  { $bp = expFactory.getBreakpointSingleStep(StepType.ST_LINE); }
@@ -273,7 +256,7 @@ cmdStateExpression1    [ExpressionFactory expFactory] returns [ExpressionStateRo
     
 // This version is able to parse text which represents only values 
 // no #thread, #thread[0], #stackFrame[0]
-// but #stackFram[0].x is permitted
+// but #stackFrame[0].x is permitted
 // The expression has to terminate in the cmdStateExpressionValue* rule
 cmdStateExpression1Value    [ExpressionFactory expFactory] returns [ExpressionStateRootNode<?> expr]
     : WS? cmdStateExpressionThreadValue[$expFactory]        { $expr = $cmdStateExpressionThreadValue.expr; }
@@ -282,23 +265,29 @@ cmdStateExpression1Value    [ExpressionFactory expFactory] returns [ExpressionSt
     ;
 
 cmdStateExpressionThread [ExpressionFactory expFactory] returns [ExpressionStateThread expr]
-    : TOKEN_HASH_THREAD WS? ('[' WS? intValue WS? ']' WS?)? ('.' WS? a=cmdStateExpressionStackFrame[$expFactory])?  { $expr = $expFactory.getStateThread($intValue.value, $a.expr); }
-    |                                                                a=cmdStateExpressionStackFrame[$expFactory]    { $expr = $expFactory.getStateThread(null,            $a.expr); }
+    : TOKEN_HASH_THREAD WS? ('[' WS? intValue WS? ']' WS?)? ('.' WS? a=cmdStateExpressionStackFrame[$expFactory])?
+     { $expr = $expFactory.getStateThread($intValue.ctx != null ? $intValue.value : null, $a.ctx != null ? $a.expr : null); }
+    |                                                                a=cmdStateExpressionStackFrame[$expFactory]
+     { $expr = $expFactory.getStateThread(null,            $a.expr); }
     ;
 
 cmdStateExpressionThreadValue [ExpressionFactory expFactory] returns [ExpressionStateThread expr]
-    : TOKEN_HASH_THREAD WS? ('[' WS? intValue WS? ']' WS?)? ('.' WS? a=cmdStateExpressionStackFrameValue[$expFactory])   { $expr = $expFactory.getStateThread($intValue.value, $a.expr); }
-    |                                                                a=cmdStateExpressionStackFrameValue[$expFactory]    { $expr = $expFactory.getStateThread(null,            $a.expr); }
+    : TOKEN_HASH_THREAD WS? ('[' WS? intValue WS? ']' WS?)? ('.' WS? a=cmdStateExpressionStackFrameValue[$expFactory])
+     { $expr = $expFactory.getStateThread($intValue.ctx != null ? $intValue.value : null, $a.ctx != null ? $a.expr : null); }
+    |                                                                a=cmdStateExpressionStackFrameValue[$expFactory]
+     { $expr = $expFactory.getStateThread(null,            $a.expr); }
     ;
 
 cmdStateExpressionStackFrame [ExpressionFactory expFactory] returns [ExpressionStateStackFrame expr]
-    : TOKEN_HASH_STACK_FRAME WS? ('[' WS? intValue WS? ']' WS?)? ('.' WS? a=cmdStateExpressionStackFrame1[$expFactory, $intValue.value])?  { $expr = ( $a.expr!=null ? $a.expr :  $expFactory.getStateStackFrame($intValue.value, null) ); }
+    : TOKEN_HASH_STACK_FRAME WS? ('[' WS? intValue WS? ']' WS?)? ('.' WS? a=cmdStateExpressionStackFrame1[$expFactory, $intValue.ctx!=null?$intValue.value:null])?
+    { $expr = ( $a.expr!=null ? $a.expr :  $expFactory.getStateStackFrame($intValue.ctx!=null?$intValue.value:null, null) ); }
     |                                                                     b=cmdStateExpressionStackFrame1[$expFactory, null]               { $expr = $b.expr; }
     |                                                                                                                                      { $expr = $expFactory.getStateStackFrame(null, null); }
     ;
 
 cmdStateExpressionStackFrameValue [ExpressionFactory expFactory] returns [ExpressionStateStackFrame expr]
-    : TOKEN_HASH_STACK_FRAME WS? ('[' WS? intValue WS? ']' WS?)? ('.' WS? a=cmdStateExpressionStackFrame1[$expFactory, $intValue.value])   { $expr = ( $a.expr!=null ? $a.expr :  $expFactory.getStateStackFrame($intValue.value, null) ); }
+    : TOKEN_HASH_STACK_FRAME WS? ('[' WS? intValue WS? ']' WS?)? ('.' WS? a=cmdStateExpressionStackFrame1[$expFactory, $intValue.ctx!=null?$intValue.value:null])  
+     { $expr = ( $a.expr!=null ? $a.expr :  $expFactory.getStateStackFrame($intValue.ctx!=null?$intValue.value:null, null) ); }
     |                                                                     b=cmdStateExpressionStackFrame1[$expFactory, null]               { $expr = $b.expr; }
     ;
 
@@ -319,43 +308,53 @@ cmdStateExpressionValueAfterStackFrame [ExpressionFactory expFactory] returns [E
 
 
 cmdStateExpressionValueFieldIndex [ExpressionFactory expFactory] returns [ExpressionStateValueFieldIndex expr]
-    : TOKEN_HASH_FIELD WS? '[' WS? intValue WS? ']' WS? a=cmdStateExpressionValue[$expFactory]?        { $expr = $expFactory.getStateValueFieldIndex($intValue.value, $a.expr); }
+    : TOKEN_HASH_FIELD WS? '[' WS? intValue WS? ']' WS? a=cmdStateExpressionValue[$expFactory]?      
+      { $expr = $expFactory.getStateValueFieldIndex($intValue.ctx!=null?$intValue.value:null, $a.ctx != null ? $a.expr : null); }
     ;
 
+// TODO check nullity
 cmdStateExpressionValueName [ExpressionFactory expFactory] returns [ExpressionStateValueName expr]
     : idf_fieldName WS? a=cmdStateExpressionValue[$expFactory]?                                                  { $expr = $expFactory.getStateValueName($idf_fieldName.text, $a.expr); }
     ;
 
+// TODO check nullity
 cmdStateExpressionValueOuterClass [ExpressionFactory expFactory] returns [ExpressionStateValueOuterClass expr]
     : TOKEN_HASH_OUTER_CLASS WS? a=cmdStateExpressionValue[$expFactory]?                               { $expr = $expFactory.getStateValueOuterClass($a.expr); }
     ;
 
+// TODO check nullity
 cmdStateExpressionValueStatic [ExpressionFactory expFactory] returns [ExpressionStateValueStatic expr]
     : TOKEN_HASH_STATIC WS? '[' WS? intValue WS? ']' WS? a=cmdStateExpressionValue[$expFactory]?    { $expr = $expFactory.getStateValueStaticArea($intValue.value,  $a.expr); }
     | TOKEN_HASH_STATIC                              WS? b=cmdStateExpressionClass[$expFactory]?    { $expr = $expFactory.getStateValueStaticArea(null,             $b.expr); }
     ;
-    
+
+// TODO check nullity
 cmdStateExpressionValueStackFrameSlot [ExpressionFactory expFactory] returns [ExpressionStateStackFrameSlot expr]
     : TOKEN_HASH_STACK_SLOT WS? '[' WS? intValue WS? ']' WS?  a=cmdStateExpressionValue[$expFactory]?  { $expr = $expFactory.getStateValueStackFrameSlot($intValue.value, $a.expr); }
     ;
 
+// TODO check nullity
 cmdStateExpressionValueSuper [ExpressionFactory expFactory] returns [ExpressionStateValueSuper expr]
     : TOKEN_HASH_SUPER WS?  a=cmdStateExpressionValue[$expFactory]?  { $expr = $expFactory.getStateValueSuper($a.expr); }
     ;
 
+// TODO check nullity
 cmdStateExpressionValueThis [ExpressionFactory expFactory] returns [ExpressionStateValueThis expr]
     : TOKEN_HASH_THIS WS? a=cmdStateExpressionValue[$expFactory]?   { $expr = $expFactory.getStateValueThis($a.expr); }
     ;
+
+// TODO check nullity
 cmdStateExpressionValueArray [ExpressionFactory expFactory] returns [ExpressionStateValue expr]
     : '[' WS? intValue WS? ']' WS? a=cmdStateExpressionValue[$expFactory]?                  { $expr = $expFactory.getStateValueArrayIndex($a.expr, $intValue.value); }
     ;
-    
+
+// TODO check nullity
 cmdStateExpressionValue [ExpressionFactory expFactory] returns [ExpressionStateValue expr]
     : a=cmdStateExpressionClass[$expFactory]       { $expr = $a.expr; }
     | b=cmdStateExpressionValueArray[$expFactory]  { $expr = $b.expr; }
     ;
 
-// Represents whole class 
+// Represents whole class
 cmdStateExpressionClass [ExpressionFactory expFactory] returns [ExpressionStateValue expr]
     : '.' WS? a=cmdStateExpressionValueFieldIndex[$expFactory]                        { $expr = $a.expr; }
     | '.' WS? b=cmdStateExpressionValueName[$expFactory]                              { $expr = $b.expr; }
@@ -366,13 +365,17 @@ cmdStateExpressionClass [ExpressionFactory expFactory] returns [ExpressionStateV
     ;
 
 cmdStateExpressionHeap [ExpressionFactory expFactory] returns [ExpressionStateRootNode<ExpressionStateValue> expr]
-    : TOKEN_HASH_HEAP   WS? '[' WS? intValue  WS? ']' WS? a=cmdStateExpressionValue[$expFactory]?             { $expr = $expFactory.getStateHeap($intValue.value, $a.expr); }
-    | TOKEN_HASH_HEAP   WS? '[' WS? className WS? ']' WS? a=cmdStateExpressionValue[$expFactory]?             { $expr = $expFactory.getStateHeap($className.cn,   $a.expr); }
-    | TOKEN_HASH_STATIC WS? '[' WS? className WS? ']' WS? a=cmdStateExpressionValue[$expFactory]?             { $expr = $expFactory.getStateStaticArea($className.cn,   $a.expr); }
+    : TOKEN_HASH_HEAP   WS? '[' WS? intValue  WS? ']' WS? a=cmdStateExpressionValue[$expFactory]?
+    { $expr = $expFactory.getStateHeap($intValue.value, $a.ctx != null ? $a.expr : null); }
+    | TOKEN_HASH_HEAP   WS? '[' WS? className WS? ']' WS? a=cmdStateExpressionValue[$expFactory]?
+    { $expr = $expFactory.getStateHeap($className.cn,   $a.ctx != null ? $a.expr : null); }
+    | TOKEN_HASH_STATIC WS? '[' WS? className WS? ']' WS? a=cmdStateExpressionValue[$expFactory]?
+       { $expr = $expFactory.getStateStaticArea($className.cn, $a.ctx != null ? $a.expr : null); }
     ;
 
 cmdStateExpressionHeapValue [ExpressionFactory expFactory] returns [ExpressionStateRootNode<ExpressionStateValue> expr]
-    : TOKEN_HASH_HEAP   WS? '[' WS? intValue  WS? ']' WS? a=cmdStateExpressionValue[$expFactory]?             { $expr = $expFactory.getStateHeap($intValue.value, $a.expr); }
+    : TOKEN_HASH_HEAP   WS? '[' WS? intValue  WS? ']' WS? a=cmdStateExpressionValue[$expFactory]?
+      { $expr = $expFactory.getStateHeap($intValue.value, $a.ctx != null ? $a.expr : null); }
     ;
  
 cmdStateConstValue [ExpressionFactory expFactory] returns [ExpressionStateRootNode<ExpressionStateValue> expr]
