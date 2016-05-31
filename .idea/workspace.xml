@@ -7,7 +7,6 @@
   <component name="ChangeListManager">
     <list default="true" id="1bb13837-3373-4c0e-b913-a784e8239749" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/documentation/wiki/Legacy-User-Guide.md" afterPath="$PROJECT_DIR$/documentation/wiki/Legacy-User-Guide.md" />
     </list>
     <ignored path="gsoc.iws" />
@@ -96,8 +95,8 @@
         <entry file="file://$PROJECT_DIR$/documentation/wiki/Legacy-User-Guide.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="68">
-                <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+              <first_editor relative-caret-position="153">
+                <caret line="4" column="351" selection-start-line="4" selection-start-column="351" selection-end-line="4" selection-end-column="351" />
                 <folding />
               </first_editor>
               <second_editor />
@@ -714,7 +713,7 @@
       <workItem from="1464614599034" duration="2086000" />
       <workItem from="1464616703659" duration="1091000" />
       <workItem from="1464618022351" duration="10659000" />
-      <workItem from="1464673495308" duration="18633000" />
+      <workItem from="1464673495308" duration="18749000" />
     </task>
     <task id="LOCAL-00001" summary="add JUnit libraries, IDE reset">
       <created>1464614713273</created>
@@ -863,7 +862,14 @@
       <option name="project" value="LOCAL" />
       <updated>1464692039396</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="quick doc fix">
+      <created>1464692271657</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1464692271657</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -899,7 +905,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="32469000" />
+    <option name="totallyTimeSpent" value="32585000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1696" height="1026" extended-state="6" />
@@ -956,7 +962,6 @@
       <path value="$PROJECT_DIR$/jpf-inspector" />
       <path value="$PROJECT_DIR$/jpf-shell" />
     </ignored-roots>
-    <MESSAGE value="fix warnings on startup" />
     <MESSAGE value="fix SearchGraphTracker" />
     <MESSAGE value="fix from email" />
     <MESSAGE value="ClassInfoCache" />
@@ -981,7 +986,8 @@
     <MESSAGE value="fix console grammar to make more unit tests pass" />
     <MESSAGE value="now print displays in decimals" />
     <MESSAGE value="wiki update" />
-    <option name="LAST_COMMIT_MESSAGE" value="wiki update" />
+    <MESSAGE value="quick doc fix" />
+    <option name="LAST_COMMIT_MESSAGE" value="quick doc fix" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -1781,8 +1787,8 @@
     <entry file="file://$PROJECT_DIR$/documentation/wiki/Legacy-User-Guide.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="68">
-            <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+          <first_editor relative-caret-position="153">
+            <caret line="4" column="351" selection-start-line="4" selection-start-column="351" selection-end-line="4" selection-end-column="351" />
             <folding />
           </first_editor>
           <second_editor />
