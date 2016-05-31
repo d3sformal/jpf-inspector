@@ -35,7 +35,7 @@ public interface BreakPointManagerInterface {
   List<BreakPointStatus> getBreakPoints();
 
   /**
-   * Creates new (if breakpoint ID is set {@link BreakPointCreationInformation#BP_ID_NOT_DEFINED} or modifies existing breakpoint ( with same breakpoint ID)
+   * Creates new (if breakpoint ID is set {@link BreakPointCreationInformation#BP_ID_NOT_DEFINED} or modifies an existing breakpoint.
    * 
    * @param newBP Structure with new information about new BP.
    * @return Get informations about state of the created/modified breakpoint or null if error takes place.

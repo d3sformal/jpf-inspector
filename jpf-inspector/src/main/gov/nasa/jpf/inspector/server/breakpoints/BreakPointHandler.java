@@ -52,22 +52,27 @@ import java.util.TreeMap;
 public class BreakPointHandler implements BreakPointManagerInterface {
   private static final boolean DEBUG = false;
   /**
-   * Holds map of the user defined Breakpoint to the internal breakpoint representation
+   * Holds map of the user defined Breakpoint to the internal breakpoint representation.
+   *
+   * The key is the breakpoint ID.
+   * The value is the actual breakpoint.
+   *
+   * This object also acts as the mutex monitor for synchronizing access between the command thread and the JPF thread.
    */
   final protected Map<Integer, InternalBreakpointHolder> breakpoints;
 
   final private Stack<BreakPointsMemento> bpMementos;
 
-  final protected JPFInspector inspector;
-  final protected InspectorCallBacks callBacks;
-  final protected StopHolder stopHolder;
+  protected final JPFInspector inspector;
+  private final InspectorCallBacks callBacks;
+  private final StopHolder stopHolder;
   final private ExpressionParserInterface expParser; // / Used to parse Breakpoint expression from clients
   private BreakPointsMemento transitionStartMemento; // / Memeto which holds states of breakpoints at the start of the transition
 
   public BreakPointHandler (JPFInspector inspector, InspectorCallBacks callBacks, StopHolder stopHolder) {
-    this.breakpoints = new TreeMap<Integer, InternalBreakpointHolder>();
+    this.breakpoints = new TreeMap<>();
 
-    this.bpMementos = new Stack<BreakPointsMemento>();
+    this.bpMementos = new Stack<>();
     this.inspector = inspector;
     this.callBacks = callBacks;
     this.stopHolder = stopHolder;
@@ -91,7 +96,7 @@ public class BreakPointHandler implements BreakPointManagerInterface {
    */
   @Override
   public List<BreakPointStatus> getBreakPoints () {
-    List<BreakPointStatus> result = new ArrayList<BreakPointStatus>(breakpoints.size());
+    List<BreakPointStatus> result = new ArrayList<>(breakpoints.size());
     synchronized (breakpoints) {
       for (InternalBreakpointHolder bph : breakpoints.values()) {
         if (bph.isUserBreakpoint()) {
@@ -103,9 +108,9 @@ public class BreakPointHandler implements BreakPointManagerInterface {
   }
 
   /**
-   * Creates new (if breakpoint ID is set {@link BreakPointCreationInformation#BP_ID_NOT_DEFINED} or modifies existing breakpoint ( with same breakpoint ID)
+   * Creates a new (if breakpoint ID is -1) or modifies an existing breakpoint.
    * 
-   * @param newBP Structure with new information about new BP.
+   * @param newBP Structure with new information about a breakpoint.
    * @return Get informations about state of the created/modified breakpoint or null if error takes place.
    */
   @Override
@@ -130,12 +135,17 @@ public class BreakPointHandler implements BreakPointManagerInterface {
   }
 
   /**
+   * Creates or modifies a breakpoint.
+   * @param newBP Information about the breakpoint, including its ID, if modifying an existing one.
    * @param hidden True for internal breakpoints, no error reports etc hidden, false for standard BP created by user. Cannot be null.
-   * @param newBPExpression Parsed expression from the newBP create. Is passed separately to be handle internal BP, which are not supported by in Expression
-   *        grammar.
+   * @param newBPExpression Parsed expression from the newBP create. Is passed separately to be handle internal BP, which are not supported by in expression grammar.
+   * @param firstHit Whether this breakpoint should be removed when it's first hit. This never happens to user
+   *                 breakpoints, only to internal breakpoints.
    */
-  private BreakPointStatus createBreakPointImpl (BreakPointCreationInformation newBP, ExpressionBooleanInterface newBPExpression, boolean hidden, boolean firstHit)
-      throws JPFInspectorGenericErrorException {
+  private BreakPointStatus createBreakPointImpl(BreakPointCreationInformation newBP,
+                                                ExpressionBooleanInterface newBPExpression,
+                                                boolean hidden,
+                                                boolean firstHit) throws JPFInspectorGenericErrorException {
     assert newBP != null;
     assert newBPExpression != null;
 
@@ -148,11 +158,7 @@ public class BreakPointHandler implements BreakPointManagerInterface {
         }
       }
       if (ibp == null) {
-        if (newBPExpression == null) {
-          throw new JPFInspectorGenericErrorException("Cannot create breakpoint no breakpoint type specified no expression");
-        }
         ibp = new InternalBreakpointHolder(newBP.getBPID(), callBacks, !hidden, firstHit);
-
       }
       ibp.modifyBPSettings(newBP, newBPExpression);
       breakpoints.put(ibp.getBPID(), ibp);
@@ -185,9 +191,6 @@ public class BreakPointHandler implements BreakPointManagerInterface {
         iah = (InternalAssertHolder) ibp;
       }
       if (iah == null) {
-        if (newBPExpression == null) {
-          throw new JPFInspectorGenericErrorException("Cannot create assertion no position or condition is not specified");
-        }
         iah = new InternalAssertHolder(newAssert.getBPID(), callBacks, true, false, newAssert.getPosition(), newAssert.getCondition());
       }
 
@@ -206,11 +209,13 @@ public class BreakPointHandler implements BreakPointManagerInterface {
   }
 
   /**
-   * 
-   * @param newBP
-   * @param newBPExpression
+   *
+   * Creates an internal breakpoint and returns information about it. An internal breakpoint is "hidden", not created
+   * and not displayed to the user.
+   *
+   * @param newBP Information about the breakpoint.
+   * @param newBPExpression Hit condition for the breakpoint (missing from the information in the previous parameter).
    * @param singleHit If set then the breakpoint is automatically removed after first hit of any breakpoint
-   * @return
    */
   public BreakPointStatus createInternalBreakpoint (BreakPointCreationInformation newBP, ExpressionBooleanInterface newBPExpression, boolean singleHit) {
     try {
@@ -229,11 +234,11 @@ public class BreakPointHandler implements BreakPointManagerInterface {
   }
 
   /**
-   * @param inspState
-   *        Common state of the Inspector and SuT
+   * Checks whether any breakpoints were hit by the last step and therefore execution should be suspended.
+   * @param inspState Common state of the Inspector and SuT
    * @return true if any Breakpoint hit
    * 
-   *         Note: Executed by JPF thread
+   * Note: Executed by the JPF thread.
    */
   public boolean checkBreakpoints (InspectorState inspState) {
     boolean bpHit = false;
@@ -254,19 +259,17 @@ public class BreakPointHandler implements BreakPointManagerInterface {
   }
 
   /**
+   * Checks if breakpoint hits but DOES NOT BLOCK.   *
    * 
-   * Checks if breakpoint hits but DOES NOT BLOCK.
+   * @param inspState Program state.
+   * @param bpID Breakpoint ID to check.
+   * @return True if Breakpoint hits, false otherwise.
    * 
-   * 
-   * @param inspState
-   * @param bpID
-   *        Breakpoint ID to chect
-   * @return True if Breakpoint hits false otherwise.
-   * 
-   *         Note: If single hit single hit breeakpoints are removed. Note: Executed by JPF thread
+   *  Note: If single hit single hit breeakpoints are removed.
+   *  Note: Executed by the JPF thread.
    */
   public boolean checkBreakpoint (InspectorState inspState, int bpID) {
-    boolean bpHit = false;
+    boolean bpHit;
     synchronized (breakpoints) {
       InternalBreakpointHolder bp = breakpoints.get(bpID);
       assert bp != null : "Internal error - unknown Breakpoint ID";
@@ -295,10 +298,9 @@ public class BreakPointHandler implements BreakPointManagerInterface {
   /**
    * Notification from the {@link InspectorListener} about executed forward step {@link ListenerAdapter#stateAdvanced(gov.nasa.jpf.search.Search)}.
    * 
-   * @param inspState
-   *        Common state of the Inspector and SuT
+   * @param inspState Common state of the Inspector and SuT
    */
-  public void forwardJPFStep (InspectorState inspState) {
+  public void forwardJPFStep (@SuppressWarnings("UnusedParameters") InspectorState inspState) {
     if (DEBUG) {
       inspector.getDebugPrintStream().println(this.getClass().getSimpleName() + ".forwardJPFStep");
     }
@@ -313,7 +315,7 @@ public class BreakPointHandler implements BreakPointManagerInterface {
    * @param inspState
    *        Common state of the Inspector and SuT
    */
-  public void backwardJPFStep (InspectorState inspState) {
+  public void backwardJPFStep (@SuppressWarnings("UnusedParameters") InspectorState inspState) {
     if (DEBUG) {
       inspector.getDebugPrintStream().println(this.getClass().getSimpleName() + ".backwardJPFStep");
     }
@@ -332,8 +334,8 @@ public class BreakPointHandler implements BreakPointManagerInterface {
    * Holds traversing related state (hit counts) of all breakpoints
    * 
    */
-  public class BreakPointsMemento {
-    private final Map<Integer, BreakPointPartialMemento> bpMementos = new HashMap<Integer, BreakPointPartialMemento>();
+  private class BreakPointsMemento {
+    private final Map<Integer, BreakPointPartialMemento> bpMementos = new HashMap<>();
 
     /**
      * Store state of all breakpoints

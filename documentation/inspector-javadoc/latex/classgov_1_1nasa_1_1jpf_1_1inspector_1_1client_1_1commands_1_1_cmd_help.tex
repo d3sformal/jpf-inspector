@@ -1,0 +1,261 @@
+\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_help}{}\section{gov.\+nasa.\+jpf.\+inspector.\+client.\+commands.\+Cmd\+Help Class Reference}
+\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_help}\index{gov.\+nasa.\+jpf.\+inspector.\+client.\+commands.\+Cmd\+Help@{gov.\+nasa.\+jpf.\+inspector.\+client.\+commands.\+Cmd\+Help}}
+
+
+Represents the \char`\"{}help\char`\"{} command that prints available commands.  
+
+
+Inheritance diagram for gov.\+nasa.\+jpf.\+inspector.\+client.\+commands.\+Cmd\+Help\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_help}
+\end{center}
+\end{figure}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_help_1_1_command_help_info}{Command\+Help\+Info}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_help_af5565ada6073f40b9645c510a34d0b8d}{execute\+Commands} (\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1_j_p_f_inspector_client}{J\+P\+F\+Inspector\+Client} client, \hyperlink{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1interfaces_1_1_j_p_f_inspector_back_end_interface}{J\+P\+F\+Inspector\+Back\+End\+Interface} inspector, Print\+Stream out\+Stream)
+\begin{DoxyCompactList}\small\item\em Sends the command to the server and prints the result into a stream. \end{DoxyCompactList}\item 
+String \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_help_abe9862e6905dbf03c6aa9468ac112520}{get\+Normalized\+Command} ()
+\begin{DoxyCompactList}\small\item\em Converts the command to a string. \end{DoxyCompactList}\item 
+void \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1_client_command_ae0670332ec750bc5b9016d0b04d8adfe}{record\+Command} (\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1_command_recorder}{Command\+Recorder} \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1_client_command_af4246f2427035c72a6af45a2c61361f7}{rec})
+\begin{DoxyCompactList}\small\item\em Records the command into the record log. \end{DoxyCompactList}\item 
+boolean \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1_client_command_afb09c400c64e2d8e01059b91ff847761}{is\+Hidden\+Command} ()
+\begin{DoxyCompactList}\small\item\em Returns true if command execution of the command should not be reported to user. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1_command_recorder}{Command\+Recorder} \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1_client_command_af4246f2427035c72a6af45a2c61361f7}{rec}
+\begin{DoxyCompactList}\small\item\em The last recorder used to record the command. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+String \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_help_a4e60e68504586685162106e199e985e3}{pad} (String syntax, int length)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Represents the \char`\"{}help\char`\"{} command that prints available commands. 
+
+Definition at line 16 of file Cmd\+Help.\+java.
+
+
+
+\subsection{Member Function Documentation}
+\index{gov\+::nasa\+::jpf\+::inspector\+::client\+::commands\+::\+Cmd\+Help@{gov\+::nasa\+::jpf\+::inspector\+::client\+::commands\+::\+Cmd\+Help}!execute\+Commands@{execute\+Commands}}
+\index{execute\+Commands@{execute\+Commands}!gov\+::nasa\+::jpf\+::inspector\+::client\+::commands\+::\+Cmd\+Help@{gov\+::nasa\+::jpf\+::inspector\+::client\+::commands\+::\+Cmd\+Help}}
+\subsubsection[{\texorpdfstring{execute\+Commands(\+J\+P\+F\+Inspector\+Client client, J\+P\+F\+Inspector\+Back\+End\+Interface inspector, Print\+Stream out\+Stream)}{executeCommands(JPFInspectorClient client, JPFInspectorBackEndInterface inspector, PrintStream outStream)}}]{\setlength{\rightskip}{0pt plus 5cm}void gov.\+nasa.\+jpf.\+inspector.\+client.\+commands.\+Cmd\+Help.\+execute\+Commands (
+\begin{DoxyParamCaption}
+\item[{{\bf J\+P\+F\+Inspector\+Client}}]{client, }
+\item[{{\bf J\+P\+F\+Inspector\+Back\+End\+Interface}}]{inspector, }
+\item[{Print\+Stream}]{out\+Stream}
+\end{DoxyParamCaption}
+)}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_help_af5565ada6073f40b9645c510a34d0b8d}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_help_af5565ada6073f40b9645c510a34d0b8d}
+
+
+Sends the command to the server and prints the result into a stream. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em client} & J\+PF Inspector client \\
+\hline
+{\em inspector} & J\+PF inspector server \\
+\hline
+{\em out\+Stream} & Stream where results (output and errors) of the executed command are printed. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1_client_command_interface_a6cf0905afd7822cee3268e286a7dcdd0}{gov.\+nasa.\+jpf.\+inspector.\+client.\+Client\+Command\+Interface}.
+
+
+
+Definition at line 18 of file Cmd\+Help.\+java.
+
+
+\begin{DoxyCode}
+18                                                                                                            
+                   \{
+19     Map<String, List<CommandHelpInfo>> categories = \textcolor{keyword}{new} HashMap<>();
+20 
+21     ArrayList<CommandHelpInfo> informationalCommands = \textcolor{keyword}{new} ArrayList<>();
+22     informationalCommands.add(\textcolor{keyword}{new} CommandHelpInfo(\textcolor{stringliteral}{"hello"}, null, \textcolor{stringliteral}{"Prints a simple hello message."}));
+23     informationalCommands.add(\textcolor{keyword}{new} CommandHelpInfo(\textcolor{stringliteral}{"help"}, null, \textcolor{stringliteral}{"Prints this message."}));
+24     informationalCommands.add(\textcolor{keyword}{new} CommandHelpInfo(\textcolor{stringliteral}{"thread [id]"}, \textcolor{stringliteral}{"ti"}, \textcolor{stringliteral}{"Prints info about a thread.."}));
+25     informationalCommands.add(\textcolor{keyword}{new} CommandHelpInfo(\textcolor{stringliteral}{"thread\_pc [id]"}, \textcolor{stringliteral}{"thpc"}, \textcolor{stringliteral}{"Prints current instruction of
+       a thread."}));
+26     categories.put(\textcolor{stringliteral}{"Informational commands"}, informationalCommands);
+27 
+28     ArrayList<CommandHelpInfo> execution = \textcolor{keyword}{new} ArrayList<>();
+29     execution.add(\textcolor{keyword}{new} CommandHelpInfo(\textcolor{stringliteral}{"quit"}, \textcolor{stringliteral}{"exit"}, \textcolor{stringliteral}{"Closes the shell and terminates the process."}));
+30     execution.add(\textcolor{keyword}{new} CommandHelpInfo(\textcolor{stringliteral}{"continue"}, \textcolor{stringliteral}{"run, cont"}, \textcolor{stringliteral}{"Starts or resumes execution."}));
+31     execution.add(\textcolor{keyword}{new} CommandHelpInfo(\textcolor{stringliteral}{"break"}, null, \textcolor{stringliteral}{"Suspends execution."}));
+32     categories.put(\textcolor{stringliteral}{"Execution commands"}, execution);
+33 
+34     ArrayList<CommandHelpInfo> breakpoints = \textcolor{keyword}{new} ArrayList<>();
+35     breakpoints.add(\textcolor{keyword}{new} CommandHelpInfo(\textcolor{stringliteral}{"create breakpoint [properties...] [hit condition]"}, \textcolor{stringliteral}{"cr bp"}, \textcolor{stringliteral}{"
+      Creates a new breakpoint."}));
+36     breakpoints.add(\textcolor{keyword}{new} CommandHelpInfo(\textcolor{stringliteral}{"show breakpoint"}, \textcolor{stringliteral}{"sw bp"}, \textcolor{stringliteral}{"Prints all breakpoints."}));
+37     breakpoints.add(\textcolor{keyword}{new} CommandHelpInfo(\textcolor{stringliteral}{"delete breakpoint [id]"}, \textcolor{stringliteral}{"del bp"}, \textcolor{stringliteral}{"Deletes the breakpoint."}));
+38     categories.put(\textcolor{stringliteral}{"Breakpoint-related commands"}, breakpoints);
+39 
+40     ArrayList<CommandHelpInfo> recording = \textcolor{keyword}{new} ArrayList<>();
+41     recording.add(\textcolor{keyword}{new} CommandHelpInfo(\textcolor{stringliteral}{"record clear"}, \textcolor{stringliteral}{"rec clear"}, \textcolor{stringliteral}{"Clears the log."}));
+42     recording.add(\textcolor{keyword}{new} CommandHelpInfo(\textcolor{stringliteral}{"record print"}, \textcolor{stringliteral}{"rec print"}, \textcolor{stringliteral}{"Prints the log."}));
+43     recording.add(\textcolor{keyword}{new} CommandHelpInfo(\textcolor{stringliteral}{"record execute [filename]"}, \textcolor{stringliteral}{"rec ex"}, \textcolor{stringliteral}{"Executes the stored
+       recording."}));
+44     recording.add(\textcolor{keyword}{new} CommandHelpInfo(\textcolor{stringliteral}{"record save [filename]"}, \textcolor{stringliteral}{"rec save"}, \textcolor{stringliteral}{"Saves the recording into a
+       file."}));
+45     categories.put(\textcolor{stringliteral}{"Recording commands"}, recording);
+46 
+47     categories.put(\textcolor{stringliteral}{"Stepping-related commands"}, \textcolor{keyword}{new} ArrayList<>());
+48 
+49     outStream.println(\textcolor{stringliteral}{"You may use the following commands in this console:\(\backslash\)n"});
+50     \textcolor{keywordflow}{for}(Map.Entry<String, List<CommandHelpInfo>> entry : categories.entrySet()) \{
+51       outStream.println(entry.getKey() + \textcolor{stringliteral}{": "});
+52       \textcolor{keywordtype}{int} maxCommandLength = 0;
+53       \textcolor{keywordflow}{for}(CommandHelpInfo info : entry.getValue()) \{
+54         \textcolor{keywordflow}{if} (info.syntax.length() > maxCommandLength) \{
+55           maxCommandLength = info.syntax.length();
+56         \}
+57       \}
+58       \textcolor{keywordflow}{for}(CommandHelpInfo info : entry.getValue()) \{
+59         outStream.println(\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_help_a4e60e68504586685162106e199e985e3}{pad}(info.syntax, maxCommandLength + 3) + (info.abbreviation != null ? (\textcolor{stringliteral}{"["} + 
+      info.abbreviation + \textcolor{stringliteral}{"] "}) : \textcolor{stringliteral}{""}) + info.shortDescription);
+60       \}
+61       outStream.println();
+62     \}
+63   \}
+\end{DoxyCode}
+\index{gov\+::nasa\+::jpf\+::inspector\+::client\+::commands\+::\+Cmd\+Help@{gov\+::nasa\+::jpf\+::inspector\+::client\+::commands\+::\+Cmd\+Help}!get\+Normalized\+Command@{get\+Normalized\+Command}}
+\index{get\+Normalized\+Command@{get\+Normalized\+Command}!gov\+::nasa\+::jpf\+::inspector\+::client\+::commands\+::\+Cmd\+Help@{gov\+::nasa\+::jpf\+::inspector\+::client\+::commands\+::\+Cmd\+Help}}
+\subsubsection[{\texorpdfstring{get\+Normalized\+Command()}{getNormalizedCommand()}}]{\setlength{\rightskip}{0pt plus 5cm}String gov.\+nasa.\+jpf.\+inspector.\+client.\+commands.\+Cmd\+Help.\+get\+Normalized\+Command (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_help_abe9862e6905dbf03c6aa9468ac112520}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_help_abe9862e6905dbf03c6aa9468ac112520}
+
+
+Converts the command to a string. 
+
+The string must represent the command using non-\/abbreviated versions of all keywords. The returned string must be a legal command that, if parsed, would result in the same \hyperlink{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1_client_command_interface}{Client\+Command\+Interface} object.
+
+\begin{DoxyReturn}{Returns}
+Text parseable representation of the command. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1_client_command_interface_a393044f5be05c3ab3451b72aeff7af62}{gov.\+nasa.\+jpf.\+inspector.\+client.\+Client\+Command\+Interface}.
+
+
+
+Definition at line 74 of file Cmd\+Help.\+java.
+
+
+\begin{DoxyCode}
+74                                        \{
+75     \textcolor{keywordflow}{return} \textcolor{stringliteral}{"help"};
+76   \}
+\end{DoxyCode}
+\index{gov\+::nasa\+::jpf\+::inspector\+::client\+::commands\+::\+Cmd\+Help@{gov\+::nasa\+::jpf\+::inspector\+::client\+::commands\+::\+Cmd\+Help}!is\+Hidden\+Command@{is\+Hidden\+Command}}
+\index{is\+Hidden\+Command@{is\+Hidden\+Command}!gov\+::nasa\+::jpf\+::inspector\+::client\+::commands\+::\+Cmd\+Help@{gov\+::nasa\+::jpf\+::inspector\+::client\+::commands\+::\+Cmd\+Help}}
+\subsubsection[{\texorpdfstring{is\+Hidden\+Command()}{isHiddenCommand()}}]{\setlength{\rightskip}{0pt plus 5cm}boolean gov.\+nasa.\+jpf.\+inspector.\+client.\+Client\+Command.\+is\+Hidden\+Command (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inherited]}}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1_client_command_afb09c400c64e2d8e01059b91ff847761}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1_client_command_afb09c400c64e2d8e01059b91ff847761}
+
+
+Returns true if command execution of the command should not be reported to user. 
+
+Only \hyperlink{}{Cmd\+Callback} is a hidden command. 
+
+Implements \hyperlink{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1_client_command_interface_a51ce7a884a74433b73d39d93528838cc}{gov.\+nasa.\+jpf.\+inspector.\+client.\+Client\+Command\+Interface}.
+
+
+
+Definition at line 28 of file Client\+Command.\+java.
+
+
+\begin{DoxyCode}
+28                                     \{
+29     \textcolor{keywordflow}{return} \textcolor{keyword}{false};
+30   \}
+\end{DoxyCode}
+\index{gov\+::nasa\+::jpf\+::inspector\+::client\+::commands\+::\+Cmd\+Help@{gov\+::nasa\+::jpf\+::inspector\+::client\+::commands\+::\+Cmd\+Help}!pad@{pad}}
+\index{pad@{pad}!gov\+::nasa\+::jpf\+::inspector\+::client\+::commands\+::\+Cmd\+Help@{gov\+::nasa\+::jpf\+::inspector\+::client\+::commands\+::\+Cmd\+Help}}
+\subsubsection[{\texorpdfstring{pad(\+String syntax, int length)}{pad(String syntax, int length)}}]{\setlength{\rightskip}{0pt plus 5cm}String gov.\+nasa.\+jpf.\+inspector.\+client.\+commands.\+Cmd\+Help.\+pad (
+\begin{DoxyParamCaption}
+\item[{String}]{syntax, }
+\item[{int}]{length}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_help_a4e60e68504586685162106e199e985e3}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_help_a4e60e68504586685162106e199e985e3}
+
+
+Definition at line 65 of file Cmd\+Help.\+java.
+
+
+\begin{DoxyCode}
+65                                                 \{
+66     \textcolor{keywordtype}{int} spaces = length - syntax.length();
+67     String spaceString = \textcolor{stringliteral}{""};
+68     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < spaces; i++)
+69       spaceString += \textcolor{stringliteral}{" "};
+70     \textcolor{keywordflow}{return} syntax + spaceString;
+71   \}
+\end{DoxyCode}
+\index{gov\+::nasa\+::jpf\+::inspector\+::client\+::commands\+::\+Cmd\+Help@{gov\+::nasa\+::jpf\+::inspector\+::client\+::commands\+::\+Cmd\+Help}!record\+Command@{record\+Command}}
+\index{record\+Command@{record\+Command}!gov\+::nasa\+::jpf\+::inspector\+::client\+::commands\+::\+Cmd\+Help@{gov\+::nasa\+::jpf\+::inspector\+::client\+::commands\+::\+Cmd\+Help}}
+\subsubsection[{\texorpdfstring{record\+Command(\+Command\+Recorder rec)}{recordCommand(CommandRecorder rec)}}]{\setlength{\rightskip}{0pt plus 5cm}void gov.\+nasa.\+jpf.\+inspector.\+client.\+Client\+Command.\+record\+Command (
+\begin{DoxyParamCaption}
+\item[{{\bf Command\+Recorder}}]{rec}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inherited]}}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1_client_command_ae0670332ec750bc5b9016d0b04d8adfe}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1_client_command_ae0670332ec750bc5b9016d0b04d8adfe}
+
+
+Records the command into the record log. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em rec} & Recorder where the command should be recorded. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1_client_command_interface_a4ae9ac9bbb61d9a758ef168e8b3b04ff}{gov.\+nasa.\+jpf.\+inspector.\+client.\+Client\+Command\+Interface}.
+
+
+
+Definition at line 22 of file Client\+Command.\+java.
+
+
+\begin{DoxyCode}
+22                                                   \{
+23     this.\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1_client_command_af4246f2427035c72a6af45a2c61361f7}{rec} = \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1_client_command_af4246f2427035c72a6af45a2c61361f7}{rec};
+24     \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1_client_command_af4246f2427035c72a6af45a2c61361f7}{rec}.\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1_command_recorder_af5f212124179773e46c8b45f1d01a32d}{recordCommand}(\textcolor{keyword}{this});
+25   \}
+\end{DoxyCode}
+
+
+\subsection{Member Data Documentation}
+\index{gov\+::nasa\+::jpf\+::inspector\+::client\+::commands\+::\+Cmd\+Help@{gov\+::nasa\+::jpf\+::inspector\+::client\+::commands\+::\+Cmd\+Help}!rec@{rec}}
+\index{rec@{rec}!gov\+::nasa\+::jpf\+::inspector\+::client\+::commands\+::\+Cmd\+Help@{gov\+::nasa\+::jpf\+::inspector\+::client\+::commands\+::\+Cmd\+Help}}
+\subsubsection[{\texorpdfstring{rec}{rec}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Command\+Recorder} gov.\+nasa.\+jpf.\+inspector.\+client.\+Client\+Command.\+rec\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [inherited]}}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1_client_command_af4246f2427035c72a6af45a2c61361f7}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1_client_command_af4246f2427035c72a6af45a2c61361f7}
+
+
+The last recorder used to record the command. 
+
+
+
+Definition at line 19 of file Client\+Command.\+java.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/gsoc/jpf-\/inspector/src/main/gov/nasa/jpf/inspector/client/commands/\hyperlink{_cmd_help_8java}{Cmd\+Help.\+java}\end{DoxyCompactItemize}

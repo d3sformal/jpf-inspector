@@ -1,0 +1,247 @@
+\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_inspector_state_impl}{}\section{gov.\+nasa.\+jpf.\+inspector.\+server.\+expression.\+Inspector\+State\+Impl Class Reference}
+\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_inspector_state_impl}\index{gov.\+nasa.\+jpf.\+inspector.\+server.\+expression.\+Inspector\+State\+Impl@{gov.\+nasa.\+jpf.\+inspector.\+server.\+expression.\+Inspector\+State\+Impl}}
+Inheritance diagram for gov.\+nasa.\+jpf.\+inspector.\+server.\+expression.\+Inspector\+State\+Impl\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_inspector_state_impl}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+VM \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_inspector_state_impl_aacd53b4269a6d721ce2dba20abd3d782}{get\+J\+VM} ()
+\item 
+Map$<$ Integer, Instruction $>$ \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_inspector_state_impl_a0ef0d1393b5865d698c360d1e21ea5f2}{get\+Previous\+Steps} ()
+\item 
+Search \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_inspector_state_impl_accaa8504548659684f49e818415c4f60}{get\+Search} ()
+\item 
+\hyperlink{enumgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_inspector_state_1_1_listener_method}{Listener\+Method} \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_inspector_state_impl_afe75e0f49b3b98bc2e6530d647f43297}{get\+Listener\+Method} ()
+\item 
+void \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_inspector_state_impl_ab4f24df2dfae833b81bd5b6e1cb28f8c}{instruction\+Executed} (VM new\+J\+VM)
+\item 
+void \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_inspector_state_impl_a48d8ba84b9915f6a1c6968c80a23bd2f}{state\+Changed} (Search \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_inspector_state_impl_aad68b55c445091d252a965081641b48f}{search}, \hyperlink{enumgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_inspector_state_1_1_listener_method}{Listener\+Method} \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_inspector_state_impl_a6cc5f61624118469f3c43361c867f439}{listener\+Method})
+\item 
+void \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_inspector_state_impl_a3655365c4f59212cd19568ae17a25d80}{notify\+Listener\+Method\+Call} (\hyperlink{enumgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_inspector_state_1_1_listener_method}{Listener\+Method} \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_inspector_state_impl_a6cc5f61624118469f3c43361c867f439}{listener\+Method}, VM \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_inspector_state_impl_a0c9ed60abbbcc0a956d2902347770dda}{jvm})
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+final Map$<$ Integer, Instruction $>$ \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_inspector_state_impl_a51d0e82854748641ec231294a250d4eb}{last\+Executed\+Instructions} = new Hash\+Map$<$Integer, Instruction$>$()
+\item 
+VM \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_inspector_state_impl_a0c9ed60abbbcc0a956d2902347770dda}{jvm}
+\item 
+Search \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_inspector_state_impl_aad68b55c445091d252a965081641b48f}{search}
+\item 
+Instruction \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_inspector_state_impl_a7399cb79ee39368da7fb3440e586d52f}{current\+Instruction} = null
+\item 
+int \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_inspector_state_impl_a625feb5ca6498aa4ca9393ad502ea325}{current\+Thread} = 0
+\item 
+Inspector\+State.\+Listener\+Method \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_inspector_state_impl_a6cc5f61624118469f3c43361c867f439}{listener\+Method} = \hyperlink{enumgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_inspector_state_1_1_listener_method_a49e44c44d3bb5c7af4f3b2acd441d0c9}{Listener\+Method.\+L\+M\+\_\+\+N\+O\+T\+\_\+\+I\+N\+\_\+\+L\+I\+ST}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 30 of file Inspector\+State\+Impl.\+java.
+
+
+
+\subsection{Member Function Documentation}
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::\+Inspector\+State\+Impl@{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::\+Inspector\+State\+Impl}!get\+J\+VM@{get\+J\+VM}}
+\index{get\+J\+VM@{get\+J\+VM}!gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::\+Inspector\+State\+Impl@{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::\+Inspector\+State\+Impl}}
+\subsubsection[{\texorpdfstring{get\+J\+V\+M()}{getJVM()}}]{\setlength{\rightskip}{0pt plus 5cm}VM gov.\+nasa.\+jpf.\+inspector.\+server.\+expression.\+Inspector\+State\+Impl.\+get\+J\+VM (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_inspector_state_impl_aacd53b4269a6d721ce2dba20abd3d782}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_inspector_state_impl_aacd53b4269a6d721ce2dba20abd3d782}
+
+
+Implements \hyperlink{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_inspector_state_ab9eb1c115210ed33401b1ef79113008f}{gov.\+nasa.\+jpf.\+inspector.\+server.\+expression.\+Inspector\+State}.
+
+
+
+Definition at line 42 of file Inspector\+State\+Impl.\+java.
+
+
+\begin{DoxyCode}
+42                       \{
+43     \textcolor{keywordflow}{return} \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_inspector_state_impl_a0c9ed60abbbcc0a956d2902347770dda}{jvm};
+44   \}
+\end{DoxyCode}
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::\+Inspector\+State\+Impl@{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::\+Inspector\+State\+Impl}!get\+Listener\+Method@{get\+Listener\+Method}}
+\index{get\+Listener\+Method@{get\+Listener\+Method}!gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::\+Inspector\+State\+Impl@{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::\+Inspector\+State\+Impl}}
+\subsubsection[{\texorpdfstring{get\+Listener\+Method()}{getListenerMethod()}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Listener\+Method} gov.\+nasa.\+jpf.\+inspector.\+server.\+expression.\+Inspector\+State\+Impl.\+get\+Listener\+Method (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_inspector_state_impl_afe75e0f49b3b98bc2e6530d647f43297}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_inspector_state_impl_afe75e0f49b3b98bc2e6530d647f43297}
+
+
+Implements \hyperlink{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_inspector_state_a73c801d3948ad0092f3e7ab2dda72ab8}{gov.\+nasa.\+jpf.\+inspector.\+server.\+expression.\+Inspector\+State}.
+
+
+
+Definition at line 57 of file Inspector\+State\+Impl.\+java.
+
+
+\begin{DoxyCode}
+57                                              \{
+58     \textcolor{keywordflow}{return} \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_inspector_state_impl_a6cc5f61624118469f3c43361c867f439}{listenerMethod};
+59   \}
+\end{DoxyCode}
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::\+Inspector\+State\+Impl@{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::\+Inspector\+State\+Impl}!get\+Previous\+Steps@{get\+Previous\+Steps}}
+\index{get\+Previous\+Steps@{get\+Previous\+Steps}!gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::\+Inspector\+State\+Impl@{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::\+Inspector\+State\+Impl}}
+\subsubsection[{\texorpdfstring{get\+Previous\+Steps()}{getPreviousSteps()}}]{\setlength{\rightskip}{0pt plus 5cm}Map$<$Integer, Instruction$>$ gov.\+nasa.\+jpf.\+inspector.\+server.\+expression.\+Inspector\+State\+Impl.\+get\+Previous\+Steps (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_inspector_state_impl_a0ef0d1393b5865d698c360d1e21ea5f2}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_inspector_state_impl_a0ef0d1393b5865d698c360d1e21ea5f2}
+
+
+Implements \hyperlink{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_inspector_state_af87598d15579925cdad02c6980817dbb}{gov.\+nasa.\+jpf.\+inspector.\+server.\+expression.\+Inspector\+State}.
+
+
+
+Definition at line 47 of file Inspector\+State\+Impl.\+java.
+
+
+\begin{DoxyCode}
+47                                                        \{
+48     \textcolor{keywordflow}{return} \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_inspector_state_impl_a51d0e82854748641ec231294a250d4eb}{lastExecutedInstructions};
+49   \}
+\end{DoxyCode}
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::\+Inspector\+State\+Impl@{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::\+Inspector\+State\+Impl}!get\+Search@{get\+Search}}
+\index{get\+Search@{get\+Search}!gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::\+Inspector\+State\+Impl@{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::\+Inspector\+State\+Impl}}
+\subsubsection[{\texorpdfstring{get\+Search()}{getSearch()}}]{\setlength{\rightskip}{0pt plus 5cm}Search gov.\+nasa.\+jpf.\+inspector.\+server.\+expression.\+Inspector\+State\+Impl.\+get\+Search (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_inspector_state_impl_accaa8504548659684f49e818415c4f60}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_inspector_state_impl_accaa8504548659684f49e818415c4f60}
+
+
+Implements \hyperlink{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_inspector_state_a7cc2b5750f78a1dffa6bf56a43842856}{gov.\+nasa.\+jpf.\+inspector.\+server.\+expression.\+Inspector\+State}.
+
+
+
+Definition at line 52 of file Inspector\+State\+Impl.\+java.
+
+
+\begin{DoxyCode}
+52                              \{
+53     \textcolor{keywordflow}{return} \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_inspector_state_impl_aad68b55c445091d252a965081641b48f}{search};
+54   \}
+\end{DoxyCode}
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::\+Inspector\+State\+Impl@{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::\+Inspector\+State\+Impl}!instruction\+Executed@{instruction\+Executed}}
+\index{instruction\+Executed@{instruction\+Executed}!gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::\+Inspector\+State\+Impl@{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::\+Inspector\+State\+Impl}}
+\subsubsection[{\texorpdfstring{instruction\+Executed(\+V\+M new\+J\+V\+M)}{instructionExecuted(VM newJVM)}}]{\setlength{\rightskip}{0pt plus 5cm}void gov.\+nasa.\+jpf.\+inspector.\+server.\+expression.\+Inspector\+State\+Impl.\+instruction\+Executed (
+\begin{DoxyParamCaption}
+\item[{VM}]{new\+J\+VM}
+\end{DoxyParamCaption}
+)}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_inspector_state_impl_ab4f24df2dfae833b81bd5b6e1cb28f8c}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_inspector_state_impl_ab4f24df2dfae833b81bd5b6e1cb28f8c}
+
+
+Definition at line 62 of file Inspector\+State\+Impl.\+java.
+
+
+\begin{DoxyCode}
+62                                               \{
+63     this.\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_inspector_state_impl_a0c9ed60abbbcc0a956d2902347770dda}{jvm} = newJVM;
+64 
+65     \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_inspector_state_impl_a51d0e82854748641ec231294a250d4eb}{lastExecutedInstructions}.put(\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_inspector_state_impl_a625feb5ca6498aa4ca9393ad502ea325}{currentThread}, 
+      \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_inspector_state_impl_a7399cb79ee39368da7fb3440e586d52f}{currentInstruction});
+66     \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_inspector_state_impl_a7399cb79ee39368da7fb3440e586d52f}{currentInstruction} = MigrationUtilities.getLastInstruction(newJVM);
+67     \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_inspector_state_impl_a625feb5ca6498aa4ca9393ad502ea325}{currentThread} = MigrationUtilities.getLastThreadInfo(newJVM).getId();
+68     this.\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_inspector_state_impl_a6cc5f61624118469f3c43361c867f439}{listenerMethod} = ListenerMethod.LM\_INSTRUCTION\_EXECUTED;
+69 
+70   \}
+\end{DoxyCode}
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::\+Inspector\+State\+Impl@{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::\+Inspector\+State\+Impl}!notify\+Listener\+Method\+Call@{notify\+Listener\+Method\+Call}}
+\index{notify\+Listener\+Method\+Call@{notify\+Listener\+Method\+Call}!gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::\+Inspector\+State\+Impl@{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::\+Inspector\+State\+Impl}}
+\subsubsection[{\texorpdfstring{notify\+Listener\+Method\+Call(\+Listener\+Method listener\+Method, V\+M jvm)}{notifyListenerMethodCall(ListenerMethod listenerMethod, VM jvm)}}]{\setlength{\rightskip}{0pt plus 5cm}void gov.\+nasa.\+jpf.\+inspector.\+server.\+expression.\+Inspector\+State\+Impl.\+notify\+Listener\+Method\+Call (
+\begin{DoxyParamCaption}
+\item[{{\bf Listener\+Method}}]{listener\+Method, }
+\item[{VM}]{jvm}
+\end{DoxyParamCaption}
+)}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_inspector_state_impl_a3655365c4f59212cd19568ae17a25d80}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_inspector_state_impl_a3655365c4f59212cd19568ae17a25d80}
+
+
+Definition at line 78 of file Inspector\+State\+Impl.\+java.
+
+
+\begin{DoxyCode}
+78                                                                                \{
+79     this.\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_inspector_state_impl_a6cc5f61624118469f3c43361c867f439}{listenerMethod} = \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_inspector_state_impl_a6cc5f61624118469f3c43361c867f439}{listenerMethod};
+80     this.\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_inspector_state_impl_a0c9ed60abbbcc0a956d2902347770dda}{jvm} = \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_inspector_state_impl_a0c9ed60abbbcc0a956d2902347770dda}{jvm};
+81   \}
+\end{DoxyCode}
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::\+Inspector\+State\+Impl@{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::\+Inspector\+State\+Impl}!state\+Changed@{state\+Changed}}
+\index{state\+Changed@{state\+Changed}!gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::\+Inspector\+State\+Impl@{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::\+Inspector\+State\+Impl}}
+\subsubsection[{\texorpdfstring{state\+Changed(\+Search search, Listener\+Method listener\+Method)}{stateChanged(Search search, ListenerMethod listenerMethod)}}]{\setlength{\rightskip}{0pt plus 5cm}void gov.\+nasa.\+jpf.\+inspector.\+server.\+expression.\+Inspector\+State\+Impl.\+state\+Changed (
+\begin{DoxyParamCaption}
+\item[{Search}]{search, }
+\item[{{\bf Listener\+Method}}]{listener\+Method}
+\end{DoxyParamCaption}
+)}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_inspector_state_impl_a48d8ba84b9915f6a1c6968c80a23bd2f}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_inspector_state_impl_a48d8ba84b9915f6a1c6968c80a23bd2f}
+
+
+Definition at line 72 of file Inspector\+State\+Impl.\+java.
+
+
+\begin{DoxyCode}
+72                                                                           \{
+73     this.\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_inspector_state_impl_a0c9ed60abbbcc0a956d2902347770dda}{jvm} = \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_inspector_state_impl_aad68b55c445091d252a965081641b48f}{search}.getVM();
+74     this.\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_inspector_state_impl_aad68b55c445091d252a965081641b48f}{search} = \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_inspector_state_impl_aad68b55c445091d252a965081641b48f}{search};
+75     this.\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_inspector_state_impl_a6cc5f61624118469f3c43361c867f439}{listenerMethod} = \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_inspector_state_impl_a6cc5f61624118469f3c43361c867f439}{listenerMethod};
+76   \}
+\end{DoxyCode}
+
+
+\subsection{Member Data Documentation}
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::\+Inspector\+State\+Impl@{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::\+Inspector\+State\+Impl}!current\+Instruction@{current\+Instruction}}
+\index{current\+Instruction@{current\+Instruction}!gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::\+Inspector\+State\+Impl@{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::\+Inspector\+State\+Impl}}
+\subsubsection[{\texorpdfstring{current\+Instruction}{currentInstruction}}]{\setlength{\rightskip}{0pt plus 5cm}Instruction gov.\+nasa.\+jpf.\+inspector.\+server.\+expression.\+Inspector\+State\+Impl.\+current\+Instruction = null\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_inspector_state_impl_a7399cb79ee39368da7fb3440e586d52f}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_inspector_state_impl_a7399cb79ee39368da7fb3440e586d52f}
+
+
+Definition at line 36 of file Inspector\+State\+Impl.\+java.
+
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::\+Inspector\+State\+Impl@{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::\+Inspector\+State\+Impl}!current\+Thread@{current\+Thread}}
+\index{current\+Thread@{current\+Thread}!gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::\+Inspector\+State\+Impl@{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::\+Inspector\+State\+Impl}}
+\subsubsection[{\texorpdfstring{current\+Thread}{currentThread}}]{\setlength{\rightskip}{0pt plus 5cm}int gov.\+nasa.\+jpf.\+inspector.\+server.\+expression.\+Inspector\+State\+Impl.\+current\+Thread = 0\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_inspector_state_impl_a625feb5ca6498aa4ca9393ad502ea325}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_inspector_state_impl_a625feb5ca6498aa4ca9393ad502ea325}
+
+
+Definition at line 37 of file Inspector\+State\+Impl.\+java.
+
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::\+Inspector\+State\+Impl@{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::\+Inspector\+State\+Impl}!jvm@{jvm}}
+\index{jvm@{jvm}!gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::\+Inspector\+State\+Impl@{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::\+Inspector\+State\+Impl}}
+\subsubsection[{\texorpdfstring{jvm}{jvm}}]{\setlength{\rightskip}{0pt plus 5cm}VM gov.\+nasa.\+jpf.\+inspector.\+server.\+expression.\+Inspector\+State\+Impl.\+jvm\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_inspector_state_impl_a0c9ed60abbbcc0a956d2902347770dda}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_inspector_state_impl_a0c9ed60abbbcc0a956d2902347770dda}
+
+
+Definition at line 33 of file Inspector\+State\+Impl.\+java.
+
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::\+Inspector\+State\+Impl@{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::\+Inspector\+State\+Impl}!last\+Executed\+Instructions@{last\+Executed\+Instructions}}
+\index{last\+Executed\+Instructions@{last\+Executed\+Instructions}!gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::\+Inspector\+State\+Impl@{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::\+Inspector\+State\+Impl}}
+\subsubsection[{\texorpdfstring{last\+Executed\+Instructions}{lastExecutedInstructions}}]{\setlength{\rightskip}{0pt plus 5cm}final Map$<$Integer, Instruction$>$ gov.\+nasa.\+jpf.\+inspector.\+server.\+expression.\+Inspector\+State\+Impl.\+last\+Executed\+Instructions = new Hash\+Map$<$Integer, Instruction$>$()\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_inspector_state_impl_a51d0e82854748641ec231294a250d4eb}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_inspector_state_impl_a51d0e82854748641ec231294a250d4eb}
+
+
+Definition at line 32 of file Inspector\+State\+Impl.\+java.
+
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::\+Inspector\+State\+Impl@{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::\+Inspector\+State\+Impl}!listener\+Method@{listener\+Method}}
+\index{listener\+Method@{listener\+Method}!gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::\+Inspector\+State\+Impl@{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::\+Inspector\+State\+Impl}}
+\subsubsection[{\texorpdfstring{listener\+Method}{listenerMethod}}]{\setlength{\rightskip}{0pt plus 5cm}Inspector\+State.\+Listener\+Method gov.\+nasa.\+jpf.\+inspector.\+server.\+expression.\+Inspector\+State\+Impl.\+listener\+Method = {\bf Listener\+Method.\+L\+M\+\_\+\+N\+O\+T\+\_\+\+I\+N\+\_\+\+L\+I\+ST}\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_inspector_state_impl_a6cc5f61624118469f3c43361c867f439}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_inspector_state_impl_a6cc5f61624118469f3c43361c867f439}
+
+
+Definition at line 39 of file Inspector\+State\+Impl.\+java.
+
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::\+Inspector\+State\+Impl@{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::\+Inspector\+State\+Impl}!search@{search}}
+\index{search@{search}!gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::\+Inspector\+State\+Impl@{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::\+Inspector\+State\+Impl}}
+\subsubsection[{\texorpdfstring{search}{search}}]{\setlength{\rightskip}{0pt plus 5cm}Search gov.\+nasa.\+jpf.\+inspector.\+server.\+expression.\+Inspector\+State\+Impl.\+search\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_inspector_state_impl_aad68b55c445091d252a965081641b48f}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_inspector_state_impl_aad68b55c445091d252a965081641b48f}
+
+
+Definition at line 34 of file Inspector\+State\+Impl.\+java.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/gsoc/jpf-\/inspector/src/main/gov/nasa/jpf/inspector/server/expression/\hyperlink{_inspector_state_impl_8java}{Inspector\+State\+Impl.\+java}\end{DoxyCompactItemize}

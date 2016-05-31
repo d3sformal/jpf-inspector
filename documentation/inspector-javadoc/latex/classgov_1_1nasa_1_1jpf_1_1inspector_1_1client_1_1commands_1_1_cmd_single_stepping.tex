@@ -1,0 +1,323 @@
+\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_single_stepping}{}\section{gov.\+nasa.\+jpf.\+inspector.\+client.\+commands.\+Cmd\+Single\+Stepping Class Reference}
+\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_single_stepping}\index{gov.\+nasa.\+jpf.\+inspector.\+client.\+commands.\+Cmd\+Single\+Stepping@{gov.\+nasa.\+jpf.\+inspector.\+client.\+commands.\+Cmd\+Single\+Stepping}}
+
+
+Represents a single-\/stepping command such as \char`\"{}step\+\_\+in\char`\"{} or \char`\"{}step\+\_\+over\char`\"{}.  
+
+
+Inheritance diagram for gov.\+nasa.\+jpf.\+inspector.\+client.\+commands.\+Cmd\+Single\+Stepping\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_single_stepping}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_single_stepping_aa2e0b46adf8cd799de1d6e9d83b789a8}{Cmd\+Single\+Stepping} (boolean \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_single_stepping_af3bd26b0ee3e4a353b369b84e61db07c}{forward}, \hyperlink{enumgov_1_1nasa_1_1jpf_1_1inspector_1_1interfaces_1_1_commands_interface_1_1_step_type}{Step\+Type} \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_single_stepping_a9888f2543c87e6e21a850b215d79b389}{step\+Type}, Integer repeat\+Cnt)
+\item 
+void \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_single_stepping_a812e5e8ea5338332acd477398a8e5397}{execute\+Commands} (\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1_j_p_f_inspector_client}{J\+P\+F\+Inspector\+Client} client, \hyperlink{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1interfaces_1_1_j_p_f_inspector_back_end_interface}{J\+P\+F\+Inspector\+Back\+End\+Interface} inspector, Print\+Stream out\+Stream)
+\begin{DoxyCompactList}\small\item\em Sends the command to the server and prints the result into a stream. \end{DoxyCompactList}\item 
+String \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_single_stepping_ae755b5e03f36a6ee1e62e66168e5aa5a}{get\+Normalized\+Command} ()
+\begin{DoxyCompactList}\small\item\em Converts the command to a string. \end{DoxyCompactList}\item 
+void \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1_client_command_ae0670332ec750bc5b9016d0b04d8adfe}{record\+Command} (\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1_command_recorder}{Command\+Recorder} \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1_client_command_af4246f2427035c72a6af45a2c61361f7}{rec})
+\begin{DoxyCompactList}\small\item\em Records the command into the record log. \end{DoxyCompactList}\item 
+boolean \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1_client_command_afb09c400c64e2d8e01059b91ff847761}{is\+Hidden\+Command} ()
+\begin{DoxyCompactList}\small\item\em Returns true if command execution of the command should not be reported to user. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_single_stepping}{Cmd\+Single\+Stepping} \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_single_stepping_a7d487203117503a88884efc6592e5b39}{create\+Cmd\+Single\+Stepping\+Transition} (boolean \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_single_stepping_af3bd26b0ee3e4a353b369b84e61db07c}{forward}, \hyperlink{enumgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_choice_generators_tracking_1_1_c_g_type_spec}{C\+G\+Type\+Spec} type, Integer repeat\+Cnt)
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1_command_recorder}{Command\+Recorder} \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1_client_command_af4246f2427035c72a6af45a2c61361f7}{rec}
+\begin{DoxyCompactList}\small\item\em The last recorder used to record the command. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+final boolean \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_single_stepping_af3bd26b0ee3e4a353b369b84e61db07c}{forward}
+\item 
+final \hyperlink{enumgov_1_1nasa_1_1jpf_1_1inspector_1_1interfaces_1_1_commands_interface_1_1_step_type}{Step\+Type} \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_single_stepping_a9888f2543c87e6e21a850b215d79b389}{step\+Type}
+\item 
+final int \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_single_stepping_ab1cc3aed83fbe2c9d20fb0ec8f1bda02}{step\+Cnt}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Represents a single-\/stepping command such as \char`\"{}step\+\_\+in\char`\"{} or \char`\"{}step\+\_\+over\char`\"{}. 
+
+All such commands, including back-\/stepping commands, are handled by this class. 
+
+Definition at line 39 of file Cmd\+Single\+Stepping.\+java.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{gov\+::nasa\+::jpf\+::inspector\+::client\+::commands\+::\+Cmd\+Single\+Stepping@{gov\+::nasa\+::jpf\+::inspector\+::client\+::commands\+::\+Cmd\+Single\+Stepping}!Cmd\+Single\+Stepping@{Cmd\+Single\+Stepping}}
+\index{Cmd\+Single\+Stepping@{Cmd\+Single\+Stepping}!gov\+::nasa\+::jpf\+::inspector\+::client\+::commands\+::\+Cmd\+Single\+Stepping@{gov\+::nasa\+::jpf\+::inspector\+::client\+::commands\+::\+Cmd\+Single\+Stepping}}
+\subsubsection[{\texorpdfstring{Cmd\+Single\+Stepping(boolean forward, Step\+Type step\+Type, Integer repeat\+Cnt)}{CmdSingleStepping(boolean forward, StepType stepType, Integer repeatCnt)}}]{\setlength{\rightskip}{0pt plus 5cm}gov.\+nasa.\+jpf.\+inspector.\+client.\+commands.\+Cmd\+Single\+Stepping.\+Cmd\+Single\+Stepping (
+\begin{DoxyParamCaption}
+\item[{boolean}]{forward, }
+\item[{{\bf Step\+Type}}]{step\+Type, }
+\item[{Integer}]{repeat\+Cnt}
+\end{DoxyParamCaption}
+)}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_single_stepping_aa2e0b46adf8cd799de1d6e9d83b789a8}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_single_stepping_aa2e0b46adf8cd799de1d6e9d83b789a8}
+
+
+Definition at line 63 of file Cmd\+Single\+Stepping.\+java.
+
+
+\begin{DoxyCode}
+63                                                                                    \{
+64     assert \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_single_stepping_a9888f2543c87e6e21a850b215d79b389}{stepType} != null;
+65     assert repeatCnt != null;
+66 
+67     this.\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_single_stepping_af3bd26b0ee3e4a353b369b84e61db07c}{forward} = \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_single_stepping_af3bd26b0ee3e4a353b369b84e61db07c}{forward};
+68     this.\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_single_stepping_a9888f2543c87e6e21a850b215d79b389}{stepType} = \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_single_stepping_a9888f2543c87e6e21a850b215d79b389}{stepType};
+69     this.\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_single_stepping_ab1cc3aed83fbe2c9d20fb0ec8f1bda02}{stepCnt} = repeatCnt;
+70   \}
+\end{DoxyCode}
+
+
+\subsection{Member Function Documentation}
+\index{gov\+::nasa\+::jpf\+::inspector\+::client\+::commands\+::\+Cmd\+Single\+Stepping@{gov\+::nasa\+::jpf\+::inspector\+::client\+::commands\+::\+Cmd\+Single\+Stepping}!create\+Cmd\+Single\+Stepping\+Transition@{create\+Cmd\+Single\+Stepping\+Transition}}
+\index{create\+Cmd\+Single\+Stepping\+Transition@{create\+Cmd\+Single\+Stepping\+Transition}!gov\+::nasa\+::jpf\+::inspector\+::client\+::commands\+::\+Cmd\+Single\+Stepping@{gov\+::nasa\+::jpf\+::inspector\+::client\+::commands\+::\+Cmd\+Single\+Stepping}}
+\subsubsection[{\texorpdfstring{create\+Cmd\+Single\+Stepping\+Transition(boolean forward, C\+G\+Type\+Spec type, Integer repeat\+Cnt)}{createCmdSingleSteppingTransition(boolean forward, CGTypeSpec type, Integer repeatCnt)}}]{\setlength{\rightskip}{0pt plus 5cm}static {\bf Cmd\+Single\+Stepping} gov.\+nasa.\+jpf.\+inspector.\+client.\+commands.\+Cmd\+Single\+Stepping.\+create\+Cmd\+Single\+Stepping\+Transition (
+\begin{DoxyParamCaption}
+\item[{boolean}]{forward, }
+\item[{{\bf C\+G\+Type\+Spec}}]{type, }
+\item[{Integer}]{repeat\+Cnt}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_single_stepping_a7d487203117503a88884efc6592e5b39}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_single_stepping_a7d487203117503a88884efc6592e5b39}
+
+
+Definition at line 45 of file Cmd\+Single\+Stepping.\+java.
+
+
+\begin{DoxyCode}
+45                                                                                                            
+                     \{
+46     \textcolor{comment}{// Set default value}
+47     \textcolor{keywordflow}{if} (type == null) \{
+48       type = CGTypeSpec.CGS\_ALL;
+49     \}
+50 
+51     \textcolor{keywordflow}{switch} (type) \{
+52     \textcolor{keywordflow}{case} CGS\_ALL:
+53       \textcolor{keywordflow}{return} \textcolor{keyword}{new} \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_single_stepping_aa2e0b46adf8cd799de1d6e9d83b789a8}{CmdSingleStepping}(\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_single_stepping_af3bd26b0ee3e4a353b369b84e61db07c}{forward}, StepType.ST\_TRANSITION\_ALL, repeatCnt);
+54     \textcolor{keywordflow}{case} CGS\_DATA:
+55       \textcolor{keywordflow}{return} \textcolor{keyword}{new} \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_single_stepping_aa2e0b46adf8cd799de1d6e9d83b789a8}{CmdSingleStepping}(\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_single_stepping_af3bd26b0ee3e4a353b369b84e61db07c}{forward}, StepType.ST\_TRANSITION\_DATA, repeatCnt)
+      ;
+56     \textcolor{keywordflow}{case} CGS\_SCHEDULING:
+57       \textcolor{keywordflow}{return} \textcolor{keyword}{new} \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_single_stepping_aa2e0b46adf8cd799de1d6e9d83b789a8}{CmdSingleStepping}(\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_single_stepping_af3bd26b0ee3e4a353b369b84e61db07c}{forward}, StepType.ST\_TRANSITION\_SCHED, repeatCnt
+      );
+58     \textcolor{keywordflow}{default}:
+59       \textcolor{keywordflow}{throw} \textcolor{keyword}{new} RuntimeException(\textcolor{stringliteral}{"Internal error - Unsupported "} + type.getClass().getSimpleName() + \textcolor{stringliteral}{"
+       value - "} + type);
+60     \}
+61   \}
+\end{DoxyCode}
+\index{gov\+::nasa\+::jpf\+::inspector\+::client\+::commands\+::\+Cmd\+Single\+Stepping@{gov\+::nasa\+::jpf\+::inspector\+::client\+::commands\+::\+Cmd\+Single\+Stepping}!execute\+Commands@{execute\+Commands}}
+\index{execute\+Commands@{execute\+Commands}!gov\+::nasa\+::jpf\+::inspector\+::client\+::commands\+::\+Cmd\+Single\+Stepping@{gov\+::nasa\+::jpf\+::inspector\+::client\+::commands\+::\+Cmd\+Single\+Stepping}}
+\subsubsection[{\texorpdfstring{execute\+Commands(\+J\+P\+F\+Inspector\+Client client, J\+P\+F\+Inspector\+Back\+End\+Interface inspector, Print\+Stream out\+Stream)}{executeCommands(JPFInspectorClient client, JPFInspectorBackEndInterface inspector, PrintStream outStream)}}]{\setlength{\rightskip}{0pt plus 5cm}void gov.\+nasa.\+jpf.\+inspector.\+client.\+commands.\+Cmd\+Single\+Stepping.\+execute\+Commands (
+\begin{DoxyParamCaption}
+\item[{{\bf J\+P\+F\+Inspector\+Client}}]{client, }
+\item[{{\bf J\+P\+F\+Inspector\+Back\+End\+Interface}}]{inspector, }
+\item[{Print\+Stream}]{out\+Stream}
+\end{DoxyParamCaption}
+)}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_single_stepping_a812e5e8ea5338332acd477398a8e5397}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_single_stepping_a812e5e8ea5338332acd477398a8e5397}
+
+
+Sends the command to the server and prints the result into a stream. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em client} & J\+PF Inspector client \\
+\hline
+{\em inspector} & J\+PF inspector server \\
+\hline
+{\em out\+Stream} & Stream where results (output and errors) of the executed command are printed. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1_client_command_interface_a6cf0905afd7822cee3268e286a7dcdd0}{gov.\+nasa.\+jpf.\+inspector.\+client.\+Client\+Command\+Interface}.
+
+
+
+Definition at line 73 of file Cmd\+Single\+Stepping.\+java.
+
+
+\begin{DoxyCode}
+73                                                                                                            
+                    \{
+74     assert inspector != null;
+75 
+76     \textcolor{keywordflow}{if} (\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_single_stepping_ab1cc3aed83fbe2c9d20fb0ec8f1bda02}{stepCnt} != 1) \{
+77       outStream.println(\textcolor{stringliteral}{"ERR: StepCount not implemented yet. Repeat command manually."});
+78     \}
+79 
+80     \textcolor{keywordflow}{try} \{
+81       \textcolor{keywordflow}{if} (\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_single_stepping_af3bd26b0ee3e4a353b369b84e61db07c}{forward}) \{
+82         inspector.forwardStep(\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_single_stepping_a9888f2543c87e6e21a850b215d79b389}{stepType});
+83       \} \textcolor{keywordflow}{else} \{
+84         inspector.backwardStep(\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_single_stepping_a9888f2543c87e6e21a850b215d79b389}{stepType});
+85       \}
+86     \} \textcolor{keywordflow}{catch} (JPFInspectorException e) \{
+87       outStream.println(e.getMessage());
+88       client.recordComment(e.getMessage());
+89     \}
+90 
+91   \}
+\end{DoxyCode}
+\index{gov\+::nasa\+::jpf\+::inspector\+::client\+::commands\+::\+Cmd\+Single\+Stepping@{gov\+::nasa\+::jpf\+::inspector\+::client\+::commands\+::\+Cmd\+Single\+Stepping}!get\+Normalized\+Command@{get\+Normalized\+Command}}
+\index{get\+Normalized\+Command@{get\+Normalized\+Command}!gov\+::nasa\+::jpf\+::inspector\+::client\+::commands\+::\+Cmd\+Single\+Stepping@{gov\+::nasa\+::jpf\+::inspector\+::client\+::commands\+::\+Cmd\+Single\+Stepping}}
+\subsubsection[{\texorpdfstring{get\+Normalized\+Command()}{getNormalizedCommand()}}]{\setlength{\rightskip}{0pt plus 5cm}String gov.\+nasa.\+jpf.\+inspector.\+client.\+commands.\+Cmd\+Single\+Stepping.\+get\+Normalized\+Command (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_single_stepping_ae755b5e03f36a6ee1e62e66168e5aa5a}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_single_stepping_ae755b5e03f36a6ee1e62e66168e5aa5a}
+
+
+Converts the command to a string. 
+
+The string must represent the command using non-\/abbreviated versions of all keywords. The returned string must be a legal command that, if parsed, would result in the same \hyperlink{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1_client_command_interface}{Client\+Command\+Interface} object.
+
+\begin{DoxyReturn}{Returns}
+Text parseable representation of the command. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1_client_command_interface_a393044f5be05c3ab3451b72aeff7af62}{gov.\+nasa.\+jpf.\+inspector.\+client.\+Client\+Command\+Interface}.
+
+
+
+Definition at line 94 of file Cmd\+Single\+Stepping.\+java.
+
+
+\begin{DoxyCode}
+94                                         \{
+95     String result = \textcolor{stringliteral}{""};
+96     \textcolor{keywordflow}{if} (\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_single_stepping_af3bd26b0ee3e4a353b369b84e61db07c}{forward} == \textcolor{keyword}{false}) \{
+97       result = \textcolor{stringliteral}{"back\_"};
+98     \}
+99 
+100     \textcolor{keywordflow}{switch} (\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_single_stepping_a9888f2543c87e6e21a850b215d79b389}{stepType}) \{
+101     \textcolor{keywordflow}{case} ST\_INSTRUCTION:
+102       \textcolor{keywordflow}{return} result + \textcolor{stringliteral}{"step\_instruction"};
+103     \textcolor{keywordflow}{case} ST\_LINE:
+104       \textcolor{keywordflow}{return} result + \textcolor{stringliteral}{"step\_over"};
+105     \textcolor{keywordflow}{case} ST\_STEP\_IN:
+106       \textcolor{keywordflow}{return} result + \textcolor{stringliteral}{"step\_in"};
+107     \textcolor{keywordflow}{case} ST\_STEP\_OUT:
+108       \textcolor{keywordflow}{return} result + \textcolor{stringliteral}{"step\_out"};
+109     \textcolor{keywordflow}{case} ST\_TRANSITION\_ALL:
+110       \textcolor{keywordflow}{return} result + \textcolor{stringliteral}{"step\_transition all"};
+111     \textcolor{keywordflow}{case} ST\_TRANSITION\_DATA:
+112       \textcolor{keywordflow}{return} result + \textcolor{stringliteral}{"step\_transition data"};
+113     \textcolor{keywordflow}{case} ST\_TRANSITION\_SCHED:
+114       \textcolor{keywordflow}{return} result + \textcolor{stringliteral}{"step\_transition scheduling"};
+115     \textcolor{keywordflow}{default}:
+116       \textcolor{keywordflow}{throw} \textcolor{keyword}{new} RuntimeException(\textcolor{stringliteral}{"Internal error: Unknown "} + \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_single_stepping_a9888f2543c87e6e21a850b215d79b389}{stepType}.getClass().getName() + \textcolor{stringliteral}{"
+       entry: "} + \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_single_stepping_a9888f2543c87e6e21a850b215d79b389}{stepType});
+117     \}
+118   \}
+\end{DoxyCode}
+\index{gov\+::nasa\+::jpf\+::inspector\+::client\+::commands\+::\+Cmd\+Single\+Stepping@{gov\+::nasa\+::jpf\+::inspector\+::client\+::commands\+::\+Cmd\+Single\+Stepping}!is\+Hidden\+Command@{is\+Hidden\+Command}}
+\index{is\+Hidden\+Command@{is\+Hidden\+Command}!gov\+::nasa\+::jpf\+::inspector\+::client\+::commands\+::\+Cmd\+Single\+Stepping@{gov\+::nasa\+::jpf\+::inspector\+::client\+::commands\+::\+Cmd\+Single\+Stepping}}
+\subsubsection[{\texorpdfstring{is\+Hidden\+Command()}{isHiddenCommand()}}]{\setlength{\rightskip}{0pt plus 5cm}boolean gov.\+nasa.\+jpf.\+inspector.\+client.\+Client\+Command.\+is\+Hidden\+Command (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inherited]}}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1_client_command_afb09c400c64e2d8e01059b91ff847761}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1_client_command_afb09c400c64e2d8e01059b91ff847761}
+
+
+Returns true if command execution of the command should not be reported to user. 
+
+Only \hyperlink{}{Cmd\+Callback} is a hidden command. 
+
+Implements \hyperlink{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1_client_command_interface_a51ce7a884a74433b73d39d93528838cc}{gov.\+nasa.\+jpf.\+inspector.\+client.\+Client\+Command\+Interface}.
+
+
+
+Definition at line 28 of file Client\+Command.\+java.
+
+
+\begin{DoxyCode}
+28                                     \{
+29     \textcolor{keywordflow}{return} \textcolor{keyword}{false};
+30   \}
+\end{DoxyCode}
+\index{gov\+::nasa\+::jpf\+::inspector\+::client\+::commands\+::\+Cmd\+Single\+Stepping@{gov\+::nasa\+::jpf\+::inspector\+::client\+::commands\+::\+Cmd\+Single\+Stepping}!record\+Command@{record\+Command}}
+\index{record\+Command@{record\+Command}!gov\+::nasa\+::jpf\+::inspector\+::client\+::commands\+::\+Cmd\+Single\+Stepping@{gov\+::nasa\+::jpf\+::inspector\+::client\+::commands\+::\+Cmd\+Single\+Stepping}}
+\subsubsection[{\texorpdfstring{record\+Command(\+Command\+Recorder rec)}{recordCommand(CommandRecorder rec)}}]{\setlength{\rightskip}{0pt plus 5cm}void gov.\+nasa.\+jpf.\+inspector.\+client.\+Client\+Command.\+record\+Command (
+\begin{DoxyParamCaption}
+\item[{{\bf Command\+Recorder}}]{rec}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inherited]}}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1_client_command_ae0670332ec750bc5b9016d0b04d8adfe}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1_client_command_ae0670332ec750bc5b9016d0b04d8adfe}
+
+
+Records the command into the record log. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em rec} & Recorder where the command should be recorded. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1_client_command_interface_a4ae9ac9bbb61d9a758ef168e8b3b04ff}{gov.\+nasa.\+jpf.\+inspector.\+client.\+Client\+Command\+Interface}.
+
+
+
+Definition at line 22 of file Client\+Command.\+java.
+
+
+\begin{DoxyCode}
+22                                                   \{
+23     this.\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1_client_command_af4246f2427035c72a6af45a2c61361f7}{rec} = \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1_client_command_af4246f2427035c72a6af45a2c61361f7}{rec};
+24     \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1_client_command_af4246f2427035c72a6af45a2c61361f7}{rec}.\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1_command_recorder_af5f212124179773e46c8b45f1d01a32d}{recordCommand}(\textcolor{keyword}{this});
+25   \}
+\end{DoxyCode}
+
+
+\subsection{Member Data Documentation}
+\index{gov\+::nasa\+::jpf\+::inspector\+::client\+::commands\+::\+Cmd\+Single\+Stepping@{gov\+::nasa\+::jpf\+::inspector\+::client\+::commands\+::\+Cmd\+Single\+Stepping}!forward@{forward}}
+\index{forward@{forward}!gov\+::nasa\+::jpf\+::inspector\+::client\+::commands\+::\+Cmd\+Single\+Stepping@{gov\+::nasa\+::jpf\+::inspector\+::client\+::commands\+::\+Cmd\+Single\+Stepping}}
+\subsubsection[{\texorpdfstring{forward}{forward}}]{\setlength{\rightskip}{0pt plus 5cm}final boolean gov.\+nasa.\+jpf.\+inspector.\+client.\+commands.\+Cmd\+Single\+Stepping.\+forward\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_single_stepping_af3bd26b0ee3e4a353b369b84e61db07c}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_single_stepping_af3bd26b0ee3e4a353b369b84e61db07c}
+
+
+Definition at line 41 of file Cmd\+Single\+Stepping.\+java.
+
+\index{gov\+::nasa\+::jpf\+::inspector\+::client\+::commands\+::\+Cmd\+Single\+Stepping@{gov\+::nasa\+::jpf\+::inspector\+::client\+::commands\+::\+Cmd\+Single\+Stepping}!rec@{rec}}
+\index{rec@{rec}!gov\+::nasa\+::jpf\+::inspector\+::client\+::commands\+::\+Cmd\+Single\+Stepping@{gov\+::nasa\+::jpf\+::inspector\+::client\+::commands\+::\+Cmd\+Single\+Stepping}}
+\subsubsection[{\texorpdfstring{rec}{rec}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Command\+Recorder} gov.\+nasa.\+jpf.\+inspector.\+client.\+Client\+Command.\+rec\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [inherited]}}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1_client_command_af4246f2427035c72a6af45a2c61361f7}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1_client_command_af4246f2427035c72a6af45a2c61361f7}
+
+
+The last recorder used to record the command. 
+
+
+
+Definition at line 19 of file Client\+Command.\+java.
+
+\index{gov\+::nasa\+::jpf\+::inspector\+::client\+::commands\+::\+Cmd\+Single\+Stepping@{gov\+::nasa\+::jpf\+::inspector\+::client\+::commands\+::\+Cmd\+Single\+Stepping}!step\+Cnt@{step\+Cnt}}
+\index{step\+Cnt@{step\+Cnt}!gov\+::nasa\+::jpf\+::inspector\+::client\+::commands\+::\+Cmd\+Single\+Stepping@{gov\+::nasa\+::jpf\+::inspector\+::client\+::commands\+::\+Cmd\+Single\+Stepping}}
+\subsubsection[{\texorpdfstring{step\+Cnt}{stepCnt}}]{\setlength{\rightskip}{0pt plus 5cm}final int gov.\+nasa.\+jpf.\+inspector.\+client.\+commands.\+Cmd\+Single\+Stepping.\+step\+Cnt\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_single_stepping_ab1cc3aed83fbe2c9d20fb0ec8f1bda02}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_single_stepping_ab1cc3aed83fbe2c9d20fb0ec8f1bda02}
+
+
+Definition at line 43 of file Cmd\+Single\+Stepping.\+java.
+
+\index{gov\+::nasa\+::jpf\+::inspector\+::client\+::commands\+::\+Cmd\+Single\+Stepping@{gov\+::nasa\+::jpf\+::inspector\+::client\+::commands\+::\+Cmd\+Single\+Stepping}!step\+Type@{step\+Type}}
+\index{step\+Type@{step\+Type}!gov\+::nasa\+::jpf\+::inspector\+::client\+::commands\+::\+Cmd\+Single\+Stepping@{gov\+::nasa\+::jpf\+::inspector\+::client\+::commands\+::\+Cmd\+Single\+Stepping}}
+\subsubsection[{\texorpdfstring{step\+Type}{stepType}}]{\setlength{\rightskip}{0pt plus 5cm}final {\bf Step\+Type} gov.\+nasa.\+jpf.\+inspector.\+client.\+commands.\+Cmd\+Single\+Stepping.\+step\+Type\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_single_stepping_a9888f2543c87e6e21a850b215d79b389}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_single_stepping_a9888f2543c87e6e21a850b215d79b389}
+
+
+Definition at line 42 of file Cmd\+Single\+Stepping.\+java.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/gsoc/jpf-\/inspector/src/main/gov/nasa/jpf/inspector/client/commands/\hyperlink{_cmd_single_stepping_8java}{Cmd\+Single\+Stepping.\+java}\end{DoxyCompactItemize}

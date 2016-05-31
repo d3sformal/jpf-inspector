@@ -1,0 +1,476 @@
+\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_stop_holder}{}\section{gov.\+nasa.\+jpf.\+inspector.\+server.\+jpf.\+Stop\+Holder Class Reference}
+\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_stop_holder}\index{gov.\+nasa.\+jpf.\+inspector.\+server.\+jpf.\+Stop\+Holder@{gov.\+nasa.\+jpf.\+inspector.\+server.\+jpf.\+Stop\+Holder}}
+
+
+When execution is stopped.  
+
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_stop_holder_ae568b296b6d705f2126740b13f213b67}{Stop\+Holder} (\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_j_p_f_inspector}{J\+P\+F\+Inspector} \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_stop_holder_ad7eae9e53d25e2777d747423d71ddf0e}{inspector}, \hyperlink{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1interfaces_1_1_inspector_call_backs}{Inspector\+Call\+Backs} \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_stop_holder_a0f6e1696842fdce668e4246c3344c240}{callbacks})
+\item 
+void \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_stop_holder_aae2d616c9e1b16fea4e9240b111b7ae3}{stop\+Execution} (\hyperlink{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_inspector_state}{Inspector\+State} \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_stop_holder_a9fe94c33b32604112b8cf9bc0a72f401}{insp\+State})
+\begin{DoxyCompactList}\small\item\em Note\+: To prevent deadlocks cannot hold any lock if this methods is called. \end{DoxyCompactList}\item 
+synchronized void \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_stop_holder_abbb22c4a2b9bdf17d7014ac7f49014d8}{terminating} ()
+\item 
+synchronized void \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_stop_holder_a71f968be313be8972b4793cb6695e2c9}{new\+J\+PF} ()
+\item 
+VM \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_stop_holder_a61538f1b06885ad49eabf9d5fd10e254}{get\+J\+VM} ()
+\begin{DoxyCompactList}\small\item\em Gets current state of the SuT or N\+U\+LL if execution not stopped. \end{DoxyCompactList}\item 
+\hyperlink{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_inspector_state}{Inspector\+State} \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_stop_holder_a1bad9bde4a6af463706584a73c3dd5e2}{get\+Inspector\+State} ()
+\begin{DoxyCompactList}\small\item\em Gets current state of the J\+PF and of the inspector or N\+U\+LL if execution not stopped. \end{DoxyCompactList}\item 
+synchronized boolean \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_stop_holder_a9ce9430793863b6d314d8e44c8112081}{is\+Stopped} ()
+\item 
+synchronized void \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_stop_holder_aa4e7899c51ecb3834e202f861af6e752}{wait\+Until\+Stopped} ()
+\begin{DoxyCompactList}\small\item\em Waits until the J\+PF (SuT) is stopped. \end{DoxyCompactList}\item 
+synchronized void \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_stop_holder_a2c9b742cc32a8f8b150df3a920250f29}{resume\+Execution} ()
+\item 
+void \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_stop_holder_a3bbe9e2d1cd3f75c86c107708a770a55}{notify\+Client\+Terminating} ()
+\item 
+void \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_stop_holder_a4b0dc5f3af8b6a397e93937cf733e76b}{terminate\+After\+Resume} ()
+\begin{DoxyCompactList}\small\item\em Terminates the search after the resume if forward step is planned. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static String \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_stop_holder_a7303f3c9c559d73682ec1dd9d64ecc72}{get\+Location\+Details} (\hyperlink{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_inspector_state}{Inspector\+State} \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_stop_holder_a9fe94c33b32604112b8cf9bc0a72f401}{insp\+State})
+\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_stop_holder_ac97ffc05553690ab11cb985b42327f10}{check\+Condition\+Terminate\+After\+Resume} ()
+\begin{DoxyCompactList}\small\item\em Check if terminate the search if forward step is planned. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_inspector_state}{Inspector\+State} \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_stop_holder_a9fe94c33b32604112b8cf9bc0a72f401}{insp\+State}
+\begin{DoxyCompactList}\small\item\em State of the stopped J\+VM. \end{DoxyCompactList}\item 
+final \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_j_p_f_inspector}{J\+P\+F\+Inspector} \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_stop_holder_ad7eae9e53d25e2777d747423d71ddf0e}{inspector}
+\begin{DoxyCompactList}\small\item\em Inspector server. \end{DoxyCompactList}\item 
+final \hyperlink{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1interfaces_1_1_inspector_call_backs}{Inspector\+Call\+Backs} \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_stop_holder_a0f6e1696842fdce668e4246c3344c240}{callbacks}
+\item 
+boolean \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_stop_holder_aa7cffa6127510e49385ce5dce81b1878}{terminating} = false
+\item 
+boolean \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_stop_holder_adacbde9669c7c438d8768d5b5f426715}{terminating\+Client\+Notified} = false
+\item 
+boolean \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_stop_holder_ae8b0a8ec5e2dc3c3f38a8525ebcceb6b}{stopped} = false
+\item 
+boolean \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_stop_holder_a9b9676b2b3ee74da118a76f7cab58760}{cond\+Terminate\+After\+Resume} = false
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+When execution is stopped. 
+
+The J\+PF thread is suspended in this class.
+
+This class also holds current state of the SuT (J\+VM).
+
+Its necessary to stop execution before program state inspection can take place 
+
+Definition at line 37 of file Stop\+Holder.\+java.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Stop\+Holder@{gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Stop\+Holder}!Stop\+Holder@{Stop\+Holder}}
+\index{Stop\+Holder@{Stop\+Holder}!gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Stop\+Holder@{gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Stop\+Holder}}
+\subsubsection[{\texorpdfstring{Stop\+Holder(\+J\+P\+F\+Inspector inspector, Inspector\+Call\+Backs callbacks)}{StopHolder(JPFInspector inspector, InspectorCallBacks callbacks)}}]{\setlength{\rightskip}{0pt plus 5cm}gov.\+nasa.\+jpf.\+inspector.\+server.\+jpf.\+Stop\+Holder.\+Stop\+Holder (
+\begin{DoxyParamCaption}
+\item[{{\bf J\+P\+F\+Inspector}}]{inspector, }
+\item[{{\bf Inspector\+Call\+Backs}}]{callbacks}
+\end{DoxyParamCaption}
+)}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_stop_holder_ae568b296b6d705f2126740b13f213b67}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_stop_holder_ae568b296b6d705f2126740b13f213b67}
+
+
+Definition at line 54 of file Stop\+Holder.\+java.
+
+
+\begin{DoxyCode}
+54                                                                            \{
+55     this.\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_stop_holder_ad7eae9e53d25e2777d747423d71ddf0e}{inspector} = \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_stop_holder_ad7eae9e53d25e2777d747423d71ddf0e}{inspector};
+56     this.\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_stop_holder_a0f6e1696842fdce668e4246c3344c240}{callbacks} = \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_stop_holder_a0f6e1696842fdce668e4246c3344c240}{callbacks};
+57   \}
+\end{DoxyCode}
+
+
+\subsection{Member Function Documentation}
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Stop\+Holder@{gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Stop\+Holder}!check\+Condition\+Terminate\+After\+Resume@{check\+Condition\+Terminate\+After\+Resume}}
+\index{check\+Condition\+Terminate\+After\+Resume@{check\+Condition\+Terminate\+After\+Resume}!gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Stop\+Holder@{gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Stop\+Holder}}
+\subsubsection[{\texorpdfstring{check\+Condition\+Terminate\+After\+Resume()}{checkConditionTerminateAfterResume()}}]{\setlength{\rightskip}{0pt plus 5cm}void gov.\+nasa.\+jpf.\+inspector.\+server.\+jpf.\+Stop\+Holder.\+check\+Condition\+Terminate\+After\+Resume (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_stop_holder_ac97ffc05553690ab11cb985b42327f10}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_stop_holder_ac97ffc05553690ab11cb985b42327f10}
+
+
+Check if terminate the search if forward step is planned. 
+
+
+
+Definition at line 196 of file Stop\+Holder.\+java.
+
+
+\begin{DoxyCode}
+196                                                      \{
+197     \textcolor{keywordflow}{if} (\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_stop_holder_a9b9676b2b3ee74da118a76f7cab58760}{condTerminateAfterResume}) \{
+198       \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_stop_holder_a9b9676b2b3ee74da118a76f7cab58760}{condTerminateAfterResume} = \textcolor{keyword}{false};
+199 
+200       \textcolor{comment}{// Check which step is planned after the resume}
+201       InspectorListener listener = \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_stop_holder_ad7eae9e53d25e2777d747423d71ddf0e}{inspector}.\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_j_p_f_inspector_abecd4143627640215d6f2db707718b03}{getInspectorListener}();
+202       ListenerAdapter listenerMode = listener.\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_a91e43a17398e973b7ff574cbf4b7c529}{getCurrentMode}();
+203       \textcolor{keywordflow}{if} (!(listenerMode instanceof InspectorListenerModeSilent)) \{
+204         \textcolor{comment}{// Not a backward step}
+205         \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_stop_holder_a9fe94c33b32604112b8cf9bc0a72f401}{inspState}.\hyperlink{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_inspector_state_a7cc2b5750f78a1dffa6bf56a43842856}{getSearch}().terminate();
+206       \}
+207     \}
+208   \}
+\end{DoxyCode}
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Stop\+Holder@{gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Stop\+Holder}!get\+Inspector\+State@{get\+Inspector\+State}}
+\index{get\+Inspector\+State@{get\+Inspector\+State}!gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Stop\+Holder@{gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Stop\+Holder}}
+\subsubsection[{\texorpdfstring{get\+Inspector\+State()}{getInspectorState()}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Inspector\+State} gov.\+nasa.\+jpf.\+inspector.\+server.\+jpf.\+Stop\+Holder.\+get\+Inspector\+State (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_stop_holder_a1bad9bde4a6af463706584a73c3dd5e2}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_stop_holder_a1bad9bde4a6af463706584a73c3dd5e2}
+
+
+Gets current state of the J\+PF and of the inspector or N\+U\+LL if execution not stopped. 
+
+
+
+Definition at line 121 of file Stop\+Holder.\+java.
+
+
+\begin{DoxyCode}
+121                                              \{
+122     \textcolor{keywordflow}{return} \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_stop_holder_a9fe94c33b32604112b8cf9bc0a72f401}{inspState};
+123   \}
+\end{DoxyCode}
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Stop\+Holder@{gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Stop\+Holder}!get\+J\+VM@{get\+J\+VM}}
+\index{get\+J\+VM@{get\+J\+VM}!gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Stop\+Holder@{gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Stop\+Holder}}
+\subsubsection[{\texorpdfstring{get\+J\+V\+M()}{getJVM()}}]{\setlength{\rightskip}{0pt plus 5cm}VM gov.\+nasa.\+jpf.\+inspector.\+server.\+jpf.\+Stop\+Holder.\+get\+J\+VM (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_stop_holder_a61538f1b06885ad49eabf9d5fd10e254}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_stop_holder_a61538f1b06885ad49eabf9d5fd10e254}
+
+
+Gets current state of the SuT or N\+U\+LL if execution not stopped. 
+
+
+
+Definition at line 114 of file Stop\+Holder.\+java.
+
+
+\begin{DoxyCode}
+114                       \{
+115     \textcolor{keywordflow}{return} \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_stop_holder_a9fe94c33b32604112b8cf9bc0a72f401}{inspState}.\hyperlink{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_inspector_state_ab9eb1c115210ed33401b1ef79113008f}{getJVM}();
+116   \}
+\end{DoxyCode}
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Stop\+Holder@{gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Stop\+Holder}!get\+Location\+Details@{get\+Location\+Details}}
+\index{get\+Location\+Details@{get\+Location\+Details}!gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Stop\+Holder@{gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Stop\+Holder}}
+\subsubsection[{\texorpdfstring{get\+Location\+Details(\+Inspector\+State insp\+State)}{getLocationDetails(InspectorState inspState)}}]{\setlength{\rightskip}{0pt plus 5cm}static String gov.\+nasa.\+jpf.\+inspector.\+server.\+jpf.\+Stop\+Holder.\+get\+Location\+Details (
+\begin{DoxyParamCaption}
+\item[{{\bf Inspector\+State}}]{insp\+State}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_stop_holder_a7303f3c9c559d73682ec1dd9d64ecc72}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_stop_holder_a7303f3c9c559d73682ec1dd9d64ecc72}
+
+
+Definition at line 155 of file Stop\+Holder.\+java.
+
+
+\begin{DoxyCode}
+155                                                                      \{
+156     StringBuffer sb = \textcolor{keyword}{new} StringBuffer(100);
+157 
+158     VM vm = \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_stop_holder_a9fe94c33b32604112b8cf9bc0a72f401}{inspState}.\hyperlink{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_inspector_state_ab9eb1c115210ed33401b1ef79113008f}{getJVM}();
+159     assert vm != null;
+160     Instruction instr = MigrationUtilities.getLastInstruction(vm);
+161     \textcolor{keywordflow}{if} (instr == null) \{
+162       \textcolor{keywordflow}{return} null;
+163     \}
+164 
+165     sb.append(\textcolor{stringliteral}{"SuT "});
+166     \textcolor{keywordflow}{if} (vm.getCurrentThread() != null) \{
+167       sb.append(\textcolor{stringliteral}{" (Thread="} + vm.getCurrentThread().getId() + \textcolor{stringliteral}{") "});
+168     \}
+169 
+170     sb.append(\textcolor{stringliteral}{"executes the "} + instr.getMethodInfo().getSourceFileName() + \textcolor{stringliteral}{":"} + instr.getLineNumber() + \textcolor{stringliteral}{"
+       - "} + instr.toString() + \textcolor{stringliteral}{" source: "}
+171         + instr.getSourceLine());
+172     \textcolor{keywordflow}{return} sb.toString();
+173   \}
+\end{DoxyCode}
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Stop\+Holder@{gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Stop\+Holder}!is\+Stopped@{is\+Stopped}}
+\index{is\+Stopped@{is\+Stopped}!gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Stop\+Holder@{gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Stop\+Holder}}
+\subsubsection[{\texorpdfstring{is\+Stopped()}{isStopped()}}]{\setlength{\rightskip}{0pt plus 5cm}synchronized boolean gov.\+nasa.\+jpf.\+inspector.\+server.\+jpf.\+Stop\+Holder.\+is\+Stopped (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_stop_holder_a9ce9430793863b6d314d8e44c8112081}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_stop_holder_a9ce9430793863b6d314d8e44c8112081}
+
+
+Definition at line 125 of file Stop\+Holder.\+java.
+
+
+\begin{DoxyCode}
+125                                            \{
+126     \textcolor{keywordflow}{return} \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_stop_holder_ae8b0a8ec5e2dc3c3f38a8525ebcceb6b}{stopped};
+127   \}
+\end{DoxyCode}
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Stop\+Holder@{gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Stop\+Holder}!new\+J\+PF@{new\+J\+PF}}
+\index{new\+J\+PF@{new\+J\+PF}!gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Stop\+Holder@{gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Stop\+Holder}}
+\subsubsection[{\texorpdfstring{new\+J\+P\+F()}{newJPF()}}]{\setlength{\rightskip}{0pt plus 5cm}synchronized void gov.\+nasa.\+jpf.\+inspector.\+server.\+jpf.\+Stop\+Holder.\+new\+J\+PF (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_stop_holder_a71f968be313be8972b4793cb6695e2c9}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_stop_holder_a71f968be313be8972b4793cb6695e2c9}
+
+
+Definition at line 106 of file Stop\+Holder.\+java.
+
+
+\begin{DoxyCode}
+106                                      \{
+107     \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_stop_holder_abbb22c4a2b9bdf17d7014ac7f49014d8}{terminating} = \textcolor{keyword}{false};
+108     \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_stop_holder_adacbde9669c7c438d8768d5b5f426715}{terminatingClientNotified} = \textcolor{keyword}{false};
+109   \}
+\end{DoxyCode}
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Stop\+Holder@{gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Stop\+Holder}!notify\+Client\+Terminating@{notify\+Client\+Terminating}}
+\index{notify\+Client\+Terminating@{notify\+Client\+Terminating}!gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Stop\+Holder@{gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Stop\+Holder}}
+\subsubsection[{\texorpdfstring{notify\+Client\+Terminating()}{notifyClientTerminating()}}]{\setlength{\rightskip}{0pt plus 5cm}void gov.\+nasa.\+jpf.\+inspector.\+server.\+jpf.\+Stop\+Holder.\+notify\+Client\+Terminating (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_stop_holder_a3bbe9e2d1cd3f75c86c107708a770a55}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_stop_holder_a3bbe9e2d1cd3f75c86c107708a770a55}
+
+
+Definition at line 175 of file Stop\+Holder.\+java.
+
+
+\begin{DoxyCode}
+175                                          \{
+176     \textcolor{keywordflow}{if} (!\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_stop_holder_adacbde9669c7c438d8768d5b5f426715}{terminatingClientNotified}) \{
+177       \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_stop_holder_a0f6e1696842fdce668e4246c3344c240}{callbacks}.\hyperlink{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1interfaces_1_1_inspector_call_backs_a347d6a1237962eb4305f45b718004c53}{notifyStateChange}(InspectorStates.JPF\_TERMINATING, null);
+178       \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_stop_holder_adacbde9669c7c438d8768d5b5f426715}{terminatingClientNotified} = \textcolor{keyword}{true};
+179     \}
+180   \}
+\end{DoxyCode}
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Stop\+Holder@{gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Stop\+Holder}!resume\+Execution@{resume\+Execution}}
+\index{resume\+Execution@{resume\+Execution}!gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Stop\+Holder@{gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Stop\+Holder}}
+\subsubsection[{\texorpdfstring{resume\+Execution()}{resumeExecution()}}]{\setlength{\rightskip}{0pt plus 5cm}synchronized void gov.\+nasa.\+jpf.\+inspector.\+server.\+jpf.\+Stop\+Holder.\+resume\+Execution (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_stop_holder_a2c9b742cc32a8f8b150df3a920250f29}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_stop_holder_a2c9b742cc32a8f8b150df3a920250f29}
+The only blocked thread should be the J\+PF thread in the \hyperlink{}{method Threads which calls  \#wait\+Until\+Stopped()} a) before \hyperlink{}{are notified in  \#stop\+Execution(\+Inspector\+State, boolean) b) after  \#stop\+Execution(\+Inspector\+State, boolean) are not blocked and pass through  \#wait\+Until\+Stopped()} method.
+
+Definition at line 144 of file Stop\+Holder.\+java.
+
+
+\begin{DoxyCode}
+144                                               \{
+145     assert (\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_stop_holder_a9ce9430793863b6d314d8e44c8112081}{isStopped}()); \textcolor{comment}{// Illegal usage}
+152 \textcolor{comment}{}    notify();
+153   \}
+\end{DoxyCode}
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Stop\+Holder@{gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Stop\+Holder}!stop\+Execution@{stop\+Execution}}
+\index{stop\+Execution@{stop\+Execution}!gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Stop\+Holder@{gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Stop\+Holder}}
+\subsubsection[{\texorpdfstring{stop\+Execution(\+Inspector\+State insp\+State)}{stopExecution(InspectorState inspState)}}]{\setlength{\rightskip}{0pt plus 5cm}void gov.\+nasa.\+jpf.\+inspector.\+server.\+jpf.\+Stop\+Holder.\+stop\+Execution (
+\begin{DoxyParamCaption}
+\item[{{\bf Inspector\+State}}]{insp\+State}
+\end{DoxyParamCaption}
+)}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_stop_holder_aae2d616c9e1b16fea4e9240b111b7ae3}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_stop_holder_aae2d616c9e1b16fea4e9240b111b7ae3}
+
+
+Note\+: To prevent deadlocks cannot hold any lock if this methods is called. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em insp\+State} & Current state of the J\+VM and Inspector. Can\textquotesingle{}t be null. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 65 of file Stop\+Holder.\+java.
+
+
+\begin{DoxyCode}
+65                                                        \{
+66     assert \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_stop_holder_a9fe94c33b32604112b8cf9bc0a72f401}{inspState} != null;
+67 
+68     \textcolor{keywordtype}{boolean} terminate; \textcolor{comment}{// Local synchronized version of this.terminating variable}
+69     \textcolor{comment}{// TODO (globally): make a map of threads and figure out how multithreading the Inspector works. Make a
+       model, maybe :).}
+70     \textcolor{keyword}{synchronized} (\textcolor{keyword}{this}) \{
+71       terminate = \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_stop_holder_abbb22c4a2b9bdf17d7014ac7f49014d8}{terminating}; \textcolor{comment}{// Use single value even if we leave synchronized block}
+72 
+73       \textcolor{keywordflow}{try} \{
+74         \textcolor{keywordflow}{if} (!terminate) \{
+75           this.\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_stop_holder_a9fe94c33b32604112b8cf9bc0a72f401}{inspState} = \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_stop_holder_a9fe94c33b32604112b8cf9bc0a72f401}{inspState};
+76           \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_stop_holder_ae8b0a8ec5e2dc3c3f38a8525ebcceb6b}{stopped} = \textcolor{keyword}{true};
+77 
+78           \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_stop_holder_a0f6e1696842fdce668e4246c3344c240}{callbacks}.\hyperlink{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1interfaces_1_1_inspector_call_backs_a347d6a1237962eb4305f45b718004c53}{notifyStateChange}(InspectorStates.JPF\_STOPPED, 
+      \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_stop_holder_a7303f3c9c559d73682ec1dd9d64ecc72}{getLocationDetails}(\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_stop_holder_a9fe94c33b32604112b8cf9bc0a72f401}{inspState}));
+79 
+80           notifyAll(); \textcolor{comment}{// Notify all threads waiting for JPF to be stopped (they are woken up after the
+       wait)}
+81           wait();
+82 
+83           \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_stop_holder_ae8b0a8ec5e2dc3c3f38a8525ebcceb6b}{stopped} = \textcolor{keyword}{false};
+84           this.\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_stop_holder_a9fe94c33b32604112b8cf9bc0a72f401}{inspState} = null;
+85 
+86           \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_stop_holder_ac97ffc05553690ab11cb985b42327f10}{checkConditionTerminateAfterResume}();
+87 
+88         \}
+89       \} \textcolor{keywordflow}{catch} (InterruptedException e) \{
+90         \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_stop_holder_ae8b0a8ec5e2dc3c3f38a8525ebcceb6b}{stopped} = \textcolor{keyword}{false};
+91       \}
+92     \} \textcolor{comment}{// End of synchronized block}
+93 
+94     \textcolor{comment}{// Cannot be in synchronized block when send and callback}
+95     \textcolor{keywordflow}{if} (terminate) \{
+96       \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_stop_holder_a3bbe9e2d1cd3f75c86c107708a770a55}{notifyClientTerminating}();
+97     \} \textcolor{keywordflow}{else} \{
+98       \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_stop_holder_a0f6e1696842fdce668e4246c3344c240}{callbacks}.\hyperlink{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1interfaces_1_1_inspector_call_backs_a347d6a1237962eb4305f45b718004c53}{notifyStateChange}(InspectorStates.JPF\_RUNNING, 
+      \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_stop_holder_a7303f3c9c559d73682ec1dd9d64ecc72}{getLocationDetails}(\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_stop_holder_a9fe94c33b32604112b8cf9bc0a72f401}{inspState}));
+99     \}
+100   \}
+\end{DoxyCode}
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Stop\+Holder@{gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Stop\+Holder}!terminate\+After\+Resume@{terminate\+After\+Resume}}
+\index{terminate\+After\+Resume@{terminate\+After\+Resume}!gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Stop\+Holder@{gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Stop\+Holder}}
+\subsubsection[{\texorpdfstring{terminate\+After\+Resume()}{terminateAfterResume()}}]{\setlength{\rightskip}{0pt plus 5cm}void gov.\+nasa.\+jpf.\+inspector.\+server.\+jpf.\+Stop\+Holder.\+terminate\+After\+Resume (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_stop_holder_a4b0dc5f3af8b6a397e93937cf733e76b}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_stop_holder_a4b0dc5f3af8b6a397e93937cf733e76b}
+
+
+Terminates the search after the resume if forward step is planned. 
+
+Note\+: Forward step is detected by the actual \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener}{Inspector\+Listener} 
+
+Note\+: Needed to be able to do backward steps after property violation.
+
+Note\+: If more such \char`\"{}hook are required use Command pattern\char`\"{} 
+
+Definition at line 189 of file Stop\+Holder.\+java.
+
+
+\begin{DoxyCode}
+189                                       \{
+190     \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_stop_holder_a9b9676b2b3ee74da118a76f7cab58760}{condTerminateAfterResume} = \textcolor{keyword}{true};
+191   \}
+\end{DoxyCode}
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Stop\+Holder@{gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Stop\+Holder}!terminating@{terminating}}
+\index{terminating@{terminating}!gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Stop\+Holder@{gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Stop\+Holder}}
+\subsubsection[{\texorpdfstring{terminating()}{terminating()}}]{\setlength{\rightskip}{0pt plus 5cm}synchronized void gov.\+nasa.\+jpf.\+inspector.\+server.\+jpf.\+Stop\+Holder.\+terminating (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_stop_holder_abbb22c4a2b9bdf17d7014ac7f49014d8}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_stop_holder_abbb22c4a2b9bdf17d7014ac7f49014d8}
+
+
+Definition at line 102 of file Stop\+Holder.\+java.
+
+
+\begin{DoxyCode}
+102                                           \{
+103     \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_stop_holder_abbb22c4a2b9bdf17d7014ac7f49014d8}{terminating} = \textcolor{keyword}{true};
+104   \}
+\end{DoxyCode}
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Stop\+Holder@{gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Stop\+Holder}!wait\+Until\+Stopped@{wait\+Until\+Stopped}}
+\index{wait\+Until\+Stopped@{wait\+Until\+Stopped}!gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Stop\+Holder@{gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Stop\+Holder}}
+\subsubsection[{\texorpdfstring{wait\+Until\+Stopped()}{waitUntilStopped()}}]{\setlength{\rightskip}{0pt plus 5cm}synchronized void gov.\+nasa.\+jpf.\+inspector.\+server.\+jpf.\+Stop\+Holder.\+wait\+Until\+Stopped (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_stop_holder_aa4e7899c51ecb3834e202f861af6e752}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_stop_holder_aa4e7899c51ecb3834e202f861af6e752}
+
+
+Waits until the J\+PF (SuT) is stopped. 
+
+(in this class)
+
+Note\+: If J\+PF is stopped then returns immediately 
+
+Definition at line 134 of file Stop\+Holder.\+java.
+
+
+\begin{DoxyCode}
+134                                                \{
+135     \textcolor{keywordflow}{if} (\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_stop_holder_a9ce9430793863b6d314d8e44c8112081}{isStopped}()) \{
+136       \textcolor{keywordflow}{return};
+137     \}
+138     \textcolor{keywordflow}{try} \{
+139       wait();
+140     \} \textcolor{keywordflow}{catch} (InterruptedException e) \{
+141     \}
+142   \}
+\end{DoxyCode}
+
+
+\subsection{Member Data Documentation}
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Stop\+Holder@{gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Stop\+Holder}!callbacks@{callbacks}}
+\index{callbacks@{callbacks}!gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Stop\+Holder@{gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Stop\+Holder}}
+\subsubsection[{\texorpdfstring{callbacks}{callbacks}}]{\setlength{\rightskip}{0pt plus 5cm}final {\bf Inspector\+Call\+Backs} gov.\+nasa.\+jpf.\+inspector.\+server.\+jpf.\+Stop\+Holder.\+callbacks\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_stop_holder_a0f6e1696842fdce668e4246c3344c240}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_stop_holder_a0f6e1696842fdce668e4246c3344c240}
+
+
+Definition at line 47 of file Stop\+Holder.\+java.
+
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Stop\+Holder@{gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Stop\+Holder}!cond\+Terminate\+After\+Resume@{cond\+Terminate\+After\+Resume}}
+\index{cond\+Terminate\+After\+Resume@{cond\+Terminate\+After\+Resume}!gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Stop\+Holder@{gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Stop\+Holder}}
+\subsubsection[{\texorpdfstring{cond\+Terminate\+After\+Resume}{condTerminateAfterResume}}]{\setlength{\rightskip}{0pt plus 5cm}boolean gov.\+nasa.\+jpf.\+inspector.\+server.\+jpf.\+Stop\+Holder.\+cond\+Terminate\+After\+Resume = false\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_stop_holder_a9b9676b2b3ee74da118a76f7cab58760}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_stop_holder_a9b9676b2b3ee74da118a76f7cab58760}
+
+
+Definition at line 52 of file Stop\+Holder.\+java.
+
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Stop\+Holder@{gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Stop\+Holder}!inspector@{inspector}}
+\index{inspector@{inspector}!gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Stop\+Holder@{gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Stop\+Holder}}
+\subsubsection[{\texorpdfstring{inspector}{inspector}}]{\setlength{\rightskip}{0pt plus 5cm}final {\bf J\+P\+F\+Inspector} gov.\+nasa.\+jpf.\+inspector.\+server.\+jpf.\+Stop\+Holder.\+inspector\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_stop_holder_ad7eae9e53d25e2777d747423d71ddf0e}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_stop_holder_ad7eae9e53d25e2777d747423d71ddf0e}
+
+
+Inspector server. 
+
+
+
+Definition at line 46 of file Stop\+Holder.\+java.
+
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Stop\+Holder@{gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Stop\+Holder}!insp\+State@{insp\+State}}
+\index{insp\+State@{insp\+State}!gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Stop\+Holder@{gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Stop\+Holder}}
+\subsubsection[{\texorpdfstring{insp\+State}{inspState}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Inspector\+State} gov.\+nasa.\+jpf.\+inspector.\+server.\+jpf.\+Stop\+Holder.\+insp\+State\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_stop_holder_a9fe94c33b32604112b8cf9bc0a72f401}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_stop_holder_a9fe94c33b32604112b8cf9bc0a72f401}
+
+
+State of the stopped J\+VM. 
+
+
+
+Definition at line 42 of file Stop\+Holder.\+java.
+
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Stop\+Holder@{gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Stop\+Holder}!stopped@{stopped}}
+\index{stopped@{stopped}!gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Stop\+Holder@{gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Stop\+Holder}}
+\subsubsection[{\texorpdfstring{stopped}{stopped}}]{\setlength{\rightskip}{0pt plus 5cm}boolean gov.\+nasa.\+jpf.\+inspector.\+server.\+jpf.\+Stop\+Holder.\+stopped = false\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_stop_holder_ae8b0a8ec5e2dc3c3f38a8525ebcceb6b}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_stop_holder_ae8b0a8ec5e2dc3c3f38a8525ebcceb6b}
+
+
+Definition at line 51 of file Stop\+Holder.\+java.
+
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Stop\+Holder@{gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Stop\+Holder}!terminating@{terminating}}
+\index{terminating@{terminating}!gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Stop\+Holder@{gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Stop\+Holder}}
+\subsubsection[{\texorpdfstring{terminating}{terminating}}]{\setlength{\rightskip}{0pt plus 5cm}boolean gov.\+nasa.\+jpf.\+inspector.\+server.\+jpf.\+Stop\+Holder.\+terminating = false\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_stop_holder_aa7cffa6127510e49385ce5dce81b1878}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_stop_holder_aa7cffa6127510e49385ce5dce81b1878}
+
+
+Definition at line 49 of file Stop\+Holder.\+java.
+
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Stop\+Holder@{gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Stop\+Holder}!terminating\+Client\+Notified@{terminating\+Client\+Notified}}
+\index{terminating\+Client\+Notified@{terminating\+Client\+Notified}!gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Stop\+Holder@{gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Stop\+Holder}}
+\subsubsection[{\texorpdfstring{terminating\+Client\+Notified}{terminatingClientNotified}}]{\setlength{\rightskip}{0pt plus 5cm}boolean gov.\+nasa.\+jpf.\+inspector.\+server.\+jpf.\+Stop\+Holder.\+terminating\+Client\+Notified = false\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_stop_holder_adacbde9669c7c438d8768d5b5f426715}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_stop_holder_adacbde9669c7c438d8768d5b5f426715}
+
+
+Definition at line 50 of file Stop\+Holder.\+java.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/gsoc/jpf-\/inspector/src/main/gov/nasa/jpf/inspector/server/jpf/\hyperlink{_stop_holder_8java}{Stop\+Holder.\+java}\end{DoxyCompactItemize}

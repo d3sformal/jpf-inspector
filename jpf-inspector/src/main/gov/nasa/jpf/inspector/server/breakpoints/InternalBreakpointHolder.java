@@ -27,18 +27,28 @@ import gov.nasa.jpf.inspector.exceptions.JPFInspectorException;
 import gov.nasa.jpf.inspector.server.breakpoints.BreakPointHandler.BreakPointPartialMemento;
 import gov.nasa.jpf.inspector.server.expression.ExpressionBooleanInterface;
 import gov.nasa.jpf.inspector.server.expression.InspectorState;
+import gov.nasa.jpf.inspector.utils.Debugging;
+import gov.nasa.jpf.inspector.utils.InspectorConfiguration;
+import gov.nasa.jpf.vm.Instruction;
+import gov.nasa.jpf.vm.MethodInfo;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+/**
+ * Represents an active breakpoint.
+ */
 class InternalBreakpointHolder implements Comparable<InternalBreakpointHolder> {
-
   private static int bpIDCounter = 1;
-  private static Object bpIDCounterLock = new Object();
+  private static final Object bpIDCounterLock = new Object();
+  private static Logger log = Debugging.getLogger();
 
   /**
    * Generates new Breakpoint IDs
    * 
    * @return Get new Breakpoint ID.
    */
-  public static int getNextBpID () {
+  private static int getNextBpID() {
     synchronized (bpIDCounterLock) {
       return bpIDCounter++;
     }
@@ -47,8 +57,8 @@ class InternalBreakpointHolder implements Comparable<InternalBreakpointHolder> {
   private final InspectorCallBacks callbacks;
 
   protected final int bpID; // ID of the breakpoint
-  protected final boolean userBP; // / Mark whether the breakpoint is visible to user or it's BP for the internal purposes of the checker
-  protected final boolean sigleHitBP; // / Remove this breakpoint on the first breakpointHit (this or some other BP)
+  private final boolean userBP; // / Mark whether the breakpoint is visible to user or it's BP for the internal purposes of the checker
+  private final boolean singleHitBreakpoint; // / Remove this breakpoint on the first breakpointHit (this or some other BP)
 
   protected BreakPointModes bpMode = BreakPointModes.BP_MODE_NONE;
   protected BreakPointStates bpState = BreakPointStates.BP_STATE_ENABLED;
@@ -66,12 +76,10 @@ class InternalBreakpointHolder implements Comparable<InternalBreakpointHolder> {
   /**
    * Creates empty server breakpoint representation
    * 
-   * @param newID
-   * @param callbacks
-   * @param userBP
-   *        This breakpoint is created by the client inspector side (should by reported to user)
-   * @param sigleHitBP
-   *        This breakpoint should be removed if the first breakpoint hits (this or some other BP)
+   * @param newID A new, not yet used, breakpoint ID, or else -1 to generate a new one.
+   * @param callbacks Callbacks client class.
+   * @param userBP This breakpoint is created by the client inspector side (should by reported to user)
+   * @param sigleHitBP This breakpoint should be removed if the first breakpoint hits (this or some other BP)
    */
   public InternalBreakpointHolder (int newID, InspectorCallBacks callbacks, boolean userBP, boolean sigleHitBP) {
     if (newID == BreakPointCreationInformation.BP_ID_NOT_DEFINED) {
@@ -87,7 +95,7 @@ class InternalBreakpointHolder implements Comparable<InternalBreakpointHolder> {
     this.bpID = newID;
     this.callbacks = callbacks;
     this.userBP = userBP;
-    this.sigleHitBP = sigleHitBP;
+    this.singleHitBreakpoint = sigleHitBP;
   }
 
   public void modifyBPSettings (BreakPointCreationInformation newSettings, ExpressionBooleanInterface newBPExpression) {
@@ -124,7 +132,7 @@ class InternalBreakpointHolder implements Comparable<InternalBreakpointHolder> {
   }
 
   public boolean isSingleHitBP () {
-    return sigleHitBP;
+    return singleHitBreakpoint;
   }
 
   public boolean isAssert () {
@@ -154,6 +162,8 @@ class InternalBreakpointHolder implements Comparable<InternalBreakpointHolder> {
    */
   public boolean evaluateBreakpoint (InspectorState state) {
     boolean bpHitted = false;
+
+    // Hit condition
     if (bpExpression != null) {
       try {
         bpHitted = bpExpression.evaluateExpression(state);
@@ -176,6 +186,16 @@ class InternalBreakpointHolder implements Comparable<InternalBreakpointHolder> {
       bpShouldExecuteAction = false;
     }
 
+
+    MethodInfo topFrameMethodInfo = state.getJVM().getCurrentThread().getTopFrameMethodInfo();
+    if (bpShouldExecuteAction && topFrameMethodInfo != null) {
+      if (log.isLoggable(Level.FINE)) {
+        log.fine("Now checking within class: " + topFrameMethodInfo.getClassName());
+      }
+      if (InspectorConfiguration.getInstance().isClassIgnored(topFrameMethodInfo.getClassName())) {
+        bpShouldExecuteAction = false;
+      }
+    }
     if (bpShouldExecuteAction && isUserBreakpoint()) {
       if (bpState == BreakPointStates.BP_STATE_DISABLED) {
         // No action expected
@@ -184,15 +204,12 @@ class InternalBreakpointHolder implements Comparable<InternalBreakpointHolder> {
       } else if (bpState == BreakPointStates.BP_STATE_ENABLED) {
         callbacks.notifyBreakpointHit(getBreakpointStatus(state));
       } else {
-        throw new RuntimeException("Unknow " + BreakPointStates.class.getSimpleName() + " entry " + bpState);
+        throw new RuntimeException("Unknown " + BreakPointStates.class.getSimpleName() + " entry " + bpState);
       }
     }
 
-    if (bpShouldExecuteAction && bpState == BreakPointStates.BP_STATE_ENABLED) {
-      return true;
-    }
+    return bpShouldExecuteAction && bpState == BreakPointStates.BP_STATE_ENABLED;
 
-    return false;
   }
 
   public BreakPointPartialMemento createPartialMemento () {
@@ -248,17 +265,22 @@ class InternalBreakpointHolder implements Comparable<InternalBreakpointHolder> {
     return result;
   }
 
+  @SuppressWarnings("RedundantIfStatement")
   @Override
   public boolean equals (Object obj) {
-    if (this == obj)
+    if (this == obj) {
       return true;
-    if (obj == null)
+    }
+    if (obj == null) {
       return false;
-    if (getClass() != obj.getClass())
+    }
+    if (getClass() != obj.getClass()) {
       return false;
+    }
     InternalBreakpointHolder other = (InternalBreakpointHolder) obj;
-    if (bpID != other.bpID)
+    if (bpID != other.bpID) {
       return false;
+    }
     return true;
   }
 

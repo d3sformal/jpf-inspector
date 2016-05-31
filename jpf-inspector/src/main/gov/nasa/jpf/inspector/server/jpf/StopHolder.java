@@ -28,11 +28,11 @@ import gov.nasa.jpf.vm.VM;
 import gov.nasa.jpf.vm.Instruction;
 
 /**
- * When execution is stopped. The JPF thread is suspended in this class.
+ * Handles resuming and stopping JPF execution.
  * 
  * This class also holds current state of the SuT (JVM).
- * 
- * Its necessary to stop execution before program state inspection can take place
+ *
+ * Implementors: When modifying this class, make sure to think about thread safety and synchronization.
  */
 public class StopHolder {
 
@@ -57,9 +57,11 @@ public class StopHolder {
   }
 
   /**
-   * 
-   * Note: To prevent deadlocks cannot hold any lock if this methods is called.
-   * 
+   * Notifies the client that JPF is now stopped and then blocks execution until it is woken up by a notify call.
+   * Executed by the JPF thread.
+   *
+   * Note: To prevent deadlocks cannot hold any lock if this methods is called.  *
+   *
    * @param inspState Current state of the JVM and Inspector. Can't be null.
    */
   public void stopExecution (InspectorState inspState) {

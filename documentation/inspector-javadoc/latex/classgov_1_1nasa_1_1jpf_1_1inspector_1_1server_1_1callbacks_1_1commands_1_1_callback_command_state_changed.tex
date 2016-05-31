@@ -1,0 +1,137 @@
+\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1callbacks_1_1commands_1_1_callback_command_state_changed}{}\section{gov.\+nasa.\+jpf.\+inspector.\+server.\+callbacks.\+commands.\+Callback\+Command\+State\+Changed Class Reference}
+\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1callbacks_1_1commands_1_1_callback_command_state_changed}\index{gov.\+nasa.\+jpf.\+inspector.\+server.\+callbacks.\+commands.\+Callback\+Command\+State\+Changed@{gov.\+nasa.\+jpf.\+inspector.\+server.\+callbacks.\+commands.\+Callback\+Command\+State\+Changed}}
+Inheritance diagram for gov.\+nasa.\+jpf.\+inspector.\+server.\+callbacks.\+commands.\+Callback\+Command\+State\+Changed\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1callbacks_1_1commands_1_1_callback_command_state_changed}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1callbacks_1_1commands_1_1_callback_command_state_changed_ac3a1afd71f49ca58292e8496690138f6}{Callback\+Command\+State\+Changed} (\hyperlink{enumgov_1_1nasa_1_1jpf_1_1inspector_1_1interfaces_1_1_commands_interface_1_1_inspector_states}{Inspector\+States} \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1callbacks_1_1commands_1_1_callback_command_state_changed_af2e5e8e2807deb2d791faa4ae388ae5c}{state}, String \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1callbacks_1_1commands_1_1_callback_command_state_changed_a0ad578b5a96d82d7543ac53157746dab}{details})
+\item 
+void \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1callbacks_1_1commands_1_1_callback_command_state_changed_a2d5ba3e613f89a44e500b949dbbd8130}{send\+Callback} (\hyperlink{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1interfaces_1_1_inspector_call_backs}{Inspector\+Call\+Backs} callbacks)
+\begin{DoxyCompactList}\small\item\em Called to send represented callback. \end{DoxyCompactList}\item 
+boolean \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1callbacks_1_1commands_1_1_callback_command_state_changed_a7e6e83514e98395c3b1a63265980967d}{wait\+J\+P\+F2stop} ()
+\begin{DoxyCompactList}\small\item\em if false callback should be sent as soon as all previous callbacks are processed if true callbacks should be sent if J\+PF is stopped. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+final String \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1callbacks_1_1commands_1_1_callback_command_state_changed_a0ad578b5a96d82d7543ac53157746dab}{details}
+\item 
+final Commands\+Interface.\+Inspector\+States \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1callbacks_1_1commands_1_1_callback_command_state_changed_af2e5e8e2807deb2d791faa4ae388ae5c}{state}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 8 of file Callback\+Command\+State\+Changed.\+java.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::callbacks\+::commands\+::\+Callback\+Command\+State\+Changed@{gov\+::nasa\+::jpf\+::inspector\+::server\+::callbacks\+::commands\+::\+Callback\+Command\+State\+Changed}!Callback\+Command\+State\+Changed@{Callback\+Command\+State\+Changed}}
+\index{Callback\+Command\+State\+Changed@{Callback\+Command\+State\+Changed}!gov\+::nasa\+::jpf\+::inspector\+::server\+::callbacks\+::commands\+::\+Callback\+Command\+State\+Changed@{gov\+::nasa\+::jpf\+::inspector\+::server\+::callbacks\+::commands\+::\+Callback\+Command\+State\+Changed}}
+\subsubsection[{\texorpdfstring{Callback\+Command\+State\+Changed(\+Inspector\+States state, String details)}{CallbackCommandStateChanged(InspectorStates state, String details)}}]{\setlength{\rightskip}{0pt plus 5cm}gov.\+nasa.\+jpf.\+inspector.\+server.\+callbacks.\+commands.\+Callback\+Command\+State\+Changed.\+Callback\+Command\+State\+Changed (
+\begin{DoxyParamCaption}
+\item[{{\bf Inspector\+States}}]{state, }
+\item[{String}]{details}
+\end{DoxyParamCaption}
+)}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1callbacks_1_1commands_1_1_callback_command_state_changed_ac3a1afd71f49ca58292e8496690138f6}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1callbacks_1_1commands_1_1_callback_command_state_changed_ac3a1afd71f49ca58292e8496690138f6}
+
+
+Definition at line 13 of file Callback\+Command\+State\+Changed.\+java.
+
+
+\begin{DoxyCode}
+13                                                                             \{
+14     super();
+15     this.\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1callbacks_1_1commands_1_1_callback_command_state_changed_af2e5e8e2807deb2d791faa4ae388ae5c}{state} = \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1callbacks_1_1commands_1_1_callback_command_state_changed_af2e5e8e2807deb2d791faa4ae388ae5c}{state};
+16     this.\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1callbacks_1_1commands_1_1_callback_command_state_changed_a0ad578b5a96d82d7543ac53157746dab}{details} = \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1callbacks_1_1commands_1_1_callback_command_state_changed_a0ad578b5a96d82d7543ac53157746dab}{details};
+17   \}
+\end{DoxyCode}
+
+
+\subsection{Member Function Documentation}
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::callbacks\+::commands\+::\+Callback\+Command\+State\+Changed@{gov\+::nasa\+::jpf\+::inspector\+::server\+::callbacks\+::commands\+::\+Callback\+Command\+State\+Changed}!send\+Callback@{send\+Callback}}
+\index{send\+Callback@{send\+Callback}!gov\+::nasa\+::jpf\+::inspector\+::server\+::callbacks\+::commands\+::\+Callback\+Command\+State\+Changed@{gov\+::nasa\+::jpf\+::inspector\+::server\+::callbacks\+::commands\+::\+Callback\+Command\+State\+Changed}}
+\subsubsection[{\texorpdfstring{send\+Callback(\+Inspector\+Call\+Backs callbacks)}{sendCallback(InspectorCallBacks callbacks)}}]{\setlength{\rightskip}{0pt plus 5cm}void gov.\+nasa.\+jpf.\+inspector.\+server.\+callbacks.\+commands.\+Callback\+Command\+State\+Changed.\+send\+Callback (
+\begin{DoxyParamCaption}
+\item[{{\bf Inspector\+Call\+Backs}}]{callbacks}
+\end{DoxyParamCaption}
+)}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1callbacks_1_1commands_1_1_callback_command_state_changed_a2d5ba3e613f89a44e500b949dbbd8130}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1callbacks_1_1commands_1_1_callback_command_state_changed_a2d5ba3e613f89a44e500b949dbbd8130}
+
+
+Called to send represented callback. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em callbacks} & Interface where sent the callback. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1callbacks_1_1_callback_command_ae4cee95135293dd8c53e04fd7145b67f}{gov.\+nasa.\+jpf.\+inspector.\+server.\+callbacks.\+Callback\+Command}.
+
+
+
+Definition at line 20 of file Callback\+Command\+State\+Changed.\+java.
+
+
+\begin{DoxyCode}
+20                                                          \{
+21     callbacks.notifyStateChange(\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1callbacks_1_1commands_1_1_callback_command_state_changed_af2e5e8e2807deb2d791faa4ae388ae5c}{state}, \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1callbacks_1_1commands_1_1_callback_command_state_changed_a0ad578b5a96d82d7543ac53157746dab}{details});
+22   \}
+\end{DoxyCode}
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::callbacks\+::commands\+::\+Callback\+Command\+State\+Changed@{gov\+::nasa\+::jpf\+::inspector\+::server\+::callbacks\+::commands\+::\+Callback\+Command\+State\+Changed}!wait\+J\+P\+F2stop@{wait\+J\+P\+F2stop}}
+\index{wait\+J\+P\+F2stop@{wait\+J\+P\+F2stop}!gov\+::nasa\+::jpf\+::inspector\+::server\+::callbacks\+::commands\+::\+Callback\+Command\+State\+Changed@{gov\+::nasa\+::jpf\+::inspector\+::server\+::callbacks\+::commands\+::\+Callback\+Command\+State\+Changed}}
+\subsubsection[{\texorpdfstring{wait\+J\+P\+F2stop()}{waitJPF2stop()}}]{\setlength{\rightskip}{0pt plus 5cm}boolean gov.\+nasa.\+jpf.\+inspector.\+server.\+callbacks.\+commands.\+Callback\+Command\+State\+Changed.\+wait\+J\+P\+F2stop (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1callbacks_1_1commands_1_1_callback_command_state_changed_a7e6e83514e98395c3b1a63265980967d}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1callbacks_1_1commands_1_1_callback_command_state_changed_a7e6e83514e98395c3b1a63265980967d}
+
+
+if false callback should be sent as soon as all previous callbacks are processed if true callbacks should be sent if J\+PF is stopped. 
+
+\begin{DoxyReturn}{Returns}
+Specifies callback behavior. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1callbacks_1_1_callback_command_a156477000bc705d78978af529e60fc5a}{gov.\+nasa.\+jpf.\+inspector.\+server.\+callbacks.\+Callback\+Command}.
+
+
+
+Definition at line 25 of file Callback\+Command\+State\+Changed.\+java.
+
+
+\begin{DoxyCode}
+25                                 \{
+26     \textcolor{keywordflow}{return} \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1callbacks_1_1commands_1_1_callback_command_state_changed_af2e5e8e2807deb2d791faa4ae388ae5c}{state} == InspectorStates.JPF\_STOPPED;
+27   \}
+\end{DoxyCode}
+
+
+\subsection{Member Data Documentation}
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::callbacks\+::commands\+::\+Callback\+Command\+State\+Changed@{gov\+::nasa\+::jpf\+::inspector\+::server\+::callbacks\+::commands\+::\+Callback\+Command\+State\+Changed}!details@{details}}
+\index{details@{details}!gov\+::nasa\+::jpf\+::inspector\+::server\+::callbacks\+::commands\+::\+Callback\+Command\+State\+Changed@{gov\+::nasa\+::jpf\+::inspector\+::server\+::callbacks\+::commands\+::\+Callback\+Command\+State\+Changed}}
+\subsubsection[{\texorpdfstring{details}{details}}]{\setlength{\rightskip}{0pt plus 5cm}final String gov.\+nasa.\+jpf.\+inspector.\+server.\+callbacks.\+commands.\+Callback\+Command\+State\+Changed.\+details\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1callbacks_1_1commands_1_1_callback_command_state_changed_a0ad578b5a96d82d7543ac53157746dab}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1callbacks_1_1commands_1_1_callback_command_state_changed_a0ad578b5a96d82d7543ac53157746dab}
+
+
+Definition at line 9 of file Callback\+Command\+State\+Changed.\+java.
+
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::callbacks\+::commands\+::\+Callback\+Command\+State\+Changed@{gov\+::nasa\+::jpf\+::inspector\+::server\+::callbacks\+::commands\+::\+Callback\+Command\+State\+Changed}!state@{state}}
+\index{state@{state}!gov\+::nasa\+::jpf\+::inspector\+::server\+::callbacks\+::commands\+::\+Callback\+Command\+State\+Changed@{gov\+::nasa\+::jpf\+::inspector\+::server\+::callbacks\+::commands\+::\+Callback\+Command\+State\+Changed}}
+\subsubsection[{\texorpdfstring{state}{state}}]{\setlength{\rightskip}{0pt plus 5cm}final Commands\+Interface.\+Inspector\+States gov.\+nasa.\+jpf.\+inspector.\+server.\+callbacks.\+commands.\+Callback\+Command\+State\+Changed.\+state\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1callbacks_1_1commands_1_1_callback_command_state_changed_af2e5e8e2807deb2d791faa4ae388ae5c}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1callbacks_1_1commands_1_1_callback_command_state_changed_af2e5e8e2807deb2d791faa4ae388ae5c}
+
+
+Definition at line 10 of file Callback\+Command\+State\+Changed.\+java.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/gsoc/jpf-\/inspector/src/main/gov/nasa/jpf/inspector/server/callbacks/commands/\hyperlink{_callback_command_state_changed_8java}{Callback\+Command\+State\+Changed.\+java}\end{DoxyCompactItemize}

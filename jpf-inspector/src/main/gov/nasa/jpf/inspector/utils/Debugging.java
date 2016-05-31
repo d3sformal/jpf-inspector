@@ -33,6 +33,13 @@ public class Debugging {
   }
 
   /**
+   * TODO account for shell execution as well
+   */
+  public static Logger getLogger() {
+    return getSwingShellLogger();
+  }
+
+  /**
    * Gets the logger that should be used inside JPF Inspector if the Inspector is launched via a Shell handled by
    * the Shell Manager (e.g. a graphical Swing shell).
    * @return A logger for JPF Inspector.

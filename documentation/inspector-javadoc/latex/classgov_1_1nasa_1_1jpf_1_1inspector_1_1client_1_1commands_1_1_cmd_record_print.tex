@@ -1,0 +1,193 @@
+\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_record_print}{}\section{gov.\+nasa.\+jpf.\+inspector.\+client.\+commands.\+Cmd\+Record\+Print Class Reference}
+\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_record_print}\index{gov.\+nasa.\+jpf.\+inspector.\+client.\+commands.\+Cmd\+Record\+Print@{gov.\+nasa.\+jpf.\+inspector.\+client.\+commands.\+Cmd\+Record\+Print}}
+
+
+Represents the \textquotesingle{}record print\textquotesingle{} command that prints all recorded commands to the Inspector console.  
+
+
+Inheritance diagram for gov.\+nasa.\+jpf.\+inspector.\+client.\+commands.\+Cmd\+Record\+Print\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_record_print}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_record_print_ad133c93aafd3b421d10eb682ecfa96f2}{execute\+Commands} (\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1_j_p_f_inspector_client}{J\+P\+F\+Inspector\+Client} client, \hyperlink{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1interfaces_1_1_j_p_f_inspector_back_end_interface}{J\+P\+F\+Inspector\+Back\+End\+Interface} inspector, Print\+Stream out\+Stream)
+\begin{DoxyCompactList}\small\item\em Sends the command to the server and prints the result into a stream. \end{DoxyCompactList}\item 
+String \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_record_print_a7d958c2dd63824ab9557a641339c415b}{get\+Normalized\+Command} ()
+\begin{DoxyCompactList}\small\item\em Converts the command to a string. \end{DoxyCompactList}\item 
+void \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1_client_command_ae0670332ec750bc5b9016d0b04d8adfe}{record\+Command} (\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1_command_recorder}{Command\+Recorder} \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1_client_command_af4246f2427035c72a6af45a2c61361f7}{rec})
+\begin{DoxyCompactList}\small\item\em Records the command into the record log. \end{DoxyCompactList}\item 
+boolean \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1_client_command_afb09c400c64e2d8e01059b91ff847761}{is\+Hidden\+Command} ()
+\begin{DoxyCompactList}\small\item\em Returns true if command execution of the command should not be reported to user. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1_command_recorder}{Command\+Recorder} \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1_client_command_af4246f2427035c72a6af45a2c61361f7}{rec}
+\begin{DoxyCompactList}\small\item\em The last recorder used to record the command. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Represents the \textquotesingle{}record print\textquotesingle{} command that prints all recorded commands to the Inspector console. 
+
+\begin{DoxyAuthor}{Author}
+Alf $\ast$ 
+\end{DoxyAuthor}
+
+
+Definition at line 33 of file Cmd\+Record\+Print.\+java.
+
+
+
+\subsection{Member Function Documentation}
+\index{gov\+::nasa\+::jpf\+::inspector\+::client\+::commands\+::\+Cmd\+Record\+Print@{gov\+::nasa\+::jpf\+::inspector\+::client\+::commands\+::\+Cmd\+Record\+Print}!execute\+Commands@{execute\+Commands}}
+\index{execute\+Commands@{execute\+Commands}!gov\+::nasa\+::jpf\+::inspector\+::client\+::commands\+::\+Cmd\+Record\+Print@{gov\+::nasa\+::jpf\+::inspector\+::client\+::commands\+::\+Cmd\+Record\+Print}}
+\subsubsection[{\texorpdfstring{execute\+Commands(\+J\+P\+F\+Inspector\+Client client, J\+P\+F\+Inspector\+Back\+End\+Interface inspector, Print\+Stream out\+Stream)}{executeCommands(JPFInspectorClient client, JPFInspectorBackEndInterface inspector, PrintStream outStream)}}]{\setlength{\rightskip}{0pt plus 5cm}void gov.\+nasa.\+jpf.\+inspector.\+client.\+commands.\+Cmd\+Record\+Print.\+execute\+Commands (
+\begin{DoxyParamCaption}
+\item[{{\bf J\+P\+F\+Inspector\+Client}}]{client, }
+\item[{{\bf J\+P\+F\+Inspector\+Back\+End\+Interface}}]{inspector, }
+\item[{Print\+Stream}]{out\+Stream}
+\end{DoxyParamCaption}
+)}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_record_print_ad133c93aafd3b421d10eb682ecfa96f2}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_record_print_ad133c93aafd3b421d10eb682ecfa96f2}
+
+
+Sends the command to the server and prints the result into a stream. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em client} & J\+PF Inspector client \\
+\hline
+{\em inspector} & J\+PF inspector server \\
+\hline
+{\em out\+Stream} & Stream where results (output and errors) of the executed command are printed. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1_client_command_interface_a6cf0905afd7822cee3268e286a7dcdd0}{gov.\+nasa.\+jpf.\+inspector.\+client.\+Client\+Command\+Interface}.
+
+
+
+Definition at line 36 of file Cmd\+Record\+Print.\+java.
+
+
+\begin{DoxyCode}
+36                                                                                                            
+                    \{
+37     CommandRecorder \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1_client_command_af4246f2427035c72a6af45a2c61361f7}{rec} = client.getCommandRecorder();
+38     String recordedCmds = rec.\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1_command_recorder_aec025042d922d663c6f52d02319abbf2}{getRecordedEvents}();
+39     outStream.print(recordedCmds);
+40 
+41     \textcolor{comment}{// Previously, this line was not commented.}
+42     \textcolor{comment}{// This caused the recorded commands to be printed into the log again, which does not seem very useful.}
+43     \textcolor{comment}{// However, it may be useful for some use cases I could not think of so I'll leave it here for now.}
+44     \textcolor{comment}{// rec.addComment(recordedCmds);}
+45   \}
+\end{DoxyCode}
+\index{gov\+::nasa\+::jpf\+::inspector\+::client\+::commands\+::\+Cmd\+Record\+Print@{gov\+::nasa\+::jpf\+::inspector\+::client\+::commands\+::\+Cmd\+Record\+Print}!get\+Normalized\+Command@{get\+Normalized\+Command}}
+\index{get\+Normalized\+Command@{get\+Normalized\+Command}!gov\+::nasa\+::jpf\+::inspector\+::client\+::commands\+::\+Cmd\+Record\+Print@{gov\+::nasa\+::jpf\+::inspector\+::client\+::commands\+::\+Cmd\+Record\+Print}}
+\subsubsection[{\texorpdfstring{get\+Normalized\+Command()}{getNormalizedCommand()}}]{\setlength{\rightskip}{0pt plus 5cm}String gov.\+nasa.\+jpf.\+inspector.\+client.\+commands.\+Cmd\+Record\+Print.\+get\+Normalized\+Command (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_record_print_a7d958c2dd63824ab9557a641339c415b}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_record_print_a7d958c2dd63824ab9557a641339c415b}
+
+
+Converts the command to a string. 
+
+The string must represent the command using non-\/abbreviated versions of all keywords. The returned string must be a legal command that, if parsed, would result in the same \hyperlink{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1_client_command_interface}{Client\+Command\+Interface} object.
+
+\begin{DoxyReturn}{Returns}
+Text parseable representation of the command. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1_client_command_interface_a393044f5be05c3ab3451b72aeff7af62}{gov.\+nasa.\+jpf.\+inspector.\+client.\+Client\+Command\+Interface}.
+
+
+
+Definition at line 48 of file Cmd\+Record\+Print.\+java.
+
+
+\begin{DoxyCode}
+48                                         \{
+49     \textcolor{keywordflow}{return} \textcolor{stringliteral}{"record print"};
+50   \}
+\end{DoxyCode}
+\index{gov\+::nasa\+::jpf\+::inspector\+::client\+::commands\+::\+Cmd\+Record\+Print@{gov\+::nasa\+::jpf\+::inspector\+::client\+::commands\+::\+Cmd\+Record\+Print}!is\+Hidden\+Command@{is\+Hidden\+Command}}
+\index{is\+Hidden\+Command@{is\+Hidden\+Command}!gov\+::nasa\+::jpf\+::inspector\+::client\+::commands\+::\+Cmd\+Record\+Print@{gov\+::nasa\+::jpf\+::inspector\+::client\+::commands\+::\+Cmd\+Record\+Print}}
+\subsubsection[{\texorpdfstring{is\+Hidden\+Command()}{isHiddenCommand()}}]{\setlength{\rightskip}{0pt plus 5cm}boolean gov.\+nasa.\+jpf.\+inspector.\+client.\+Client\+Command.\+is\+Hidden\+Command (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inherited]}}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1_client_command_afb09c400c64e2d8e01059b91ff847761}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1_client_command_afb09c400c64e2d8e01059b91ff847761}
+
+
+Returns true if command execution of the command should not be reported to user. 
+
+Only \hyperlink{}{Cmd\+Callback} is a hidden command. 
+
+Implements \hyperlink{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1_client_command_interface_a51ce7a884a74433b73d39d93528838cc}{gov.\+nasa.\+jpf.\+inspector.\+client.\+Client\+Command\+Interface}.
+
+
+
+Definition at line 28 of file Client\+Command.\+java.
+
+
+\begin{DoxyCode}
+28                                     \{
+29     \textcolor{keywordflow}{return} \textcolor{keyword}{false};
+30   \}
+\end{DoxyCode}
+\index{gov\+::nasa\+::jpf\+::inspector\+::client\+::commands\+::\+Cmd\+Record\+Print@{gov\+::nasa\+::jpf\+::inspector\+::client\+::commands\+::\+Cmd\+Record\+Print}!record\+Command@{record\+Command}}
+\index{record\+Command@{record\+Command}!gov\+::nasa\+::jpf\+::inspector\+::client\+::commands\+::\+Cmd\+Record\+Print@{gov\+::nasa\+::jpf\+::inspector\+::client\+::commands\+::\+Cmd\+Record\+Print}}
+\subsubsection[{\texorpdfstring{record\+Command(\+Command\+Recorder rec)}{recordCommand(CommandRecorder rec)}}]{\setlength{\rightskip}{0pt plus 5cm}void gov.\+nasa.\+jpf.\+inspector.\+client.\+Client\+Command.\+record\+Command (
+\begin{DoxyParamCaption}
+\item[{{\bf Command\+Recorder}}]{rec}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inherited]}}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1_client_command_ae0670332ec750bc5b9016d0b04d8adfe}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1_client_command_ae0670332ec750bc5b9016d0b04d8adfe}
+
+
+Records the command into the record log. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em rec} & Recorder where the command should be recorded. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1_client_command_interface_a4ae9ac9bbb61d9a758ef168e8b3b04ff}{gov.\+nasa.\+jpf.\+inspector.\+client.\+Client\+Command\+Interface}.
+
+
+
+Definition at line 22 of file Client\+Command.\+java.
+
+
+\begin{DoxyCode}
+22                                                   \{
+23     this.\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1_client_command_af4246f2427035c72a6af45a2c61361f7}{rec} = \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1_client_command_af4246f2427035c72a6af45a2c61361f7}{rec};
+24     \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1_client_command_af4246f2427035c72a6af45a2c61361f7}{rec}.\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1_command_recorder_af5f212124179773e46c8b45f1d01a32d}{recordCommand}(\textcolor{keyword}{this});
+25   \}
+\end{DoxyCode}
+
+
+\subsection{Member Data Documentation}
+\index{gov\+::nasa\+::jpf\+::inspector\+::client\+::commands\+::\+Cmd\+Record\+Print@{gov\+::nasa\+::jpf\+::inspector\+::client\+::commands\+::\+Cmd\+Record\+Print}!rec@{rec}}
+\index{rec@{rec}!gov\+::nasa\+::jpf\+::inspector\+::client\+::commands\+::\+Cmd\+Record\+Print@{gov\+::nasa\+::jpf\+::inspector\+::client\+::commands\+::\+Cmd\+Record\+Print}}
+\subsubsection[{\texorpdfstring{rec}{rec}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Command\+Recorder} gov.\+nasa.\+jpf.\+inspector.\+client.\+Client\+Command.\+rec\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [inherited]}}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1_client_command_af4246f2427035c72a6af45a2c61361f7}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1_client_command_af4246f2427035c72a6af45a2c61361f7}
+
+
+The last recorder used to record the command. 
+
+
+
+Definition at line 19 of file Client\+Command.\+java.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/gsoc/jpf-\/inspector/src/main/gov/nasa/jpf/inspector/client/commands/\hyperlink{_cmd_record_print_8java}{Cmd\+Record\+Print.\+java}\end{DoxyCompactItemize}

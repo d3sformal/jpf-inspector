@@ -1,0 +1,36 @@
+\hypertarget{namespacegov_1_1nasa_1_1jpf_1_1inspector_1_1common_1_1pse}{}\section{Package gov.\+nasa.\+jpf.\+inspector.\+common.\+pse}
+\label{namespacegov_1_1nasa_1_1jpf_1_1inspector_1_1common_1_1pse}\index{gov.\+nasa.\+jpf.\+inspector.\+common.\+pse@{gov.\+nasa.\+jpf.\+inspector.\+common.\+pse}}
+
+
+This package contains \char`\"{}program state entries\char`\"{}, classes that represent information that is passed from the client console to the Inspector server.  
+
+
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1common_1_1pse_1_1_program_state_entry}{Program\+State\+Entry}
+\begin{DoxyCompactList}\small\item\em Abstract class that holds properties common to all program state entries. \end{DoxyCompactList}\item 
+class \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1common_1_1pse_1_1_p_s_e_heap_entry_list}{P\+S\+E\+Heap\+Entry\+List}
+\begin{DoxyCompactList}\small\item\em Placeholder with result of the {\ttfamily print \#heap\mbox{[}\char`\"{}\+Specific class\char`\"{}\mbox{]}{\ttfamily  command. }}\end{DoxyCompactList}\item 
+class \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1common_1_1pse_1_1_p_s_e_method}{P\+S\+E\+Method}
+\begin{DoxyCompactList}\small\item\em Method on the stack (equivalent of the \hyperlink{}{Stack\+Frame}) \end{DoxyCompactList}\item 
+class \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1common_1_1pse_1_1_p_s_e_thread}{P\+S\+E\+Thread}
+\begin{DoxyCompactList}\small\item\em Represents thread and its state. \end{DoxyCompactList}\item 
+class \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1common_1_1pse_1_1_p_s_e_variable}{P\+S\+E\+Variable}
+\begin{DoxyCompactList}\small\item\em Common predecessor for all \char`\"{}value\char`\"{} representing types Represents variable. \end{DoxyCompactList}\item 
+class \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1common_1_1pse_1_1_p_s_e_variable_array}{P\+S\+E\+Variable\+Array}
+\item 
+class \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1common_1_1pse_1_1_p_s_e_variable_object}{P\+S\+E\+Variable\+Object}
+\begin{DoxyCompactList}\small\item\em Represents Object (a heap element different from array) \end{DoxyCompactList}\item 
+class \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1common_1_1pse_1_1_p_s_e_variable_primitive}{P\+S\+E\+Variable\+Primitive}
+\item 
+interface \hyperlink{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1common_1_1pse_1_1_p_s_e_visitor}{P\+S\+E\+Visitor}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This package contains \char`\"{}program state entries\char`\"{}, classes that represent information that is passed from the client console to the Inspector server. 
+
+See the base class, \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1common_1_1pse_1_1_program_state_entry}{gov.\+nasa.\+jpf.\+inspector.\+common.\+pse.\+Program\+State\+Entry}, for details.
+
+This package also contains the \hyperlink{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1common_1_1pse_1_1_p_s_e_visitor}{gov.\+nasa.\+jpf.\+inspector.\+common.\+pse.\+P\+S\+E\+Visitor} interface that the command \char`\"{}print\char`\"{} uses to print the entries out. 

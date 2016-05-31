@@ -1,0 +1,452 @@
+\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_breakpoint_position}{}\section{gov.\+nasa.\+jpf.\+inspector.\+server.\+expression.\+expressions.\+Expression\+Breakpoint\+Position Class Reference}
+\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_breakpoint_position}\index{gov.\+nasa.\+jpf.\+inspector.\+server.\+expression.\+expressions.\+Expression\+Breakpoint\+Position@{gov.\+nasa.\+jpf.\+inspector.\+server.\+expression.\+expressions.\+Expression\+Breakpoint\+Position}}
+
+
+Represent expression (Breakpoint) that stops on given position in the program.  
+
+
+Inheritance diagram for gov.\+nasa.\+jpf.\+inspector.\+server.\+expression.\+expressions.\+Expression\+Breakpoint\+Position\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=4.827586cm]{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_breakpoint_position}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_breakpoint_position_ad500748c7b7ce16f05862379d879e598}{Expression\+Breakpoint\+Position} (\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_j_p_f_inspector}{J\+P\+F\+Inspector} \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_breakpoint_position_a8a3d5dc750a8f629e27046cd30eb34f7}{inspector}, \hyperlink{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1interfaces_1_1_instruction_position}{Instruction\+Position} pos)
+\item 
+final \hyperlink{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1interfaces_1_1_instruction_position}{Instruction\+Position} \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_breakpoint_position_ac0eaa028cd9054eafbe2c47bcebd552f}{get\+Instruction\+Pos} ()
+\item 
+boolean \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_breakpoint_position_a79a13d6555f1168da4468a1fada1e04c}{evaluate\+Expression} (\hyperlink{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_inspector_state}{Inspector\+State} state)
+\begin{DoxyCompactList}\small\item\em Evaluate condition and get boolean result. \end{DoxyCompactList}\item 
+\hyperlink{enumgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_break_point_modes}{Break\+Point\+Modes} \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_breakpoint_position_a52a8a727b070e56dba38a34960beecf4}{get\+B\+P\+Mode} ()
+\item 
+String \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_breakpoint_position_adbc1aa323bbfab6011e9557c85734456}{get\+Details} (\hyperlink{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_inspector_state}{Inspector\+State} state)
+\begin{DoxyCompactList}\small\item\em Get details related to expression. \end{DoxyCompactList}\item 
+String \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_breakpoint_position_ad8a4cb715f4790b1c347ec48de5d6a2e}{get\+Normalized\+Expression} ()
+\item 
+List$<$?extends \hyperlink{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_expression_boolean_interface}{Expression\+Boolean\+Interface} $>$ \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_expression_boolean_leaf_aa99bf3cf13bd8cc1d6c33208bc83b185}{get\+Childs} ()
+\item 
+\hyperlink{enumgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_types}{Types} \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_expression_boolean_aed010ff8683eb1e8621e226703133457}{get\+Type} ()
+\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static Instruction \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_breakpoint_position_a0f561f3062c0d375227c20461bb76078}{get\+Instruction\+For\+Thread} (Transition tr, Path path, int thread\+Num, int inst\+Count)
+\begin{DoxyCompactList}\small\item\em Analyze the path and returns instruction such that the instruction was executed by specified thread, and then the thread executed exactly inst\+Count instructions. \end{DoxyCompactList}\item 
+static Instruction \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_breakpoint_position_a7f7fd767ec81e48355f6f52b494aa287}{get\+Prev\+Instruction\+In\+Same\+Method} (Instruction prev\+Instr, Instruction last\+Instr)
+\item 
+static String \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_breakpoint_position_aaecf51faa762d76b4f39c74f5b8b4e55}{instruction\+Position} (Instruction inst)
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+final \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_j_p_f_inspector}{J\+P\+F\+Inspector} \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_breakpoint_position_a8a3d5dc750a8f629e27046cd30eb34f7}{inspector}
+\item 
+final \hyperlink{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1interfaces_1_1_instruction_position}{Instruction\+Position} \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_breakpoint_position_a8f9bc711f79a45ff712cbfb1253e677b}{inst\+Pos}
+\end{DoxyCompactItemize}
+\subsection*{Static Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static final boolean \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_breakpoint_position_a3169fb04f860dc378d6d7eaa14ffad35}{D\+E\+B\+UG} = false
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Represent expression (Breakpoint) that stops on given position in the program. 
+
+Definition at line 44 of file Expression\+Breakpoint\+Position.\+java.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::expressions\+::\+Expression\+Breakpoint\+Position@{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::expressions\+::\+Expression\+Breakpoint\+Position}!Expression\+Breakpoint\+Position@{Expression\+Breakpoint\+Position}}
+\index{Expression\+Breakpoint\+Position@{Expression\+Breakpoint\+Position}!gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::expressions\+::\+Expression\+Breakpoint\+Position@{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::expressions\+::\+Expression\+Breakpoint\+Position}}
+\subsubsection[{\texorpdfstring{Expression\+Breakpoint\+Position(\+J\+P\+F\+Inspector inspector, Instruction\+Position pos)}{ExpressionBreakpointPosition(JPFInspector inspector, InstructionPosition pos)}}]{\setlength{\rightskip}{0pt plus 5cm}gov.\+nasa.\+jpf.\+inspector.\+server.\+expression.\+expressions.\+Expression\+Breakpoint\+Position.\+Expression\+Breakpoint\+Position (
+\begin{DoxyParamCaption}
+\item[{{\bf J\+P\+F\+Inspector}}]{inspector, }
+\item[{{\bf Instruction\+Position}}]{pos}
+\end{DoxyParamCaption}
+)}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_breakpoint_position_ad500748c7b7ce16f05862379d879e598}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_breakpoint_position_ad500748c7b7ce16f05862379d879e598}
+
+\begin{DoxyParams}{Parameters}
+{\em pos} & Position where stop execution. Cann\textquotesingle{}t be null. T\+O\+DO oldparam \+\_\+param pos\+Handling The way how Instruction position is used. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 57 of file Expression\+Breakpoint\+Position.\+java.
+
+
+\begin{DoxyCode}
+57                                                                                         \{
+58     assert pos != null;
+59     assert \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_breakpoint_position_a8a3d5dc750a8f629e27046cd30eb34f7}{inspector} != null;
+60     this.\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_breakpoint_position_a8a3d5dc750a8f629e27046cd30eb34f7}{inspector} = \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_breakpoint_position_a8a3d5dc750a8f629e27046cd30eb34f7}{inspector};
+61 
+62     \textcolor{keywordflow}{if} (\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_breakpoint_position_a3169fb04f860dc378d6d7eaa14ffad35}{DEBUG}) \{
+63       \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_breakpoint_position_a8a3d5dc750a8f629e27046cd30eb34f7}{inspector}.\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_j_p_f_inspector_ab936b10b647a6262639d6474fcba6a16}{getDebugPrintStream}().println(
+64           \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_breakpoint_position_ad500748c7b7ce16f05862379d879e598}{ExpressionBreakpointPosition}.class.getSimpleName() + \textcolor{stringliteral}{"."} + 
+      \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_breakpoint_position_ad500748c7b7ce16f05862379d879e598}{ExpressionBreakpointPosition}.class.getSimpleName() + \textcolor{stringliteral}{"(pos="} + pos + \textcolor{stringliteral}{")"});
+65     \}
+66 
+67     this.\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_breakpoint_position_a8f9bc711f79a45ff712cbfb1253e677b}{instPos} = pos;
+68   \}
+\end{DoxyCode}
+
+
+\subsection{Member Function Documentation}
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::expressions\+::\+Expression\+Breakpoint\+Position@{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::expressions\+::\+Expression\+Breakpoint\+Position}!evaluate\+Expression@{evaluate\+Expression}}
+\index{evaluate\+Expression@{evaluate\+Expression}!gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::expressions\+::\+Expression\+Breakpoint\+Position@{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::expressions\+::\+Expression\+Breakpoint\+Position}}
+\subsubsection[{\texorpdfstring{evaluate\+Expression(\+Inspector\+State state)}{evaluateExpression(InspectorState state)}}]{\setlength{\rightskip}{0pt plus 5cm}boolean gov.\+nasa.\+jpf.\+inspector.\+server.\+expression.\+expressions.\+Expression\+Breakpoint\+Position.\+evaluate\+Expression (
+\begin{DoxyParamCaption}
+\item[{{\bf Inspector\+State}}]{state}
+\end{DoxyParamCaption}
+)}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_breakpoint_position_a79a13d6555f1168da4468a1fada1e04c}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_breakpoint_position_a79a13d6555f1168da4468a1fada1e04c}
+
+
+Evaluate condition and get boolean result. 
+
+Successors -\/ logical operators, compare (any type) 
+
+Implements \hyperlink{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_expression_boolean_interface_adc81f58d2517d5ccb9ace7f5d8b8211f}{gov.\+nasa.\+jpf.\+inspector.\+server.\+expression.\+Expression\+Boolean\+Interface}.
+
+
+
+Definition at line 75 of file Expression\+Breakpoint\+Position.\+java.
+
+
+\begin{DoxyCode}
+75                                                            \{
+76     assert state != null;
+77     \textcolor{keywordflow}{if} (\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_breakpoint_position_a3169fb04f860dc378d6d7eaa14ffad35}{DEBUG}) \{
+78       \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_breakpoint_position_a8a3d5dc750a8f629e27046cd30eb34f7}{inspector}.\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_j_p_f_inspector_ab936b10b647a6262639d6474fcba6a16}{getDebugPrintStream}().println(this.getClass().getSimpleName() +
+       \textcolor{stringliteral}{".evaluateExpression(...)"});
+79     \}
+80     \textcolor{keywordflow}{if} (state.getListenerMethod() != ListenerMethod.LM\_INSTRUCTION\_EXECUTED) \{
+81       \textcolor{keywordflow}{return} \textcolor{keyword}{false};
+82     \}
+83 
+84     VM vm = state.getJVM();
+85     assert vm != null;
+86 
+87     \textcolor{keywordtype}{int} lastThread = MigrationUtilities.getThreadNumber(vm);
+88 
+89     \textcolor{keyword}{final} Path path = vm.getPath();
+90     \textcolor{keyword}{final} Instruction lastInstr = MigrationUtilities.getLastInstruction(vm);
+91 
+92     \textcolor{keyword}{final} \textcolor{keywordtype}{boolean} lastInstrHitPos = \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_breakpoint_position_a8f9bc711f79a45ff712cbfb1253e677b}{instPos}.\hyperlink{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1interfaces_1_1_instruction_position_a74e0a143b5cc51a5b147f2f2a2709638}{hitPosition}(lastInstr);
+93     \textcolor{keywordflow}{if} (\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_breakpoint_position_a3169fb04f860dc378d6d7eaa14ffad35}{DEBUG}) \{
+94       \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_breakpoint_position_a8a3d5dc750a8f629e27046cd30eb34f7}{inspector}.\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_j_p_f_inspector_ab936b10b647a6262639d6474fcba6a16}{getDebugPrintStream}().println(\textcolor{stringliteral}{"\(\backslash\)tlasInstr="} + 
+      \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_breakpoint_position_aaecf51faa762d76b4f39c74f5b8b4e55}{instructionPosition}(lastInstr) + \textcolor{stringliteral}{"\(\backslash\)n\(\backslash\)tlastInstrHitPos="} + lastInstrHitPos);
+95     \}
+96 
+97     Instruction prevInstr = \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_breakpoint_position_a0f561f3062c0d375227c20461bb76078}{getInstructionForThread}(vm.getSystemState().getTrail(), 
+      path, lastThread, 1);
+98     \textcolor{keywordflow}{if} (\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_breakpoint_position_a3169fb04f860dc378d6d7eaa14ffad35}{DEBUG}) \{
+99       \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_breakpoint_position_a8a3d5dc750a8f629e27046cd30eb34f7}{inspector}.\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_j_p_f_inspector_ab936b10b647a6262639d6474fcba6a16}{getDebugPrintStream}().println(\textcolor{stringliteral}{"\(\backslash\)tprevInstr="} + 
+      \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_breakpoint_position_aaecf51faa762d76b4f39c74f5b8b4e55}{instructionPosition}(prevInstr));
+100     \}
+101 
+102     \textcolor{keywordflow}{if} (lastInstrHitPos == \textcolor{keyword}{false}) \{
+103       \textcolor{keywordflow}{return} \textcolor{keyword}{false};
+104     \}
+105     prevInstr = \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_breakpoint_position_a7f7fd767ec81e48355f6f52b494aa287}{getPrevInstructionInSameMethod}(prevInstr, lastInstr);
+106     \textcolor{keyword}{final} \textcolor{keywordtype}{boolean} prevInstrHitPos = \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_breakpoint_position_a8f9bc711f79a45ff712cbfb1253e677b}{instPos}.\hyperlink{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1interfaces_1_1_instruction_position_a74e0a143b5cc51a5b147f2f2a2709638}{hitPosition}(prevInstr);
+107     \textcolor{keywordflow}{if} (\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_breakpoint_position_a3169fb04f860dc378d6d7eaa14ffad35}{DEBUG}) \{
+108       \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_breakpoint_position_a8a3d5dc750a8f629e27046cd30eb34f7}{inspector}.\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_j_p_f_inspector_ab936b10b647a6262639d6474fcba6a16}{getDebugPrintStream}().println(\textcolor{stringliteral}{"\(\backslash\)tprevInstr="} + 
+      \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_breakpoint_position_aaecf51faa762d76b4f39c74f5b8b4e55}{instructionPosition}(prevInstr) + \textcolor{stringliteral}{"\(\backslash\)n\(\backslash\)tprevInstrHitPos="} + prevInstrHitPos);
+109     \}
+110     \textcolor{keywordflow}{return} !prevInstrHitPos;
+111   \}
+\end{DoxyCode}
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::expressions\+::\+Expression\+Breakpoint\+Position@{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::expressions\+::\+Expression\+Breakpoint\+Position}!get\+B\+P\+Mode@{get\+B\+P\+Mode}}
+\index{get\+B\+P\+Mode@{get\+B\+P\+Mode}!gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::expressions\+::\+Expression\+Breakpoint\+Position@{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::expressions\+::\+Expression\+Breakpoint\+Position}}
+\subsubsection[{\texorpdfstring{get\+B\+P\+Mode()}{getBPMode()}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Break\+Point\+Modes} gov.\+nasa.\+jpf.\+inspector.\+server.\+expression.\+expressions.\+Expression\+Breakpoint\+Position.\+get\+B\+P\+Mode (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_breakpoint_position_a52a8a727b070e56dba38a34960beecf4}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_breakpoint_position_a52a8a727b070e56dba38a34960beecf4}
+\begin{DoxyReturn}{Returns}
+Gets which BP mode represents the expression. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_expression_boolean_interface_a970737c885b2bb8abfbd5729275855ac}{gov.\+nasa.\+jpf.\+inspector.\+server.\+expression.\+Expression\+Boolean\+Interface}.
+
+
+
+Definition at line 114 of file Expression\+Breakpoint\+Position.\+java.
+
+
+\begin{DoxyCode}
+114                                       \{
+115     \textcolor{keywordflow}{return} BreakPointModes.BP\_MODE\_POSITION\_ONLY;
+116   \}
+\end{DoxyCode}
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::expressions\+::\+Expression\+Breakpoint\+Position@{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::expressions\+::\+Expression\+Breakpoint\+Position}!get\+Childs@{get\+Childs}}
+\index{get\+Childs@{get\+Childs}!gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::expressions\+::\+Expression\+Breakpoint\+Position@{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::expressions\+::\+Expression\+Breakpoint\+Position}}
+\subsubsection[{\texorpdfstring{get\+Childs()}{getChilds()}}]{\setlength{\rightskip}{0pt plus 5cm}List$<$? extends {\bf Expression\+Boolean\+Interface}$>$ gov.\+nasa.\+jpf.\+inspector.\+server.\+expression.\+Expression\+Boolean\+Leaf.\+get\+Childs (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inherited]}}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_expression_boolean_leaf_aa99bf3cf13bd8cc1d6c33208bc83b185}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_expression_boolean_leaf_aa99bf3cf13bd8cc1d6c33208bc83b185}
+
+
+Definition at line 27 of file Expression\+Boolean\+Leaf.\+java.
+
+
+\begin{DoxyCode}
+27                                                                  \{
+28     \textcolor{keywordflow}{return} null;
+29   \}
+\end{DoxyCode}
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::expressions\+::\+Expression\+Breakpoint\+Position@{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::expressions\+::\+Expression\+Breakpoint\+Position}!get\+Details@{get\+Details}}
+\index{get\+Details@{get\+Details}!gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::expressions\+::\+Expression\+Breakpoint\+Position@{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::expressions\+::\+Expression\+Breakpoint\+Position}}
+\subsubsection[{\texorpdfstring{get\+Details(\+Inspector\+State state)}{getDetails(InspectorState state)}}]{\setlength{\rightskip}{0pt plus 5cm}String gov.\+nasa.\+jpf.\+inspector.\+server.\+expression.\+expressions.\+Expression\+Breakpoint\+Position.\+get\+Details (
+\begin{DoxyParamCaption}
+\item[{{\bf Inspector\+State}}]{state}
+\end{DoxyParamCaption}
+)}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_breakpoint_position_adbc1aa323bbfab6011e9557c85734456}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_breakpoint_position_adbc1aa323bbfab6011e9557c85734456}
+
+
+Get details related to expression. 
+
+Note\+: This information is printed to user if breakpoint hits. This method can provide supplementary information for users.
+
+\begin{DoxyReturn}{Returns}
+Details related to evaluation of the expresison or null. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_expression_boolean_interface_a6e5af96b023d71fcda296c10f5d7c555}{gov.\+nasa.\+jpf.\+inspector.\+server.\+expression.\+Expression\+Boolean\+Interface}.
+
+
+
+Definition at line 119 of file Expression\+Breakpoint\+Position.\+java.
+
+
+\begin{DoxyCode}
+119                                                   \{
+120     \textcolor{keywordflow}{if} (state != null && \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_breakpoint_position_a79a13d6555f1168da4468a1fada1e04c}{evaluateExpression}(state)) \{
+121       \textcolor{keywordflow}{return} \textcolor{stringliteral}{"SuT will now enter the position "} + \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_breakpoint_position_a8f9bc711f79a45ff712cbfb1253e677b}{instPos}.toString(); \textcolor{comment}{// TODO is it really "will now
+       enter" or is it "had already evaluated at least part of it"?}
+122     \}
+123     \textcolor{keywordflow}{return} \textcolor{stringliteral}{""};
+124   \}
+\end{DoxyCode}
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::expressions\+::\+Expression\+Breakpoint\+Position@{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::expressions\+::\+Expression\+Breakpoint\+Position}!get\+Instruction\+For\+Thread@{get\+Instruction\+For\+Thread}}
+\index{get\+Instruction\+For\+Thread@{get\+Instruction\+For\+Thread}!gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::expressions\+::\+Expression\+Breakpoint\+Position@{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::expressions\+::\+Expression\+Breakpoint\+Position}}
+\subsubsection[{\texorpdfstring{get\+Instruction\+For\+Thread(\+Transition tr, Path path, int thread\+Num, int inst\+Count)}{getInstructionForThread(Transition tr, Path path, int threadNum, int instCount)}}]{\setlength{\rightskip}{0pt plus 5cm}static Instruction gov.\+nasa.\+jpf.\+inspector.\+server.\+expression.\+expressions.\+Expression\+Breakpoint\+Position.\+get\+Instruction\+For\+Thread (
+\begin{DoxyParamCaption}
+\item[{Transition}]{tr, }
+\item[{Path}]{path, }
+\item[{int}]{thread\+Num, }
+\item[{int}]{inst\+Count}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_breakpoint_position_a0f561f3062c0d375227c20461bb76078}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_breakpoint_position_a0f561f3062c0d375227c20461bb76078}
+
+
+Analyze the path and returns instruction such that the instruction was executed by specified thread, and then the thread executed exactly inst\+Count instructions. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em tr} & Last transition (The last instruction are not saved into the path but only into last transition) \\
+\hline
+{\em path} & Path to analyze \\
+\hline
+{\em thread\+Num} & Thread to process. All other threads are ignored. \\
+\hline
+{\em inst\+Count} & Number of instructions executed by J\+PF after returned instruction \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line 140 of file Expression\+Breakpoint\+Position.\+java.
+
+
+\begin{DoxyCode}
+140                                                                                                            
+        \{
+141     assert path != null;
+142     assert instCount >= 0;
+143 
+144     \textcolor{keywordtype}{int} instInThread = 0; \textcolor{comment}{// Instructions executed by given thread counter}
+145     \textcolor{keywordflow}{if} (tr.getThreadIndex() == threadNum) \{
+146       instInThread += tr.getStepCount();
+147 
+148       \textcolor{keywordflow}{if} (instInThread > instCount) \{
+149         \textcolor{keywordflow}{return} tr.getStep(instInThread - instCount - 1).getInstruction();
+150       \}
+151     \}
+152 
+153     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = path.size() - 1; i >= 0; i--) \{
+154       tr = path.get(i);
+155       \textcolor{keywordflow}{if} (tr.getThreadIndex() != threadNum) \{
+156         \textcolor{keywordflow}{continue}; \textcolor{comment}{// Different thread was planned}
+157       \}
+158 
+159       instInThread += tr.getStepCount();
+160 
+161       \textcolor{keywordflow}{if} (instInThread > instCount) \{
+162         \textcolor{keywordflow}{return} tr.getStep(instInThread - instCount - 1).getInstruction();
+163       \}
+164     \}
+165 
+166     \textcolor{keywordflow}{return} null;
+167   \}
+\end{DoxyCode}
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::expressions\+::\+Expression\+Breakpoint\+Position@{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::expressions\+::\+Expression\+Breakpoint\+Position}!get\+Instruction\+Pos@{get\+Instruction\+Pos}}
+\index{get\+Instruction\+Pos@{get\+Instruction\+Pos}!gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::expressions\+::\+Expression\+Breakpoint\+Position@{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::expressions\+::\+Expression\+Breakpoint\+Position}}
+\subsubsection[{\texorpdfstring{get\+Instruction\+Pos()}{getInstructionPos()}}]{\setlength{\rightskip}{0pt plus 5cm}final {\bf Instruction\+Position} gov.\+nasa.\+jpf.\+inspector.\+server.\+expression.\+expressions.\+Expression\+Breakpoint\+Position.\+get\+Instruction\+Pos (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_breakpoint_position_ac0eaa028cd9054eafbe2c47bcebd552f}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_breakpoint_position_ac0eaa028cd9054eafbe2c47bcebd552f}
+
+
+Definition at line 70 of file Expression\+Breakpoint\+Position.\+java.
+
+
+\begin{DoxyCode}
+70                                                         \{
+71     \textcolor{keywordflow}{return} \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_breakpoint_position_a8f9bc711f79a45ff712cbfb1253e677b}{instPos};
+72   \}
+\end{DoxyCode}
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::expressions\+::\+Expression\+Breakpoint\+Position@{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::expressions\+::\+Expression\+Breakpoint\+Position}!get\+Normalized\+Expression@{get\+Normalized\+Expression}}
+\index{get\+Normalized\+Expression@{get\+Normalized\+Expression}!gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::expressions\+::\+Expression\+Breakpoint\+Position@{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::expressions\+::\+Expression\+Breakpoint\+Position}}
+\subsubsection[{\texorpdfstring{get\+Normalized\+Expression()}{getNormalizedExpression()}}]{\setlength{\rightskip}{0pt plus 5cm}String gov.\+nasa.\+jpf.\+inspector.\+server.\+expression.\+expressions.\+Expression\+Breakpoint\+Position.\+get\+Normalized\+Expression (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_breakpoint_position_ad8a4cb715f4790b1c347ec48de5d6a2e}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_breakpoint_position_ad8a4cb715f4790b1c347ec48de5d6a2e}
+
+
+Definition at line 203 of file Expression\+Breakpoint\+Position.\+java.
+
+
+\begin{DoxyCode}
+203                                            \{
+204     StringBuffer sb = \textcolor{keyword}{new} StringBuffer(30);
+205     sb.append(\textcolor{stringliteral}{"position="});
+206     sb.append(\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_breakpoint_position_a8f9bc711f79a45ff712cbfb1253e677b}{instPos}.\hyperlink{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1interfaces_1_1_instruction_position_ac1fb787ee623734fb5be1266d14727ce}{getFileName}());
+207     sb.append(\textcolor{charliteral}{':'});
+208     sb.append(\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_breakpoint_position_a8f9bc711f79a45ff712cbfb1253e677b}{instPos}.\hyperlink{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1interfaces_1_1_instruction_position_ac5cae68ff61d71dbf7b90e30b8291784}{getLineNumber}());
+209 
+210     \textcolor{keywordflow}{return} sb.toString();
+211   \}
+\end{DoxyCode}
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::expressions\+::\+Expression\+Breakpoint\+Position@{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::expressions\+::\+Expression\+Breakpoint\+Position}!get\+Prev\+Instruction\+In\+Same\+Method@{get\+Prev\+Instruction\+In\+Same\+Method}}
+\index{get\+Prev\+Instruction\+In\+Same\+Method@{get\+Prev\+Instruction\+In\+Same\+Method}!gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::expressions\+::\+Expression\+Breakpoint\+Position@{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::expressions\+::\+Expression\+Breakpoint\+Position}}
+\subsubsection[{\texorpdfstring{get\+Prev\+Instruction\+In\+Same\+Method(\+Instruction prev\+Instr, Instruction last\+Instr)}{getPrevInstructionInSameMethod(Instruction prevInstr, Instruction lastInstr)}}]{\setlength{\rightskip}{0pt plus 5cm}static Instruction gov.\+nasa.\+jpf.\+inspector.\+server.\+expression.\+expressions.\+Expression\+Breakpoint\+Position.\+get\+Prev\+Instruction\+In\+Same\+Method (
+\begin{DoxyParamCaption}
+\item[{Instruction}]{prev\+Instr, }
+\item[{Instruction}]{last\+Instr}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_breakpoint_position_a7f7fd767ec81e48355f6f52b494aa287}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_breakpoint_position_a7f7fd767ec81e48355f6f52b494aa287}
+
+\begin{DoxyParams}{Parameters}
+{\em prev\+Instr} & Instruction executed (by the same thread) immediately before the last instruction. \\
+\hline
+{\em last\+Instr} & Last execute instruction \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+prev\+Instruction to executed in the same method as the last\+Instr. \begin{DoxyVerb}    Note: Method requires that the lastInstruction is executed directly after the prevInstr (in one thread)\end{DoxyVerb}
+ 
+\end{DoxyReturn}
+
+
+Definition at line 178 of file Expression\+Breakpoint\+Position.\+java.
+
+
+\begin{DoxyCode}
+178                                                                                                           \{
+179     \textcolor{comment}{// Handle special cases Calls and JSR}
+180     \textcolor{keywordflow}{if} (prevInstr instanceof ReturnInstruction) \{
+181       \textcolor{comment}{// We should ignore instructions in called method, we focus on previous instruction in current method}
+182       prevInstr = lastInstr.getPrev();
+183       \textcolor{comment}{// TODO ... problem with direct calls !!!}
+184       \textcolor{comment}{// assert prevInstr instanceof InvokeInstruction;}
+185     \}
+186 
+187     \textcolor{keywordflow}{if} (prevInstr instanceof RET) \{
+188       \textcolor{comment}{// We should ignore instructions in called subrutine, we focus on previous instruction in current
+       method}
+189       prevInstr = lastInstr.getPrev();
+190       assert (prevInstr instanceof JSR) || (prevInstr instanceof JSR\_W);
+191     \}
+192     \textcolor{keywordflow}{return} prevInstr;
+193   \}
+\end{DoxyCode}
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::expressions\+::\+Expression\+Breakpoint\+Position@{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::expressions\+::\+Expression\+Breakpoint\+Position}!get\+Type@{get\+Type}}
+\index{get\+Type@{get\+Type}!gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::expressions\+::\+Expression\+Breakpoint\+Position@{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::expressions\+::\+Expression\+Breakpoint\+Position}}
+\subsubsection[{\texorpdfstring{get\+Type()}{getType()}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Types} gov.\+nasa.\+jpf.\+inspector.\+server.\+expression.\+Expression\+Boolean.\+get\+Type (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inherited]}}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_expression_boolean_aed010ff8683eb1e8621e226703133457}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_expression_boolean_aed010ff8683eb1e8621e226703133457}
+
+
+Definition at line 25 of file Expression\+Boolean.\+java.
+
+
+\begin{DoxyCode}
+25                           \{
+26     \textcolor{keywordflow}{return} Types.ET\_BOOLEAN;
+27   \}
+\end{DoxyCode}
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::expressions\+::\+Expression\+Breakpoint\+Position@{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::expressions\+::\+Expression\+Breakpoint\+Position}!instruction\+Position@{instruction\+Position}}
+\index{instruction\+Position@{instruction\+Position}!gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::expressions\+::\+Expression\+Breakpoint\+Position@{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::expressions\+::\+Expression\+Breakpoint\+Position}}
+\subsubsection[{\texorpdfstring{instruction\+Position(\+Instruction inst)}{instructionPosition(Instruction inst)}}]{\setlength{\rightskip}{0pt plus 5cm}static String gov.\+nasa.\+jpf.\+inspector.\+server.\+expression.\+expressions.\+Expression\+Breakpoint\+Position.\+instruction\+Position (
+\begin{DoxyParamCaption}
+\item[{Instruction}]{inst}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_breakpoint_position_aaecf51faa762d76b4f39c74f5b8b4e55}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_breakpoint_position_aaecf51faa762d76b4f39c74f5b8b4e55}
+
+
+Definition at line 195 of file Expression\+Breakpoint\+Position.\+java.
+
+
+\begin{DoxyCode}
+195                                                               \{
+196     \textcolor{keywordflow}{if} (inst == null) \{
+197       \textcolor{keywordflow}{return} \textcolor{stringliteral}{"(null)"};
+198     \}
+199     \textcolor{keywordflow}{return} inst.getMethodInfo().getSourceFileName() + \textcolor{stringliteral}{":"} + inst.getLineNumber() + \textcolor{stringliteral}{"(method="} + inst.
+      getMethodInfo().getName() + \textcolor{stringliteral}{") - "} + inst.toString();
+200   \}
+\end{DoxyCode}
+
+
+\subsection{Member Data Documentation}
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::expressions\+::\+Expression\+Breakpoint\+Position@{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::expressions\+::\+Expression\+Breakpoint\+Position}!D\+E\+B\+UG@{D\+E\+B\+UG}}
+\index{D\+E\+B\+UG@{D\+E\+B\+UG}!gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::expressions\+::\+Expression\+Breakpoint\+Position@{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::expressions\+::\+Expression\+Breakpoint\+Position}}
+\subsubsection[{\texorpdfstring{D\+E\+B\+UG}{DEBUG}}]{\setlength{\rightskip}{0pt plus 5cm}final boolean gov.\+nasa.\+jpf.\+inspector.\+server.\+expression.\+expressions.\+Expression\+Breakpoint\+Position.\+D\+E\+B\+UG = false\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_breakpoint_position_a3169fb04f860dc378d6d7eaa14ffad35}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_breakpoint_position_a3169fb04f860dc378d6d7eaa14ffad35}
+
+
+Definition at line 45 of file Expression\+Breakpoint\+Position.\+java.
+
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::expressions\+::\+Expression\+Breakpoint\+Position@{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::expressions\+::\+Expression\+Breakpoint\+Position}!inspector@{inspector}}
+\index{inspector@{inspector}!gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::expressions\+::\+Expression\+Breakpoint\+Position@{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::expressions\+::\+Expression\+Breakpoint\+Position}}
+\subsubsection[{\texorpdfstring{inspector}{inspector}}]{\setlength{\rightskip}{0pt plus 5cm}final {\bf J\+P\+F\+Inspector} gov.\+nasa.\+jpf.\+inspector.\+server.\+expression.\+expressions.\+Expression\+Breakpoint\+Position.\+inspector\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_breakpoint_position_a8a3d5dc750a8f629e27046cd30eb34f7}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_breakpoint_position_a8a3d5dc750a8f629e27046cd30eb34f7}
+
+
+Definition at line 46 of file Expression\+Breakpoint\+Position.\+java.
+
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::expressions\+::\+Expression\+Breakpoint\+Position@{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::expressions\+::\+Expression\+Breakpoint\+Position}!inst\+Pos@{inst\+Pos}}
+\index{inst\+Pos@{inst\+Pos}!gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::expressions\+::\+Expression\+Breakpoint\+Position@{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::expressions\+::\+Expression\+Breakpoint\+Position}}
+\subsubsection[{\texorpdfstring{inst\+Pos}{instPos}}]{\setlength{\rightskip}{0pt plus 5cm}final {\bf Instruction\+Position} gov.\+nasa.\+jpf.\+inspector.\+server.\+expression.\+expressions.\+Expression\+Breakpoint\+Position.\+inst\+Pos\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_breakpoint_position_a8f9bc711f79a45ff712cbfb1253e677b}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_breakpoint_position_a8f9bc711f79a45ff712cbfb1253e677b}
+
+
+Definition at line 48 of file Expression\+Breakpoint\+Position.\+java.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/gsoc/jpf-\/inspector/src/main/gov/nasa/jpf/inspector/server/expression/expressions/\hyperlink{_expression_breakpoint_position_8java}{Expression\+Breakpoint\+Position.\+java}\end{DoxyCompactItemize}

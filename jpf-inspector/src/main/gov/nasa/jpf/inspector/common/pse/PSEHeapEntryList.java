@@ -25,7 +25,7 @@ import gov.nasa.jpf.inspector.server.programstate.StateNode;
 import java.util.List;
 
 /**
- * Placeholder with result of the <code>print #heap["Specific class"]<code> command.
+ * Placeholder with result of the <code>print \#heap["Specific class"]</code> command.
  * 
  */
 public class PSEHeapEntryList extends ProgramStateEntry {
@@ -43,7 +43,7 @@ public class PSEHeapEntryList extends ProgramStateEntry {
   }
 
   /**
-   * @return Gets unmodifiable list with representation of filtered (by class name) heap entries.
+   * Gts unmodifiable list with representation of filtered (by class name) heap entries.
    */
   public List<PSEVariable> getHeapList () {
     return heapEntryList;

@@ -1,0 +1,146 @@
+\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_j_line_user_text_output_stream}{}\section{gov.\+nasa.\+jpf.\+inspector.\+frontends.\+jpfshell.\+gui.\+Swing\+Terminal.\+J\+Line\+User\+Text\+Output\+Stream Class Reference}
+\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_j_line_user_text_output_stream}\index{gov.\+nasa.\+jpf.\+inspector.\+frontends.\+jpfshell.\+gui.\+Swing\+Terminal.\+J\+Line\+User\+Text\+Output\+Stream@{gov.\+nasa.\+jpf.\+inspector.\+frontends.\+jpfshell.\+gui.\+Swing\+Terminal.\+J\+Line\+User\+Text\+Output\+Stream}}
+
+
+Stream which can be used to add/log text into J\+Line\+Console (just before the prompt line)  
+
+
+Inheritance diagram for gov.\+nasa.\+jpf.\+inspector.\+frontends.\+jpfshell.\+gui.\+Swing\+Terminal.\+J\+Line\+User\+Text\+Output\+Stream\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_j_line_user_text_output_stream}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_j_line_user_text_output_stream_aced20bf9530ae1ae16e08eed27afaf48}{J\+Line\+User\+Text\+Output\+Stream} (\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_text_component_feeder}{Text\+Component\+Feeder} \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_j_line_user_text_output_stream_a1134fdda4ea22ccfb10379627f32646b}{interpreter}, J\+Text\+Component \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_j_line_user_text_output_stream_ae5e3f90903e5f49e72dd7f24fe141922}{console})
+\item 
+void \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_j_line_user_text_output_stream_a9964c11c977c92d7d4b4e7927d792f38}{write} (int b)  throws I\+O\+Exception 
+\item 
+void \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_j_line_user_text_output_stream_a6d3210674403e20590d37fb1ed2643f0}{write} (byte b\mbox{[}$\,$\mbox{]}, int off, int len)  throws I\+O\+Exception 
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+final \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_text_component_feeder}{Text\+Component\+Feeder} \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_j_line_user_text_output_stream_a1134fdda4ea22ccfb10379627f32646b}{interpreter}
+\item 
+final J\+Text\+Component \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_j_line_user_text_output_stream_ae5e3f90903e5f49e72dd7f24fe141922}{console}
+\end{DoxyCompactItemize}
+\subsection*{Static Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static Logger \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_j_line_user_text_output_stream_a1f97ec48a81d4c7ecee91cd231b5753c}{log} = \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1utils_1_1_debugging_a06cdc92a97816ad85793b034bfd5822a}{Debugging.\+get\+Logger}(Shell\+Manager.\+get\+Manager().get\+Config())
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Stream which can be used to add/log text into J\+Line\+Console (just before the prompt line) 
+
+\begin{DoxyAuthor}{Author}
+Alf 
+\end{DoxyAuthor}
+
+
+Definition at line 527 of file Swing\+Terminal.\+java.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{gov\+::nasa\+::jpf\+::inspector\+::frontends\+::jpfshell\+::gui\+::\+Swing\+Terminal\+::\+J\+Line\+User\+Text\+Output\+Stream@{gov\+::nasa\+::jpf\+::inspector\+::frontends\+::jpfshell\+::gui\+::\+Swing\+Terminal\+::\+J\+Line\+User\+Text\+Output\+Stream}!J\+Line\+User\+Text\+Output\+Stream@{J\+Line\+User\+Text\+Output\+Stream}}
+\index{J\+Line\+User\+Text\+Output\+Stream@{J\+Line\+User\+Text\+Output\+Stream}!gov\+::nasa\+::jpf\+::inspector\+::frontends\+::jpfshell\+::gui\+::\+Swing\+Terminal\+::\+J\+Line\+User\+Text\+Output\+Stream@{gov\+::nasa\+::jpf\+::inspector\+::frontends\+::jpfshell\+::gui\+::\+Swing\+Terminal\+::\+J\+Line\+User\+Text\+Output\+Stream}}
+\subsubsection[{\texorpdfstring{J\+Line\+User\+Text\+Output\+Stream(\+Text\+Component\+Feeder interpreter, J\+Text\+Component console)}{JLineUserTextOutputStream(TextComponentFeeder interpreter, JTextComponent console)}}]{\setlength{\rightskip}{0pt plus 5cm}gov.\+nasa.\+jpf.\+inspector.\+frontends.\+jpfshell.\+gui.\+Swing\+Terminal.\+J\+Line\+User\+Text\+Output\+Stream.\+J\+Line\+User\+Text\+Output\+Stream (
+\begin{DoxyParamCaption}
+\item[{{\bf Text\+Component\+Feeder}}]{interpreter, }
+\item[{J\+Text\+Component}]{console}
+\end{DoxyParamCaption}
+)}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_j_line_user_text_output_stream_aced20bf9530ae1ae16e08eed27afaf48}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_j_line_user_text_output_stream_aced20bf9530ae1ae16e08eed27afaf48}
+
+
+Definition at line 533 of file Swing\+Terminal.\+java.
+
+
+\begin{DoxyCode}
+533                                                                                                \{
+534       super();
+535       this.\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_j_line_user_text_output_stream_ae5e3f90903e5f49e72dd7f24fe141922}{console} = \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_j_line_user_text_output_stream_ae5e3f90903e5f49e72dd7f24fe141922}{console};
+536       this.\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_j_line_user_text_output_stream_a1134fdda4ea22ccfb10379627f32646b}{interpreter} = \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_j_line_user_text_output_stream_a1134fdda4ea22ccfb10379627f32646b}{interpreter};
+537     \}
+\end{DoxyCode}
+
+
+\subsection{Member Function Documentation}
+\index{gov\+::nasa\+::jpf\+::inspector\+::frontends\+::jpfshell\+::gui\+::\+Swing\+Terminal\+::\+J\+Line\+User\+Text\+Output\+Stream@{gov\+::nasa\+::jpf\+::inspector\+::frontends\+::jpfshell\+::gui\+::\+Swing\+Terminal\+::\+J\+Line\+User\+Text\+Output\+Stream}!write@{write}}
+\index{write@{write}!gov\+::nasa\+::jpf\+::inspector\+::frontends\+::jpfshell\+::gui\+::\+Swing\+Terminal\+::\+J\+Line\+User\+Text\+Output\+Stream@{gov\+::nasa\+::jpf\+::inspector\+::frontends\+::jpfshell\+::gui\+::\+Swing\+Terminal\+::\+J\+Line\+User\+Text\+Output\+Stream}}
+\subsubsection[{\texorpdfstring{write(int b)}{write(int b)}}]{\setlength{\rightskip}{0pt plus 5cm}void gov.\+nasa.\+jpf.\+inspector.\+frontends.\+jpfshell.\+gui.\+Swing\+Terminal.\+J\+Line\+User\+Text\+Output\+Stream.\+write (
+\begin{DoxyParamCaption}
+\item[{int}]{b}
+\end{DoxyParamCaption}
+) throws I\+O\+Exception}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_j_line_user_text_output_stream_a9964c11c977c92d7d4b4e7927d792f38}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_j_line_user_text_output_stream_a9964c11c977c92d7d4b4e7927d792f38}
+
+
+Definition at line 540 of file Swing\+Terminal.\+java.
+
+
+\begin{DoxyCode}
+540                                                  \{
+541       \textcolor{keywordflow}{if} (\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_j_line_user_text_output_stream_a1f97ec48a81d4c7ecee91cd231b5753c}{log}.isLoggable(Level.FINE)) \{
+542         \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_j_line_user_text_output_stream_a1f97ec48a81d4c7ecee91cd231b5753c}{log}.fine(this.getClass().getSimpleName() + \textcolor{stringliteral}{"write(b="} + ((\textcolor{keywordtype}{char}) b) + \textcolor{stringliteral}{")"});
+543       \}
+544       \textcolor{keywordtype}{char} c[] = \textcolor{keyword}{new} \textcolor{keywordtype}{char}[1];
+545       c[0] = (char) b;
+546       \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_j_line_user_text_output_stream_a1134fdda4ea22ccfb10379627f32646b}{interpreter}.\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_text_component_feeder_a8fc7b8c3c9cd70c21b416fc5d79ffde1}{addUserText}(\textcolor{keyword}{new} String(c), \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_j_line_user_text_output_stream_ae5e3f90903e5f49e72dd7f24fe141922}{console});
+547     \}
+\end{DoxyCode}
+\index{gov\+::nasa\+::jpf\+::inspector\+::frontends\+::jpfshell\+::gui\+::\+Swing\+Terminal\+::\+J\+Line\+User\+Text\+Output\+Stream@{gov\+::nasa\+::jpf\+::inspector\+::frontends\+::jpfshell\+::gui\+::\+Swing\+Terminal\+::\+J\+Line\+User\+Text\+Output\+Stream}!write@{write}}
+\index{write@{write}!gov\+::nasa\+::jpf\+::inspector\+::frontends\+::jpfshell\+::gui\+::\+Swing\+Terminal\+::\+J\+Line\+User\+Text\+Output\+Stream@{gov\+::nasa\+::jpf\+::inspector\+::frontends\+::jpfshell\+::gui\+::\+Swing\+Terminal\+::\+J\+Line\+User\+Text\+Output\+Stream}}
+\subsubsection[{\texorpdfstring{write(byte b[], int off, int len)}{write(byte b[], int off, int len)}}]{\setlength{\rightskip}{0pt plus 5cm}void gov.\+nasa.\+jpf.\+inspector.\+frontends.\+jpfshell.\+gui.\+Swing\+Terminal.\+J\+Line\+User\+Text\+Output\+Stream.\+write (
+\begin{DoxyParamCaption}
+\item[{byte}]{b\mbox{[}$\,$\mbox{]}, }
+\item[{int}]{off, }
+\item[{int}]{len}
+\end{DoxyParamCaption}
+) throws I\+O\+Exception}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_j_line_user_text_output_stream_a6d3210674403e20590d37fb1ed2643f0}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_j_line_user_text_output_stream_a6d3210674403e20590d37fb1ed2643f0}
+
+
+Definition at line 550 of file Swing\+Terminal.\+java.
+
+
+\begin{DoxyCode}
+550                                                                       \{
+551       String str = \textcolor{keyword}{new} String(b, off, len);
+552       \textcolor{keywordflow}{if} (\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_j_line_user_text_output_stream_a1f97ec48a81d4c7ecee91cd231b5753c}{log}.isLoggable(Level.FINE)) \{
+553         \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_j_line_user_text_output_stream_a1f97ec48a81d4c7ecee91cd231b5753c}{log}.fine(this.getClass().getSimpleName() + \textcolor{stringliteral}{"write( str="} + str + \textcolor{stringliteral}{")"});
+554       \}
+555       \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_j_line_user_text_output_stream_a1134fdda4ea22ccfb10379627f32646b}{interpreter}.\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_text_component_feeder_a8fc7b8c3c9cd70c21b416fc5d79ffde1}{addUserText}(str, \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_j_line_user_text_output_stream_ae5e3f90903e5f49e72dd7f24fe141922}{console});
+556     \}
+\end{DoxyCode}
+
+
+\subsection{Member Data Documentation}
+\index{gov\+::nasa\+::jpf\+::inspector\+::frontends\+::jpfshell\+::gui\+::\+Swing\+Terminal\+::\+J\+Line\+User\+Text\+Output\+Stream@{gov\+::nasa\+::jpf\+::inspector\+::frontends\+::jpfshell\+::gui\+::\+Swing\+Terminal\+::\+J\+Line\+User\+Text\+Output\+Stream}!console@{console}}
+\index{console@{console}!gov\+::nasa\+::jpf\+::inspector\+::frontends\+::jpfshell\+::gui\+::\+Swing\+Terminal\+::\+J\+Line\+User\+Text\+Output\+Stream@{gov\+::nasa\+::jpf\+::inspector\+::frontends\+::jpfshell\+::gui\+::\+Swing\+Terminal\+::\+J\+Line\+User\+Text\+Output\+Stream}}
+\subsubsection[{\texorpdfstring{console}{console}}]{\setlength{\rightskip}{0pt plus 5cm}final J\+Text\+Component gov.\+nasa.\+jpf.\+inspector.\+frontends.\+jpfshell.\+gui.\+Swing\+Terminal.\+J\+Line\+User\+Text\+Output\+Stream.\+console\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_j_line_user_text_output_stream_ae5e3f90903e5f49e72dd7f24fe141922}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_j_line_user_text_output_stream_ae5e3f90903e5f49e72dd7f24fe141922}
+
+
+Definition at line 531 of file Swing\+Terminal.\+java.
+
+\index{gov\+::nasa\+::jpf\+::inspector\+::frontends\+::jpfshell\+::gui\+::\+Swing\+Terminal\+::\+J\+Line\+User\+Text\+Output\+Stream@{gov\+::nasa\+::jpf\+::inspector\+::frontends\+::jpfshell\+::gui\+::\+Swing\+Terminal\+::\+J\+Line\+User\+Text\+Output\+Stream}!interpreter@{interpreter}}
+\index{interpreter@{interpreter}!gov\+::nasa\+::jpf\+::inspector\+::frontends\+::jpfshell\+::gui\+::\+Swing\+Terminal\+::\+J\+Line\+User\+Text\+Output\+Stream@{gov\+::nasa\+::jpf\+::inspector\+::frontends\+::jpfshell\+::gui\+::\+Swing\+Terminal\+::\+J\+Line\+User\+Text\+Output\+Stream}}
+\subsubsection[{\texorpdfstring{interpreter}{interpreter}}]{\setlength{\rightskip}{0pt plus 5cm}final {\bf Text\+Component\+Feeder} gov.\+nasa.\+jpf.\+inspector.\+frontends.\+jpfshell.\+gui.\+Swing\+Terminal.\+J\+Line\+User\+Text\+Output\+Stream.\+interpreter\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_j_line_user_text_output_stream_a1134fdda4ea22ccfb10379627f32646b}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_j_line_user_text_output_stream_a1134fdda4ea22ccfb10379627f32646b}
+
+
+Definition at line 530 of file Swing\+Terminal.\+java.
+
+\index{gov\+::nasa\+::jpf\+::inspector\+::frontends\+::jpfshell\+::gui\+::\+Swing\+Terminal\+::\+J\+Line\+User\+Text\+Output\+Stream@{gov\+::nasa\+::jpf\+::inspector\+::frontends\+::jpfshell\+::gui\+::\+Swing\+Terminal\+::\+J\+Line\+User\+Text\+Output\+Stream}!log@{log}}
+\index{log@{log}!gov\+::nasa\+::jpf\+::inspector\+::frontends\+::jpfshell\+::gui\+::\+Swing\+Terminal\+::\+J\+Line\+User\+Text\+Output\+Stream@{gov\+::nasa\+::jpf\+::inspector\+::frontends\+::jpfshell\+::gui\+::\+Swing\+Terminal\+::\+J\+Line\+User\+Text\+Output\+Stream}}
+\subsubsection[{\texorpdfstring{log}{log}}]{\setlength{\rightskip}{0pt plus 5cm}Logger gov.\+nasa.\+jpf.\+inspector.\+frontends.\+jpfshell.\+gui.\+Swing\+Terminal.\+J\+Line\+User\+Text\+Output\+Stream.\+log = {\bf Debugging.\+get\+Logger}(Shell\+Manager.\+get\+Manager().get\+Config())\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_j_line_user_text_output_stream_a1f97ec48a81d4c7ecee91cd231b5753c}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_j_line_user_text_output_stream_a1f97ec48a81d4c7ecee91cd231b5753c}
+
+
+Definition at line 528 of file Swing\+Terminal.\+java.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/gsoc/jpf-\/inspector/src/main/gov/nasa/jpf/inspector/frontends/jpfshell/gui/\hyperlink{_swing_terminal_8java}{Swing\+Terminal.\+java}\end{DoxyCompactItemize}

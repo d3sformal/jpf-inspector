@@ -1,0 +1,77 @@
+\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_state3e52eea711d5518799170688e70a0d37}{}\section{gov.\+nasa.\+jpf.\+inspector.\+server.\+expression.\+expressions.\+Expression\+State\+Value\+Const\+Char.\+Char\+Parsing\+State Class Reference}
+\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_state3e52eea711d5518799170688e70a0d37}\index{gov.\+nasa.\+jpf.\+inspector.\+server.\+expression.\+expressions.\+Expression\+State\+Value\+Const\+Char.\+Char\+Parsing\+State@{gov.\+nasa.\+jpf.\+inspector.\+server.\+expression.\+expressions.\+Expression\+State\+Value\+Const\+Char.\+Char\+Parsing\+State}}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_state3e52eea711d5518799170688e70a0d37_a436de96c45eb8f9fa4707dcb6d81d587}{Char\+Parsing\+State} (String str, char banned\+Unsescaped\+Char)
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+char\mbox{[}$\,$\mbox{]} \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_state3e52eea711d5518799170688e70a0d37_ac2bd992b99178e0992ca84fc0c8b1551}{str\+Arr}
+\item 
+int \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_state3e52eea711d5518799170688e70a0d37_a757b709c5c3f612edbbbc1cbf57512cd}{pos}
+\item 
+Set$<$ Character $>$ \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_state3e52eea711d5518799170688e70a0d37_adaf886b0545e724fbb9d1ec4ff11dbab}{banned\+Unescaped\+Characters}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 93 of file Expression\+State\+Value\+Const\+Char.\+java.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::expressions\+::\+Expression\+State\+Value\+Const\+Char\+::\+Char\+Parsing\+State@{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::expressions\+::\+Expression\+State\+Value\+Const\+Char\+::\+Char\+Parsing\+State}!Char\+Parsing\+State@{Char\+Parsing\+State}}
+\index{Char\+Parsing\+State@{Char\+Parsing\+State}!gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::expressions\+::\+Expression\+State\+Value\+Const\+Char\+::\+Char\+Parsing\+State@{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::expressions\+::\+Expression\+State\+Value\+Const\+Char\+::\+Char\+Parsing\+State}}
+\subsubsection[{\texorpdfstring{Char\+Parsing\+State(\+String str, char banned\+Unsescaped\+Char)}{CharParsingState(String str, char bannedUnsescapedChar)}}]{\setlength{\rightskip}{0pt plus 5cm}gov.\+nasa.\+jpf.\+inspector.\+server.\+expression.\+expressions.\+Expression\+State\+Value\+Const\+Char.\+Char\+Parsing\+State.\+Char\+Parsing\+State (
+\begin{DoxyParamCaption}
+\item[{String}]{str, }
+\item[{char}]{banned\+Unsescaped\+Char}
+\end{DoxyParamCaption}
+)}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_state3e52eea711d5518799170688e70a0d37_a436de96c45eb8f9fa4707dcb6d81d587}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_state3e52eea711d5518799170688e70a0d37_a436de96c45eb8f9fa4707dcb6d81d587}
+
+
+Definition at line 99 of file Expression\+State\+Value\+Const\+Char.\+java.
+
+
+\begin{DoxyCode}
+99                                                                     \{
+100       super();
+101       this.\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_state3e52eea711d5518799170688e70a0d37_ac2bd992b99178e0992ca84fc0c8b1551}{strArr} = str.toCharArray();
+102       this.\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_state3e52eea711d5518799170688e70a0d37_a757b709c5c3f612edbbbc1cbf57512cd}{pos} = 0;
+103       this.\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_state3e52eea711d5518799170688e70a0d37_adaf886b0545e724fbb9d1ec4ff11dbab}{bannedUnescapedCharacters} = \textcolor{keyword}{new} HashSet<Character>();
+104       \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_state3e52eea711d5518799170688e70a0d37_adaf886b0545e724fbb9d1ec4ff11dbab}{bannedUnescapedCharacters}.add(bannedUnsescapedChar);
+105     \}
+\end{DoxyCode}
+
+
+\subsection{Member Data Documentation}
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::expressions\+::\+Expression\+State\+Value\+Const\+Char\+::\+Char\+Parsing\+State@{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::expressions\+::\+Expression\+State\+Value\+Const\+Char\+::\+Char\+Parsing\+State}!banned\+Unescaped\+Characters@{banned\+Unescaped\+Characters}}
+\index{banned\+Unescaped\+Characters@{banned\+Unescaped\+Characters}!gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::expressions\+::\+Expression\+State\+Value\+Const\+Char\+::\+Char\+Parsing\+State@{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::expressions\+::\+Expression\+State\+Value\+Const\+Char\+::\+Char\+Parsing\+State}}
+\subsubsection[{\texorpdfstring{banned\+Unescaped\+Characters}{bannedUnescapedCharacters}}]{\setlength{\rightskip}{0pt plus 5cm}Set$<$Character$>$ gov.\+nasa.\+jpf.\+inspector.\+server.\+expression.\+expressions.\+Expression\+State\+Value\+Const\+Char.\+Char\+Parsing\+State.\+banned\+Unescaped\+Characters}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_state3e52eea711d5518799170688e70a0d37_adaf886b0545e724fbb9d1ec4ff11dbab}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_state3e52eea711d5518799170688e70a0d37_adaf886b0545e724fbb9d1ec4ff11dbab}
+
+
+Definition at line 97 of file Expression\+State\+Value\+Const\+Char.\+java.
+
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::expressions\+::\+Expression\+State\+Value\+Const\+Char\+::\+Char\+Parsing\+State@{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::expressions\+::\+Expression\+State\+Value\+Const\+Char\+::\+Char\+Parsing\+State}!pos@{pos}}
+\index{pos@{pos}!gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::expressions\+::\+Expression\+State\+Value\+Const\+Char\+::\+Char\+Parsing\+State@{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::expressions\+::\+Expression\+State\+Value\+Const\+Char\+::\+Char\+Parsing\+State}}
+\subsubsection[{\texorpdfstring{pos}{pos}}]{\setlength{\rightskip}{0pt plus 5cm}int gov.\+nasa.\+jpf.\+inspector.\+server.\+expression.\+expressions.\+Expression\+State\+Value\+Const\+Char.\+Char\+Parsing\+State.\+pos}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_state3e52eea711d5518799170688e70a0d37_a757b709c5c3f612edbbbc1cbf57512cd}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_state3e52eea711d5518799170688e70a0d37_a757b709c5c3f612edbbbc1cbf57512cd}
+
+
+Definition at line 95 of file Expression\+State\+Value\+Const\+Char.\+java.
+
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::expressions\+::\+Expression\+State\+Value\+Const\+Char\+::\+Char\+Parsing\+State@{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::expressions\+::\+Expression\+State\+Value\+Const\+Char\+::\+Char\+Parsing\+State}!str\+Arr@{str\+Arr}}
+\index{str\+Arr@{str\+Arr}!gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::expressions\+::\+Expression\+State\+Value\+Const\+Char\+::\+Char\+Parsing\+State@{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::expressions\+::\+Expression\+State\+Value\+Const\+Char\+::\+Char\+Parsing\+State}}
+\subsubsection[{\texorpdfstring{str\+Arr}{strArr}}]{\setlength{\rightskip}{0pt plus 5cm}char \mbox{[}$\,$\mbox{]} gov.\+nasa.\+jpf.\+inspector.\+server.\+expression.\+expressions.\+Expression\+State\+Value\+Const\+Char.\+Char\+Parsing\+State.\+str\+Arr}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_state3e52eea711d5518799170688e70a0d37_ac2bd992b99178e0992ca84fc0c8b1551}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_state3e52eea711d5518799170688e70a0d37_ac2bd992b99178e0992ca84fc0c8b1551}
+
+
+Definition at line 94 of file Expression\+State\+Value\+Const\+Char.\+java.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/gsoc/jpf-\/inspector/src/main/gov/nasa/jpf/inspector/server/expression/expressions/\hyperlink{_expression_state_value_const_char_8java}{Expression\+State\+Value\+Const\+Char.\+java}\end{DoxyCompactItemize}

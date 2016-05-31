@@ -1,0 +1,660 @@
+\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications}{}\section{gov.\+nasa.\+jpf.\+inspector.\+server.\+jpf.\+Inspector\+Listener\+Mode\+Notifications Class Reference}
+\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications}\index{gov.\+nasa.\+jpf.\+inspector.\+server.\+jpf.\+Inspector\+Listener\+Mode\+Notifications@{gov.\+nasa.\+jpf.\+inspector.\+server.\+jpf.\+Inspector\+Listener\+Mode\+Notifications}}
+
+
+Standard listener used in J\+P\+F-\/\+Inspector when all parts of inspector are notified about incoming events.  
+
+
+Inheritance diagram for gov.\+nasa.\+jpf.\+inspector.\+server.\+jpf.\+Inspector\+Listener\+Mode\+Notifications\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_a8c383395e0ee5917533e8f5134852c0e}{Inspector\+Listener\+Mode\+Notifications} (\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_j_p_f_inspector}{J\+P\+F\+Inspector} \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_a5db31a7d96790e2bdd746fac8b0f6291}{inspector}, \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_commands_manager}{Commands\+Manager} \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_a4e0ff8a57f15b3648f5e1ed3067e50ed}{cmd\+Mgr}, \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_break_point_handler}{Break\+Point\+Handler} \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_a83c1ce4516815ce2b5d738540a2f969b}{bp\+Mgr}, \hyperlink{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1choicegenerators_1_1_choice_generator_notifications}{Choice\+Generator\+Notifications} \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_acefbf3fcb0faa27b46f8b09595afdb49}{cg\+Notify}, \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_default_forward_trace_manager}{Default\+Forward\+Trace\+Manager} \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_ab13a838dedd020e2905d89f9c1bf8209}{dft\+Mgr}, boolean \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_a23a71dcd80a803baf7b04038b519813c}{search\+Multiple\+Error})
+\begin{DoxyCompactList}\small\item\em Inspector we serve for. \end{DoxyCompactList}\item 
+void \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_a9439523deb90968086403f34580b33dc}{state\+Advanced} (Search search)
+\item 
+void \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_a39303d61a2010fb94ecc923d857ea44e}{state\+Processed} (Search search)
+\item 
+void \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_a33707229c3a3657b64f924e34c492220}{state\+Backtracked} (Search search)
+\item 
+void \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_a1797ff7e26e687cc2440cc2bed63c6b9}{search\+Started} (Search search)
+\item 
+void \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_a3e51df1ea5329cf29dfec2e7d9651dbc}{search\+Constraint\+Hit} (Search search)
+\item 
+void \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_a50cd741925c2442f6ceb8e14c2493726}{search\+Finished} (Search search)
+\item 
+void \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_ae3acd4952ad746d872ec8a8518078bf8}{instruction\+Executed} (VM vm, Thread\+Info current\+Thread, Instruction next\+Instruction, Instruction executed\+Instruction)
+\item 
+void \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_a0fd53dadfb837b44551cbfeea9083121}{class\+Loaded} (VM vm, Class\+Info loaded\+Class)
+\item 
+void \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_afa9e3264889fa585072c32e97a5bb8aa}{gc\+Begin} (VM vm)
+\item 
+void \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_a29c03347497db8730b3160d8a25f29e1}{gc\+End} (VM vm)
+\item 
+void \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_a803f93af31f646c3fd8b408c846cd757}{object\+Created} (VM vm, Thread\+Info current\+Thread, Element\+Info new\+Object)
+\item 
+void \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_ab289557a81113a2441a39718e7765408}{object\+Released} (VM vm, Thread\+Info current\+Thread, Element\+Info released\+Object)
+\item 
+void \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_a0970e3cb2d6ea586507f7cd31c2eaeed}{exception\+Thrown} (VM vm, Thread\+Info current\+Thread, Element\+Info thrown\+Exception)
+\item 
+void \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_a09d0ca6dbe255095cacf387c366b0055}{choice\+Generator\+Set} (VM vm, Choice\+Generator$<$?$>$ new\+CG)
+\item 
+void \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_a9c653ee8e1d4e0e5139b9fb29ffb9cbd}{choice\+Generator\+Advanced} (VM vm, Choice\+Generator$<$?$>$ current\+CG)
+\item 
+void \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_acd0ec8fe400f0f0cc5da0f0d71b5d744}{choice\+Generator\+Registered} (VM vm, Choice\+Generator$<$?$>$ next\+CG, Thread\+Info current\+Thread, Instruction executed\+Instruction)
+\item 
+void \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_a1b867a0c1bc03768a3ebfc82505d99bc}{choice\+Generator\+Processed} (VM vm, Choice\+Generator$<$?$>$ processed\+CG)
+\item 
+void \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_a83b583b869370cfa0ff5ef99cd935b91}{thread\+Scheduled} (VM vm, Thread\+Info scheduled\+Thread)
+\item 
+void \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_adfa0199ca5efce48d7fe49c2ee9a72ba}{property\+Violated} (Search search)
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+final \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_j_p_f_inspector}{J\+P\+F\+Inspector} \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_a5db31a7d96790e2bdd746fac8b0f6291}{inspector}
+\item 
+final \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_commands_manager}{Commands\+Manager} \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_a4e0ff8a57f15b3648f5e1ed3067e50ed}{cmd\+Mgr}
+\item 
+final \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_break_point_handler}{Break\+Point\+Handler} \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_a83c1ce4516815ce2b5d738540a2f969b}{bp\+Mgr}
+\item 
+final \hyperlink{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1choicegenerators_1_1_choice_generator_notifications}{Choice\+Generator\+Notifications} \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_acefbf3fcb0faa27b46f8b09595afdb49}{cg\+Notify}
+\item 
+final \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_default_forward_trace_manager}{Default\+Forward\+Trace\+Manager} \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_ab13a838dedd020e2905d89f9c1bf8209}{dft\+Mgr}
+\item 
+final \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_inspector_state_impl}{Inspector\+State\+Impl} \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_a5abe9482ab15724302ed6e929ea260ed}{insp\+State} = new \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_inspector_state_impl}{Inspector\+State\+Impl}()
+\item 
+final boolean \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_a23a71dcd80a803baf7b04038b519813c}{search\+Multiple\+Error}
+\end{DoxyCompactItemize}
+\subsection*{Static Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static final boolean \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_ac9fb2ed8913c14c836cbc14bee1b8634}{D\+E\+B\+UG} = false
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Standard listener used in J\+P\+F-\/\+Inspector when all parts of inspector are notified about incoming events. 
+
+\begin{DoxyAuthor}{Author}
+Alf 
+\end{DoxyAuthor}
+
+
+Definition at line 19 of file Inspector\+Listener\+Mode\+Notifications.\+java.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Inspector\+Listener\+Mode\+Notifications@{gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Inspector\+Listener\+Mode\+Notifications}!Inspector\+Listener\+Mode\+Notifications@{Inspector\+Listener\+Mode\+Notifications}}
+\index{Inspector\+Listener\+Mode\+Notifications@{Inspector\+Listener\+Mode\+Notifications}!gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Inspector\+Listener\+Mode\+Notifications@{gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Inspector\+Listener\+Mode\+Notifications}}
+\subsubsection[{\texorpdfstring{Inspector\+Listener\+Mode\+Notifications(\+J\+P\+F\+Inspector inspector, Commands\+Manager cmd\+Mgr, Break\+Point\+Handler bp\+Mgr, Choice\+Generator\+Notifications cg\+Notify, Default\+Forward\+Trace\+Manager dft\+Mgr, boolean search\+Multiple\+Error)}{InspectorListenerModeNotifications(JPFInspector inspector, CommandsManager cmdMgr, BreakPointHandler bpMgr, ChoiceGeneratorNotifications cgNotify, DefaultForwardTraceManager dftMgr, boolean searchMultipleError)}}]{\setlength{\rightskip}{0pt plus 5cm}gov.\+nasa.\+jpf.\+inspector.\+server.\+jpf.\+Inspector\+Listener\+Mode\+Notifications.\+Inspector\+Listener\+Mode\+Notifications (
+\begin{DoxyParamCaption}
+\item[{{\bf J\+P\+F\+Inspector}}]{inspector, }
+\item[{{\bf Commands\+Manager}}]{cmd\+Mgr, }
+\item[{{\bf Break\+Point\+Handler}}]{bp\+Mgr, }
+\item[{{\bf Choice\+Generator\+Notifications}}]{cg\+Notify, }
+\item[{{\bf Default\+Forward\+Trace\+Manager}}]{dft\+Mgr, }
+\item[{boolean}]{search\+Multiple\+Error}
+\end{DoxyParamCaption}
+)}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_a8c383395e0ee5917533e8f5134852c0e}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_a8c383395e0ee5917533e8f5134852c0e}
+
+
+Inspector we serve for. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em search\+Multiple\+Error} & Original value of the \char`\"{}search.\+multiple\+\_\+error\char`\"{} property in J\+PF configuration. \\
+\hline
+{\em inspector} & \\
+\hline
+{\em dft\+Mgr} & \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 39 of file Inspector\+Listener\+Mode\+Notifications.\+java.
+
+
+\begin{DoxyCode}
+40                                                                       \{
+41     this.\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_a5db31a7d96790e2bdd746fac8b0f6291}{inspector} = \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_a5db31a7d96790e2bdd746fac8b0f6291}{inspector};
+42     this.\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_a4e0ff8a57f15b3648f5e1ed3067e50ed}{cmdMgr} = \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_a4e0ff8a57f15b3648f5e1ed3067e50ed}{cmdMgr};
+43     this.\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_a83c1ce4516815ce2b5d738540a2f969b}{bpMgr} = \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_a83c1ce4516815ce2b5d738540a2f969b}{bpMgr};
+44     this.\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_acefbf3fcb0faa27b46f8b09595afdb49}{cgNotify} = \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_acefbf3fcb0faa27b46f8b09595afdb49}{cgNotify};
+45     this.\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_ab13a838dedd020e2905d89f9c1bf8209}{dftMgr} = \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_ab13a838dedd020e2905d89f9c1bf8209}{dftMgr};
+46     this.\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_a23a71dcd80a803baf7b04038b519813c}{searchMultipleError} = \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_a23a71dcd80a803baf7b04038b519813c}{searchMultipleError};
+47 
+48   \}
+\end{DoxyCode}
+
+
+\subsection{Member Function Documentation}
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Inspector\+Listener\+Mode\+Notifications@{gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Inspector\+Listener\+Mode\+Notifications}!choice\+Generator\+Advanced@{choice\+Generator\+Advanced}}
+\index{choice\+Generator\+Advanced@{choice\+Generator\+Advanced}!gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Inspector\+Listener\+Mode\+Notifications@{gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Inspector\+Listener\+Mode\+Notifications}}
+\subsubsection[{\texorpdfstring{choice\+Generator\+Advanced(\+V\+M vm, Choice\+Generator$<$?$>$ current\+C\+G)}{choiceGeneratorAdvanced(VM vm, ChoiceGenerator<?> currentCG)}}]{\setlength{\rightskip}{0pt plus 5cm}void gov.\+nasa.\+jpf.\+inspector.\+server.\+jpf.\+Inspector\+Listener\+Mode\+Notifications.\+choice\+Generator\+Advanced (
+\begin{DoxyParamCaption}
+\item[{VM}]{vm, }
+\item[{Choice\+Generator$<$?$>$}]{current\+CG}
+\end{DoxyParamCaption}
+)}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_a9c653ee8e1d4e0e5139b9fb29ffb9cbd}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_a9c653ee8e1d4e0e5139b9fb29ffb9cbd}
+
+
+Definition at line 181 of file Inspector\+Listener\+Mode\+Notifications.\+java.
+
+
+\begin{DoxyCode}
+181                                                                            \{
+182     \textcolor{keywordflow}{if} (\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_ac9fb2ed8913c14c836cbc14bee1b8634}{DEBUG}) \{
+183       \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_a5db31a7d96790e2bdd746fac8b0f6291}{inspector}.\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_j_p_f_inspector_ab936b10b647a6262639d6474fcba6a16}{getDebugPrintStream}().println(
+184           this.getClass().getSimpleName() + \textcolor{stringliteral}{".choiceGeneratorAdvanced() - cg="} + currentCG + \textcolor{stringliteral}{"
+       processedChoices="}
+185               + currentCG.getProcessedNumberOfChoices());
+186     \}
+187     \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_a5abe9482ab15724302ed6e929ea260ed}{inspState}.\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_inspector_state_impl_a3655365c4f59212cd19568ae17a25d80}{notifyListenerMethodCall}(ListenerMethod.
+      LM\_CHOICE\_GENERATOR\_ADVANCED, vm);
+188     \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_acefbf3fcb0faa27b46f8b09595afdb49}{cgNotify}.\hyperlink{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1choicegenerators_1_1_choice_generator_notifications_a1893b82d82c8c5175fe519fe860f6f42}{notifyChoiceGeneratorAdvance}(currentCG, 
+      \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_a5abe9482ab15724302ed6e929ea260ed}{inspState});
+189     \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_a83c1ce4516815ce2b5d738540a2f969b}{bpMgr}.\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_break_point_handler_a79c904ad644ba709054fa1f0a8c96c15}{checkBreakpoints}(\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_a5abe9482ab15724302ed6e929ea260ed}{inspState});
+190 
+191   \}
+\end{DoxyCode}
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Inspector\+Listener\+Mode\+Notifications@{gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Inspector\+Listener\+Mode\+Notifications}!choice\+Generator\+Processed@{choice\+Generator\+Processed}}
+\index{choice\+Generator\+Processed@{choice\+Generator\+Processed}!gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Inspector\+Listener\+Mode\+Notifications@{gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Inspector\+Listener\+Mode\+Notifications}}
+\subsubsection[{\texorpdfstring{choice\+Generator\+Processed(\+V\+M vm, Choice\+Generator$<$?$>$ processed\+C\+G)}{choiceGeneratorProcessed(VM vm, ChoiceGenerator<?> processedCG)}}]{\setlength{\rightskip}{0pt plus 5cm}void gov.\+nasa.\+jpf.\+inspector.\+server.\+jpf.\+Inspector\+Listener\+Mode\+Notifications.\+choice\+Generator\+Processed (
+\begin{DoxyParamCaption}
+\item[{VM}]{vm, }
+\item[{Choice\+Generator$<$?$>$}]{processed\+CG}
+\end{DoxyParamCaption}
+)}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_a1b867a0c1bc03768a3ebfc82505d99bc}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_a1b867a0c1bc03768a3ebfc82505d99bc}
+
+
+Definition at line 203 of file Inspector\+Listener\+Mode\+Notifications.\+java.
+
+
+\begin{DoxyCode}
+203                                                                               \{
+204     \textcolor{keywordflow}{if} (\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_ac9fb2ed8913c14c836cbc14bee1b8634}{DEBUG}) \{
+205       \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_a5db31a7d96790e2bdd746fac8b0f6291}{inspector}.\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_j_p_f_inspector_ab936b10b647a6262639d6474fcba6a16}{getDebugPrintStream}().println(
+206           this.getClass().getSimpleName() + \textcolor{stringliteral}{".choiceGeneratorProcessed() - cg="} + processedCG + \textcolor{stringliteral}{"
+       processedChoices="}
+207               + processedCG.getProcessedNumberOfChoices());
+208     \}
+209   \}
+\end{DoxyCode}
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Inspector\+Listener\+Mode\+Notifications@{gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Inspector\+Listener\+Mode\+Notifications}!choice\+Generator\+Registered@{choice\+Generator\+Registered}}
+\index{choice\+Generator\+Registered@{choice\+Generator\+Registered}!gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Inspector\+Listener\+Mode\+Notifications@{gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Inspector\+Listener\+Mode\+Notifications}}
+\subsubsection[{\texorpdfstring{choice\+Generator\+Registered(\+V\+M vm, Choice\+Generator$<$?$>$ next\+C\+G, Thread\+Info current\+Thread, Instruction executed\+Instruction)}{choiceGeneratorRegistered(VM vm, ChoiceGenerator<?> nextCG, ThreadInfo currentThread, Instruction executedInstruction)}}]{\setlength{\rightskip}{0pt plus 5cm}void gov.\+nasa.\+jpf.\+inspector.\+server.\+jpf.\+Inspector\+Listener\+Mode\+Notifications.\+choice\+Generator\+Registered (
+\begin{DoxyParamCaption}
+\item[{VM}]{vm, }
+\item[{Choice\+Generator$<$?$>$}]{next\+CG, }
+\item[{Thread\+Info}]{current\+Thread, }
+\item[{Instruction}]{executed\+Instruction}
+\end{DoxyParamCaption}
+)}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_acd0ec8fe400f0f0cc5da0f0d71b5d744}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_acd0ec8fe400f0f0cc5da0f0d71b5d744}
+
+
+Definition at line 194 of file Inspector\+Listener\+Mode\+Notifications.\+java.
+
+
+\begin{DoxyCode}
+194                                                                                                            
+                                \{
+195     \textcolor{keywordflow}{if} (\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_ac9fb2ed8913c14c836cbc14bee1b8634}{DEBUG}) \{
+196       \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_a5db31a7d96790e2bdd746fac8b0f6291}{inspector}.\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_j_p_f_inspector_ab936b10b647a6262639d6474fcba6a16}{getDebugPrintStream}().println(
+197           this.getClass().getSimpleName() + \textcolor{stringliteral}{".choiceGeneratorRegistered() - cg="} + nextCG + \textcolor{stringliteral}{"
+       processedChoices="}
+198               + nextCG.getProcessedNumberOfChoices());
+199     \}
+200   \}
+\end{DoxyCode}
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Inspector\+Listener\+Mode\+Notifications@{gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Inspector\+Listener\+Mode\+Notifications}!choice\+Generator\+Set@{choice\+Generator\+Set}}
+\index{choice\+Generator\+Set@{choice\+Generator\+Set}!gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Inspector\+Listener\+Mode\+Notifications@{gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Inspector\+Listener\+Mode\+Notifications}}
+\subsubsection[{\texorpdfstring{choice\+Generator\+Set(\+V\+M vm, Choice\+Generator$<$?$>$ new\+C\+G)}{choiceGeneratorSet(VM vm, ChoiceGenerator<?> newCG)}}]{\setlength{\rightskip}{0pt plus 5cm}void gov.\+nasa.\+jpf.\+inspector.\+server.\+jpf.\+Inspector\+Listener\+Mode\+Notifications.\+choice\+Generator\+Set (
+\begin{DoxyParamCaption}
+\item[{VM}]{vm, }
+\item[{Choice\+Generator$<$?$>$}]{new\+CG}
+\end{DoxyParamCaption}
+)}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_a09d0ca6dbe255095cacf387c366b0055}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_a09d0ca6dbe255095cacf387c366b0055}
+
+
+Definition at line 172 of file Inspector\+Listener\+Mode\+Notifications.\+java.
+
+
+\begin{DoxyCode}
+172                                                                   \{
+173     \textcolor{keywordflow}{if} (\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_ac9fb2ed8913c14c836cbc14bee1b8634}{DEBUG}) \{
+174       \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_a5db31a7d96790e2bdd746fac8b0f6291}{inspector}.\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_j_p_f_inspector_ab936b10b647a6262639d6474fcba6a16}{getDebugPrintStream}().println(
+175           this.getClass().getSimpleName() + \textcolor{stringliteral}{".choiceGeneratorSet() - cg="} + newCG + \textcolor{stringliteral}{" processedChoices="}
+176               + newCG.getProcessedNumberOfChoices());
+177     \}
+178   \}
+\end{DoxyCode}
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Inspector\+Listener\+Mode\+Notifications@{gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Inspector\+Listener\+Mode\+Notifications}!class\+Loaded@{class\+Loaded}}
+\index{class\+Loaded@{class\+Loaded}!gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Inspector\+Listener\+Mode\+Notifications@{gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Inspector\+Listener\+Mode\+Notifications}}
+\subsubsection[{\texorpdfstring{class\+Loaded(\+V\+M vm, Class\+Info loaded\+Class)}{classLoaded(VM vm, ClassInfo loadedClass)}}]{\setlength{\rightskip}{0pt plus 5cm}void gov.\+nasa.\+jpf.\+inspector.\+server.\+jpf.\+Inspector\+Listener\+Mode\+Notifications.\+class\+Loaded (
+\begin{DoxyParamCaption}
+\item[{VM}]{vm, }
+\item[{Class\+Info}]{loaded\+Class}
+\end{DoxyParamCaption}
+)}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_a0fd53dadfb837b44551cbfeea9083121}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_a0fd53dadfb837b44551cbfeea9083121}
+
+
+Definition at line 120 of file Inspector\+Listener\+Mode\+Notifications.\+java.
+
+
+\begin{DoxyCode}
+120                                                         \{
+121     \textcolor{keywordflow}{if} (\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_ac9fb2ed8913c14c836cbc14bee1b8634}{DEBUG}) \{
+122       \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_a5db31a7d96790e2bdd746fac8b0f6291}{inspector}.\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_j_p_f_inspector_ab936b10b647a6262639d6474fcba6a16}{getDebugPrintStream}().println(this.getClass().getSimpleName() +
+       \textcolor{stringliteral}{".classLoaded()"});
+123     \}
+124   \}
+\end{DoxyCode}
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Inspector\+Listener\+Mode\+Notifications@{gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Inspector\+Listener\+Mode\+Notifications}!exception\+Thrown@{exception\+Thrown}}
+\index{exception\+Thrown@{exception\+Thrown}!gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Inspector\+Listener\+Mode\+Notifications@{gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Inspector\+Listener\+Mode\+Notifications}}
+\subsubsection[{\texorpdfstring{exception\+Thrown(\+V\+M vm, Thread\+Info current\+Thread, Element\+Info thrown\+Exception)}{exceptionThrown(VM vm, ThreadInfo currentThread, ElementInfo thrownException)}}]{\setlength{\rightskip}{0pt plus 5cm}void gov.\+nasa.\+jpf.\+inspector.\+server.\+jpf.\+Inspector\+Listener\+Mode\+Notifications.\+exception\+Thrown (
+\begin{DoxyParamCaption}
+\item[{VM}]{vm, }
+\item[{Thread\+Info}]{current\+Thread, }
+\item[{Element\+Info}]{thrown\+Exception}
+\end{DoxyParamCaption}
+)}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_a0970e3cb2d6ea586507f7cd31c2eaeed}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_a0970e3cb2d6ea586507f7cd31c2eaeed}
+
+
+Definition at line 163 of file Inspector\+Listener\+Mode\+Notifications.\+java.
+
+
+\begin{DoxyCode}
+163                                                                                             \{
+164     \textcolor{keywordflow}{if} (\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_ac9fb2ed8913c14c836cbc14bee1b8634}{DEBUG}) \{
+165       \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_a5db31a7d96790e2bdd746fac8b0f6291}{inspector}.\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_j_p_f_inspector_ab936b10b647a6262639d6474fcba6a16}{getDebugPrintStream}().println(this.getClass().getSimpleName() +
+       \textcolor{stringliteral}{".objectCreated()"});
+166     \}
+167     \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_a5abe9482ab15724302ed6e929ea260ed}{inspState}.\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_inspector_state_impl_a3655365c4f59212cd19568ae17a25d80}{notifyListenerMethodCall}(ListenerMethod.LM\_EXCEPTION\_THROWN,
+       vm);
+168     \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_a83c1ce4516815ce2b5d738540a2f969b}{bpMgr}.\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_break_point_handler_a79c904ad644ba709054fa1f0a8c96c15}{checkBreakpoints}(\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_a5abe9482ab15724302ed6e929ea260ed}{inspState});
+169   \}
+\end{DoxyCode}
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Inspector\+Listener\+Mode\+Notifications@{gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Inspector\+Listener\+Mode\+Notifications}!gc\+Begin@{gc\+Begin}}
+\index{gc\+Begin@{gc\+Begin}!gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Inspector\+Listener\+Mode\+Notifications@{gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Inspector\+Listener\+Mode\+Notifications}}
+\subsubsection[{\texorpdfstring{gc\+Begin(\+V\+M vm)}{gcBegin(VM vm)}}]{\setlength{\rightskip}{0pt plus 5cm}void gov.\+nasa.\+jpf.\+inspector.\+server.\+jpf.\+Inspector\+Listener\+Mode\+Notifications.\+gc\+Begin (
+\begin{DoxyParamCaption}
+\item[{VM}]{vm}
+\end{DoxyParamCaption}
+)}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_afa9e3264889fa585072c32e97a5bb8aa}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_afa9e3264889fa585072c32e97a5bb8aa}
+
+
+Definition at line 127 of file Inspector\+Listener\+Mode\+Notifications.\+java.
+
+
+\begin{DoxyCode}
+127                               \{
+128     \textcolor{keywordflow}{if} (\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_ac9fb2ed8913c14c836cbc14bee1b8634}{DEBUG}) \{
+129       \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_a5db31a7d96790e2bdd746fac8b0f6291}{inspector}.\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_j_p_f_inspector_ab936b10b647a6262639d6474fcba6a16}{getDebugPrintStream}().println(this.getClass().getSimpleName() +
+       \textcolor{stringliteral}{".gcBegin()"});
+130     \}
+131     \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_a5abe9482ab15724302ed6e929ea260ed}{inspState}.\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_inspector_state_impl_a3655365c4f59212cd19568ae17a25d80}{notifyListenerMethodCall}(ListenerMethod.LM\_GC\_BEGIN, vm);
+132     \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_a83c1ce4516815ce2b5d738540a2f969b}{bpMgr}.\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_break_point_handler_a79c904ad644ba709054fa1f0a8c96c15}{checkBreakpoints}(\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_a5abe9482ab15724302ed6e929ea260ed}{inspState});
+133   \}
+\end{DoxyCode}
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Inspector\+Listener\+Mode\+Notifications@{gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Inspector\+Listener\+Mode\+Notifications}!gc\+End@{gc\+End}}
+\index{gc\+End@{gc\+End}!gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Inspector\+Listener\+Mode\+Notifications@{gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Inspector\+Listener\+Mode\+Notifications}}
+\subsubsection[{\texorpdfstring{gc\+End(\+V\+M vm)}{gcEnd(VM vm)}}]{\setlength{\rightskip}{0pt plus 5cm}void gov.\+nasa.\+jpf.\+inspector.\+server.\+jpf.\+Inspector\+Listener\+Mode\+Notifications.\+gc\+End (
+\begin{DoxyParamCaption}
+\item[{VM}]{vm}
+\end{DoxyParamCaption}
+)}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_a29c03347497db8730b3160d8a25f29e1}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_a29c03347497db8730b3160d8a25f29e1}
+
+
+Definition at line 136 of file Inspector\+Listener\+Mode\+Notifications.\+java.
+
+
+\begin{DoxyCode}
+136                             \{
+137     \textcolor{keywordflow}{if} (\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_ac9fb2ed8913c14c836cbc14bee1b8634}{DEBUG}) \{
+138       \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_a5db31a7d96790e2bdd746fac8b0f6291}{inspector}.\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_j_p_f_inspector_ab936b10b647a6262639d6474fcba6a16}{getDebugPrintStream}().println(this.getClass().getSimpleName() +
+       \textcolor{stringliteral}{".gcEnd()"});
+139     \}
+140     \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_a5abe9482ab15724302ed6e929ea260ed}{inspState}.\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_inspector_state_impl_a3655365c4f59212cd19568ae17a25d80}{notifyListenerMethodCall}(ListenerMethod.LM\_GC\_END, vm);
+141     \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_a83c1ce4516815ce2b5d738540a2f969b}{bpMgr}.\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_break_point_handler_a79c904ad644ba709054fa1f0a8c96c15}{checkBreakpoints}(\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_a5abe9482ab15724302ed6e929ea260ed}{inspState});
+142   \}
+\end{DoxyCode}
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Inspector\+Listener\+Mode\+Notifications@{gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Inspector\+Listener\+Mode\+Notifications}!instruction\+Executed@{instruction\+Executed}}
+\index{instruction\+Executed@{instruction\+Executed}!gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Inspector\+Listener\+Mode\+Notifications@{gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Inspector\+Listener\+Mode\+Notifications}}
+\subsubsection[{\texorpdfstring{instruction\+Executed(\+V\+M vm, Thread\+Info current\+Thread, Instruction next\+Instruction, Instruction executed\+Instruction)}{instructionExecuted(VM vm, ThreadInfo currentThread, Instruction nextInstruction, Instruction executedInstruction)}}]{\setlength{\rightskip}{0pt plus 5cm}void gov.\+nasa.\+jpf.\+inspector.\+server.\+jpf.\+Inspector\+Listener\+Mode\+Notifications.\+instruction\+Executed (
+\begin{DoxyParamCaption}
+\item[{VM}]{vm, }
+\item[{Thread\+Info}]{current\+Thread, }
+\item[{Instruction}]{next\+Instruction, }
+\item[{Instruction}]{executed\+Instruction}
+\end{DoxyParamCaption}
+)}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_ae3acd4952ad746d872ec8a8518078bf8}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_ae3acd4952ad746d872ec8a8518078bf8}
+
+
+Definition at line 108 of file Inspector\+Listener\+Mode\+Notifications.\+java.
+
+
+\begin{DoxyCode}
+108                                                                                                            
+                            \{
+109 
+110     \textcolor{keywordflow}{if} (\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_ac9fb2ed8913c14c836cbc14bee1b8634}{DEBUG}) \{
+111       \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_a5db31a7d96790e2bdd746fac8b0f6291}{inspector}.\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_j_p_f_inspector_ab936b10b647a6262639d6474fcba6a16}{getDebugPrintStream}().println(
+112           this.getClass().getSimpleName() + \textcolor{stringliteral}{".instructionExecuted(lastInstr="} + executedInstruction + \textcolor{stringliteral}{",
+       loc="} + executedInstruction.getFileLocation()
+113               + \textcolor{stringliteral}{")"});
+114     \}
+115     \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_a5abe9482ab15724302ed6e929ea260ed}{inspState}.\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_inspector_state_impl_ab4f24df2dfae833b81bd5b6e1cb28f8c}{instructionExecuted}(vm);
+116     \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_a83c1ce4516815ce2b5d738540a2f969b}{bpMgr}.\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_break_point_handler_a79c904ad644ba709054fa1f0a8c96c15}{checkBreakpoints}(\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_a5abe9482ab15724302ed6e929ea260ed}{inspState});
+117   \}
+\end{DoxyCode}
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Inspector\+Listener\+Mode\+Notifications@{gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Inspector\+Listener\+Mode\+Notifications}!object\+Created@{object\+Created}}
+\index{object\+Created@{object\+Created}!gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Inspector\+Listener\+Mode\+Notifications@{gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Inspector\+Listener\+Mode\+Notifications}}
+\subsubsection[{\texorpdfstring{object\+Created(\+V\+M vm, Thread\+Info current\+Thread, Element\+Info new\+Object)}{objectCreated(VM vm, ThreadInfo currentThread, ElementInfo newObject)}}]{\setlength{\rightskip}{0pt plus 5cm}void gov.\+nasa.\+jpf.\+inspector.\+server.\+jpf.\+Inspector\+Listener\+Mode\+Notifications.\+object\+Created (
+\begin{DoxyParamCaption}
+\item[{VM}]{vm, }
+\item[{Thread\+Info}]{current\+Thread, }
+\item[{Element\+Info}]{new\+Object}
+\end{DoxyParamCaption}
+)}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_a803f93af31f646c3fd8b408c846cd757}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_a803f93af31f646c3fd8b408c846cd757}
+
+
+Definition at line 145 of file Inspector\+Listener\+Mode\+Notifications.\+java.
+
+
+\begin{DoxyCode}
+145                                                                                     \{
+146     \textcolor{keywordflow}{if} (\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_ac9fb2ed8913c14c836cbc14bee1b8634}{DEBUG}) \{
+147       \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_a5db31a7d96790e2bdd746fac8b0f6291}{inspector}.\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_j_p_f_inspector_ab936b10b647a6262639d6474fcba6a16}{getDebugPrintStream}().println(this.getClass().getSimpleName() +
+       \textcolor{stringliteral}{".objectCreated()"});
+148     \}
+149     \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_a5abe9482ab15724302ed6e929ea260ed}{inspState}.\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_inspector_state_impl_a3655365c4f59212cd19568ae17a25d80}{notifyListenerMethodCall}(ListenerMethod.LM\_OBJECT\_CREATED, 
+      vm);
+150     \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_a83c1ce4516815ce2b5d738540a2f969b}{bpMgr}.\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_break_point_handler_a79c904ad644ba709054fa1f0a8c96c15}{checkBreakpoints}(\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_a5abe9482ab15724302ed6e929ea260ed}{inspState});
+151   \}
+\end{DoxyCode}
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Inspector\+Listener\+Mode\+Notifications@{gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Inspector\+Listener\+Mode\+Notifications}!object\+Released@{object\+Released}}
+\index{object\+Released@{object\+Released}!gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Inspector\+Listener\+Mode\+Notifications@{gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Inspector\+Listener\+Mode\+Notifications}}
+\subsubsection[{\texorpdfstring{object\+Released(\+V\+M vm, Thread\+Info current\+Thread, Element\+Info released\+Object)}{objectReleased(VM vm, ThreadInfo currentThread, ElementInfo releasedObject)}}]{\setlength{\rightskip}{0pt plus 5cm}void gov.\+nasa.\+jpf.\+inspector.\+server.\+jpf.\+Inspector\+Listener\+Mode\+Notifications.\+object\+Released (
+\begin{DoxyParamCaption}
+\item[{VM}]{vm, }
+\item[{Thread\+Info}]{current\+Thread, }
+\item[{Element\+Info}]{released\+Object}
+\end{DoxyParamCaption}
+)}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_ab289557a81113a2441a39718e7765408}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_ab289557a81113a2441a39718e7765408}
+
+
+Definition at line 154 of file Inspector\+Listener\+Mode\+Notifications.\+java.
+
+
+\begin{DoxyCode}
+154                                                                                           \{
+155     \textcolor{keywordflow}{if} (\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_ac9fb2ed8913c14c836cbc14bee1b8634}{DEBUG}) \{
+156       \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_a5db31a7d96790e2bdd746fac8b0f6291}{inspector}.\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_j_p_f_inspector_ab936b10b647a6262639d6474fcba6a16}{getDebugPrintStream}().println(this.getClass().getSimpleName() +
+       \textcolor{stringliteral}{".objectCreated()"});
+157     \}
+158     \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_a5abe9482ab15724302ed6e929ea260ed}{inspState}.\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_inspector_state_impl_a3655365c4f59212cd19568ae17a25d80}{notifyListenerMethodCall}(ListenerMethod.LM\_OBJECT\_RELEASED, 
+      vm);
+159     \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_a83c1ce4516815ce2b5d738540a2f969b}{bpMgr}.\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_break_point_handler_a79c904ad644ba709054fa1f0a8c96c15}{checkBreakpoints}(\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_a5abe9482ab15724302ed6e929ea260ed}{inspState});
+160   \}
+\end{DoxyCode}
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Inspector\+Listener\+Mode\+Notifications@{gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Inspector\+Listener\+Mode\+Notifications}!property\+Violated@{property\+Violated}}
+\index{property\+Violated@{property\+Violated}!gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Inspector\+Listener\+Mode\+Notifications@{gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Inspector\+Listener\+Mode\+Notifications}}
+\subsubsection[{\texorpdfstring{property\+Violated(\+Search search)}{propertyViolated(Search search)}}]{\setlength{\rightskip}{0pt plus 5cm}void gov.\+nasa.\+jpf.\+inspector.\+server.\+jpf.\+Inspector\+Listener\+Mode\+Notifications.\+property\+Violated (
+\begin{DoxyParamCaption}
+\item[{Search}]{search}
+\end{DoxyParamCaption}
+)}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_adfa0199ca5efce48d7fe49c2ee9a72ba}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_adfa0199ca5efce48d7fe49c2ee9a72ba}
+
+
+Definition at line 221 of file Inspector\+Listener\+Mode\+Notifications.\+java.
+
+
+\begin{DoxyCode}
+221                                                \{
+222     \textcolor{keywordflow}{if} (\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_ac9fb2ed8913c14c836cbc14bee1b8634}{DEBUG}) \{
+223       \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_a5db31a7d96790e2bdd746fac8b0f6291}{inspector}.\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_j_p_f_inspector_ab936b10b647a6262639d6474fcba6a16}{getDebugPrintStream}().println(this.getClass().getSimpleName() +
+       \textcolor{stringliteral}{".propertyViolated()"});
+224     \}
+225     \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_a5abe9482ab15724302ed6e929ea260ed}{inspState}.\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_inspector_state_impl_a48d8ba84b9915f6a1c6968c80a23bd2f}{stateChanged}(search, ListenerMethod.LM\_PROPERTY\_VIOLATED);
+226 
+227     \textcolor{comment}{// Simulate behavior of the JPF with original settings}
+228     \textcolor{keywordflow}{if} (!\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_a23a71dcd80a803baf7b04038b519813c}{searchMultipleError}) \{
+229       \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_a5db31a7d96790e2bdd746fac8b0f6291}{inspector}.\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_j_p_f_inspector_ae952010e74e90389ddb3cef055a0d592}{getStopHolder}().\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_stop_holder_a4b0dc5f3af8b6a397e93937cf733e76b}{terminateAfterResume}();
+230     \}
+231 
+232     \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_a83c1ce4516815ce2b5d738540a2f969b}{bpMgr}.\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_break_point_handler_a79c904ad644ba709054fa1f0a8c96c15}{checkBreakpoints}(\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_a5abe9482ab15724302ed6e929ea260ed}{inspState});
+233     \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_a4e0ff8a57f15b3648f5e1ed3067e50ed}{cmdMgr}.\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_commands_manager_a282956ac6d94be27f91bd6a944883b2a}{tryStop}(\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_a5abe9482ab15724302ed6e929ea260ed}{inspState});
+234 
+235     super.propertyViolated(search);
+236   \}
+\end{DoxyCode}
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Inspector\+Listener\+Mode\+Notifications@{gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Inspector\+Listener\+Mode\+Notifications}!search\+Constraint\+Hit@{search\+Constraint\+Hit}}
+\index{search\+Constraint\+Hit@{search\+Constraint\+Hit}!gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Inspector\+Listener\+Mode\+Notifications@{gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Inspector\+Listener\+Mode\+Notifications}}
+\subsubsection[{\texorpdfstring{search\+Constraint\+Hit(\+Search search)}{searchConstraintHit(Search search)}}]{\setlength{\rightskip}{0pt plus 5cm}void gov.\+nasa.\+jpf.\+inspector.\+server.\+jpf.\+Inspector\+Listener\+Mode\+Notifications.\+search\+Constraint\+Hit (
+\begin{DoxyParamCaption}
+\item[{Search}]{search}
+\end{DoxyParamCaption}
+)}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_a3e51df1ea5329cf29dfec2e7d9651dbc}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_a3e51df1ea5329cf29dfec2e7d9651dbc}
+
+
+Definition at line 92 of file Inspector\+Listener\+Mode\+Notifications.\+java.
+
+
+\begin{DoxyCode}
+92                                                   \{
+93     \textcolor{keywordflow}{if} (\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_ac9fb2ed8913c14c836cbc14bee1b8634}{DEBUG}) \{
+94       \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_a5db31a7d96790e2bdd746fac8b0f6291}{inspector}.\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_j_p_f_inspector_ab936b10b647a6262639d6474fcba6a16}{getDebugPrintStream}().println(this.getClass().getSimpleName() +
+       \textcolor{stringliteral}{".searchConstraintHit()"});
+95     \}
+96     \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_a5abe9482ab15724302ed6e929ea260ed}{inspState}.\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_inspector_state_impl_a48d8ba84b9915f6a1c6968c80a23bd2f}{stateChanged}(search, ListenerMethod.LM\_SEARCH\_CONSTRAINT\_HIT);
+97     \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_a4e0ff8a57f15b3648f5e1ed3067e50ed}{cmdMgr}.\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_commands_manager_a282956ac6d94be27f91bd6a944883b2a}{tryStop}(\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_a5abe9482ab15724302ed6e929ea260ed}{inspState});
+98   \}
+\end{DoxyCode}
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Inspector\+Listener\+Mode\+Notifications@{gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Inspector\+Listener\+Mode\+Notifications}!search\+Finished@{search\+Finished}}
+\index{search\+Finished@{search\+Finished}!gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Inspector\+Listener\+Mode\+Notifications@{gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Inspector\+Listener\+Mode\+Notifications}}
+\subsubsection[{\texorpdfstring{search\+Finished(\+Search search)}{searchFinished(Search search)}}]{\setlength{\rightskip}{0pt plus 5cm}void gov.\+nasa.\+jpf.\+inspector.\+server.\+jpf.\+Inspector\+Listener\+Mode\+Notifications.\+search\+Finished (
+\begin{DoxyParamCaption}
+\item[{Search}]{search}
+\end{DoxyParamCaption}
+)}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_a50cd741925c2442f6ceb8e14c2493726}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_a50cd741925c2442f6ceb8e14c2493726}
+
+
+Definition at line 101 of file Inspector\+Listener\+Mode\+Notifications.\+java.
+
+
+\begin{DoxyCode}
+101                                              \{
+102     \textcolor{keywordflow}{if} (\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_ac9fb2ed8913c14c836cbc14bee1b8634}{DEBUG}) \{
+103       \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_a5db31a7d96790e2bdd746fac8b0f6291}{inspector}.\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_j_p_f_inspector_ab936b10b647a6262639d6474fcba6a16}{getDebugPrintStream}().println(this.getClass().getSimpleName() +
+       \textcolor{stringliteral}{".searchFinished()"});
+104     \}
+105   \}
+\end{DoxyCode}
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Inspector\+Listener\+Mode\+Notifications@{gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Inspector\+Listener\+Mode\+Notifications}!search\+Started@{search\+Started}}
+\index{search\+Started@{search\+Started}!gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Inspector\+Listener\+Mode\+Notifications@{gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Inspector\+Listener\+Mode\+Notifications}}
+\subsubsection[{\texorpdfstring{search\+Started(\+Search search)}{searchStarted(Search search)}}]{\setlength{\rightskip}{0pt plus 5cm}void gov.\+nasa.\+jpf.\+inspector.\+server.\+jpf.\+Inspector\+Listener\+Mode\+Notifications.\+search\+Started (
+\begin{DoxyParamCaption}
+\item[{Search}]{search}
+\end{DoxyParamCaption}
+)}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_a1797ff7e26e687cc2440cc2bed63c6b9}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_a1797ff7e26e687cc2440cc2bed63c6b9}
+
+
+Definition at line 83 of file Inspector\+Listener\+Mode\+Notifications.\+java.
+
+
+\begin{DoxyCode}
+83                                             \{
+84     \textcolor{keywordflow}{if} (\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_ac9fb2ed8913c14c836cbc14bee1b8634}{DEBUG}) \{
+85       \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_a5db31a7d96790e2bdd746fac8b0f6291}{inspector}.\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_j_p_f_inspector_ab936b10b647a6262639d6474fcba6a16}{getDebugPrintStream}().println(this.getClass().getSimpleName() +
+       \textcolor{stringliteral}{".searchStarted()"});
+86     \}
+87     \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_a5abe9482ab15724302ed6e929ea260ed}{inspState}.\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_inspector_state_impl_a48d8ba84b9915f6a1c6968c80a23bd2f}{stateChanged}(search, ListenerMethod.LM\_NOT\_IN\_LIST);
+88     \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_a4e0ff8a57f15b3648f5e1ed3067e50ed}{cmdMgr}.\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_commands_manager_a282956ac6d94be27f91bd6a944883b2a}{tryStop}(\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_a5abe9482ab15724302ed6e929ea260ed}{inspState});
+89   \}
+\end{DoxyCode}
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Inspector\+Listener\+Mode\+Notifications@{gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Inspector\+Listener\+Mode\+Notifications}!state\+Advanced@{state\+Advanced}}
+\index{state\+Advanced@{state\+Advanced}!gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Inspector\+Listener\+Mode\+Notifications@{gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Inspector\+Listener\+Mode\+Notifications}}
+\subsubsection[{\texorpdfstring{state\+Advanced(\+Search search)}{stateAdvanced(Search search)}}]{\setlength{\rightskip}{0pt plus 5cm}void gov.\+nasa.\+jpf.\+inspector.\+server.\+jpf.\+Inspector\+Listener\+Mode\+Notifications.\+state\+Advanced (
+\begin{DoxyParamCaption}
+\item[{Search}]{search}
+\end{DoxyParamCaption}
+)}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_a9439523deb90968086403f34580b33dc}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_a9439523deb90968086403f34580b33dc}
+
+
+Definition at line 51 of file Inspector\+Listener\+Mode\+Notifications.\+java.
+
+
+\begin{DoxyCode}
+51                                             \{
+52     \textcolor{keywordflow}{if} (\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_ac9fb2ed8913c14c836cbc14bee1b8634}{DEBUG}) \{
+53       \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_a5db31a7d96790e2bdd746fac8b0f6291}{inspector}.\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_j_p_f_inspector_ab936b10b647a6262639d6474fcba6a16}{getDebugPrintStream}().println(this.getClass().getSimpleName() +
+       \textcolor{stringliteral}{".stateAdvanced()"});
+54     \}
+55     \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_a5abe9482ab15724302ed6e929ea260ed}{inspState}.\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_inspector_state_impl_a48d8ba84b9915f6a1c6968c80a23bd2f}{stateChanged}(search, ListenerMethod.LM\_STATE\_ADVANCED);
+56     \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_a83c1ce4516815ce2b5d738540a2f969b}{bpMgr}.\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_break_point_handler_ae57e22664ebb2cd97522c03c9514cd0e}{forwardJPFStep}(\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_a5abe9482ab15724302ed6e929ea260ed}{inspState});
+57     \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_a83c1ce4516815ce2b5d738540a2f969b}{bpMgr}.\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_break_point_handler_a79c904ad644ba709054fa1f0a8c96c15}{checkBreakpoints}(\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_a5abe9482ab15724302ed6e929ea260ed}{inspState});
+58     \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_ab13a838dedd020e2905d89f9c1bf8209}{dftMgr}.\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_default_forward_trace_manager_ae4044b229d383c2bc4375d1dadf70f0c}{forwardStep}(search);
+59     \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_a4e0ff8a57f15b3648f5e1ed3067e50ed}{cmdMgr}.\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_commands_manager_a282956ac6d94be27f91bd6a944883b2a}{tryStop}(\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_a5abe9482ab15724302ed6e929ea260ed}{inspState});
+60   \}
+\end{DoxyCode}
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Inspector\+Listener\+Mode\+Notifications@{gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Inspector\+Listener\+Mode\+Notifications}!state\+Backtracked@{state\+Backtracked}}
+\index{state\+Backtracked@{state\+Backtracked}!gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Inspector\+Listener\+Mode\+Notifications@{gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Inspector\+Listener\+Mode\+Notifications}}
+\subsubsection[{\texorpdfstring{state\+Backtracked(\+Search search)}{stateBacktracked(Search search)}}]{\setlength{\rightskip}{0pt plus 5cm}void gov.\+nasa.\+jpf.\+inspector.\+server.\+jpf.\+Inspector\+Listener\+Mode\+Notifications.\+state\+Backtracked (
+\begin{DoxyParamCaption}
+\item[{Search}]{search}
+\end{DoxyParamCaption}
+)}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_a33707229c3a3657b64f924e34c492220}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_a33707229c3a3657b64f924e34c492220}
+
+
+Definition at line 72 of file Inspector\+Listener\+Mode\+Notifications.\+java.
+
+
+\begin{DoxyCode}
+72                                                \{
+73     \textcolor{keywordflow}{if} (\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_ac9fb2ed8913c14c836cbc14bee1b8634}{DEBUG}) \{
+74       \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_a5db31a7d96790e2bdd746fac8b0f6291}{inspector}.\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_j_p_f_inspector_ab936b10b647a6262639d6474fcba6a16}{getDebugPrintStream}().println(this.getClass().getSimpleName() +
+       \textcolor{stringliteral}{".stateBacktracked()"});
+75     \}
+76     \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_a5abe9482ab15724302ed6e929ea260ed}{inspState}.\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_inspector_state_impl_a48d8ba84b9915f6a1c6968c80a23bd2f}{stateChanged}(search, ListenerMethod.LM\_STATE\_BACKTRACKED);
+77     \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_a83c1ce4516815ce2b5d738540a2f969b}{bpMgr}.\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_break_point_handler_a807b3ab4a9e132e1e20d6ecf72e48c5e}{backwardJPFStep}(\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_a5abe9482ab15724302ed6e929ea260ed}{inspState});
+78     \textcolor{comment}{// dftMgr.extendTrace(search.getTransition());}
+79     \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_a4e0ff8a57f15b3648f5e1ed3067e50ed}{cmdMgr}.\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_commands_manager_a282956ac6d94be27f91bd6a944883b2a}{tryStop}(\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_a5abe9482ab15724302ed6e929ea260ed}{inspState});
+80   \}
+\end{DoxyCode}
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Inspector\+Listener\+Mode\+Notifications@{gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Inspector\+Listener\+Mode\+Notifications}!state\+Processed@{state\+Processed}}
+\index{state\+Processed@{state\+Processed}!gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Inspector\+Listener\+Mode\+Notifications@{gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Inspector\+Listener\+Mode\+Notifications}}
+\subsubsection[{\texorpdfstring{state\+Processed(\+Search search)}{stateProcessed(Search search)}}]{\setlength{\rightskip}{0pt plus 5cm}void gov.\+nasa.\+jpf.\+inspector.\+server.\+jpf.\+Inspector\+Listener\+Mode\+Notifications.\+state\+Processed (
+\begin{DoxyParamCaption}
+\item[{Search}]{search}
+\end{DoxyParamCaption}
+)}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_a39303d61a2010fb94ecc923d857ea44e}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_a39303d61a2010fb94ecc923d857ea44e}
+
+
+Definition at line 63 of file Inspector\+Listener\+Mode\+Notifications.\+java.
+
+
+\begin{DoxyCode}
+63                                              \{
+64     \textcolor{keywordflow}{if} (\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_ac9fb2ed8913c14c836cbc14bee1b8634}{DEBUG}) \{
+65       \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_a5db31a7d96790e2bdd746fac8b0f6291}{inspector}.\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_j_p_f_inspector_ab936b10b647a6262639d6474fcba6a16}{getDebugPrintStream}().println(this.getClass().getSimpleName() +
+       \textcolor{stringliteral}{".stateProcessed()"});
+66     \}
+67     \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_a5abe9482ab15724302ed6e929ea260ed}{inspState}.\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_inspector_state_impl_a48d8ba84b9915f6a1c6968c80a23bd2f}{stateChanged}(search, ListenerMethod.LM\_NOT\_IN\_LIST);
+68     \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_a4e0ff8a57f15b3648f5e1ed3067e50ed}{cmdMgr}.\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_commands_manager_a282956ac6d94be27f91bd6a944883b2a}{tryStop}(\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_a5abe9482ab15724302ed6e929ea260ed}{inspState});
+69   \}
+\end{DoxyCode}
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Inspector\+Listener\+Mode\+Notifications@{gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Inspector\+Listener\+Mode\+Notifications}!thread\+Scheduled@{thread\+Scheduled}}
+\index{thread\+Scheduled@{thread\+Scheduled}!gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Inspector\+Listener\+Mode\+Notifications@{gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Inspector\+Listener\+Mode\+Notifications}}
+\subsubsection[{\texorpdfstring{thread\+Scheduled(\+V\+M vm, Thread\+Info scheduled\+Thread)}{threadScheduled(VM vm, ThreadInfo scheduledThread)}}]{\setlength{\rightskip}{0pt plus 5cm}void gov.\+nasa.\+jpf.\+inspector.\+server.\+jpf.\+Inspector\+Listener\+Mode\+Notifications.\+thread\+Scheduled (
+\begin{DoxyParamCaption}
+\item[{VM}]{vm, }
+\item[{Thread\+Info}]{scheduled\+Thread}
+\end{DoxyParamCaption}
+)}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_a83b583b869370cfa0ff5ef99cd935b91}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_a83b583b869370cfa0ff5ef99cd935b91}
+
+
+Definition at line 212 of file Inspector\+Listener\+Mode\+Notifications.\+java.
+
+
+\begin{DoxyCode}
+212                                                                  \{
+213     \textcolor{keywordflow}{if} (\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_ac9fb2ed8913c14c836cbc14bee1b8634}{DEBUG}) \{
+214       \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_a5db31a7d96790e2bdd746fac8b0f6291}{inspector}.\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_j_p_f_inspector_ab936b10b647a6262639d6474fcba6a16}{getDebugPrintStream}().println(this.getClass().getSimpleName() +
+       \textcolor{stringliteral}{".threadScheduled()"});
+215     \}
+216     \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_a5abe9482ab15724302ed6e929ea260ed}{inspState}.\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_inspector_state_impl_a3655365c4f59212cd19568ae17a25d80}{notifyListenerMethodCall}(ListenerMethod.LM\_THREAD\_SCHEDULED,
+       vm);
+217     \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_a83c1ce4516815ce2b5d738540a2f969b}{bpMgr}.\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_break_point_handler_a79c904ad644ba709054fa1f0a8c96c15}{checkBreakpoints}(\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_a5abe9482ab15724302ed6e929ea260ed}{inspState});
+218   \}
+\end{DoxyCode}
+
+
+\subsection{Member Data Documentation}
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Inspector\+Listener\+Mode\+Notifications@{gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Inspector\+Listener\+Mode\+Notifications}!bp\+Mgr@{bp\+Mgr}}
+\index{bp\+Mgr@{bp\+Mgr}!gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Inspector\+Listener\+Mode\+Notifications@{gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Inspector\+Listener\+Mode\+Notifications}}
+\subsubsection[{\texorpdfstring{bp\+Mgr}{bpMgr}}]{\setlength{\rightskip}{0pt plus 5cm}final {\bf Break\+Point\+Handler} gov.\+nasa.\+jpf.\+inspector.\+server.\+jpf.\+Inspector\+Listener\+Mode\+Notifications.\+bp\+Mgr\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_a83c1ce4516815ce2b5d738540a2f969b}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_a83c1ce4516815ce2b5d738540a2f969b}
+
+
+Definition at line 24 of file Inspector\+Listener\+Mode\+Notifications.\+java.
+
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Inspector\+Listener\+Mode\+Notifications@{gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Inspector\+Listener\+Mode\+Notifications}!cg\+Notify@{cg\+Notify}}
+\index{cg\+Notify@{cg\+Notify}!gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Inspector\+Listener\+Mode\+Notifications@{gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Inspector\+Listener\+Mode\+Notifications}}
+\subsubsection[{\texorpdfstring{cg\+Notify}{cgNotify}}]{\setlength{\rightskip}{0pt plus 5cm}final {\bf Choice\+Generator\+Notifications} gov.\+nasa.\+jpf.\+inspector.\+server.\+jpf.\+Inspector\+Listener\+Mode\+Notifications.\+cg\+Notify\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_acefbf3fcb0faa27b46f8b09595afdb49}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_acefbf3fcb0faa27b46f8b09595afdb49}
+
+
+Definition at line 25 of file Inspector\+Listener\+Mode\+Notifications.\+java.
+
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Inspector\+Listener\+Mode\+Notifications@{gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Inspector\+Listener\+Mode\+Notifications}!cmd\+Mgr@{cmd\+Mgr}}
+\index{cmd\+Mgr@{cmd\+Mgr}!gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Inspector\+Listener\+Mode\+Notifications@{gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Inspector\+Listener\+Mode\+Notifications}}
+\subsubsection[{\texorpdfstring{cmd\+Mgr}{cmdMgr}}]{\setlength{\rightskip}{0pt plus 5cm}final {\bf Commands\+Manager} gov.\+nasa.\+jpf.\+inspector.\+server.\+jpf.\+Inspector\+Listener\+Mode\+Notifications.\+cmd\+Mgr\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_a4e0ff8a57f15b3648f5e1ed3067e50ed}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_a4e0ff8a57f15b3648f5e1ed3067e50ed}
+
+
+Definition at line 23 of file Inspector\+Listener\+Mode\+Notifications.\+java.
+
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Inspector\+Listener\+Mode\+Notifications@{gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Inspector\+Listener\+Mode\+Notifications}!D\+E\+B\+UG@{D\+E\+B\+UG}}
+\index{D\+E\+B\+UG@{D\+E\+B\+UG}!gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Inspector\+Listener\+Mode\+Notifications@{gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Inspector\+Listener\+Mode\+Notifications}}
+\subsubsection[{\texorpdfstring{D\+E\+B\+UG}{DEBUG}}]{\setlength{\rightskip}{0pt plus 5cm}final boolean gov.\+nasa.\+jpf.\+inspector.\+server.\+jpf.\+Inspector\+Listener\+Mode\+Notifications.\+D\+E\+B\+UG = false\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_ac9fb2ed8913c14c836cbc14bee1b8634}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_ac9fb2ed8913c14c836cbc14bee1b8634}
+
+
+Definition at line 20 of file Inspector\+Listener\+Mode\+Notifications.\+java.
+
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Inspector\+Listener\+Mode\+Notifications@{gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Inspector\+Listener\+Mode\+Notifications}!dft\+Mgr@{dft\+Mgr}}
+\index{dft\+Mgr@{dft\+Mgr}!gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Inspector\+Listener\+Mode\+Notifications@{gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Inspector\+Listener\+Mode\+Notifications}}
+\subsubsection[{\texorpdfstring{dft\+Mgr}{dftMgr}}]{\setlength{\rightskip}{0pt plus 5cm}final {\bf Default\+Forward\+Trace\+Manager} gov.\+nasa.\+jpf.\+inspector.\+server.\+jpf.\+Inspector\+Listener\+Mode\+Notifications.\+dft\+Mgr\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_ab13a838dedd020e2905d89f9c1bf8209}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_ab13a838dedd020e2905d89f9c1bf8209}
+
+
+Definition at line 26 of file Inspector\+Listener\+Mode\+Notifications.\+java.
+
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Inspector\+Listener\+Mode\+Notifications@{gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Inspector\+Listener\+Mode\+Notifications}!inspector@{inspector}}
+\index{inspector@{inspector}!gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Inspector\+Listener\+Mode\+Notifications@{gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Inspector\+Listener\+Mode\+Notifications}}
+\subsubsection[{\texorpdfstring{inspector}{inspector}}]{\setlength{\rightskip}{0pt plus 5cm}final {\bf J\+P\+F\+Inspector} gov.\+nasa.\+jpf.\+inspector.\+server.\+jpf.\+Inspector\+Listener\+Mode\+Notifications.\+inspector\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_a5db31a7d96790e2bdd746fac8b0f6291}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_a5db31a7d96790e2bdd746fac8b0f6291}
+
+
+Definition at line 22 of file Inspector\+Listener\+Mode\+Notifications.\+java.
+
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Inspector\+Listener\+Mode\+Notifications@{gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Inspector\+Listener\+Mode\+Notifications}!insp\+State@{insp\+State}}
+\index{insp\+State@{insp\+State}!gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Inspector\+Listener\+Mode\+Notifications@{gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Inspector\+Listener\+Mode\+Notifications}}
+\subsubsection[{\texorpdfstring{insp\+State}{inspState}}]{\setlength{\rightskip}{0pt plus 5cm}final {\bf Inspector\+State\+Impl} gov.\+nasa.\+jpf.\+inspector.\+server.\+jpf.\+Inspector\+Listener\+Mode\+Notifications.\+insp\+State = new {\bf Inspector\+State\+Impl}()\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_a5abe9482ab15724302ed6e929ea260ed}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_a5abe9482ab15724302ed6e929ea260ed}
+
+
+Definition at line 28 of file Inspector\+Listener\+Mode\+Notifications.\+java.
+
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Inspector\+Listener\+Mode\+Notifications@{gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Inspector\+Listener\+Mode\+Notifications}!search\+Multiple\+Error@{search\+Multiple\+Error}}
+\index{search\+Multiple\+Error@{search\+Multiple\+Error}!gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Inspector\+Listener\+Mode\+Notifications@{gov\+::nasa\+::jpf\+::inspector\+::server\+::jpf\+::\+Inspector\+Listener\+Mode\+Notifications}}
+\subsubsection[{\texorpdfstring{search\+Multiple\+Error}{searchMultipleError}}]{\setlength{\rightskip}{0pt plus 5cm}final boolean gov.\+nasa.\+jpf.\+inspector.\+server.\+jpf.\+Inspector\+Listener\+Mode\+Notifications.\+search\+Multiple\+Error\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_a23a71dcd80a803baf7b04038b519813c}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_inspector_listener_mode_notifications_a23a71dcd80a803baf7b04038b519813c}
+
+
+Definition at line 30 of file Inspector\+Listener\+Mode\+Notifications.\+java.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/gsoc/jpf-\/inspector/src/main/gov/nasa/jpf/inspector/server/jpf/\hyperlink{_inspector_listener_mode_notifications_8java}{Inspector\+Listener\+Mode\+Notifications.\+java}\end{DoxyCompactItemize}

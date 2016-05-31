@@ -1,0 +1,126 @@
+\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1callbacks_1_1commands_1_1_callback_command_generic_info}{}\section{gov.\+nasa.\+jpf.\+inspector.\+server.\+callbacks.\+commands.\+Callback\+Command\+Generic\+Info Class Reference}
+\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1callbacks_1_1commands_1_1_callback_command_generic_info}\index{gov.\+nasa.\+jpf.\+inspector.\+server.\+callbacks.\+commands.\+Callback\+Command\+Generic\+Info@{gov.\+nasa.\+jpf.\+inspector.\+server.\+callbacks.\+commands.\+Callback\+Command\+Generic\+Info}}
+Inheritance diagram for gov.\+nasa.\+jpf.\+inspector.\+server.\+callbacks.\+commands.\+Callback\+Command\+Generic\+Info\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1callbacks_1_1commands_1_1_callback_command_generic_info}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1callbacks_1_1commands_1_1_callback_command_generic_info_a3f08e9622507e785f5d8ad0a3a21b7d6}{Callback\+Command\+Generic\+Info} (String \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1callbacks_1_1commands_1_1_callback_command_generic_info_a8abf18685ad4efcc4655476cd6340c2e}{msg})
+\item 
+void \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1callbacks_1_1commands_1_1_callback_command_generic_info_a8a9547198a54b3807f0de2ed45cb2f9d}{send\+Callback} (\hyperlink{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1interfaces_1_1_inspector_call_backs}{Inspector\+Call\+Backs} callbacks)
+\begin{DoxyCompactList}\small\item\em Called to send represented callback. \end{DoxyCompactList}\item 
+boolean \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1callbacks_1_1commands_1_1_callback_command_generic_info_a64bcc2fce69378fd551d98a25b0dd734}{wait\+J\+P\+F2stop} ()
+\begin{DoxyCompactList}\small\item\em if false callback should be sent as soon as all previous callbacks are processed if true callbacks should be sent if J\+PF is stopped. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+final String \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1callbacks_1_1commands_1_1_callback_command_generic_info_a8abf18685ad4efcc4655476cd6340c2e}{msg}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 6 of file Callback\+Command\+Generic\+Info.\+java.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::callbacks\+::commands\+::\+Callback\+Command\+Generic\+Info@{gov\+::nasa\+::jpf\+::inspector\+::server\+::callbacks\+::commands\+::\+Callback\+Command\+Generic\+Info}!Callback\+Command\+Generic\+Info@{Callback\+Command\+Generic\+Info}}
+\index{Callback\+Command\+Generic\+Info@{Callback\+Command\+Generic\+Info}!gov\+::nasa\+::jpf\+::inspector\+::server\+::callbacks\+::commands\+::\+Callback\+Command\+Generic\+Info@{gov\+::nasa\+::jpf\+::inspector\+::server\+::callbacks\+::commands\+::\+Callback\+Command\+Generic\+Info}}
+\subsubsection[{\texorpdfstring{Callback\+Command\+Generic\+Info(\+String msg)}{CallbackCommandGenericInfo(String msg)}}]{\setlength{\rightskip}{0pt plus 5cm}gov.\+nasa.\+jpf.\+inspector.\+server.\+callbacks.\+commands.\+Callback\+Command\+Generic\+Info.\+Callback\+Command\+Generic\+Info (
+\begin{DoxyParamCaption}
+\item[{String}]{msg}
+\end{DoxyParamCaption}
+)}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1callbacks_1_1commands_1_1_callback_command_generic_info_a3f08e9622507e785f5d8ad0a3a21b7d6}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1callbacks_1_1commands_1_1_callback_command_generic_info_a3f08e9622507e785f5d8ad0a3a21b7d6}
+
+
+Definition at line 10 of file Callback\+Command\+Generic\+Info.\+java.
+
+
+\begin{DoxyCode}
+10                                                  \{
+11     super();
+12     this.\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1callbacks_1_1commands_1_1_callback_command_generic_info_a8abf18685ad4efcc4655476cd6340c2e}{msg} = \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1callbacks_1_1commands_1_1_callback_command_generic_info_a8abf18685ad4efcc4655476cd6340c2e}{msg};
+13   \}
+\end{DoxyCode}
+
+
+\subsection{Member Function Documentation}
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::callbacks\+::commands\+::\+Callback\+Command\+Generic\+Info@{gov\+::nasa\+::jpf\+::inspector\+::server\+::callbacks\+::commands\+::\+Callback\+Command\+Generic\+Info}!send\+Callback@{send\+Callback}}
+\index{send\+Callback@{send\+Callback}!gov\+::nasa\+::jpf\+::inspector\+::server\+::callbacks\+::commands\+::\+Callback\+Command\+Generic\+Info@{gov\+::nasa\+::jpf\+::inspector\+::server\+::callbacks\+::commands\+::\+Callback\+Command\+Generic\+Info}}
+\subsubsection[{\texorpdfstring{send\+Callback(\+Inspector\+Call\+Backs callbacks)}{sendCallback(InspectorCallBacks callbacks)}}]{\setlength{\rightskip}{0pt plus 5cm}void gov.\+nasa.\+jpf.\+inspector.\+server.\+callbacks.\+commands.\+Callback\+Command\+Generic\+Info.\+send\+Callback (
+\begin{DoxyParamCaption}
+\item[{{\bf Inspector\+Call\+Backs}}]{callbacks}
+\end{DoxyParamCaption}
+)}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1callbacks_1_1commands_1_1_callback_command_generic_info_a8a9547198a54b3807f0de2ed45cb2f9d}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1callbacks_1_1commands_1_1_callback_command_generic_info_a8a9547198a54b3807f0de2ed45cb2f9d}
+
+
+Called to send represented callback. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em callbacks} & Interface where sent the callback. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1callbacks_1_1_callback_command_ae4cee95135293dd8c53e04fd7145b67f}{gov.\+nasa.\+jpf.\+inspector.\+server.\+callbacks.\+Callback\+Command}.
+
+
+
+Definition at line 16 of file Callback\+Command\+Generic\+Info.\+java.
+
+
+\begin{DoxyCode}
+16                                                           \{
+17     callbacks.genericInfo(\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1callbacks_1_1commands_1_1_callback_command_generic_info_a8abf18685ad4efcc4655476cd6340c2e}{msg});
+18   \}
+\end{DoxyCode}
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::callbacks\+::commands\+::\+Callback\+Command\+Generic\+Info@{gov\+::nasa\+::jpf\+::inspector\+::server\+::callbacks\+::commands\+::\+Callback\+Command\+Generic\+Info}!wait\+J\+P\+F2stop@{wait\+J\+P\+F2stop}}
+\index{wait\+J\+P\+F2stop@{wait\+J\+P\+F2stop}!gov\+::nasa\+::jpf\+::inspector\+::server\+::callbacks\+::commands\+::\+Callback\+Command\+Generic\+Info@{gov\+::nasa\+::jpf\+::inspector\+::server\+::callbacks\+::commands\+::\+Callback\+Command\+Generic\+Info}}
+\subsubsection[{\texorpdfstring{wait\+J\+P\+F2stop()}{waitJPF2stop()}}]{\setlength{\rightskip}{0pt plus 5cm}boolean gov.\+nasa.\+jpf.\+inspector.\+server.\+callbacks.\+commands.\+Callback\+Command\+Generic\+Info.\+wait\+J\+P\+F2stop (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1callbacks_1_1commands_1_1_callback_command_generic_info_a64bcc2fce69378fd551d98a25b0dd734}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1callbacks_1_1commands_1_1_callback_command_generic_info_a64bcc2fce69378fd551d98a25b0dd734}
+
+
+if false callback should be sent as soon as all previous callbacks are processed if true callbacks should be sent if J\+PF is stopped. 
+
+\begin{DoxyReturn}{Returns}
+Specifies callback behavior. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1callbacks_1_1_callback_command_a156477000bc705d78978af529e60fc5a}{gov.\+nasa.\+jpf.\+inspector.\+server.\+callbacks.\+Callback\+Command}.
+
+
+
+Definition at line 21 of file Callback\+Command\+Generic\+Info.\+java.
+
+
+\begin{DoxyCode}
+21                                  \{
+22     \textcolor{keywordflow}{return} \textcolor{keyword}{false};
+23   \}
+\end{DoxyCode}
+
+
+\subsection{Member Data Documentation}
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::callbacks\+::commands\+::\+Callback\+Command\+Generic\+Info@{gov\+::nasa\+::jpf\+::inspector\+::server\+::callbacks\+::commands\+::\+Callback\+Command\+Generic\+Info}!msg@{msg}}
+\index{msg@{msg}!gov\+::nasa\+::jpf\+::inspector\+::server\+::callbacks\+::commands\+::\+Callback\+Command\+Generic\+Info@{gov\+::nasa\+::jpf\+::inspector\+::server\+::callbacks\+::commands\+::\+Callback\+Command\+Generic\+Info}}
+\subsubsection[{\texorpdfstring{msg}{msg}}]{\setlength{\rightskip}{0pt plus 5cm}final String gov.\+nasa.\+jpf.\+inspector.\+server.\+callbacks.\+commands.\+Callback\+Command\+Generic\+Info.\+msg\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1callbacks_1_1commands_1_1_callback_command_generic_info_a8abf18685ad4efcc4655476cd6340c2e}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1callbacks_1_1commands_1_1_callback_command_generic_info_a8abf18685ad4efcc4655476cd6340c2e}
+
+
+Definition at line 8 of file Callback\+Command\+Generic\+Info.\+java.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/gsoc/jpf-\/inspector/src/main/gov/nasa/jpf/inspector/server/callbacks/commands/\hyperlink{_callback_command_generic_info_8java}{Callback\+Command\+Generic\+Info.\+java}\end{DoxyCompactItemize}

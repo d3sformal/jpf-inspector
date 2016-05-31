@@ -1,0 +1,69 @@
+\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1parser_1_1_command_parser_factory}{}\section{gov.\+nasa.\+jpf.\+inspector.\+client.\+parser.\+Command\+Parser\+Factory Class Reference}
+\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1parser_1_1_command_parser_factory}\index{gov.\+nasa.\+jpf.\+inspector.\+client.\+parser.\+Command\+Parser\+Factory@{gov.\+nasa.\+jpf.\+inspector.\+client.\+parser.\+Command\+Parser\+Factory}}
+
+
+Uses A\+N\+T\+LT generated parser to user input and creates Console\+Commands.  
+
+
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \hyperlink{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1parser_1_1_command_parser_interface}{Command\+Parser\+Interface} \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1parser_1_1_command_parser_factory_a323b35e24a71d5ef06e290ca11df2e5c}{get\+Client\+Command\+Parser} ()
+\item 
+static \hyperlink{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1parser_1_1_command_parser_interface}{Command\+Parser\+Interface} \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1parser_1_1_command_parser_factory_aa1df4872c92e061409180052e42f4622}{get\+Record\+Command\+Parser} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Uses A\+N\+T\+LT generated parser to user input and creates Console\+Commands. 
+
+Definition at line 25 of file Command\+Parser\+Factory.\+java.
+
+
+
+\subsection{Member Function Documentation}
+\index{gov\+::nasa\+::jpf\+::inspector\+::client\+::parser\+::\+Command\+Parser\+Factory@{gov\+::nasa\+::jpf\+::inspector\+::client\+::parser\+::\+Command\+Parser\+Factory}!get\+Client\+Command\+Parser@{get\+Client\+Command\+Parser}}
+\index{get\+Client\+Command\+Parser@{get\+Client\+Command\+Parser}!gov\+::nasa\+::jpf\+::inspector\+::client\+::parser\+::\+Command\+Parser\+Factory@{gov\+::nasa\+::jpf\+::inspector\+::client\+::parser\+::\+Command\+Parser\+Factory}}
+\subsubsection[{\texorpdfstring{get\+Client\+Command\+Parser()}{getClientCommandParser()}}]{\setlength{\rightskip}{0pt plus 5cm}static {\bf Command\+Parser\+Interface} gov.\+nasa.\+jpf.\+inspector.\+client.\+parser.\+Command\+Parser\+Factory.\+get\+Client\+Command\+Parser (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1parser_1_1_command_parser_factory_a323b35e24a71d5ef06e290ca11df2e5c}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1parser_1_1_command_parser_factory_a323b35e24a71d5ef06e290ca11df2e5c}
+\begin{DoxyReturn}{Returns}
+Get parser which parses user commands. 
+\end{DoxyReturn}
+
+
+Definition at line 30 of file Command\+Parser\+Factory.\+java.
+
+
+\begin{DoxyCode}
+30                                                                  \{
+31     \textcolor{keywordflow}{return} \textcolor{keyword}{new} CommandParserUserCommands();
+32   \}
+\end{DoxyCode}
+\index{gov\+::nasa\+::jpf\+::inspector\+::client\+::parser\+::\+Command\+Parser\+Factory@{gov\+::nasa\+::jpf\+::inspector\+::client\+::parser\+::\+Command\+Parser\+Factory}!get\+Record\+Command\+Parser@{get\+Record\+Command\+Parser}}
+\index{get\+Record\+Command\+Parser@{get\+Record\+Command\+Parser}!gov\+::nasa\+::jpf\+::inspector\+::client\+::parser\+::\+Command\+Parser\+Factory@{gov\+::nasa\+::jpf\+::inspector\+::client\+::parser\+::\+Command\+Parser\+Factory}}
+\subsubsection[{\texorpdfstring{get\+Record\+Command\+Parser()}{getRecordCommandParser()}}]{\setlength{\rightskip}{0pt plus 5cm}static {\bf Command\+Parser\+Interface} gov.\+nasa.\+jpf.\+inspector.\+client.\+parser.\+Command\+Parser\+Factory.\+get\+Record\+Command\+Parser (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1parser_1_1_command_parser_factory_aa1df4872c92e061409180052e42f4622}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1parser_1_1_command_parser_factory_aa1df4872c92e061409180052e42f4622}
+\begin{DoxyReturn}{Returns}
+Gets parser which parses recorded commands and callbacks. 
+\end{DoxyReturn}
+
+
+Definition at line 37 of file Command\+Parser\+Factory.\+java.
+
+
+\begin{DoxyCode}
+37                                                                  \{
+38     \textcolor{keywordflow}{return} \textcolor{keyword}{new} CommandParserRecordedCommands();
+39   \}
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/gsoc/jpf-\/inspector/src/main/gov/nasa/jpf/inspector/client/parser/\hyperlink{_command_parser_factory_8java}{Command\+Parser\+Factory.\+java}\end{DoxyCompactItemize}

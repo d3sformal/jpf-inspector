@@ -1,0 +1,262 @@
+\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_state_thread}{}\section{gov.\+nasa.\+jpf.\+inspector.\+server.\+expression.\+expressions.\+Expression\+State\+Thread Class Reference}
+\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_state_thread}\index{gov.\+nasa.\+jpf.\+inspector.\+server.\+expression.\+expressions.\+Expression\+State\+Thread@{gov.\+nasa.\+jpf.\+inspector.\+server.\+expression.\+expressions.\+Expression\+State\+Thread}}
+Inheritance diagram for gov.\+nasa.\+jpf.\+inspector.\+server.\+expression.\+expressions.\+Expression\+State\+Thread\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=1.794872cm]{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_state_thread}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_state_thread_a4febd8d11241ce53fde012f0caf0e75e}{Expression\+State\+Thread} (Integer \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_state_thread_a4db41aca6ee66ae2da3753785bed3167}{thread\+Num}, \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_state_stack_frame}{Expression\+State\+Stack\+Frame} \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_expression_state_unary_operator_a66041b1f569a361549e28a00f7ca5f2f}{child})
+\item 
+\hyperlink{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1_state_node_interface}{State\+Node\+Interface} \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_state_thread_a0ea05a0e2f04a90ec1671190dff3fc24}{get\+Result\+Expression} (\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_j_p_f_inspector}{J\+P\+F\+Inspector} inspector, \hyperlink{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_inspector_state}{Inspector\+State} state)  throws J\+P\+F\+Inspector\+Exception 
+\begin{DoxyCompactList}\small\item\em Creates represented state expression. \end{DoxyCompactList}\item 
+\hyperlink{enumgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_types}{Types} \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_state_thread_a9223fb79a121a903aaab99c20fa46cbd}{get\+Type} ()
+\item 
+String \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_state_thread_a8e2420c4821522c88896def518d32f4a}{get\+Normalized\+Expression} ()
+\begin{DoxyCompactList}\small\item\em Gets string which represents normalized version of the represented expression. \end{DoxyCompactList}\item 
+List$<$?extends T $>$ \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_expression_state_unary_operator_ad010bcb9c4e2eb584321b5ceba8e1682}{get\+Childs} ()
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+T \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_expression_state_unary_operator_a150bac338d6557f79ca185d3f6ad6e06}{get\+Child} ()
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+final T \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_expression_state_unary_operator_a66041b1f569a361549e28a00f7ca5f2f}{child}
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+final Integer \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_state_thread_a4db41aca6ee66ae2da3753785bed3167}{thread\+Num}
+\end{DoxyCompactItemize}
+\subsection*{Static Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static final String \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_state_thread_ae6796ff4cecc1a6d33fb67e9927a03ce}{T\+O\+K\+E\+N\+\_\+\+H\+A\+S\+H\+\_\+\+T\+H\+R\+E\+AD} = \char`\"{}\#thread\char`\"{}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 33 of file Expression\+State\+Thread.\+java.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::expressions\+::\+Expression\+State\+Thread@{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::expressions\+::\+Expression\+State\+Thread}!Expression\+State\+Thread@{Expression\+State\+Thread}}
+\index{Expression\+State\+Thread@{Expression\+State\+Thread}!gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::expressions\+::\+Expression\+State\+Thread@{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::expressions\+::\+Expression\+State\+Thread}}
+\subsubsection[{\texorpdfstring{Expression\+State\+Thread(\+Integer thread\+Num, Expression\+State\+Stack\+Frame child)}{ExpressionStateThread(Integer threadNum, ExpressionStateStackFrame child)}}]{\setlength{\rightskip}{0pt plus 5cm}gov.\+nasa.\+jpf.\+inspector.\+server.\+expression.\+expressions.\+Expression\+State\+Thread.\+Expression\+State\+Thread (
+\begin{DoxyParamCaption}
+\item[{Integer}]{thread\+Num, }
+\item[{{\bf Expression\+State\+Stack\+Frame}}]{child}
+\end{DoxyParamCaption}
+)}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_state_thread_a4febd8d11241ce53fde012f0caf0e75e}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_state_thread_a4febd8d11241ce53fde012f0caf0e75e}
+
+\begin{DoxyParams}{Parameters}
+{\em thread\+Num} & For which thread we should be uses in the expression \\
+\hline
+{\em call\+Back} & Client where report errors \\
+\hline
+{\em child} & Follower in the expression \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 46 of file Expression\+State\+Thread.\+java.
+
+
+\begin{DoxyCode}
+46                                                                                     \{
+47     super(\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_expression_state_unary_operator_a66041b1f569a361549e28a00f7ca5f2f}{child});
+48 
+49     this.\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_state_thread_a4db41aca6ee66ae2da3753785bed3167}{threadNum} = \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_state_thread_a4db41aca6ee66ae2da3753785bed3167}{threadNum};
+50   \}
+\end{DoxyCode}
+
+
+\subsection{Member Function Documentation}
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::expressions\+::\+Expression\+State\+Thread@{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::expressions\+::\+Expression\+State\+Thread}!get\+Child@{get\+Child}}
+\index{get\+Child@{get\+Child}!gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::expressions\+::\+Expression\+State\+Thread@{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::expressions\+::\+Expression\+State\+Thread}}
+\subsubsection[{\texorpdfstring{get\+Child()}{getChild()}}]{\setlength{\rightskip}{0pt plus 5cm}T {\bf gov.\+nasa.\+jpf.\+inspector.\+server.\+expression.\+Expression\+State\+Unary\+Operator}$<$ T $>$.get\+Child (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [inherited]}}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_expression_state_unary_operator_a150bac338d6557f79ca185d3f6ad6e06}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_expression_state_unary_operator_a150bac338d6557f79ca185d3f6ad6e06}
+
+
+Definition at line 36 of file Expression\+State\+Unary\+Operator.\+java.
+
+
+\begin{DoxyCode}
+36                           \{
+37     \textcolor{keywordflow}{return} \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_expression_state_unary_operator_a66041b1f569a361549e28a00f7ca5f2f}{child};
+38   \}
+\end{DoxyCode}
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::expressions\+::\+Expression\+State\+Thread@{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::expressions\+::\+Expression\+State\+Thread}!get\+Childs@{get\+Childs}}
+\index{get\+Childs@{get\+Childs}!gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::expressions\+::\+Expression\+State\+Thread@{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::expressions\+::\+Expression\+State\+Thread}}
+\subsubsection[{\texorpdfstring{get\+Childs()}{getChilds()}}]{\setlength{\rightskip}{0pt plus 5cm}List$<$? extends T$>$ {\bf gov.\+nasa.\+jpf.\+inspector.\+server.\+expression.\+Expression\+State\+Unary\+Operator}$<$ T $>$.get\+Childs (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inherited]}}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_expression_state_unary_operator_ad010bcb9c4e2eb584321b5ceba8e1682}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_expression_state_unary_operator_ad010bcb9c4e2eb584321b5ceba8e1682}
+
+
+Implements \hyperlink{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_expression_node_interface_aaeec5305da52fbad211a7abf22b0a854}{gov.\+nasa.\+jpf.\+inspector.\+server.\+expression.\+Expression\+Node\+Interface$<$ T $>$}.
+
+
+
+Definition at line 41 of file Expression\+State\+Unary\+Operator.\+java.
+
+
+\begin{DoxyCode}
+41                                         \{
+42     \textcolor{keywordflow}{if} (\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_expression_state_unary_operator_a97c6698c873acefcbc59c16c6efd6e6d}{childList} == null) \{
+43       List<T> result = \textcolor{keyword}{new} ArrayList<T>(1);
+44       result.add(\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_expression_state_unary_operator_a66041b1f569a361549e28a00f7ca5f2f}{child});
+45       \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_expression_state_unary_operator_a97c6698c873acefcbc59c16c6efd6e6d}{childList} = Collections.unmodifiableList(result);
+46     \}
+47     \textcolor{keywordflow}{return} \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_expression_state_unary_operator_a97c6698c873acefcbc59c16c6efd6e6d}{childList};
+48   \}
+\end{DoxyCode}
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::expressions\+::\+Expression\+State\+Thread@{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::expressions\+::\+Expression\+State\+Thread}!get\+Normalized\+Expression@{get\+Normalized\+Expression}}
+\index{get\+Normalized\+Expression@{get\+Normalized\+Expression}!gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::expressions\+::\+Expression\+State\+Thread@{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::expressions\+::\+Expression\+State\+Thread}}
+\subsubsection[{\texorpdfstring{get\+Normalized\+Expression()}{getNormalizedExpression()}}]{\setlength{\rightskip}{0pt plus 5cm}String gov.\+nasa.\+jpf.\+inspector.\+server.\+expression.\+expressions.\+Expression\+State\+Thread.\+get\+Normalized\+Expression (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_state_thread_a8e2420c4821522c88896def518d32f4a}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_state_thread_a8e2420c4821522c88896def518d32f4a}
+
+
+Gets string which represents normalized version of the represented expression. 
+
+Note\+: Long version of the options should be used. Note\+: Given string has to be parsable by the expression parser.
+
+\begin{DoxyReturn}{Returns}
+Normalized parsable version of the represented expression. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_expression_node_interface_ae5387d8da0126c1256a786d54b9bd7ce}{gov.\+nasa.\+jpf.\+inspector.\+server.\+expression.\+Expression\+Node\+Interface$<$ T $>$}.
+
+
+
+Definition at line 76 of file Expression\+State\+Thread.\+java.
+
+
+\begin{DoxyCode}
+76                                            \{
+77     String childExp = \textcolor{stringliteral}{""};
+78     \textcolor{keywordflow}{if} (\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_expression_state_unary_operator_a66041b1f569a361549e28a00f7ca5f2f}{child} != null) \{
+79       childExp = \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_expression_state_unary_operator_a66041b1f569a361549e28a00f7ca5f2f}{child}.getNormalizedExpression();
+80     \}
+81 
+82     \textcolor{comment}{// TOKEN\_HASH\_THREAD : '#thread' ;}
+83     \textcolor{keywordflow}{if} (\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_state_thread_a4db41aca6ee66ae2da3753785bed3167}{threadNum} == null) \{
+84       \textcolor{keywordflow}{return} \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_state_thread_ae6796ff4cecc1a6d33fb67e9927a03ce}{TOKEN\_HASH\_THREAD} + childExp;
+85     \}
+86     \textcolor{keywordflow}{return} \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_state_thread_ae6796ff4cecc1a6d33fb67e9927a03ce}{TOKEN\_HASH\_THREAD} + \textcolor{charliteral}{'['} + \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_state_thread_a4db41aca6ee66ae2da3753785bed3167}{threadNum} + \textcolor{charliteral}{']'} + childExp;
+87   \}
+\end{DoxyCode}
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::expressions\+::\+Expression\+State\+Thread@{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::expressions\+::\+Expression\+State\+Thread}!get\+Result\+Expression@{get\+Result\+Expression}}
+\index{get\+Result\+Expression@{get\+Result\+Expression}!gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::expressions\+::\+Expression\+State\+Thread@{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::expressions\+::\+Expression\+State\+Thread}}
+\subsubsection[{\texorpdfstring{get\+Result\+Expression(\+J\+P\+F\+Inspector inspector, Inspector\+State state)}{getResultExpression(JPFInspector inspector, InspectorState state)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf State\+Node\+Interface} gov.\+nasa.\+jpf.\+inspector.\+server.\+expression.\+expressions.\+Expression\+State\+Thread.\+get\+Result\+Expression (
+\begin{DoxyParamCaption}
+\item[{{\bf J\+P\+F\+Inspector}}]{inspector, }
+\item[{{\bf Inspector\+State}}]{state}
+\end{DoxyParamCaption}
+) throws {\bf J\+P\+F\+Inspector\+Exception}}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_state_thread_a0ea05a0e2f04a90ec1671190dff3fc24}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_state_thread_a0ea05a0e2f04a90ec1671190dff3fc24}
+
+
+Creates represented state expression. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em state} & Current state of the Inspector and J\+PF \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Get program state expression 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_expression_state_root_node_ab4b2088b28e070af5102f32a85721c6c}{gov.\+nasa.\+jpf.\+inspector.\+server.\+expression.\+Expression\+State\+Root\+Node$<$ T $>$}.
+
+
+
+Definition at line 53 of file Expression\+State\+Thread.\+java.
+
+
+\begin{DoxyCode}
+53                                                                                                            
+                       \{
+54     assert state != null;
+55 
+56     VM vm = state.getJVM();
+57     JPFInspectorNoVMConnected.checkVM(vm);
+58 
+59     StateThreadInfo sti = \textcolor{keyword}{new} StateThreadInfo(inspector, vm, \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_state_thread_a4db41aca6ee66ae2da3753785bed3167}{threadNum});
+60 
+61     ExpressionStateStackFrame \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_expression_state_unary_operator_a66041b1f569a361549e28a00f7ca5f2f}{child} = \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_expression_state_unary_operator_a150bac338d6557f79ca185d3f6ad6e06}{getChild}();
+62     \textcolor{keywordflow}{if} (child == null) \{
+63       \textcolor{keywordflow}{return} sti;
+64     \} \textcolor{keywordflow}{else} \{
+65       \textcolor{keywordflow}{return} child.getResultExpression(sti);
+66     \}
+67   \}
+\end{DoxyCode}
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::expressions\+::\+Expression\+State\+Thread@{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::expressions\+::\+Expression\+State\+Thread}!get\+Type@{get\+Type}}
+\index{get\+Type@{get\+Type}!gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::expressions\+::\+Expression\+State\+Thread@{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::expressions\+::\+Expression\+State\+Thread}}
+\subsubsection[{\texorpdfstring{get\+Type()}{getType()}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Types} gov.\+nasa.\+jpf.\+inspector.\+server.\+expression.\+expressions.\+Expression\+State\+Thread.\+get\+Type (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_state_thread_a9223fb79a121a903aaab99c20fa46cbd}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_state_thread_a9223fb79a121a903aaab99c20fa46cbd}
+
+
+Implements \hyperlink{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_expression_node_interface_a5799ecbb793f24840fa3e2eaedc799aa}{gov.\+nasa.\+jpf.\+inspector.\+server.\+expression.\+Expression\+Node\+Interface$<$ T $>$}.
+
+
+
+Definition at line 70 of file Expression\+State\+Thread.\+java.
+
+
+\begin{DoxyCode}
+70                           \{
+71     \textcolor{keywordflow}{return} Types.ET\_STATE\_THREAD;
+72   \}
+\end{DoxyCode}
+
+
+\subsection{Member Data Documentation}
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::expressions\+::\+Expression\+State\+Thread@{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::expressions\+::\+Expression\+State\+Thread}!child@{child}}
+\index{child@{child}!gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::expressions\+::\+Expression\+State\+Thread@{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::expressions\+::\+Expression\+State\+Thread}}
+\subsubsection[{\texorpdfstring{child}{child}}]{\setlength{\rightskip}{0pt plus 5cm}final T {\bf gov.\+nasa.\+jpf.\+inspector.\+server.\+expression.\+Expression\+State\+Unary\+Operator}$<$ T $>$.child\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [inherited]}}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_expression_state_unary_operator_a66041b1f569a361549e28a00f7ca5f2f}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_expression_state_unary_operator_a66041b1f569a361549e28a00f7ca5f2f}
+
+
+Definition at line 28 of file Expression\+State\+Unary\+Operator.\+java.
+
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::expressions\+::\+Expression\+State\+Thread@{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::expressions\+::\+Expression\+State\+Thread}!thread\+Num@{thread\+Num}}
+\index{thread\+Num@{thread\+Num}!gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::expressions\+::\+Expression\+State\+Thread@{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::expressions\+::\+Expression\+State\+Thread}}
+\subsubsection[{\texorpdfstring{thread\+Num}{threadNum}}]{\setlength{\rightskip}{0pt plus 5cm}final Integer gov.\+nasa.\+jpf.\+inspector.\+server.\+expression.\+expressions.\+Expression\+State\+Thread.\+thread\+Num\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_state_thread_a4db41aca6ee66ae2da3753785bed3167}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_state_thread_a4db41aca6ee66ae2da3753785bed3167}
+
+
+Definition at line 38 of file Expression\+State\+Thread.\+java.
+
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::expressions\+::\+Expression\+State\+Thread@{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::expressions\+::\+Expression\+State\+Thread}!T\+O\+K\+E\+N\+\_\+\+H\+A\+S\+H\+\_\+\+T\+H\+R\+E\+AD@{T\+O\+K\+E\+N\+\_\+\+H\+A\+S\+H\+\_\+\+T\+H\+R\+E\+AD}}
+\index{T\+O\+K\+E\+N\+\_\+\+H\+A\+S\+H\+\_\+\+T\+H\+R\+E\+AD@{T\+O\+K\+E\+N\+\_\+\+H\+A\+S\+H\+\_\+\+T\+H\+R\+E\+AD}!gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::expressions\+::\+Expression\+State\+Thread@{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::expressions\+::\+Expression\+State\+Thread}}
+\subsubsection[{\texorpdfstring{T\+O\+K\+E\+N\+\_\+\+H\+A\+S\+H\+\_\+\+T\+H\+R\+E\+AD}{TOKEN_HASH_THREAD}}]{\setlength{\rightskip}{0pt plus 5cm}final String gov.\+nasa.\+jpf.\+inspector.\+server.\+expression.\+expressions.\+Expression\+State\+Thread.\+T\+O\+K\+E\+N\+\_\+\+H\+A\+S\+H\+\_\+\+T\+H\+R\+E\+AD = \char`\"{}\#thread\char`\"{}\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_state_thread_ae6796ff4cecc1a6d33fb67e9927a03ce}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_state_thread_ae6796ff4cecc1a6d33fb67e9927a03ce}
+
+
+Definition at line 36 of file Expression\+State\+Thread.\+java.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/gsoc/jpf-\/inspector/src/main/gov/nasa/jpf/inspector/server/expression/expressions/\hyperlink{_expression_state_thread_8java}{Expression\+State\+Thread.\+java}\end{DoxyCompactItemize}

@@ -1,0 +1,576 @@
+\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_instruction_position_impl}{}\section{gov.\+nasa.\+jpf.\+inspector.\+server.\+breakpoints.\+Instruction\+Position\+Impl Class Reference}
+\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_instruction_position_impl}\index{gov.\+nasa.\+jpf.\+inspector.\+server.\+breakpoints.\+Instruction\+Position\+Impl@{gov.\+nasa.\+jpf.\+inspector.\+server.\+breakpoints.\+Instruction\+Position\+Impl}}
+
+
+Represents position of the instruction.  
+
+
+Inheritance diagram for gov.\+nasa.\+jpf.\+inspector.\+server.\+breakpoints.\+Instruction\+Position\+Impl\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_instruction_position_impl}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_instruction_position_impl_a20a76a0c1e28bba60cd680476da3807a}{Instruction\+Position\+Impl} (String \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_instruction_position_impl_a516c1bf9f9237fa2da514022d0ed4679}{file\+Name}, int \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_instruction_position_impl_ab362ce71d6d351401c64199096a5a75c}{line})
+\item 
+void \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_instruction_position_impl_ac4beaec76a586dfba936cae0f25f9e86}{new\+Class\+Loaded} (Class\+Info ci)
+\begin{DoxyCompactList}\small\item\em Notification that new Class has been loaded. \end{DoxyCompactList}\item 
+int \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_instruction_position_impl_a0ebbca9205ea60a39c4ee0c99f9a4272}{get\+Line\+Number} ()
+\begin{DoxyCompactList}\small\item\em Unspecified line. \end{DoxyCompactList}\item 
+boolean \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_instruction_position_impl_a684f11d2a16eafa3bac9e4f7e62fc0e1}{hit\+Position} (Instruction instr)
+\begin{DoxyCompactList}\small\item\em Test whether given instruction take place at represented position. \end{DoxyCompactList}\item 
+String \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_instruction_position_impl_ae7c8f0c324b83e4f7dcad553f9bd4bb9}{get\+File\+Name} ()
+\begin{DoxyCompactList}\small\item\em File name where the class is defined. \end{DoxyCompactList}\item 
+String \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_instruction_position_impl_a573155e2a3c273d257eb8a2fdefe9eed}{to\+String} ()
+\item 
+int \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_instruction_position_impl_a90b8f38f13ad4fae5c7d56a0545082e8}{get\+Instruction\+Offset} ()
+\item 
+String \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_instruction_position_impl_a9e4b970b369fa44c0be2acb82af0d95e}{get\+Class\+Name} ()
+\item 
+String \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_instruction_position_impl_acda7138bb738489acaed50656e917a50}{get\+Method\+Name} ()
+\item 
+String \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_instruction_position_impl_afd0ba3d86193d415aba5c871979b60f5}{get\+Source\+Line} ()
+\item 
+String \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_instruction_position_impl_acca8b3ac1a32e75b83b12ce339519579}{get\+Instruction\+Name} ()
+\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static String \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_instruction_position_impl_aef02ba722ac5d2bd0674a1062feb4d27}{get\+Instruction\+File\+Name} (Instruction instr)
+\begin{DoxyCompactList}\small\item\em For given instruction get file where instruction is defined. \end{DoxyCompactList}\item 
+static \hyperlink{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1interfaces_1_1_instruction_position}{Instruction\+Position} \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_instruction_position_impl_a475f560825aa68d3d7df0015bcc63013}{get\+Instruction\+Position} (Instruction instr)
+\begin{DoxyCompactList}\small\item\em Creates instruction position that represents the same location (file and line) as given instruction. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static final int \hyperlink{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1interfaces_1_1_instruction_position_af542a3a926e7a0ef8ad18bde5ee98634}{I\+P\+\_\+\+P\+O\+S\+\_\+\+L\+I\+N\+E\+\_\+\+N\+O\+T\+\_\+\+D\+E\+F\+I\+N\+ED} = -\/1
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_instruction_position_impl_a2e9d1e9ea04169808de4819d0f55ef8a}{Instruction\+Position\+Impl} (Instruction instr)
+\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_instruction_position_impl_a2110f52fbee64b0fadb4aed30ee8c870}{bound\+With\+Instruction} (Instruction instr)
+\begin{DoxyCompactList}\small\item\em Assign specialized fields of the class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1utils_1_1expressions_1_1_file_name}{File\+Name} \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_instruction_position_impl_a516c1bf9f9237fa2da514022d0ed4679}{file\+Name} = null
+\item 
+int \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_instruction_position_impl_ab362ce71d6d351401c64199096a5a75c}{line} = \hyperlink{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1interfaces_1_1_instruction_position_af542a3a926e7a0ef8ad18bde5ee98634}{Instruction\+Position.\+I\+P\+\_\+\+P\+O\+S\+\_\+\+L\+I\+N\+E\+\_\+\+N\+O\+T\+\_\+\+D\+E\+F\+I\+N\+ED}
+\item 
+String \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_instruction_position_impl_ae8a3786b40675ad5b90a137b828c539b}{source\+Line} = null
+\item 
+String \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_instruction_position_impl_af1da872ffe98d641617964bdc2edc7eb}{class\+Name} = null
+\item 
+String \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_instruction_position_impl_a3fc161c51e7150e0192f16a1b0f844d3}{method\+Name} = null
+\item 
+String \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_instruction_position_impl_a5d2980c1de4a8894d99b806c32df5db4}{instr\+Name} = null
+\item 
+int \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_instruction_position_impl_a73aceb15c7e4bbacc5a811701cf5482e}{instr\+Offset} = -\/1
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Represents position of the instruction. 
+
+~\newline
+ It hits on any instruction that is in same file and and takes place at given line. 
+
+Definition at line 35 of file Instruction\+Position\+Impl.\+java.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Instruction\+Position\+Impl@{gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Instruction\+Position\+Impl}!Instruction\+Position\+Impl@{Instruction\+Position\+Impl}}
+\index{Instruction\+Position\+Impl@{Instruction\+Position\+Impl}!gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Instruction\+Position\+Impl@{gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Instruction\+Position\+Impl}}
+\subsubsection[{\texorpdfstring{Instruction\+Position\+Impl(\+String file\+Name, int line)}{InstructionPositionImpl(String fileName, int line)}}]{\setlength{\rightskip}{0pt plus 5cm}gov.\+nasa.\+jpf.\+inspector.\+server.\+breakpoints.\+Instruction\+Position\+Impl.\+Instruction\+Position\+Impl (
+\begin{DoxyParamCaption}
+\item[{String}]{file\+Name, }
+\item[{int}]{line}
+\end{DoxyParamCaption}
+)}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_instruction_position_impl_a20a76a0c1e28bba60cd680476da3807a}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_instruction_position_impl_a20a76a0c1e28bba60cd680476da3807a}
+
+
+Definition at line 47 of file Instruction\+Position\+Impl.\+java.
+
+
+\begin{DoxyCode}
+47                                                              \{
+48     assert \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_instruction_position_impl_a516c1bf9f9237fa2da514022d0ed4679}{fileName} != null;
+49     assert \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_instruction_position_impl_ab362ce71d6d351401c64199096a5a75c}{line} != InstructionPosition.IP\_POS\_LINE\_NOT\_DEFINED && \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_instruction_position_impl_ab362ce71d6d351401c64199096a5a75c}{line} > 0;
+50 
+51     this.\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_instruction_position_impl_a516c1bf9f9237fa2da514022d0ed4679}{fileName} = \textcolor{keyword}{new} FileName(\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_instruction_position_impl_a516c1bf9f9237fa2da514022d0ed4679}{fileName});
+52     this.\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_instruction_position_impl_ab362ce71d6d351401c64199096a5a75c}{line} = \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_instruction_position_impl_ab362ce71d6d351401c64199096a5a75c}{line};
+53   \}
+\end{DoxyCode}
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Instruction\+Position\+Impl@{gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Instruction\+Position\+Impl}!Instruction\+Position\+Impl@{Instruction\+Position\+Impl}}
+\index{Instruction\+Position\+Impl@{Instruction\+Position\+Impl}!gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Instruction\+Position\+Impl@{gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Instruction\+Position\+Impl}}
+\subsubsection[{\texorpdfstring{Instruction\+Position\+Impl(\+Instruction instr)}{InstructionPositionImpl(Instruction instr)}}]{\setlength{\rightskip}{0pt plus 5cm}gov.\+nasa.\+jpf.\+inspector.\+server.\+breakpoints.\+Instruction\+Position\+Impl.\+Instruction\+Position\+Impl (
+\begin{DoxyParamCaption}
+\item[{Instruction}]{instr}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_instruction_position_impl_a2e9d1e9ea04169808de4819d0f55ef8a}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_instruction_position_impl_a2e9d1e9ea04169808de4819d0f55ef8a}
+
+
+Definition at line 56 of file Instruction\+Position\+Impl.\+java.
+
+
+\begin{DoxyCode}
+56                                                         \{
+57     assert instr != null;
+58 
+59     this.\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_instruction_position_impl_a516c1bf9f9237fa2da514022d0ed4679}{fileName} = \textcolor{keyword}{new} FileName(\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_instruction_position_impl_aef02ba722ac5d2bd0674a1062feb4d27}{getInstructionFileName}(instr));
+60 
+61     this.\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_instruction_position_impl_ab362ce71d6d351401c64199096a5a75c}{line} = instr.getLineNumber();
+62 
+63     \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_instruction_position_impl_a2110f52fbee64b0fadb4aed30ee8c870}{boundWithInstruction}(instr);
+64   \}
+\end{DoxyCode}
+
+
+\subsection{Member Function Documentation}
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Instruction\+Position\+Impl@{gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Instruction\+Position\+Impl}!bound\+With\+Instruction@{bound\+With\+Instruction}}
+\index{bound\+With\+Instruction@{bound\+With\+Instruction}!gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Instruction\+Position\+Impl@{gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Instruction\+Position\+Impl}}
+\subsubsection[{\texorpdfstring{bound\+With\+Instruction(\+Instruction instr)}{boundWithInstruction(Instruction instr)}}]{\setlength{\rightskip}{0pt plus 5cm}void gov.\+nasa.\+jpf.\+inspector.\+server.\+breakpoints.\+Instruction\+Position\+Impl.\+bound\+With\+Instruction (
+\begin{DoxyParamCaption}
+\item[{Instruction}]{instr}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_instruction_position_impl_a2110f52fbee64b0fadb4aed30ee8c870}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_instruction_position_impl_a2110f52fbee64b0fadb4aed30ee8c870}
+
+
+Assign specialized fields of the class. 
+
+(Note that they are null of not bind to any instruction)
+
+
+\begin{DoxyParams}{Parameters}
+{\em instr} & Instruction which specify position mire precisely \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 71 of file Instruction\+Position\+Impl.\+java.
+
+
+\begin{DoxyCode}
+71                                                         \{
+72     assert instr != null;
+73     this.\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_instruction_position_impl_ae8a3786b40675ad5b90a137b828c539b}{sourceLine} = instr.getSourceLine();
+74     this.\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_instruction_position_impl_af1da872ffe98d641617964bdc2edc7eb}{className} = instr.getMethodInfo().getClassName();
+75     this.\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_instruction_position_impl_a3fc161c51e7150e0192f16a1b0f844d3}{methodName} = instr.getMethodInfo().getName();
+76     this.\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_instruction_position_impl_a73aceb15c7e4bbacc5a811701cf5482e}{instrOffset} = instr.getInstructionIndex();
+77     this.\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_instruction_position_impl_a5d2980c1de4a8894d99b806c32df5db4}{instrName} = instr.toString();
+78   \}
+\end{DoxyCode}
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Instruction\+Position\+Impl@{gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Instruction\+Position\+Impl}!get\+Class\+Name@{get\+Class\+Name}}
+\index{get\+Class\+Name@{get\+Class\+Name}!gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Instruction\+Position\+Impl@{gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Instruction\+Position\+Impl}}
+\subsubsection[{\texorpdfstring{get\+Class\+Name()}{getClassName()}}]{\setlength{\rightskip}{0pt plus 5cm}String gov.\+nasa.\+jpf.\+inspector.\+server.\+breakpoints.\+Instruction\+Position\+Impl.\+get\+Class\+Name (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_instruction_position_impl_a9e4b970b369fa44c0be2acb82af0d95e}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_instruction_position_impl_a9e4b970b369fa44c0be2acb82af0d95e}
+\begin{DoxyReturn}{Returns}
+Class name in which represented position takes place 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1interfaces_1_1_instruction_position_a1a109a1b9cac93e4d189ef5498863fce}{gov.\+nasa.\+jpf.\+inspector.\+interfaces.\+Instruction\+Position}.
+
+
+
+Definition at line 170 of file Instruction\+Position\+Impl.\+java.
+
+
+\begin{DoxyCode}
+170                                 \{
+171     \textcolor{keywordflow}{return} \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_instruction_position_impl_af1da872ffe98d641617964bdc2edc7eb}{className};
+172   \}
+\end{DoxyCode}
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Instruction\+Position\+Impl@{gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Instruction\+Position\+Impl}!get\+File\+Name@{get\+File\+Name}}
+\index{get\+File\+Name@{get\+File\+Name}!gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Instruction\+Position\+Impl@{gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Instruction\+Position\+Impl}}
+\subsubsection[{\texorpdfstring{get\+File\+Name()}{getFileName()}}]{\setlength{\rightskip}{0pt plus 5cm}String gov.\+nasa.\+jpf.\+inspector.\+server.\+breakpoints.\+Instruction\+Position\+Impl.\+get\+File\+Name (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_instruction_position_impl_ae7c8f0c324b83e4f7dcad553f9bd4bb9}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_instruction_position_impl_ae7c8f0c324b83e4f7dcad553f9bd4bb9}
+
+
+File name where the class is defined. 
+
+(If the class file is stored in the jar file, then jar file name is ignored) 
+
+Implements \hyperlink{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1interfaces_1_1_instruction_position_ac1fb787ee623734fb5be1266d14727ce}{gov.\+nasa.\+jpf.\+inspector.\+interfaces.\+Instruction\+Position}.
+
+
+
+Definition at line 144 of file Instruction\+Position\+Impl.\+java.
+
+
+\begin{DoxyCode}
+144                                \{
+145     \textcolor{keywordflow}{return} \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_instruction_position_impl_a516c1bf9f9237fa2da514022d0ed4679}{fileName}.\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1utils_1_1expressions_1_1_file_name_aa6173a74277aa2e86a209d3118203fa8}{getFileName}();
+146   \}
+\end{DoxyCode}
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Instruction\+Position\+Impl@{gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Instruction\+Position\+Impl}!get\+Instruction\+File\+Name@{get\+Instruction\+File\+Name}}
+\index{get\+Instruction\+File\+Name@{get\+Instruction\+File\+Name}!gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Instruction\+Position\+Impl@{gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Instruction\+Position\+Impl}}
+\subsubsection[{\texorpdfstring{get\+Instruction\+File\+Name(\+Instruction instr)}{getInstructionFileName(Instruction instr)}}]{\setlength{\rightskip}{0pt plus 5cm}static String gov.\+nasa.\+jpf.\+inspector.\+server.\+breakpoints.\+Instruction\+Position\+Impl.\+get\+Instruction\+File\+Name (
+\begin{DoxyParamCaption}
+\item[{Instruction}]{instr}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_instruction_position_impl_aef02ba722ac5d2bd0674a1062feb4d27}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_instruction_position_impl_aef02ba722ac5d2bd0674a1062feb4d27}
+
+
+For given instruction get file where instruction is defined. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em instr} & Instruction to process \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+File name where instruction takes place. 
+\end{DoxyReturn}
+
+
+Definition at line 135 of file Instruction\+Position\+Impl.\+java.
+
+
+\begin{DoxyCode}
+135                                                                   \{
+136     String result = null;
+137     \textcolor{keywordflow}{if} (instr.getMethodInfo() != null && instr.getMethodInfo() != null) \{
+138       result = instr.getMethodInfo().getSourceFileName();
+139     \}
+140     \textcolor{keywordflow}{return} result;
+141   \}
+\end{DoxyCode}
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Instruction\+Position\+Impl@{gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Instruction\+Position\+Impl}!get\+Instruction\+Name@{get\+Instruction\+Name}}
+\index{get\+Instruction\+Name@{get\+Instruction\+Name}!gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Instruction\+Position\+Impl@{gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Instruction\+Position\+Impl}}
+\subsubsection[{\texorpdfstring{get\+Instruction\+Name()}{getInstructionName()}}]{\setlength{\rightskip}{0pt plus 5cm}String gov.\+nasa.\+jpf.\+inspector.\+server.\+breakpoints.\+Instruction\+Position\+Impl.\+get\+Instruction\+Name (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_instruction_position_impl_acca8b3ac1a32e75b83b12ce339519579}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_instruction_position_impl_acca8b3ac1a32e75b83b12ce339519579}
+\begin{DoxyReturn}{Returns}
+Name of the represented instruction 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1interfaces_1_1_instruction_position_a70c3855595601858a5d63e30db44a63d}{gov.\+nasa.\+jpf.\+inspector.\+interfaces.\+Instruction\+Position}.
+
+
+
+Definition at line 185 of file Instruction\+Position\+Impl.\+java.
+
+
+\begin{DoxyCode}
+185                                       \{
+186     \textcolor{keywordflow}{return} \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_instruction_position_impl_a5d2980c1de4a8894d99b806c32df5db4}{instrName};
+187   \}
+\end{DoxyCode}
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Instruction\+Position\+Impl@{gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Instruction\+Position\+Impl}!get\+Instruction\+Offset@{get\+Instruction\+Offset}}
+\index{get\+Instruction\+Offset@{get\+Instruction\+Offset}!gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Instruction\+Position\+Impl@{gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Instruction\+Position\+Impl}}
+\subsubsection[{\texorpdfstring{get\+Instruction\+Offset()}{getInstructionOffset()}}]{\setlength{\rightskip}{0pt plus 5cm}int gov.\+nasa.\+jpf.\+inspector.\+server.\+breakpoints.\+Instruction\+Position\+Impl.\+get\+Instruction\+Offset (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_instruction_position_impl_a90b8f38f13ad4fae5c7d56a0545082e8}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_instruction_position_impl_a90b8f38f13ad4fae5c7d56a0545082e8}
+\begin{DoxyReturn}{Returns}
+Get index of represented instruction in method 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1interfaces_1_1_instruction_position_aa427266d185784b5dd204c7f31b4ff54}{gov.\+nasa.\+jpf.\+inspector.\+interfaces.\+Instruction\+Position}.
+
+
+
+Definition at line 165 of file Instruction\+Position\+Impl.\+java.
+
+
+\begin{DoxyCode}
+165                                      \{
+166     \textcolor{keywordflow}{return} \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_instruction_position_impl_a73aceb15c7e4bbacc5a811701cf5482e}{instrOffset};
+167   \}
+\end{DoxyCode}
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Instruction\+Position\+Impl@{gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Instruction\+Position\+Impl}!get\+Instruction\+Position@{get\+Instruction\+Position}}
+\index{get\+Instruction\+Position@{get\+Instruction\+Position}!gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Instruction\+Position\+Impl@{gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Instruction\+Position\+Impl}}
+\subsubsection[{\texorpdfstring{get\+Instruction\+Position(\+Instruction instr)}{getInstructionPosition(Instruction instr)}}]{\setlength{\rightskip}{0pt plus 5cm}static {\bf Instruction\+Position} gov.\+nasa.\+jpf.\+inspector.\+server.\+breakpoints.\+Instruction\+Position\+Impl.\+get\+Instruction\+Position (
+\begin{DoxyParamCaption}
+\item[{Instruction}]{instr}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_instruction_position_impl_a475f560825aa68d3d7df0015bcc63013}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_instruction_position_impl_a475f560825aa68d3d7df0015bcc63013}
+
+
+Creates instruction position that represents the same location (file and line) as given instruction. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em instr} & Position specification \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+position that represents the location (file and line) of given instruction 
+\end{DoxyReturn}
+
+
+Definition at line 160 of file Instruction\+Position\+Impl.\+java.
+
+
+\begin{DoxyCode}
+160                                                                                \{
+161     \textcolor{keywordflow}{return} \textcolor{keyword}{new} \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_instruction_position_impl_a20a76a0c1e28bba60cd680476da3807a}{InstructionPositionImpl}(instr);
+162   \}
+\end{DoxyCode}
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Instruction\+Position\+Impl@{gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Instruction\+Position\+Impl}!get\+Line\+Number@{get\+Line\+Number}}
+\index{get\+Line\+Number@{get\+Line\+Number}!gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Instruction\+Position\+Impl@{gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Instruction\+Position\+Impl}}
+\subsubsection[{\texorpdfstring{get\+Line\+Number()}{getLineNumber()}}]{\setlength{\rightskip}{0pt plus 5cm}int gov.\+nasa.\+jpf.\+inspector.\+server.\+breakpoints.\+Instruction\+Position\+Impl.\+get\+Line\+Number (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_instruction_position_impl_a0ebbca9205ea60a39c4ee0c99f9a4272}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_instruction_position_impl_a0ebbca9205ea60a39c4ee0c99f9a4272}
+
+
+Unspecified line. 
+
+Can be obtained by calling Instruction.\+get\+Line\+Number() 
+
+Implements \hyperlink{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1interfaces_1_1_instruction_position_ac5cae68ff61d71dbf7b90e30b8291784}{gov.\+nasa.\+jpf.\+inspector.\+interfaces.\+Instruction\+Position}.
+
+
+
+Definition at line 109 of file Instruction\+Position\+Impl.\+java.
+
+
+\begin{DoxyCode}
+109                               \{
+110     \textcolor{keywordflow}{return} \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_instruction_position_impl_ab362ce71d6d351401c64199096a5a75c}{line};
+111   \}
+\end{DoxyCode}
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Instruction\+Position\+Impl@{gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Instruction\+Position\+Impl}!get\+Method\+Name@{get\+Method\+Name}}
+\index{get\+Method\+Name@{get\+Method\+Name}!gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Instruction\+Position\+Impl@{gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Instruction\+Position\+Impl}}
+\subsubsection[{\texorpdfstring{get\+Method\+Name()}{getMethodName()}}]{\setlength{\rightskip}{0pt plus 5cm}String gov.\+nasa.\+jpf.\+inspector.\+server.\+breakpoints.\+Instruction\+Position\+Impl.\+get\+Method\+Name (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_instruction_position_impl_acda7138bb738489acaed50656e917a50}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_instruction_position_impl_acda7138bb738489acaed50656e917a50}
+\begin{DoxyReturn}{Returns}
+Method name in which represented position takes place 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1interfaces_1_1_instruction_position_af77fc9b5ef58775d31d36b20d68598d9}{gov.\+nasa.\+jpf.\+inspector.\+interfaces.\+Instruction\+Position}.
+
+
+
+Definition at line 175 of file Instruction\+Position\+Impl.\+java.
+
+
+\begin{DoxyCode}
+175                                  \{
+176     \textcolor{keywordflow}{return} \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_instruction_position_impl_a3fc161c51e7150e0192f16a1b0f844d3}{methodName};
+177   \}
+\end{DoxyCode}
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Instruction\+Position\+Impl@{gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Instruction\+Position\+Impl}!get\+Source\+Line@{get\+Source\+Line}}
+\index{get\+Source\+Line@{get\+Source\+Line}!gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Instruction\+Position\+Impl@{gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Instruction\+Position\+Impl}}
+\subsubsection[{\texorpdfstring{get\+Source\+Line()}{getSourceLine()}}]{\setlength{\rightskip}{0pt plus 5cm}String gov.\+nasa.\+jpf.\+inspector.\+server.\+breakpoints.\+Instruction\+Position\+Impl.\+get\+Source\+Line (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_instruction_position_impl_afd0ba3d86193d415aba5c871979b60f5}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_instruction_position_impl_afd0ba3d86193d415aba5c871979b60f5}
+\begin{DoxyReturn}{Returns}
+Line from source file with represented position 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1interfaces_1_1_instruction_position_a0342e29e0494c702ad280347bfb10b61}{gov.\+nasa.\+jpf.\+inspector.\+interfaces.\+Instruction\+Position}.
+
+
+
+Definition at line 180 of file Instruction\+Position\+Impl.\+java.
+
+
+\begin{DoxyCode}
+180                                  \{
+181     \textcolor{keywordflow}{return} \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_instruction_position_impl_ae8a3786b40675ad5b90a137b828c539b}{sourceLine};
+182   \}
+\end{DoxyCode}
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Instruction\+Position\+Impl@{gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Instruction\+Position\+Impl}!hit\+Position@{hit\+Position}}
+\index{hit\+Position@{hit\+Position}!gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Instruction\+Position\+Impl@{gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Instruction\+Position\+Impl}}
+\subsubsection[{\texorpdfstring{hit\+Position(\+Instruction instr)}{hitPosition(Instruction instr)}}]{\setlength{\rightskip}{0pt plus 5cm}boolean gov.\+nasa.\+jpf.\+inspector.\+server.\+breakpoints.\+Instruction\+Position\+Impl.\+hit\+Position (
+\begin{DoxyParamCaption}
+\item[{Instruction}]{instr}
+\end{DoxyParamCaption}
+)}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_instruction_position_impl_a684f11d2a16eafa3bac9e4f7e62fc0e1}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_instruction_position_impl_a684f11d2a16eafa3bac9e4f7e62fc0e1}
+
+
+Test whether given instruction take place at represented position. 
+
+(File \&\& Line)
+
+
+\begin{DoxyParams}{Parameters}
+{\em instr} & Instruction which position is tested. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if position of given instruction is the represented one 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1interfaces_1_1_instruction_position_a74e0a143b5cc51a5b147f2f2a2709638}{gov.\+nasa.\+jpf.\+inspector.\+interfaces.\+Instruction\+Position}.
+
+
+
+Definition at line 114 of file Instruction\+Position\+Impl.\+java.
+
+
+\begin{DoxyCode}
+114                                                  \{
+115     \textcolor{keywordflow}{if} (instr == null) \{
+116       \textcolor{keywordflow}{return} \textcolor{keyword}{false};
+117     \}
+118 
+119     \textcolor{keyword}{final} String instrFileName = \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_instruction_position_impl_aef02ba722ac5d2bd0674a1062feb4d27}{getInstructionFileName}(instr);
+120     \textcolor{keyword}{final} \textcolor{keywordtype}{int} instrLine = instr.getLineNumber();
+121     \textcolor{keywordflow}{if} (instrLine == \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_instruction_position_impl_ab362ce71d6d351401c64199096a5a75c}{line} && instrFileName != null) \{
+122       \textcolor{comment}{// In the same line -> check if same files}
+123       \textcolor{keywordflow}{return} \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_instruction_position_impl_a516c1bf9f9237fa2da514022d0ed4679}{fileName}.\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1utils_1_1expressions_1_1_file_name_ae59cfabe95a82e84be38986d817cf14e}{isSameFile}(instrFileName);
+124     \} \textcolor{keywordflow}{else} \{
+125       \textcolor{keywordflow}{return} \textcolor{keyword}{false};
+126     \}
+127   \}
+\end{DoxyCode}
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Instruction\+Position\+Impl@{gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Instruction\+Position\+Impl}!new\+Class\+Loaded@{new\+Class\+Loaded}}
+\index{new\+Class\+Loaded@{new\+Class\+Loaded}!gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Instruction\+Position\+Impl@{gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Instruction\+Position\+Impl}}
+\subsubsection[{\texorpdfstring{new\+Class\+Loaded(\+Class\+Info ci)}{newClassLoaded(ClassInfo ci)}}]{\setlength{\rightskip}{0pt plus 5cm}void gov.\+nasa.\+jpf.\+inspector.\+server.\+breakpoints.\+Instruction\+Position\+Impl.\+new\+Class\+Loaded (
+\begin{DoxyParamCaption}
+\item[{Class\+Info}]{ci}
+\end{DoxyParamCaption}
+)}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_instruction_position_impl_ac4beaec76a586dfba936cae0f25f9e86}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_instruction_position_impl_ac4beaec76a586dfba936cae0f25f9e86}
+
+
+Notification that new Class has been loaded. 
+
+We checks if this is not the represented class, and retrieve information in this case.
+
+
+\begin{DoxyParams}{Parameters}
+{\em ci} & Loaded class \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 86 of file Instruction\+Position\+Impl.\+java.
+
+
+\begin{DoxyCode}
+86                                             \{
+87     assert ci != null;
+88 
+89     \textcolor{keywordflow}{if} (!\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_instruction_position_impl_a516c1bf9f9237fa2da514022d0ed4679}{fileName}.\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1utils_1_1expressions_1_1_file_name_a1ee5b71283a8c613a0c72360d0914edc}{representsSingleFile}()) \{
+90       \textcolor{comment}{// Group file names are ignored, we require 1:1 mapping}
+91       \textcolor{keywordflow}{return};
+92     \}
+93 
+94     \textcolor{keywordflow}{if} (\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_instruction_position_impl_a516c1bf9f9237fa2da514022d0ed4679}{fileName}.\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1utils_1_1expressions_1_1_file_name_ae59cfabe95a82e84be38986d817cf14e}{isSameFile}(ci.getSourceFileName())) \{
+95       \textcolor{comment}{// Represented class}
+96       \textcolor{keywordflow}{for} (MethodInfo mi : ci.getDeclaredMethodInfos()) \{
+97         \textcolor{comment}{// found the first instruction on given line}
+98         \textcolor{keywordflow}{for} (Instruction inst : mi.getInstructions()) \{
+99           \textcolor{keywordflow}{if} (inst.getLineNumber() == \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_instruction_position_impl_ab362ce71d6d351401c64199096a5a75c}{line}) \{
+100             \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_instruction_position_impl_a2110f52fbee64b0fadb4aed30ee8c870}{boundWithInstruction}(inst);
+101             \textcolor{keywordflow}{return};
+102           \}
+103         \}
+104       \}
+105     \}
+106   \}
+\end{DoxyCode}
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Instruction\+Position\+Impl@{gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Instruction\+Position\+Impl}!to\+String@{to\+String}}
+\index{to\+String@{to\+String}!gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Instruction\+Position\+Impl@{gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Instruction\+Position\+Impl}}
+\subsubsection[{\texorpdfstring{to\+String()}{toString()}}]{\setlength{\rightskip}{0pt plus 5cm}String gov.\+nasa.\+jpf.\+inspector.\+server.\+breakpoints.\+Instruction\+Position\+Impl.\+to\+String (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_instruction_position_impl_a573155e2a3c273d257eb8a2fdefe9eed}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_instruction_position_impl_a573155e2a3c273d257eb8a2fdefe9eed}
+
+
+Definition at line 149 of file Instruction\+Position\+Impl.\+java.
+
+
+\begin{DoxyCode}
+149                             \{
+150     \textcolor{keywordflow}{return} \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_instruction_position_impl_a516c1bf9f9237fa2da514022d0ed4679}{fileName}.\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1utils_1_1expressions_1_1_file_name_aa6173a74277aa2e86a209d3118203fa8}{getFileName}() + \textcolor{stringliteral}{":"} + \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_instruction_position_impl_ab362ce71d6d351401c64199096a5a75c}{line};
+151   \}
+\end{DoxyCode}
+
+
+\subsection{Member Data Documentation}
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Instruction\+Position\+Impl@{gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Instruction\+Position\+Impl}!class\+Name@{class\+Name}}
+\index{class\+Name@{class\+Name}!gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Instruction\+Position\+Impl@{gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Instruction\+Position\+Impl}}
+\subsubsection[{\texorpdfstring{class\+Name}{className}}]{\setlength{\rightskip}{0pt plus 5cm}String gov.\+nasa.\+jpf.\+inspector.\+server.\+breakpoints.\+Instruction\+Position\+Impl.\+class\+Name = null\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_instruction_position_impl_af1da872ffe98d641617964bdc2edc7eb}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_instruction_position_impl_af1da872ffe98d641617964bdc2edc7eb}
+
+
+Definition at line 42 of file Instruction\+Position\+Impl.\+java.
+
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Instruction\+Position\+Impl@{gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Instruction\+Position\+Impl}!file\+Name@{file\+Name}}
+\index{file\+Name@{file\+Name}!gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Instruction\+Position\+Impl@{gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Instruction\+Position\+Impl}}
+\subsubsection[{\texorpdfstring{file\+Name}{fileName}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf File\+Name} gov.\+nasa.\+jpf.\+inspector.\+server.\+breakpoints.\+Instruction\+Position\+Impl.\+file\+Name = null\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_instruction_position_impl_a516c1bf9f9237fa2da514022d0ed4679}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_instruction_position_impl_a516c1bf9f9237fa2da514022d0ed4679}
+
+
+Definition at line 37 of file Instruction\+Position\+Impl.\+java.
+
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Instruction\+Position\+Impl@{gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Instruction\+Position\+Impl}!instr\+Name@{instr\+Name}}
+\index{instr\+Name@{instr\+Name}!gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Instruction\+Position\+Impl@{gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Instruction\+Position\+Impl}}
+\subsubsection[{\texorpdfstring{instr\+Name}{instrName}}]{\setlength{\rightskip}{0pt plus 5cm}String gov.\+nasa.\+jpf.\+inspector.\+server.\+breakpoints.\+Instruction\+Position\+Impl.\+instr\+Name = null\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_instruction_position_impl_a5d2980c1de4a8894d99b806c32df5db4}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_instruction_position_impl_a5d2980c1de4a8894d99b806c32df5db4}
+
+
+Definition at line 44 of file Instruction\+Position\+Impl.\+java.
+
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Instruction\+Position\+Impl@{gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Instruction\+Position\+Impl}!instr\+Offset@{instr\+Offset}}
+\index{instr\+Offset@{instr\+Offset}!gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Instruction\+Position\+Impl@{gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Instruction\+Position\+Impl}}
+\subsubsection[{\texorpdfstring{instr\+Offset}{instrOffset}}]{\setlength{\rightskip}{0pt plus 5cm}int gov.\+nasa.\+jpf.\+inspector.\+server.\+breakpoints.\+Instruction\+Position\+Impl.\+instr\+Offset = -\/1\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_instruction_position_impl_a73aceb15c7e4bbacc5a811701cf5482e}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_instruction_position_impl_a73aceb15c7e4bbacc5a811701cf5482e}
+
+
+Definition at line 45 of file Instruction\+Position\+Impl.\+java.
+
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Instruction\+Position\+Impl@{gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Instruction\+Position\+Impl}!I\+P\+\_\+\+P\+O\+S\+\_\+\+L\+I\+N\+E\+\_\+\+N\+O\+T\+\_\+\+D\+E\+F\+I\+N\+ED@{I\+P\+\_\+\+P\+O\+S\+\_\+\+L\+I\+N\+E\+\_\+\+N\+O\+T\+\_\+\+D\+E\+F\+I\+N\+ED}}
+\index{I\+P\+\_\+\+P\+O\+S\+\_\+\+L\+I\+N\+E\+\_\+\+N\+O\+T\+\_\+\+D\+E\+F\+I\+N\+ED@{I\+P\+\_\+\+P\+O\+S\+\_\+\+L\+I\+N\+E\+\_\+\+N\+O\+T\+\_\+\+D\+E\+F\+I\+N\+ED}!gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Instruction\+Position\+Impl@{gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Instruction\+Position\+Impl}}
+\subsubsection[{\texorpdfstring{I\+P\+\_\+\+P\+O\+S\+\_\+\+L\+I\+N\+E\+\_\+\+N\+O\+T\+\_\+\+D\+E\+F\+I\+N\+ED}{IP_POS_LINE_NOT_DEFINED}}]{\setlength{\rightskip}{0pt plus 5cm}final int gov.\+nasa.\+jpf.\+inspector.\+interfaces.\+Instruction\+Position.\+I\+P\+\_\+\+P\+O\+S\+\_\+\+L\+I\+N\+E\+\_\+\+N\+O\+T\+\_\+\+D\+E\+F\+I\+N\+ED = -\/1\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [inherited]}}\hypertarget{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1interfaces_1_1_instruction_position_af542a3a926e7a0ef8ad18bde5ee98634}{}\label{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1interfaces_1_1_instruction_position_af542a3a926e7a0ef8ad18bde5ee98634}
+
+
+Definition at line 26 of file Instruction\+Position.\+java.
+
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Instruction\+Position\+Impl@{gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Instruction\+Position\+Impl}!line@{line}}
+\index{line@{line}!gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Instruction\+Position\+Impl@{gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Instruction\+Position\+Impl}}
+\subsubsection[{\texorpdfstring{line}{line}}]{\setlength{\rightskip}{0pt plus 5cm}int gov.\+nasa.\+jpf.\+inspector.\+server.\+breakpoints.\+Instruction\+Position\+Impl.\+line = {\bf Instruction\+Position.\+I\+P\+\_\+\+P\+O\+S\+\_\+\+L\+I\+N\+E\+\_\+\+N\+O\+T\+\_\+\+D\+E\+F\+I\+N\+ED}\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_instruction_position_impl_ab362ce71d6d351401c64199096a5a75c}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_instruction_position_impl_ab362ce71d6d351401c64199096a5a75c}
+
+
+Definition at line 39 of file Instruction\+Position\+Impl.\+java.
+
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Instruction\+Position\+Impl@{gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Instruction\+Position\+Impl}!method\+Name@{method\+Name}}
+\index{method\+Name@{method\+Name}!gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Instruction\+Position\+Impl@{gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Instruction\+Position\+Impl}}
+\subsubsection[{\texorpdfstring{method\+Name}{methodName}}]{\setlength{\rightskip}{0pt plus 5cm}String gov.\+nasa.\+jpf.\+inspector.\+server.\+breakpoints.\+Instruction\+Position\+Impl.\+method\+Name = null\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_instruction_position_impl_a3fc161c51e7150e0192f16a1b0f844d3}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_instruction_position_impl_a3fc161c51e7150e0192f16a1b0f844d3}
+
+
+Definition at line 43 of file Instruction\+Position\+Impl.\+java.
+
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Instruction\+Position\+Impl@{gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Instruction\+Position\+Impl}!source\+Line@{source\+Line}}
+\index{source\+Line@{source\+Line}!gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Instruction\+Position\+Impl@{gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Instruction\+Position\+Impl}}
+\subsubsection[{\texorpdfstring{source\+Line}{sourceLine}}]{\setlength{\rightskip}{0pt plus 5cm}String gov.\+nasa.\+jpf.\+inspector.\+server.\+breakpoints.\+Instruction\+Position\+Impl.\+source\+Line = null\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_instruction_position_impl_ae8a3786b40675ad5b90a137b828c539b}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_instruction_position_impl_ae8a3786b40675ad5b90a137b828c539b}
+
+
+Definition at line 41 of file Instruction\+Position\+Impl.\+java.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/gsoc/jpf-\/inspector/src/main/gov/nasa/jpf/inspector/server/breakpoints/\hyperlink{_instruction_position_impl_8java}{Instruction\+Position\+Impl.\+java}\end{DoxyCompactItemize}

@@ -1,0 +1,137 @@
+\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_expression_boolean}{}\section{gov.\+nasa.\+jpf.\+inspector.\+server.\+expression.\+Expression\+Boolean Class Reference}
+\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_expression_boolean}\index{gov.\+nasa.\+jpf.\+inspector.\+server.\+expression.\+Expression\+Boolean@{gov.\+nasa.\+jpf.\+inspector.\+server.\+expression.\+Expression\+Boolean}}
+Inheritance diagram for gov.\+nasa.\+jpf.\+inspector.\+server.\+expression.\+Expression\+Boolean\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=4.344828cm]{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_expression_boolean}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{enumgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_types}{Types} \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_expression_boolean_aed010ff8683eb1e8621e226703133457}{get\+Type} ()
+\item 
+String \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_expression_boolean_a43423e204404f24bf7862de938598eb7}{get\+Details} (\hyperlink{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_inspector_state}{Inspector\+State} state)
+\begin{DoxyCompactList}\small\item\em Get details related to expression. \end{DoxyCompactList}\item 
+boolean \hyperlink{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_expression_boolean_interface_adc81f58d2517d5ccb9ace7f5d8b8211f}{evaluate\+Expression} (\hyperlink{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_inspector_state}{Inspector\+State} state)  throws J\+P\+F\+Inspector\+Exception
+\begin{DoxyCompactList}\small\item\em Evaluate condition and get boolean result. \end{DoxyCompactList}\item 
+\hyperlink{enumgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_break_point_modes}{Break\+Point\+Modes} \hyperlink{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_expression_boolean_interface_a970737c885b2bb8abfbd5729275855ac}{get\+B\+P\+Mode} ()
+\item 
+List$<$?extends T $>$ \hyperlink{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_expression_node_interface_aaeec5305da52fbad211a7abf22b0a854}{get\+Childs} ()
+\item 
+String \hyperlink{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_expression_node_interface_ae5387d8da0126c1256a786d54b9bd7ce}{get\+Normalized\+Expression} ()
+\begin{DoxyCompactList}\small\item\em Gets string which represents normalized version of the represented expression. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 22 of file Expression\+Boolean.\+java.
+
+
+
+\subsection{Member Function Documentation}
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::\+Expression\+Boolean@{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::\+Expression\+Boolean}!evaluate\+Expression@{evaluate\+Expression}}
+\index{evaluate\+Expression@{evaluate\+Expression}!gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::\+Expression\+Boolean@{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::\+Expression\+Boolean}}
+\subsubsection[{\texorpdfstring{evaluate\+Expression(\+Inspector\+State state)}{evaluateExpression(InspectorState state)}}]{\setlength{\rightskip}{0pt plus 5cm}boolean gov.\+nasa.\+jpf.\+inspector.\+server.\+expression.\+Expression\+Boolean\+Interface.\+evaluate\+Expression (
+\begin{DoxyParamCaption}
+\item[{{\bf Inspector\+State}}]{state}
+\end{DoxyParamCaption}
+) throws {\bf J\+P\+F\+Inspector\+Exception}\hspace{0.3cm}{\ttfamily [inherited]}}\hypertarget{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_expression_boolean_interface_adc81f58d2517d5ccb9ace7f5d8b8211f}{}\label{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_expression_boolean_interface_adc81f58d2517d5ccb9ace7f5d8b8211f}
+
+
+Evaluate condition and get boolean result. 
+
+Successors -\/ logical operators, compare (any type) 
+
+Implemented in \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_breakpoint_single_step_a3999bbf1774b1187f41001f9db9b5c1a}{gov.\+nasa.\+jpf.\+inspector.\+server.\+expression.\+expressions.\+Expression\+Breakpoint\+Single\+Step}, \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_breakpoint_step_out_a6440be0795b507ebd76ca3f3e7961811}{gov.\+nasa.\+jpf.\+inspector.\+server.\+expression.\+expressions.\+Expression\+Breakpoint\+Step\+Out}, \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_breakpoint_instruction_a9fce761f3dafa426c52a8440a4aff369}{gov.\+nasa.\+jpf.\+inspector.\+server.\+expression.\+expressions.\+Expression\+Breakpoint\+Instruction}, \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_breakpoint_position_a79a13d6555f1168da4468a1fada1e04c}{gov.\+nasa.\+jpf.\+inspector.\+server.\+expression.\+expressions.\+Expression\+Breakpoint\+Position}, \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_breakpoint_field_access_a8f8daa3d95960df8ec8b528342711473}{gov.\+nasa.\+jpf.\+inspector.\+server.\+expression.\+expressions.\+Expression\+Breakpoint\+Field\+Access}, \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_breakpoint_compare_ab02c8653b90c737352ef8d937dc92c6a}{gov.\+nasa.\+jpf.\+inspector.\+server.\+expression.\+expressions.\+Expression\+Breakpoint\+Compare}, \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_breakpoint_method_invoke_ae5d9d2d66f9c33250a58aa87675f8a4e}{gov.\+nasa.\+jpf.\+inspector.\+server.\+expression.\+expressions.\+Expression\+Breakpoint\+Method\+Invoke}, \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_breakpoint_specific_class_a9ae7ea773a81bfacb58425dda46ad31d}{gov.\+nasa.\+jpf.\+inspector.\+server.\+expression.\+expressions.\+Expression\+Breakpoint\+Specific\+Class}, \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_breakpoint_instruction_type_a9143d6d205ca4394e59439cef8a8cede}{gov.\+nasa.\+jpf.\+inspector.\+server.\+expression.\+expressions.\+Expression\+Breakpoint\+Instruction\+Type}, \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_breakpoint_thread_scheduled_af4d7f87f622cea92aeaf4bdfe7d277b7}{gov.\+nasa.\+jpf.\+inspector.\+server.\+expression.\+expressions.\+Expression\+Breakpoint\+Thread\+Scheduled}, \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_breakpoint_choice_generator_aec1ca74841249340ec4ace864c69b39f}{gov.\+nasa.\+jpf.\+inspector.\+server.\+expression.\+expressions.\+Expression\+Breakpoint\+Choice\+Generator}, \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_breakpoint_garbage_collection_a481c3964677fe6412643edc5e2bd517a}{gov.\+nasa.\+jpf.\+inspector.\+server.\+expression.\+expressions.\+Expression\+Breakpoint\+Garbage\+Collection}, \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_expression_boolean_binary_operator_a0e5c542963babe959ddfb63b56bd8324}{gov.\+nasa.\+jpf.\+inspector.\+server.\+expression.\+Expression\+Boolean\+Binary\+Operator}, \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_breakpoint_operator_and_a8040b6c9aeba20bf73330787627ec5d1}{gov.\+nasa.\+jpf.\+inspector.\+server.\+expression.\+expressions.\+Expression\+Breakpoint\+Operator\+And}, \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_breakpoint_state_advanced_a409dd8b5a5ed98b64a6fea47cf1ed0d5}{gov.\+nasa.\+jpf.\+inspector.\+server.\+expression.\+expressions.\+Expression\+Breakpoint\+State\+Advanced}, \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_breakpoint_assert_a402d842c7dda2630c2cd61799bb17d0c}{gov.\+nasa.\+jpf.\+inspector.\+server.\+expression.\+expressions.\+Expression\+Breakpoint\+Assert}, \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_breakpoint_property_violated_af41d7903ae74071e41692b8eb543fbfd}{gov.\+nasa.\+jpf.\+inspector.\+server.\+expression.\+expressions.\+Expression\+Breakpoint\+Property\+Violated}, and \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_breakpoint_operator_or_ae03708a0e0daba250c554d99c68b06f1}{gov.\+nasa.\+jpf.\+inspector.\+server.\+expression.\+expressions.\+Expression\+Breakpoint\+Operator\+Or}.
+
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::\+Expression\+Boolean@{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::\+Expression\+Boolean}!get\+B\+P\+Mode@{get\+B\+P\+Mode}}
+\index{get\+B\+P\+Mode@{get\+B\+P\+Mode}!gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::\+Expression\+Boolean@{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::\+Expression\+Boolean}}
+\subsubsection[{\texorpdfstring{get\+B\+P\+Mode()}{getBPMode()}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Break\+Point\+Modes} gov.\+nasa.\+jpf.\+inspector.\+server.\+expression.\+Expression\+Boolean\+Interface.\+get\+B\+P\+Mode (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inherited]}}\hypertarget{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_expression_boolean_interface_a970737c885b2bb8abfbd5729275855ac}{}\label{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_expression_boolean_interface_a970737c885b2bb8abfbd5729275855ac}
+\begin{DoxyReturn}{Returns}
+Gets which BP mode represents the expression. 
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_breakpoint_single_step_a1c1441ec9e9ff70bac9aac05167bd584}{gov.\+nasa.\+jpf.\+inspector.\+server.\+expression.\+expressions.\+Expression\+Breakpoint\+Single\+Step}, \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_breakpoint_step_out_a5191d503e83a717fff835114b6e7b7e8}{gov.\+nasa.\+jpf.\+inspector.\+server.\+expression.\+expressions.\+Expression\+Breakpoint\+Step\+Out}, \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_breakpoint_instruction_a533e24731f0a1632b0cf2d1125e82905}{gov.\+nasa.\+jpf.\+inspector.\+server.\+expression.\+expressions.\+Expression\+Breakpoint\+Instruction}, \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_breakpoint_position_a52a8a727b070e56dba38a34960beecf4}{gov.\+nasa.\+jpf.\+inspector.\+server.\+expression.\+expressions.\+Expression\+Breakpoint\+Position}, \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_breakpoint_field_access_a0c9540df5151b567929d50b6e3260aba}{gov.\+nasa.\+jpf.\+inspector.\+server.\+expression.\+expressions.\+Expression\+Breakpoint\+Field\+Access}, \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_breakpoint_compare_a9d73dc0b03cfdca585195c99a8c14b8f}{gov.\+nasa.\+jpf.\+inspector.\+server.\+expression.\+expressions.\+Expression\+Breakpoint\+Compare}, \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_breakpoint_thread_scheduled_ac02b6383a2918d35d4307c4c0f2d58be}{gov.\+nasa.\+jpf.\+inspector.\+server.\+expression.\+expressions.\+Expression\+Breakpoint\+Thread\+Scheduled}, \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_breakpoint_instruction_type_aefb559d1692a086952cd87a970297867}{gov.\+nasa.\+jpf.\+inspector.\+server.\+expression.\+expressions.\+Expression\+Breakpoint\+Instruction\+Type}, \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_breakpoint_method_invoke_ab1b03a2edbdb645b34769e1b8a469e81}{gov.\+nasa.\+jpf.\+inspector.\+server.\+expression.\+expressions.\+Expression\+Breakpoint\+Method\+Invoke}, \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_breakpoint_specific_class_a190bc3c6dce186848caa73e464aaf4f8}{gov.\+nasa.\+jpf.\+inspector.\+server.\+expression.\+expressions.\+Expression\+Breakpoint\+Specific\+Class}, \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_breakpoint_choice_generator_a6f5e7b1b6f270c86126c05bf98949507}{gov.\+nasa.\+jpf.\+inspector.\+server.\+expression.\+expressions.\+Expression\+Breakpoint\+Choice\+Generator}, \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_breakpoint_garbage_collection_ac580d4b72f0db128201174bc08ebbadc}{gov.\+nasa.\+jpf.\+inspector.\+server.\+expression.\+expressions.\+Expression\+Breakpoint\+Garbage\+Collection}, \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_expression_boolean_binary_operator_a7ef59a2108ddded0cc7094ae1e3086d7}{gov.\+nasa.\+jpf.\+inspector.\+server.\+expression.\+Expression\+Boolean\+Binary\+Operator}, \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_breakpoint_state_advanced_a176b62b899926dca6755b2b0c37b75e9}{gov.\+nasa.\+jpf.\+inspector.\+server.\+expression.\+expressions.\+Expression\+Breakpoint\+State\+Advanced}, and \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_breakpoint_property_violated_a36b34b44e01241555256fd1a5e5f1956}{gov.\+nasa.\+jpf.\+inspector.\+server.\+expression.\+expressions.\+Expression\+Breakpoint\+Property\+Violated}.
+
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::\+Expression\+Boolean@{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::\+Expression\+Boolean}!get\+Childs@{get\+Childs}}
+\index{get\+Childs@{get\+Childs}!gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::\+Expression\+Boolean@{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::\+Expression\+Boolean}}
+\subsubsection[{\texorpdfstring{get\+Childs()}{getChilds()}}]{\setlength{\rightskip}{0pt plus 5cm}List$<$? extends T$>$ {\bf gov.\+nasa.\+jpf.\+inspector.\+server.\+expression.\+Expression\+Node\+Interface}$<$ T $>$.get\+Childs (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inherited]}}\hypertarget{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_expression_node_interface_aaeec5305da52fbad211a7abf22b0a854}{}\label{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_expression_node_interface_aaeec5305da52fbad211a7abf22b0a854}
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::\+Expression\+Boolean@{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::\+Expression\+Boolean}!get\+Details@{get\+Details}}
+\index{get\+Details@{get\+Details}!gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::\+Expression\+Boolean@{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::\+Expression\+Boolean}}
+\subsubsection[{\texorpdfstring{get\+Details(\+Inspector\+State state)}{getDetails(InspectorState state)}}]{\setlength{\rightskip}{0pt plus 5cm}String gov.\+nasa.\+jpf.\+inspector.\+server.\+expression.\+Expression\+Boolean.\+get\+Details (
+\begin{DoxyParamCaption}
+\item[{{\bf Inspector\+State}}]{state}
+\end{DoxyParamCaption}
+)}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_expression_boolean_a43423e204404f24bf7862de938598eb7}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_expression_boolean_a43423e204404f24bf7862de938598eb7}
+
+
+Get details related to expression. 
+
+Note\+: This information is printed to user if breakpoint hits. This method can provide supplementary information for users.
+
+\begin{DoxyReturn}{Returns}
+Details related to evaluation of the expresison or null. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_expression_boolean_interface_a6e5af96b023d71fcda296c10f5d7c555}{gov.\+nasa.\+jpf.\+inspector.\+server.\+expression.\+Expression\+Boolean\+Interface}.
+
+
+
+Definition at line 31 of file Expression\+Boolean.\+java.
+
+
+\begin{DoxyCode}
+31                                                   \{
+32     \textcolor{keywordflow}{return} null;
+33   \}
+\end{DoxyCode}
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::\+Expression\+Boolean@{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::\+Expression\+Boolean}!get\+Normalized\+Expression@{get\+Normalized\+Expression}}
+\index{get\+Normalized\+Expression@{get\+Normalized\+Expression}!gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::\+Expression\+Boolean@{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::\+Expression\+Boolean}}
+\subsubsection[{\texorpdfstring{get\+Normalized\+Expression()}{getNormalizedExpression()}}]{\setlength{\rightskip}{0pt plus 5cm}String {\bf gov.\+nasa.\+jpf.\+inspector.\+server.\+expression.\+Expression\+Node\+Interface}$<$ T $>$.get\+Normalized\+Expression (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inherited]}}\hypertarget{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_expression_node_interface_ae5387d8da0126c1256a786d54b9bd7ce}{}\label{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_expression_node_interface_ae5387d8da0126c1256a786d54b9bd7ce}
+
+
+Gets string which represents normalized version of the represented expression. 
+
+Note\+: Long version of the options should be used. Note\+: Given string has to be parsable by the expression parser.
+
+\begin{DoxyReturn}{Returns}
+Normalized parsable version of the represented expression. 
+\end{DoxyReturn}
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::\+Expression\+Boolean@{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::\+Expression\+Boolean}!get\+Type@{get\+Type}}
+\index{get\+Type@{get\+Type}!gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::\+Expression\+Boolean@{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::\+Expression\+Boolean}}
+\subsubsection[{\texorpdfstring{get\+Type()}{getType()}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Types} gov.\+nasa.\+jpf.\+inspector.\+server.\+expression.\+Expression\+Boolean.\+get\+Type (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_expression_boolean_aed010ff8683eb1e8621e226703133457}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_expression_boolean_aed010ff8683eb1e8621e226703133457}
+
+
+Definition at line 25 of file Expression\+Boolean.\+java.
+
+
+\begin{DoxyCode}
+25                           \{
+26     \textcolor{keywordflow}{return} Types.ET\_BOOLEAN;
+27   \}
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/gsoc/jpf-\/inspector/src/main/gov/nasa/jpf/inspector/server/expression/\hyperlink{_expression_boolean_8java}{Expression\+Boolean.\+java}\end{DoxyCompactItemize}

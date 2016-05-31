@@ -1,0 +1,258 @@
+\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1pathanalysis_1_1_transition_thread_backtracker}{}\section{gov.\+nasa.\+jpf.\+inspector.\+server.\+pathanalysis.\+Transition\+Thread\+Backtracker Class Reference}
+\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1pathanalysis_1_1_transition_thread_backtracker}\index{gov.\+nasa.\+jpf.\+inspector.\+server.\+pathanalysis.\+Transition\+Thread\+Backtracker@{gov.\+nasa.\+jpf.\+inspector.\+server.\+pathanalysis.\+Transition\+Thread\+Backtracker}}
+
+
+Creates single thread backward (transition) trace from \hyperlink{}{Path} by hiding transitions from different threads.  
+
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1pathanalysis_1_1_transition_thread_backtracker_a4ebb7b90ea61c6e40ed85ec25c33537e}{Transition\+Thread\+Backtracker} (Path path, int \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1pathanalysis_1_1_transition_thread_backtracker_ab5825d940eb7057fe8f2493e2c9baa14}{thread\+Id})
+\item 
+Transition \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1pathanalysis_1_1_transition_thread_backtracker_ad9effffddf4f1f6fd2687739e7dc1d87}{get\+Previous\+Transition} ()
+\begin{DoxyCompactList}\small\item\em Get previous transition in given thread. \end{DoxyCompactList}\item 
+Transition \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1pathanalysis_1_1_transition_thread_backtracker_a414a24c21a4c9e62c5aee10bf284efea}{get\+Current\+Transition} ()
+\begin{DoxyCompactList}\small\item\em Gets result of the last \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1pathanalysis_1_1_transition_thread_backtracker_ad9effffddf4f1f6fd2687739e7dc1d87}{get\+Previous\+Transition()} call. \end{DoxyCompactList}\item 
+int \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1pathanalysis_1_1_transition_thread_backtracker_af524ecf8ea30843d72652a71c8ad11a3}{get\+Backstepped\+Transitions} ()
+\item 
+Transition \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1pathanalysis_1_1_transition_thread_backtracker_a68a015f2afa89dc1e5b117c3efa16587}{get\+Prev\+Returned\+Transition} ()
+\begin{DoxyCompactList}\small\item\em Gets previous (not last, but one before) result of \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1pathanalysis_1_1_transition_thread_backtracker_ad9effffddf4f1f6fd2687739e7dc1d87}{get\+Previous\+Transition()} call. \end{DoxyCompactList}\item 
+int \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1pathanalysis_1_1_transition_thread_backtracker_a80b0fb7d97ee1586a5d1b37b8893c1ae}{get\+Prev\+Returned\+Back\+Stepped\+Transitions} ()
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+final Iterator$<$ Transition $>$ \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1pathanalysis_1_1_transition_thread_backtracker_aba5dcd1646802854653af84fd5e420b5}{reverse\+Path\+Iterator}
+\item 
+final int \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1pathanalysis_1_1_transition_thread_backtracker_ab5825d940eb7057fe8f2493e2c9baa14}{thread\+Id}
+\item 
+int \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1pathanalysis_1_1_transition_thread_backtracker_abfd6313c73f25511f92f2e6a755c335c}{backstepped\+Transitions} = 0
+\item 
+Transition \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1pathanalysis_1_1_transition_thread_backtracker_a226a7f84b473fcf5973e9ce6896c5735}{current\+Transition} = null
+\item 
+Transition \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1pathanalysis_1_1_transition_thread_backtracker_a188efd2f5bf48d8c71943789a66b3219}{prev\+Returned\+Transition} = null
+\item 
+int \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1pathanalysis_1_1_transition_thread_backtracker_a08629010f6db8d01a84a5e2d0154a936}{prev\+Returned\+Backstepped\+Transitions} = 0
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Creates single thread backward (transition) trace from \hyperlink{}{Path} by hiding transitions from different threads. 
+
+\begin{DoxyAuthor}{Author}
+Alf 
+\end{DoxyAuthor}
+
+
+Definition at line 14 of file Transition\+Thread\+Backtracker.\+java.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::pathanalysis\+::\+Transition\+Thread\+Backtracker@{gov\+::nasa\+::jpf\+::inspector\+::server\+::pathanalysis\+::\+Transition\+Thread\+Backtracker}!Transition\+Thread\+Backtracker@{Transition\+Thread\+Backtracker}}
+\index{Transition\+Thread\+Backtracker@{Transition\+Thread\+Backtracker}!gov\+::nasa\+::jpf\+::inspector\+::server\+::pathanalysis\+::\+Transition\+Thread\+Backtracker@{gov\+::nasa\+::jpf\+::inspector\+::server\+::pathanalysis\+::\+Transition\+Thread\+Backtracker}}
+\subsubsection[{\texorpdfstring{Transition\+Thread\+Backtracker(\+Path path, int thread\+Id)}{TransitionThreadBacktracker(Path path, int threadId)}}]{\setlength{\rightskip}{0pt plus 5cm}gov.\+nasa.\+jpf.\+inspector.\+server.\+pathanalysis.\+Transition\+Thread\+Backtracker.\+Transition\+Thread\+Backtracker (
+\begin{DoxyParamCaption}
+\item[{Path}]{path, }
+\item[{int}]{thread\+Id}
+\end{DoxyParamCaption}
+)}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1pathanalysis_1_1_transition_thread_backtracker_a4ebb7b90ea61c6e40ed85ec25c33537e}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1pathanalysis_1_1_transition_thread_backtracker_a4ebb7b90ea61c6e40ed85ec25c33537e}
+
+
+Definition at line 26 of file Transition\+Thread\+Backtracker.\+java.
+
+
+\begin{DoxyCode}
+26                                                               \{
+27     super();
+28     assert (path != null);
+29 
+30     this.\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1pathanalysis_1_1_transition_thread_backtracker_ab5825d940eb7057fe8f2493e2c9baa14}{threadId} = \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1pathanalysis_1_1_transition_thread_backtracker_ab5825d940eb7057fe8f2493e2c9baa14}{threadId};
+31 
+32     \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1pathanalysis_1_1_transition_thread_backtracker_aba5dcd1646802854653af84fd5e420b5}{reversePathIterator} = path.descendingIterator();
+33   \}
+\end{DoxyCode}
+
+
+\subsection{Member Function Documentation}
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::pathanalysis\+::\+Transition\+Thread\+Backtracker@{gov\+::nasa\+::jpf\+::inspector\+::server\+::pathanalysis\+::\+Transition\+Thread\+Backtracker}!get\+Backstepped\+Transitions@{get\+Backstepped\+Transitions}}
+\index{get\+Backstepped\+Transitions@{get\+Backstepped\+Transitions}!gov\+::nasa\+::jpf\+::inspector\+::server\+::pathanalysis\+::\+Transition\+Thread\+Backtracker@{gov\+::nasa\+::jpf\+::inspector\+::server\+::pathanalysis\+::\+Transition\+Thread\+Backtracker}}
+\subsubsection[{\texorpdfstring{get\+Backstepped\+Transitions()}{getBacksteppedTransitions()}}]{\setlength{\rightskip}{0pt plus 5cm}int gov.\+nasa.\+jpf.\+inspector.\+server.\+pathanalysis.\+Transition\+Thread\+Backtracker.\+get\+Backstepped\+Transitions (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1pathanalysis_1_1_transition_thread_backtracker_af524ecf8ea30843d72652a71c8ad11a3}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1pathanalysis_1_1_transition_thread_backtracker_af524ecf8ea30843d72652a71c8ad11a3}
+\begin{DoxyReturn}{Returns}
+Gets number of transitions (including the skipped transition in different threads) which were \char`\"{}backstepped\char`\"{} by calls of \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1pathanalysis_1_1_transition_thread_backtracker_ad9effffddf4f1f6fd2687739e7dc1d87}{get\+Previous\+Transition()} 
+\end{DoxyReturn}
+
+
+Definition at line 72 of file Transition\+Thread\+Backtracker.\+java.
+
+
+\begin{DoxyCode}
+72                                          \{
+73     \textcolor{keywordflow}{return} \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1pathanalysis_1_1_transition_thread_backtracker_abfd6313c73f25511f92f2e6a755c335c}{backsteppedTransitions};
+74   \}
+\end{DoxyCode}
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::pathanalysis\+::\+Transition\+Thread\+Backtracker@{gov\+::nasa\+::jpf\+::inspector\+::server\+::pathanalysis\+::\+Transition\+Thread\+Backtracker}!get\+Current\+Transition@{get\+Current\+Transition}}
+\index{get\+Current\+Transition@{get\+Current\+Transition}!gov\+::nasa\+::jpf\+::inspector\+::server\+::pathanalysis\+::\+Transition\+Thread\+Backtracker@{gov\+::nasa\+::jpf\+::inspector\+::server\+::pathanalysis\+::\+Transition\+Thread\+Backtracker}}
+\subsubsection[{\texorpdfstring{get\+Current\+Transition()}{getCurrentTransition()}}]{\setlength{\rightskip}{0pt plus 5cm}Transition gov.\+nasa.\+jpf.\+inspector.\+server.\+pathanalysis.\+Transition\+Thread\+Backtracker.\+get\+Current\+Transition (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1pathanalysis_1_1_transition_thread_backtracker_a414a24c21a4c9e62c5aee10bf284efea}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1pathanalysis_1_1_transition_thread_backtracker_a414a24c21a4c9e62c5aee10bf284efea}
+
+
+Gets result of the last \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1pathanalysis_1_1_transition_thread_backtracker_ad9effffddf4f1f6fd2687739e7dc1d87}{get\+Previous\+Transition()} call. 
+
+\begin{DoxyReturn}{Returns}
+Gets current transition. 
+\end{DoxyReturn}
+
+
+Definition at line 64 of file Transition\+Thread\+Backtracker.\+java.
+
+
+\begin{DoxyCode}
+64                                            \{
+65     \textcolor{keywordflow}{return} \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1pathanalysis_1_1_transition_thread_backtracker_a226a7f84b473fcf5973e9ce6896c5735}{currentTransition};
+66   \}
+\end{DoxyCode}
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::pathanalysis\+::\+Transition\+Thread\+Backtracker@{gov\+::nasa\+::jpf\+::inspector\+::server\+::pathanalysis\+::\+Transition\+Thread\+Backtracker}!get\+Previous\+Transition@{get\+Previous\+Transition}}
+\index{get\+Previous\+Transition@{get\+Previous\+Transition}!gov\+::nasa\+::jpf\+::inspector\+::server\+::pathanalysis\+::\+Transition\+Thread\+Backtracker@{gov\+::nasa\+::jpf\+::inspector\+::server\+::pathanalysis\+::\+Transition\+Thread\+Backtracker}}
+\subsubsection[{\texorpdfstring{get\+Previous\+Transition()}{getPreviousTransition()}}]{\setlength{\rightskip}{0pt plus 5cm}Transition gov.\+nasa.\+jpf.\+inspector.\+server.\+pathanalysis.\+Transition\+Thread\+Backtracker.\+get\+Previous\+Transition (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1pathanalysis_1_1_transition_thread_backtracker_ad9effffddf4f1f6fd2687739e7dc1d87}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1pathanalysis_1_1_transition_thread_backtracker_ad9effffddf4f1f6fd2687739e7dc1d87}
+
+
+Get previous transition in given thread. 
+
+Can be used iteratively to go back in program trace.
+
+\begin{DoxyReturn}{Returns}
+Get previous transition in given thread or null if no such transition exists. 
+\end{DoxyReturn}
+
+
+Definition at line 40 of file Transition\+Thread\+Backtracker.\+java.
+
+
+\begin{DoxyCode}
+40                                             \{
+41     \textcolor{comment}{// Remember previous state}
+42     \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1pathanalysis_1_1_transition_thread_backtracker_a08629010f6db8d01a84a5e2d0154a936}{prevReturnedBacksteppedTransitions} = 
+      \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1pathanalysis_1_1_transition_thread_backtracker_abfd6313c73f25511f92f2e6a755c335c}{backsteppedTransitions};
+43     \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1pathanalysis_1_1_transition_thread_backtracker_a188efd2f5bf48d8c71943789a66b3219}{prevReturnedTransition} = \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1pathanalysis_1_1_transition_thread_backtracker_a226a7f84b473fcf5973e9ce6896c5735}{currentTransition};
+44 
+45     \textcolor{keywordflow}{while} (\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1pathanalysis_1_1_transition_thread_backtracker_aba5dcd1646802854653af84fd5e420b5}{reversePathIterator}.hasNext()) \{
+46 
+47       \textcolor{comment}{// Update current state}
+48       \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1pathanalysis_1_1_transition_thread_backtracker_a226a7f84b473fcf5973e9ce6896c5735}{currentTransition} = \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1pathanalysis_1_1_transition_thread_backtracker_aba5dcd1646802854653af84fd5e420b5}{reversePathIterator}.next();
+49       \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1pathanalysis_1_1_transition_thread_backtracker_abfd6313c73f25511f92f2e6a755c335c}{backsteppedTransitions}++;
+50 
+51       \textcolor{keywordflow}{if} (\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1pathanalysis_1_1_transition_thread_backtracker_a226a7f84b473fcf5973e9ce6896c5735}{currentTransition}.getThreadIndex() == \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1pathanalysis_1_1_transition_thread_backtracker_ab5825d940eb7057fe8f2493e2c9baa14}{threadId}) \{
+52         \textcolor{keywordflow}{return} \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1pathanalysis_1_1_transition_thread_backtracker_a226a7f84b473fcf5973e9ce6896c5735}{currentTransition};
+53       \}
+54     \}
+55     \textcolor{comment}{// No such Transition exists}
+56     \textcolor{keywordflow}{return} null;
+57   \}
+\end{DoxyCode}
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::pathanalysis\+::\+Transition\+Thread\+Backtracker@{gov\+::nasa\+::jpf\+::inspector\+::server\+::pathanalysis\+::\+Transition\+Thread\+Backtracker}!get\+Prev\+Returned\+Back\+Stepped\+Transitions@{get\+Prev\+Returned\+Back\+Stepped\+Transitions}}
+\index{get\+Prev\+Returned\+Back\+Stepped\+Transitions@{get\+Prev\+Returned\+Back\+Stepped\+Transitions}!gov\+::nasa\+::jpf\+::inspector\+::server\+::pathanalysis\+::\+Transition\+Thread\+Backtracker@{gov\+::nasa\+::jpf\+::inspector\+::server\+::pathanalysis\+::\+Transition\+Thread\+Backtracker}}
+\subsubsection[{\texorpdfstring{get\+Prev\+Returned\+Back\+Stepped\+Transitions()}{getPrevReturnedBackSteppedTransitions()}}]{\setlength{\rightskip}{0pt plus 5cm}int gov.\+nasa.\+jpf.\+inspector.\+server.\+pathanalysis.\+Transition\+Thread\+Backtracker.\+get\+Prev\+Returned\+Back\+Stepped\+Transitions (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1pathanalysis_1_1_transition_thread_backtracker_a80b0fb7d97ee1586a5d1b37b8893c1ae}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1pathanalysis_1_1_transition_thread_backtracker_a80b0fb7d97ee1586a5d1b37b8893c1ae}
+\begin{DoxyReturn}{Returns}
+Gets number of transitions (including the skipped transition in different threads) which were \char`\"{}backstepped\char`\"{} to obtain \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1pathanalysis_1_1_transition_thread_backtracker_a68a015f2afa89dc1e5b117c3efa16587}{get\+Prev\+Returned\+Transition()} 
+\end{DoxyReturn}
+
+
+Definition at line 88 of file Transition\+Thread\+Backtracker.\+java.
+
+
+\begin{DoxyCode}
+88                                                      \{
+89     \textcolor{keywordflow}{return} \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1pathanalysis_1_1_transition_thread_backtracker_a08629010f6db8d01a84a5e2d0154a936}{prevReturnedBacksteppedTransitions};
+90   \}
+\end{DoxyCode}
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::pathanalysis\+::\+Transition\+Thread\+Backtracker@{gov\+::nasa\+::jpf\+::inspector\+::server\+::pathanalysis\+::\+Transition\+Thread\+Backtracker}!get\+Prev\+Returned\+Transition@{get\+Prev\+Returned\+Transition}}
+\index{get\+Prev\+Returned\+Transition@{get\+Prev\+Returned\+Transition}!gov\+::nasa\+::jpf\+::inspector\+::server\+::pathanalysis\+::\+Transition\+Thread\+Backtracker@{gov\+::nasa\+::jpf\+::inspector\+::server\+::pathanalysis\+::\+Transition\+Thread\+Backtracker}}
+\subsubsection[{\texorpdfstring{get\+Prev\+Returned\+Transition()}{getPrevReturnedTransition()}}]{\setlength{\rightskip}{0pt plus 5cm}Transition gov.\+nasa.\+jpf.\+inspector.\+server.\+pathanalysis.\+Transition\+Thread\+Backtracker.\+get\+Prev\+Returned\+Transition (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1pathanalysis_1_1_transition_thread_backtracker_a68a015f2afa89dc1e5b117c3efa16587}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1pathanalysis_1_1_transition_thread_backtracker_a68a015f2afa89dc1e5b117c3efa16587}
+
+
+Gets previous (not last, but one before) result of \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1pathanalysis_1_1_transition_thread_backtracker_ad9effffddf4f1f6fd2687739e7dc1d87}{get\+Previous\+Transition()} call. 
+
+\begin{DoxyReturn}{Returns}
+Gets previous transition. 
+\end{DoxyReturn}
+
+
+Definition at line 81 of file Transition\+Thread\+Backtracker.\+java.
+
+
+\begin{DoxyCode}
+81                                                 \{
+82     \textcolor{keywordflow}{return} \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1pathanalysis_1_1_transition_thread_backtracker_a188efd2f5bf48d8c71943789a66b3219}{prevReturnedTransition};
+83   \}
+\end{DoxyCode}
+
+
+\subsection{Member Data Documentation}
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::pathanalysis\+::\+Transition\+Thread\+Backtracker@{gov\+::nasa\+::jpf\+::inspector\+::server\+::pathanalysis\+::\+Transition\+Thread\+Backtracker}!backstepped\+Transitions@{backstepped\+Transitions}}
+\index{backstepped\+Transitions@{backstepped\+Transitions}!gov\+::nasa\+::jpf\+::inspector\+::server\+::pathanalysis\+::\+Transition\+Thread\+Backtracker@{gov\+::nasa\+::jpf\+::inspector\+::server\+::pathanalysis\+::\+Transition\+Thread\+Backtracker}}
+\subsubsection[{\texorpdfstring{backstepped\+Transitions}{backsteppedTransitions}}]{\setlength{\rightskip}{0pt plus 5cm}int gov.\+nasa.\+jpf.\+inspector.\+server.\+pathanalysis.\+Transition\+Thread\+Backtracker.\+backstepped\+Transitions = 0\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1pathanalysis_1_1_transition_thread_backtracker_abfd6313c73f25511f92f2e6a755c335c}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1pathanalysis_1_1_transition_thread_backtracker_abfd6313c73f25511f92f2e6a755c335c}
+
+
+Definition at line 20 of file Transition\+Thread\+Backtracker.\+java.
+
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::pathanalysis\+::\+Transition\+Thread\+Backtracker@{gov\+::nasa\+::jpf\+::inspector\+::server\+::pathanalysis\+::\+Transition\+Thread\+Backtracker}!current\+Transition@{current\+Transition}}
+\index{current\+Transition@{current\+Transition}!gov\+::nasa\+::jpf\+::inspector\+::server\+::pathanalysis\+::\+Transition\+Thread\+Backtracker@{gov\+::nasa\+::jpf\+::inspector\+::server\+::pathanalysis\+::\+Transition\+Thread\+Backtracker}}
+\subsubsection[{\texorpdfstring{current\+Transition}{currentTransition}}]{\setlength{\rightskip}{0pt plus 5cm}Transition gov.\+nasa.\+jpf.\+inspector.\+server.\+pathanalysis.\+Transition\+Thread\+Backtracker.\+current\+Transition = null\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1pathanalysis_1_1_transition_thread_backtracker_a226a7f84b473fcf5973e9ce6896c5735}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1pathanalysis_1_1_transition_thread_backtracker_a226a7f84b473fcf5973e9ce6896c5735}
+
+
+Definition at line 21 of file Transition\+Thread\+Backtracker.\+java.
+
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::pathanalysis\+::\+Transition\+Thread\+Backtracker@{gov\+::nasa\+::jpf\+::inspector\+::server\+::pathanalysis\+::\+Transition\+Thread\+Backtracker}!prev\+Returned\+Backstepped\+Transitions@{prev\+Returned\+Backstepped\+Transitions}}
+\index{prev\+Returned\+Backstepped\+Transitions@{prev\+Returned\+Backstepped\+Transitions}!gov\+::nasa\+::jpf\+::inspector\+::server\+::pathanalysis\+::\+Transition\+Thread\+Backtracker@{gov\+::nasa\+::jpf\+::inspector\+::server\+::pathanalysis\+::\+Transition\+Thread\+Backtracker}}
+\subsubsection[{\texorpdfstring{prev\+Returned\+Backstepped\+Transitions}{prevReturnedBacksteppedTransitions}}]{\setlength{\rightskip}{0pt plus 5cm}int gov.\+nasa.\+jpf.\+inspector.\+server.\+pathanalysis.\+Transition\+Thread\+Backtracker.\+prev\+Returned\+Backstepped\+Transitions = 0\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1pathanalysis_1_1_transition_thread_backtracker_a08629010f6db8d01a84a5e2d0154a936}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1pathanalysis_1_1_transition_thread_backtracker_a08629010f6db8d01a84a5e2d0154a936}
+
+
+Definition at line 24 of file Transition\+Thread\+Backtracker.\+java.
+
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::pathanalysis\+::\+Transition\+Thread\+Backtracker@{gov\+::nasa\+::jpf\+::inspector\+::server\+::pathanalysis\+::\+Transition\+Thread\+Backtracker}!prev\+Returned\+Transition@{prev\+Returned\+Transition}}
+\index{prev\+Returned\+Transition@{prev\+Returned\+Transition}!gov\+::nasa\+::jpf\+::inspector\+::server\+::pathanalysis\+::\+Transition\+Thread\+Backtracker@{gov\+::nasa\+::jpf\+::inspector\+::server\+::pathanalysis\+::\+Transition\+Thread\+Backtracker}}
+\subsubsection[{\texorpdfstring{prev\+Returned\+Transition}{prevReturnedTransition}}]{\setlength{\rightskip}{0pt plus 5cm}Transition gov.\+nasa.\+jpf.\+inspector.\+server.\+pathanalysis.\+Transition\+Thread\+Backtracker.\+prev\+Returned\+Transition = null\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1pathanalysis_1_1_transition_thread_backtracker_a188efd2f5bf48d8c71943789a66b3219}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1pathanalysis_1_1_transition_thread_backtracker_a188efd2f5bf48d8c71943789a66b3219}
+
+
+Definition at line 23 of file Transition\+Thread\+Backtracker.\+java.
+
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::pathanalysis\+::\+Transition\+Thread\+Backtracker@{gov\+::nasa\+::jpf\+::inspector\+::server\+::pathanalysis\+::\+Transition\+Thread\+Backtracker}!reverse\+Path\+Iterator@{reverse\+Path\+Iterator}}
+\index{reverse\+Path\+Iterator@{reverse\+Path\+Iterator}!gov\+::nasa\+::jpf\+::inspector\+::server\+::pathanalysis\+::\+Transition\+Thread\+Backtracker@{gov\+::nasa\+::jpf\+::inspector\+::server\+::pathanalysis\+::\+Transition\+Thread\+Backtracker}}
+\subsubsection[{\texorpdfstring{reverse\+Path\+Iterator}{reversePathIterator}}]{\setlength{\rightskip}{0pt plus 5cm}final Iterator$<$Transition$>$ gov.\+nasa.\+jpf.\+inspector.\+server.\+pathanalysis.\+Transition\+Thread\+Backtracker.\+reverse\+Path\+Iterator\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1pathanalysis_1_1_transition_thread_backtracker_aba5dcd1646802854653af84fd5e420b5}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1pathanalysis_1_1_transition_thread_backtracker_aba5dcd1646802854653af84fd5e420b5}
+
+
+Definition at line 16 of file Transition\+Thread\+Backtracker.\+java.
+
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::pathanalysis\+::\+Transition\+Thread\+Backtracker@{gov\+::nasa\+::jpf\+::inspector\+::server\+::pathanalysis\+::\+Transition\+Thread\+Backtracker}!thread\+Id@{thread\+Id}}
+\index{thread\+Id@{thread\+Id}!gov\+::nasa\+::jpf\+::inspector\+::server\+::pathanalysis\+::\+Transition\+Thread\+Backtracker@{gov\+::nasa\+::jpf\+::inspector\+::server\+::pathanalysis\+::\+Transition\+Thread\+Backtracker}}
+\subsubsection[{\texorpdfstring{thread\+Id}{threadId}}]{\setlength{\rightskip}{0pt plus 5cm}final int gov.\+nasa.\+jpf.\+inspector.\+server.\+pathanalysis.\+Transition\+Thread\+Backtracker.\+thread\+Id\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1pathanalysis_1_1_transition_thread_backtracker_ab5825d940eb7057fe8f2493e2c9baa14}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1pathanalysis_1_1_transition_thread_backtracker_ab5825d940eb7057fe8f2493e2c9baa14}
+
+
+Definition at line 18 of file Transition\+Thread\+Backtracker.\+java.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/gsoc/jpf-\/inspector/src/main/gov/nasa/jpf/inspector/server/pathanalysis/\hyperlink{_transition_thread_backtracker_8java}{Transition\+Thread\+Backtracker.\+java}\end{DoxyCompactItemize}

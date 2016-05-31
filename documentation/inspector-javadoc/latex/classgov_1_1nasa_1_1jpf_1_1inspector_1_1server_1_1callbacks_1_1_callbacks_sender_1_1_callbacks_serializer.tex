@@ -1,0 +1,289 @@
+\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1callbacks_1_1_callbacks_sender_1_1_callbacks_serializer}{}\section{gov.\+nasa.\+jpf.\+inspector.\+server.\+callbacks.\+Callbacks\+Sender.\+Callbacks\+Serializer Class Reference}
+\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1callbacks_1_1_callbacks_sender_1_1_callbacks_serializer}\index{gov.\+nasa.\+jpf.\+inspector.\+server.\+callbacks.\+Callbacks\+Sender.\+Callbacks\+Serializer@{gov.\+nasa.\+jpf.\+inspector.\+server.\+callbacks.\+Callbacks\+Sender.\+Callbacks\+Serializer}}
+Inheritance diagram for gov.\+nasa.\+jpf.\+inspector.\+server.\+callbacks.\+Callbacks\+Sender.\+Callbacks\+Serializer\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1callbacks_1_1_callbacks_sender_1_1_callbacks_serializer}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1callbacks_1_1_callbacks_sender_1_1_callbacks_serializer_a724f27751711165c1062cdb3a76cbd73}{notify\+State\+Change} (\hyperlink{enumgov_1_1nasa_1_1jpf_1_1inspector_1_1interfaces_1_1_commands_interface_1_1_inspector_states}{Inspector\+States} new\+State, String details)
+\begin{DoxyCompactList}\small\item\em Called when state of the inspector is modified -\/ paused, resumed, property violated. \end{DoxyCompactList}\item 
+void \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1callbacks_1_1_callbacks_sender_1_1_callbacks_serializer_a893bb1738c37dc0cba354b49faa99eac}{generic\+Error} (String msg)
+\begin{DoxyCompactList}\small\item\em Inspector detected unrecoverable error that should be reported to user. \end{DoxyCompactList}\item 
+void \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1callbacks_1_1_callbacks_sender_1_1_callbacks_serializer_a0e7c50fd2c71a1784f6b831c1b9e866d}{generic\+Info} (String msg)
+\begin{DoxyCompactList}\small\item\em Channel used for sending various messages for the user. \end{DoxyCompactList}\item 
+void \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1callbacks_1_1_callbacks_sender_1_1_callbacks_serializer_ae60d11cc3bbba13dde00f095f2129bcf}{notify\+Breakpoint\+Hit} (\hyperlink{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1interfaces_1_1_break_point_status}{Break\+Point\+Status} bp)
+\begin{DoxyCompactList}\small\item\em Called when breakpoint is hitted. \end{DoxyCompactList}\item 
+void \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1callbacks_1_1_callbacks_sender_1_1_callbacks_serializer_aee7a8953cff2c17d29923d1267684f0b}{notify\+Choice\+Generator\+New\+Choice} (\hyperlink{enumgov_1_1nasa_1_1jpf_1_1inspector_1_1interfaces_1_1_choice_generators_interface_1_1_c_g_types}{C\+G\+Types} cg\+Type, String cg\+Name, int cg\+Id, String\mbox{[}$\,$\mbox{]} choices, int next\+Choice, int default\+Choice)
+\begin{DoxyCompactList}\small\item\em Notification from the server that Choice\+Generator is asked for new value. \end{DoxyCompactList}\item 
+void \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1callbacks_1_1_callbacks_sender_1_1_callbacks_serializer_a47221e0bce9b86566439719e6ae667b1}{specify\+Choice\+To\+Use} (int max\+Choice\+Index)
+\begin{DoxyCompactList}\small\item\em Callback used to print prompt(notification) to user that execution is stopped and you should specify which choice to use. \end{DoxyCompactList}\item 
+void \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1callbacks_1_1_callbacks_sender_1_1_callbacks_serializer_ad5bbe59d8f6b40222c374182751430cc}{notify\+Used\+Choice} (\hyperlink{enumgov_1_1nasa_1_1jpf_1_1inspector_1_1interfaces_1_1_choice_generators_interface_1_1_c_g_types}{C\+G\+Types} cg\+Type, String cg\+Name, int cg\+Id, int used\+Choice\+Index, String used\+Choice)
+\begin{DoxyCompactList}\small\item\em Notification from the server with used choice. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 181 of file Callbacks\+Sender.\+java.
+
+
+
+\subsection{Member Function Documentation}
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::callbacks\+::\+Callbacks\+Sender\+::\+Callbacks\+Serializer@{gov\+::nasa\+::jpf\+::inspector\+::server\+::callbacks\+::\+Callbacks\+Sender\+::\+Callbacks\+Serializer}!generic\+Error@{generic\+Error}}
+\index{generic\+Error@{generic\+Error}!gov\+::nasa\+::jpf\+::inspector\+::server\+::callbacks\+::\+Callbacks\+Sender\+::\+Callbacks\+Serializer@{gov\+::nasa\+::jpf\+::inspector\+::server\+::callbacks\+::\+Callbacks\+Sender\+::\+Callbacks\+Serializer}}
+\subsubsection[{\texorpdfstring{generic\+Error(\+String msg)}{genericError(String msg)}}]{\setlength{\rightskip}{0pt plus 5cm}void gov.\+nasa.\+jpf.\+inspector.\+server.\+callbacks.\+Callbacks\+Sender.\+Callbacks\+Serializer.\+generic\+Error (
+\begin{DoxyParamCaption}
+\item[{String}]{msg}
+\end{DoxyParamCaption}
+)}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1callbacks_1_1_callbacks_sender_1_1_callbacks_serializer_a893bb1738c37dc0cba354b49faa99eac}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1callbacks_1_1_callbacks_sender_1_1_callbacks_serializer_a893bb1738c37dc0cba354b49faa99eac}
+
+
+Inspector detected unrecoverable error that should be reported to user. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em msg} & Message to print. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1interfaces_1_1_inspector_call_backs_ac9e585a3096b0be7e25dc789b6b39cfa}{gov.\+nasa.\+jpf.\+inspector.\+interfaces.\+Inspector\+Call\+Backs}.
+
+
+
+Definition at line 190 of file Callbacks\+Sender.\+java.
+
+
+\begin{DoxyCode}
+190                                           \{
+191       CallbackCommandGenericError cb = \textcolor{keyword}{new} CallbackCommandGenericError(msg);
+192       \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1callbacks_1_1_callbacks_sender_ab4ea578bd6190b6e61b2445a79dab78a}{planNewCallback}(cb);
+193     \}
+\end{DoxyCode}
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::callbacks\+::\+Callbacks\+Sender\+::\+Callbacks\+Serializer@{gov\+::nasa\+::jpf\+::inspector\+::server\+::callbacks\+::\+Callbacks\+Sender\+::\+Callbacks\+Serializer}!generic\+Info@{generic\+Info}}
+\index{generic\+Info@{generic\+Info}!gov\+::nasa\+::jpf\+::inspector\+::server\+::callbacks\+::\+Callbacks\+Sender\+::\+Callbacks\+Serializer@{gov\+::nasa\+::jpf\+::inspector\+::server\+::callbacks\+::\+Callbacks\+Sender\+::\+Callbacks\+Serializer}}
+\subsubsection[{\texorpdfstring{generic\+Info(\+String msg)}{genericInfo(String msg)}}]{\setlength{\rightskip}{0pt plus 5cm}void gov.\+nasa.\+jpf.\+inspector.\+server.\+callbacks.\+Callbacks\+Sender.\+Callbacks\+Serializer.\+generic\+Info (
+\begin{DoxyParamCaption}
+\item[{String}]{msg}
+\end{DoxyParamCaption}
+)}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1callbacks_1_1_callbacks_sender_1_1_callbacks_serializer_a0e7c50fd2c71a1784f6b831c1b9e866d}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1callbacks_1_1_callbacks_sender_1_1_callbacks_serializer_a0e7c50fd2c71a1784f6b831c1b9e866d}
+
+
+Channel used for sending various messages for the user. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em msg} & Message to print. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1interfaces_1_1_inspector_call_backs_afe2463c7186265f972991c9c7ab4ec19}{gov.\+nasa.\+jpf.\+inspector.\+interfaces.\+Inspector\+Call\+Backs}.
+
+
+
+Definition at line 196 of file Callbacks\+Sender.\+java.
+
+
+\begin{DoxyCode}
+196                                          \{
+197       CallbackCommandGenericInfo cb = \textcolor{keyword}{new} CallbackCommandGenericInfo(msg);
+198       \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1callbacks_1_1_callbacks_sender_ab4ea578bd6190b6e61b2445a79dab78a}{planNewCallback}(cb);
+199     \}
+\end{DoxyCode}
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::callbacks\+::\+Callbacks\+Sender\+::\+Callbacks\+Serializer@{gov\+::nasa\+::jpf\+::inspector\+::server\+::callbacks\+::\+Callbacks\+Sender\+::\+Callbacks\+Serializer}!notify\+Breakpoint\+Hit@{notify\+Breakpoint\+Hit}}
+\index{notify\+Breakpoint\+Hit@{notify\+Breakpoint\+Hit}!gov\+::nasa\+::jpf\+::inspector\+::server\+::callbacks\+::\+Callbacks\+Sender\+::\+Callbacks\+Serializer@{gov\+::nasa\+::jpf\+::inspector\+::server\+::callbacks\+::\+Callbacks\+Sender\+::\+Callbacks\+Serializer}}
+\subsubsection[{\texorpdfstring{notify\+Breakpoint\+Hit(\+Break\+Point\+Status bp)}{notifyBreakpointHit(BreakPointStatus bp)}}]{\setlength{\rightskip}{0pt plus 5cm}void gov.\+nasa.\+jpf.\+inspector.\+server.\+callbacks.\+Callbacks\+Sender.\+Callbacks\+Serializer.\+notify\+Breakpoint\+Hit (
+\begin{DoxyParamCaption}
+\item[{{\bf Break\+Point\+Status}}]{bp}
+\end{DoxyParamCaption}
+)}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1callbacks_1_1_callbacks_sender_1_1_callbacks_serializer_ae60d11cc3bbba13dde00f095f2129bcf}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1callbacks_1_1_callbacks_sender_1_1_callbacks_serializer_ae60d11cc3bbba13dde00f095f2129bcf}
+
+
+Called when breakpoint is hitted. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em bp} & Breakpoint that is reached. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1interfaces_1_1_inspector_call_backs_a130333a1ece0818a1161ca8597d027e6}{gov.\+nasa.\+jpf.\+inspector.\+interfaces.\+Inspector\+Call\+Backs}.
+
+
+
+Definition at line 202 of file Callbacks\+Sender.\+java.
+
+
+\begin{DoxyCode}
+202                                                           \{
+203       CallbackCommandBreakpointHit cb = \textcolor{keyword}{new} CallbackCommandBreakpointHit(bp);
+204       \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1callbacks_1_1_callbacks_sender_ab4ea578bd6190b6e61b2445a79dab78a}{planNewCallback}(cb);
+205     \}
+\end{DoxyCode}
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::callbacks\+::\+Callbacks\+Sender\+::\+Callbacks\+Serializer@{gov\+::nasa\+::jpf\+::inspector\+::server\+::callbacks\+::\+Callbacks\+Sender\+::\+Callbacks\+Serializer}!notify\+Choice\+Generator\+New\+Choice@{notify\+Choice\+Generator\+New\+Choice}}
+\index{notify\+Choice\+Generator\+New\+Choice@{notify\+Choice\+Generator\+New\+Choice}!gov\+::nasa\+::jpf\+::inspector\+::server\+::callbacks\+::\+Callbacks\+Sender\+::\+Callbacks\+Serializer@{gov\+::nasa\+::jpf\+::inspector\+::server\+::callbacks\+::\+Callbacks\+Sender\+::\+Callbacks\+Serializer}}
+\subsubsection[{\texorpdfstring{notify\+Choice\+Generator\+New\+Choice(\+C\+G\+Types cg\+Type, String cg\+Name, int cg\+Id, String[] choices, int next\+Choice, int default\+Choice)}{notifyChoiceGeneratorNewChoice(CGTypes cgType, String cgName, int cgId, String[] choices, int nextChoice, int defaultChoice)}}]{\setlength{\rightskip}{0pt plus 5cm}void gov.\+nasa.\+jpf.\+inspector.\+server.\+callbacks.\+Callbacks\+Sender.\+Callbacks\+Serializer.\+notify\+Choice\+Generator\+New\+Choice (
+\begin{DoxyParamCaption}
+\item[{{\bf C\+G\+Types}}]{cg\+Type, }
+\item[{String}]{cg\+Name, }
+\item[{int}]{cg\+Id, }
+\item[{String\mbox{[}$\,$\mbox{]}}]{choices, }
+\item[{int}]{next\+Choice, }
+\item[{int}]{default\+Choice}
+\end{DoxyParamCaption}
+)}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1callbacks_1_1_callbacks_sender_1_1_callbacks_serializer_aee7a8953cff2c17d29923d1267684f0b}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1callbacks_1_1_callbacks_sender_1_1_callbacks_serializer_aee7a8953cff2c17d29923d1267684f0b}
+
+
+Notification from the server that Choice\+Generator is asked for new value. 
+
+\hyperlink{}{Choice\+Generator\#advance()} is called.
+
+
+\begin{DoxyParams}{Parameters}
+{\em cg\+Type} & Specifies type of the Choice\+Generator \\
+\hline
+{\em cg\+Name} & Name of the \hyperlink{}{Choice\+Generator} \\
+\hline
+{\em cg\+Id} & Identification of the \hyperlink{}{Choice\+Generator} -\/ the hash\+Code \\
+\hline
+{\em choices} & List with possible choices of \hyperlink{}{Choice\+Generator} \\
+\hline
+{\em next\+Choice} & Index of selected choice. (Choice which will be selected after the \hyperlink{}{Choice\+Generator\#advance()} call \\
+\hline
+{\em default\+Choice} & Value of default choice, if any. (\hyperlink{}{Choice\+Generators\+Interface\#\+N\+O\+\_\+\+D\+E\+F\+A\+U\+L\+T\+\_\+\+C\+H\+O\+I\+CE} is used if no default choice exists) \\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1interfaces_1_1_inspector_call_backs_a8ebe532769c4bced7461e073fa79a7a0}{gov.\+nasa.\+jpf.\+inspector.\+interfaces.\+Inspector\+Call\+Backs}.
+
+
+
+Definition at line 208 of file Callbacks\+Sender.\+java.
+
+
+\begin{DoxyCode}
+208                                                                                                            
+                                         \{
+209       CallbackCommandChoiceGeneratorNewChoice cb = \textcolor{keyword}{new} CallbackCommandChoiceGeneratorNewChoice(cgType, 
+      cgName, cgId, choices, nextChoice, defaultChoice);
+210       \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1callbacks_1_1_callbacks_sender_ab4ea578bd6190b6e61b2445a79dab78a}{planNewCallback}(cb);
+211     \}
+\end{DoxyCode}
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::callbacks\+::\+Callbacks\+Sender\+::\+Callbacks\+Serializer@{gov\+::nasa\+::jpf\+::inspector\+::server\+::callbacks\+::\+Callbacks\+Sender\+::\+Callbacks\+Serializer}!notify\+State\+Change@{notify\+State\+Change}}
+\index{notify\+State\+Change@{notify\+State\+Change}!gov\+::nasa\+::jpf\+::inspector\+::server\+::callbacks\+::\+Callbacks\+Sender\+::\+Callbacks\+Serializer@{gov\+::nasa\+::jpf\+::inspector\+::server\+::callbacks\+::\+Callbacks\+Sender\+::\+Callbacks\+Serializer}}
+\subsubsection[{\texorpdfstring{notify\+State\+Change(\+Inspector\+States new\+State, String details)}{notifyStateChange(InspectorStates newState, String details)}}]{\setlength{\rightskip}{0pt plus 5cm}void gov.\+nasa.\+jpf.\+inspector.\+server.\+callbacks.\+Callbacks\+Sender.\+Callbacks\+Serializer.\+notify\+State\+Change (
+\begin{DoxyParamCaption}
+\item[{{\bf Inspector\+States}}]{new\+State, }
+\item[{String}]{details}
+\end{DoxyParamCaption}
+)}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1callbacks_1_1_callbacks_sender_1_1_callbacks_serializer_a724f27751711165c1062cdb3a76cbd73}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1callbacks_1_1_callbacks_sender_1_1_callbacks_serializer_a724f27751711165c1062cdb3a76cbd73}
+
+
+Called when state of the inspector is modified -\/ paused, resumed, property violated. 
+
+
+
+Implements \hyperlink{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1interfaces_1_1_inspector_call_backs_a347d6a1237962eb4305f45b718004c53}{gov.\+nasa.\+jpf.\+inspector.\+interfaces.\+Inspector\+Call\+Backs}.
+
+
+
+Definition at line 184 of file Callbacks\+Sender.\+java.
+
+
+\begin{DoxyCode}
+184                                                                              \{
+185       CallbackCommandStateChanged cb = \textcolor{keyword}{new} CallbackCommandStateChanged(newState, details);
+186       \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1callbacks_1_1_callbacks_sender_ab4ea578bd6190b6e61b2445a79dab78a}{planNewCallback}(cb);
+187     \}
+\end{DoxyCode}
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::callbacks\+::\+Callbacks\+Sender\+::\+Callbacks\+Serializer@{gov\+::nasa\+::jpf\+::inspector\+::server\+::callbacks\+::\+Callbacks\+Sender\+::\+Callbacks\+Serializer}!notify\+Used\+Choice@{notify\+Used\+Choice}}
+\index{notify\+Used\+Choice@{notify\+Used\+Choice}!gov\+::nasa\+::jpf\+::inspector\+::server\+::callbacks\+::\+Callbacks\+Sender\+::\+Callbacks\+Serializer@{gov\+::nasa\+::jpf\+::inspector\+::server\+::callbacks\+::\+Callbacks\+Sender\+::\+Callbacks\+Serializer}}
+\subsubsection[{\texorpdfstring{notify\+Used\+Choice(\+C\+G\+Types cg\+Type, String cg\+Name, int cg\+Id, int used\+Choice\+Index, String used\+Choice)}{notifyUsedChoice(CGTypes cgType, String cgName, int cgId, int usedChoiceIndex, String usedChoice)}}]{\setlength{\rightskip}{0pt plus 5cm}void gov.\+nasa.\+jpf.\+inspector.\+server.\+callbacks.\+Callbacks\+Sender.\+Callbacks\+Serializer.\+notify\+Used\+Choice (
+\begin{DoxyParamCaption}
+\item[{{\bf C\+G\+Types}}]{cg\+Type, }
+\item[{String}]{cg\+Name, }
+\item[{int}]{cg\+Id, }
+\item[{int}]{used\+Choice\+Index, }
+\item[{String}]{used\+Choice}
+\end{DoxyParamCaption}
+)}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1callbacks_1_1_callbacks_sender_1_1_callbacks_serializer_ad5bbe59d8f6b40222c374182751430cc}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1callbacks_1_1_callbacks_sender_1_1_callbacks_serializer_ad5bbe59d8f6b40222c374182751430cc}
+
+
+Notification from the server with used choice. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em cg\+Type} & Specifies type of the Choice\+Generator \\
+\hline
+{\em cg\+Name} & Name of the \hyperlink{}{Choice\+Generator} \\
+\hline
+{\em cg\+Id} & Identification of the \hyperlink{}{Choice\+Generator} -\/ the hash\+Code \\
+\hline
+{\em used\+Choice\+Index} & Index of used choice in \hyperlink{}{Choice\+Generator} \\
+\hline
+{\em used\+Choice} & Used choice -\/ text representation of used choice \\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1interfaces_1_1_inspector_call_backs_a83f9486958bbd33ee9d1a767252dbfd6}{gov.\+nasa.\+jpf.\+inspector.\+interfaces.\+Inspector\+Call\+Backs}.
+
+
+
+Definition at line 220 of file Callbacks\+Sender.\+java.
+
+
+\begin{DoxyCode}
+220                                                                                                            
+              \{
+221       CallbackCommandUsedChoice cb = \textcolor{keyword}{new} CallbackCommandUsedChoice(cgType, cgName, cgId, usedChoiceIndex, 
+      usedChoice);
+222       \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1callbacks_1_1_callbacks_sender_ab4ea578bd6190b6e61b2445a79dab78a}{planNewCallback}(cb);
+223     \}
+\end{DoxyCode}
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::callbacks\+::\+Callbacks\+Sender\+::\+Callbacks\+Serializer@{gov\+::nasa\+::jpf\+::inspector\+::server\+::callbacks\+::\+Callbacks\+Sender\+::\+Callbacks\+Serializer}!specify\+Choice\+To\+Use@{specify\+Choice\+To\+Use}}
+\index{specify\+Choice\+To\+Use@{specify\+Choice\+To\+Use}!gov\+::nasa\+::jpf\+::inspector\+::server\+::callbacks\+::\+Callbacks\+Sender\+::\+Callbacks\+Serializer@{gov\+::nasa\+::jpf\+::inspector\+::server\+::callbacks\+::\+Callbacks\+Sender\+::\+Callbacks\+Serializer}}
+\subsubsection[{\texorpdfstring{specify\+Choice\+To\+Use(int max\+Choice\+Index)}{specifyChoiceToUse(int maxChoiceIndex)}}]{\setlength{\rightskip}{0pt plus 5cm}void gov.\+nasa.\+jpf.\+inspector.\+server.\+callbacks.\+Callbacks\+Sender.\+Callbacks\+Serializer.\+specify\+Choice\+To\+Use (
+\begin{DoxyParamCaption}
+\item[{int}]{max\+Choice\+Index}
+\end{DoxyParamCaption}
+)}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1callbacks_1_1_callbacks_sender_1_1_callbacks_serializer_a47221e0bce9b86566439719e6ae667b1}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1callbacks_1_1_callbacks_sender_1_1_callbacks_serializer_a47221e0bce9b86566439719e6ae667b1}
+
+
+Callback used to print prompt(notification) to user that execution is stopped and you should specify which choice to use. 
+
+~\newline
+Note\+: This method is called after \hyperlink{}{notify\+Choice\+Generator\+New\+Choice(\+Choice\+Generators\+Interface.\+C\+G\+Types, String, int, String\mbox{[}$\,$\mbox{]}, int, int)} which shows possible choices
+
+
+\begin{DoxyParams}{Parameters}
+{\em max\+Choice\+Index} & -\/ specifies maximum allowed index of the choice \\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1interfaces_1_1_inspector_call_backs_a95bd37f4f3ad147514c86fa77856b51d}{gov.\+nasa.\+jpf.\+inspector.\+interfaces.\+Inspector\+Call\+Backs}.
+
+
+
+Definition at line 214 of file Callbacks\+Sender.\+java.
+
+
+\begin{DoxyCode}
+214                                                         \{
+215       CallbackCommandSpecifyChoiceToUse cb = \textcolor{keyword}{new} CallbackCommandSpecifyChoiceToUse(maxChoiceIndex);
+216       \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1callbacks_1_1_callbacks_sender_ab4ea578bd6190b6e61b2445a79dab78a}{planNewCallback}(cb);
+217     \}
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/gsoc/jpf-\/inspector/src/main/gov/nasa/jpf/inspector/server/callbacks/\hyperlink{_callbacks_sender_8java}{Callbacks\+Sender.\+java}\end{DoxyCompactItemize}

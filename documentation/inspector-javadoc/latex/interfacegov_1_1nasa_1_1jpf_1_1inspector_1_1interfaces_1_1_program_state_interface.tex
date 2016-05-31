@@ -1,0 +1,183 @@
+\hypertarget{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1interfaces_1_1_program_state_interface}{}\section{gov.\+nasa.\+jpf.\+inspector.\+interfaces.\+Program\+State\+Interface Interface Reference}
+\label{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1interfaces_1_1_program_state_interface}\index{gov.\+nasa.\+jpf.\+inspector.\+interfaces.\+Program\+State\+Interface@{gov.\+nasa.\+jpf.\+inspector.\+interfaces.\+Program\+State\+Interface}}
+
+
+Is intended for inspection of state of the SuT.  
+
+
+Inheritance diagram for gov.\+nasa.\+jpf.\+inspector.\+interfaces.\+Program\+State\+Interface\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.835443cm]{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1interfaces_1_1_program_state_interface}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+Map$<$ Integer, \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1common_1_1pse_1_1_p_s_e_thread}{P\+S\+E\+Thread} $>$ \hyperlink{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1interfaces_1_1_program_state_interface_a54531453dd2373d8f9f166a79547495a}{get\+Threads} (Integer thread\+Num)  throws J\+P\+F\+Inspector\+Exception
+\begin{DoxyCompactList}\small\item\em Gets selected/all threads and their status. \end{DoxyCompactList}\item 
+Map$<$ Integer, \hyperlink{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1interfaces_1_1_instruction_position}{Instruction\+Position} $>$ \hyperlink{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1interfaces_1_1_program_state_interface_a4ca30deeab5ba91a9ee285aabbdb623a}{get\+Threads\+PC} (Integer thread\+Num)  throws J\+P\+F\+Inspector\+Exception
+\begin{DoxyCompactList}\small\item\em Gets selected/all threads and their PC. \end{DoxyCompactList}\item 
+\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1common_1_1pse_1_1_program_state_entry}{Program\+State\+Entry} \hyperlink{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1interfaces_1_1_program_state_interface_a3a64e61b42c7338fe4f90c9c8519177f}{evaluate\+State\+Expression} (String expr)  throws J\+P\+F\+Inspector\+Exception
+\begin{DoxyCompactList}\small\item\em Evaluates given expression and gets final representation (thread/method/variable) value. \end{DoxyCompactList}\item 
+void \hyperlink{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1interfaces_1_1_program_state_interface_aaf980401ba045fdd70af10cb1c956ee0}{set\+Value} (String expr)  throws J\+P\+F\+Inspector\+Exception
+\begin{DoxyCompactList}\small\item\em Sets value of the variable. \end{DoxyCompactList}\item 
+void \hyperlink{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1interfaces_1_1_program_state_interface_a992e2deda1c948e41ae9abcc776eec7b}{set\+Value} (String l\+Value, String r\+Value)  throws J\+P\+F\+Inspector\+Exception
+\begin{DoxyCompactList}\small\item\em Sets value of the variable. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Is intended for inspection of state of the SuT. 
+
+Stateless (all important information always provides client)
+
+
+\begin{DoxyItemize}
+\item there will be 3 views -\/ threads+stack, heap, variables 
+\end{DoxyItemize}
+
+Definition at line 36 of file Program\+State\+Interface.\+java.
+
+
+
+\subsection{Member Function Documentation}
+\index{gov\+::nasa\+::jpf\+::inspector\+::interfaces\+::\+Program\+State\+Interface@{gov\+::nasa\+::jpf\+::inspector\+::interfaces\+::\+Program\+State\+Interface}!evaluate\+State\+Expression@{evaluate\+State\+Expression}}
+\index{evaluate\+State\+Expression@{evaluate\+State\+Expression}!gov\+::nasa\+::jpf\+::inspector\+::interfaces\+::\+Program\+State\+Interface@{gov\+::nasa\+::jpf\+::inspector\+::interfaces\+::\+Program\+State\+Interface}}
+\subsubsection[{\texorpdfstring{evaluate\+State\+Expression(\+String expr)}{evaluateStateExpression(String expr)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Program\+State\+Entry} gov.\+nasa.\+jpf.\+inspector.\+interfaces.\+Program\+State\+Interface.\+evaluate\+State\+Expression (
+\begin{DoxyParamCaption}
+\item[{String}]{expr}
+\end{DoxyParamCaption}
+) throws {\bf J\+P\+F\+Inspector\+Exception}}\hypertarget{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1interfaces_1_1_program_state_interface_a3a64e61b42c7338fe4f90c9c8519177f}{}\label{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1interfaces_1_1_program_state_interface_a3a64e61b42c7338fe4f90c9c8519177f}
+
+
+Evaluates given expression and gets final representation (thread/method/variable) value. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em expr} & Expression to process \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Representation of requested program state 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em J\+P\+F\+Inspector\+Generic\+Error\+Exception} & \\
+\hline
+\end{DoxyExceptions}
+
+
+Implemented in \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1_program_state_manager_aafa2d8336ed4229843f36fe99897be71}{gov.\+nasa.\+jpf.\+inspector.\+server.\+programstate.\+Program\+State\+Manager}, and \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_j_p_f_inspector_parallel_a6b844731ae2bc8d6934ad1c731dce319}{gov.\+nasa.\+jpf.\+inspector.\+server.\+jpf.\+J\+P\+F\+Inspector\+Parallel}.
+
+\index{gov\+::nasa\+::jpf\+::inspector\+::interfaces\+::\+Program\+State\+Interface@{gov\+::nasa\+::jpf\+::inspector\+::interfaces\+::\+Program\+State\+Interface}!get\+Threads@{get\+Threads}}
+\index{get\+Threads@{get\+Threads}!gov\+::nasa\+::jpf\+::inspector\+::interfaces\+::\+Program\+State\+Interface@{gov\+::nasa\+::jpf\+::inspector\+::interfaces\+::\+Program\+State\+Interface}}
+\subsubsection[{\texorpdfstring{get\+Threads(\+Integer thread\+Num)}{getThreads(Integer threadNum)}}]{\setlength{\rightskip}{0pt plus 5cm}Map$<$Integer, {\bf P\+S\+E\+Thread}$>$ gov.\+nasa.\+jpf.\+inspector.\+interfaces.\+Program\+State\+Interface.\+get\+Threads (
+\begin{DoxyParamCaption}
+\item[{Integer}]{thread\+Num}
+\end{DoxyParamCaption}
+) throws {\bf J\+P\+F\+Inspector\+Exception}}\hypertarget{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1interfaces_1_1_program_state_interface_a54531453dd2373d8f9f166a79547495a}{}\label{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1interfaces_1_1_program_state_interface_a54531453dd2373d8f9f166a79547495a}
+
+
+Gets selected/all threads and their status. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em thread\+Num} & The thread we select. Or all thread if null. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em J\+P\+F\+Inspector\+Generic\+Error\+Exception} & \\
+\hline
+\end{DoxyExceptions}
+
+
+Implemented in \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_j_p_f_inspector_parallel_ae040c9551b8ab27f2cfa0e08e674b861}{gov.\+nasa.\+jpf.\+inspector.\+server.\+jpf.\+J\+P\+F\+Inspector\+Parallel}, and \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1_program_state_manager_a8b8176020262b508cc861dc411911ce3}{gov.\+nasa.\+jpf.\+inspector.\+server.\+programstate.\+Program\+State\+Manager}.
+
+\index{gov\+::nasa\+::jpf\+::inspector\+::interfaces\+::\+Program\+State\+Interface@{gov\+::nasa\+::jpf\+::inspector\+::interfaces\+::\+Program\+State\+Interface}!get\+Threads\+PC@{get\+Threads\+PC}}
+\index{get\+Threads\+PC@{get\+Threads\+PC}!gov\+::nasa\+::jpf\+::inspector\+::interfaces\+::\+Program\+State\+Interface@{gov\+::nasa\+::jpf\+::inspector\+::interfaces\+::\+Program\+State\+Interface}}
+\subsubsection[{\texorpdfstring{get\+Threads\+P\+C(\+Integer thread\+Num)}{getThreadsPC(Integer threadNum)}}]{\setlength{\rightskip}{0pt plus 5cm}Map$<$Integer, {\bf Instruction\+Position}$>$ gov.\+nasa.\+jpf.\+inspector.\+interfaces.\+Program\+State\+Interface.\+get\+Threads\+PC (
+\begin{DoxyParamCaption}
+\item[{Integer}]{thread\+Num}
+\end{DoxyParamCaption}
+) throws {\bf J\+P\+F\+Inspector\+Exception}}\hypertarget{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1interfaces_1_1_program_state_interface_a4ca30deeab5ba91a9ee285aabbdb623a}{}\label{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1interfaces_1_1_program_state_interface_a4ca30deeab5ba91a9ee285aabbdb623a}
+
+
+Gets selected/all threads and their PC. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em thread\+Num} & The thread we select. Or all thread if null. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em J\+P\+F\+Inspector\+Generic\+Error\+Exception} & \\
+\hline
+\end{DoxyExceptions}
+
+
+Implemented in \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_j_p_f_inspector_parallel_a147ef13fc43c918ac13e90630d6ff73f}{gov.\+nasa.\+jpf.\+inspector.\+server.\+jpf.\+J\+P\+F\+Inspector\+Parallel}, and \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1_program_state_manager_a6da8c46fe7b0c51f6c93aabf4e2c12ca}{gov.\+nasa.\+jpf.\+inspector.\+server.\+programstate.\+Program\+State\+Manager}.
+
+\index{gov\+::nasa\+::jpf\+::inspector\+::interfaces\+::\+Program\+State\+Interface@{gov\+::nasa\+::jpf\+::inspector\+::interfaces\+::\+Program\+State\+Interface}!set\+Value@{set\+Value}}
+\index{set\+Value@{set\+Value}!gov\+::nasa\+::jpf\+::inspector\+::interfaces\+::\+Program\+State\+Interface@{gov\+::nasa\+::jpf\+::inspector\+::interfaces\+::\+Program\+State\+Interface}}
+\subsubsection[{\texorpdfstring{set\+Value(\+String expr)}{setValue(String expr)}}]{\setlength{\rightskip}{0pt plus 5cm}void gov.\+nasa.\+jpf.\+inspector.\+interfaces.\+Program\+State\+Interface.\+set\+Value (
+\begin{DoxyParamCaption}
+\item[{String}]{expr}
+\end{DoxyParamCaption}
+) throws {\bf J\+P\+F\+Inspector\+Exception}}\hypertarget{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1interfaces_1_1_program_state_interface_aaf980401ba045fdd70af10cb1c956ee0}{}\label{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1interfaces_1_1_program_state_interface_aaf980401ba045fdd70af10cb1c956ee0}
+
+
+Sets value of the variable. 
+
+If setting is not successful throws exception.
+
+
+\begin{DoxyParams}{Parameters}
+{\em expr} & String with expression in the following form \char`\"{}lvalue state expression = rvalue state expression\char`\"{} \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em J\+P\+F\+Inspector\+Exception} & \\
+\hline
+\end{DoxyExceptions}
+
+
+Implemented in \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1_program_state_manager_a75133d9acd32d5e0d94e63b25594866b}{gov.\+nasa.\+jpf.\+inspector.\+server.\+programstate.\+Program\+State\+Manager}, and \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_j_p_f_inspector_parallel_a1c3264f06b28f41e6b0ded6c5f71863a}{gov.\+nasa.\+jpf.\+inspector.\+server.\+jpf.\+J\+P\+F\+Inspector\+Parallel}.
+
+\index{gov\+::nasa\+::jpf\+::inspector\+::interfaces\+::\+Program\+State\+Interface@{gov\+::nasa\+::jpf\+::inspector\+::interfaces\+::\+Program\+State\+Interface}!set\+Value@{set\+Value}}
+\index{set\+Value@{set\+Value}!gov\+::nasa\+::jpf\+::inspector\+::interfaces\+::\+Program\+State\+Interface@{gov\+::nasa\+::jpf\+::inspector\+::interfaces\+::\+Program\+State\+Interface}}
+\subsubsection[{\texorpdfstring{set\+Value(\+String l\+Value, String r\+Value)}{setValue(String lValue, String rValue)}}]{\setlength{\rightskip}{0pt plus 5cm}void gov.\+nasa.\+jpf.\+inspector.\+interfaces.\+Program\+State\+Interface.\+set\+Value (
+\begin{DoxyParamCaption}
+\item[{String}]{l\+Value, }
+\item[{String}]{r\+Value}
+\end{DoxyParamCaption}
+) throws {\bf J\+P\+F\+Inspector\+Exception}}\hypertarget{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1interfaces_1_1_program_state_interface_a992e2deda1c948e41ae9abcc776eec7b}{}\label{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1interfaces_1_1_program_state_interface_a992e2deda1c948e41ae9abcc776eec7b}
+
+
+Sets value of the variable. 
+
+If setting is not successful throws exception.
+
+
+\begin{DoxyParams}{Parameters}
+{\em l\+Value} & String with state expression (as can used in \hyperlink{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1interfaces_1_1_program_state_interface_a3a64e61b42c7338fe4f90c9c8519177f}{evaluate\+State\+Expression(\+String)} which represents value of variable (not a constant, a stack frame, etc.) \\
+\hline
+{\em r\+Value} & String with state expression (as can used in \hyperlink{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1interfaces_1_1_program_state_interface_a3a64e61b42c7338fe4f90c9c8519177f}{evaluate\+State\+Expression(\+String)} which represents value of the \char`\"{}same\char`\"{}/assignable type l\+Value. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em J\+P\+F\+Inspector\+Exception} & \\
+\hline
+\end{DoxyExceptions}
+
+
+Implemented in \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1_program_state_manager_a5a008bc92c261213623bd6a8dfc291bb}{gov.\+nasa.\+jpf.\+inspector.\+server.\+programstate.\+Program\+State\+Manager}, and \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_j_p_f_inspector_parallel_a35d1f2b50faf4f50aebb6722f43eb7da}{gov.\+nasa.\+jpf.\+inspector.\+server.\+jpf.\+J\+P\+F\+Inspector\+Parallel}.
+
+
+
+The documentation for this interface was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/gsoc/jpf-\/inspector/src/main/gov/nasa/jpf/inspector/interfaces/\hyperlink{_program_state_interface_8java}{Program\+State\+Interface.\+java}\end{DoxyCompactItemize}

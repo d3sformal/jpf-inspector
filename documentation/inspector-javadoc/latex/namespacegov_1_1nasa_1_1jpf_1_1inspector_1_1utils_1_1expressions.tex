@@ -1,0 +1,28 @@
+\hypertarget{namespacegov_1_1nasa_1_1jpf_1_1inspector_1_1utils_1_1expressions}{}\section{Package gov.\+nasa.\+jpf.\+inspector.\+utils.\+expressions}
+\label{namespacegov_1_1nasa_1_1jpf_1_1inspector_1_1utils_1_1expressions}\index{gov.\+nasa.\+jpf.\+inspector.\+utils.\+expressions@{gov.\+nasa.\+jpf.\+inspector.\+utils.\+expressions}}
+
+
+The classes in this package represent user-\/typed expressions in the expression syntax.  
+
+
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1utils_1_1expressions_1_1_class_name}{Class\+Name}
+\begin{DoxyCompactList}\small\item\em Represents a class by name extracted from the user input by the server expression parser. \end{DoxyCompactList}\item 
+class \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1utils_1_1expressions_1_1_field_name}{Field\+Name}
+\begin{DoxyCompactList}\small\item\em Represents the expression syntax expression for a qualified field name. \end{DoxyCompactList}\item 
+class \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1utils_1_1expressions_1_1_file_name}{File\+Name}
+\begin{DoxyCompactList}\small\item\em Represents the expression syntax expression for a file name. \end{DoxyCompactList}\item 
+class \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1utils_1_1expressions_1_1_method_name}{Method\+Name}
+\begin{DoxyCompactList}\small\item\em Represents a qualified method name extracted from user input by the server expression parser. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The classes in this package represent user-\/typed expressions in the expression syntax. 
+
+These classes are created from the A\+N\+T\+LR grammar. They store their data as strings but they have the capability to be compared to actual Class\+Info/\+Method\+Info etc. instances. This comparison is string-\/wise, but the expressions may have wildcards which is taken into account by the classes (they use regular expressions).
+
+The comparisons are cached so that we don\textquotesingle{}t do too much regular expression parsing.
+
+See the documentation for what wildcards are allowed. 

@@ -1,0 +1,106 @@
+\hypertarget{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_expression_parser_interface}{}\section{gov.\+nasa.\+jpf.\+inspector.\+server.\+expression.\+Expression\+Parser\+Interface Interface Reference}
+\label{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_expression_parser_interface}\index{gov.\+nasa.\+jpf.\+inspector.\+server.\+expression.\+Expression\+Parser\+Interface@{gov.\+nasa.\+jpf.\+inspector.\+server.\+expression.\+Expression\+Parser\+Interface}}
+Inheritance diagram for gov.\+nasa.\+jpf.\+inspector.\+server.\+expression.\+Expression\+Parser\+Interface\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_expression_parser_interface}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_expression_state_root_node}{Expression\+State\+Root\+Node}$<$?$>$ \hyperlink{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_expression_parser_interface_adf1e661201d1a5686257122c604fc897}{get\+Expression\+State\+Interface} (String expr)  throws J\+P\+F\+Inspector\+Parsing\+Error\+Exception, J\+P\+F\+Inspector\+Generic\+Error\+Exception
+\item 
+\hyperlink{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_expression_boolean_interface}{Expression\+Boolean\+Interface} \hyperlink{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_expression_parser_interface_acf4ebfde0a03c8eb9c52b84cd7757abd}{get\+Breakpoint\+Expression} (String expr)  throws J\+P\+F\+Inspector\+Parsing\+Error\+Exception, J\+P\+F\+Inspector\+Generic\+Error\+Exception
+\begin{DoxyCompactList}\small\item\em Gets boolean expression which evaluates whether the breakpoint hit or not. \end{DoxyCompactList}\item 
+\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_state_assignment}{Expression\+State\+Assignment} \hyperlink{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_expression_parser_interface_abe7eab3b20d74ab697ca3cbefbc5c736}{get\+Expression\+Assignment} (String expr)  throws J\+P\+F\+Inspector\+Parsing\+Error\+Exception, J\+P\+F\+Inspector\+Generic\+Error\+Exception
+\item 
+\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_expression_factory}{Expression\+Factory} \hyperlink{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_expression_parser_interface_aaac5fee1c824dbc141489b89318d5578}{get\+Expression\+Factory} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 28 of file Expression\+Parser\+Interface.\+java.
+
+
+
+\subsection{Member Function Documentation}
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::\+Expression\+Parser\+Interface@{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::\+Expression\+Parser\+Interface}!get\+Breakpoint\+Expression@{get\+Breakpoint\+Expression}}
+\index{get\+Breakpoint\+Expression@{get\+Breakpoint\+Expression}!gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::\+Expression\+Parser\+Interface@{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::\+Expression\+Parser\+Interface}}
+\subsubsection[{\texorpdfstring{get\+Breakpoint\+Expression(\+String expr)}{getBreakpointExpression(String expr)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Expression\+Boolean\+Interface} gov.\+nasa.\+jpf.\+inspector.\+server.\+expression.\+Expression\+Parser\+Interface.\+get\+Breakpoint\+Expression (
+\begin{DoxyParamCaption}
+\item[{String}]{expr}
+\end{DoxyParamCaption}
+) throws {\bf J\+P\+F\+Inspector\+Parsing\+Error\+Exception}, {\bf J\+P\+F\+Inspector\+Generic\+Error\+Exception}}\hypertarget{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_expression_parser_interface_acf4ebfde0a03c8eb9c52b84cd7757abd}{}\label{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_expression_parser_interface_acf4ebfde0a03c8eb9c52b84cd7757abd}
+
+
+Gets boolean expression which evaluates whether the breakpoint hit or not. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em expr} & Expression to parse \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Tree representation of the given expression of null, if the expr contains (syntax) error. 
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_expression_parser_a6d1f78dfb6f1ea7cf350cb3926c5277f}{gov.\+nasa.\+jpf.\+inspector.\+server.\+expression.\+Expression\+Parser}.
+
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::\+Expression\+Parser\+Interface@{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::\+Expression\+Parser\+Interface}!get\+Expression\+Assignment@{get\+Expression\+Assignment}}
+\index{get\+Expression\+Assignment@{get\+Expression\+Assignment}!gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::\+Expression\+Parser\+Interface@{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::\+Expression\+Parser\+Interface}}
+\subsubsection[{\texorpdfstring{get\+Expression\+Assignment(\+String expr)}{getExpressionAssignment(String expr)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Expression\+State\+Assignment} gov.\+nasa.\+jpf.\+inspector.\+server.\+expression.\+Expression\+Parser\+Interface.\+get\+Expression\+Assignment (
+\begin{DoxyParamCaption}
+\item[{String}]{expr}
+\end{DoxyParamCaption}
+) throws {\bf J\+P\+F\+Inspector\+Parsing\+Error\+Exception}, {\bf J\+P\+F\+Inspector\+Generic\+Error\+Exception}}\hypertarget{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_expression_parser_interface_abe7eab3b20d74ab697ca3cbefbc5c736}{}\label{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_expression_parser_interface_abe7eab3b20d74ab697ca3cbefbc5c736}
+
+\begin{DoxyParams}{Parameters}
+{\em expr} & Expression to parse \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Gets parsed expression of the value assignment 
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_expression_parser_add6550e342375554df83bfbe4abaecbf}{gov.\+nasa.\+jpf.\+inspector.\+server.\+expression.\+Expression\+Parser}.
+
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::\+Expression\+Parser\+Interface@{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::\+Expression\+Parser\+Interface}!get\+Expression\+Factory@{get\+Expression\+Factory}}
+\index{get\+Expression\+Factory@{get\+Expression\+Factory}!gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::\+Expression\+Parser\+Interface@{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::\+Expression\+Parser\+Interface}}
+\subsubsection[{\texorpdfstring{get\+Expression\+Factory()}{getExpressionFactory()}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Expression\+Factory} gov.\+nasa.\+jpf.\+inspector.\+server.\+expression.\+Expression\+Parser\+Interface.\+get\+Expression\+Factory (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_expression_parser_interface_aaac5fee1c824dbc141489b89318d5578}{}\label{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_expression_parser_interface_aaac5fee1c824dbc141489b89318d5578}
+\begin{DoxyReturn}{Returns}
+Gets expression factory used by parser 
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_expression_parser_a17c41c98e8b23eb8fad627c36045b43e}{gov.\+nasa.\+jpf.\+inspector.\+server.\+expression.\+Expression\+Parser}.
+
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::\+Expression\+Parser\+Interface@{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::\+Expression\+Parser\+Interface}!get\+Expression\+State\+Interface@{get\+Expression\+State\+Interface}}
+\index{get\+Expression\+State\+Interface@{get\+Expression\+State\+Interface}!gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::\+Expression\+Parser\+Interface@{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::\+Expression\+Parser\+Interface}}
+\subsubsection[{\texorpdfstring{get\+Expression\+State\+Interface(\+String expr)}{getExpressionStateInterface(String expr)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Expression\+State\+Root\+Node}$<$?$>$ gov.\+nasa.\+jpf.\+inspector.\+server.\+expression.\+Expression\+Parser\+Interface.\+get\+Expression\+State\+Interface (
+\begin{DoxyParamCaption}
+\item[{String}]{expr}
+\end{DoxyParamCaption}
+) throws {\bf J\+P\+F\+Inspector\+Parsing\+Error\+Exception}, {\bf J\+P\+F\+Inspector\+Generic\+Error\+Exception}}\hypertarget{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_expression_parser_interface_adf1e661201d1a5686257122c604fc897}{}\label{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_expression_parser_interface_adf1e661201d1a5686257122c604fc897}
+
+\begin{DoxyParams}{Parameters}
+{\em expr} & Expression to parse \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_expression_parser_a0b6378f9bb019b8ba7a226af19a6f6e8}{gov.\+nasa.\+jpf.\+inspector.\+server.\+expression.\+Expression\+Parser}.
+
+
+
+The documentation for this interface was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/gsoc/jpf-\/inspector/src/main/gov/nasa/jpf/inspector/server/expression/\hyperlink{_expression_parser_interface_8java}{Expression\+Parser\+Interface.\+java}\end{DoxyCompactItemize}

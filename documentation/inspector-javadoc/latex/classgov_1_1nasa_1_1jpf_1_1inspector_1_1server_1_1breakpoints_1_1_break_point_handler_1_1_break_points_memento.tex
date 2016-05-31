@@ -1,0 +1,109 @@
+\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_break_point_handler_1_1_break_points_memento}{}\section{gov.\+nasa.\+jpf.\+inspector.\+server.\+breakpoints.\+Break\+Point\+Handler.\+Break\+Points\+Memento Class Reference}
+\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_break_point_handler_1_1_break_points_memento}\index{gov.\+nasa.\+jpf.\+inspector.\+server.\+breakpoints.\+Break\+Point\+Handler.\+Break\+Points\+Memento@{gov.\+nasa.\+jpf.\+inspector.\+server.\+breakpoints.\+Break\+Point\+Handler.\+Break\+Points\+Memento}}
+
+
+Holds traversing related state (hit counts) of all breakpoints.  
+
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_break_point_handler_1_1_break_points_memento_ab56ed8ab5960c0e6970c33d7c94be0db}{Break\+Points\+Memento} ()
+\begin{DoxyCompactList}\small\item\em Store state of all breakpoints. \end{DoxyCompactList}\item 
+void \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_break_point_handler_1_1_break_points_memento_a852de72fcddb81a40e5438cef82079eb}{restore\+State} ()
+\begin{DoxyCompactList}\small\item\em Restore state of all breakpoints. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+final Map$<$ Integer, \hyperlink{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_break_point_handler_1_1_break_point_partial_memento}{Break\+Point\+Partial\+Memento} $>$ \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_break_point_handler_1_1_break_points_memento_a2d6ba75868019239ae2cc84828be7950}{bp\+Mementos} = new Hash\+Map$<$Integer, \hyperlink{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_break_point_handler_1_1_break_point_partial_memento}{Break\+Point\+Partial\+Memento}$>$()
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Holds traversing related state (hit counts) of all breakpoints. 
+
+
+
+Definition at line 335 of file Break\+Point\+Handler.\+java.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Break\+Point\+Handler\+::\+Break\+Points\+Memento@{gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Break\+Point\+Handler\+::\+Break\+Points\+Memento}!Break\+Points\+Memento@{Break\+Points\+Memento}}
+\index{Break\+Points\+Memento@{Break\+Points\+Memento}!gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Break\+Point\+Handler\+::\+Break\+Points\+Memento@{gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Break\+Point\+Handler\+::\+Break\+Points\+Memento}}
+\subsubsection[{\texorpdfstring{Break\+Points\+Memento()}{BreakPointsMemento()}}]{\setlength{\rightskip}{0pt plus 5cm}gov.\+nasa.\+jpf.\+inspector.\+server.\+breakpoints.\+Break\+Point\+Handler.\+Break\+Points\+Memento.\+Break\+Points\+Memento (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_break_point_handler_1_1_break_points_memento_ab56ed8ab5960c0e6970c33d7c94be0db}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_break_point_handler_1_1_break_points_memento_ab56ed8ab5960c0e6970c33d7c94be0db}
+
+
+Store state of all breakpoints. 
+
+
+
+Definition at line 341 of file Break\+Point\+Handler.\+java.
+
+
+\begin{DoxyCode}
+341                                  \{
+342       \textcolor{keyword}{synchronized} (\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_break_point_handler_a02484c9ccda9be250fad79d6d74f7293}{BreakPointHandler}.this.breakpoints) \{
+343         \textcolor{keywordflow}{for} (InternalBreakpointHolder bp : \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_break_point_handler_a034265be2e9419b28fa12d1b860295df}{breakpoints}.values()) \{
+344           BreakPointPartialMemento bpm = bp.createPartialMemento();
+345           \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_break_point_handler_1_1_break_points_memento_a2d6ba75868019239ae2cc84828be7950}{bpMementos}.put(bp.getBPID(), bpm);
+346         \}
+347       \}
+348     \}
+\end{DoxyCode}
+
+
+\subsection{Member Function Documentation}
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Break\+Point\+Handler\+::\+Break\+Points\+Memento@{gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Break\+Point\+Handler\+::\+Break\+Points\+Memento}!restore\+State@{restore\+State}}
+\index{restore\+State@{restore\+State}!gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Break\+Point\+Handler\+::\+Break\+Points\+Memento@{gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Break\+Point\+Handler\+::\+Break\+Points\+Memento}}
+\subsubsection[{\texorpdfstring{restore\+State()}{restoreState()}}]{\setlength{\rightskip}{0pt plus 5cm}void gov.\+nasa.\+jpf.\+inspector.\+server.\+breakpoints.\+Break\+Point\+Handler.\+Break\+Points\+Memento.\+restore\+State (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_break_point_handler_1_1_break_points_memento_a852de72fcddb81a40e5438cef82079eb}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_break_point_handler_1_1_break_points_memento_a852de72fcddb81a40e5438cef82079eb}
+
+
+Restore state of all breakpoints. 
+
+If state state for given BP not exists, null is passed. 
+
+Definition at line 353 of file Break\+Point\+Handler.\+java.
+
+
+\begin{DoxyCode}
+353                                 \{
+354       BreakPointPartialMemento bpResetMemento = InternalBreakpointHolder.createInitialStateMemento();
+355       \textcolor{keyword}{synchronized} (\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_break_point_handler_a02484c9ccda9be250fad79d6d74f7293}{BreakPointHandler}.this.breakpoints) \{
+356 
+357         \textcolor{keywordflow}{for} (InternalBreakpointHolder bp : \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_break_point_handler_a034265be2e9419b28fa12d1b860295df}{breakpoints}.values()) \{
+358           \textcolor{keywordtype}{int} bpID = bp.getBPID();
+359           BreakPointPartialMemento bpm = \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_break_point_handler_1_1_break_points_memento_a2d6ba75868019239ae2cc84828be7950}{bpMementos}.get(bpID);
+360           \textcolor{keywordflow}{if} (bpm == null) \{
+361             \textcolor{comment}{// We backtrack before place where memento has been defined -> reset the counts}
+362             bpm = bpResetMemento;
+363           \}
+364           bp.setPartialMemento(bpm);
+365         \}
+366 
+367       \}
+368     \}
+\end{DoxyCode}
+
+
+\subsection{Member Data Documentation}
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Break\+Point\+Handler\+::\+Break\+Points\+Memento@{gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Break\+Point\+Handler\+::\+Break\+Points\+Memento}!bp\+Mementos@{bp\+Mementos}}
+\index{bp\+Mementos@{bp\+Mementos}!gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Break\+Point\+Handler\+::\+Break\+Points\+Memento@{gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Break\+Point\+Handler\+::\+Break\+Points\+Memento}}
+\subsubsection[{\texorpdfstring{bp\+Mementos}{bpMementos}}]{\setlength{\rightskip}{0pt plus 5cm}final Map$<$Integer, {\bf Break\+Point\+Partial\+Memento}$>$ gov.\+nasa.\+jpf.\+inspector.\+server.\+breakpoints.\+Break\+Point\+Handler.\+Break\+Points\+Memento.\+bp\+Mementos = new Hash\+Map$<$Integer, {\bf Break\+Point\+Partial\+Memento}$>$()\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_break_point_handler_1_1_break_points_memento_a2d6ba75868019239ae2cc84828be7950}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_break_point_handler_1_1_break_points_memento_a2d6ba75868019239ae2cc84828be7950}
+
+
+Definition at line 336 of file Break\+Point\+Handler.\+java.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/gsoc/jpf-\/inspector/src/main/gov/nasa/jpf/inspector/server/breakpoints/\hyperlink{_break_point_handler_8java}{Break\+Point\+Handler.\+java}\end{DoxyCompactItemize}

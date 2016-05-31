@@ -1,0 +1,375 @@
+\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_console_key_listener}{}\section{gov.\+nasa.\+jpf.\+inspector.\+frontends.\+jpfshell.\+gui.\+Swing\+Terminal.\+Console\+Key\+Listener Class Reference}
+\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_console_key_listener}\index{gov.\+nasa.\+jpf.\+inspector.\+frontends.\+jpfshell.\+gui.\+Swing\+Terminal.\+Console\+Key\+Listener@{gov.\+nasa.\+jpf.\+inspector.\+frontends.\+jpfshell.\+gui.\+Swing\+Terminal.\+Console\+Key\+Listener}}
+
+
+Handles the user input (pressed keys), converts them and sends them into the j\+Line console (through stream)  
+
+
+Inheritance diagram for gov.\+nasa.\+jpf.\+inspector.\+frontends.\+jpfshell.\+gui.\+Swing\+Terminal.\+Console\+Key\+Listener\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_console_key_listener}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_console_key_listener_a7968fda050df7f7d58308208338de042}{Console\+Key\+Listener} (Console\+Reader cr, Output\+Stream \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_console_key_listener_a3544ea414f2d2dbfde66aa97dda16dac}{output})
+\item 
+void \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_console_key_listener_a807bfc887f007b034fde6c8b65ddf5a9}{key\+Pressed} (Key\+Event e)
+\begin{DoxyCompactList}\small\item\em Handles special non letter keys (like Home, End, Arrows, ...) \end{DoxyCompactList}\item 
+void \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_console_key_listener_afdc5124c06f4e251bb6130192ab79321}{key\+Released} (Key\+Event e)
+\item 
+void \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_console_key_listener_af7a1db3c97600c6e9cd93348d0fc4ba7}{key\+Typed} (Key\+Event e)
+\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_console_key_listener_a4bfaacb6e4d69ffdc03aec846ebda4da}{write} (int c)
+\begin{DoxyCompactList}\small\item\em Writes int to output stream. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+final Output\+Stream \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_console_key_listener_a3544ea414f2d2dbfde66aa97dda16dac}{output}
+\item 
+final int \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_console_key_listener_a76ab50ca5262254cd0d30f94c09182b0}{J\+L\+\_\+\+P\+R\+E\+V\+\_\+\+C\+H\+AR}
+\item 
+final int \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_console_key_listener_a44f4d9e556c9755ef6ae1acdac032e57}{J\+L\+\_\+\+N\+E\+X\+T\+\_\+\+C\+H\+AR}
+\item 
+final int \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_console_key_listener_a786dbd90033e6de1575d81bca7e5e030}{J\+L\+\_\+\+P\+R\+E\+V\+\_\+\+W\+O\+RD}
+\item 
+final int \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_console_key_listener_af77e76c0c8131f97bb0792057677a8ff}{J\+L\+\_\+\+N\+E\+X\+T\+\_\+\+W\+O\+RD}
+\item 
+final int \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_console_key_listener_ab88f21e9ba0483b37197984b4be3ac1c}{J\+L\+\_\+\+M\+O\+V\+E\+\_\+\+T\+O\+\_\+\+B\+EG}
+\item 
+final int \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_console_key_listener_a7414f2d8de5af56765142ce28251c3d3}{J\+L\+\_\+\+M\+O\+V\+E\+\_\+\+T\+O\+\_\+\+E\+ND}
+\item 
+final int \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_console_key_listener_a40e3337f6e013ee7ff2c01ba76e72cc3}{J\+L\+\_\+\+N\+E\+X\+T\+\_\+\+H\+I\+S\+T\+O\+RY}
+\item 
+final int \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_console_key_listener_a6c5edcca29a238f7506da532be6abd67}{J\+L\+\_\+\+P\+R\+E\+V\+\_\+\+H\+I\+S\+T\+O\+RY}
+\item 
+final int \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_console_key_listener_a387add499ac1fff3098d155d351eb293}{J\+L\+\_\+\+P\+A\+S\+TE}
+\item 
+final int \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_console_key_listener_a9b960c4fda1d967fa3b47c185cb4b7cb}{J\+L\+\_\+\+C\+O\+M\+P\+L\+E\+TE}
+\item 
+final int \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_console_key_listener_ac8484b1c694ec1cd32e3e761a8cc1b20}{J\+L\+\_\+\+D\+E\+L\+E\+T\+E\+\_\+\+P\+R\+E\+V\+\_\+\+C\+H\+AR}
+\item 
+final int \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_console_key_listener_acfbea41dbd4f4a71882a22522de6afbf}{J\+L\+\_\+\+D\+E\+L\+E\+T\+E\+\_\+\+N\+E\+X\+T\+\_\+\+C\+H\+AR}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Handles the user input (pressed keys), converts them and sends them into the j\+Line console (through stream) 
+
+Definition at line 317 of file Swing\+Terminal.\+java.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{gov\+::nasa\+::jpf\+::inspector\+::frontends\+::jpfshell\+::gui\+::\+Swing\+Terminal\+::\+Console\+Key\+Listener@{gov\+::nasa\+::jpf\+::inspector\+::frontends\+::jpfshell\+::gui\+::\+Swing\+Terminal\+::\+Console\+Key\+Listener}!Console\+Key\+Listener@{Console\+Key\+Listener}}
+\index{Console\+Key\+Listener@{Console\+Key\+Listener}!gov\+::nasa\+::jpf\+::inspector\+::frontends\+::jpfshell\+::gui\+::\+Swing\+Terminal\+::\+Console\+Key\+Listener@{gov\+::nasa\+::jpf\+::inspector\+::frontends\+::jpfshell\+::gui\+::\+Swing\+Terminal\+::\+Console\+Key\+Listener}}
+\subsubsection[{\texorpdfstring{Console\+Key\+Listener(\+Console\+Reader cr, Output\+Stream output)}{ConsoleKeyListener(ConsoleReader cr, OutputStream output)}}]{\setlength{\rightskip}{0pt plus 5cm}gov.\+nasa.\+jpf.\+inspector.\+frontends.\+jpfshell.\+gui.\+Swing\+Terminal.\+Console\+Key\+Listener.\+Console\+Key\+Listener (
+\begin{DoxyParamCaption}
+\item[{Console\+Reader}]{cr, }
+\item[{Output\+Stream}]{output}
+\end{DoxyParamCaption}
+)}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_console_key_listener_a7968fda050df7f7d58308208338de042}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_console_key_listener_a7968fda050df7f7d58308208338de042}
+
+\begin{DoxyParams}{Parameters}
+{\em cr} & Console used to resolve key mappings. \\
+\hline
+{\em output} & Stream where send pressed keys. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 337 of file Swing\+Terminal.\+java.
+
+
+\begin{DoxyCode}
+337                                                                       \{
+338       assert (\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_console_key_listener_a3544ea414f2d2dbfde66aa97dda16dac}{output} != null);
+339       this.\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_console_key_listener_a3544ea414f2d2dbfde66aa97dda16dac}{output} = \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_console_key_listener_a3544ea414f2d2dbfde66aa97dda16dac}{output};
+340 
+341       \textcolor{comment}{// Initialize Key binding}
+342       \textcolor{keywordflow}{if} (cr == null) \{
+343         \textcolor{comment}{// Defaults taken from keybindings.properties}
+344         \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_console_key_listener_a76ab50ca5262254cd0d30f94c09182b0}{JL\_PREV\_CHAR} = 2;
+345         \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_console_key_listener_a44f4d9e556c9755ef6ae1acdac032e57}{JL\_NEXT\_CHAR} = 6;
+346         \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_console_key_listener_a786dbd90033e6de1575d81bca7e5e030}{JL\_PREV\_WORD} = 7;
+347         \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_console_key_listener_af77e76c0c8131f97bb0792057677a8ff}{JL\_NEXT\_WORD} = 3;
+348         \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_console_key_listener_ab88f21e9ba0483b37197984b4be3ac1c}{JL\_MOVE\_TO\_BEG} = 1;
+349         \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_console_key_listener_a7414f2d8de5af56765142ce28251c3d3}{JL\_MOVE\_TO\_END} = 5;
+350         \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_console_key_listener_a40e3337f6e013ee7ff2c01ba76e72cc3}{JL\_NEXT\_HISTORY} = 14;
+351         \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_console_key_listener_a6c5edcca29a238f7506da532be6abd67}{JL\_PREV\_HISTORY} = 16;
+352         \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_console_key_listener_a387add499ac1fff3098d155d351eb293}{JL\_PASTE} = 22;
+353         \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_console_key_listener_a9b960c4fda1d967fa3b47c185cb4b7cb}{JL\_COMPLETE} = 9;
+354         \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_console_key_listener_ac8484b1c694ec1cd32e3e761a8cc1b20}{JL\_DELETE\_PREV\_CHAR} = 8;
+355         \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_console_key_listener_acfbea41dbd4f4a71882a22522de6afbf}{JL\_DELETE\_NEXT\_CHAR} = 128;
+356       \} \textcolor{keywordflow}{else} \{
+357         \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_console_key_listener_a76ab50ca5262254cd0d30f94c09182b0}{JL\_PREV\_CHAR} = cr.getKeyForAction(ConsoleOperations.PREV\_CHAR);
+358         \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_console_key_listener_a44f4d9e556c9755ef6ae1acdac032e57}{JL\_NEXT\_CHAR} = cr.getKeyForAction(ConsoleOperations.NEXT\_CHAR);
+359         \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_console_key_listener_a786dbd90033e6de1575d81bca7e5e030}{JL\_PREV\_WORD} = cr.getKeyForAction(ConsoleOperations.PREV\_WORD);
+360         \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_console_key_listener_af77e76c0c8131f97bb0792057677a8ff}{JL\_NEXT\_WORD} = cr.getKeyForAction(ConsoleOperations.NEXT\_WORD);
+361         \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_console_key_listener_ab88f21e9ba0483b37197984b4be3ac1c}{JL\_MOVE\_TO\_BEG} = cr.getKeyForAction(ConsoleOperations.MOVE\_TO\_BEG);
+362         \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_console_key_listener_a7414f2d8de5af56765142ce28251c3d3}{JL\_MOVE\_TO\_END} = cr.getKeyForAction(ConsoleOperations.MOVE\_TO\_END);
+363         \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_console_key_listener_a40e3337f6e013ee7ff2c01ba76e72cc3}{JL\_NEXT\_HISTORY} = cr.getKeyForAction(ConsoleOperations.NEXT\_HISTORY);
+364         \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_console_key_listener_a6c5edcca29a238f7506da532be6abd67}{JL\_PREV\_HISTORY} = cr.getKeyForAction(ConsoleOperations.PREV\_HISTORY);
+365         \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_console_key_listener_a387add499ac1fff3098d155d351eb293}{JL\_PASTE} = cr.getKeyForAction(ConsoleOperations.PASTE);
+366         \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_console_key_listener_a9b960c4fda1d967fa3b47c185cb4b7cb}{JL\_COMPLETE} = cr.getKeyForAction(ConsoleOperations.COMPLETE);
+367         \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_console_key_listener_ac8484b1c694ec1cd32e3e761a8cc1b20}{JL\_DELETE\_PREV\_CHAR} = cr.getKeyForAction(ConsoleOperations.DELETE\_PREV\_CHAR);
+368         \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_console_key_listener_acfbea41dbd4f4a71882a22522de6afbf}{JL\_DELETE\_NEXT\_CHAR} = cr.getKeyForAction(ConsoleOperations.DELETE\_NEXT\_CHAR);
+369       \}
+370     \}
+\end{DoxyCode}
+
+
+\subsection{Member Function Documentation}
+\index{gov\+::nasa\+::jpf\+::inspector\+::frontends\+::jpfshell\+::gui\+::\+Swing\+Terminal\+::\+Console\+Key\+Listener@{gov\+::nasa\+::jpf\+::inspector\+::frontends\+::jpfshell\+::gui\+::\+Swing\+Terminal\+::\+Console\+Key\+Listener}!key\+Pressed@{key\+Pressed}}
+\index{key\+Pressed@{key\+Pressed}!gov\+::nasa\+::jpf\+::inspector\+::frontends\+::jpfshell\+::gui\+::\+Swing\+Terminal\+::\+Console\+Key\+Listener@{gov\+::nasa\+::jpf\+::inspector\+::frontends\+::jpfshell\+::gui\+::\+Swing\+Terminal\+::\+Console\+Key\+Listener}}
+\subsubsection[{\texorpdfstring{key\+Pressed(\+Key\+Event e)}{keyPressed(KeyEvent e)}}]{\setlength{\rightskip}{0pt plus 5cm}void gov.\+nasa.\+jpf.\+inspector.\+frontends.\+jpfshell.\+gui.\+Swing\+Terminal.\+Console\+Key\+Listener.\+key\+Pressed (
+\begin{DoxyParamCaption}
+\item[{Key\+Event}]{e}
+\end{DoxyParamCaption}
+)}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_console_key_listener_a807bfc887f007b034fde6c8b65ddf5a9}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_console_key_listener_a807bfc887f007b034fde6c8b65ddf5a9}
+
+
+Handles special non letter keys (like Home, End, Arrows, ...) 
+
+
+
+Definition at line 392 of file Swing\+Terminal.\+java.
+
+
+\begin{DoxyCode}
+392                                         \{
+393       \textcolor{keywordflow}{if} (\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_a17f1bfb7c9ffd860344e7c9ee087d041}{DEBUG}) \{
+394         System.out.println(\textcolor{stringliteral}{"KeyPressed: "} + e + \textcolor{stringliteral}{"\(\backslash\)n\(\backslash\)t    e.getKeyCode() ->"} + e.getKeyCode() + \textcolor{stringliteral}{"\(\backslash\)n\(\backslash\)t
+      e.getModifiers() ->"} + e.getModifiers());
+395       \}
+396       \textcolor{keywordtype}{int} keycode = e.getKeyCode();
+397       \textcolor{keywordflow}{if} (keycode == KeyEvent.VK\_LEFT) \{
+398         \textcolor{keywordflow}{if} ((e.getModifiers() | KeyEvent.CTRL\_MASK) == e.getModifiers()) \{
+399           \textcolor{comment}{// CTRL pressed}
+400           \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_console_key_listener_a4bfaacb6e4d69ffdc03aec846ebda4da}{write}(\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_console_key_listener_a786dbd90033e6de1575d81bca7e5e030}{JL\_PREV\_WORD});
+401           e.consume();
+402         \} \textcolor{keywordflow}{else} \{
+403           \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_console_key_listener_a4bfaacb6e4d69ffdc03aec846ebda4da}{write}(\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_console_key_listener_a76ab50ca5262254cd0d30f94c09182b0}{JL\_PREV\_CHAR});
+404           e.consume();
+405         \}
+406       \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (keycode == KeyEvent.VK\_RIGHT) \{
+407         \textcolor{keywordflow}{if} ((e.getModifiers() | KeyEvent.CTRL\_MASK) == e.getModifiers()) \{
+408           \textcolor{comment}{// CTRL pressed}
+409           \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_console_key_listener_a4bfaacb6e4d69ffdc03aec846ebda4da}{write}(\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_console_key_listener_af77e76c0c8131f97bb0792057677a8ff}{JL\_NEXT\_WORD});
+410           e.consume();
+411         \} \textcolor{keywordflow}{else} \{
+412           \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_console_key_listener_a4bfaacb6e4d69ffdc03aec846ebda4da}{write}(\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_console_key_listener_a44f4d9e556c9755ef6ae1acdac032e57}{JL\_NEXT\_CHAR});
+413           e.consume();
+414         \}
+415       \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (keycode == KeyEvent.VK\_BEGIN) \{
+416         \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_console_key_listener_a4bfaacb6e4d69ffdc03aec846ebda4da}{write}(\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_console_key_listener_ab88f21e9ba0483b37197984b4be3ac1c}{JL\_MOVE\_TO\_BEG});
+417         e.consume();
+418       \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (keycode == KeyEvent.VK\_END) \{
+419         \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_console_key_listener_a4bfaacb6e4d69ffdc03aec846ebda4da}{write}(\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_console_key_listener_a7414f2d8de5af56765142ce28251c3d3}{JL\_MOVE\_TO\_END});
+420         e.consume();
+421       \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (keycode == KeyEvent.VK\_DOWN) \{
+422         \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_console_key_listener_a4bfaacb6e4d69ffdc03aec846ebda4da}{write}(\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_console_key_listener_a40e3337f6e013ee7ff2c01ba76e72cc3}{JL\_NEXT\_HISTORY});
+423         e.consume();
+424       \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (keycode == KeyEvent.VK\_UP) \{
+425         \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_console_key_listener_a4bfaacb6e4d69ffdc03aec846ebda4da}{write}(\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_console_key_listener_a6c5edcca29a238f7506da532be6abd67}{JL\_PREV\_HISTORY});
+426         e.consume();
+427       \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (keycode == KeyEvent.VK\_INSERT && ((e.getModifiers() | KeyEvent.SHIFT\_MASK) == e.
+      getModifiers())) \{
+428         \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_console_key_listener_a4bfaacb6e4d69ffdc03aec846ebda4da}{write}(\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_console_key_listener_a387add499ac1fff3098d155d351eb293}{JL\_PASTE});
+429         e.consume();
+430       \}
+431 
+432       \textcolor{keywordflow}{try} \{
+433         \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_console_key_listener_a3544ea414f2d2dbfde66aa97dda16dac}{output}.flush();
+434       \} \textcolor{keywordflow}{catch} (IOException e1) \{
+435       \}
+436     \}
+\end{DoxyCode}
+\index{gov\+::nasa\+::jpf\+::inspector\+::frontends\+::jpfshell\+::gui\+::\+Swing\+Terminal\+::\+Console\+Key\+Listener@{gov\+::nasa\+::jpf\+::inspector\+::frontends\+::jpfshell\+::gui\+::\+Swing\+Terminal\+::\+Console\+Key\+Listener}!key\+Released@{key\+Released}}
+\index{key\+Released@{key\+Released}!gov\+::nasa\+::jpf\+::inspector\+::frontends\+::jpfshell\+::gui\+::\+Swing\+Terminal\+::\+Console\+Key\+Listener@{gov\+::nasa\+::jpf\+::inspector\+::frontends\+::jpfshell\+::gui\+::\+Swing\+Terminal\+::\+Console\+Key\+Listener}}
+\subsubsection[{\texorpdfstring{key\+Released(\+Key\+Event e)}{keyReleased(KeyEvent e)}}]{\setlength{\rightskip}{0pt plus 5cm}void gov.\+nasa.\+jpf.\+inspector.\+frontends.\+jpfshell.\+gui.\+Swing\+Terminal.\+Console\+Key\+Listener.\+key\+Released (
+\begin{DoxyParamCaption}
+\item[{Key\+Event}]{e}
+\end{DoxyParamCaption}
+)}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_console_key_listener_afdc5124c06f4e251bb6130192ab79321}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_console_key_listener_afdc5124c06f4e251bb6130192ab79321}
+
+
+Definition at line 439 of file Swing\+Terminal.\+java.
+
+
+\begin{DoxyCode}
+439                                          \{
+440     \}
+\end{DoxyCode}
+\index{gov\+::nasa\+::jpf\+::inspector\+::frontends\+::jpfshell\+::gui\+::\+Swing\+Terminal\+::\+Console\+Key\+Listener@{gov\+::nasa\+::jpf\+::inspector\+::frontends\+::jpfshell\+::gui\+::\+Swing\+Terminal\+::\+Console\+Key\+Listener}!key\+Typed@{key\+Typed}}
+\index{key\+Typed@{key\+Typed}!gov\+::nasa\+::jpf\+::inspector\+::frontends\+::jpfshell\+::gui\+::\+Swing\+Terminal\+::\+Console\+Key\+Listener@{gov\+::nasa\+::jpf\+::inspector\+::frontends\+::jpfshell\+::gui\+::\+Swing\+Terminal\+::\+Console\+Key\+Listener}}
+\subsubsection[{\texorpdfstring{key\+Typed(\+Key\+Event e)}{keyTyped(KeyEvent e)}}]{\setlength{\rightskip}{0pt plus 5cm}void gov.\+nasa.\+jpf.\+inspector.\+frontends.\+jpfshell.\+gui.\+Swing\+Terminal.\+Console\+Key\+Listener.\+key\+Typed (
+\begin{DoxyParamCaption}
+\item[{Key\+Event}]{e}
+\end{DoxyParamCaption}
+)}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_console_key_listener_af7a1db3c97600c6e9cd93348d0fc4ba7}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_console_key_listener_af7a1db3c97600c6e9cd93348d0fc4ba7}
+
+
+Definition at line 443 of file Swing\+Terminal.\+java.
+
+
+\begin{DoxyCode}
+443                                       \{
+444       \textcolor{keywordflow}{if} (\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_a17f1bfb7c9ffd860344e7c9ee087d041}{DEBUG}) \{
+445         System.out.println(\textcolor{stringliteral}{"KeyTyped: "} + e);
+446       \}
+447       e.consume();
+448       \textcolor{keywordflow}{if} (e.getKeyChar() == \textcolor{charliteral}{' '} && ((e.getModifiers() | KeyEvent.CTRL\_MASK) == e.getModifiers())) \{
+449         \textcolor{comment}{// CTRL+Space -> mapped to TAB to invoke completion}
+450         \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_console_key_listener_a4bfaacb6e4d69ffdc03aec846ebda4da}{write}(\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_console_key_listener_a9b960c4fda1d967fa3b47c185cb4b7cb}{JL\_COMPLETE});
+451       \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (e.getKeyCode() == KeyEvent.VK\_BACK\_SPACE) \{
+452         \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_console_key_listener_a4bfaacb6e4d69ffdc03aec846ebda4da}{write}(\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_console_key_listener_ac8484b1c694ec1cd32e3e761a8cc1b20}{JL\_DELETE\_PREV\_CHAR});
+453       \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (e.getKeyCode() == KeyEvent.VK\_DELETE) \{
+454         \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_console_key_listener_a4bfaacb6e4d69ffdc03aec846ebda4da}{write}(\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_console_key_listener_acfbea41dbd4f4a71882a22522de6afbf}{JL\_DELETE\_NEXT\_CHAR});
+455       \} \textcolor{keywordflow}{else} \{
+456         \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_console_key_listener_a4bfaacb6e4d69ffdc03aec846ebda4da}{write}(e.getKeyChar());
+457       \}
+458 
+459       \textcolor{keywordflow}{try} \{
+460         \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_console_key_listener_a3544ea414f2d2dbfde66aa97dda16dac}{output}.flush();
+461       \} \textcolor{keywordflow}{catch} (IOException e1) \{
+462       \}
+463     \}
+\end{DoxyCode}
+\index{gov\+::nasa\+::jpf\+::inspector\+::frontends\+::jpfshell\+::gui\+::\+Swing\+Terminal\+::\+Console\+Key\+Listener@{gov\+::nasa\+::jpf\+::inspector\+::frontends\+::jpfshell\+::gui\+::\+Swing\+Terminal\+::\+Console\+Key\+Listener}!write@{write}}
+\index{write@{write}!gov\+::nasa\+::jpf\+::inspector\+::frontends\+::jpfshell\+::gui\+::\+Swing\+Terminal\+::\+Console\+Key\+Listener@{gov\+::nasa\+::jpf\+::inspector\+::frontends\+::jpfshell\+::gui\+::\+Swing\+Terminal\+::\+Console\+Key\+Listener}}
+\subsubsection[{\texorpdfstring{write(int c)}{write(int c)}}]{\setlength{\rightskip}{0pt plus 5cm}void gov.\+nasa.\+jpf.\+inspector.\+frontends.\+jpfshell.\+gui.\+Swing\+Terminal.\+Console\+Key\+Listener.\+write (
+\begin{DoxyParamCaption}
+\item[{int}]{c}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_console_key_listener_a4bfaacb6e4d69ffdc03aec846ebda4da}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_console_key_listener_a4bfaacb6e4d69ffdc03aec846ebda4da}
+
+
+Writes int to output stream. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em c} & Value to write into output \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 377 of file Swing\+Terminal.\+java.
+
+
+\begin{DoxyCode}
+377                                \{
+378       \textcolor{keywordflow}{try} \{
+379         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < 4; i++) \{
+380           \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_console_key_listener_a3544ea414f2d2dbfde66aa97dda16dac}{output}.write(c & 0xFF);
+381           c >>>= 8;
+382         \}
+383       \} \textcolor{keywordflow}{catch} (IOException e) \{
+384         \textcolor{comment}{// Cannot write - ignore}
+385       \}
+386     \}
+\end{DoxyCode}
+
+
+\subsection{Member Data Documentation}
+\index{gov\+::nasa\+::jpf\+::inspector\+::frontends\+::jpfshell\+::gui\+::\+Swing\+Terminal\+::\+Console\+Key\+Listener@{gov\+::nasa\+::jpf\+::inspector\+::frontends\+::jpfshell\+::gui\+::\+Swing\+Terminal\+::\+Console\+Key\+Listener}!J\+L\+\_\+\+C\+O\+M\+P\+L\+E\+TE@{J\+L\+\_\+\+C\+O\+M\+P\+L\+E\+TE}}
+\index{J\+L\+\_\+\+C\+O\+M\+P\+L\+E\+TE@{J\+L\+\_\+\+C\+O\+M\+P\+L\+E\+TE}!gov\+::nasa\+::jpf\+::inspector\+::frontends\+::jpfshell\+::gui\+::\+Swing\+Terminal\+::\+Console\+Key\+Listener@{gov\+::nasa\+::jpf\+::inspector\+::frontends\+::jpfshell\+::gui\+::\+Swing\+Terminal\+::\+Console\+Key\+Listener}}
+\subsubsection[{\texorpdfstring{J\+L\+\_\+\+C\+O\+M\+P\+L\+E\+TE}{JL_COMPLETE}}]{\setlength{\rightskip}{0pt plus 5cm}final int gov.\+nasa.\+jpf.\+inspector.\+frontends.\+jpfshell.\+gui.\+Swing\+Terminal.\+Console\+Key\+Listener.\+J\+L\+\_\+\+C\+O\+M\+P\+L\+E\+TE\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_console_key_listener_a9b960c4fda1d967fa3b47c185cb4b7cb}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_console_key_listener_a9b960c4fda1d967fa3b47c185cb4b7cb}
+
+
+Definition at line 329 of file Swing\+Terminal.\+java.
+
+\index{gov\+::nasa\+::jpf\+::inspector\+::frontends\+::jpfshell\+::gui\+::\+Swing\+Terminal\+::\+Console\+Key\+Listener@{gov\+::nasa\+::jpf\+::inspector\+::frontends\+::jpfshell\+::gui\+::\+Swing\+Terminal\+::\+Console\+Key\+Listener}!J\+L\+\_\+\+D\+E\+L\+E\+T\+E\+\_\+\+N\+E\+X\+T\+\_\+\+C\+H\+AR@{J\+L\+\_\+\+D\+E\+L\+E\+T\+E\+\_\+\+N\+E\+X\+T\+\_\+\+C\+H\+AR}}
+\index{J\+L\+\_\+\+D\+E\+L\+E\+T\+E\+\_\+\+N\+E\+X\+T\+\_\+\+C\+H\+AR@{J\+L\+\_\+\+D\+E\+L\+E\+T\+E\+\_\+\+N\+E\+X\+T\+\_\+\+C\+H\+AR}!gov\+::nasa\+::jpf\+::inspector\+::frontends\+::jpfshell\+::gui\+::\+Swing\+Terminal\+::\+Console\+Key\+Listener@{gov\+::nasa\+::jpf\+::inspector\+::frontends\+::jpfshell\+::gui\+::\+Swing\+Terminal\+::\+Console\+Key\+Listener}}
+\subsubsection[{\texorpdfstring{J\+L\+\_\+\+D\+E\+L\+E\+T\+E\+\_\+\+N\+E\+X\+T\+\_\+\+C\+H\+AR}{JL_DELETE_NEXT_CHAR}}]{\setlength{\rightskip}{0pt plus 5cm}final int gov.\+nasa.\+jpf.\+inspector.\+frontends.\+jpfshell.\+gui.\+Swing\+Terminal.\+Console\+Key\+Listener.\+J\+L\+\_\+\+D\+E\+L\+E\+T\+E\+\_\+\+N\+E\+X\+T\+\_\+\+C\+H\+AR\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_console_key_listener_acfbea41dbd4f4a71882a22522de6afbf}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_console_key_listener_acfbea41dbd4f4a71882a22522de6afbf}
+
+
+Definition at line 331 of file Swing\+Terminal.\+java.
+
+\index{gov\+::nasa\+::jpf\+::inspector\+::frontends\+::jpfshell\+::gui\+::\+Swing\+Terminal\+::\+Console\+Key\+Listener@{gov\+::nasa\+::jpf\+::inspector\+::frontends\+::jpfshell\+::gui\+::\+Swing\+Terminal\+::\+Console\+Key\+Listener}!J\+L\+\_\+\+D\+E\+L\+E\+T\+E\+\_\+\+P\+R\+E\+V\+\_\+\+C\+H\+AR@{J\+L\+\_\+\+D\+E\+L\+E\+T\+E\+\_\+\+P\+R\+E\+V\+\_\+\+C\+H\+AR}}
+\index{J\+L\+\_\+\+D\+E\+L\+E\+T\+E\+\_\+\+P\+R\+E\+V\+\_\+\+C\+H\+AR@{J\+L\+\_\+\+D\+E\+L\+E\+T\+E\+\_\+\+P\+R\+E\+V\+\_\+\+C\+H\+AR}!gov\+::nasa\+::jpf\+::inspector\+::frontends\+::jpfshell\+::gui\+::\+Swing\+Terminal\+::\+Console\+Key\+Listener@{gov\+::nasa\+::jpf\+::inspector\+::frontends\+::jpfshell\+::gui\+::\+Swing\+Terminal\+::\+Console\+Key\+Listener}}
+\subsubsection[{\texorpdfstring{J\+L\+\_\+\+D\+E\+L\+E\+T\+E\+\_\+\+P\+R\+E\+V\+\_\+\+C\+H\+AR}{JL_DELETE_PREV_CHAR}}]{\setlength{\rightskip}{0pt plus 5cm}final int gov.\+nasa.\+jpf.\+inspector.\+frontends.\+jpfshell.\+gui.\+Swing\+Terminal.\+Console\+Key\+Listener.\+J\+L\+\_\+\+D\+E\+L\+E\+T\+E\+\_\+\+P\+R\+E\+V\+\_\+\+C\+H\+AR\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_console_key_listener_ac8484b1c694ec1cd32e3e761a8cc1b20}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_console_key_listener_ac8484b1c694ec1cd32e3e761a8cc1b20}
+
+
+Definition at line 330 of file Swing\+Terminal.\+java.
+
+\index{gov\+::nasa\+::jpf\+::inspector\+::frontends\+::jpfshell\+::gui\+::\+Swing\+Terminal\+::\+Console\+Key\+Listener@{gov\+::nasa\+::jpf\+::inspector\+::frontends\+::jpfshell\+::gui\+::\+Swing\+Terminal\+::\+Console\+Key\+Listener}!J\+L\+\_\+\+M\+O\+V\+E\+\_\+\+T\+O\+\_\+\+B\+EG@{J\+L\+\_\+\+M\+O\+V\+E\+\_\+\+T\+O\+\_\+\+B\+EG}}
+\index{J\+L\+\_\+\+M\+O\+V\+E\+\_\+\+T\+O\+\_\+\+B\+EG@{J\+L\+\_\+\+M\+O\+V\+E\+\_\+\+T\+O\+\_\+\+B\+EG}!gov\+::nasa\+::jpf\+::inspector\+::frontends\+::jpfshell\+::gui\+::\+Swing\+Terminal\+::\+Console\+Key\+Listener@{gov\+::nasa\+::jpf\+::inspector\+::frontends\+::jpfshell\+::gui\+::\+Swing\+Terminal\+::\+Console\+Key\+Listener}}
+\subsubsection[{\texorpdfstring{J\+L\+\_\+\+M\+O\+V\+E\+\_\+\+T\+O\+\_\+\+B\+EG}{JL_MOVE_TO_BEG}}]{\setlength{\rightskip}{0pt plus 5cm}final int gov.\+nasa.\+jpf.\+inspector.\+frontends.\+jpfshell.\+gui.\+Swing\+Terminal.\+Console\+Key\+Listener.\+J\+L\+\_\+\+M\+O\+V\+E\+\_\+\+T\+O\+\_\+\+B\+EG\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_console_key_listener_ab88f21e9ba0483b37197984b4be3ac1c}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_console_key_listener_ab88f21e9ba0483b37197984b4be3ac1c}
+
+
+Definition at line 324 of file Swing\+Terminal.\+java.
+
+\index{gov\+::nasa\+::jpf\+::inspector\+::frontends\+::jpfshell\+::gui\+::\+Swing\+Terminal\+::\+Console\+Key\+Listener@{gov\+::nasa\+::jpf\+::inspector\+::frontends\+::jpfshell\+::gui\+::\+Swing\+Terminal\+::\+Console\+Key\+Listener}!J\+L\+\_\+\+M\+O\+V\+E\+\_\+\+T\+O\+\_\+\+E\+ND@{J\+L\+\_\+\+M\+O\+V\+E\+\_\+\+T\+O\+\_\+\+E\+ND}}
+\index{J\+L\+\_\+\+M\+O\+V\+E\+\_\+\+T\+O\+\_\+\+E\+ND@{J\+L\+\_\+\+M\+O\+V\+E\+\_\+\+T\+O\+\_\+\+E\+ND}!gov\+::nasa\+::jpf\+::inspector\+::frontends\+::jpfshell\+::gui\+::\+Swing\+Terminal\+::\+Console\+Key\+Listener@{gov\+::nasa\+::jpf\+::inspector\+::frontends\+::jpfshell\+::gui\+::\+Swing\+Terminal\+::\+Console\+Key\+Listener}}
+\subsubsection[{\texorpdfstring{J\+L\+\_\+\+M\+O\+V\+E\+\_\+\+T\+O\+\_\+\+E\+ND}{JL_MOVE_TO_END}}]{\setlength{\rightskip}{0pt plus 5cm}final int gov.\+nasa.\+jpf.\+inspector.\+frontends.\+jpfshell.\+gui.\+Swing\+Terminal.\+Console\+Key\+Listener.\+J\+L\+\_\+\+M\+O\+V\+E\+\_\+\+T\+O\+\_\+\+E\+ND\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_console_key_listener_a7414f2d8de5af56765142ce28251c3d3}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_console_key_listener_a7414f2d8de5af56765142ce28251c3d3}
+
+
+Definition at line 325 of file Swing\+Terminal.\+java.
+
+\index{gov\+::nasa\+::jpf\+::inspector\+::frontends\+::jpfshell\+::gui\+::\+Swing\+Terminal\+::\+Console\+Key\+Listener@{gov\+::nasa\+::jpf\+::inspector\+::frontends\+::jpfshell\+::gui\+::\+Swing\+Terminal\+::\+Console\+Key\+Listener}!J\+L\+\_\+\+N\+E\+X\+T\+\_\+\+C\+H\+AR@{J\+L\+\_\+\+N\+E\+X\+T\+\_\+\+C\+H\+AR}}
+\index{J\+L\+\_\+\+N\+E\+X\+T\+\_\+\+C\+H\+AR@{J\+L\+\_\+\+N\+E\+X\+T\+\_\+\+C\+H\+AR}!gov\+::nasa\+::jpf\+::inspector\+::frontends\+::jpfshell\+::gui\+::\+Swing\+Terminal\+::\+Console\+Key\+Listener@{gov\+::nasa\+::jpf\+::inspector\+::frontends\+::jpfshell\+::gui\+::\+Swing\+Terminal\+::\+Console\+Key\+Listener}}
+\subsubsection[{\texorpdfstring{J\+L\+\_\+\+N\+E\+X\+T\+\_\+\+C\+H\+AR}{JL_NEXT_CHAR}}]{\setlength{\rightskip}{0pt plus 5cm}final int gov.\+nasa.\+jpf.\+inspector.\+frontends.\+jpfshell.\+gui.\+Swing\+Terminal.\+Console\+Key\+Listener.\+J\+L\+\_\+\+N\+E\+X\+T\+\_\+\+C\+H\+AR\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_console_key_listener_a44f4d9e556c9755ef6ae1acdac032e57}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_console_key_listener_a44f4d9e556c9755ef6ae1acdac032e57}
+
+
+Definition at line 321 of file Swing\+Terminal.\+java.
+
+\index{gov\+::nasa\+::jpf\+::inspector\+::frontends\+::jpfshell\+::gui\+::\+Swing\+Terminal\+::\+Console\+Key\+Listener@{gov\+::nasa\+::jpf\+::inspector\+::frontends\+::jpfshell\+::gui\+::\+Swing\+Terminal\+::\+Console\+Key\+Listener}!J\+L\+\_\+\+N\+E\+X\+T\+\_\+\+H\+I\+S\+T\+O\+RY@{J\+L\+\_\+\+N\+E\+X\+T\+\_\+\+H\+I\+S\+T\+O\+RY}}
+\index{J\+L\+\_\+\+N\+E\+X\+T\+\_\+\+H\+I\+S\+T\+O\+RY@{J\+L\+\_\+\+N\+E\+X\+T\+\_\+\+H\+I\+S\+T\+O\+RY}!gov\+::nasa\+::jpf\+::inspector\+::frontends\+::jpfshell\+::gui\+::\+Swing\+Terminal\+::\+Console\+Key\+Listener@{gov\+::nasa\+::jpf\+::inspector\+::frontends\+::jpfshell\+::gui\+::\+Swing\+Terminal\+::\+Console\+Key\+Listener}}
+\subsubsection[{\texorpdfstring{J\+L\+\_\+\+N\+E\+X\+T\+\_\+\+H\+I\+S\+T\+O\+RY}{JL_NEXT_HISTORY}}]{\setlength{\rightskip}{0pt plus 5cm}final int gov.\+nasa.\+jpf.\+inspector.\+frontends.\+jpfshell.\+gui.\+Swing\+Terminal.\+Console\+Key\+Listener.\+J\+L\+\_\+\+N\+E\+X\+T\+\_\+\+H\+I\+S\+T\+O\+RY\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_console_key_listener_a40e3337f6e013ee7ff2c01ba76e72cc3}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_console_key_listener_a40e3337f6e013ee7ff2c01ba76e72cc3}
+
+
+Definition at line 326 of file Swing\+Terminal.\+java.
+
+\index{gov\+::nasa\+::jpf\+::inspector\+::frontends\+::jpfshell\+::gui\+::\+Swing\+Terminal\+::\+Console\+Key\+Listener@{gov\+::nasa\+::jpf\+::inspector\+::frontends\+::jpfshell\+::gui\+::\+Swing\+Terminal\+::\+Console\+Key\+Listener}!J\+L\+\_\+\+N\+E\+X\+T\+\_\+\+W\+O\+RD@{J\+L\+\_\+\+N\+E\+X\+T\+\_\+\+W\+O\+RD}}
+\index{J\+L\+\_\+\+N\+E\+X\+T\+\_\+\+W\+O\+RD@{J\+L\+\_\+\+N\+E\+X\+T\+\_\+\+W\+O\+RD}!gov\+::nasa\+::jpf\+::inspector\+::frontends\+::jpfshell\+::gui\+::\+Swing\+Terminal\+::\+Console\+Key\+Listener@{gov\+::nasa\+::jpf\+::inspector\+::frontends\+::jpfshell\+::gui\+::\+Swing\+Terminal\+::\+Console\+Key\+Listener}}
+\subsubsection[{\texorpdfstring{J\+L\+\_\+\+N\+E\+X\+T\+\_\+\+W\+O\+RD}{JL_NEXT_WORD}}]{\setlength{\rightskip}{0pt plus 5cm}final int gov.\+nasa.\+jpf.\+inspector.\+frontends.\+jpfshell.\+gui.\+Swing\+Terminal.\+Console\+Key\+Listener.\+J\+L\+\_\+\+N\+E\+X\+T\+\_\+\+W\+O\+RD\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_console_key_listener_af77e76c0c8131f97bb0792057677a8ff}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_console_key_listener_af77e76c0c8131f97bb0792057677a8ff}
+
+
+Definition at line 323 of file Swing\+Terminal.\+java.
+
+\index{gov\+::nasa\+::jpf\+::inspector\+::frontends\+::jpfshell\+::gui\+::\+Swing\+Terminal\+::\+Console\+Key\+Listener@{gov\+::nasa\+::jpf\+::inspector\+::frontends\+::jpfshell\+::gui\+::\+Swing\+Terminal\+::\+Console\+Key\+Listener}!J\+L\+\_\+\+P\+A\+S\+TE@{J\+L\+\_\+\+P\+A\+S\+TE}}
+\index{J\+L\+\_\+\+P\+A\+S\+TE@{J\+L\+\_\+\+P\+A\+S\+TE}!gov\+::nasa\+::jpf\+::inspector\+::frontends\+::jpfshell\+::gui\+::\+Swing\+Terminal\+::\+Console\+Key\+Listener@{gov\+::nasa\+::jpf\+::inspector\+::frontends\+::jpfshell\+::gui\+::\+Swing\+Terminal\+::\+Console\+Key\+Listener}}
+\subsubsection[{\texorpdfstring{J\+L\+\_\+\+P\+A\+S\+TE}{JL_PASTE}}]{\setlength{\rightskip}{0pt plus 5cm}final int gov.\+nasa.\+jpf.\+inspector.\+frontends.\+jpfshell.\+gui.\+Swing\+Terminal.\+Console\+Key\+Listener.\+J\+L\+\_\+\+P\+A\+S\+TE\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_console_key_listener_a387add499ac1fff3098d155d351eb293}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_console_key_listener_a387add499ac1fff3098d155d351eb293}
+
+
+Definition at line 328 of file Swing\+Terminal.\+java.
+
+\index{gov\+::nasa\+::jpf\+::inspector\+::frontends\+::jpfshell\+::gui\+::\+Swing\+Terminal\+::\+Console\+Key\+Listener@{gov\+::nasa\+::jpf\+::inspector\+::frontends\+::jpfshell\+::gui\+::\+Swing\+Terminal\+::\+Console\+Key\+Listener}!J\+L\+\_\+\+P\+R\+E\+V\+\_\+\+C\+H\+AR@{J\+L\+\_\+\+P\+R\+E\+V\+\_\+\+C\+H\+AR}}
+\index{J\+L\+\_\+\+P\+R\+E\+V\+\_\+\+C\+H\+AR@{J\+L\+\_\+\+P\+R\+E\+V\+\_\+\+C\+H\+AR}!gov\+::nasa\+::jpf\+::inspector\+::frontends\+::jpfshell\+::gui\+::\+Swing\+Terminal\+::\+Console\+Key\+Listener@{gov\+::nasa\+::jpf\+::inspector\+::frontends\+::jpfshell\+::gui\+::\+Swing\+Terminal\+::\+Console\+Key\+Listener}}
+\subsubsection[{\texorpdfstring{J\+L\+\_\+\+P\+R\+E\+V\+\_\+\+C\+H\+AR}{JL_PREV_CHAR}}]{\setlength{\rightskip}{0pt plus 5cm}final int gov.\+nasa.\+jpf.\+inspector.\+frontends.\+jpfshell.\+gui.\+Swing\+Terminal.\+Console\+Key\+Listener.\+J\+L\+\_\+\+P\+R\+E\+V\+\_\+\+C\+H\+AR\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_console_key_listener_a76ab50ca5262254cd0d30f94c09182b0}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_console_key_listener_a76ab50ca5262254cd0d30f94c09182b0}
+
+
+Definition at line 320 of file Swing\+Terminal.\+java.
+
+\index{gov\+::nasa\+::jpf\+::inspector\+::frontends\+::jpfshell\+::gui\+::\+Swing\+Terminal\+::\+Console\+Key\+Listener@{gov\+::nasa\+::jpf\+::inspector\+::frontends\+::jpfshell\+::gui\+::\+Swing\+Terminal\+::\+Console\+Key\+Listener}!J\+L\+\_\+\+P\+R\+E\+V\+\_\+\+H\+I\+S\+T\+O\+RY@{J\+L\+\_\+\+P\+R\+E\+V\+\_\+\+H\+I\+S\+T\+O\+RY}}
+\index{J\+L\+\_\+\+P\+R\+E\+V\+\_\+\+H\+I\+S\+T\+O\+RY@{J\+L\+\_\+\+P\+R\+E\+V\+\_\+\+H\+I\+S\+T\+O\+RY}!gov\+::nasa\+::jpf\+::inspector\+::frontends\+::jpfshell\+::gui\+::\+Swing\+Terminal\+::\+Console\+Key\+Listener@{gov\+::nasa\+::jpf\+::inspector\+::frontends\+::jpfshell\+::gui\+::\+Swing\+Terminal\+::\+Console\+Key\+Listener}}
+\subsubsection[{\texorpdfstring{J\+L\+\_\+\+P\+R\+E\+V\+\_\+\+H\+I\+S\+T\+O\+RY}{JL_PREV_HISTORY}}]{\setlength{\rightskip}{0pt plus 5cm}final int gov.\+nasa.\+jpf.\+inspector.\+frontends.\+jpfshell.\+gui.\+Swing\+Terminal.\+Console\+Key\+Listener.\+J\+L\+\_\+\+P\+R\+E\+V\+\_\+\+H\+I\+S\+T\+O\+RY\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_console_key_listener_a6c5edcca29a238f7506da532be6abd67}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_console_key_listener_a6c5edcca29a238f7506da532be6abd67}
+
+
+Definition at line 327 of file Swing\+Terminal.\+java.
+
+\index{gov\+::nasa\+::jpf\+::inspector\+::frontends\+::jpfshell\+::gui\+::\+Swing\+Terminal\+::\+Console\+Key\+Listener@{gov\+::nasa\+::jpf\+::inspector\+::frontends\+::jpfshell\+::gui\+::\+Swing\+Terminal\+::\+Console\+Key\+Listener}!J\+L\+\_\+\+P\+R\+E\+V\+\_\+\+W\+O\+RD@{J\+L\+\_\+\+P\+R\+E\+V\+\_\+\+W\+O\+RD}}
+\index{J\+L\+\_\+\+P\+R\+E\+V\+\_\+\+W\+O\+RD@{J\+L\+\_\+\+P\+R\+E\+V\+\_\+\+W\+O\+RD}!gov\+::nasa\+::jpf\+::inspector\+::frontends\+::jpfshell\+::gui\+::\+Swing\+Terminal\+::\+Console\+Key\+Listener@{gov\+::nasa\+::jpf\+::inspector\+::frontends\+::jpfshell\+::gui\+::\+Swing\+Terminal\+::\+Console\+Key\+Listener}}
+\subsubsection[{\texorpdfstring{J\+L\+\_\+\+P\+R\+E\+V\+\_\+\+W\+O\+RD}{JL_PREV_WORD}}]{\setlength{\rightskip}{0pt plus 5cm}final int gov.\+nasa.\+jpf.\+inspector.\+frontends.\+jpfshell.\+gui.\+Swing\+Terminal.\+Console\+Key\+Listener.\+J\+L\+\_\+\+P\+R\+E\+V\+\_\+\+W\+O\+RD\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_console_key_listener_a786dbd90033e6de1575d81bca7e5e030}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_console_key_listener_a786dbd90033e6de1575d81bca7e5e030}
+
+
+Definition at line 322 of file Swing\+Terminal.\+java.
+
+\index{gov\+::nasa\+::jpf\+::inspector\+::frontends\+::jpfshell\+::gui\+::\+Swing\+Terminal\+::\+Console\+Key\+Listener@{gov\+::nasa\+::jpf\+::inspector\+::frontends\+::jpfshell\+::gui\+::\+Swing\+Terminal\+::\+Console\+Key\+Listener}!output@{output}}
+\index{output@{output}!gov\+::nasa\+::jpf\+::inspector\+::frontends\+::jpfshell\+::gui\+::\+Swing\+Terminal\+::\+Console\+Key\+Listener@{gov\+::nasa\+::jpf\+::inspector\+::frontends\+::jpfshell\+::gui\+::\+Swing\+Terminal\+::\+Console\+Key\+Listener}}
+\subsubsection[{\texorpdfstring{output}{output}}]{\setlength{\rightskip}{0pt plus 5cm}final Output\+Stream gov.\+nasa.\+jpf.\+inspector.\+frontends.\+jpfshell.\+gui.\+Swing\+Terminal.\+Console\+Key\+Listener.\+output\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_console_key_listener_a3544ea414f2d2dbfde66aa97dda16dac}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_console_key_listener_a3544ea414f2d2dbfde66aa97dda16dac}
+
+
+Definition at line 318 of file Swing\+Terminal.\+java.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/gsoc/jpf-\/inspector/src/main/gov/nasa/jpf/inspector/frontends/jpfshell/gui/\hyperlink{_swing_terminal_8java}{Swing\+Terminal.\+java}\end{DoxyCompactItemize}

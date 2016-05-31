@@ -1,0 +1,524 @@
+\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1_j_p_f_client_callback_handler}{}\section{gov.\+nasa.\+jpf.\+inspector.\+client.\+J\+P\+F\+Client\+Callback\+Handler Class Reference}
+\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1_j_p_f_client_callback_handler}\index{gov.\+nasa.\+jpf.\+inspector.\+client.\+J\+P\+F\+Client\+Callback\+Handler@{gov.\+nasa.\+jpf.\+inspector.\+client.\+J\+P\+F\+Client\+Callback\+Handler}}
+
+
+Handles notifications from the J\+P\+F\+Inspector server.  
+
+
+Inheritance diagram for gov.\+nasa.\+jpf.\+inspector.\+client.\+J\+P\+F\+Client\+Callback\+Handler\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1_j_p_f_client_callback_handler}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1_j_p_f_client_callback_handler_a7019a1dfc3de8716ba47f45fb979e333}{J\+P\+F\+Client\+Callback\+Handler} (Print\+Stream \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1_j_p_f_client_callback_handler_ad51e474b5613fa4a46c8965c069fb9f7}{out})
+\item 
+void \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1_j_p_f_client_callback_handler_a45f1166c2de66186f2e3a8a29039f863}{generic\+Error} (String msg)
+\begin{DoxyCompactList}\small\item\em Inspector detected unrecoverable error that should be reported to user. \end{DoxyCompactList}\item 
+void \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1_j_p_f_client_callback_handler_a9a3766ff337840d00c56e7e1d12fe0bb}{generic\+Info} (String msg)
+\begin{DoxyCompactList}\small\item\em Channel used for sending various messages for the user. \end{DoxyCompactList}\item 
+void \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1_j_p_f_client_callback_handler_a9b44a29fb0e6521a255cb116b81ac117}{notify\+State\+Change} (\hyperlink{enumgov_1_1nasa_1_1jpf_1_1inspector_1_1interfaces_1_1_commands_interface_1_1_inspector_states}{Inspector\+States} new\+State, String details)
+\begin{DoxyCompactList}\small\item\em Called when state of the inspector is modified -\/ paused, resumed, property violated. \end{DoxyCompactList}\item 
+void \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1_j_p_f_client_callback_handler_ad270cf7f61001a7d3903ff7c52f92419}{notify\+Breakpoint\+Hit} (\hyperlink{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1interfaces_1_1_break_point_status}{Break\+Point\+Status} bp)
+\begin{DoxyCompactList}\small\item\em Called when breakpoint is hitted. \end{DoxyCompactList}\item 
+void \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1_j_p_f_client_callback_handler_ae1c072c78bfbb68ce4de206a3c41b2b3}{notify\+Choice\+Generator\+New\+Choice} (\hyperlink{enumgov_1_1nasa_1_1jpf_1_1inspector_1_1interfaces_1_1_choice_generators_interface_1_1_c_g_types}{C\+G\+Types} cg\+Type, String cg\+Name, int cg\+Id, String\mbox{[}$\,$\mbox{]} choices, int next\+Choice, int default\+Choice)
+\begin{DoxyCompactList}\small\item\em Notification from the server that Choice\+Generator is asked for new value. \end{DoxyCompactList}\item 
+void \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1_j_p_f_client_callback_handler_a58681ba2362bf7babca7aafad10a653a}{notify\+Used\+Choice} (\hyperlink{enumgov_1_1nasa_1_1jpf_1_1inspector_1_1interfaces_1_1_choice_generators_interface_1_1_c_g_types}{C\+G\+Types} cg\+Type, String cg\+Name, int cg\+Id, int used\+Choice\+Index, String used\+Choice)
+\begin{DoxyCompactList}\small\item\em Notification from the server with used choice. \end{DoxyCompactList}\item 
+void \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1_j_p_f_client_callback_handler_af0ae28e8ceb29e88bb9a3349511e140b}{specify\+Choice\+To\+Use} (int max\+Choice\+Index)
+\begin{DoxyCompactList}\small\item\em Callback used to print prompt(notification) to user that execution is stopped and you should specify which choice to use. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static boolean \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1_j_p_f_client_callback_handler_af7484150021a40f37d478b392efe2224}{check\+If\+Show\+State\+Change\+Nofitication} (\hyperlink{enumgov_1_1nasa_1_1jpf_1_1inspector_1_1interfaces_1_1_inspector_call_backs_1_1_c_b___m_e_t_h_o_d_s}{C\+B\+\_\+\+M\+E\+T\+H\+O\+DS} \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1_j_p_f_client_callback_handler_a1e5272638212d9246e98ced9a5a78012}{prev\+CB}, \hyperlink{enumgov_1_1nasa_1_1jpf_1_1inspector_1_1interfaces_1_1_commands_interface_1_1_inspector_states}{Inspector\+States} new\+State)
+\item 
+static void \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1_j_p_f_client_callback_handler_a22353a4cf73f73eaa9c953e58700c1f3}{generate\+C\+G\+Header} (String\+Builder sb, Choice\+Generators\+Interface.\+C\+G\+Types cg\+Type, String cg\+Name, int cg\+Id)
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+final Print\+Stream \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1_j_p_f_client_callback_handler_ad51e474b5613fa4a46c8965c069fb9f7}{out}
+\item 
+\hyperlink{enumgov_1_1nasa_1_1jpf_1_1inspector_1_1interfaces_1_1_inspector_call_backs_1_1_c_b___m_e_t_h_o_d_s}{C\+B\+\_\+\+M\+E\+T\+H\+O\+DS} \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1_j_p_f_client_callback_handler_a1e5272638212d9246e98ced9a5a78012}{prev\+CB}
+\item 
+boolean \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1_j_p_f_client_callback_handler_aa541c0527efe7beb63c26022ed9d9dba}{show\+Hint\+Cg\+Select} = true
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Handles notifications from the J\+P\+F\+Inspector server. 
+
+This class is created by the client. 
+
+Definition at line 38 of file J\+P\+F\+Client\+Callback\+Handler.\+java.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{gov\+::nasa\+::jpf\+::inspector\+::client\+::\+J\+P\+F\+Client\+Callback\+Handler@{gov\+::nasa\+::jpf\+::inspector\+::client\+::\+J\+P\+F\+Client\+Callback\+Handler}!J\+P\+F\+Client\+Callback\+Handler@{J\+P\+F\+Client\+Callback\+Handler}}
+\index{J\+P\+F\+Client\+Callback\+Handler@{J\+P\+F\+Client\+Callback\+Handler}!gov\+::nasa\+::jpf\+::inspector\+::client\+::\+J\+P\+F\+Client\+Callback\+Handler@{gov\+::nasa\+::jpf\+::inspector\+::client\+::\+J\+P\+F\+Client\+Callback\+Handler}}
+\subsubsection[{\texorpdfstring{J\+P\+F\+Client\+Callback\+Handler(\+Print\+Stream out)}{JPFClientCallbackHandler(PrintStream out)}}]{\setlength{\rightskip}{0pt plus 5cm}gov.\+nasa.\+jpf.\+inspector.\+client.\+J\+P\+F\+Client\+Callback\+Handler.\+J\+P\+F\+Client\+Callback\+Handler (
+\begin{DoxyParamCaption}
+\item[{Print\+Stream}]{out}
+\end{DoxyParamCaption}
+)}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1_j_p_f_client_callback_handler_a7019a1dfc3de8716ba47f45fb979e333}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1_j_p_f_client_callback_handler_a7019a1dfc3de8716ba47f45fb979e333}
+
+
+Definition at line 42 of file J\+P\+F\+Client\+Callback\+Handler.\+java.
+
+
+\begin{DoxyCode}
+42                                                     \{
+43     this.\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1_j_p_f_client_callback_handler_ad51e474b5613fa4a46c8965c069fb9f7}{out} = \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1_j_p_f_client_callback_handler_ad51e474b5613fa4a46c8965c069fb9f7}{out};
+44   \}
+\end{DoxyCode}
+
+
+\subsection{Member Function Documentation}
+\index{gov\+::nasa\+::jpf\+::inspector\+::client\+::\+J\+P\+F\+Client\+Callback\+Handler@{gov\+::nasa\+::jpf\+::inspector\+::client\+::\+J\+P\+F\+Client\+Callback\+Handler}!check\+If\+Show\+State\+Change\+Nofitication@{check\+If\+Show\+State\+Change\+Nofitication}}
+\index{check\+If\+Show\+State\+Change\+Nofitication@{check\+If\+Show\+State\+Change\+Nofitication}!gov\+::nasa\+::jpf\+::inspector\+::client\+::\+J\+P\+F\+Client\+Callback\+Handler@{gov\+::nasa\+::jpf\+::inspector\+::client\+::\+J\+P\+F\+Client\+Callback\+Handler}}
+\subsubsection[{\texorpdfstring{check\+If\+Show\+State\+Change\+Nofitication(\+C\+B\+\_\+\+M\+E\+T\+H\+O\+D\+S prev\+C\+B, Inspector\+States new\+State)}{checkIfShowStateChangeNofitication(CB_METHODS prevCB, InspectorStates newState)}}]{\setlength{\rightskip}{0pt plus 5cm}static boolean gov.\+nasa.\+jpf.\+inspector.\+client.\+J\+P\+F\+Client\+Callback\+Handler.\+check\+If\+Show\+State\+Change\+Nofitication (
+\begin{DoxyParamCaption}
+\item[{{\bf C\+B\+\_\+\+M\+E\+T\+H\+O\+DS}}]{prev\+CB, }
+\item[{{\bf Inspector\+States}}]{new\+State}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1_j_p_f_client_callback_handler_af7484150021a40f37d478b392efe2224}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1_j_p_f_client_callback_handler_af7484150021a40f37d478b392efe2224}
+
+
+Definition at line 67 of file J\+P\+F\+Client\+Callback\+Handler.\+java.
+
+
+\begin{DoxyCode}
+67                                                                                                           \{
+68     \textcolor{keywordflow}{if} (\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1_j_p_f_client_callback_handler_a1e5272638212d9246e98ced9a5a78012}{prevCB} == null) \{
+69       \textcolor{keywordflow}{return} \textcolor{keyword}{true}; \textcolor{comment}{// First CB}
+70     \}
+71 
+72     \textcolor{keywordflow}{if} (InspectorStates.JPF\_TERMINATING.equals(newState) || InspectorStates.JPF\_STARTED.equals(newState)) \{
+73       \textcolor{keywordflow}{return} \textcolor{keyword}{true}; \textcolor{comment}{// Always show JPF started and terminating}
+74     \}
+75 
+76     \textcolor{keywordflow}{if} (CB\_METHODS.CB\_BREAKPOINT\_HIT.equals(\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1_j_p_f_client_callback_handler_a1e5272638212d9246e98ced9a5a78012}{prevCB}) || CB\_METHODS.CB\_CG\_CHOICE\_TO\_USE.equals(
+      \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1_j_p_f_client_callback_handler_a1e5272638212d9246e98ced9a5a78012}{prevCB})) \{
+77       \textcolor{keywordflow}{return} \textcolor{keyword}{false}; \textcolor{comment}{// Don't show stop notification after breakpoint hit}
+78     \}
+79 
+80     \textcolor{comment}{//noinspection RedundantIfStatement}
+81     \textcolor{keywordflow}{if} (InspectorStates.JPF\_RUNNING.equals(newState) && CB\_METHODS.CB\_STATE\_CHANGE.equals(
+      \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1_j_p_f_client_callback_handler_a1e5272638212d9246e98ced9a5a78012}{prevCB})) \{
+82       \textcolor{comment}{// Suppose previous SB was JPF Stopped ad next command started JPF execution (run, (back\_)step\_over,
+       )}
+83       \textcolor{comment}{// --> hide obvious JPF started notification}
+84       \textcolor{keywordflow}{return} \textcolor{keyword}{false};
+85     \}
+86 
+87     \textcolor{keywordflow}{return} \textcolor{keyword}{true}; \textcolor{comment}{// Fail safe}
+88   \}
+\end{DoxyCode}
+\index{gov\+::nasa\+::jpf\+::inspector\+::client\+::\+J\+P\+F\+Client\+Callback\+Handler@{gov\+::nasa\+::jpf\+::inspector\+::client\+::\+J\+P\+F\+Client\+Callback\+Handler}!generate\+C\+G\+Header@{generate\+C\+G\+Header}}
+\index{generate\+C\+G\+Header@{generate\+C\+G\+Header}!gov\+::nasa\+::jpf\+::inspector\+::client\+::\+J\+P\+F\+Client\+Callback\+Handler@{gov\+::nasa\+::jpf\+::inspector\+::client\+::\+J\+P\+F\+Client\+Callback\+Handler}}
+\subsubsection[{\texorpdfstring{generate\+C\+G\+Header(\+String\+Builder sb, Choice\+Generators\+Interface.\+C\+G\+Types cg\+Type, String cg\+Name, int cg\+Id)}{generateCGHeader(StringBuilder sb, ChoiceGeneratorsInterface.CGTypes cgType, String cgName, int cgId)}}]{\setlength{\rightskip}{0pt plus 5cm}static void gov.\+nasa.\+jpf.\+inspector.\+client.\+J\+P\+F\+Client\+Callback\+Handler.\+generate\+C\+G\+Header (
+\begin{DoxyParamCaption}
+\item[{String\+Builder}]{sb, }
+\item[{Choice\+Generators\+Interface.\+C\+G\+Types}]{cg\+Type, }
+\item[{String}]{cg\+Name, }
+\item[{int}]{cg\+Id}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1_j_p_f_client_callback_handler_a22353a4cf73f73eaa9c953e58700c1f3}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1_j_p_f_client_callback_handler_a22353a4cf73f73eaa9c953e58700c1f3}
+
+
+Definition at line 205 of file J\+P\+F\+Client\+Callback\+Handler.\+java.
+
+
+\begin{DoxyCode}
+205                                                                                                            
+                        \{
+206     \textcolor{keywordflow}{if} (CGTypes.CG\_TYPE\_DATA.equals(cgType)) \{
+207       sb.append(\textcolor{stringliteral}{"data CG"});
+208     \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (CGTypes.CG\_TYPE\_SCHEDULING.equals(cgType)) \{
+209       sb.append(\textcolor{stringliteral}{"scheduling CG"});
+210     \} \textcolor{keywordflow}{else} \{
+211       sb.append(\textcolor{stringliteral}{"unknown CG type"});
+212     \}
+213     sb.append(\textcolor{stringliteral}{" - "});
+214     sb.append(cgName);
+215     sb.append(\textcolor{stringliteral}{" ("});
+216     sb.append(Integer.toHexString(cgId));
+217     sb.append(\textcolor{stringliteral}{") : "});
+218   \}
+\end{DoxyCode}
+\index{gov\+::nasa\+::jpf\+::inspector\+::client\+::\+J\+P\+F\+Client\+Callback\+Handler@{gov\+::nasa\+::jpf\+::inspector\+::client\+::\+J\+P\+F\+Client\+Callback\+Handler}!generic\+Error@{generic\+Error}}
+\index{generic\+Error@{generic\+Error}!gov\+::nasa\+::jpf\+::inspector\+::client\+::\+J\+P\+F\+Client\+Callback\+Handler@{gov\+::nasa\+::jpf\+::inspector\+::client\+::\+J\+P\+F\+Client\+Callback\+Handler}}
+\subsubsection[{\texorpdfstring{generic\+Error(\+String msg)}{genericError(String msg)}}]{\setlength{\rightskip}{0pt plus 5cm}void gov.\+nasa.\+jpf.\+inspector.\+client.\+J\+P\+F\+Client\+Callback\+Handler.\+generic\+Error (
+\begin{DoxyParamCaption}
+\item[{String}]{msg}
+\end{DoxyParamCaption}
+)}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1_j_p_f_client_callback_handler_a45f1166c2de66186f2e3a8a29039f863}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1_j_p_f_client_callback_handler_a45f1166c2de66186f2e3a8a29039f863}
+
+
+Inspector detected unrecoverable error that should be reported to user. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em msg} & Message to print. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1interfaces_1_1_inspector_call_backs_ac9e585a3096b0be7e25dc789b6b39cfa}{gov.\+nasa.\+jpf.\+inspector.\+interfaces.\+Inspector\+Call\+Backs}.
+
+
+
+Definition at line 47 of file J\+P\+F\+Client\+Callback\+Handler.\+java.
+
+
+\begin{DoxyCode}
+47                                         \{
+48     \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1_j_p_f_client_callback_handler_ad51e474b5613fa4a46c8965c069fb9f7}{out}.println(\textcolor{stringliteral}{"ERR: "} + msg);
+49     \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1_j_p_f_client_callback_handler_a1e5272638212d9246e98ced9a5a78012}{prevCB} = CB\_METHODS.\hyperlink{enumgov_1_1nasa_1_1jpf_1_1inspector_1_1interfaces_1_1_inspector_call_backs_1_1_c_b___m_e_t_h_o_d_s_a27bfe89c7aca4474518966f9aa46322b}{CB\_GENERIC\_ERROR};
+50   \}
+\end{DoxyCode}
+\index{gov\+::nasa\+::jpf\+::inspector\+::client\+::\+J\+P\+F\+Client\+Callback\+Handler@{gov\+::nasa\+::jpf\+::inspector\+::client\+::\+J\+P\+F\+Client\+Callback\+Handler}!generic\+Info@{generic\+Info}}
+\index{generic\+Info@{generic\+Info}!gov\+::nasa\+::jpf\+::inspector\+::client\+::\+J\+P\+F\+Client\+Callback\+Handler@{gov\+::nasa\+::jpf\+::inspector\+::client\+::\+J\+P\+F\+Client\+Callback\+Handler}}
+\subsubsection[{\texorpdfstring{generic\+Info(\+String msg)}{genericInfo(String msg)}}]{\setlength{\rightskip}{0pt plus 5cm}void gov.\+nasa.\+jpf.\+inspector.\+client.\+J\+P\+F\+Client\+Callback\+Handler.\+generic\+Info (
+\begin{DoxyParamCaption}
+\item[{String}]{msg}
+\end{DoxyParamCaption}
+)}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1_j_p_f_client_callback_handler_a9a3766ff337840d00c56e7e1d12fe0bb}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1_j_p_f_client_callback_handler_a9a3766ff337840d00c56e7e1d12fe0bb}
+
+
+Channel used for sending various messages for the user. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em msg} & Message to print. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1interfaces_1_1_inspector_call_backs_afe2463c7186265f972991c9c7ab4ec19}{gov.\+nasa.\+jpf.\+inspector.\+interfaces.\+Inspector\+Call\+Backs}.
+
+
+
+Definition at line 53 of file J\+P\+F\+Client\+Callback\+Handler.\+java.
+
+
+\begin{DoxyCode}
+53                                        \{
+54     \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1_j_p_f_client_callback_handler_ad51e474b5613fa4a46c8965c069fb9f7}{out}.println(\textcolor{stringliteral}{"INFO: "} + msg);
+55 
+56     \textcolor{comment}{// Previously, this line was commented out. The prevCB field is used to distinguish whether information}
+57     \textcolor{comment}{// about state change should be printed out. This may therefore cause some state changes to be printed}
+58     \textcolor{comment}{// or, conversely, to be omitted. I don't know what's better so I'll just leave this in for now and}
+59     \textcolor{comment}{// see if something breaks.}
+60 
+61     \textcolor{comment}{// On second thought, let's leave it commented out. Weird things are happening and until we fully
+       understand}
+62     \textcolor{comment}{// the code, we shouldn't be making uneasy changes.}
+63 
+64     \textcolor{comment}{// prevCB = CB\_METHODS.CB\_GENERIC\_INFO;}
+65   \}
+\end{DoxyCode}
+\index{gov\+::nasa\+::jpf\+::inspector\+::client\+::\+J\+P\+F\+Client\+Callback\+Handler@{gov\+::nasa\+::jpf\+::inspector\+::client\+::\+J\+P\+F\+Client\+Callback\+Handler}!notify\+Breakpoint\+Hit@{notify\+Breakpoint\+Hit}}
+\index{notify\+Breakpoint\+Hit@{notify\+Breakpoint\+Hit}!gov\+::nasa\+::jpf\+::inspector\+::client\+::\+J\+P\+F\+Client\+Callback\+Handler@{gov\+::nasa\+::jpf\+::inspector\+::client\+::\+J\+P\+F\+Client\+Callback\+Handler}}
+\subsubsection[{\texorpdfstring{notify\+Breakpoint\+Hit(\+Break\+Point\+Status bp)}{notifyBreakpointHit(BreakPointStatus bp)}}]{\setlength{\rightskip}{0pt plus 5cm}void gov.\+nasa.\+jpf.\+inspector.\+client.\+J\+P\+F\+Client\+Callback\+Handler.\+notify\+Breakpoint\+Hit (
+\begin{DoxyParamCaption}
+\item[{{\bf Break\+Point\+Status}}]{bp}
+\end{DoxyParamCaption}
+)}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1_j_p_f_client_callback_handler_ad270cf7f61001a7d3903ff7c52f92419}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1_j_p_f_client_callback_handler_ad270cf7f61001a7d3903ff7c52f92419}
+
+
+Called when breakpoint is hitted. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em bp} & Breakpoint that is reached. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1interfaces_1_1_inspector_call_backs_a130333a1ece0818a1161ca8597d027e6}{gov.\+nasa.\+jpf.\+inspector.\+interfaces.\+Inspector\+Call\+Backs}.
+
+
+
+Definition at line 118 of file J\+P\+F\+Client\+Callback\+Handler.\+java.
+
+
+\begin{DoxyCode}
+118                                                         \{
+119     assert bp != null;
+120 
+121     \textcolor{keywordflow}{if} (bp instanceof AssertStatus) \{
+122       AssertStatus as = (AssertStatus) bp;
+123 
+124       String message = \textcolor{stringliteral}{"Assertion violated."};
+125       \textcolor{keywordflow}{if} (bp.getState() == BreakPointStates.BP\_STATE\_LOGGING) \{
+126         message = \textcolor{stringliteral}{"Logging assertion violated"};
+127       \}
+128       \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1_j_p_f_client_callback_handler_ad51e474b5613fa4a46c8965c069fb9f7}{out}.println(\textcolor{stringliteral}{"INFO: "} + message + \textcolor{stringliteral}{" [assert "} + as.getNormalizedPosition() + \textcolor{stringliteral}{" "} + as.
+      getNormalizedCondition() + \textcolor{stringliteral}{"]"});
+129 
+130     \} \textcolor{keywordflow}{else} \{
+131       \textcolor{comment}{// Standard breakpoint}
+132       String message = \textcolor{stringliteral}{"Breakpoint hit."};
+133       \textcolor{keywordflow}{if} (bp.getState() == BreakPointStates.BP\_STATE\_LOGGING) \{
+134         message = \textcolor{stringliteral}{"Logging breakpoint hit."};
+135       \}
+136       \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1_j_p_f_client_callback_handler_ad51e474b5613fa4a46c8965c069fb9f7}{out}.println(\textcolor{stringliteral}{"INFO: "} + message + \textcolor{stringliteral}{" ["} + CmdBreakpointShow.breakpointToString(bp) + \textcolor{stringliteral}{"]"});
+137       String details = bp.getDetails();
+138       \textcolor{keywordflow}{if} (details != null && !details.trim().isEmpty()) \{
+139         \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1_j_p_f_client_callback_handler_ad51e474b5613fa4a46c8965c069fb9f7}{out}.println(\textcolor{stringliteral}{"\(\backslash\)t"} + details);
+140       \}
+141     \}
+142     \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1_j_p_f_client_callback_handler_a1e5272638212d9246e98ced9a5a78012}{prevCB} = CB\_METHODS.\hyperlink{enumgov_1_1nasa_1_1jpf_1_1inspector_1_1interfaces_1_1_inspector_call_backs_1_1_c_b___m_e_t_h_o_d_s_a7e99fa3c2f2ede89ef9223836fe06bbf}{CB\_BREAKPOINT\_HIT};
+143   \}
+\end{DoxyCode}
+\index{gov\+::nasa\+::jpf\+::inspector\+::client\+::\+J\+P\+F\+Client\+Callback\+Handler@{gov\+::nasa\+::jpf\+::inspector\+::client\+::\+J\+P\+F\+Client\+Callback\+Handler}!notify\+Choice\+Generator\+New\+Choice@{notify\+Choice\+Generator\+New\+Choice}}
+\index{notify\+Choice\+Generator\+New\+Choice@{notify\+Choice\+Generator\+New\+Choice}!gov\+::nasa\+::jpf\+::inspector\+::client\+::\+J\+P\+F\+Client\+Callback\+Handler@{gov\+::nasa\+::jpf\+::inspector\+::client\+::\+J\+P\+F\+Client\+Callback\+Handler}}
+\subsubsection[{\texorpdfstring{notify\+Choice\+Generator\+New\+Choice(\+C\+G\+Types cg\+Type, String cg\+Name, int cg\+Id, String[] choices, int next\+Choice, int default\+Choice)}{notifyChoiceGeneratorNewChoice(CGTypes cgType, String cgName, int cgId, String[] choices, int nextChoice, int defaultChoice)}}]{\setlength{\rightskip}{0pt plus 5cm}void gov.\+nasa.\+jpf.\+inspector.\+client.\+J\+P\+F\+Client\+Callback\+Handler.\+notify\+Choice\+Generator\+New\+Choice (
+\begin{DoxyParamCaption}
+\item[{{\bf C\+G\+Types}}]{cg\+Type, }
+\item[{String}]{cg\+Name, }
+\item[{int}]{cg\+Id, }
+\item[{String\mbox{[}$\,$\mbox{]}}]{choices, }
+\item[{int}]{next\+Choice, }
+\item[{int}]{default\+Choice}
+\end{DoxyParamCaption}
+)}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1_j_p_f_client_callback_handler_ae1c072c78bfbb68ce4de206a3c41b2b3}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1_j_p_f_client_callback_handler_ae1c072c78bfbb68ce4de206a3c41b2b3}
+
+
+Notification from the server that Choice\+Generator is asked for new value. 
+
+\hyperlink{}{Choice\+Generator\#advance()} is called.
+
+
+\begin{DoxyParams}{Parameters}
+{\em cg\+Type} & Specifies type of the Choice\+Generator \\
+\hline
+{\em cg\+Name} & Name of the \hyperlink{}{Choice\+Generator} \\
+\hline
+{\em cg\+Id} & Identification of the \hyperlink{}{Choice\+Generator} -\/ the hash\+Code \\
+\hline
+{\em choices} & List with possible choices of \hyperlink{}{Choice\+Generator} \\
+\hline
+{\em next\+Choice} & Index of selected choice. (Choice which will be selected after the \hyperlink{}{Choice\+Generator\#advance()} call \\
+\hline
+{\em default\+Choice} & Value of default choice, if any. (\hyperlink{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1interfaces_1_1_choice_generators_interface_a96ec402a57d2b3547337e677e23075cd}{Choice\+Generators\+Interface\#\+N\+O\+\_\+\+D\+E\+F\+A\+U\+L\+T\+\_\+\+C\+H\+O\+I\+CE} is used if no default choice exists) \\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1interfaces_1_1_inspector_call_backs_a8ebe532769c4bced7461e073fa79a7a0}{gov.\+nasa.\+jpf.\+inspector.\+interfaces.\+Inspector\+Call\+Backs}.
+
+
+
+Definition at line 146 of file J\+P\+F\+Client\+Callback\+Handler.\+java.
+
+
+\begin{DoxyCode}
+146                                                                                                            
+                                       \{
+147     StringBuilder result = \textcolor{keyword}{new} StringBuilder();
+148 
+149     result.append(\textcolor{stringliteral}{"ChoiceGeneratorAdvance - "});
+150     \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1_j_p_f_client_callback_handler_a22353a4cf73f73eaa9c953e58700c1f3}{generateCGHeader}(result, cgType, cgName, cgId);
+151     result.append(\textcolor{charliteral}{'\(\backslash\)n'});
+152 
+153     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < choices.length; i++) \{
+154       result.append(\textcolor{charliteral}{'\(\backslash\)t'});
+155 
+156       \textcolor{keywordflow}{if} (i == defaultChoice) \{
+157         result.append(\textcolor{charliteral}{'*'});
+158       \} \textcolor{keywordflow}{else} \{
+159         result.append(\textcolor{charliteral}{' '});
+160       \}
+161       \textcolor{keywordflow}{if} (i == nextChoice) \{
+162         result.append(\textcolor{charliteral}{'>'});
+163       \} \textcolor{keywordflow}{else} \{
+164         result.append(\textcolor{charliteral}{' '});
+165       \}
+166       result.append(i);
+167       result.append(\textcolor{charliteral}{'-'});
+168       result.append(choices[i]);
+169       result.append(\textcolor{charliteral}{'\(\backslash\)n'});
+170     \}
+171     \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1_j_p_f_client_callback_handler_ad51e474b5613fa4a46c8965c069fb9f7}{out}.print(result.toString());
+172     \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1_j_p_f_client_callback_handler_a1e5272638212d9246e98ced9a5a78012}{prevCB} = CB\_METHODS.\hyperlink{enumgov_1_1nasa_1_1jpf_1_1inspector_1_1interfaces_1_1_inspector_call_backs_1_1_c_b___m_e_t_h_o_d_s_a8a96693b7f439f0cefd0c31099c502cc}{CB\_CG\_NEW\_CHOICE};
+173   \}
+\end{DoxyCode}
+\index{gov\+::nasa\+::jpf\+::inspector\+::client\+::\+J\+P\+F\+Client\+Callback\+Handler@{gov\+::nasa\+::jpf\+::inspector\+::client\+::\+J\+P\+F\+Client\+Callback\+Handler}!notify\+State\+Change@{notify\+State\+Change}}
+\index{notify\+State\+Change@{notify\+State\+Change}!gov\+::nasa\+::jpf\+::inspector\+::client\+::\+J\+P\+F\+Client\+Callback\+Handler@{gov\+::nasa\+::jpf\+::inspector\+::client\+::\+J\+P\+F\+Client\+Callback\+Handler}}
+\subsubsection[{\texorpdfstring{notify\+State\+Change(\+Inspector\+States new\+State, String details)}{notifyStateChange(InspectorStates newState, String details)}}]{\setlength{\rightskip}{0pt plus 5cm}void gov.\+nasa.\+jpf.\+inspector.\+client.\+J\+P\+F\+Client\+Callback\+Handler.\+notify\+State\+Change (
+\begin{DoxyParamCaption}
+\item[{{\bf Inspector\+States}}]{new\+State, }
+\item[{String}]{details}
+\end{DoxyParamCaption}
+)}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1_j_p_f_client_callback_handler_a9b44a29fb0e6521a255cb116b81ac117}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1_j_p_f_client_callback_handler_a9b44a29fb0e6521a255cb116b81ac117}
+
+
+Called when state of the inspector is modified -\/ paused, resumed, property violated. 
+
+
+
+Implements \hyperlink{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1interfaces_1_1_inspector_call_backs_a347d6a1237962eb4305f45b718004c53}{gov.\+nasa.\+jpf.\+inspector.\+interfaces.\+Inspector\+Call\+Backs}.
+
+
+
+Definition at line 91 of file J\+P\+F\+Client\+Callback\+Handler.\+java.
+
+
+\begin{DoxyCode}
+91                                                                            \{
+92     \textcolor{comment}{// Check if notification can be hidden}
+93     \textcolor{keywordflow}{if} (\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1_j_p_f_client_callback_handler_af7484150021a40f37d478b392efe2224}{checkIfShowStateChangeNofitication}(
+      \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1_j_p_f_client_callback_handler_a1e5272638212d9246e98ced9a5a78012}{prevCB}, newState)) \{
+94 
+95       \textcolor{keywordflow}{if} (newState == InspectorStates.JPF\_STARTED) \{
+96         \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1_j_p_f_client_callback_handler_ad51e474b5613fa4a46c8965c069fb9f7}{out}.println(\textcolor{stringliteral}{"INFO: JPF created and connected, SuT is started"});
+97       \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (newState == InspectorStates.JPF\_RUNNING) \{
+98         \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1_j_p_f_client_callback_handler_ad51e474b5613fa4a46c8965c069fb9f7}{out}.println(\textcolor{stringliteral}{"INFO: SuT is running"});
+99       \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (newState == InspectorStates.JPF\_STOPPED) \{
+100         \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1_j_p_f_client_callback_handler_ad51e474b5613fa4a46c8965c069fb9f7}{out}.println(\textcolor{stringliteral}{"INFO: SuT is stopped"});
+101         \textcolor{keywordflow}{if} (details != null && !details.trim().isEmpty()) \{
+102           \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1_j_p_f_client_callback_handler_ad51e474b5613fa4a46c8965c069fb9f7}{out}.println(\textcolor{stringliteral}{"\(\backslash\)t"} + details);
+103         \}
+104       \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (newState == InspectorStates.JPF\_TERMINATING) \{
+105         \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1_j_p_f_client_callback_handler_ad51e474b5613fa4a46c8965c069fb9f7}{out}.println(\textcolor{stringliteral}{"INFO: JPF Terminating"});
+106       \} \textcolor{keywordflow}{else} \{
+107         \textcolor{keywordflow}{throw} \textcolor{keyword}{new} RuntimeException(\textcolor{stringliteral}{"Unknown "} + InspectorStates.class.getName() + \textcolor{stringliteral}{" enum entry "} + newState
+      );
+108       \}
+109     \}
+110     \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1_j_p_f_client_callback_handler_a1e5272638212d9246e98ced9a5a78012}{prevCB} = CB\_METHODS.\hyperlink{enumgov_1_1nasa_1_1jpf_1_1inspector_1_1interfaces_1_1_inspector_call_backs_1_1_c_b___m_e_t_h_o_d_s_ab2ca56f350245242d19bdb6cbcd38032}{CB\_STATE\_CHANGE};
+111     \textcolor{keywordflow}{if} (newState == InspectorStates.JPF\_TERMINATING) \{
+112       prevCB = null;
+113     \}
+114 
+115   \}
+\end{DoxyCode}
+\index{gov\+::nasa\+::jpf\+::inspector\+::client\+::\+J\+P\+F\+Client\+Callback\+Handler@{gov\+::nasa\+::jpf\+::inspector\+::client\+::\+J\+P\+F\+Client\+Callback\+Handler}!notify\+Used\+Choice@{notify\+Used\+Choice}}
+\index{notify\+Used\+Choice@{notify\+Used\+Choice}!gov\+::nasa\+::jpf\+::inspector\+::client\+::\+J\+P\+F\+Client\+Callback\+Handler@{gov\+::nasa\+::jpf\+::inspector\+::client\+::\+J\+P\+F\+Client\+Callback\+Handler}}
+\subsubsection[{\texorpdfstring{notify\+Used\+Choice(\+C\+G\+Types cg\+Type, String cg\+Name, int cg\+Id, int used\+Choice\+Index, String used\+Choice)}{notifyUsedChoice(CGTypes cgType, String cgName, int cgId, int usedChoiceIndex, String usedChoice)}}]{\setlength{\rightskip}{0pt plus 5cm}void gov.\+nasa.\+jpf.\+inspector.\+client.\+J\+P\+F\+Client\+Callback\+Handler.\+notify\+Used\+Choice (
+\begin{DoxyParamCaption}
+\item[{{\bf C\+G\+Types}}]{cg\+Type, }
+\item[{String}]{cg\+Name, }
+\item[{int}]{cg\+Id, }
+\item[{int}]{used\+Choice\+Index, }
+\item[{String}]{used\+Choice}
+\end{DoxyParamCaption}
+)}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1_j_p_f_client_callback_handler_a58681ba2362bf7babca7aafad10a653a}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1_j_p_f_client_callback_handler_a58681ba2362bf7babca7aafad10a653a}
+
+
+Notification from the server with used choice. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em cg\+Type} & Specifies type of the Choice\+Generator \\
+\hline
+{\em cg\+Name} & Name of the \hyperlink{}{Choice\+Generator} \\
+\hline
+{\em cg\+Id} & Identification of the \hyperlink{}{Choice\+Generator} -\/ the hash\+Code \\
+\hline
+{\em used\+Choice\+Index} & Index of used choice in \hyperlink{}{Choice\+Generator} \\
+\hline
+{\em used\+Choice} & Used choice -\/ text representation of used choice \\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1interfaces_1_1_inspector_call_backs_a83f9486958bbd33ee9d1a767252dbfd6}{gov.\+nasa.\+jpf.\+inspector.\+interfaces.\+Inspector\+Call\+Backs}.
+
+
+
+Definition at line 176 of file J\+P\+F\+Client\+Callback\+Handler.\+java.
+
+
+\begin{DoxyCode}
+176                                                                                                            
+            \{
+177     StringBuilder result = \textcolor{keyword}{new} StringBuilder();
+178 
+179     result.append(\textcolor{stringliteral}{"ChoiceGeneratorAdvance used values - "});
+180     \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1_j_p_f_client_callback_handler_a22353a4cf73f73eaa9c953e58700c1f3}{generateCGHeader}(result, cgType, cgName, cgId);
+181     result.append(\textcolor{charliteral}{'>'});
+182     result.append(usedChoiceIndex);
+183     result.append(\textcolor{charliteral}{'-'});
+184     result.append(usedChoice);
+185     result.append(\textcolor{charliteral}{'\(\backslash\)n'});
+186     \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1_j_p_f_client_callback_handler_ad51e474b5613fa4a46c8965c069fb9f7}{out}.print(result.toString());
+187     \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1_j_p_f_client_callback_handler_a1e5272638212d9246e98ced9a5a78012}{prevCB} = CB\_METHODS.\hyperlink{enumgov_1_1nasa_1_1jpf_1_1inspector_1_1interfaces_1_1_inspector_call_backs_1_1_c_b___m_e_t_h_o_d_s_a09a4389ec1ede421c87feaa2d875e8f0}{CB\_CG\_USED\_CHOICE};
+188   \}
+\end{DoxyCode}
+\index{gov\+::nasa\+::jpf\+::inspector\+::client\+::\+J\+P\+F\+Client\+Callback\+Handler@{gov\+::nasa\+::jpf\+::inspector\+::client\+::\+J\+P\+F\+Client\+Callback\+Handler}!specify\+Choice\+To\+Use@{specify\+Choice\+To\+Use}}
+\index{specify\+Choice\+To\+Use@{specify\+Choice\+To\+Use}!gov\+::nasa\+::jpf\+::inspector\+::client\+::\+J\+P\+F\+Client\+Callback\+Handler@{gov\+::nasa\+::jpf\+::inspector\+::client\+::\+J\+P\+F\+Client\+Callback\+Handler}}
+\subsubsection[{\texorpdfstring{specify\+Choice\+To\+Use(int max\+Choice\+Index)}{specifyChoiceToUse(int maxChoiceIndex)}}]{\setlength{\rightskip}{0pt plus 5cm}void gov.\+nasa.\+jpf.\+inspector.\+client.\+J\+P\+F\+Client\+Callback\+Handler.\+specify\+Choice\+To\+Use (
+\begin{DoxyParamCaption}
+\item[{int}]{max\+Choice\+Index}
+\end{DoxyParamCaption}
+)}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1_j_p_f_client_callback_handler_af0ae28e8ceb29e88bb9a3349511e140b}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1_j_p_f_client_callback_handler_af0ae28e8ceb29e88bb9a3349511e140b}
+
+
+Callback used to print prompt(notification) to user that execution is stopped and you should specify which choice to use. 
+
+~\newline
+Note\+: This method is called after \hyperlink{}{notify\+Choice\+Generator\+New\+Choice(\+Choice\+Generators\+Interface.\+C\+G\+Types, String, int, String\mbox{[}$\,$\mbox{]}, int, int)} which shows possible choices
+
+
+\begin{DoxyParams}{Parameters}
+{\em max\+Choice\+Index} & -\/ specifies maximum allowed index of the choice \\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1interfaces_1_1_inspector_call_backs_a95bd37f4f3ad147514c86fa77856b51d}{gov.\+nasa.\+jpf.\+inspector.\+interfaces.\+Inspector\+Call\+Backs}.
+
+
+
+Definition at line 193 of file J\+P\+F\+Client\+Callback\+Handler.\+java.
+
+
+\begin{DoxyCode}
+193                                                       \{
+194     String userText = \textcolor{stringliteral}{"Execution is halted. Specify which choice to use (0-"} + (maxChoiceIndex) + \textcolor{stringliteral}{")"};
+195     \textcolor{keywordflow}{if} (\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1_j_p_f_client_callback_handler_aa541c0527efe7beb63c26022ed9d9dba}{showHintCgSelect}) \{
+196       \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1_j_p_f_client_callback_handler_aa541c0527efe7beb63c26022ed9d9dba}{showHintCgSelect} = \textcolor{keyword}{false};
+197       userText += \textcolor{stringliteral}{"\(\backslash\)n\(\backslash\)tHint: Use the command 'cg select CHOICE\_INDEX'."};
+198       \textcolor{comment}{// TODO create command which will print list of possible choices}
+199       \textcolor{comment}{// userText += "\(\backslash\)n\(\backslash\)tHint: Use 'cg select CHOICE\_INDEX' command\(\backslash\)n";}
+200     \}
+201     \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1_j_p_f_client_callback_handler_ad51e474b5613fa4a46c8965c069fb9f7}{out}.println(userText);
+202     \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1_j_p_f_client_callback_handler_a1e5272638212d9246e98ced9a5a78012}{prevCB} = CB\_METHODS.\hyperlink{enumgov_1_1nasa_1_1jpf_1_1inspector_1_1interfaces_1_1_inspector_call_backs_1_1_c_b___m_e_t_h_o_d_s_a5f2445ac00ef4121d8d4b766f24ca461}{CB\_CG\_CHOICE\_TO\_USE};
+203   \}
+\end{DoxyCode}
+
+
+\subsection{Member Data Documentation}
+\index{gov\+::nasa\+::jpf\+::inspector\+::client\+::\+J\+P\+F\+Client\+Callback\+Handler@{gov\+::nasa\+::jpf\+::inspector\+::client\+::\+J\+P\+F\+Client\+Callback\+Handler}!out@{out}}
+\index{out@{out}!gov\+::nasa\+::jpf\+::inspector\+::client\+::\+J\+P\+F\+Client\+Callback\+Handler@{gov\+::nasa\+::jpf\+::inspector\+::client\+::\+J\+P\+F\+Client\+Callback\+Handler}}
+\subsubsection[{\texorpdfstring{out}{out}}]{\setlength{\rightskip}{0pt plus 5cm}final Print\+Stream gov.\+nasa.\+jpf.\+inspector.\+client.\+J\+P\+F\+Client\+Callback\+Handler.\+out\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1_j_p_f_client_callback_handler_ad51e474b5613fa4a46c8965c069fb9f7}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1_j_p_f_client_callback_handler_ad51e474b5613fa4a46c8965c069fb9f7}
+
+
+Definition at line 39 of file J\+P\+F\+Client\+Callback\+Handler.\+java.
+
+\index{gov\+::nasa\+::jpf\+::inspector\+::client\+::\+J\+P\+F\+Client\+Callback\+Handler@{gov\+::nasa\+::jpf\+::inspector\+::client\+::\+J\+P\+F\+Client\+Callback\+Handler}!prev\+CB@{prev\+CB}}
+\index{prev\+CB@{prev\+CB}!gov\+::nasa\+::jpf\+::inspector\+::client\+::\+J\+P\+F\+Client\+Callback\+Handler@{gov\+::nasa\+::jpf\+::inspector\+::client\+::\+J\+P\+F\+Client\+Callback\+Handler}}
+\subsubsection[{\texorpdfstring{prev\+CB}{prevCB}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf C\+B\+\_\+\+M\+E\+T\+H\+O\+DS} gov.\+nasa.\+jpf.\+inspector.\+client.\+J\+P\+F\+Client\+Callback\+Handler.\+prev\+CB\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1_j_p_f_client_callback_handler_a1e5272638212d9246e98ced9a5a78012}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1_j_p_f_client_callback_handler_a1e5272638212d9246e98ced9a5a78012}
+
+
+Definition at line 40 of file J\+P\+F\+Client\+Callback\+Handler.\+java.
+
+\index{gov\+::nasa\+::jpf\+::inspector\+::client\+::\+J\+P\+F\+Client\+Callback\+Handler@{gov\+::nasa\+::jpf\+::inspector\+::client\+::\+J\+P\+F\+Client\+Callback\+Handler}!show\+Hint\+Cg\+Select@{show\+Hint\+Cg\+Select}}
+\index{show\+Hint\+Cg\+Select@{show\+Hint\+Cg\+Select}!gov\+::nasa\+::jpf\+::inspector\+::client\+::\+J\+P\+F\+Client\+Callback\+Handler@{gov\+::nasa\+::jpf\+::inspector\+::client\+::\+J\+P\+F\+Client\+Callback\+Handler}}
+\subsubsection[{\texorpdfstring{show\+Hint\+Cg\+Select}{showHintCgSelect}}]{\setlength{\rightskip}{0pt plus 5cm}boolean gov.\+nasa.\+jpf.\+inspector.\+client.\+J\+P\+F\+Client\+Callback\+Handler.\+show\+Hint\+Cg\+Select = true\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1_j_p_f_client_callback_handler_aa541c0527efe7beb63c26022ed9d9dba}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1_j_p_f_client_callback_handler_aa541c0527efe7beb63c26022ed9d9dba}
+
+
+Definition at line 190 of file J\+P\+F\+Client\+Callback\+Handler.\+java.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/gsoc/jpf-\/inspector/src/main/gov/nasa/jpf/inspector/client/\hyperlink{_j_p_f_client_callback_handler_8java}{J\+P\+F\+Client\+Callback\+Handler.\+java}\end{DoxyCompactItemize}

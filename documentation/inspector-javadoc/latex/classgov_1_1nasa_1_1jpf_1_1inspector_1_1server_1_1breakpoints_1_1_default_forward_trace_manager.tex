@@ -1,0 +1,262 @@
+\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_default_forward_trace_manager}{}\section{gov.\+nasa.\+jpf.\+inspector.\+server.\+breakpoints.\+Default\+Forward\+Trace\+Manager Class Reference}
+\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_default_forward_trace_manager}\index{gov.\+nasa.\+jpf.\+inspector.\+server.\+breakpoints.\+Default\+Forward\+Trace\+Manager@{gov.\+nasa.\+jpf.\+inspector.\+server.\+breakpoints.\+Default\+Forward\+Trace\+Manager}}
+
+
+Class holds default forward trace.  
+
+
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_default_forward_trace_manager_1_1_c_g_state_memento}{C\+G\+State\+Memento}
+\begin{DoxyCompactList}\small\item\em Holds \char`\"{}copy\char`\"{} of state of single GC. \end{DoxyCompactList}\item 
+class \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_default_forward_trace_manager_1_1_transition_memento}{Transition\+Memento}
+\begin{DoxyCompactList}\small\item\em Holds state of all CG and identification of reached state. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_default_forward_trace_manager_a85a14a24475bd6d16939d2e72bd3c283}{Default\+Forward\+Trace\+Manager} (\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_j_p_f_inspector}{J\+P\+F\+Inspector} \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_default_forward_trace_manager_a7a495164429696989989854362749bcb}{inspector})
+\item 
+void \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_default_forward_trace_manager_abe8759c66fb8fdf35d55b64a70a72101}{extend\+Trace} (Transition tr)
+\begin{DoxyCompactList}\small\item\em Adds new transition into start of the default trace. \end{DoxyCompactList}\item 
+int \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_default_forward_trace_manager_a5e478c76207004e5d971178560c255df}{get\+Default\+Choice} (Choice\+Generator$<$?$>$ cg)
+\begin{DoxyCompactList}\small\item\em Gets choice associated with given \hyperlink{}{Choice\+Generator}. \end{DoxyCompactList}\item 
+void \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_default_forward_trace_manager_ae4044b229d383c2bc4375d1dadf70f0c}{forward\+Step} (Search search)
+\item 
+void \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_default_forward_trace_manager_ac5e4e8802d8b3ccea7df4dd3b3a45357}{destroy\+Trace} (boolean silent)
+\item 
+String \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_default_forward_trace_manager_a060392baa55d0a0d5c1978dd38875985}{to\+String} ()
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+final \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_j_p_f_inspector}{J\+P\+F\+Inspector} \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_default_forward_trace_manager_a7a495164429696989989854362749bcb}{inspector}
+\item 
+final Linked\+List$<$ \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_default_forward_trace_manager_1_1_transition_memento}{Transition\+Memento} $>$ \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_default_forward_trace_manager_ae2746ab2733a47bce8ee3fe677d6e396}{forward\+Trace} = new Linked\+List$<$\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_default_forward_trace_manager_1_1_transition_memento}{Transition\+Memento}$>$()
+\end{DoxyCompactItemize}
+\subsection*{Static Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static final boolean \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_default_forward_trace_manager_a7ab6cf030f9e6b331c4403bfb79e2fd0}{D\+E\+B\+UG} = false
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Class holds default forward trace. 
+
+It means state which were backtracked in backward stepping commands. This trace helps to reach place where backtracking started.
+
+It holds stack with state of CG and state\+ID. In forward steps it checks whether \char`\"{}correct/expected\char`\"{} are reached, if not user is notified.
+
+\begin{DoxyAuthor}{Author}
+Alf 
+\end{DoxyAuthor}
+
+
+Definition at line 27 of file Default\+Forward\+Trace\+Manager.\+java.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Default\+Forward\+Trace\+Manager@{gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Default\+Forward\+Trace\+Manager}!Default\+Forward\+Trace\+Manager@{Default\+Forward\+Trace\+Manager}}
+\index{Default\+Forward\+Trace\+Manager@{Default\+Forward\+Trace\+Manager}!gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Default\+Forward\+Trace\+Manager@{gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Default\+Forward\+Trace\+Manager}}
+\subsubsection[{\texorpdfstring{Default\+Forward\+Trace\+Manager(\+J\+P\+F\+Inspector inspector)}{DefaultForwardTraceManager(JPFInspector inspector)}}]{\setlength{\rightskip}{0pt plus 5cm}gov.\+nasa.\+jpf.\+inspector.\+server.\+breakpoints.\+Default\+Forward\+Trace\+Manager.\+Default\+Forward\+Trace\+Manager (
+\begin{DoxyParamCaption}
+\item[{{\bf J\+P\+F\+Inspector}}]{inspector}
+\end{DoxyParamCaption}
+)}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_default_forward_trace_manager_a85a14a24475bd6d16939d2e72bd3c283}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_default_forward_trace_manager_a85a14a24475bd6d16939d2e72bd3c283}
+
+
+Definition at line 337 of file Default\+Forward\+Trace\+Manager.\+java.
+
+
+\begin{DoxyCode}
+337                                                              \{
+338     this.\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_default_forward_trace_manager_a7a495164429696989989854362749bcb}{inspector} = \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_default_forward_trace_manager_a7a495164429696989989854362749bcb}{inspector};
+339   \}
+\end{DoxyCode}
+
+
+\subsection{Member Function Documentation}
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Default\+Forward\+Trace\+Manager@{gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Default\+Forward\+Trace\+Manager}!destroy\+Trace@{destroy\+Trace}}
+\index{destroy\+Trace@{destroy\+Trace}!gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Default\+Forward\+Trace\+Manager@{gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Default\+Forward\+Trace\+Manager}}
+\subsubsection[{\texorpdfstring{destroy\+Trace(boolean silent)}{destroyTrace(boolean silent)}}]{\setlength{\rightskip}{0pt plus 5cm}void gov.\+nasa.\+jpf.\+inspector.\+server.\+breakpoints.\+Default\+Forward\+Trace\+Manager.\+destroy\+Trace (
+\begin{DoxyParamCaption}
+\item[{boolean}]{silent}
+\end{DoxyParamCaption}
+)}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_default_forward_trace_manager_ac5e4e8802d8b3ccea7df4dd3b3a45357}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_default_forward_trace_manager_ac5e4e8802d8b3ccea7df4dd3b3a45357}
+
+
+Definition at line 401 of file Default\+Forward\+Trace\+Manager.\+java.
+
+
+\begin{DoxyCode}
+401                                             \{
+402     \textcolor{keywordflow}{if} (\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_default_forward_trace_manager_a7ab6cf030f9e6b331c4403bfb79e2fd0}{DEBUG}) \{
+403       \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_default_forward_trace_manager_a7a495164429696989989854362749bcb}{inspector}.\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_j_p_f_inspector_ab936b10b647a6262639d6474fcba6a16}{getDebugPrintStream}().println(this.getClass().getSimpleName() +
+       \textcolor{stringliteral}{".destroyTrace();"});
+404     \}
+405     \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_default_forward_trace_manager_ae2746ab2733a47bce8ee3fe677d6e396}{forwardTrace}.clear();
+406   \}
+\end{DoxyCode}
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Default\+Forward\+Trace\+Manager@{gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Default\+Forward\+Trace\+Manager}!extend\+Trace@{extend\+Trace}}
+\index{extend\+Trace@{extend\+Trace}!gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Default\+Forward\+Trace\+Manager@{gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Default\+Forward\+Trace\+Manager}}
+\subsubsection[{\texorpdfstring{extend\+Trace(\+Transition tr)}{extendTrace(Transition tr)}}]{\setlength{\rightskip}{0pt plus 5cm}void gov.\+nasa.\+jpf.\+inspector.\+server.\+breakpoints.\+Default\+Forward\+Trace\+Manager.\+extend\+Trace (
+\begin{DoxyParamCaption}
+\item[{Transition}]{tr}
+\end{DoxyParamCaption}
+)}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_default_forward_trace_manager_abe8759c66fb8fdf35d55b64a70a72101}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_default_forward_trace_manager_abe8759c66fb8fdf35d55b64a70a72101}
+
+
+Adds new transition into start of the default trace. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em tr} & Transition which will be backtracked (by backward single stepping)\\
+\hline
+\end{DoxyParams}
+// Has to be called after forward method (to be transition completely \char`\"{}initialized\char`\"{}) 
+
+Definition at line 349 of file Default\+Forward\+Trace\+Manager.\+java.
+
+
+\begin{DoxyCode}
+349                                           \{
+350     \textcolor{keywordflow}{if} (\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_default_forward_trace_manager_a7ab6cf030f9e6b331c4403bfb79e2fd0}{DEBUG}) \{
+351       \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_default_forward_trace_manager_a7a495164429696989989854362749bcb}{inspector}.\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_j_p_f_inspector_ab936b10b647a6262639d6474fcba6a16}{getDebugPrintStream}().println(this.getClass().getSimpleName() +
+       \textcolor{stringliteral}{".extendTrace(tr="} + tr + \textcolor{stringliteral}{");"});
+352     \}
+353     \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_default_forward_trace_manager_ae2746ab2733a47bce8ee3fe677d6e396}{forwardTrace}.push(\textcolor{keyword}{new} TransitionMemento(tr));
+354   \}
+\end{DoxyCode}
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Default\+Forward\+Trace\+Manager@{gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Default\+Forward\+Trace\+Manager}!forward\+Step@{forward\+Step}}
+\index{forward\+Step@{forward\+Step}!gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Default\+Forward\+Trace\+Manager@{gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Default\+Forward\+Trace\+Manager}}
+\subsubsection[{\texorpdfstring{forward\+Step(\+Search search)}{forwardStep(Search search)}}]{\setlength{\rightskip}{0pt plus 5cm}void gov.\+nasa.\+jpf.\+inspector.\+server.\+breakpoints.\+Default\+Forward\+Trace\+Manager.\+forward\+Step (
+\begin{DoxyParamCaption}
+\item[{Search}]{search}
+\end{DoxyParamCaption}
+)}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_default_forward_trace_manager_ae4044b229d383c2bc4375d1dadf70f0c}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_default_forward_trace_manager_ae4044b229d383c2bc4375d1dadf70f0c}
+
+
+Definition at line 380 of file Default\+Forward\+Trace\+Manager.\+java.
+
+
+\begin{DoxyCode}
+380                                           \{
+381     \textcolor{keywordflow}{if} (\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_default_forward_trace_manager_a7ab6cf030f9e6b331c4403bfb79e2fd0}{DEBUG}) \{
+382       \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_default_forward_trace_manager_a7a495164429696989989854362749bcb}{inspector}.\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_j_p_f_inspector_ab936b10b647a6262639d6474fcba6a16}{getDebugPrintStream}().println(this.getClass().getSimpleName() +
+       \textcolor{stringliteral}{".checkForwardStep();"});
+383     \}
+384     Transition tr = search.getTransition();
+385 
+386     \textcolor{keywordflow}{if} (\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_default_forward_trace_manager_ae2746ab2733a47bce8ee3fe677d6e396}{forwardTrace}.isEmpty() == \textcolor{keyword}{false}) \{
+387       TransitionMemento dftTrMem = \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_default_forward_trace_manager_ae2746ab2733a47bce8ee3fe677d6e396}{forwardTrace}.poll();
+388 
+389       TransitionMemento trMem = \textcolor{keyword}{new} TransitionMemento(tr);
+390 
+391       \textcolor{keywordflow}{if} (dftTrMem.equals(trMem) == \textcolor{keyword}{false}) \{
+392         \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_default_forward_trace_manager_ac5e4e8802d8b3ccea7df4dd3b3a45357}{destroyTrace}(\textcolor{keyword}{false});
+393       \}
+394       \textcolor{comment}{// There is path in default forward trace -> force forward step}
+395       VM vm = search.getVM();
+396       vm.forceState();
+397     \}
+398   \}
+\end{DoxyCode}
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Default\+Forward\+Trace\+Manager@{gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Default\+Forward\+Trace\+Manager}!get\+Default\+Choice@{get\+Default\+Choice}}
+\index{get\+Default\+Choice@{get\+Default\+Choice}!gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Default\+Forward\+Trace\+Manager@{gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Default\+Forward\+Trace\+Manager}}
+\subsubsection[{\texorpdfstring{get\+Default\+Choice(\+Choice\+Generator$<$?$>$ cg)}{getDefaultChoice(ChoiceGenerator<?> cg)}}]{\setlength{\rightskip}{0pt plus 5cm}int gov.\+nasa.\+jpf.\+inspector.\+server.\+breakpoints.\+Default\+Forward\+Trace\+Manager.\+get\+Default\+Choice (
+\begin{DoxyParamCaption}
+\item[{Choice\+Generator$<$?$>$}]{cg}
+\end{DoxyParamCaption}
+)}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_default_forward_trace_manager_a5e478c76207004e5d971178560c255df}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_default_forward_trace_manager_a5e478c76207004e5d971178560c255df}
+
+
+Gets choice associated with given \hyperlink{}{Choice\+Generator}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em cg} & Choice\+Generator whose previous state you are interested in. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Index of choice which should by used to follow default forward trace or \hyperlink{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1interfaces_1_1_choice_generators_interface_a96ec402a57d2b3547337e677e23075cd}{Choice\+Generators\+Interface\#\+N\+O\+\_\+\+D\+E\+F\+A\+U\+L\+T\+\_\+\+C\+H\+O\+I\+CE} \begin{DoxyVerb}    Note: Destroy default forward trace if "invalid CG is provided" + reports info to user.\end{DoxyVerb}
+ 
+\end{DoxyReturn}
+
+
+Definition at line 365 of file Default\+Forward\+Trace\+Manager.\+java.
+
+
+\begin{DoxyCode}
+365                                                       \{
+366     \textcolor{keywordflow}{if} (\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_default_forward_trace_manager_a7ab6cf030f9e6b331c4403bfb79e2fd0}{DEBUG}) \{
+367       \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_default_forward_trace_manager_a7a495164429696989989854362749bcb}{inspector}.\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_j_p_f_inspector_ab936b10b647a6262639d6474fcba6a16}{getDebugPrintStream}().println(this.getClass().getSimpleName() +
+       \textcolor{stringliteral}{".getDefaultChoice(cg="} + cg + \textcolor{stringliteral}{");"});
+368     \}
+369 
+370     assert (cg != null);
+371 
+372     \textcolor{keywordflow}{if} (\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_default_forward_trace_manager_ae2746ab2733a47bce8ee3fe677d6e396}{forwardTrace}.isEmpty()) \{
+373       \textcolor{keywordflow}{return} ChoiceGeneratorsInterface.NO\_DEFAULT\_CHOICE;
+374     \}
+375 
+376     TransitionMemento trMem = \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_default_forward_trace_manager_ae2746ab2733a47bce8ee3fe677d6e396}{forwardTrace}.peek();
+377     \textcolor{keywordflow}{return} trMem.getDefaultChoice(cg);
+378   \}
+\end{DoxyCode}
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Default\+Forward\+Trace\+Manager@{gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Default\+Forward\+Trace\+Manager}!to\+String@{to\+String}}
+\index{to\+String@{to\+String}!gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Default\+Forward\+Trace\+Manager@{gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Default\+Forward\+Trace\+Manager}}
+\subsubsection[{\texorpdfstring{to\+String()}{toString()}}]{\setlength{\rightskip}{0pt plus 5cm}String gov.\+nasa.\+jpf.\+inspector.\+server.\+breakpoints.\+Default\+Forward\+Trace\+Manager.\+to\+String (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_default_forward_trace_manager_a060392baa55d0a0d5c1978dd38875985}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_default_forward_trace_manager_a060392baa55d0a0d5c1978dd38875985}
+
+
+Definition at line 409 of file Default\+Forward\+Trace\+Manager.\+java.
+
+
+\begin{DoxyCode}
+409                             \{
+410     StringBuilder sb = \textcolor{keyword}{new} StringBuilder();
+411     sb.append(\textcolor{stringliteral}{"DefaultForwardTrace\(\backslash\)n"});
+412     Iterator<TransitionMemento> it = \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_default_forward_trace_manager_ae2746ab2733a47bce8ee3fe677d6e396}{forwardTrace}.iterator();
+413     \textcolor{keywordflow}{while} (it.hasNext()) \{
+414       TransitionMemento trMem = it.next();
+415       sb.append(trMem.toString());
+416     \}
+417 
+418     \textcolor{keywordflow}{return} sb.toString();
+419 
+420   \}
+\end{DoxyCode}
+
+
+\subsection{Member Data Documentation}
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Default\+Forward\+Trace\+Manager@{gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Default\+Forward\+Trace\+Manager}!D\+E\+B\+UG@{D\+E\+B\+UG}}
+\index{D\+E\+B\+UG@{D\+E\+B\+UG}!gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Default\+Forward\+Trace\+Manager@{gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Default\+Forward\+Trace\+Manager}}
+\subsubsection[{\texorpdfstring{D\+E\+B\+UG}{DEBUG}}]{\setlength{\rightskip}{0pt plus 5cm}final boolean gov.\+nasa.\+jpf.\+inspector.\+server.\+breakpoints.\+Default\+Forward\+Trace\+Manager.\+D\+E\+B\+UG = false\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_default_forward_trace_manager_a7ab6cf030f9e6b331c4403bfb79e2fd0}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_default_forward_trace_manager_a7ab6cf030f9e6b331c4403bfb79e2fd0}
+
+
+Definition at line 28 of file Default\+Forward\+Trace\+Manager.\+java.
+
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Default\+Forward\+Trace\+Manager@{gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Default\+Forward\+Trace\+Manager}!forward\+Trace@{forward\+Trace}}
+\index{forward\+Trace@{forward\+Trace}!gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Default\+Forward\+Trace\+Manager@{gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Default\+Forward\+Trace\+Manager}}
+\subsubsection[{\texorpdfstring{forward\+Trace}{forwardTrace}}]{\setlength{\rightskip}{0pt plus 5cm}final Linked\+List$<${\bf Transition\+Memento}$>$ gov.\+nasa.\+jpf.\+inspector.\+server.\+breakpoints.\+Default\+Forward\+Trace\+Manager.\+forward\+Trace = new Linked\+List$<${\bf Transition\+Memento}$>$()\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_default_forward_trace_manager_ae2746ab2733a47bce8ee3fe677d6e396}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_default_forward_trace_manager_ae2746ab2733a47bce8ee3fe677d6e396}
+
+
+Definition at line 335 of file Default\+Forward\+Trace\+Manager.\+java.
+
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Default\+Forward\+Trace\+Manager@{gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Default\+Forward\+Trace\+Manager}!inspector@{inspector}}
+\index{inspector@{inspector}!gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Default\+Forward\+Trace\+Manager@{gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Default\+Forward\+Trace\+Manager}}
+\subsubsection[{\texorpdfstring{inspector}{inspector}}]{\setlength{\rightskip}{0pt plus 5cm}final {\bf J\+P\+F\+Inspector} gov.\+nasa.\+jpf.\+inspector.\+server.\+breakpoints.\+Default\+Forward\+Trace\+Manager.\+inspector\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_default_forward_trace_manager_a7a495164429696989989854362749bcb}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_default_forward_trace_manager_a7a495164429696989989854362749bcb}
+
+
+Definition at line 30 of file Default\+Forward\+Trace\+Manager.\+java.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/gsoc/jpf-\/inspector/src/main/gov/nasa/jpf/inspector/server/breakpoints/\hyperlink{_default_forward_trace_manager_8java}{Default\+Forward\+Trace\+Manager.\+java}\end{DoxyCompactItemize}

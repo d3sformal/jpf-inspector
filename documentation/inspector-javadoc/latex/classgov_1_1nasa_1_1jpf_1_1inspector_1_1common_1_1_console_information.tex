@@ -1,0 +1,55 @@
+\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1common_1_1_console_information}{}\section{gov.\+nasa.\+jpf.\+inspector.\+common.\+Console\+Information Class Reference}
+\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1common_1_1_console_information}\index{gov.\+nasa.\+jpf.\+inspector.\+common.\+Console\+Information@{gov.\+nasa.\+jpf.\+inspector.\+common.\+Console\+Information}}
+
+
+Contains static information about the current Inspector client console.  
+
+
+\subsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static int \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1common_1_1_console_information_a57d4710532b71af31cf8fedc417384fc}{M\+A\+X\+\_\+\+L\+I\+N\+E\+\_\+\+L\+E\+N\+G\+TH} = 80
+\begin{DoxyCompactList}\small\item\em Represents the maximum length that a one-\/line message can have. \end{DoxyCompactList}\item 
+static int \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1common_1_1_console_information_ac16e68639ca5e13db2dab0aacbbf3ca8}{M\+A\+X\+\_\+\+E\+R\+R\+O\+R\+\_\+\+L\+I\+N\+E\+\_\+\+L\+E\+N\+G\+TH} = 50
+\begin{DoxyCompactList}\small\item\em Represents the maximum length that a user-\/input text can have before it\textquotesingle{}s broken on another line. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Contains static information about the current Inspector client console. 
+
+Definition at line 6 of file Console\+Information.\+java.
+
+
+
+\subsection{Member Data Documentation}
+\index{gov\+::nasa\+::jpf\+::inspector\+::common\+::\+Console\+Information@{gov\+::nasa\+::jpf\+::inspector\+::common\+::\+Console\+Information}!M\+A\+X\+\_\+\+E\+R\+R\+O\+R\+\_\+\+L\+I\+N\+E\+\_\+\+L\+E\+N\+G\+TH@{M\+A\+X\+\_\+\+E\+R\+R\+O\+R\+\_\+\+L\+I\+N\+E\+\_\+\+L\+E\+N\+G\+TH}}
+\index{M\+A\+X\+\_\+\+E\+R\+R\+O\+R\+\_\+\+L\+I\+N\+E\+\_\+\+L\+E\+N\+G\+TH@{M\+A\+X\+\_\+\+E\+R\+R\+O\+R\+\_\+\+L\+I\+N\+E\+\_\+\+L\+E\+N\+G\+TH}!gov\+::nasa\+::jpf\+::inspector\+::common\+::\+Console\+Information@{gov\+::nasa\+::jpf\+::inspector\+::common\+::\+Console\+Information}}
+\subsubsection[{\texorpdfstring{M\+A\+X\+\_\+\+E\+R\+R\+O\+R\+\_\+\+L\+I\+N\+E\+\_\+\+L\+E\+N\+G\+TH}{MAX_ERROR_LINE_LENGTH}}]{\setlength{\rightskip}{0pt plus 5cm}int gov.\+nasa.\+jpf.\+inspector.\+common.\+Console\+Information.\+M\+A\+X\+\_\+\+E\+R\+R\+O\+R\+\_\+\+L\+I\+N\+E\+\_\+\+L\+E\+N\+G\+TH = 50\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1common_1_1_console_information_ac16e68639ca5e13db2dab0aacbbf3ca8}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1common_1_1_console_information_ac16e68639ca5e13db2dab0aacbbf3ca8}
+
+
+Represents the maximum length that a user-\/input text can have before it\textquotesingle{}s broken on another line. 
+
+It works like this\+: If the user\textquotesingle{}s command or expression within the command ends with a parse error, we want to report the position at which the error occurred. For example, if the user writes \char`\"{}create breakpoint invalidcontinuation\char`\"{}, something like this will be displayed\+:
+
+E\+RR\+: Unexpected \textquotesingle{}invalidcontinuation\textquotesingle{} create breakpoint invalidcontinuation" $^\wedge$
+
+Notice the little arrow pointing at the position of the error. If the line the arrow is pointing to is greater than M\+A\+X\+\_\+\+E\+R\+R\+O\+R\+\_\+\+L\+I\+N\+E\+\_\+\+L\+E\+N\+G\+TH, then it should be broken up into several lines. 
+
+Definition at line 30 of file Console\+Information.\+java.
+
+\index{gov\+::nasa\+::jpf\+::inspector\+::common\+::\+Console\+Information@{gov\+::nasa\+::jpf\+::inspector\+::common\+::\+Console\+Information}!M\+A\+X\+\_\+\+L\+I\+N\+E\+\_\+\+L\+E\+N\+G\+TH@{M\+A\+X\+\_\+\+L\+I\+N\+E\+\_\+\+L\+E\+N\+G\+TH}}
+\index{M\+A\+X\+\_\+\+L\+I\+N\+E\+\_\+\+L\+E\+N\+G\+TH@{M\+A\+X\+\_\+\+L\+I\+N\+E\+\_\+\+L\+E\+N\+G\+TH}!gov\+::nasa\+::jpf\+::inspector\+::common\+::\+Console\+Information@{gov\+::nasa\+::jpf\+::inspector\+::common\+::\+Console\+Information}}
+\subsubsection[{\texorpdfstring{M\+A\+X\+\_\+\+L\+I\+N\+E\+\_\+\+L\+E\+N\+G\+TH}{MAX_LINE_LENGTH}}]{\setlength{\rightskip}{0pt plus 5cm}int gov.\+nasa.\+jpf.\+inspector.\+common.\+Console\+Information.\+M\+A\+X\+\_\+\+L\+I\+N\+E\+\_\+\+L\+E\+N\+G\+TH = 80\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1common_1_1_console_information_a57d4710532b71af31cf8fedc417384fc}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1common_1_1_console_information_a57d4710532b71af31cf8fedc417384fc}
+
+
+Represents the maximum length that a one-\/line message can have. 
+
+If a server components wants to display a one-\/line message or other one-\/line expression and wants to ensure that it will fit on a single line, it should only display the first M\+A\+X\+\_\+\+L\+I\+N\+E\+\_\+\+L\+E\+N\+G\+TH characters and then display an ellipsis (three dots). 
+
+Definition at line 14 of file Console\+Information.\+java.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/gsoc/jpf-\/inspector/src/main/gov/nasa/jpf/inspector/common/\hyperlink{_console_information_8java}{Console\+Information.\+java}\end{DoxyCompactItemize}

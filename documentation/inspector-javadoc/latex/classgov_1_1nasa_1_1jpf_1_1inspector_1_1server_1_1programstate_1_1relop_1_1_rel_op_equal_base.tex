@@ -1,0 +1,497 @@
+\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1relop_1_1_rel_op_equal_base}{}\section{gov.\+nasa.\+jpf.\+inspector.\+server.\+programstate.\+relop.\+Rel\+Op\+Equal\+Base Class Reference}
+\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1relop_1_1_rel_op_equal_base}\index{gov.\+nasa.\+jpf.\+inspector.\+server.\+programstate.\+relop.\+Rel\+Op\+Equal\+Base@{gov.\+nasa.\+jpf.\+inspector.\+server.\+programstate.\+relop.\+Rel\+Op\+Equal\+Base}}
+
+
+Base class for == and !=.  
+
+
+Inheritance diagram for gov.\+nasa.\+jpf.\+inspector.\+server.\+programstate.\+relop.\+Rel\+Op\+Equal\+Base\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.592592cm]{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1relop_1_1_rel_op_equal_base}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+boolean \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1relop_1_1_rel_op_equal_base_a89a8988e7ff80fd175542cf45f5f18d3}{compare} (\hyperlink{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1_state_readable_value_interface}{State\+Readable\+Value\+Interface} left, \hyperlink{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1_state_readable_value_interface}{State\+Readable\+Value\+Interface} right)  throws J\+P\+F\+Inspector\+Incompatible\+Types\+Exception 
+\begin{DoxyCompactList}\small\item\em Gets true if given left and right values are of the suitable(comparable type) type. \end{DoxyCompactList}\item 
+abstract boolean \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1relop_1_1_rel_op_equal_base_a64fa08d07ac1fe2e0ff61e7d69a4f8ce}{compare} (boolean left, boolean right)
+\item 
+abstract boolean \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1relop_1_1_rel_op_equal_base_a1497fc6f683ff020f501ff91c42d2b68}{compare} (Element\+Info left, Element\+Info right)
+\item 
+abstract boolean \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1relop_1_1_rel_op_equal_base_a2a23028e52beb35842faf1882d0a6f7a}{compare} (char left, char right)
+\item 
+abstract boolean \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1relop_1_1_rel_op_equal_base_a94b1d677b478e59c912cbdf02b03a457}{compare} (String left, String right)
+\item 
+abstract boolean \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1relop_1_1_rel_op_equal_base_ad613ffe9c4edd6b44d5844630104eaa5}{compare} (double left, double right)
+\item 
+abstract boolean \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1relop_1_1_rel_op_equal_base_a480939c8f9e6177537c70ee1b623c8a6}{compare} (long left, long right)
+\item 
+abstract String \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1relop_1_1_rel_op_equal_base_a3817f1f5238378f4f50a1294ea2346ac}{get\+Normalized\+Text} ()
+\end{DoxyCompactItemize}
+\subsection*{Static Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static Boolean \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1relop_1_1_rel_op_equal_base_a398f9f097b49e1d7c1f826e1a81fed5c}{try\+Convert\+To\+Boolean} (\hyperlink{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1_state_readable_value_interface}{State\+Readable\+Value\+Interface} value)
+\item 
+static void \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1relop_1_1_rel_op_comparable_base_a7e8b465bb4002c1759b6096f9e2eecbf}{validate\+Cache} (\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_j_p_f_inspector}{J\+P\+F\+Inspector} inspector)
+\item 
+static Double \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1relop_1_1_rel_op_comparable_base_afb31d12a03d2e24581d168c765368a4b}{try\+Convert\+To\+Double} (\hyperlink{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1_state_readable_value_interface}{State\+Readable\+Value\+Interface} value)
+\item 
+static Long \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1relop_1_1_rel_op_comparable_base_a42b354e4aa57e673f728b1c2c036c69b}{try\+Convert\+To\+Long} (\hyperlink{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1_state_readable_value_interface}{State\+Readable\+Value\+Interface} value)
+\item 
+static String \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1relop_1_1_rel_op_comparable_base_aa1b564784dad5abf5565f080fe1a3a9f}{try\+Convert\+To\+String} (\hyperlink{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1_state_readable_value_interface}{State\+Readable\+Value\+Interface} value)
+\item 
+static Character \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1relop_1_1_rel_op_comparable_base_a1e3bca3adb8c3a790eaad60d9adf5c47}{try\+Convert\+To\+Char} (\hyperlink{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1_state_readable_value_interface}{State\+Readable\+Value\+Interface} value)
+\end{DoxyCompactItemize}
+\subsection*{Static Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1utils_1_1_class_info_cache}{Class\+Info\+Cache} \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1relop_1_1_rel_op_comparable_base_a3bd22b88a44dff54d68b1d8a3e8f3d0a}{ci\+Cache} = null
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Base class for == and !=. 
+
+\begin{DoxyAuthor}{Author}
+Alf 
+\end{DoxyAuthor}
+
+
+Definition at line 33 of file Rel\+Op\+Equal\+Base.\+java.
+
+
+
+\subsection{Member Function Documentation}
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::programstate\+::relop\+::\+Rel\+Op\+Equal\+Base@{gov\+::nasa\+::jpf\+::inspector\+::server\+::programstate\+::relop\+::\+Rel\+Op\+Equal\+Base}!compare@{compare}}
+\index{compare@{compare}!gov\+::nasa\+::jpf\+::inspector\+::server\+::programstate\+::relop\+::\+Rel\+Op\+Equal\+Base@{gov\+::nasa\+::jpf\+::inspector\+::server\+::programstate\+::relop\+::\+Rel\+Op\+Equal\+Base}}
+\subsubsection[{\texorpdfstring{compare(\+State\+Readable\+Value\+Interface left, State\+Readable\+Value\+Interface right)}{compare(StateReadableValueInterface left, StateReadableValueInterface right)}}]{\setlength{\rightskip}{0pt plus 5cm}boolean gov.\+nasa.\+jpf.\+inspector.\+server.\+programstate.\+relop.\+Rel\+Op\+Equal\+Base.\+compare (
+\begin{DoxyParamCaption}
+\item[{{\bf State\+Readable\+Value\+Interface}}]{left, }
+\item[{{\bf State\+Readable\+Value\+Interface}}]{right}
+\end{DoxyParamCaption}
+) throws {\bf J\+P\+F\+Inspector\+Incompatible\+Types\+Exception}}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1relop_1_1_rel_op_equal_base_a89a8988e7ff80fd175542cf45f5f18d3}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1relop_1_1_rel_op_equal_base_a89a8988e7ff80fd175542cf45f5f18d3}
+
+
+Gets true if given left and right values are of the suitable(comparable type) type. 
+
+Does not comparing \char`\"{}$<$=\char`\"{} on references or reference with double.
+
+
+\begin{DoxyParams}{Parameters}
+{\em left} & left operand \\
+\hline
+{\em right} & right operand \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if relation holds, false if types are incompatible of relation does not hold. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1relop_1_1_relation_operator_ad35e4918d8de2de096c7d8035352a3ec}{gov.\+nasa.\+jpf.\+inspector.\+server.\+programstate.\+relop.\+Relation\+Operator}.
+
+
+
+Definition at line 36 of file Rel\+Op\+Equal\+Base.\+java.
+
+
+\begin{DoxyCode}
+36                                                                                                            
+                                        \{
+37 
+38     \textcolor{comment}{// Common type checking}
+39     assert (left != null);
+40     assert (right != null);
+41 
+42     \textcolor{comment}{// Update the type cache if needed}
+43     \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1relop_1_1_rel_op_comparable_base_a7e8b465bb4002c1759b6096f9e2eecbf}{validateCache}(left.getInspector());
+44 
+45     \textcolor{comment}{// Check for possible type combinations}
+46     ClassInfo leftCi = left.getClassInfo();
+47     ClassInfo rightCi = right.getClassInfo();
+48 
+49     \textcolor{comment}{// Compare booleans}
+50     Boolean leftBool = \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1relop_1_1_rel_op_equal_base_a398f9f097b49e1d7c1f826e1a81fed5c}{tryConvertToBoolean}(left);
+51     \textcolor{keywordflow}{if} (leftBool != null) \{
+52       Boolean rightBool = \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1relop_1_1_rel_op_equal_base_a398f9f097b49e1d7c1f826e1a81fed5c}{tryConvertToBoolean}(right);
+53 
+54       \textcolor{keywordflow}{if} (rightBool != null) \{
+55         \textcolor{keywordflow}{return} \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1relop_1_1_rel_op_equal_base_a89a8988e7ff80fd175542cf45f5f18d3}{compare}(leftBool, rightBool);
+56       \}
+57 
+58       \textcolor{keywordflow}{throw} \textcolor{keyword}{new} JPFInspectorIncompatibleTypesException(\textcolor{keyword}{this}, leftCi, rightCi);
+59     \}
+60 
+61     \textcolor{comment}{// !!!This code in intentionally duplicated in the RelOpComparableBase.compare method.}
+62 
+63     \textcolor{comment}{// Compare chars}
+64     Character leftChar = \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1relop_1_1_rel_op_comparable_base_a1e3bca3adb8c3a790eaad60d9adf5c47}{tryConvertToChar}(left);
+65     \textcolor{keywordflow}{if} (leftChar != null) \{
+66       Character rightChar = \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1relop_1_1_rel_op_comparable_base_a1e3bca3adb8c3a790eaad60d9adf5c47}{tryConvertToChar}(right);
+67 
+68       \textcolor{keywordflow}{if} (rightChar != null) \{
+69         \textcolor{keywordflow}{return} \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1relop_1_1_rel_op_equal_base_a89a8988e7ff80fd175542cf45f5f18d3}{compare}(leftChar, rightChar);
+70       \}
+71 
+72       \textcolor{keywordflow}{throw} \textcolor{keyword}{new} JPFInspectorIncompatibleTypesException(\textcolor{keyword}{this}, leftCi, rightCi);
+73     \}
+74 
+75     \textcolor{comment}{// Compare Strings}
+76     String leftString = \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1relop_1_1_rel_op_comparable_base_aa1b564784dad5abf5565f080fe1a3a9f}{tryConvertToString}(left);
+77     \textcolor{keywordflow}{if} (leftString != null) \{
+78       String rightString = \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1relop_1_1_rel_op_comparable_base_aa1b564784dad5abf5565f080fe1a3a9f}{tryConvertToString}(right);
+79 
+80       \textcolor{keywordflow}{if} (rightString != null) \{
+81         \textcolor{keywordflow}{return} \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1relop_1_1_rel_op_equal_base_a89a8988e7ff80fd175542cf45f5f18d3}{compare}(leftString, rightString);
+82       \}
+83 
+84       \textcolor{keywordflow}{throw} \textcolor{keyword}{new} JPFInspectorIncompatibleTypesException(\textcolor{keyword}{this}, leftCi, rightCi);
+85     \}
+86 
+87     \textcolor{comment}{// Comparison of floating point numbers}
+88     Double leftDouble = \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1relop_1_1_rel_op_comparable_base_afb31d12a03d2e24581d168c765368a4b}{tryConvertToDouble}(left);
+89     \textcolor{keywordflow}{if} (leftDouble != null) \{
+90       Double rightDouble = \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1relop_1_1_rel_op_comparable_base_afb31d12a03d2e24581d168c765368a4b}{tryConvertToDouble}(right);
+91 
+92       \textcolor{keywordflow}{if} (rightDouble != null) \{
+93         \textcolor{keywordflow}{return} \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1relop_1_1_rel_op_equal_base_a89a8988e7ff80fd175542cf45f5f18d3}{compare}(leftDouble, rightDouble);
+94       \}
+95       \textcolor{keywordflow}{throw} \textcolor{keyword}{new} JPFInspectorIncompatibleTypesException(\textcolor{keyword}{this}, leftCi, rightCi);
+96       \textcolor{comment}{// return false;}
+97     \}
+98 
+99     Long leftLong = \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1relop_1_1_rel_op_comparable_base_a42b354e4aa57e673f728b1c2c036c69b}{tryConvertToLong}(left);
+100     \textcolor{keywordflow}{if} (leftLong != null) \{
+101       Long rightLong = \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1relop_1_1_rel_op_comparable_base_a42b354e4aa57e673f728b1c2c036c69b}{tryConvertToLong}(right);
+102 
+103       \textcolor{keywordflow}{if} (rightLong != null) \{
+104         \textcolor{keywordflow}{return} \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1relop_1_1_rel_op_equal_base_a89a8988e7ff80fd175542cf45f5f18d3}{compare}(leftLong, rightLong);
+105       \}
+106       \textcolor{keywordflow}{throw} \textcolor{keyword}{new} JPFInspectorIncompatibleTypesException(\textcolor{keyword}{this}, leftCi, rightCi);
+107       \textcolor{comment}{// return false;}
+108 
+109     \}
+110     \textcolor{comment}{// !!! End of duplicated code}
+111 
+112     \textcolor{comment}{// Now we know that the left operator is not does not have a primitive type (or is boxed primitive
+       type)}
+113     \textcolor{comment}{// --> check references}
+114     \textcolor{comment}{// Check references (not boxed)}
+115     \textcolor{keywordflow}{if} (right.isReference() == \textcolor{keyword}{false} || \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1relop_1_1_rel_op_comparable_base_a3bd22b88a44dff54d68b1d8a3e8f3d0a}{ciCache}.\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1utils_1_1_class_info_cache_acfc346af97145709152a5d64eacb2828}{isBoxedPrimitiveType}(rightCi) ==
+       \textcolor{keyword}{true} || \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1relop_1_1_rel_op_comparable_base_a3bd22b88a44dff54d68b1d8a3e8f3d0a}{ciCache}.\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1utils_1_1_class_info_cache_ae730b1780420d1f2632fd9a3ffa360c1}{ci\_String}.equals(rightCi)) \{
+116       \textcolor{keywordflow}{throw} \textcolor{keyword}{new} JPFInspectorIncompatibleTypesException(\textcolor{keyword}{this}, leftCi, rightCi);
+117     \}
+118 
+119     \textcolor{keywordflow}{return} \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1relop_1_1_rel_op_equal_base_a89a8988e7ff80fd175542cf45f5f18d3}{compare}(left.getReferenceValue(), right.getReferenceValue());
+120   \}
+\end{DoxyCode}
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::programstate\+::relop\+::\+Rel\+Op\+Equal\+Base@{gov\+::nasa\+::jpf\+::inspector\+::server\+::programstate\+::relop\+::\+Rel\+Op\+Equal\+Base}!compare@{compare}}
+\index{compare@{compare}!gov\+::nasa\+::jpf\+::inspector\+::server\+::programstate\+::relop\+::\+Rel\+Op\+Equal\+Base@{gov\+::nasa\+::jpf\+::inspector\+::server\+::programstate\+::relop\+::\+Rel\+Op\+Equal\+Base}}
+\subsubsection[{\texorpdfstring{compare(boolean left, boolean right)}{compare(boolean left, boolean right)}}]{\setlength{\rightskip}{0pt plus 5cm}abstract boolean gov.\+nasa.\+jpf.\+inspector.\+server.\+programstate.\+relop.\+Rel\+Op\+Equal\+Base.\+compare (
+\begin{DoxyParamCaption}
+\item[{boolean}]{left, }
+\item[{boolean}]{right}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [abstract]}}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1relop_1_1_rel_op_equal_base_a64fa08d07ac1fe2e0ff61e7d69a4f8ce}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1relop_1_1_rel_op_equal_base_a64fa08d07ac1fe2e0ff61e7d69a4f8ce}
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::programstate\+::relop\+::\+Rel\+Op\+Equal\+Base@{gov\+::nasa\+::jpf\+::inspector\+::server\+::programstate\+::relop\+::\+Rel\+Op\+Equal\+Base}!compare@{compare}}
+\index{compare@{compare}!gov\+::nasa\+::jpf\+::inspector\+::server\+::programstate\+::relop\+::\+Rel\+Op\+Equal\+Base@{gov\+::nasa\+::jpf\+::inspector\+::server\+::programstate\+::relop\+::\+Rel\+Op\+Equal\+Base}}
+\subsubsection[{\texorpdfstring{compare(\+Element\+Info left, Element\+Info right)}{compare(ElementInfo left, ElementInfo right)}}]{\setlength{\rightskip}{0pt plus 5cm}abstract boolean gov.\+nasa.\+jpf.\+inspector.\+server.\+programstate.\+relop.\+Rel\+Op\+Equal\+Base.\+compare (
+\begin{DoxyParamCaption}
+\item[{Element\+Info}]{left, }
+\item[{Element\+Info}]{right}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [abstract]}}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1relop_1_1_rel_op_equal_base_a1497fc6f683ff020f501ff91c42d2b68}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1relop_1_1_rel_op_equal_base_a1497fc6f683ff020f501ff91c42d2b68}
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::programstate\+::relop\+::\+Rel\+Op\+Equal\+Base@{gov\+::nasa\+::jpf\+::inspector\+::server\+::programstate\+::relop\+::\+Rel\+Op\+Equal\+Base}!compare@{compare}}
+\index{compare@{compare}!gov\+::nasa\+::jpf\+::inspector\+::server\+::programstate\+::relop\+::\+Rel\+Op\+Equal\+Base@{gov\+::nasa\+::jpf\+::inspector\+::server\+::programstate\+::relop\+::\+Rel\+Op\+Equal\+Base}}
+\subsubsection[{\texorpdfstring{compare(char left, char right)}{compare(char left, char right)}}]{\setlength{\rightskip}{0pt plus 5cm}abstract boolean gov.\+nasa.\+jpf.\+inspector.\+server.\+programstate.\+relop.\+Rel\+Op\+Equal\+Base.\+compare (
+\begin{DoxyParamCaption}
+\item[{char}]{left, }
+\item[{char}]{right}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [abstract]}}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1relop_1_1_rel_op_equal_base_a2a23028e52beb35842faf1882d0a6f7a}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1relop_1_1_rel_op_equal_base_a2a23028e52beb35842faf1882d0a6f7a}
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::programstate\+::relop\+::\+Rel\+Op\+Equal\+Base@{gov\+::nasa\+::jpf\+::inspector\+::server\+::programstate\+::relop\+::\+Rel\+Op\+Equal\+Base}!compare@{compare}}
+\index{compare@{compare}!gov\+::nasa\+::jpf\+::inspector\+::server\+::programstate\+::relop\+::\+Rel\+Op\+Equal\+Base@{gov\+::nasa\+::jpf\+::inspector\+::server\+::programstate\+::relop\+::\+Rel\+Op\+Equal\+Base}}
+\subsubsection[{\texorpdfstring{compare(\+String left, String right)}{compare(String left, String right)}}]{\setlength{\rightskip}{0pt plus 5cm}abstract boolean gov.\+nasa.\+jpf.\+inspector.\+server.\+programstate.\+relop.\+Rel\+Op\+Equal\+Base.\+compare (
+\begin{DoxyParamCaption}
+\item[{String}]{left, }
+\item[{String}]{right}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [abstract]}}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1relop_1_1_rel_op_equal_base_a94b1d677b478e59c912cbdf02b03a457}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1relop_1_1_rel_op_equal_base_a94b1d677b478e59c912cbdf02b03a457}
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::programstate\+::relop\+::\+Rel\+Op\+Equal\+Base@{gov\+::nasa\+::jpf\+::inspector\+::server\+::programstate\+::relop\+::\+Rel\+Op\+Equal\+Base}!compare@{compare}}
+\index{compare@{compare}!gov\+::nasa\+::jpf\+::inspector\+::server\+::programstate\+::relop\+::\+Rel\+Op\+Equal\+Base@{gov\+::nasa\+::jpf\+::inspector\+::server\+::programstate\+::relop\+::\+Rel\+Op\+Equal\+Base}}
+\subsubsection[{\texorpdfstring{compare(double left, double right)}{compare(double left, double right)}}]{\setlength{\rightskip}{0pt plus 5cm}abstract boolean gov.\+nasa.\+jpf.\+inspector.\+server.\+programstate.\+relop.\+Rel\+Op\+Equal\+Base.\+compare (
+\begin{DoxyParamCaption}
+\item[{double}]{left, }
+\item[{double}]{right}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [abstract]}}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1relop_1_1_rel_op_equal_base_ad613ffe9c4edd6b44d5844630104eaa5}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1relop_1_1_rel_op_equal_base_ad613ffe9c4edd6b44d5844630104eaa5}
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::programstate\+::relop\+::\+Rel\+Op\+Equal\+Base@{gov\+::nasa\+::jpf\+::inspector\+::server\+::programstate\+::relop\+::\+Rel\+Op\+Equal\+Base}!compare@{compare}}
+\index{compare@{compare}!gov\+::nasa\+::jpf\+::inspector\+::server\+::programstate\+::relop\+::\+Rel\+Op\+Equal\+Base@{gov\+::nasa\+::jpf\+::inspector\+::server\+::programstate\+::relop\+::\+Rel\+Op\+Equal\+Base}}
+\subsubsection[{\texorpdfstring{compare(long left, long right)}{compare(long left, long right)}}]{\setlength{\rightskip}{0pt plus 5cm}abstract boolean gov.\+nasa.\+jpf.\+inspector.\+server.\+programstate.\+relop.\+Rel\+Op\+Equal\+Base.\+compare (
+\begin{DoxyParamCaption}
+\item[{long}]{left, }
+\item[{long}]{right}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [abstract]}}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1relop_1_1_rel_op_equal_base_a480939c8f9e6177537c70ee1b623c8a6}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1relop_1_1_rel_op_equal_base_a480939c8f9e6177537c70ee1b623c8a6}
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::programstate\+::relop\+::\+Rel\+Op\+Equal\+Base@{gov\+::nasa\+::jpf\+::inspector\+::server\+::programstate\+::relop\+::\+Rel\+Op\+Equal\+Base}!get\+Normalized\+Text@{get\+Normalized\+Text}}
+\index{get\+Normalized\+Text@{get\+Normalized\+Text}!gov\+::nasa\+::jpf\+::inspector\+::server\+::programstate\+::relop\+::\+Rel\+Op\+Equal\+Base@{gov\+::nasa\+::jpf\+::inspector\+::server\+::programstate\+::relop\+::\+Rel\+Op\+Equal\+Base}}
+\subsubsection[{\texorpdfstring{get\+Normalized\+Text()}{getNormalizedText()}}]{\setlength{\rightskip}{0pt plus 5cm}abstract String gov.\+nasa.\+jpf.\+inspector.\+server.\+programstate.\+relop.\+Rel\+Op\+Equal\+Base.\+get\+Normalized\+Text (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [abstract]}}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1relop_1_1_rel_op_equal_base_a3817f1f5238378f4f50a1294ea2346ac}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1relop_1_1_rel_op_equal_base_a3817f1f5238378f4f50a1294ea2346ac}
+\begin{DoxyReturn}{Returns}
+Gets representation of the operator in the input expression. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1relop_1_1_relation_operator_a5e6d5f3ef3803b61f387f22ef4e036fc}{gov.\+nasa.\+jpf.\+inspector.\+server.\+programstate.\+relop.\+Relation\+Operator}.
+
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::programstate\+::relop\+::\+Rel\+Op\+Equal\+Base@{gov\+::nasa\+::jpf\+::inspector\+::server\+::programstate\+::relop\+::\+Rel\+Op\+Equal\+Base}!try\+Convert\+To\+Boolean@{try\+Convert\+To\+Boolean}}
+\index{try\+Convert\+To\+Boolean@{try\+Convert\+To\+Boolean}!gov\+::nasa\+::jpf\+::inspector\+::server\+::programstate\+::relop\+::\+Rel\+Op\+Equal\+Base@{gov\+::nasa\+::jpf\+::inspector\+::server\+::programstate\+::relop\+::\+Rel\+Op\+Equal\+Base}}
+\subsubsection[{\texorpdfstring{try\+Convert\+To\+Boolean(\+State\+Readable\+Value\+Interface value)}{tryConvertToBoolean(StateReadableValueInterface value)}}]{\setlength{\rightskip}{0pt plus 5cm}static Boolean gov.\+nasa.\+jpf.\+inspector.\+server.\+programstate.\+relop.\+Rel\+Op\+Equal\+Base.\+try\+Convert\+To\+Boolean (
+\begin{DoxyParamCaption}
+\item[{{\bf State\+Readable\+Value\+Interface}}]{value}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [protected]}}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1relop_1_1_rel_op_equal_base_a398f9f097b49e1d7c1f826e1a81fed5c}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1relop_1_1_rel_op_equal_base_a398f9f097b49e1d7c1f826e1a81fed5c}
+
+\begin{DoxyParams}{Parameters}
+{\em value} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Get null, if value does not represent bool value, otherwise gets operand value converted to Boolean. 
+\end{DoxyReturn}
+
+
+Definition at line 146 of file Rel\+Op\+Equal\+Base.\+java.
+
+
+\begin{DoxyCode}
+146                                                                                    \{
+147 
+148     ClassInfo valueCi = value.getClassInfo();
+149     \textcolor{keywordflow}{if} (\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1relop_1_1_rel_op_comparable_base_a3bd22b88a44dff54d68b1d8a3e8f3d0a}{ciCache}.\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1utils_1_1_class_info_cache_a437835d06c0658d7f01e051329a71582}{ci\_boolean}.equals(valueCi) || \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1relop_1_1_rel_op_comparable_base_a3bd22b88a44dff54d68b1d8a3e8f3d0a}{ciCache}.
+      \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1utils_1_1_class_info_cache_a3566b05065e222a8863f2f435218017e}{ci\_Boolean}.equals(valueCi)) \{
+150       Object o = value.getValue();
+151       assert (o != null);
+152       assert (o instanceof Boolean);
+153       \textcolor{keywordflow}{return} (Boolean) o;
+154     \}
+155 
+156     \textcolor{keywordflow}{return} null;
+157   \}
+\end{DoxyCode}
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::programstate\+::relop\+::\+Rel\+Op\+Equal\+Base@{gov\+::nasa\+::jpf\+::inspector\+::server\+::programstate\+::relop\+::\+Rel\+Op\+Equal\+Base}!try\+Convert\+To\+Char@{try\+Convert\+To\+Char}}
+\index{try\+Convert\+To\+Char@{try\+Convert\+To\+Char}!gov\+::nasa\+::jpf\+::inspector\+::server\+::programstate\+::relop\+::\+Rel\+Op\+Equal\+Base@{gov\+::nasa\+::jpf\+::inspector\+::server\+::programstate\+::relop\+::\+Rel\+Op\+Equal\+Base}}
+\subsubsection[{\texorpdfstring{try\+Convert\+To\+Char(\+State\+Readable\+Value\+Interface value)}{tryConvertToChar(StateReadableValueInterface value)}}]{\setlength{\rightskip}{0pt plus 5cm}static Character gov.\+nasa.\+jpf.\+inspector.\+server.\+programstate.\+relop.\+Rel\+Op\+Comparable\+Base.\+try\+Convert\+To\+Char (
+\begin{DoxyParamCaption}
+\item[{{\bf State\+Readable\+Value\+Interface}}]{value}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [protected]}, {\ttfamily [inherited]}}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1relop_1_1_rel_op_comparable_base_a1e3bca3adb8c3a790eaad60d9adf5c47}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1relop_1_1_rel_op_comparable_base_a1e3bca3adb8c3a790eaad60d9adf5c47}
+
+\begin{DoxyParams}{Parameters}
+{\em value} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Get null, if value does not represent character value, otherwise gets operand value converted to Character. 
+\end{DoxyReturn}
+
+
+Definition at line 232 of file Rel\+Op\+Comparable\+Base.\+java.
+
+
+\begin{DoxyCode}
+232                                                                                   \{
+233 
+234     ClassInfo valueCi = value.getClassInfo();
+235     \textcolor{keywordflow}{if} (\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1relop_1_1_rel_op_comparable_base_a3bd22b88a44dff54d68b1d8a3e8f3d0a}{ciCache}.\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1utils_1_1_class_info_cache_a7313012fee3ae4a80df6f02bb6baf4df}{ci\_char}.equals(valueCi) || \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1relop_1_1_rel_op_comparable_base_a3bd22b88a44dff54d68b1d8a3e8f3d0a}{ciCache}.\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1utils_1_1_class_info_cache_ad3da5c1749b2386757dda5c6ade36db6}{ci\_Char}.equals(valueCi)) \{
+236       Object o = value.getValue();
+237       assert (o != null);
+238       assert (o instanceof Character);
+239       \textcolor{keywordflow}{return} (Character) o;
+240     \}
+241 
+242     \textcolor{keywordflow}{return} null;
+243   \}
+\end{DoxyCode}
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::programstate\+::relop\+::\+Rel\+Op\+Equal\+Base@{gov\+::nasa\+::jpf\+::inspector\+::server\+::programstate\+::relop\+::\+Rel\+Op\+Equal\+Base}!try\+Convert\+To\+Double@{try\+Convert\+To\+Double}}
+\index{try\+Convert\+To\+Double@{try\+Convert\+To\+Double}!gov\+::nasa\+::jpf\+::inspector\+::server\+::programstate\+::relop\+::\+Rel\+Op\+Equal\+Base@{gov\+::nasa\+::jpf\+::inspector\+::server\+::programstate\+::relop\+::\+Rel\+Op\+Equal\+Base}}
+\subsubsection[{\texorpdfstring{try\+Convert\+To\+Double(\+State\+Readable\+Value\+Interface value)}{tryConvertToDouble(StateReadableValueInterface value)}}]{\setlength{\rightskip}{0pt plus 5cm}static Double gov.\+nasa.\+jpf.\+inspector.\+server.\+programstate.\+relop.\+Rel\+Op\+Comparable\+Base.\+try\+Convert\+To\+Double (
+\begin{DoxyParamCaption}
+\item[{{\bf State\+Readable\+Value\+Interface}}]{value}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [protected]}, {\ttfamily [inherited]}}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1relop_1_1_rel_op_comparable_base_afb31d12a03d2e24581d168c765368a4b}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1relop_1_1_rel_op_comparable_base_afb31d12a03d2e24581d168c765368a4b}
+
+\begin{DoxyParams}{Parameters}
+{\em value} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Get null, if value does not represent floating point number, otherwise gets operand value converted to double. 
+\end{DoxyReturn}
+
+
+Definition at line 147 of file Rel\+Op\+Comparable\+Base.\+java.
+
+
+\begin{DoxyCode}
+147                                                                                  \{
+148 
+149     ClassInfo valueCi = value.getClassInfo();
+150     \textcolor{keywordflow}{if} (\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1relop_1_1_rel_op_comparable_base_a3bd22b88a44dff54d68b1d8a3e8f3d0a}{ciCache}.\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1utils_1_1_class_info_cache_a047975f4a6c537957243b2e5a009f4aa}{ci\_float}.equals(valueCi) || \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1relop_1_1_rel_op_comparable_base_a3bd22b88a44dff54d68b1d8a3e8f3d0a}{ciCache}.
+      \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1utils_1_1_class_info_cache_a9ebf72e1a4190d413f91925f5a0d56a0}{ci\_Float}.equals(valueCi)) \{
+151       Object o = value.getValue();
+152       assert (o != null);
+153       assert (o instanceof Float);
+154       Float f = (Float) o;
+155       \textcolor{keywordflow}{return} Double.valueOf(f.doubleValue());
+156     \}
+157 
+158     \textcolor{keywordflow}{if} (\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1relop_1_1_rel_op_comparable_base_a3bd22b88a44dff54d68b1d8a3e8f3d0a}{ciCache}.\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1utils_1_1_class_info_cache_a6c235608a009075b8eca6c1b6790a056}{ci\_double}.equals(valueCi) || \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1relop_1_1_rel_op_comparable_base_a3bd22b88a44dff54d68b1d8a3e8f3d0a}{ciCache}.
+      \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1utils_1_1_class_info_cache_a4dfcbcfdb6ef9b2061fb0532f281eeb8}{ci\_Double}.equals(valueCi)) \{
+159       Object o = value.getValue();
+160       assert (o != null);
+161       assert (o instanceof Double);
+162       \textcolor{keywordflow}{return} (Double) o;
+163     \}
+164 
+165     \textcolor{keywordflow}{return} null;
+166   \}
+\end{DoxyCode}
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::programstate\+::relop\+::\+Rel\+Op\+Equal\+Base@{gov\+::nasa\+::jpf\+::inspector\+::server\+::programstate\+::relop\+::\+Rel\+Op\+Equal\+Base}!try\+Convert\+To\+Long@{try\+Convert\+To\+Long}}
+\index{try\+Convert\+To\+Long@{try\+Convert\+To\+Long}!gov\+::nasa\+::jpf\+::inspector\+::server\+::programstate\+::relop\+::\+Rel\+Op\+Equal\+Base@{gov\+::nasa\+::jpf\+::inspector\+::server\+::programstate\+::relop\+::\+Rel\+Op\+Equal\+Base}}
+\subsubsection[{\texorpdfstring{try\+Convert\+To\+Long(\+State\+Readable\+Value\+Interface value)}{tryConvertToLong(StateReadableValueInterface value)}}]{\setlength{\rightskip}{0pt plus 5cm}static Long gov.\+nasa.\+jpf.\+inspector.\+server.\+programstate.\+relop.\+Rel\+Op\+Comparable\+Base.\+try\+Convert\+To\+Long (
+\begin{DoxyParamCaption}
+\item[{{\bf State\+Readable\+Value\+Interface}}]{value}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [protected]}, {\ttfamily [inherited]}}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1relop_1_1_rel_op_comparable_base_a42b354e4aa57e673f728b1c2c036c69b}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1relop_1_1_rel_op_comparable_base_a42b354e4aa57e673f728b1c2c036c69b}
+
+\begin{DoxyParams}{Parameters}
+{\em value} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Get null, if value does not represent integer type (byte, short, int, long), otherwise gets operand value converted to long. 
+\end{DoxyReturn}
+
+
+Definition at line 173 of file Rel\+Op\+Comparable\+Base.\+java.
+
+
+\begin{DoxyCode}
+173                                                                              \{
+174 
+175     ClassInfo valueCi = value.getClassInfo();
+176 
+177     \textcolor{keywordflow}{if} (\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1relop_1_1_rel_op_comparable_base_a3bd22b88a44dff54d68b1d8a3e8f3d0a}{ciCache}.\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1utils_1_1_class_info_cache_aac9f1bc10f1cb8408516f622c3bdbf06}{ci\_byte}.equals(valueCi) || \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1relop_1_1_rel_op_comparable_base_a3bd22b88a44dff54d68b1d8a3e8f3d0a}{ciCache}.\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1utils_1_1_class_info_cache_a9f20df4baa3d028de1256ef61e82d7dc}{ci\_Byte}.equals(valueCi)) \{
+178       Object o = value.getValue();
+179       assert (o != null);
+180       assert (o instanceof Byte);
+181       Byte b = (Byte) o;
+182       \textcolor{keywordflow}{return} Long.valueOf(b.longValue());
+183     \}
+184 
+185     \textcolor{keywordflow}{if} (\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1relop_1_1_rel_op_comparable_base_a3bd22b88a44dff54d68b1d8a3e8f3d0a}{ciCache}.\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1utils_1_1_class_info_cache_aab8276cce884ee34fa1db91fc2d9bccf}{ci\_short}.equals(valueCi) || \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1relop_1_1_rel_op_comparable_base_a3bd22b88a44dff54d68b1d8a3e8f3d0a}{ciCache}.
+      \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1utils_1_1_class_info_cache_ab263ad66c64d7712f1835cb8e4914171}{ci\_Short}.equals(valueCi)) \{
+186       Object o = value.getValue();
+187       assert (o != null);
+188       assert (o instanceof Short);
+189       Short s = (Short) o;
+190       \textcolor{keywordflow}{return} Long.valueOf(s.longValue());
+191     \}
+192 
+193     \textcolor{keywordflow}{if} (\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1relop_1_1_rel_op_comparable_base_a3bd22b88a44dff54d68b1d8a3e8f3d0a}{ciCache}.\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1utils_1_1_class_info_cache_ae1f0dede5e0ce0e7e65305520ccc4814}{ci\_int}.equals(valueCi) || \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1relop_1_1_rel_op_comparable_base_a3bd22b88a44dff54d68b1d8a3e8f3d0a}{ciCache}.\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1utils_1_1_class_info_cache_a3b473de6d927038466bee13b61c7cb47}{ci\_Int}.equals(valueCi)) \{
+194       Object o = value.getValue();
+195       assert (o != null);
+196       assert (o instanceof Integer);
+197       Integer i = (Integer) o;
+198       \textcolor{keywordflow}{return} Long.valueOf(i.longValue());
+199     \}
+200 
+201     \textcolor{keywordflow}{if} (\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1relop_1_1_rel_op_comparable_base_a3bd22b88a44dff54d68b1d8a3e8f3d0a}{ciCache}.\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1utils_1_1_class_info_cache_a443fc5040ae83e418b516f65c9353a1a}{ci\_long}.equals(valueCi) || \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1relop_1_1_rel_op_comparable_base_a3bd22b88a44dff54d68b1d8a3e8f3d0a}{ciCache}.\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1utils_1_1_class_info_cache_a6d7daa36979cf1cc7c46059d9307c9dc}{ci\_Long}.equals(valueCi)) \{
+202       Object o = value.getValue();
+203       assert (o != null);
+204       assert (o instanceof Long);
+205       \textcolor{keywordflow}{return} (Long) o;
+206     \}
+207 
+208     \textcolor{keywordflow}{return} null;
+209   \}
+\end{DoxyCode}
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::programstate\+::relop\+::\+Rel\+Op\+Equal\+Base@{gov\+::nasa\+::jpf\+::inspector\+::server\+::programstate\+::relop\+::\+Rel\+Op\+Equal\+Base}!try\+Convert\+To\+String@{try\+Convert\+To\+String}}
+\index{try\+Convert\+To\+String@{try\+Convert\+To\+String}!gov\+::nasa\+::jpf\+::inspector\+::server\+::programstate\+::relop\+::\+Rel\+Op\+Equal\+Base@{gov\+::nasa\+::jpf\+::inspector\+::server\+::programstate\+::relop\+::\+Rel\+Op\+Equal\+Base}}
+\subsubsection[{\texorpdfstring{try\+Convert\+To\+String(\+State\+Readable\+Value\+Interface value)}{tryConvertToString(StateReadableValueInterface value)}}]{\setlength{\rightskip}{0pt plus 5cm}static String gov.\+nasa.\+jpf.\+inspector.\+server.\+programstate.\+relop.\+Rel\+Op\+Comparable\+Base.\+try\+Convert\+To\+String (
+\begin{DoxyParamCaption}
+\item[{{\bf State\+Readable\+Value\+Interface}}]{value}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [protected]}, {\ttfamily [inherited]}}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1relop_1_1_rel_op_comparable_base_aa1b564784dad5abf5565f080fe1a3a9f}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1relop_1_1_rel_op_comparable_base_aa1b564784dad5abf5565f080fe1a3a9f}
+
+\begin{DoxyParams}{Parameters}
+{\em value} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Get null, if value does not represent String value, otherwise gets operand value converted to String. 
+\end{DoxyReturn}
+
+
+Definition at line 215 of file Rel\+Op\+Comparable\+Base.\+java.
+
+
+\begin{DoxyCode}
+215                                                                                  \{
+216 
+217     ClassInfo valueCi = value.getClassInfo();
+218     \textcolor{keywordflow}{if} (\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1relop_1_1_rel_op_comparable_base_a3bd22b88a44dff54d68b1d8a3e8f3d0a}{ciCache}.\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1utils_1_1_class_info_cache_ae730b1780420d1f2632fd9a3ffa360c1}{ci\_String}.equals(valueCi)) \{
+219       Object o = value.getValue();
+220       assert (o != null);
+221       assert (o instanceof String);
+222       \textcolor{keywordflow}{return} (String) o;
+223     \}
+224 
+225     \textcolor{keywordflow}{return} null;
+226   \}
+\end{DoxyCode}
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::programstate\+::relop\+::\+Rel\+Op\+Equal\+Base@{gov\+::nasa\+::jpf\+::inspector\+::server\+::programstate\+::relop\+::\+Rel\+Op\+Equal\+Base}!validate\+Cache@{validate\+Cache}}
+\index{validate\+Cache@{validate\+Cache}!gov\+::nasa\+::jpf\+::inspector\+::server\+::programstate\+::relop\+::\+Rel\+Op\+Equal\+Base@{gov\+::nasa\+::jpf\+::inspector\+::server\+::programstate\+::relop\+::\+Rel\+Op\+Equal\+Base}}
+\subsubsection[{\texorpdfstring{validate\+Cache(\+J\+P\+F\+Inspector inspector)}{validateCache(JPFInspector inspector)}}]{\setlength{\rightskip}{0pt plus 5cm}static void gov.\+nasa.\+jpf.\+inspector.\+server.\+programstate.\+relop.\+Rel\+Op\+Comparable\+Base.\+validate\+Cache (
+\begin{DoxyParamCaption}
+\item[{{\bf J\+P\+F\+Inspector}}]{inspector}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [protected]}, {\ttfamily [inherited]}}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1relop_1_1_rel_op_comparable_base_a7e8b465bb4002c1759b6096f9e2eecbf}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1relop_1_1_rel_op_comparable_base_a7e8b465bb4002c1759b6096f9e2eecbf}
+
+
+Definition at line 40 of file Rel\+Op\+Comparable\+Base.\+java.
+
+
+\begin{DoxyCode}
+40                                                                \{
+41     \textcolor{comment}{// Update the type cache if needed}
+42     assert (inspector.getJPF() != null); \textcolor{comment}{// Breakpoint cannot be evaluated if there is no JPF instance}
+43 
+44     VM currentVM = inspector.getJPF().getVM();
+45     \textcolor{keywordflow}{if} (\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1relop_1_1_rel_op_comparable_base_a3bd22b88a44dff54d68b1d8a3e8f3d0a}{ciCache} == null || \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1relop_1_1_rel_op_comparable_base_a3bd22b88a44dff54d68b1d8a3e8f3d0a}{ciCache}.\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1utils_1_1_class_info_cache_ac71fb1624b72457166c1326d44fb50c5}{cacheValid}(currentVM) == \textcolor{keyword}{false}) \{
+46       \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1relop_1_1_rel_op_comparable_base_a3bd22b88a44dff54d68b1d8a3e8f3d0a}{ciCache} = \textcolor{keyword}{new} ClassInfoCache(currentVM);
+47     \}
+48   \}
+\end{DoxyCode}
+
+
+\subsection{Member Data Documentation}
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::programstate\+::relop\+::\+Rel\+Op\+Equal\+Base@{gov\+::nasa\+::jpf\+::inspector\+::server\+::programstate\+::relop\+::\+Rel\+Op\+Equal\+Base}!ci\+Cache@{ci\+Cache}}
+\index{ci\+Cache@{ci\+Cache}!gov\+::nasa\+::jpf\+::inspector\+::server\+::programstate\+::relop\+::\+Rel\+Op\+Equal\+Base@{gov\+::nasa\+::jpf\+::inspector\+::server\+::programstate\+::relop\+::\+Rel\+Op\+Equal\+Base}}
+\subsubsection[{\texorpdfstring{ci\+Cache}{ciCache}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Class\+Info\+Cache} gov.\+nasa.\+jpf.\+inspector.\+server.\+programstate.\+relop.\+Rel\+Op\+Comparable\+Base.\+ci\+Cache = null\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [protected]}, {\ttfamily [inherited]}}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1relop_1_1_rel_op_comparable_base_a3bd22b88a44dff54d68b1d8a3e8f3d0a}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1relop_1_1_rel_op_comparable_base_a3bd22b88a44dff54d68b1d8a3e8f3d0a}
+
+
+Definition at line 37 of file Rel\+Op\+Comparable\+Base.\+java.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/gsoc/jpf-\/inspector/src/main/gov/nasa/jpf/inspector/server/programstate/relop/\hyperlink{_rel_op_equal_base_8java}{Rel\+Op\+Equal\+Base.\+java}\end{DoxyCompactItemize}

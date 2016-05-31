@@ -1,0 +1,240 @@
+\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1utils_1_1expressions_1_1_class_name}{}\section{gov.\+nasa.\+jpf.\+inspector.\+utils.\+expressions.\+Class\+Name Class Reference}
+\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1utils_1_1expressions_1_1_class_name}\index{gov.\+nasa.\+jpf.\+inspector.\+utils.\+expressions.\+Class\+Name@{gov.\+nasa.\+jpf.\+inspector.\+utils.\+expressions.\+Class\+Name}}
+
+
+Represents a class by name extracted from the user input by the server expression parser.  
+
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1utils_1_1expressions_1_1_class_name_aea0892ef2da7ab653db00fc41fa882a8}{Class\+Name} (String \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1utils_1_1expressions_1_1_class_name_a9913d2709a2450faa2937fc63b3ee977}{class\+Name})
+\begin{DoxyCompactList}\small\item\em For each tested loaded class name in J\+PF holds whether matches given pattern or not. \end{DoxyCompactList}\item 
+final String \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1utils_1_1expressions_1_1_class_name_a4953615ac3b331dac220f0ab4a817095}{get\+Class\+Name} ()
+\item 
+boolean \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1utils_1_1expressions_1_1_class_name_aacf2908382288e215d6fb63093a63b30}{is\+Same\+Class} (Class\+Info ci)
+\begin{DoxyCompactList}\small\item\em Returns true if this expression represents the specified class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static String \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1utils_1_1expressions_1_1_class_name_a191c08d3424854ebb7418f7e65ad1712}{convert\+Name2\+Reg\+Exp} (String name)
+\item 
+static boolean \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1utils_1_1expressions_1_1_class_name_ac619eeea225a97445cc25a7a05ca7e49}{single\+Entry\+Name} (String name)
+\begin{DoxyCompactList}\small\item\em Checks whether given name represents single entry (class or file) or it may match with more then one input. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+final String \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1utils_1_1expressions_1_1_class_name_a9913d2709a2450faa2937fc63b3ee977}{class\+Name}
+\item 
+final String \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1utils_1_1expressions_1_1_class_name_a53983b6735522080904ee2ff87dd354e}{class\+Name\+Processed}
+\item 
+final Pattern \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1utils_1_1expressions_1_1_class_name_a06b384819c81e761bc4f1e81949ff582}{class\+Name\+Pattern}
+\item 
+final Map$<$ String, Boolean $>$ \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1utils_1_1expressions_1_1_class_name_a8374b6f39099158e2c63a4de4d1bf613}{class\+Names\+Matches}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Represents a class by name extracted from the user input by the server expression parser. 
+
+Definition at line 32 of file Class\+Name.\+java.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{gov\+::nasa\+::jpf\+::inspector\+::utils\+::expressions\+::\+Class\+Name@{gov\+::nasa\+::jpf\+::inspector\+::utils\+::expressions\+::\+Class\+Name}!Class\+Name@{Class\+Name}}
+\index{Class\+Name@{Class\+Name}!gov\+::nasa\+::jpf\+::inspector\+::utils\+::expressions\+::\+Class\+Name@{gov\+::nasa\+::jpf\+::inspector\+::utils\+::expressions\+::\+Class\+Name}}
+\subsubsection[{\texorpdfstring{Class\+Name(\+String class\+Name)}{ClassName(String className)}}]{\setlength{\rightskip}{0pt plus 5cm}gov.\+nasa.\+jpf.\+inspector.\+utils.\+expressions.\+Class\+Name.\+Class\+Name (
+\begin{DoxyParamCaption}
+\item[{String}]{class\+Name}
+\end{DoxyParamCaption}
+)}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1utils_1_1expressions_1_1_class_name_aea0892ef2da7ab653db00fc41fa882a8}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1utils_1_1expressions_1_1_class_name_aea0892ef2da7ab653db00fc41fa882a8}
+
+
+For each tested loaded class name in J\+PF holds whether matches given pattern or not. 
+
+
+
+Definition at line 40 of file Class\+Name.\+java.
+
+
+\begin{DoxyCode}
+40                                      \{
+41     assert \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1utils_1_1expressions_1_1_class_name_a9913d2709a2450faa2937fc63b3ee977}{className} != null;
+42 
+43     this.\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1utils_1_1expressions_1_1_class_name_a9913d2709a2450faa2937fc63b3ee977}{className} = \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1utils_1_1expressions_1_1_class_name_a9913d2709a2450faa2937fc63b3ee977}{className};
+44     this.\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1utils_1_1expressions_1_1_class_name_a53983b6735522080904ee2ff87dd354e}{classNameProcessed} = \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1utils_1_1expressions_1_1_class_name_aea0892ef2da7ab653db00fc41fa882a8}{ClassName}.convertName2RegExp(
+      \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1utils_1_1expressions_1_1_class_name_a9913d2709a2450faa2937fc63b3ee977}{className});
+45     \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1utils_1_1expressions_1_1_class_name_a06b384819c81e761bc4f1e81949ff582}{classNamePattern} = Pattern.compile(\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1utils_1_1expressions_1_1_class_name_a53983b6735522080904ee2ff87dd354e}{classNameProcessed});
+46     
+47     \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1utils_1_1expressions_1_1_class_name_a8374b6f39099158e2c63a4de4d1bf613}{classNamesMatches} = \textcolor{keyword}{new} HashMap<String, Boolean>();
+48   \}
+\end{DoxyCode}
+
+
+\subsection{Member Function Documentation}
+\index{gov\+::nasa\+::jpf\+::inspector\+::utils\+::expressions\+::\+Class\+Name@{gov\+::nasa\+::jpf\+::inspector\+::utils\+::expressions\+::\+Class\+Name}!convert\+Name2\+Reg\+Exp@{convert\+Name2\+Reg\+Exp}}
+\index{convert\+Name2\+Reg\+Exp@{convert\+Name2\+Reg\+Exp}!gov\+::nasa\+::jpf\+::inspector\+::utils\+::expressions\+::\+Class\+Name@{gov\+::nasa\+::jpf\+::inspector\+::utils\+::expressions\+::\+Class\+Name}}
+\subsubsection[{\texorpdfstring{convert\+Name2\+Reg\+Exp(\+String name)}{convertName2RegExp(String name)}}]{\setlength{\rightskip}{0pt plus 5cm}static String gov.\+nasa.\+jpf.\+inspector.\+utils.\+expressions.\+Class\+Name.\+convert\+Name2\+Reg\+Exp (
+\begin{DoxyParamCaption}
+\item[{String}]{name}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1utils_1_1expressions_1_1_class_name_a191c08d3424854ebb7418f7e65ad1712}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1utils_1_1expressions_1_1_class_name_a191c08d3424854ebb7418f7e65ad1712}
+
+
+Definition at line 90 of file Class\+Name.\+java.
+
+
+\begin{DoxyCode}
+90                                                        \{
+91     
+92     \textcolor{comment}{// Conversions ... we permit only * in regexp}
+93     \textcolor{comment}{//      '\(\backslash\)' -> "\(\backslash\)\(\backslash\)"}
+94     \textcolor{comment}{//      '[' -> "\(\backslash\)["}
+95     \textcolor{comment}{//      ']' -> "\(\backslash\)]"}
+96     \textcolor{comment}{//      '\}' -> "\(\backslash\)\{"}
+97     \textcolor{comment}{//      '\{' -> "\(\backslash\)\}"}
+98     \textcolor{comment}{//      '(' -> "\(\backslash\)("}
+99     \textcolor{comment}{//      ')' -> "\(\backslash\))"}
+100     \textcolor{comment}{//      '+' -> "\(\backslash\)+"}
+101     \textcolor{comment}{//      '^' -> "\(\backslash\)^"}
+102     \textcolor{comment}{//      '$' -> "\(\backslash\)$"}
+103     \textcolor{comment}{//      '?' -> "\(\backslash\)?"}
+104     \textcolor{comment}{//      ',' -> "\(\backslash\),"}
+105     \textcolor{comment}{//      '&' -> "\(\backslash\)&"}
+106     \textcolor{comment}{//      '|' -> "\(\backslash\)|"}
+107     name = name.replace( \textcolor{stringliteral}{"\(\backslash\)\(\backslash\)"}, \textcolor{stringliteral}{"\(\backslash\)\(\backslash\)\(\backslash\)\(\backslash\)"});
+108     name = name.replace( \textcolor{stringliteral}{"["},  \textcolor{stringliteral}{"\(\backslash\)\(\backslash\)["});
+109     name = name.replace( \textcolor{stringliteral}{"]"},  \textcolor{stringliteral}{"\(\backslash\)\(\backslash\)]"});
+110     name = name.replace( \textcolor{stringliteral}{"\}"},  \textcolor{stringliteral}{"\(\backslash\)\(\backslash\)\}"});
+111     name = name.replace( \textcolor{stringliteral}{"\{"},  \textcolor{stringliteral}{"\(\backslash\)\(\backslash\)\{"});
+112     name = name.replace( \textcolor{stringliteral}{"("},  \textcolor{stringliteral}{"\(\backslash\)\(\backslash\)("});
+113     name = name.replace( \textcolor{stringliteral}{")"},  \textcolor{stringliteral}{"\(\backslash\)\(\backslash\))"});
+114     name = name.replace( \textcolor{stringliteral}{"+"},  \textcolor{stringliteral}{"\(\backslash\)\(\backslash\)+"});
+115     name = name.replace( \textcolor{stringliteral}{"^"},  \textcolor{stringliteral}{"\(\backslash\)\(\backslash\)^"});
+116     name = name.replace( \textcolor{stringliteral}{"$"},  \textcolor{stringliteral}{"\(\backslash\)\(\backslash\)$"});
+117     name = name.replace( \textcolor{stringliteral}{"?"},  \textcolor{stringliteral}{"\(\backslash\)\(\backslash\)?"});
+118     name = name.replace( \textcolor{stringliteral}{","},  \textcolor{stringliteral}{"\(\backslash\)\(\backslash\),"});
+119     name = name.replace( \textcolor{stringliteral}{"&"},  \textcolor{stringliteral}{"\(\backslash\)\(\backslash\)&"});
+120     name = name.replace( \textcolor{stringliteral}{"|"},  \textcolor{stringliteral}{"\(\backslash\)\(\backslash\)|"});
+121 
+122     \textcolor{comment}{//      '.' -> "\(\backslash\)." not any char}
+123     \textcolor{comment}{//      '*' -> ".*"}
+124     name = name.replace( \textcolor{stringliteral}{"."},  \textcolor{stringliteral}{"\(\backslash\)\(\backslash\)."});
+125     name = name.replace( \textcolor{stringliteral}{"*"},  \textcolor{stringliteral}{".*"});
+126     \textcolor{keywordflow}{return} \textcolor{stringliteral}{"^"} + name + \textcolor{stringliteral}{"\(\backslash\)\(\backslash\)z"};
+127   \}
+\end{DoxyCode}
+\index{gov\+::nasa\+::jpf\+::inspector\+::utils\+::expressions\+::\+Class\+Name@{gov\+::nasa\+::jpf\+::inspector\+::utils\+::expressions\+::\+Class\+Name}!get\+Class\+Name@{get\+Class\+Name}}
+\index{get\+Class\+Name@{get\+Class\+Name}!gov\+::nasa\+::jpf\+::inspector\+::utils\+::expressions\+::\+Class\+Name@{gov\+::nasa\+::jpf\+::inspector\+::utils\+::expressions\+::\+Class\+Name}}
+\subsubsection[{\texorpdfstring{get\+Class\+Name()}{getClassName()}}]{\setlength{\rightskip}{0pt plus 5cm}final String gov.\+nasa.\+jpf.\+inspector.\+utils.\+expressions.\+Class\+Name.\+get\+Class\+Name (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1utils_1_1expressions_1_1_class_name_a4953615ac3b331dac220f0ab4a817095}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1utils_1_1expressions_1_1_class_name_a4953615ac3b331dac220f0ab4a817095}
+
+
+Definition at line 50 of file Class\+Name.\+java.
+
+
+\begin{DoxyCode}
+50                                      \{
+51     \textcolor{keywordflow}{return} \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1utils_1_1expressions_1_1_class_name_a9913d2709a2450faa2937fc63b3ee977}{className};
+52   \}
+\end{DoxyCode}
+\index{gov\+::nasa\+::jpf\+::inspector\+::utils\+::expressions\+::\+Class\+Name@{gov\+::nasa\+::jpf\+::inspector\+::utils\+::expressions\+::\+Class\+Name}!is\+Same\+Class@{is\+Same\+Class}}
+\index{is\+Same\+Class@{is\+Same\+Class}!gov\+::nasa\+::jpf\+::inspector\+::utils\+::expressions\+::\+Class\+Name@{gov\+::nasa\+::jpf\+::inspector\+::utils\+::expressions\+::\+Class\+Name}}
+\subsubsection[{\texorpdfstring{is\+Same\+Class(\+Class\+Info ci)}{isSameClass(ClassInfo ci)}}]{\setlength{\rightskip}{0pt plus 5cm}boolean gov.\+nasa.\+jpf.\+inspector.\+utils.\+expressions.\+Class\+Name.\+is\+Same\+Class (
+\begin{DoxyParamCaption}
+\item[{Class\+Info}]{ci}
+\end{DoxyParamCaption}
+)}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1utils_1_1expressions_1_1_class_name_aacf2908382288e215d6fb63093a63b30}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1utils_1_1expressions_1_1_class_name_aacf2908382288e215d6fb63093a63b30}
+
+
+Returns true if this expression represents the specified class. 
+
+Comparison is done based on string names, except that the class name expression might not be a simple name but can be more complex (see the documentation on expressions; this is taken into account here).
+
+Performs caching. 
+\begin{DoxyParams}{Parameters}
+{\em ci} & The class that should be tested for name equality with this expression. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 62 of file Class\+Name.\+java.
+
+
+\begin{DoxyCode}
+62                                            \{
+63     String cn = ci.getName();
+64     
+65     Boolean wasTestedBefore = \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1utils_1_1expressions_1_1_class_name_a8374b6f39099158e2c63a4de4d1bf613}{classNamesMatches}.get(cn);
+66     \textcolor{keywordflow}{if} (wasTestedBefore != null) \{
+67       \textcolor{keywordflow}{return} wasTestedBefore;
+68     \}
+69 
+70     Matcher m = \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1utils_1_1expressions_1_1_class_name_a06b384819c81e761bc4f1e81949ff582}{classNamePattern}.matcher(cn);
+71     Boolean nameMatch = m.matches();
+72     \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1utils_1_1expressions_1_1_class_name_a8374b6f39099158e2c63a4de4d1bf613}{classNamesMatches}.put(cn, nameMatch);
+73     \textcolor{keywordflow}{return} nameMatch;
+74   \}
+\end{DoxyCode}
+\index{gov\+::nasa\+::jpf\+::inspector\+::utils\+::expressions\+::\+Class\+Name@{gov\+::nasa\+::jpf\+::inspector\+::utils\+::expressions\+::\+Class\+Name}!single\+Entry\+Name@{single\+Entry\+Name}}
+\index{single\+Entry\+Name@{single\+Entry\+Name}!gov\+::nasa\+::jpf\+::inspector\+::utils\+::expressions\+::\+Class\+Name@{gov\+::nasa\+::jpf\+::inspector\+::utils\+::expressions\+::\+Class\+Name}}
+\subsubsection[{\texorpdfstring{single\+Entry\+Name(\+String name)}{singleEntryName(String name)}}]{\setlength{\rightskip}{0pt plus 5cm}static boolean gov.\+nasa.\+jpf.\+inspector.\+utils.\+expressions.\+Class\+Name.\+single\+Entry\+Name (
+\begin{DoxyParamCaption}
+\item[{String}]{name}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1utils_1_1expressions_1_1_class_name_ac619eeea225a97445cc25a7a05ca7e49}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1utils_1_1expressions_1_1_class_name_ac619eeea225a97445cc25a7a05ca7e49}
+
+
+Checks whether given name represents single entry (class or file) or it may match with more then one input. 
+
+~\newline
+Test whether original name contains \char`\"{}$\ast$\char`\"{}. 
+
+Definition at line 136 of file Class\+Name.\+java.
+
+
+\begin{DoxyCode}
+136                                                      \{
+137     \textcolor{keywordflow}{return} ( ! name.contains(\textcolor{stringliteral}{"*"}) );
+138   \}
+\end{DoxyCode}
+
+
+\subsection{Member Data Documentation}
+\index{gov\+::nasa\+::jpf\+::inspector\+::utils\+::expressions\+::\+Class\+Name@{gov\+::nasa\+::jpf\+::inspector\+::utils\+::expressions\+::\+Class\+Name}!class\+Name@{class\+Name}}
+\index{class\+Name@{class\+Name}!gov\+::nasa\+::jpf\+::inspector\+::utils\+::expressions\+::\+Class\+Name@{gov\+::nasa\+::jpf\+::inspector\+::utils\+::expressions\+::\+Class\+Name}}
+\subsubsection[{\texorpdfstring{class\+Name}{className}}]{\setlength{\rightskip}{0pt plus 5cm}final String gov.\+nasa.\+jpf.\+inspector.\+utils.\+expressions.\+Class\+Name.\+class\+Name\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1utils_1_1expressions_1_1_class_name_a9913d2709a2450faa2937fc63b3ee977}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1utils_1_1expressions_1_1_class_name_a9913d2709a2450faa2937fc63b3ee977}
+
+
+Definition at line 33 of file Class\+Name.\+java.
+
+\index{gov\+::nasa\+::jpf\+::inspector\+::utils\+::expressions\+::\+Class\+Name@{gov\+::nasa\+::jpf\+::inspector\+::utils\+::expressions\+::\+Class\+Name}!class\+Name\+Pattern@{class\+Name\+Pattern}}
+\index{class\+Name\+Pattern@{class\+Name\+Pattern}!gov\+::nasa\+::jpf\+::inspector\+::utils\+::expressions\+::\+Class\+Name@{gov\+::nasa\+::jpf\+::inspector\+::utils\+::expressions\+::\+Class\+Name}}
+\subsubsection[{\texorpdfstring{class\+Name\+Pattern}{classNamePattern}}]{\setlength{\rightskip}{0pt plus 5cm}final Pattern gov.\+nasa.\+jpf.\+inspector.\+utils.\+expressions.\+Class\+Name.\+class\+Name\+Pattern\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1utils_1_1expressions_1_1_class_name_a06b384819c81e761bc4f1e81949ff582}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1utils_1_1expressions_1_1_class_name_a06b384819c81e761bc4f1e81949ff582}
+
+
+Definition at line 36 of file Class\+Name.\+java.
+
+\index{gov\+::nasa\+::jpf\+::inspector\+::utils\+::expressions\+::\+Class\+Name@{gov\+::nasa\+::jpf\+::inspector\+::utils\+::expressions\+::\+Class\+Name}!class\+Name\+Processed@{class\+Name\+Processed}}
+\index{class\+Name\+Processed@{class\+Name\+Processed}!gov\+::nasa\+::jpf\+::inspector\+::utils\+::expressions\+::\+Class\+Name@{gov\+::nasa\+::jpf\+::inspector\+::utils\+::expressions\+::\+Class\+Name}}
+\subsubsection[{\texorpdfstring{class\+Name\+Processed}{classNameProcessed}}]{\setlength{\rightskip}{0pt plus 5cm}final String gov.\+nasa.\+jpf.\+inspector.\+utils.\+expressions.\+Class\+Name.\+class\+Name\+Processed\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1utils_1_1expressions_1_1_class_name_a53983b6735522080904ee2ff87dd354e}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1utils_1_1expressions_1_1_class_name_a53983b6735522080904ee2ff87dd354e}
+
+
+Definition at line 35 of file Class\+Name.\+java.
+
+\index{gov\+::nasa\+::jpf\+::inspector\+::utils\+::expressions\+::\+Class\+Name@{gov\+::nasa\+::jpf\+::inspector\+::utils\+::expressions\+::\+Class\+Name}!class\+Names\+Matches@{class\+Names\+Matches}}
+\index{class\+Names\+Matches@{class\+Names\+Matches}!gov\+::nasa\+::jpf\+::inspector\+::utils\+::expressions\+::\+Class\+Name@{gov\+::nasa\+::jpf\+::inspector\+::utils\+::expressions\+::\+Class\+Name}}
+\subsubsection[{\texorpdfstring{class\+Names\+Matches}{classNamesMatches}}]{\setlength{\rightskip}{0pt plus 5cm}final Map$<$String, Boolean$>$ gov.\+nasa.\+jpf.\+inspector.\+utils.\+expressions.\+Class\+Name.\+class\+Names\+Matches\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1utils_1_1expressions_1_1_class_name_a8374b6f39099158e2c63a4de4d1bf613}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1utils_1_1expressions_1_1_class_name_a8374b6f39099158e2c63a4de4d1bf613}
+
+
+Definition at line 38 of file Class\+Name.\+java.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/gsoc/jpf-\/inspector/src/main/gov/nasa/jpf/inspector/utils/expressions/\hyperlink{_class_name_8java}{Class\+Name.\+java}\end{DoxyCompactItemize}

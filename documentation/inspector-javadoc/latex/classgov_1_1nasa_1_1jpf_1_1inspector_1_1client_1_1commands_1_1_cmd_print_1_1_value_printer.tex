@@ -1,0 +1,383 @@
+\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_print_1_1_value_printer}{}\section{gov.\+nasa.\+jpf.\+inspector.\+client.\+commands.\+Cmd\+Print.\+Value\+Printer Class Reference}
+\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_print_1_1_value_printer}\index{gov.\+nasa.\+jpf.\+inspector.\+client.\+commands.\+Cmd\+Print.\+Value\+Printer@{gov.\+nasa.\+jpf.\+inspector.\+client.\+commands.\+Cmd\+Print.\+Value\+Printer}}
+Inheritance diagram for gov.\+nasa.\+jpf.\+inspector.\+client.\+commands.\+Cmd\+Print.\+Value\+Printer\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_print_1_1_value_printer}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_print_1_1_value_printer_a0d5774eec97f453d44d532892386d5a9}{Value\+Printer} ()
+\item 
+String\+Builder \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_print_1_1_value_printer_aa7ffd5ef783bc1a2d7c691e53280b237}{get\+Result} ()
+\item 
+String\+Builder \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_print_1_1_value_printer_a3beefe042d19c70b3143c405ed6a4118}{visit\+P\+S\+E\+Heap\+Entry\+List} (\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1common_1_1pse_1_1_p_s_e_heap_entry_list}{P\+S\+E\+Heap\+Entry\+List} entry)  throws J\+P\+F\+Inspector\+Exception 
+\item 
+String\+Builder \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_print_1_1_value_printer_a3f0eb11af5535dfa66a4b8df66c36a55}{visit\+P\+S\+E\+Method} (\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1common_1_1pse_1_1_p_s_e_method}{P\+S\+E\+Method} pse)  throws J\+P\+F\+Inspector\+Exception 
+\item 
+String\+Builder \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_print_1_1_value_printer_a8c8bad5a43d723b27a87341f0b1a74ad}{visit\+P\+S\+E\+Thread} (\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1common_1_1pse_1_1_p_s_e_thread}{P\+S\+E\+Thread} pse)  throws J\+P\+F\+Inspector\+Exception 
+\item 
+String\+Builder \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_print_1_1_value_printer_a2d5dd97c9d82697f7681ff53374f8241}{visit\+P\+S\+E\+Variable\+Array} (\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1common_1_1pse_1_1_p_s_e_variable_array}{P\+S\+E\+Variable\+Array} var)  throws J\+P\+F\+Inspector\+Exception 
+\item 
+String\+Builder \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_print_1_1_value_printer_ac87825ddc80faaea556401d3b29dd38e}{visit\+P\+S\+E\+Variable\+Object} (\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1common_1_1pse_1_1_p_s_e_variable_object}{P\+S\+E\+Variable\+Object} var)  throws J\+P\+F\+Inspector\+Exception 
+\item 
+String\+Builder \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_print_1_1_value_printer_a4199b39249b8deea48dfe26106712bda}{visit\+P\+S\+E\+Variable\+Primitive} (\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1common_1_1pse_1_1_p_s_e_variable_primitive}{P\+S\+E\+Variable\+Primitive} var)
+\end{DoxyCompactItemize}
+\subsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static final int \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_print_1_1_value_printer_a89fe8bec98f986921e7e08f191ff9179}{M\+A\+X\+\_\+\+L\+EN} = 50
+\begin{DoxyCompactList}\small\item\em Maximum length of a value before it is truncated. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_print_1_1_value_printer_aed27bc0c67ac2933c4b57723560e8e3d}{print\+Variable\+Basic} (\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1common_1_1pse_1_1_p_s_e_variable}{P\+S\+E\+Variable} var)
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+final String\+Builder \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_print_1_1_value_printer_a86eacdeab16acd6491038a0d80c57f62}{sb}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 83 of file Cmd\+Print.\+java.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{gov\+::nasa\+::jpf\+::inspector\+::client\+::commands\+::\+Cmd\+Print\+::\+Value\+Printer@{gov\+::nasa\+::jpf\+::inspector\+::client\+::commands\+::\+Cmd\+Print\+::\+Value\+Printer}!Value\+Printer@{Value\+Printer}}
+\index{Value\+Printer@{Value\+Printer}!gov\+::nasa\+::jpf\+::inspector\+::client\+::commands\+::\+Cmd\+Print\+::\+Value\+Printer@{gov\+::nasa\+::jpf\+::inspector\+::client\+::commands\+::\+Cmd\+Print\+::\+Value\+Printer}}
+\subsubsection[{\texorpdfstring{Value\+Printer()}{ValuePrinter()}}]{\setlength{\rightskip}{0pt plus 5cm}gov.\+nasa.\+jpf.\+inspector.\+client.\+commands.\+Cmd\+Print.\+Value\+Printer.\+Value\+Printer (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_print_1_1_value_printer_a0d5774eec97f453d44d532892386d5a9}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_print_1_1_value_printer_a0d5774eec97f453d44d532892386d5a9}
+
+
+Definition at line 92 of file Cmd\+Print.\+java.
+
+
+\begin{DoxyCode}
+92                            \{
+93       super();
+94 
+95       this.\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_print_1_1_value_printer_a86eacdeab16acd6491038a0d80c57f62}{sb} = \textcolor{keyword}{new} StringBuilder();
+96     \}
+\end{DoxyCode}
+
+
+\subsection{Member Function Documentation}
+\index{gov\+::nasa\+::jpf\+::inspector\+::client\+::commands\+::\+Cmd\+Print\+::\+Value\+Printer@{gov\+::nasa\+::jpf\+::inspector\+::client\+::commands\+::\+Cmd\+Print\+::\+Value\+Printer}!get\+Result@{get\+Result}}
+\index{get\+Result@{get\+Result}!gov\+::nasa\+::jpf\+::inspector\+::client\+::commands\+::\+Cmd\+Print\+::\+Value\+Printer@{gov\+::nasa\+::jpf\+::inspector\+::client\+::commands\+::\+Cmd\+Print\+::\+Value\+Printer}}
+\subsubsection[{\texorpdfstring{get\+Result()}{getResult()}}]{\setlength{\rightskip}{0pt plus 5cm}String\+Builder gov.\+nasa.\+jpf.\+inspector.\+client.\+commands.\+Cmd\+Print.\+Value\+Printer.\+get\+Result (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_print_1_1_value_printer_aa7ffd5ef783bc1a2d7c691e53280b237}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_print_1_1_value_printer_aa7ffd5ef783bc1a2d7c691e53280b237}
+\begin{DoxyReturn}{Returns}
+Gets a string buffer where data from visited program state entrieas are stored. 
+\end{DoxyReturn}
+
+
+Definition at line 101 of file Cmd\+Print.\+java.
+
+
+\begin{DoxyCode}
+101                                       \{
+102       \textcolor{keywordflow}{return} \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_print_1_1_value_printer_a86eacdeab16acd6491038a0d80c57f62}{sb};
+103     \}
+\end{DoxyCode}
+\index{gov\+::nasa\+::jpf\+::inspector\+::client\+::commands\+::\+Cmd\+Print\+::\+Value\+Printer@{gov\+::nasa\+::jpf\+::inspector\+::client\+::commands\+::\+Cmd\+Print\+::\+Value\+Printer}!print\+Variable\+Basic@{print\+Variable\+Basic}}
+\index{print\+Variable\+Basic@{print\+Variable\+Basic}!gov\+::nasa\+::jpf\+::inspector\+::client\+::commands\+::\+Cmd\+Print\+::\+Value\+Printer@{gov\+::nasa\+::jpf\+::inspector\+::client\+::commands\+::\+Cmd\+Print\+::\+Value\+Printer}}
+\subsubsection[{\texorpdfstring{print\+Variable\+Basic(\+P\+S\+E\+Variable var)}{printVariableBasic(PSEVariable var)}}]{\setlength{\rightskip}{0pt plus 5cm}void gov.\+nasa.\+jpf.\+inspector.\+client.\+commands.\+Cmd\+Print.\+Value\+Printer.\+print\+Variable\+Basic (
+\begin{DoxyParamCaption}
+\item[{{\bf P\+S\+E\+Variable}}]{var}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_print_1_1_value_printer_aed27bc0c67ac2933c4b57723560e8e3d}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_print_1_1_value_printer_aed27bc0c67ac2933c4b57723560e8e3d}
+
+
+Definition at line 105 of file Cmd\+Print.\+java.
+
+
+\begin{DoxyCode}
+105                                                       \{
+106       \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_print_1_1_value_printer_a86eacdeab16acd6491038a0d80c57f62}{sb}.append(\textcolor{charliteral}{'\(\backslash\)t'});
+107       \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_print_1_1_value_printer_a86eacdeab16acd6491038a0d80c57f62}{sb}.append(var.getIndex());
+108       \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_print_1_1_value_printer_a86eacdeab16acd6491038a0d80c57f62}{sb}.append(\textcolor{stringliteral}{" : "});
+109       \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_print_1_1_value_printer_a86eacdeab16acd6491038a0d80c57f62}{sb}.append(var.getVarName());
+110       \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_print_1_1_value_printer_a86eacdeab16acd6491038a0d80c57f62}{sb}.append(\textcolor{stringliteral}{" ("});
+111       \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_print_1_1_value_printer_a86eacdeab16acd6491038a0d80c57f62}{sb}.append(var.getVarTypeName());
+112       \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_print_1_1_value_printer_a86eacdeab16acd6491038a0d80c57f62}{sb}.append(\textcolor{stringliteral}{") = "});
+113       String varValue = var.getVarValue();
+114       \textcolor{keywordflow}{if} (varValue.length() > \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_print_1_1_value_printer_a89fe8bec98f986921e7e08f191ff9179}{MAX\_LEN}) \{
+115         varValue = varValue.substring(0, \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_print_1_1_value_printer_a89fe8bec98f986921e7e08f191ff9179}{MAX\_LEN} - 3) + \textcolor{stringliteral}{"..."};
+116       \}
+117       \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_print_1_1_value_printer_a86eacdeab16acd6491038a0d80c57f62}{sb}.append(varValue);
+118       \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_print_1_1_value_printer_a86eacdeab16acd6491038a0d80c57f62}{sb}.append(\textcolor{charliteral}{'\(\backslash\)n'});
+119     \}
+\end{DoxyCode}
+\index{gov\+::nasa\+::jpf\+::inspector\+::client\+::commands\+::\+Cmd\+Print\+::\+Value\+Printer@{gov\+::nasa\+::jpf\+::inspector\+::client\+::commands\+::\+Cmd\+Print\+::\+Value\+Printer}!visit\+P\+S\+E\+Heap\+Entry\+List@{visit\+P\+S\+E\+Heap\+Entry\+List}}
+\index{visit\+P\+S\+E\+Heap\+Entry\+List@{visit\+P\+S\+E\+Heap\+Entry\+List}!gov\+::nasa\+::jpf\+::inspector\+::client\+::commands\+::\+Cmd\+Print\+::\+Value\+Printer@{gov\+::nasa\+::jpf\+::inspector\+::client\+::commands\+::\+Cmd\+Print\+::\+Value\+Printer}}
+\subsubsection[{\texorpdfstring{visit\+P\+S\+E\+Heap\+Entry\+List(\+P\+S\+E\+Heap\+Entry\+List entry)}{visitPSEHeapEntryList(PSEHeapEntryList entry)}}]{\setlength{\rightskip}{0pt plus 5cm}String\+Builder gov.\+nasa.\+jpf.\+inspector.\+client.\+commands.\+Cmd\+Print.\+Value\+Printer.\+visit\+P\+S\+E\+Heap\+Entry\+List (
+\begin{DoxyParamCaption}
+\item[{{\bf P\+S\+E\+Heap\+Entry\+List}}]{entry}
+\end{DoxyParamCaption}
+) throws {\bf J\+P\+F\+Inspector\+Exception}}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_print_1_1_value_printer_a3beefe042d19c70b3143c405ed6a4118}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_print_1_1_value_printer_a3beefe042d19c70b3143c405ed6a4118}
+
+
+Implements \hyperlink{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1common_1_1pse_1_1_p_s_e_visitor_a30d924c35c2cdf523f227ee38d5e8be5}{gov.\+nasa.\+jpf.\+inspector.\+common.\+pse.\+P\+S\+E\+Visitor$<$ T $>$}.
+
+
+
+Definition at line 123 of file Cmd\+Print.\+java.
+
+
+\begin{DoxyCode}
+123                                                                                                      \{
+124 
+125       \textcolor{keywordflow}{for} (PSEVariable var : entry.getHeapList()) \{
+126         \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_print_1_1_value_printer_aed27bc0c67ac2933c4b57723560e8e3d}{printVariableBasic}(var);
+127       \}
+128       \textcolor{keywordflow}{return} \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_print_1_1_value_printer_a86eacdeab16acd6491038a0d80c57f62}{sb};
+129     \}
+\end{DoxyCode}
+\index{gov\+::nasa\+::jpf\+::inspector\+::client\+::commands\+::\+Cmd\+Print\+::\+Value\+Printer@{gov\+::nasa\+::jpf\+::inspector\+::client\+::commands\+::\+Cmd\+Print\+::\+Value\+Printer}!visit\+P\+S\+E\+Method@{visit\+P\+S\+E\+Method}}
+\index{visit\+P\+S\+E\+Method@{visit\+P\+S\+E\+Method}!gov\+::nasa\+::jpf\+::inspector\+::client\+::commands\+::\+Cmd\+Print\+::\+Value\+Printer@{gov\+::nasa\+::jpf\+::inspector\+::client\+::commands\+::\+Cmd\+Print\+::\+Value\+Printer}}
+\subsubsection[{\texorpdfstring{visit\+P\+S\+E\+Method(\+P\+S\+E\+Method pse)}{visitPSEMethod(PSEMethod pse)}}]{\setlength{\rightskip}{0pt plus 5cm}String\+Builder gov.\+nasa.\+jpf.\+inspector.\+client.\+commands.\+Cmd\+Print.\+Value\+Printer.\+visit\+P\+S\+E\+Method (
+\begin{DoxyParamCaption}
+\item[{{\bf P\+S\+E\+Method}}]{pse}
+\end{DoxyParamCaption}
+) throws {\bf J\+P\+F\+Inspector\+Exception}}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_print_1_1_value_printer_a3f0eb11af5535dfa66a4b8df66c36a55}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_print_1_1_value_printer_a3f0eb11af5535dfa66a4b8df66c36a55}
+
+
+Implements \hyperlink{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1common_1_1pse_1_1_p_s_e_visitor_a2496aaab0de700199c77baba72c544cd}{gov.\+nasa.\+jpf.\+inspector.\+common.\+pse.\+P\+S\+E\+Visitor$<$ T $>$}.
+
+
+
+Definition at line 132 of file Cmd\+Print.\+java.
+
+
+\begin{DoxyCode}
+132                                                                                      \{
+133       InstructionWrapper.toStringBuffer(pse.getCallInstruction(), \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_print_1_1_value_printer_a86eacdeab16acd6491038a0d80c57f62}{sb});
+134       \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_print_1_1_value_printer_a86eacdeab16acd6491038a0d80c57f62}{sb}.append(\textcolor{charliteral}{'\(\backslash\)n'});
+135 
+136       PSEVariable[] localVars = pse.getLocals();
+137       \textcolor{keywordflow}{if} (localVars.length > 0) \{
+138         \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_print_1_1_value_printer_a86eacdeab16acd6491038a0d80c57f62}{sb}.append(\textcolor{stringliteral}{"Stack slots\(\backslash\)n"});
+139         \textcolor{keywordflow}{for} (PSEVariable localVar : localVars) \{
+140           \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_print_1_1_value_printer_aed27bc0c67ac2933c4b57723560e8e3d}{printVariableBasic}(localVar);
+141         \}
+142       \}
+143 
+144       PSEVariableObject sfThis = pse.getThis();
+145       \textcolor{keywordflow}{if} (sfThis != null) \{
+146 
+147         PSEVariable[] fields = sfThis.getFields();
+148         \textcolor{keywordflow}{if} (fields.length > 0) \{
+149           \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_print_1_1_value_printer_a86eacdeab16acd6491038a0d80c57f62}{sb}.append(\textcolor{stringliteral}{"Fields\(\backslash\)n"});
+150           \textcolor{keywordflow}{for} (PSEVariable field : fields) \{
+151             \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_print_1_1_value_printer_aed27bc0c67ac2933c4b57723560e8e3d}{printVariableBasic}(field);
+152           \}
+153         \}
+154       \}
+155       \textcolor{keywordflow}{return} \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_print_1_1_value_printer_a86eacdeab16acd6491038a0d80c57f62}{sb};
+156     \}
+\end{DoxyCode}
+\index{gov\+::nasa\+::jpf\+::inspector\+::client\+::commands\+::\+Cmd\+Print\+::\+Value\+Printer@{gov\+::nasa\+::jpf\+::inspector\+::client\+::commands\+::\+Cmd\+Print\+::\+Value\+Printer}!visit\+P\+S\+E\+Thread@{visit\+P\+S\+E\+Thread}}
+\index{visit\+P\+S\+E\+Thread@{visit\+P\+S\+E\+Thread}!gov\+::nasa\+::jpf\+::inspector\+::client\+::commands\+::\+Cmd\+Print\+::\+Value\+Printer@{gov\+::nasa\+::jpf\+::inspector\+::client\+::commands\+::\+Cmd\+Print\+::\+Value\+Printer}}
+\subsubsection[{\texorpdfstring{visit\+P\+S\+E\+Thread(\+P\+S\+E\+Thread pse)}{visitPSEThread(PSEThread pse)}}]{\setlength{\rightskip}{0pt plus 5cm}String\+Builder gov.\+nasa.\+jpf.\+inspector.\+client.\+commands.\+Cmd\+Print.\+Value\+Printer.\+visit\+P\+S\+E\+Thread (
+\begin{DoxyParamCaption}
+\item[{{\bf P\+S\+E\+Thread}}]{pse}
+\end{DoxyParamCaption}
+) throws {\bf J\+P\+F\+Inspector\+Exception}}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_print_1_1_value_printer_a8c8bad5a43d723b27a87341f0b1a74ad}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_print_1_1_value_printer_a8c8bad5a43d723b27a87341f0b1a74ad}
+
+
+Implements \hyperlink{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1common_1_1pse_1_1_p_s_e_visitor_a3dd0085376292e23871b6f754e9ab0eb}{gov.\+nasa.\+jpf.\+inspector.\+common.\+pse.\+P\+S\+E\+Visitor$<$ T $>$}.
+
+
+
+Definition at line 160 of file Cmd\+Print.\+java.
+
+
+\begin{DoxyCode}
+160                                                                                      \{
+161       \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_print_1_1_value_printer_a86eacdeab16acd6491038a0d80c57f62}{sb}.append(pse.getThreadNum());
+162       \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_print_1_1_value_printer_a86eacdeab16acd6491038a0d80c57f62}{sb}.append(\textcolor{stringliteral}{" : "});
+163       \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_print_1_1_value_printer_a86eacdeab16acd6491038a0d80c57f62}{sb}.append(pse.getThreadName());
+164 
+165       \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_print_1_1_value_printer_a86eacdeab16acd6491038a0d80c57f62}{sb}.append(\textcolor{stringliteral}{" state="});
+166       \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_print_1_1_value_printer_a86eacdeab16acd6491038a0d80c57f62}{sb}.append(pse.getState());
+167 
+168       \textcolor{keywordflow}{if} (pse.isDaemon()) \{
+169         \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_print_1_1_value_printer_a86eacdeab16acd6491038a0d80c57f62}{sb}.append(\textcolor{stringliteral}{" daemon thread"});
+170       \}
+171 
+172       \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_print_1_1_value_printer_a86eacdeab16acd6491038a0d80c57f62}{sb}.append(\textcolor{stringliteral}{" priority="});
+173       \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_print_1_1_value_printer_a86eacdeab16acd6491038a0d80c57f62}{sb}.append(pse.getPriority());
+174 
+175       \textcolor{comment}{// Call stack - (at least TOP call)}
+176       \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_print_1_1_value_printer_a86eacdeab16acd6491038a0d80c57f62}{sb}.append(\textcolor{charliteral}{'\(\backslash\)n'});
+177 
+178       PSEMethod[] callStack = pse.getCallStack();
+179       \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < callStack.length; i++) \{
+180         PSEMethod method = callStack[i];
+181         \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_print_1_1_value_printer_a86eacdeab16acd6491038a0d80c57f62}{sb}.append(\textcolor{charliteral}{'\(\backslash\)t'});
+182         \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_print_1_1_value_printer_a86eacdeab16acd6491038a0d80c57f62}{sb}.append(i);
+183         \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_print_1_1_value_printer_a86eacdeab16acd6491038a0d80c57f62}{sb}.append(\textcolor{stringliteral}{" : "});
+184         InstructionWrapper.toStringBuffer(method.getCallInstruction(), \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_print_1_1_value_printer_a86eacdeab16acd6491038a0d80c57f62}{sb});
+185         \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_print_1_1_value_printer_a86eacdeab16acd6491038a0d80c57f62}{sb}.append(\textcolor{charliteral}{'\(\backslash\)n'});
+186       \}
+187       \textcolor{keywordflow}{return} \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_print_1_1_value_printer_a86eacdeab16acd6491038a0d80c57f62}{sb};
+188     \}
+\end{DoxyCode}
+\index{gov\+::nasa\+::jpf\+::inspector\+::client\+::commands\+::\+Cmd\+Print\+::\+Value\+Printer@{gov\+::nasa\+::jpf\+::inspector\+::client\+::commands\+::\+Cmd\+Print\+::\+Value\+Printer}!visit\+P\+S\+E\+Variable\+Array@{visit\+P\+S\+E\+Variable\+Array}}
+\index{visit\+P\+S\+E\+Variable\+Array@{visit\+P\+S\+E\+Variable\+Array}!gov\+::nasa\+::jpf\+::inspector\+::client\+::commands\+::\+Cmd\+Print\+::\+Value\+Printer@{gov\+::nasa\+::jpf\+::inspector\+::client\+::commands\+::\+Cmd\+Print\+::\+Value\+Printer}}
+\subsubsection[{\texorpdfstring{visit\+P\+S\+E\+Variable\+Array(\+P\+S\+E\+Variable\+Array var)}{visitPSEVariableArray(PSEVariableArray var)}}]{\setlength{\rightskip}{0pt plus 5cm}String\+Builder gov.\+nasa.\+jpf.\+inspector.\+client.\+commands.\+Cmd\+Print.\+Value\+Printer.\+visit\+P\+S\+E\+Variable\+Array (
+\begin{DoxyParamCaption}
+\item[{{\bf P\+S\+E\+Variable\+Array}}]{var}
+\end{DoxyParamCaption}
+) throws {\bf J\+P\+F\+Inspector\+Exception}}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_print_1_1_value_printer_a2d5dd97c9d82697f7681ff53374f8241}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_print_1_1_value_printer_a2d5dd97c9d82697f7681ff53374f8241}
+
+
+Implements \hyperlink{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1common_1_1pse_1_1_p_s_e_visitor_a694361fcc25436e3a5ef775ca05e1b32}{gov.\+nasa.\+jpf.\+inspector.\+common.\+pse.\+P\+S\+E\+Visitor$<$ T $>$}.
+
+
+
+Definition at line 192 of file Cmd\+Print.\+java.
+
+
+\begin{DoxyCode}
+192                                                                                                    \{
+193       \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_print_1_1_value_printer_a86eacdeab16acd6491038a0d80c57f62}{sb}.append(var.getVarName());
+194       \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_print_1_1_value_printer_a86eacdeab16acd6491038a0d80c57f62}{sb}.append(\textcolor{stringliteral}{" ("});
+195       \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_print_1_1_value_printer_a86eacdeab16acd6491038a0d80c57f62}{sb}.append(var.getVarTypeName());
+196       \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_print_1_1_value_printer_a86eacdeab16acd6491038a0d80c57f62}{sb}.append(\textcolor{stringliteral}{") ="});
+197       String varValue = var.getVarValue();
+198       \textcolor{keywordflow}{if} (varValue != null) \{
+199         \textcolor{keywordflow}{if} (varValue.length() > \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_print_1_1_value_printer_a89fe8bec98f986921e7e08f191ff9179}{MAX\_LEN}) \{
+200           varValue = varValue.substring(0, \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_print_1_1_value_printer_a89fe8bec98f986921e7e08f191ff9179}{MAX\_LEN} - 3) + \textcolor{stringliteral}{"..."};
+201         \}
+202         \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_print_1_1_value_printer_a86eacdeab16acd6491038a0d80c57f62}{sb}.append(varValue);
+203       \}
+204       \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_print_1_1_value_printer_a86eacdeab16acd6491038a0d80c57f62}{sb}.append(\textcolor{stringliteral}{", length="});
+205       \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_print_1_1_value_printer_a86eacdeab16acd6491038a0d80c57f62}{sb}.append(var.getLen());
+206       \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_print_1_1_value_printer_a86eacdeab16acd6491038a0d80c57f62}{sb}.append(\textcolor{charliteral}{'\(\backslash\)n'});
+207 
+208       PSEVariable[] elements = var.getArrayItems();
+209       \textcolor{keywordflow}{for} (PSEVariable element : elements) \{
+210         \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_print_1_1_value_printer_aed27bc0c67ac2933c4b57723560e8e3d}{printVariableBasic}(element);
+211       \}
+212       \textcolor{keywordflow}{return} \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_print_1_1_value_printer_a86eacdeab16acd6491038a0d80c57f62}{sb};
+213     \}
+\end{DoxyCode}
+\index{gov\+::nasa\+::jpf\+::inspector\+::client\+::commands\+::\+Cmd\+Print\+::\+Value\+Printer@{gov\+::nasa\+::jpf\+::inspector\+::client\+::commands\+::\+Cmd\+Print\+::\+Value\+Printer}!visit\+P\+S\+E\+Variable\+Object@{visit\+P\+S\+E\+Variable\+Object}}
+\index{visit\+P\+S\+E\+Variable\+Object@{visit\+P\+S\+E\+Variable\+Object}!gov\+::nasa\+::jpf\+::inspector\+::client\+::commands\+::\+Cmd\+Print\+::\+Value\+Printer@{gov\+::nasa\+::jpf\+::inspector\+::client\+::commands\+::\+Cmd\+Print\+::\+Value\+Printer}}
+\subsubsection[{\texorpdfstring{visit\+P\+S\+E\+Variable\+Object(\+P\+S\+E\+Variable\+Object var)}{visitPSEVariableObject(PSEVariableObject var)}}]{\setlength{\rightskip}{0pt plus 5cm}String\+Builder gov.\+nasa.\+jpf.\+inspector.\+client.\+commands.\+Cmd\+Print.\+Value\+Printer.\+visit\+P\+S\+E\+Variable\+Object (
+\begin{DoxyParamCaption}
+\item[{{\bf P\+S\+E\+Variable\+Object}}]{var}
+\end{DoxyParamCaption}
+) throws {\bf J\+P\+F\+Inspector\+Exception}}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_print_1_1_value_printer_ac87825ddc80faaea556401d3b29dd38e}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_print_1_1_value_printer_ac87825ddc80faaea556401d3b29dd38e}
+
+
+Implements \hyperlink{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1common_1_1pse_1_1_p_s_e_visitor_a3dcad4d6a2264705e43726b934dcc610}{gov.\+nasa.\+jpf.\+inspector.\+common.\+pse.\+P\+S\+E\+Visitor$<$ T $>$}.
+
+
+
+Definition at line 217 of file Cmd\+Print.\+java.
+
+
+\begin{DoxyCode}
+217                                                                                                      \{
+218       \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_print_1_1_value_printer_a86eacdeab16acd6491038a0d80c57f62}{sb}.append(var.getVarName());
+219       \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_print_1_1_value_printer_a86eacdeab16acd6491038a0d80c57f62}{sb}.append(\textcolor{stringliteral}{" ("});
+220       \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_print_1_1_value_printer_a86eacdeab16acd6491038a0d80c57f62}{sb}.append(var.getVarTypeName());
+221       \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_print_1_1_value_printer_a86eacdeab16acd6491038a0d80c57f62}{sb}.append(\textcolor{stringliteral}{") = "});
+222       String varValue = var.getVarValue();
+223       \textcolor{keywordflow}{if} (varValue != null) \{
+224         \textcolor{keywordflow}{if} (varValue.length() > \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_print_1_1_value_printer_a89fe8bec98f986921e7e08f191ff9179}{MAX\_LEN}) \{
+225           varValue = varValue.substring(0, \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_print_1_1_value_printer_a89fe8bec98f986921e7e08f191ff9179}{MAX\_LEN} - 3) + \textcolor{stringliteral}{"..."};
+226         \}
+227         \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_print_1_1_value_printer_a86eacdeab16acd6491038a0d80c57f62}{sb}.append(varValue);
+228       \}
+229       \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_print_1_1_value_printer_a86eacdeab16acd6491038a0d80c57f62}{sb}.append(\textcolor{charliteral}{'\(\backslash\)n'});
+230 
+231       PSEVariable[] fields = var.getFields();
+232       PSEVariable[] staticFields = var.getStaticFields();
+233 
+234       \textcolor{keywordflow}{if} (fields.length > 0) \{
+235         \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_print_1_1_value_printer_a86eacdeab16acd6491038a0d80c57f62}{sb}.append(\textcolor{stringliteral}{"  Instance fields\(\backslash\)n"});
+236         \textcolor{keywordflow}{for} (PSEVariable field : fields) \{
+237           \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_print_1_1_value_printer_aed27bc0c67ac2933c4b57723560e8e3d}{printVariableBasic}(field);
+238         \}
+239       \} \textcolor{keywordflow}{else} \{
+240         \textcolor{keywordflow}{if} (staticFields.length > 0) \{
+241           \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_print_1_1_value_printer_a86eacdeab16acd6491038a0d80c57f62}{sb}.append(\textcolor{stringliteral}{"  No instance fields\(\backslash\)n"});
+242         \} \textcolor{keywordflow}{else} \{
+243           \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_print_1_1_value_printer_a86eacdeab16acd6491038a0d80c57f62}{sb}.append(\textcolor{stringliteral}{"  No instance or static fields\(\backslash\)n"});
+244         \}
+245       \}
+246 
+247       \textcolor{keywordflow}{if} (staticFields.length > 0) \{
+248         \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_print_1_1_value_printer_a86eacdeab16acd6491038a0d80c57f62}{sb}.append(\textcolor{stringliteral}{"  Static fields\(\backslash\)n"});
+249         \textcolor{keywordflow}{for} (PSEVariable staticField : staticFields) \{
+250           \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_print_1_1_value_printer_aed27bc0c67ac2933c4b57723560e8e3d}{printVariableBasic}(staticField);
+251         \}
+252       \}
+253 
+254       \textcolor{keywordflow}{return} \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_print_1_1_value_printer_a86eacdeab16acd6491038a0d80c57f62}{sb};
+255     \}
+\end{DoxyCode}
+\index{gov\+::nasa\+::jpf\+::inspector\+::client\+::commands\+::\+Cmd\+Print\+::\+Value\+Printer@{gov\+::nasa\+::jpf\+::inspector\+::client\+::commands\+::\+Cmd\+Print\+::\+Value\+Printer}!visit\+P\+S\+E\+Variable\+Primitive@{visit\+P\+S\+E\+Variable\+Primitive}}
+\index{visit\+P\+S\+E\+Variable\+Primitive@{visit\+P\+S\+E\+Variable\+Primitive}!gov\+::nasa\+::jpf\+::inspector\+::client\+::commands\+::\+Cmd\+Print\+::\+Value\+Printer@{gov\+::nasa\+::jpf\+::inspector\+::client\+::commands\+::\+Cmd\+Print\+::\+Value\+Printer}}
+\subsubsection[{\texorpdfstring{visit\+P\+S\+E\+Variable\+Primitive(\+P\+S\+E\+Variable\+Primitive var)}{visitPSEVariablePrimitive(PSEVariablePrimitive var)}}]{\setlength{\rightskip}{0pt plus 5cm}String\+Builder gov.\+nasa.\+jpf.\+inspector.\+client.\+commands.\+Cmd\+Print.\+Value\+Printer.\+visit\+P\+S\+E\+Variable\+Primitive (
+\begin{DoxyParamCaption}
+\item[{{\bf P\+S\+E\+Variable\+Primitive}}]{var}
+\end{DoxyParamCaption}
+)}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_print_1_1_value_printer_a4199b39249b8deea48dfe26106712bda}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_print_1_1_value_printer_a4199b39249b8deea48dfe26106712bda}
+
+
+Implements \hyperlink{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1common_1_1pse_1_1_p_s_e_visitor_a8ca998a9c9ea31dd1b31f45db5b77d45}{gov.\+nasa.\+jpf.\+inspector.\+common.\+pse.\+P\+S\+E\+Visitor$<$ T $>$}.
+
+
+
+Definition at line 258 of file Cmd\+Print.\+java.
+
+
+\begin{DoxyCode}
+258                                                                               \{
+259       \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_print_1_1_value_printer_aed27bc0c67ac2933c4b57723560e8e3d}{printVariableBasic}(var);
+260       \textcolor{keywordflow}{return} \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_print_1_1_value_printer_a86eacdeab16acd6491038a0d80c57f62}{sb};
+261     \}
+\end{DoxyCode}
+
+
+\subsection{Member Data Documentation}
+\index{gov\+::nasa\+::jpf\+::inspector\+::client\+::commands\+::\+Cmd\+Print\+::\+Value\+Printer@{gov\+::nasa\+::jpf\+::inspector\+::client\+::commands\+::\+Cmd\+Print\+::\+Value\+Printer}!M\+A\+X\+\_\+\+L\+EN@{M\+A\+X\+\_\+\+L\+EN}}
+\index{M\+A\+X\+\_\+\+L\+EN@{M\+A\+X\+\_\+\+L\+EN}!gov\+::nasa\+::jpf\+::inspector\+::client\+::commands\+::\+Cmd\+Print\+::\+Value\+Printer@{gov\+::nasa\+::jpf\+::inspector\+::client\+::commands\+::\+Cmd\+Print\+::\+Value\+Printer}}
+\subsubsection[{\texorpdfstring{M\+A\+X\+\_\+\+L\+EN}{MAX_LEN}}]{\setlength{\rightskip}{0pt plus 5cm}final int gov.\+nasa.\+jpf.\+inspector.\+client.\+commands.\+Cmd\+Print.\+Value\+Printer.\+M\+A\+X\+\_\+\+L\+EN = 50\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_print_1_1_value_printer_a89fe8bec98f986921e7e08f191ff9179}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_print_1_1_value_printer_a89fe8bec98f986921e7e08f191ff9179}
+
+
+Maximum length of a value before it is truncated. 
+
+
+
+Definition at line 88 of file Cmd\+Print.\+java.
+
+\index{gov\+::nasa\+::jpf\+::inspector\+::client\+::commands\+::\+Cmd\+Print\+::\+Value\+Printer@{gov\+::nasa\+::jpf\+::inspector\+::client\+::commands\+::\+Cmd\+Print\+::\+Value\+Printer}!sb@{sb}}
+\index{sb@{sb}!gov\+::nasa\+::jpf\+::inspector\+::client\+::commands\+::\+Cmd\+Print\+::\+Value\+Printer@{gov\+::nasa\+::jpf\+::inspector\+::client\+::commands\+::\+Cmd\+Print\+::\+Value\+Printer}}
+\subsubsection[{\texorpdfstring{sb}{sb}}]{\setlength{\rightskip}{0pt plus 5cm}final String\+Builder gov.\+nasa.\+jpf.\+inspector.\+client.\+commands.\+Cmd\+Print.\+Value\+Printer.\+sb\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_print_1_1_value_printer_a86eacdeab16acd6491038a0d80c57f62}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_print_1_1_value_printer_a86eacdeab16acd6491038a0d80c57f62}
+
+
+Definition at line 90 of file Cmd\+Print.\+java.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/gsoc/jpf-\/inspector/src/main/gov/nasa/jpf/inspector/client/commands/\hyperlink{_cmd_print_8java}{Cmd\+Print.\+java}\end{DoxyCompactItemize}

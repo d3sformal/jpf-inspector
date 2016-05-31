@@ -1,0 +1,250 @@
+\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_breakpoint_operator_or}{}\section{gov.\+nasa.\+jpf.\+inspector.\+server.\+expression.\+expressions.\+Expression\+Breakpoint\+Operator\+Or Class Reference}
+\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_breakpoint_operator_or}\index{gov.\+nasa.\+jpf.\+inspector.\+server.\+expression.\+expressions.\+Expression\+Breakpoint\+Operator\+Or@{gov.\+nasa.\+jpf.\+inspector.\+server.\+expression.\+expressions.\+Expression\+Breakpoint\+Operator\+Or}}
+Inheritance diagram for gov.\+nasa.\+jpf.\+inspector.\+server.\+expression.\+expressions.\+Expression\+Breakpoint\+Operator\+Or\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=4.827586cm]{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_breakpoint_operator_or}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_breakpoint_operator_or_a18f03073383ca1549de29da74c25eaff}{Expression\+Breakpoint\+Operator\+Or} (\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_expression_boolean}{Expression\+Boolean} left, \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_expression_boolean}{Expression\+Boolean} right)
+\item 
+boolean \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_breakpoint_operator_or_ae03708a0e0daba250c554d99c68b06f1}{evaluate\+Expression} (\hyperlink{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_inspector_state}{Inspector\+State} state)  throws J\+P\+F\+Inspector\+Exception 
+\begin{DoxyCompactList}\small\item\em Evaluate condition and get boolean result. \end{DoxyCompactList}\item 
+String \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_breakpoint_operator_or_a9ecb261295d5c3d5e3fd26cca2d129b0}{get\+Details} (\hyperlink{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_inspector_state}{Inspector\+State} state)
+\begin{DoxyCompactList}\small\item\em Get details related to expression. \end{DoxyCompactList}\item 
+String \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_breakpoint_operator_or_a25ea8f926923d598d21447b347d03912}{get\+Normalized\+Expression} ()
+\item 
+\hyperlink{enumgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_break_point_modes}{Break\+Point\+Modes} \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_expression_boolean_binary_operator_a7ef59a2108ddded0cc7094ae1e3086d7}{get\+B\+P\+Mode} ()
+\item 
+List$<$?extends \hyperlink{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_expression_boolean_interface}{Expression\+Boolean\+Interface} $>$ \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_expression_boolean_binary_operator_a8cf5fe32bcd0cd345799ea65905beac3}{get\+Childs} ()
+\item 
+\hyperlink{enumgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_types}{Types} \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_expression_boolean_aed010ff8683eb1e8621e226703133457}{get\+Type} ()
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+List$<$ \hyperlink{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_expression_boolean_interface}{Expression\+Boolean\+Interface} $>$ \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_expression_boolean_binary_operator_aa51f2a94e4b46898cc588a25f3957f6f}{children} = new Array\+List$<$\hyperlink{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_expression_boolean_interface}{Expression\+Boolean\+Interface}$>$(2)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 8 of file Expression\+Breakpoint\+Operator\+Or.\+java.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::expressions\+::\+Expression\+Breakpoint\+Operator\+Or@{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::expressions\+::\+Expression\+Breakpoint\+Operator\+Or}!Expression\+Breakpoint\+Operator\+Or@{Expression\+Breakpoint\+Operator\+Or}}
+\index{Expression\+Breakpoint\+Operator\+Or@{Expression\+Breakpoint\+Operator\+Or}!gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::expressions\+::\+Expression\+Breakpoint\+Operator\+Or@{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::expressions\+::\+Expression\+Breakpoint\+Operator\+Or}}
+\subsubsection[{\texorpdfstring{Expression\+Breakpoint\+Operator\+Or(\+Expression\+Boolean left, Expression\+Boolean right)}{ExpressionBreakpointOperatorOr(ExpressionBoolean left, ExpressionBoolean right)}}]{\setlength{\rightskip}{0pt plus 5cm}gov.\+nasa.\+jpf.\+inspector.\+server.\+expression.\+expressions.\+Expression\+Breakpoint\+Operator\+Or.\+Expression\+Breakpoint\+Operator\+Or (
+\begin{DoxyParamCaption}
+\item[{{\bf Expression\+Boolean}}]{left, }
+\item[{{\bf Expression\+Boolean}}]{right}
+\end{DoxyParamCaption}
+)}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_breakpoint_operator_or_a18f03073383ca1549de29da74c25eaff}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_breakpoint_operator_or_a18f03073383ca1549de29da74c25eaff}
+
+
+Definition at line 10 of file Expression\+Breakpoint\+Operator\+Or.\+java.
+
+
+\begin{DoxyCode}
+10                                                                                           \{
+11     super(left, right);
+12   \}
+\end{DoxyCode}
+
+
+\subsection{Member Function Documentation}
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::expressions\+::\+Expression\+Breakpoint\+Operator\+Or@{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::expressions\+::\+Expression\+Breakpoint\+Operator\+Or}!evaluate\+Expression@{evaluate\+Expression}}
+\index{evaluate\+Expression@{evaluate\+Expression}!gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::expressions\+::\+Expression\+Breakpoint\+Operator\+Or@{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::expressions\+::\+Expression\+Breakpoint\+Operator\+Or}}
+\subsubsection[{\texorpdfstring{evaluate\+Expression(\+Inspector\+State state)}{evaluateExpression(InspectorState state)}}]{\setlength{\rightskip}{0pt plus 5cm}boolean gov.\+nasa.\+jpf.\+inspector.\+server.\+expression.\+expressions.\+Expression\+Breakpoint\+Operator\+Or.\+evaluate\+Expression (
+\begin{DoxyParamCaption}
+\item[{{\bf Inspector\+State}}]{state}
+\end{DoxyParamCaption}
+) throws {\bf J\+P\+F\+Inspector\+Exception}}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_breakpoint_operator_or_ae03708a0e0daba250c554d99c68b06f1}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_breakpoint_operator_or_ae03708a0e0daba250c554d99c68b06f1}
+
+
+Evaluate condition and get boolean result. 
+
+Successors -\/ logical operators, compare (any type) 
+
+Implements \hyperlink{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_expression_boolean_interface_adc81f58d2517d5ccb9ace7f5d8b8211f}{gov.\+nasa.\+jpf.\+inspector.\+server.\+expression.\+Expression\+Boolean\+Interface}.
+
+
+
+Definition at line 15 of file Expression\+Breakpoint\+Operator\+Or.\+java.
+
+
+\begin{DoxyCode}
+15                                                                                         \{
+16     assert \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_expression_boolean_binary_operator_aa51f2a94e4b46898cc588a25f3957f6f}{children} != null;
+17     assert \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_expression_boolean_binary_operator_aa51f2a94e4b46898cc588a25f3957f6f}{children}.size() == 2;
+18     assert \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_expression_boolean_binary_operator_aa51f2a94e4b46898cc588a25f3957f6f}{children}.get(0) != null && \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_expression_boolean_binary_operator_aa51f2a94e4b46898cc588a25f3957f6f}{children}.get(1) != null;
+19     \textcolor{keywordflow}{try} \{
+20       \textcolor{keywordflow}{if} (\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_expression_boolean_binary_operator_aa51f2a94e4b46898cc588a25f3957f6f}{children}.get(0).evaluateExpression(state)) \{
+21         \textcolor{keywordflow}{return} \textcolor{keyword}{true};
+22       \}
+23     \} \textcolor{keywordflow}{catch} (JPFInspectorException e\_left) \{
+24       \textcolor{keywordflow}{try} \{
+25         \textcolor{comment}{// Try if right parameter can be fullfilled}
+26         \textcolor{keywordflow}{return} \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_expression_boolean_binary_operator_aa51f2a94e4b46898cc588a25f3957f6f}{children}.get(1).evaluateExpression(state);
+27       \} \textcolor{keywordflow}{catch} (JPFInspectorException e\_right) \{
+28         \textcolor{keywordflow}{throw} e\_left; \textcolor{comment}{// Throw first exception}
+29       \}
+30     \}
+31     \textcolor{keywordflow}{return} \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_expression_boolean_binary_operator_aa51f2a94e4b46898cc588a25f3957f6f}{children}.get(1).evaluateExpression(state);
+32   \}
+\end{DoxyCode}
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::expressions\+::\+Expression\+Breakpoint\+Operator\+Or@{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::expressions\+::\+Expression\+Breakpoint\+Operator\+Or}!get\+B\+P\+Mode@{get\+B\+P\+Mode}}
+\index{get\+B\+P\+Mode@{get\+B\+P\+Mode}!gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::expressions\+::\+Expression\+Breakpoint\+Operator\+Or@{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::expressions\+::\+Expression\+Breakpoint\+Operator\+Or}}
+\subsubsection[{\texorpdfstring{get\+B\+P\+Mode()}{getBPMode()}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Break\+Point\+Modes} gov.\+nasa.\+jpf.\+inspector.\+server.\+expression.\+Expression\+Boolean\+Binary\+Operator.\+get\+B\+P\+Mode (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inherited]}}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_expression_boolean_binary_operator_a7ef59a2108ddded0cc7094ae1e3086d7}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_expression_boolean_binary_operator_a7ef59a2108ddded0cc7094ae1e3086d7}
+\begin{DoxyReturn}{Returns}
+Gets which BP mode represents the expression. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_expression_boolean_interface_a970737c885b2bb8abfbd5729275855ac}{gov.\+nasa.\+jpf.\+inspector.\+server.\+expression.\+Expression\+Boolean\+Interface}.
+
+
+
+Definition at line 45 of file Expression\+Boolean\+Binary\+Operator.\+java.
+
+
+\begin{DoxyCode}
+45                                       \{
+46     \textcolor{keywordflow}{return} BreakPointModes.BP\_MODE\_USER\_CONDITION;
+47   \}
+\end{DoxyCode}
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::expressions\+::\+Expression\+Breakpoint\+Operator\+Or@{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::expressions\+::\+Expression\+Breakpoint\+Operator\+Or}!get\+Childs@{get\+Childs}}
+\index{get\+Childs@{get\+Childs}!gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::expressions\+::\+Expression\+Breakpoint\+Operator\+Or@{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::expressions\+::\+Expression\+Breakpoint\+Operator\+Or}}
+\subsubsection[{\texorpdfstring{get\+Childs()}{getChilds()}}]{\setlength{\rightskip}{0pt plus 5cm}List$<$? extends {\bf Expression\+Boolean\+Interface}$>$ gov.\+nasa.\+jpf.\+inspector.\+server.\+expression.\+Expression\+Boolean\+Binary\+Operator.\+get\+Childs (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inherited]}}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_expression_boolean_binary_operator_a8cf5fe32bcd0cd345799ea65905beac3}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_expression_boolean_binary_operator_a8cf5fe32bcd0cd345799ea65905beac3}
+
+
+Definition at line 50 of file Expression\+Boolean\+Binary\+Operator.\+java.
+
+
+\begin{DoxyCode}
+50                                                                  \{
+51     \textcolor{keywordflow}{return} Collections.unmodifiableList(\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_expression_boolean_binary_operator_aa51f2a94e4b46898cc588a25f3957f6f}{children});
+52   \}
+\end{DoxyCode}
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::expressions\+::\+Expression\+Breakpoint\+Operator\+Or@{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::expressions\+::\+Expression\+Breakpoint\+Operator\+Or}!get\+Details@{get\+Details}}
+\index{get\+Details@{get\+Details}!gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::expressions\+::\+Expression\+Breakpoint\+Operator\+Or@{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::expressions\+::\+Expression\+Breakpoint\+Operator\+Or}}
+\subsubsection[{\texorpdfstring{get\+Details(\+Inspector\+State state)}{getDetails(InspectorState state)}}]{\setlength{\rightskip}{0pt plus 5cm}String gov.\+nasa.\+jpf.\+inspector.\+server.\+expression.\+expressions.\+Expression\+Breakpoint\+Operator\+Or.\+get\+Details (
+\begin{DoxyParamCaption}
+\item[{{\bf Inspector\+State}}]{state}
+\end{DoxyParamCaption}
+)}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_breakpoint_operator_or_a9ecb261295d5c3d5e3fd26cca2d129b0}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_breakpoint_operator_or_a9ecb261295d5c3d5e3fd26cca2d129b0}
+
+
+Get details related to expression. 
+
+Note\+: This information is printed to user if breakpoint hits. This method can provide supplementary information for users.
+
+\begin{DoxyReturn}{Returns}
+Details related to evaluation of the expresison or null. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_expression_boolean_interface_a6e5af96b023d71fcda296c10f5d7c555}{gov.\+nasa.\+jpf.\+inspector.\+server.\+expression.\+Expression\+Boolean\+Interface}.
+
+
+
+Definition at line 35 of file Expression\+Breakpoint\+Operator\+Or.\+java.
+
+
+\begin{DoxyCode}
+35                                                   \{
+36     \textcolor{keywordflow}{try} \{
+37       \textcolor{keywordflow}{if} (\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_breakpoint_operator_or_ae03708a0e0daba250c554d99c68b06f1}{evaluateExpression}(state)) \{
+38         String leftDetails = \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_expression_boolean_binary_operator_aa51f2a94e4b46898cc588a25f3957f6f}{children}.get(0).getDetails(state);
+39         String rightDetails = \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_expression_boolean_binary_operator_aa51f2a94e4b46898cc588a25f3957f6f}{children}.get(1).getDetails(state);
+40 
+41         \textcolor{keywordflow}{if} (leftDetails != null && !leftDetails.trim().isEmpty()) \{
+42           \textcolor{keywordflow}{if} (rightDetails != null && !rightDetails.trim().isEmpty()) \{
+43             \textcolor{keywordflow}{return} leftDetails + \textcolor{stringliteral}{"\(\backslash\)n\(\backslash\)t"} + rightDetails;
+44           \} \textcolor{keywordflow}{else} \{
+45             \textcolor{keywordflow}{return} leftDetails;
+46           \}
+47         \} \textcolor{keywordflow}{else} \{
+48           \textcolor{keywordflow}{if} (rightDetails != null && !rightDetails.trim().isEmpty()) \{
+49             \textcolor{keywordflow}{return} rightDetails;
+50           \} \textcolor{keywordflow}{else} \{
+51             \textcolor{keywordflow}{return} \textcolor{stringliteral}{""};
+52           \}
+53         \}
+54       \}
+55       \textcolor{keywordflow}{return} \textcolor{stringliteral}{""};
+56     \} \textcolor{keywordflow}{catch} (JPFInspectorException e) \{
+57       \textcolor{keywordflow}{return} \textcolor{stringliteral}{""};
+58     \} \textcolor{comment}{// if BP Holds}
+59   \}
+\end{DoxyCode}
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::expressions\+::\+Expression\+Breakpoint\+Operator\+Or@{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::expressions\+::\+Expression\+Breakpoint\+Operator\+Or}!get\+Normalized\+Expression@{get\+Normalized\+Expression}}
+\index{get\+Normalized\+Expression@{get\+Normalized\+Expression}!gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::expressions\+::\+Expression\+Breakpoint\+Operator\+Or@{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::expressions\+::\+Expression\+Breakpoint\+Operator\+Or}}
+\subsubsection[{\texorpdfstring{get\+Normalized\+Expression()}{getNormalizedExpression()}}]{\setlength{\rightskip}{0pt plus 5cm}String gov.\+nasa.\+jpf.\+inspector.\+server.\+expression.\+expressions.\+Expression\+Breakpoint\+Operator\+Or.\+get\+Normalized\+Expression (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_breakpoint_operator_or_a25ea8f926923d598d21447b347d03912}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1expressions_1_1_expression_breakpoint_operator_or_a25ea8f926923d598d21447b347d03912}
+
+
+Definition at line 62 of file Expression\+Breakpoint\+Operator\+Or.\+java.
+
+
+\begin{DoxyCode}
+62                                            \{
+63     StringBuffer sb = \textcolor{keyword}{new} StringBuffer();
+64     sb.append(\textcolor{stringliteral}{"( "});
+65     sb.append(\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_expression_boolean_binary_operator_aa51f2a94e4b46898cc588a25f3957f6f}{children}.get(0).getNormalizedExpression());
+66     sb.append(\textcolor{stringliteral}{" ) or ( "});
+67     sb.append(\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_expression_boolean_binary_operator_aa51f2a94e4b46898cc588a25f3957f6f}{children}.get(1).getNormalizedExpression());
+68     sb.append(\textcolor{stringliteral}{" )"});
+69 
+70     \textcolor{keywordflow}{return} sb.toString();
+71   \}
+\end{DoxyCode}
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::expressions\+::\+Expression\+Breakpoint\+Operator\+Or@{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::expressions\+::\+Expression\+Breakpoint\+Operator\+Or}!get\+Type@{get\+Type}}
+\index{get\+Type@{get\+Type}!gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::expressions\+::\+Expression\+Breakpoint\+Operator\+Or@{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::expressions\+::\+Expression\+Breakpoint\+Operator\+Or}}
+\subsubsection[{\texorpdfstring{get\+Type()}{getType()}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Types} gov.\+nasa.\+jpf.\+inspector.\+server.\+expression.\+Expression\+Boolean.\+get\+Type (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inherited]}}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_expression_boolean_aed010ff8683eb1e8621e226703133457}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_expression_boolean_aed010ff8683eb1e8621e226703133457}
+
+
+Definition at line 25 of file Expression\+Boolean.\+java.
+
+
+\begin{DoxyCode}
+25                           \{
+26     \textcolor{keywordflow}{return} Types.ET\_BOOLEAN;
+27   \}
+\end{DoxyCode}
+
+
+\subsection{Member Data Documentation}
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::expressions\+::\+Expression\+Breakpoint\+Operator\+Or@{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::expressions\+::\+Expression\+Breakpoint\+Operator\+Or}!children@{children}}
+\index{children@{children}!gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::expressions\+::\+Expression\+Breakpoint\+Operator\+Or@{gov\+::nasa\+::jpf\+::inspector\+::server\+::expression\+::expressions\+::\+Expression\+Breakpoint\+Operator\+Or}}
+\subsubsection[{\texorpdfstring{children}{children}}]{\setlength{\rightskip}{0pt plus 5cm}List$<${\bf Expression\+Boolean\+Interface}$>$ gov.\+nasa.\+jpf.\+inspector.\+server.\+expression.\+Expression\+Boolean\+Binary\+Operator.\+children = new Array\+List$<${\bf Expression\+Boolean\+Interface}$>$(2)\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [inherited]}}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_expression_boolean_binary_operator_aa51f2a94e4b46898cc588a25f3957f6f}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1expression_1_1_expression_boolean_binary_operator_aa51f2a94e4b46898cc588a25f3957f6f}
+
+
+Definition at line 31 of file Expression\+Boolean\+Binary\+Operator.\+java.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/gsoc/jpf-\/inspector/src/main/gov/nasa/jpf/inspector/server/expression/expressions/\hyperlink{_expression_breakpoint_operator_or_8java}{Expression\+Breakpoint\+Operator\+Or.\+java}\end{DoxyCompactItemize}

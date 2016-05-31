@@ -1,0 +1,217 @@
+\hypertarget{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1_state_readable_value_interface}{}\section{gov.\+nasa.\+jpf.\+inspector.\+server.\+programstate.\+State\+Readable\+Value\+Interface Interface Reference}
+\label{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1_state_readable_value_interface}\index{gov.\+nasa.\+jpf.\+inspector.\+server.\+programstate.\+State\+Readable\+Value\+Interface@{gov.\+nasa.\+jpf.\+inspector.\+server.\+programstate.\+State\+Readable\+Value\+Interface}}
+
+
+Holds operation needed for reading the value.  
+
+
+Inheritance diagram for gov.\+nasa.\+jpf.\+inspector.\+server.\+programstate.\+State\+Readable\+Value\+Interface\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=1.296296cm]{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1_state_readable_value_interface}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+Class\+Info \hyperlink{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1_state_readable_value_interface_a7f2132a972c2fdd83ddf2f8ca85da191}{get\+Class\+Info} ()
+\item 
+Object \hyperlink{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1_state_readable_value_interface_a6bb9486c6b7de18915680f234d56d4d5}{get\+Value} ()
+\item 
+boolean \hyperlink{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1_state_readable_value_interface_a2f838619fd458febfe5a09b8c2687412}{is\+Reference} ()
+\item 
+Element\+Info \hyperlink{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1_state_readable_value_interface_ad56cb49db2120680a8ebffcc46d77871}{get\+Reference\+Value} ()
+\item 
+\hyperlink{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1_state_readable_value_interface}{State\+Readable\+Value\+Interface} \hyperlink{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1_state_readable_value_interface_a299f20e9db1151e4fdbe870583743799}{create\+Super} ()  throws J\+P\+F\+Inspector\+Exception
+\begin{DoxyCompactList}\small\item\em Limits accessible fields only to from the given Class\+Info. \end{DoxyCompactList}\item 
+\hyperlink{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1_state_readable_value_interface}{State\+Readable\+Value\+Interface} \hyperlink{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1_state_readable_value_interface_ae4e9a3d10684db8bdba8bf221c83e8fe}{create\+Predecessor\+Class} (Class\+Info ci)  throws J\+P\+F\+Inspector\+Not\+Super\+Class\+Exception
+\item 
+\hyperlink{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1_state_readable_value_interface}{State\+Readable\+Value\+Interface} \hyperlink{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1_state_readable_value_interface_a726b9bd70d7e76da89660f6a614d7fe1}{create\+This\+Value} ()  throws J\+P\+F\+Inspector\+Exception
+\begin{DoxyCompactList}\small\item\em Gets value that represents this instance. \end{DoxyCompactList}\item 
+\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1jpf_1_1_j_p_f_inspector}{J\+P\+F\+Inspector} \hyperlink{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1_state_node_interface_af5208348883828a3aac1a37b7a94495f}{get\+Inspector} ()
+\item 
+int \hyperlink{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1_state_node_interface_a43421bffd69d07e4dc11d71504524287}{get\+Reference\+Depth} ()
+\item 
+String \hyperlink{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1_state_node_interface_ad6918e06b7d8b9a83b0b0e26540d94c8}{get\+State\+Expr} ()
+\item 
+\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1common_1_1pse_1_1_program_state_entry}{Program\+State\+Entry} \hyperlink{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1_state_node_interface_a6072d5b251380a0697a0e57e5a2e4e03}{get\+Result\+Expression} (String name, int client\+ID)  throws J\+P\+F\+Inspector\+Exception
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Holds operation needed for reading the value. 
+
+Note\+: Not direct part of the \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1_state_value}{State\+Value} class, because it is necessary to distinguish among writeable values, (which represents \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1_state_value}{State\+Value}) and the read only instances which holds value \{\#heap\mbox{[}1\mbox{]}\} entries Class\+Name \#class\+Name\mbox{[}\mbox{]}
+
+\begin{DoxyAuthor}{Author}
+Alf 
+\end{DoxyAuthor}
+
+
+Definition at line 38 of file State\+Readable\+Value\+Interface.\+java.
+
+
+
+\subsection{Member Function Documentation}
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::programstate\+::\+State\+Readable\+Value\+Interface@{gov\+::nasa\+::jpf\+::inspector\+::server\+::programstate\+::\+State\+Readable\+Value\+Interface}!create\+Predecessor\+Class@{create\+Predecessor\+Class}}
+\index{create\+Predecessor\+Class@{create\+Predecessor\+Class}!gov\+::nasa\+::jpf\+::inspector\+::server\+::programstate\+::\+State\+Readable\+Value\+Interface@{gov\+::nasa\+::jpf\+::inspector\+::server\+::programstate\+::\+State\+Readable\+Value\+Interface}}
+\subsubsection[{\texorpdfstring{create\+Predecessor\+Class(\+Class\+Info ci)}{createPredecessorClass(ClassInfo ci)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf State\+Readable\+Value\+Interface} gov.\+nasa.\+jpf.\+inspector.\+server.\+programstate.\+State\+Readable\+Value\+Interface.\+create\+Predecessor\+Class (
+\begin{DoxyParamCaption}
+\item[{Class\+Info}]{ci}
+\end{DoxyParamCaption}
+) throws {\bf J\+P\+F\+Inspector\+Not\+Super\+Class\+Exception}}\hypertarget{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1_state_readable_value_interface_ae4e9a3d10684db8bdba8bf221c83e8fe}{}\label{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1_state_readable_value_interface_ae4e9a3d10684db8bdba8bf221c83e8fe}
+
+
+Implemented in \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1_state_value_element_info_field_aaf2d7b4dd368db30e338c494195090db}{gov.\+nasa.\+jpf.\+inspector.\+server.\+programstate.\+State\+Value\+Element\+Info\+Field}, \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1_state_value_stack_slot_adf1124f4b69836bd31b52a986dbb481d}{gov.\+nasa.\+jpf.\+inspector.\+server.\+programstate.\+State\+Value\+Stack\+Slot}, \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1_state_element_info_abf17bc782b49d45f41b3a4f5a5ebf8de}{gov.\+nasa.\+jpf.\+inspector.\+server.\+programstate.\+State\+Element\+Info}, \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1_state_value_array_element_a55bd476aeed2adcf1c1da70b2ed88794}{gov.\+nasa.\+jpf.\+inspector.\+server.\+programstate.\+State\+Value\+Array\+Element}, and \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1_state_readable_const_value_aef0f2f29f8bcf4a5afc4ae0092928064}{gov.\+nasa.\+jpf.\+inspector.\+server.\+programstate.\+State\+Readable\+Const\+Value}.
+
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::programstate\+::\+State\+Readable\+Value\+Interface@{gov\+::nasa\+::jpf\+::inspector\+::server\+::programstate\+::\+State\+Readable\+Value\+Interface}!create\+Super@{create\+Super}}
+\index{create\+Super@{create\+Super}!gov\+::nasa\+::jpf\+::inspector\+::server\+::programstate\+::\+State\+Readable\+Value\+Interface@{gov\+::nasa\+::jpf\+::inspector\+::server\+::programstate\+::\+State\+Readable\+Value\+Interface}}
+\subsubsection[{\texorpdfstring{create\+Super()}{createSuper()}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf State\+Readable\+Value\+Interface} gov.\+nasa.\+jpf.\+inspector.\+server.\+programstate.\+State\+Readable\+Value\+Interface.\+create\+Super (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) throws {\bf J\+P\+F\+Inspector\+Exception}}\hypertarget{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1_state_readable_value_interface_a299f20e9db1151e4fdbe870583743799}{}\label{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1_state_readable_value_interface_a299f20e9db1151e4fdbe870583743799}
+
+
+Limits accessible fields only to from the given Class\+Info. 
+
+(useful for access to hidden/overriden fields)
+
+\begin{DoxyReturn}{Returns}
+Gets value which represents only a subset of fields. 
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1_state_value_element_info_field_aaf0af8e4042599e6a3f70cd127e856a1}{gov.\+nasa.\+jpf.\+inspector.\+server.\+programstate.\+State\+Value\+Element\+Info\+Field}, \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1_state_value_stack_slot_adbb196cc5bbdf267dd4dfe65a04f198b}{gov.\+nasa.\+jpf.\+inspector.\+server.\+programstate.\+State\+Value\+Stack\+Slot}, \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1_state_element_info_a6b70b90de3ef017566b25a6175dcb114}{gov.\+nasa.\+jpf.\+inspector.\+server.\+programstate.\+State\+Element\+Info}, \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1_state_value_array_element_a28a643d26356e99acacac6411bcb55ac}{gov.\+nasa.\+jpf.\+inspector.\+server.\+programstate.\+State\+Value\+Array\+Element}, and \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1_state_readable_const_value_a0355465f46650255ce57cc1cee7dfd06}{gov.\+nasa.\+jpf.\+inspector.\+server.\+programstate.\+State\+Readable\+Const\+Value}.
+
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::programstate\+::\+State\+Readable\+Value\+Interface@{gov\+::nasa\+::jpf\+::inspector\+::server\+::programstate\+::\+State\+Readable\+Value\+Interface}!create\+This\+Value@{create\+This\+Value}}
+\index{create\+This\+Value@{create\+This\+Value}!gov\+::nasa\+::jpf\+::inspector\+::server\+::programstate\+::\+State\+Readable\+Value\+Interface@{gov\+::nasa\+::jpf\+::inspector\+::server\+::programstate\+::\+State\+Readable\+Value\+Interface}}
+\subsubsection[{\texorpdfstring{create\+This\+Value()}{createThisValue()}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf State\+Readable\+Value\+Interface} gov.\+nasa.\+jpf.\+inspector.\+server.\+programstate.\+State\+Readable\+Value\+Interface.\+create\+This\+Value (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) throws {\bf J\+P\+F\+Inspector\+Exception}}\hypertarget{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1_state_readable_value_interface_a726b9bd70d7e76da89660f6a614d7fe1}{}\label{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1_state_readable_value_interface_a726b9bd70d7e76da89660f6a614d7fe1}
+
+
+Gets value that represents this instance. 
+
+It means returns same \char`\"{}\+Value\char`\"{}, but with different state\+Expression. If not an instance (static,primitive type, array) then throws exception)
+
+\begin{DoxyReturn}{Returns}
+Gets value that represents this instance. 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em J\+P\+F\+Inspector\+Exception} & If not an instance (static,primitive type, array) \\
+\hline
+\end{DoxyExceptions}
+
+
+Implemented in \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1_state_value_element_info_field_a569ace6662787e7578585418f4277747}{gov.\+nasa.\+jpf.\+inspector.\+server.\+programstate.\+State\+Value\+Element\+Info\+Field}, \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1_state_value_stack_slot_a01d6d328957e42cae61c0ca47ee67d95}{gov.\+nasa.\+jpf.\+inspector.\+server.\+programstate.\+State\+Value\+Stack\+Slot}, \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1_state_element_info_affcbbe448d62d41659dd946e1cf07ffc}{gov.\+nasa.\+jpf.\+inspector.\+server.\+programstate.\+State\+Element\+Info}, \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1_state_value_array_element_a1cf95f3d45408971104552e0a002702a}{gov.\+nasa.\+jpf.\+inspector.\+server.\+programstate.\+State\+Value\+Array\+Element}, and \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1_state_readable_const_value_a9a0438bbae36b27e820c905ab5a5a74c}{gov.\+nasa.\+jpf.\+inspector.\+server.\+programstate.\+State\+Readable\+Const\+Value}.
+
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::programstate\+::\+State\+Readable\+Value\+Interface@{gov\+::nasa\+::jpf\+::inspector\+::server\+::programstate\+::\+State\+Readable\+Value\+Interface}!get\+Class\+Info@{get\+Class\+Info}}
+\index{get\+Class\+Info@{get\+Class\+Info}!gov\+::nasa\+::jpf\+::inspector\+::server\+::programstate\+::\+State\+Readable\+Value\+Interface@{gov\+::nasa\+::jpf\+::inspector\+::server\+::programstate\+::\+State\+Readable\+Value\+Interface}}
+\subsubsection[{\texorpdfstring{get\+Class\+Info()}{getClassInfo()}}]{\setlength{\rightskip}{0pt plus 5cm}Class\+Info gov.\+nasa.\+jpf.\+inspector.\+server.\+programstate.\+State\+Readable\+Value\+Interface.\+get\+Class\+Info (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1_state_readable_value_interface_a7f2132a972c2fdd83ddf2f8ca85da191}{}\label{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1_state_readable_value_interface_a7f2132a972c2fdd83ddf2f8ca85da191}
+\begin{DoxyReturn}{Returns}
+Get type information about represented value 
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1_state_element_info_a00c33712f1d1d064225c4c2ef7af857e}{gov.\+nasa.\+jpf.\+inspector.\+server.\+programstate.\+State\+Element\+Info}, \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1_state_value_a493f2e74b201fc3972422974ed7f570e}{gov.\+nasa.\+jpf.\+inspector.\+server.\+programstate.\+State\+Value}, and \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1_state_readable_const_value_a1d58a24ec5ea23200ee967318be47da1}{gov.\+nasa.\+jpf.\+inspector.\+server.\+programstate.\+State\+Readable\+Const\+Value}.
+
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::programstate\+::\+State\+Readable\+Value\+Interface@{gov\+::nasa\+::jpf\+::inspector\+::server\+::programstate\+::\+State\+Readable\+Value\+Interface}!get\+Inspector@{get\+Inspector}}
+\index{get\+Inspector@{get\+Inspector}!gov\+::nasa\+::jpf\+::inspector\+::server\+::programstate\+::\+State\+Readable\+Value\+Interface@{gov\+::nasa\+::jpf\+::inspector\+::server\+::programstate\+::\+State\+Readable\+Value\+Interface}}
+\subsubsection[{\texorpdfstring{get\+Inspector()}{getInspector()}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf J\+P\+F\+Inspector} gov.\+nasa.\+jpf.\+inspector.\+server.\+programstate.\+State\+Node\+Interface.\+get\+Inspector (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inherited]}}\hypertarget{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1_state_node_interface_af5208348883828a3aac1a37b7a94495f}{}\label{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1_state_node_interface_af5208348883828a3aac1a37b7a94495f}
+
+
+Implemented in \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1_state_node_af07846313e0632df18008b5bf571f805}{gov.\+nasa.\+jpf.\+inspector.\+server.\+programstate.\+State\+Node}.
+
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::programstate\+::\+State\+Readable\+Value\+Interface@{gov\+::nasa\+::jpf\+::inspector\+::server\+::programstate\+::\+State\+Readable\+Value\+Interface}!get\+Reference\+Depth@{get\+Reference\+Depth}}
+\index{get\+Reference\+Depth@{get\+Reference\+Depth}!gov\+::nasa\+::jpf\+::inspector\+::server\+::programstate\+::\+State\+Readable\+Value\+Interface@{gov\+::nasa\+::jpf\+::inspector\+::server\+::programstate\+::\+State\+Readable\+Value\+Interface}}
+\subsubsection[{\texorpdfstring{get\+Reference\+Depth()}{getReferenceDepth()}}]{\setlength{\rightskip}{0pt plus 5cm}int gov.\+nasa.\+jpf.\+inspector.\+server.\+programstate.\+State\+Node\+Interface.\+get\+Reference\+Depth (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inherited]}}\hypertarget{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1_state_node_interface_a43421bffd69d07e4dc11d71504524287}{}\label{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1_state_node_interface_a43421bffd69d07e4dc11d71504524287}
+
+
+Implemented in \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1_state_node_af59b1ac0319251e657293c810a16cdd9}{gov.\+nasa.\+jpf.\+inspector.\+server.\+programstate.\+State\+Node}.
+
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::programstate\+::\+State\+Readable\+Value\+Interface@{gov\+::nasa\+::jpf\+::inspector\+::server\+::programstate\+::\+State\+Readable\+Value\+Interface}!get\+Reference\+Value@{get\+Reference\+Value}}
+\index{get\+Reference\+Value@{get\+Reference\+Value}!gov\+::nasa\+::jpf\+::inspector\+::server\+::programstate\+::\+State\+Readable\+Value\+Interface@{gov\+::nasa\+::jpf\+::inspector\+::server\+::programstate\+::\+State\+Readable\+Value\+Interface}}
+\subsubsection[{\texorpdfstring{get\+Reference\+Value()}{getReferenceValue()}}]{\setlength{\rightskip}{0pt plus 5cm}Element\+Info gov.\+nasa.\+jpf.\+inspector.\+server.\+programstate.\+State\+Readable\+Value\+Interface.\+get\+Reference\+Value (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1_state_readable_value_interface_ad56cb49db2120680a8ebffcc46d77871}{}\label{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1_state_readable_value_interface_ad56cb49db2120680a8ebffcc46d77871}
+\begin{DoxyReturn}{Returns}
+If is\+Reference gets representation of referenced value. Gets null if not reference or null reference. 
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1_state_value_element_info_field_abd3e9c6bcff52f0e315e290d83acd4c5}{gov.\+nasa.\+jpf.\+inspector.\+server.\+programstate.\+State\+Value\+Element\+Info\+Field}, \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1_state_value_stack_slot_a3528938fc03c3b74d67e6fab291e872a}{gov.\+nasa.\+jpf.\+inspector.\+server.\+programstate.\+State\+Value\+Stack\+Slot}, \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1_state_element_info_a288cfe76be58ea3fbb1f4c2cdc3b84fb}{gov.\+nasa.\+jpf.\+inspector.\+server.\+programstate.\+State\+Element\+Info}, \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1_state_value_array_element_aad1395f06afed0ca4d42217f1f70fcd7}{gov.\+nasa.\+jpf.\+inspector.\+server.\+programstate.\+State\+Value\+Array\+Element}, and \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1_state_readable_const_value_a109b9eee6a4c6ef9ee588107befe1295}{gov.\+nasa.\+jpf.\+inspector.\+server.\+programstate.\+State\+Readable\+Const\+Value}.
+
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::programstate\+::\+State\+Readable\+Value\+Interface@{gov\+::nasa\+::jpf\+::inspector\+::server\+::programstate\+::\+State\+Readable\+Value\+Interface}!get\+Result\+Expression@{get\+Result\+Expression}}
+\index{get\+Result\+Expression@{get\+Result\+Expression}!gov\+::nasa\+::jpf\+::inspector\+::server\+::programstate\+::\+State\+Readable\+Value\+Interface@{gov\+::nasa\+::jpf\+::inspector\+::server\+::programstate\+::\+State\+Readable\+Value\+Interface}}
+\subsubsection[{\texorpdfstring{get\+Result\+Expression(\+String name, int client\+I\+D)}{getResultExpression(String name, int clientID)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Program\+State\+Entry} gov.\+nasa.\+jpf.\+inspector.\+server.\+programstate.\+State\+Node\+Interface.\+get\+Result\+Expression (
+\begin{DoxyParamCaption}
+\item[{String}]{name, }
+\item[{int}]{client\+ID}
+\end{DoxyParamCaption}
+) throws {\bf J\+P\+F\+Inspector\+Exception}\hspace{0.3cm}{\ttfamily [inherited]}}\hypertarget{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1_state_node_interface_a6072d5b251380a0697a0e57e5a2e4e03}{}\label{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1_state_node_interface_a6072d5b251380a0697a0e57e5a2e4e03}
+
+
+Implemented in \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1_state_value_element_info_field_aab7e6075fa9236d59f782f0906a7400c}{gov.\+nasa.\+jpf.\+inspector.\+server.\+programstate.\+State\+Value\+Element\+Info\+Field}, \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1_state_value_stack_slot_a65a92b56e99ba60028d815086898bfe8}{gov.\+nasa.\+jpf.\+inspector.\+server.\+programstate.\+State\+Value\+Stack\+Slot}, \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1_state_value_array_element_a753673bf2c84cc5f9eb2ba458d835a08}{gov.\+nasa.\+jpf.\+inspector.\+server.\+programstate.\+State\+Value\+Array\+Element}, \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1_state_readable_const_value_ab15980cc4034190d1f1cccf6dfbc22fe}{gov.\+nasa.\+jpf.\+inspector.\+server.\+programstate.\+State\+Readable\+Const\+Value}, \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1_state_element_info_aa6d6676a0e787affb77d9b1a04dde3bf}{gov.\+nasa.\+jpf.\+inspector.\+server.\+programstate.\+State\+Element\+Info}, \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1_state_node_ab9c4c8143bedd60118c9d144f81b66fc}{gov.\+nasa.\+jpf.\+inspector.\+server.\+programstate.\+State\+Node}, \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1_state_stack_frame_ae8e2d92b45ea5bf89c13d5493658df4f}{gov.\+nasa.\+jpf.\+inspector.\+server.\+programstate.\+State\+Stack\+Frame}, \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1_state_thread_info_ac968a68c7c78447ec4da5d94feca41e8}{gov.\+nasa.\+jpf.\+inspector.\+server.\+programstate.\+State\+Thread\+Info}, and \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1_state_heap_entry_list_a150de1c82e17a9a8f9a05e0d1a343d1e}{gov.\+nasa.\+jpf.\+inspector.\+server.\+programstate.\+State\+Heap\+Entry\+List}.
+
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::programstate\+::\+State\+Readable\+Value\+Interface@{gov\+::nasa\+::jpf\+::inspector\+::server\+::programstate\+::\+State\+Readable\+Value\+Interface}!get\+State\+Expr@{get\+State\+Expr}}
+\index{get\+State\+Expr@{get\+State\+Expr}!gov\+::nasa\+::jpf\+::inspector\+::server\+::programstate\+::\+State\+Readable\+Value\+Interface@{gov\+::nasa\+::jpf\+::inspector\+::server\+::programstate\+::\+State\+Readable\+Value\+Interface}}
+\subsubsection[{\texorpdfstring{get\+State\+Expr()}{getStateExpr()}}]{\setlength{\rightskip}{0pt plus 5cm}String gov.\+nasa.\+jpf.\+inspector.\+server.\+programstate.\+State\+Node\+Interface.\+get\+State\+Expr (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inherited]}}\hypertarget{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1_state_node_interface_ad6918e06b7d8b9a83b0b0e26540d94c8}{}\label{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1_state_node_interface_ad6918e06b7d8b9a83b0b0e26540d94c8}
+
+
+Implemented in \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1_state_node_a54c1c8d91f93c078171589f844252bdf}{gov.\+nasa.\+jpf.\+inspector.\+server.\+programstate.\+State\+Node}.
+
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::programstate\+::\+State\+Readable\+Value\+Interface@{gov\+::nasa\+::jpf\+::inspector\+::server\+::programstate\+::\+State\+Readable\+Value\+Interface}!get\+Value@{get\+Value}}
+\index{get\+Value@{get\+Value}!gov\+::nasa\+::jpf\+::inspector\+::server\+::programstate\+::\+State\+Readable\+Value\+Interface@{gov\+::nasa\+::jpf\+::inspector\+::server\+::programstate\+::\+State\+Readable\+Value\+Interface}}
+\subsubsection[{\texorpdfstring{get\+Value()}{getValue()}}]{\setlength{\rightskip}{0pt plus 5cm}Object gov.\+nasa.\+jpf.\+inspector.\+server.\+programstate.\+State\+Readable\+Value\+Interface.\+get\+Value (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1_state_readable_value_interface_a6bb9486c6b7de18915680f234d56d4d5}{}\label{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1_state_readable_value_interface_a6bb9486c6b7de18915680f234d56d4d5}
+\begin{DoxyReturn}{Returns}
+Gets representation of the readable value. For primitive types gets wrapped version of the primitive type. For objects (references and arrays) gets Element\+Info 
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1_state_value_element_info_field_a366f15098313983b81871fbffce2cff8}{gov.\+nasa.\+jpf.\+inspector.\+server.\+programstate.\+State\+Value\+Element\+Info\+Field}, \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1_state_value_stack_slot_aa22a827a5e1960acc2528d2fce8a3e83}{gov.\+nasa.\+jpf.\+inspector.\+server.\+programstate.\+State\+Value\+Stack\+Slot}, \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1_state_element_info_a8955bc3991b2e757ee9057343fbcf741}{gov.\+nasa.\+jpf.\+inspector.\+server.\+programstate.\+State\+Element\+Info}, \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1_state_value_array_element_a44723a2fd8b0a6ad58a853585c7c6ae4}{gov.\+nasa.\+jpf.\+inspector.\+server.\+programstate.\+State\+Value\+Array\+Element}, and \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1_state_readable_const_value_a8f41fea8bf196ac0eb085cf20343e9e8}{gov.\+nasa.\+jpf.\+inspector.\+server.\+programstate.\+State\+Readable\+Const\+Value}.
+
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::programstate\+::\+State\+Readable\+Value\+Interface@{gov\+::nasa\+::jpf\+::inspector\+::server\+::programstate\+::\+State\+Readable\+Value\+Interface}!is\+Reference@{is\+Reference}}
+\index{is\+Reference@{is\+Reference}!gov\+::nasa\+::jpf\+::inspector\+::server\+::programstate\+::\+State\+Readable\+Value\+Interface@{gov\+::nasa\+::jpf\+::inspector\+::server\+::programstate\+::\+State\+Readable\+Value\+Interface}}
+\subsubsection[{\texorpdfstring{is\+Reference()}{isReference()}}]{\setlength{\rightskip}{0pt plus 5cm}boolean gov.\+nasa.\+jpf.\+inspector.\+server.\+programstate.\+State\+Readable\+Value\+Interface.\+is\+Reference (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1_state_readable_value_interface_a2f838619fd458febfe5a09b8c2687412}{}\label{interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1_state_readable_value_interface_a2f838619fd458febfe5a09b8c2687412}
+\begin{DoxyReturn}{Returns}
+Gets true if represented value is object or array 
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1_state_element_info_a913e29e54a56f2bd28e21b6f559c2107}{gov.\+nasa.\+jpf.\+inspector.\+server.\+programstate.\+State\+Element\+Info}, \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1_state_value_ab8084c95fa605147087304bc1f3b3df1}{gov.\+nasa.\+jpf.\+inspector.\+server.\+programstate.\+State\+Value}, and \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1programstate_1_1_state_readable_const_value_afcdd6cb25aed93629cb43d13850156b0}{gov.\+nasa.\+jpf.\+inspector.\+server.\+programstate.\+State\+Readable\+Const\+Value}.
+
+
+
+The documentation for this interface was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/gsoc/jpf-\/inspector/src/main/gov/nasa/jpf/inspector/server/programstate/\hyperlink{_state_readable_value_interface_8java}{State\+Readable\+Value\+Interface.\+java}\end{DoxyCompactItemize}

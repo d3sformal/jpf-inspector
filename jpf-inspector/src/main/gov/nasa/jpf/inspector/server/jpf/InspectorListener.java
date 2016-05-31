@@ -41,7 +41,8 @@ import java.util.Stack;
  * Currently modes of works are supported
  *  {@link InspectorListenerModeNotifications} - Default mode when whole Inspector is notified about all interesting events 
  *  {@link InspectorListenerModeSilent} - Silent mode used in backward steps, when only command listener is notified.
- * 
+ *
+ * This listener is added automatically on JPF Inspector startup, without using configuration. It is essential.
  */
 public class InspectorListener extends ListenerAdapter {
   final private JPFInspector inspector;
@@ -98,147 +99,6 @@ public class InspectorListener extends ListenerAdapter {
 
   
   
-  
-  
-  /*
-  
-  Before migration, these were the overriding methods:
-  @Override
-  public void instructionExecuted (VM vm) {
-    mode.instructionExecuted(vm);
-  }
-
-  @Override
-  public void executeInstruction (VM vm) {
-    mode.executeInstruction(vm);
-  }
-
-  @Override
-  public void threadStarted (VM vm) {
-    mode.threadStarted(vm);
-  }
-
-  @Override
-  public void threadWaiting (VM vm) {
-    mode.threadWaiting(vm);
-  }
-
-  @Override
-  public void threadNotified (VM vm) {
-    mode.threadNotified(vm);
-  }
-
-  @Override
-  public void threadInterrupted (VM vm) {
-    mode.threadInterrupted(vm);
-  }
-
-  @Override
-  public void threadScheduled (VM vm) {
-    mode.threadScheduled(vm);
-  }
-
-  @Override
-  public void threadBlocked (VM vm) {
-    mode.threadBlocked(vm);
-  }
-
-  @Override
-  public void threadTerminated (VM vm) {
-    mode.threadTerminated(vm);
-  }
-
-  @Override
-  public void classLoaded (VM vm) {
-    mode.classLoaded(vm);
-  }
-
-  @Override
-  public void objectCreated (VM vm) {
-    mode.objectCreated(vm);
-  }
-
-  @Override
-  public void objectReleased (VM vm) {
-    mode.objectReleased(vm);
-  }
-
-  @Override
-  public void objectLocked (VM vm) {
-    mode.objectLocked(vm);
-  }
-
-  @Override
-  public void objectUnlocked (VM vm) {
-    mode.objectUnlocked(vm);
-  }
-
-  @Override
-  public void objectWait (VM vm) {
-    mode.objectWait(vm);
-  }
-
-  @Override
-  public void objectNotify (VM vm) {
-    mode.objectNotify(vm);
-  }
-
-  @Override
-  public void objectNotifyAll (VM vm) {
-    mode.objectNotifyAll(vm);
-  }
-
-
-  @Override
-  public void exceptionThrown (VM vm) {
-    mode.exceptionThrown(vm);
-  }
-
-  @Override
-  public void exceptionBailout (VM vm) {
-    mode.exceptionBailout(vm);
-  }
-
-  @Override
-  public void exceptionHandled (VM vm) {
-    mode.exceptionHandled(vm);
-  }
-
-  @Override
-  public void choiceGeneratorRegistered (VM vm) {
-    mode.choiceGeneratorRegistered(vm);
-  }
-
-  @Override
-  public void choiceGeneratorSet (VM vm) {
-    mode.choiceGeneratorSet(vm);
-  }
-
-  @Override
-  public void choiceGeneratorAdvanced (VM vm) {
-    mode.choiceGeneratorAdvanced(vm);
-  }
-
-  @Override
-  public void choiceGeneratorProcessed (VM vm) {
-    mode.choiceGeneratorProcessed(vm);
-  }
-
-  @Override
-  public void methodEntered (VM vm) {
-    mode.methodEntered(vm);
-  }
-
-  @Override
-  public void methodExited (VM vm) {
-    mode.methodExited(vm);
-  }
-
-
-*/
-
-
-
 
   @Override
   public void gcBegin (VM vm) {

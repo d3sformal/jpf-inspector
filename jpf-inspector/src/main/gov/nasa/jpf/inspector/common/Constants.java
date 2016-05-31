@@ -9,4 +9,5 @@ public class Constants {
    */
   public static final String UNKNOWN_THREAD_TYPE_NAME = "(unspecified class)";
   public static final String PROMPT = "cmd>";
+
 }

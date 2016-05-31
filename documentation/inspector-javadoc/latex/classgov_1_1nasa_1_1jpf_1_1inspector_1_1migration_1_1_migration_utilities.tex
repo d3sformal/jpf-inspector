@@ -1,0 +1,236 @@
+\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1migration_1_1_migration_utilities}{}\section{gov.\+nasa.\+jpf.\+inspector.\+migration.\+Migration\+Utilities Class Reference}
+\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1migration_1_1_migration_utilities}\index{gov.\+nasa.\+jpf.\+inspector.\+migration.\+Migration\+Utilities@{gov.\+nasa.\+jpf.\+inspector.\+migration.\+Migration\+Utilities}}
+
+
+This class contains static functions that help with the migration of the J\+PF Inspector codebase from J\+P\+F6 to J\+P\+F8 during the 2016 update.  
+
+
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static Instruction \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1migration_1_1_migration_utilities_ab67c2959e094b3c63c4a247ba876e091}{get\+Last\+Instruction} (VM vm)
+\item 
+static Choice\+Generator$<$?$>$ \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1migration_1_1_migration_utilities_a59b01084fb64116caedf3fb068af3ae4}{get\+Last\+Choice\+Generator} (VM vm)
+\item 
+static Thread\+Info \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1migration_1_1_migration_utilities_a391b83af6df7665cda87709b6a8fcc05}{get\+Last\+Thread\+Info} (VM vm)
+\item 
+static int \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1migration_1_1_migration_utilities_a6ee047cf88e4d11e9cd152dcf679d268}{get\+Thread\+Number} (VM vm)
+\item 
+static Class\+Info \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1migration_1_1_migration_utilities_a39f88c90978607eee2a5773557848035}{get\+Resolved\+Class\+Info} (String class\+Name)
+\item 
+static Class\+Info\mbox{[}$\,$\mbox{]} \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1migration_1_1_migration_utilities_a758f3ec518fcb042f6ed46c36b2c342c}{get\+Loaded\+Classes} ()
+\begin{DoxyCompactList}\small\item\em Replaces Class\+Info.\+get\+Loaded\+Class(). \end{DoxyCompactList}\item 
+static Element\+Info \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1migration_1_1_migration_utilities_a97cf532b164e74cbdc4e0583f0e1b4e7}{get\+Last\+Element\+Info} (VM vm)
+\begin{DoxyCompactList}\small\item\em This method is not implemented. \end{DoxyCompactList}\item 
+static Static\+Element\+Info \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1migration_1_1_migration_utilities_a91fc3768c86a969ad513772432365c56}{get\+Static\+Element\+Info\+From\+Name} (String var\+Name)
+\begin{DoxyCompactList}\small\item\em This method is not implemented. \end{DoxyCompactList}\item 
+static Class\+Info \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1migration_1_1_migration_utilities_a8af0a6e27e2005f167bace752c444f20}{get\+Resolved\+Class\+Info\+\_\+\+State\+Value\+Stack\+Slot} (String class\+Name)
+\begin{DoxyCompactList}\small\item\em Method called from within \hyperlink{_state_value_stack_slot_8java}{State\+Value\+Stack\+Slot.\+java} only, under special circumstances, so it may call for a different migration that all the others (the others only call basic primitives and system types (Object, String)). \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This class contains static functions that help with the migration of the J\+PF Inspector codebase from J\+P\+F6 to J\+P\+F8 during the 2016 update. 
+
+Because the update may break things, some modifications that could have unintended consequences pass through this class so that when something breaks, we can fix it everywhere we broke it at the same time. When we are sure it works, this class will be removed and the functions\textquotesingle{} code inlined at the appropriate places. 
+
+Definition at line 14 of file Migration\+Utilities.\+java.
+
+
+
+\subsection{Member Function Documentation}
+\index{gov\+::nasa\+::jpf\+::inspector\+::migration\+::\+Migration\+Utilities@{gov\+::nasa\+::jpf\+::inspector\+::migration\+::\+Migration\+Utilities}!get\+Last\+Choice\+Generator@{get\+Last\+Choice\+Generator}}
+\index{get\+Last\+Choice\+Generator@{get\+Last\+Choice\+Generator}!gov\+::nasa\+::jpf\+::inspector\+::migration\+::\+Migration\+Utilities@{gov\+::nasa\+::jpf\+::inspector\+::migration\+::\+Migration\+Utilities}}
+\subsubsection[{\texorpdfstring{get\+Last\+Choice\+Generator(\+V\+M vm)}{getLastChoiceGenerator(VM vm)}}]{\setlength{\rightskip}{0pt plus 5cm}static Choice\+Generator$<$?$>$ gov.\+nasa.\+jpf.\+inspector.\+migration.\+Migration\+Utilities.\+get\+Last\+Choice\+Generator (
+\begin{DoxyParamCaption}
+\item[{VM}]{vm}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1migration_1_1_migration_utilities_a59b01084fb64116caedf3fb068af3ae4}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1migration_1_1_migration_utilities_a59b01084fb64116caedf3fb068af3ae4}
+
+
+Definition at line 20 of file Migration\+Utilities.\+java.
+
+
+\begin{DoxyCode}
+20                                                                  \{
+21     \textcolor{keywordflow}{return} vm.getChoiceGenerator();
+22   \}
+\end{DoxyCode}
+\index{gov\+::nasa\+::jpf\+::inspector\+::migration\+::\+Migration\+Utilities@{gov\+::nasa\+::jpf\+::inspector\+::migration\+::\+Migration\+Utilities}!get\+Last\+Element\+Info@{get\+Last\+Element\+Info}}
+\index{get\+Last\+Element\+Info@{get\+Last\+Element\+Info}!gov\+::nasa\+::jpf\+::inspector\+::migration\+::\+Migration\+Utilities@{gov\+::nasa\+::jpf\+::inspector\+::migration\+::\+Migration\+Utilities}}
+\subsubsection[{\texorpdfstring{get\+Last\+Element\+Info(\+V\+M vm)}{getLastElementInfo(VM vm)}}]{\setlength{\rightskip}{0pt plus 5cm}static Element\+Info gov.\+nasa.\+jpf.\+inspector.\+migration.\+Migration\+Utilities.\+get\+Last\+Element\+Info (
+\begin{DoxyParamCaption}
+\item[{VM}]{vm}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1migration_1_1_migration_utilities_a97cf532b164e74cbdc4e0583f0e1b4e7}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1migration_1_1_migration_utilities_a97cf532b164e74cbdc4e0583f0e1b4e7}
+
+
+This method is not implemented. 
+
+This will cause the following classes to fail to work\+:
+\begin{DoxyItemize}
+\item Expression\+Breakpoint\+Specific\+Class 
+\end{DoxyItemize}
+
+Definition at line 56 of file Migration\+Utilities.\+java.
+
+
+\begin{DoxyCode}
+56                                                       \{
+57     \textcolor{keywordflow}{throw} \textcolor{keyword}{new} RuntimeException(\textcolor{stringliteral}{"The method getLastElementInfo() was not yet migrated."});
+58   \}
+\end{DoxyCode}
+\index{gov\+::nasa\+::jpf\+::inspector\+::migration\+::\+Migration\+Utilities@{gov\+::nasa\+::jpf\+::inspector\+::migration\+::\+Migration\+Utilities}!get\+Last\+Instruction@{get\+Last\+Instruction}}
+\index{get\+Last\+Instruction@{get\+Last\+Instruction}!gov\+::nasa\+::jpf\+::inspector\+::migration\+::\+Migration\+Utilities@{gov\+::nasa\+::jpf\+::inspector\+::migration\+::\+Migration\+Utilities}}
+\subsubsection[{\texorpdfstring{get\+Last\+Instruction(\+V\+M vm)}{getLastInstruction(VM vm)}}]{\setlength{\rightskip}{0pt plus 5cm}static Instruction gov.\+nasa.\+jpf.\+inspector.\+migration.\+Migration\+Utilities.\+get\+Last\+Instruction (
+\begin{DoxyParamCaption}
+\item[{VM}]{vm}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1migration_1_1_migration_utilities_ab67c2959e094b3c63c4a247ba876e091}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1migration_1_1_migration_utilities_ab67c2959e094b3c63c4a247ba876e091}
+
+
+Definition at line 16 of file Migration\+Utilities.\+java.
+
+
+\begin{DoxyCode}
+16                                                       \{
+17     \textcolor{keywordflow}{return} vm.getInstruction(); \textcolor{comment}{// This is sketchy.}
+18   \}
+\end{DoxyCode}
+\index{gov\+::nasa\+::jpf\+::inspector\+::migration\+::\+Migration\+Utilities@{gov\+::nasa\+::jpf\+::inspector\+::migration\+::\+Migration\+Utilities}!get\+Last\+Thread\+Info@{get\+Last\+Thread\+Info}}
+\index{get\+Last\+Thread\+Info@{get\+Last\+Thread\+Info}!gov\+::nasa\+::jpf\+::inspector\+::migration\+::\+Migration\+Utilities@{gov\+::nasa\+::jpf\+::inspector\+::migration\+::\+Migration\+Utilities}}
+\subsubsection[{\texorpdfstring{get\+Last\+Thread\+Info(\+V\+M vm)}{getLastThreadInfo(VM vm)}}]{\setlength{\rightskip}{0pt plus 5cm}static Thread\+Info gov.\+nasa.\+jpf.\+inspector.\+migration.\+Migration\+Utilities.\+get\+Last\+Thread\+Info (
+\begin{DoxyParamCaption}
+\item[{VM}]{vm}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1migration_1_1_migration_utilities_a391b83af6df7665cda87709b6a8fcc05}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1migration_1_1_migration_utilities_a391b83af6df7665cda87709b6a8fcc05}
+
+
+Definition at line 24 of file Migration\+Utilities.\+java.
+
+
+\begin{DoxyCode}
+24                                                     \{
+25     \textcolor{keywordflow}{return} vm.getCurrentThread();
+26   \}
+\end{DoxyCode}
+\index{gov\+::nasa\+::jpf\+::inspector\+::migration\+::\+Migration\+Utilities@{gov\+::nasa\+::jpf\+::inspector\+::migration\+::\+Migration\+Utilities}!get\+Loaded\+Classes@{get\+Loaded\+Classes}}
+\index{get\+Loaded\+Classes@{get\+Loaded\+Classes}!gov\+::nasa\+::jpf\+::inspector\+::migration\+::\+Migration\+Utilities@{gov\+::nasa\+::jpf\+::inspector\+::migration\+::\+Migration\+Utilities}}
+\subsubsection[{\texorpdfstring{get\+Loaded\+Classes()}{getLoadedClasses()}}]{\setlength{\rightskip}{0pt plus 5cm}static Class\+Info \mbox{[}$\,$\mbox{]} gov.\+nasa.\+jpf.\+inspector.\+migration.\+Migration\+Utilities.\+get\+Loaded\+Classes (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1migration_1_1_migration_utilities_a758f3ec518fcb042f6ed46c36b2c342c}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1migration_1_1_migration_utilities_a758f3ec518fcb042f6ed46c36b2c342c}
+
+
+Replaces Class\+Info.\+get\+Loaded\+Class(). 
+
+
+
+Definition at line 39 of file Migration\+Utilities.\+java.
+
+
+\begin{DoxyCode}
+39                                                \{
+40     ArrayList<ClassInfo> loadedClasses = \textcolor{keyword}{new} ArrayList<>();
+41     Iterator<ClassInfo> loadedClassesIterator = ClassLoaderInfo.getCurrentClassLoader().iterator();
+42     \textcolor{keywordflow}{while} (loadedClassesIterator.hasNext()) \{
+43       ClassInfo loadedClass = loadedClassesIterator.next();
+44       loadedClasses.add(loadedClass);
+45     \}
+46     ClassInfo[] array = \textcolor{keyword}{new} ClassInfo[loadedClasses.size()];
+47     array = loadedClasses.toArray(array);
+48     \textcolor{keywordflow}{return} array;
+49   \}
+\end{DoxyCode}
+\index{gov\+::nasa\+::jpf\+::inspector\+::migration\+::\+Migration\+Utilities@{gov\+::nasa\+::jpf\+::inspector\+::migration\+::\+Migration\+Utilities}!get\+Resolved\+Class\+Info@{get\+Resolved\+Class\+Info}}
+\index{get\+Resolved\+Class\+Info@{get\+Resolved\+Class\+Info}!gov\+::nasa\+::jpf\+::inspector\+::migration\+::\+Migration\+Utilities@{gov\+::nasa\+::jpf\+::inspector\+::migration\+::\+Migration\+Utilities}}
+\subsubsection[{\texorpdfstring{get\+Resolved\+Class\+Info(\+String class\+Name)}{getResolvedClassInfo(String className)}}]{\setlength{\rightskip}{0pt plus 5cm}static Class\+Info gov.\+nasa.\+jpf.\+inspector.\+migration.\+Migration\+Utilities.\+get\+Resolved\+Class\+Info (
+\begin{DoxyParamCaption}
+\item[{String}]{class\+Name}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1migration_1_1_migration_utilities_a39f88c90978607eee2a5773557848035}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1migration_1_1_migration_utilities_a39f88c90978607eee2a5773557848035}
+
+
+Definition at line 32 of file Migration\+Utilities.\+java.
+
+
+\begin{DoxyCode}
+32                                                                  \{
+33     \textcolor{keywordflow}{return} ClassLoaderInfo.getCurrentResolvedClassInfo(className); \textcolor{comment}{// or "system" resolved?}
+34   \}
+\end{DoxyCode}
+\index{gov\+::nasa\+::jpf\+::inspector\+::migration\+::\+Migration\+Utilities@{gov\+::nasa\+::jpf\+::inspector\+::migration\+::\+Migration\+Utilities}!get\+Resolved\+Class\+Info\+\_\+\+State\+Value\+Stack\+Slot@{get\+Resolved\+Class\+Info\+\_\+\+State\+Value\+Stack\+Slot}}
+\index{get\+Resolved\+Class\+Info\+\_\+\+State\+Value\+Stack\+Slot@{get\+Resolved\+Class\+Info\+\_\+\+State\+Value\+Stack\+Slot}!gov\+::nasa\+::jpf\+::inspector\+::migration\+::\+Migration\+Utilities@{gov\+::nasa\+::jpf\+::inspector\+::migration\+::\+Migration\+Utilities}}
+\subsubsection[{\texorpdfstring{get\+Resolved\+Class\+Info\+\_\+\+State\+Value\+Stack\+Slot(\+String class\+Name)}{getResolvedClassInfo_StateValueStackSlot(String className)}}]{\setlength{\rightskip}{0pt plus 5cm}static Class\+Info gov.\+nasa.\+jpf.\+inspector.\+migration.\+Migration\+Utilities.\+get\+Resolved\+Class\+Info\+\_\+\+State\+Value\+Stack\+Slot (
+\begin{DoxyParamCaption}
+\item[{String}]{class\+Name}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1migration_1_1_migration_utilities_a8af0a6e27e2005f167bace752c444f20}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1migration_1_1_migration_utilities_a8af0a6e27e2005f167bace752c444f20}
+
+
+Method called from within \hyperlink{_state_value_stack_slot_8java}{State\+Value\+Stack\+Slot.\+java} only, under special circumstances, so it may call for a different migration that all the others (the others only call basic primitives and system types (Object, String)). 
+
+
+
+Definition at line 81 of file Migration\+Utilities.\+java.
+
+
+\begin{DoxyCode}
+81                                                                                      \{
+82     \textcolor{keywordflow}{return} MigrationUtilities.getResolvedClassInfo(className);
+83   \}
+\end{DoxyCode}
+\index{gov\+::nasa\+::jpf\+::inspector\+::migration\+::\+Migration\+Utilities@{gov\+::nasa\+::jpf\+::inspector\+::migration\+::\+Migration\+Utilities}!get\+Static\+Element\+Info\+From\+Name@{get\+Static\+Element\+Info\+From\+Name}}
+\index{get\+Static\+Element\+Info\+From\+Name@{get\+Static\+Element\+Info\+From\+Name}!gov\+::nasa\+::jpf\+::inspector\+::migration\+::\+Migration\+Utilities@{gov\+::nasa\+::jpf\+::inspector\+::migration\+::\+Migration\+Utilities}}
+\subsubsection[{\texorpdfstring{get\+Static\+Element\+Info\+From\+Name(\+String var\+Name)}{getStaticElementInfoFromName(String varName)}}]{\setlength{\rightskip}{0pt plus 5cm}static Static\+Element\+Info gov.\+nasa.\+jpf.\+inspector.\+migration.\+Migration\+Utilities.\+get\+Static\+Element\+Info\+From\+Name (
+\begin{DoxyParamCaption}
+\item[{String}]{var\+Name}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1migration_1_1_migration_utilities_a91fc3768c86a969ad513772432365c56}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1migration_1_1_migration_utilities_a91fc3768c86a969ad513772432365c56}
+
+
+This method is not implemented. 
+
+This will cause the following classes to fail to work\+:
+\begin{DoxyItemize}
+\item Expression\+State\+Value\+Name (only in some cases) 
+\end{DoxyItemize}
+
+Definition at line 65 of file Migration\+Utilities.\+java.
+
+
+\begin{DoxyCode}
+65                                                                                \{
+66     \textcolor{keywordflow}{throw} \textcolor{keyword}{new} RuntimeException(\textcolor{stringliteral}{"A way to access static element info from variable name was not yet
+       migrated."});
+67     \textcolor{comment}{/*}
+68 \textcolor{comment}{    Statics statics = ClassLoaderInfo.getCurrentClassLoader().getStatics();}
+69 \textcolor{comment}{    for (int i = 0; i < statics.size(); i++) \{}
+70 \textcolor{comment}{      StaticElementInfo sei = statics.get(i);}
+71 \textcolor{comment}{      if (sei.get)}
+72 \textcolor{comment}{    \}}
+73 \textcolor{comment}{    */}
+74   \}
+\end{DoxyCode}
+\index{gov\+::nasa\+::jpf\+::inspector\+::migration\+::\+Migration\+Utilities@{gov\+::nasa\+::jpf\+::inspector\+::migration\+::\+Migration\+Utilities}!get\+Thread\+Number@{get\+Thread\+Number}}
+\index{get\+Thread\+Number@{get\+Thread\+Number}!gov\+::nasa\+::jpf\+::inspector\+::migration\+::\+Migration\+Utilities@{gov\+::nasa\+::jpf\+::inspector\+::migration\+::\+Migration\+Utilities}}
+\subsubsection[{\texorpdfstring{get\+Thread\+Number(\+V\+M vm)}{getThreadNumber(VM vm)}}]{\setlength{\rightskip}{0pt plus 5cm}static int gov.\+nasa.\+jpf.\+inspector.\+migration.\+Migration\+Utilities.\+get\+Thread\+Number (
+\begin{DoxyParamCaption}
+\item[{VM}]{vm}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1migration_1_1_migration_utilities_a6ee047cf88e4d11e9cd152dcf679d268}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1migration_1_1_migration_utilities_a6ee047cf88e4d11e9cd152dcf679d268}
+
+
+Definition at line 28 of file Migration\+Utilities.\+java.
+
+
+\begin{DoxyCode}
+28                                            \{
+29     \textcolor{keywordflow}{return} vm.getCurrentThread().getId();
+30   \}
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/gsoc/jpf-\/inspector/src/main/gov/nasa/jpf/inspector/migration/\hyperlink{_migration_utilities_8java}{Migration\+Utilities.\+java}\end{DoxyCompactItemize}

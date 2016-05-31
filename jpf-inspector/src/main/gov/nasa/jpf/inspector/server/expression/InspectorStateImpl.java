@@ -19,28 +19,46 @@
 
 package gov.nasa.jpf.inspector.server.expression;
 
-import gov.nasa.jpf.inspector.migration.MigrationUtilities;
-import gov.nasa.jpf.vm.VM;
-import gov.nasa.jpf.vm.Instruction;
 import gov.nasa.jpf.search.Search;
+import gov.nasa.jpf.vm.Instruction;
+import gov.nasa.jpf.vm.VM;
 
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Represents a program state, i.e. a point in the program timeline.
+ */
 public class InspectorStateImpl implements InspectorState {
 
-  private final Map<Integer, Instruction> lastExecutedInstructions = new HashMap<Integer, Instruction>();
-  private VM jvm;
-  private Search search; // / Holds search class from last executed step
+  /**
+   * For each thread, this stores the instruction that was last executed. The instructions threads are currently
+   * pointing to but have not yet executed are not in this.
+   *
+   * The key is thread id.
+   */
+  private final Map<Integer, Instruction> lastExecutedInstructions = new HashMap<>();
 
-  private Instruction currentInstruction = null; //
+  private VM vm;
+  /**
+   * Search class used for the last executed step.
+   */
+  private Search search;
+
+  /**
+   * The instruction about to be executed.
+   */
+  private Instruction currentInstruction = null;
+  /**
+   * The thread that will execute the next instruction to be executed.
+   */
   private int currentThread = 0;
 
   private InspectorState.ListenerMethod listenerMethod = ListenerMethod.LM_NOT_IN_LIST;
 
   @Override
   public VM getJVM () {
-    return jvm;
+    return vm;
   }
 
   @Override
@@ -60,24 +78,24 @@ public class InspectorStateImpl implements InspectorState {
 
   // Has to be called after each executed instruction
   public void instructionExecuted (VM newJVM) {
-    this.jvm = newJVM;
+    this.vm = newJVM;
 
     lastExecutedInstructions.put(currentThread, currentInstruction);
-    currentInstruction = MigrationUtilities.getLastInstruction(newJVM);
-    currentThread = MigrationUtilities.getLastThreadInfo(newJVM).getId();
+    currentInstruction = newJVM.getInstruction();
+    currentThread = newJVM.getCurrentThread().getId();
     this.listenerMethod = ListenerMethod.LM_INSTRUCTION_EXECUTED;
 
   }
 
   public void stateChanged (Search search, ListenerMethod listenerMethod) {
-    this.jvm = search.getVM();
+    this.vm = search.getVM();
     this.search = search;
     this.listenerMethod = listenerMethod;
   }
 
   public void notifyListenerMethodCall (ListenerMethod listenerMethod, VM jvm) {
     this.listenerMethod = listenerMethod;
-    this.jvm = jvm;
+    this.vm = jvm;
   }
 
 }

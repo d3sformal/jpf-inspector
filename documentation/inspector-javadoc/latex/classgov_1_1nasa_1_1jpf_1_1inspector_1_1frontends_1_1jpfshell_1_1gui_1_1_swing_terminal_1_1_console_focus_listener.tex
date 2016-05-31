@@ -1,0 +1,76 @@
+\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_console_focus_listener}{}\section{gov.\+nasa.\+jpf.\+inspector.\+frontends.\+jpfshell.\+gui.\+Swing\+Terminal.\+Console\+Focus\+Listener Class Reference}
+\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_console_focus_listener}\index{gov.\+nasa.\+jpf.\+inspector.\+frontends.\+jpfshell.\+gui.\+Swing\+Terminal.\+Console\+Focus\+Listener@{gov.\+nasa.\+jpf.\+inspector.\+frontends.\+jpfshell.\+gui.\+Swing\+Terminal.\+Console\+Focus\+Listener}}
+
+
+/$\ast$$\ast$ Shows cursor when focus gained.  
+
+
+Inheritance diagram for gov.\+nasa.\+jpf.\+inspector.\+frontends.\+jpfshell.\+gui.\+Swing\+Terminal.\+Console\+Focus\+Listener\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_console_focus_listener}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_console_focus_listener_a3ce5c7eab65ca90115115bb1068e556c}{focus\+Gained} (Focus\+Event e)
+\item 
+void \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_console_focus_listener_a025f83585a60b60cd022c1536253d16c}{focus\+Lost} (Focus\+Event e)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+/$\ast$$\ast$ Shows cursor when focus gained. 
+
+If \hyperlink{}{J\+Text\+Pane} is the read\+Only panel, then caret is not shown. Even if carret.\+set\+Visible() has been called then if panel is show again then the caret is hidden.
+
+This listener repairs this behavior. 
+
+Definition at line 474 of file Swing\+Terminal.\+java.
+
+
+
+\subsection{Member Function Documentation}
+\index{gov\+::nasa\+::jpf\+::inspector\+::frontends\+::jpfshell\+::gui\+::\+Swing\+Terminal\+::\+Console\+Focus\+Listener@{gov\+::nasa\+::jpf\+::inspector\+::frontends\+::jpfshell\+::gui\+::\+Swing\+Terminal\+::\+Console\+Focus\+Listener}!focus\+Gained@{focus\+Gained}}
+\index{focus\+Gained@{focus\+Gained}!gov\+::nasa\+::jpf\+::inspector\+::frontends\+::jpfshell\+::gui\+::\+Swing\+Terminal\+::\+Console\+Focus\+Listener@{gov\+::nasa\+::jpf\+::inspector\+::frontends\+::jpfshell\+::gui\+::\+Swing\+Terminal\+::\+Console\+Focus\+Listener}}
+\subsubsection[{\texorpdfstring{focus\+Gained(\+Focus\+Event e)}{focusGained(FocusEvent e)}}]{\setlength{\rightskip}{0pt plus 5cm}void gov.\+nasa.\+jpf.\+inspector.\+frontends.\+jpfshell.\+gui.\+Swing\+Terminal.\+Console\+Focus\+Listener.\+focus\+Gained (
+\begin{DoxyParamCaption}
+\item[{Focus\+Event}]{e}
+\end{DoxyParamCaption}
+)}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_console_focus_listener_a3ce5c7eab65ca90115115bb1068e556c}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_console_focus_listener_a3ce5c7eab65ca90115115bb1068e556c}
+
+
+Definition at line 477 of file Swing\+Terminal.\+java.
+
+
+\begin{DoxyCode}
+477                                            \{
+478       \textcolor{keywordflow}{if} (\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_a17f1bfb7c9ffd860344e7c9ee087d041}{DEBUG}) \{
+479         System.out.println(\textcolor{stringliteral}{"DEBUG - SwingTerminal - ConsoleFocusListener.focusGained"});
+480       \}
+481       \textcolor{comment}{// Automatically set caret visible}
+482       \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_a87c9b71bc01bfcee4d8e6741aac6bc85}{console}.getCaret().setVisible(\textcolor{keyword}{true});
+483     \}
+\end{DoxyCode}
+\index{gov\+::nasa\+::jpf\+::inspector\+::frontends\+::jpfshell\+::gui\+::\+Swing\+Terminal\+::\+Console\+Focus\+Listener@{gov\+::nasa\+::jpf\+::inspector\+::frontends\+::jpfshell\+::gui\+::\+Swing\+Terminal\+::\+Console\+Focus\+Listener}!focus\+Lost@{focus\+Lost}}
+\index{focus\+Lost@{focus\+Lost}!gov\+::nasa\+::jpf\+::inspector\+::frontends\+::jpfshell\+::gui\+::\+Swing\+Terminal\+::\+Console\+Focus\+Listener@{gov\+::nasa\+::jpf\+::inspector\+::frontends\+::jpfshell\+::gui\+::\+Swing\+Terminal\+::\+Console\+Focus\+Listener}}
+\subsubsection[{\texorpdfstring{focus\+Lost(\+Focus\+Event e)}{focusLost(FocusEvent e)}}]{\setlength{\rightskip}{0pt plus 5cm}void gov.\+nasa.\+jpf.\+inspector.\+frontends.\+jpfshell.\+gui.\+Swing\+Terminal.\+Console\+Focus\+Listener.\+focus\+Lost (
+\begin{DoxyParamCaption}
+\item[{Focus\+Event}]{e}
+\end{DoxyParamCaption}
+)}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_console_focus_listener_a025f83585a60b60cd022c1536253d16c}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1frontends_1_1jpfshell_1_1gui_1_1_swing_terminal_1_1_console_focus_listener_a025f83585a60b60cd022c1536253d16c}
+
+
+Definition at line 486 of file Swing\+Terminal.\+java.
+
+
+\begin{DoxyCode}
+486                                          \{
+487     \}
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/gsoc/jpf-\/inspector/src/main/gov/nasa/jpf/inspector/frontends/jpfshell/gui/\hyperlink{_swing_terminal_8java}{Swing\+Terminal.\+java}\end{DoxyCompactItemize}

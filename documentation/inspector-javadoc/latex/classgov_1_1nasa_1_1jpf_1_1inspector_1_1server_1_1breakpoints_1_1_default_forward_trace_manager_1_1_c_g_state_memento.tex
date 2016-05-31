@@ -1,0 +1,344 @@
+\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_default_forward_trace_manager_1_1_c_g_state_memento}{}\section{gov.\+nasa.\+jpf.\+inspector.\+server.\+breakpoints.\+Default\+Forward\+Trace\+Manager.\+C\+G\+State\+Memento Class Reference}
+\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_default_forward_trace_manager_1_1_c_g_state_memento}\index{gov.\+nasa.\+jpf.\+inspector.\+server.\+breakpoints.\+Default\+Forward\+Trace\+Manager.\+C\+G\+State\+Memento@{gov.\+nasa.\+jpf.\+inspector.\+server.\+breakpoints.\+Default\+Forward\+Trace\+Manager.\+C\+G\+State\+Memento}}
+
+
+Holds \char`\"{}copy\char`\"{} of state of single GC.  
+
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_default_forward_trace_manager_1_1_c_g_state_memento_a242d2bdcd3450eca5ab5812f92d46794}{C\+G\+State\+Memento} (Choice\+Generator$<$?$>$ cg)
+\item 
+int \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_default_forward_trace_manager_1_1_c_g_state_memento_aa8157b94e44501a14ab958737e9afa16}{get\+Default\+Choice} (Choice\+Generator$<$?$>$ cg)
+\item 
+int \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_default_forward_trace_manager_1_1_c_g_state_memento_af7096347e4c8a54776da1eea80616d4f}{hash\+Code} ()
+\item 
+boolean \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_default_forward_trace_manager_1_1_c_g_state_memento_ad6b5f7c5b0768fc6bcc45c54f6b1cc44}{equals} (Object obj)
+\item 
+String \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_default_forward_trace_manager_1_1_c_g_state_memento_a2a63d62735720c90cd0769b4b37068e0}{to\+String} ()
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+final String \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_default_forward_trace_manager_1_1_c_g_state_memento_a647b61390c0a8805961939e1ed75a6e1}{id}
+\item 
+final Instruction \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_default_forward_trace_manager_1_1_c_g_state_memento_a84673ec3abdd6b60e5636108fe6090ba}{ins}
+\item 
+final int \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_default_forward_trace_manager_1_1_c_g_state_memento_a0df8f1d8e048a64e584737e11d506eb3}{thread\+ID}
+\item 
+final Object \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_default_forward_trace_manager_1_1_c_g_state_memento_ab02f1d7ec6e3c3ae21ce64e66f2d4001}{selected\+Choice}
+\item 
+final Object\mbox{[}$\,$\mbox{]} \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_default_forward_trace_manager_1_1_c_g_state_memento_abd1aa7e8e5f3401d8cdf5f5824d8a59d}{choices}
+\item 
+final boolean \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_default_forward_trace_manager_1_1_c_g_state_memento_a1f0b1592390489421947f45ca6d9785b}{choices\+Sorted}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Holds \char`\"{}copy\char`\"{} of state of single GC. 
+
+Note\+: Probably not works for C\+G$<$\+T$>$ where T does not override default equals method (C\+G$<$\+Invocations$>$) 
+
+Definition at line 37 of file Default\+Forward\+Trace\+Manager.\+java.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Default\+Forward\+Trace\+Manager\+::\+C\+G\+State\+Memento@{gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Default\+Forward\+Trace\+Manager\+::\+C\+G\+State\+Memento}!C\+G\+State\+Memento@{C\+G\+State\+Memento}}
+\index{C\+G\+State\+Memento@{C\+G\+State\+Memento}!gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Default\+Forward\+Trace\+Manager\+::\+C\+G\+State\+Memento@{gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Default\+Forward\+Trace\+Manager\+::\+C\+G\+State\+Memento}}
+\subsubsection[{\texorpdfstring{C\+G\+State\+Memento(\+Choice\+Generator$<$?$>$ cg)}{CGStateMemento(ChoiceGenerator<?> cg)}}]{\setlength{\rightskip}{0pt plus 5cm}gov.\+nasa.\+jpf.\+inspector.\+server.\+breakpoints.\+Default\+Forward\+Trace\+Manager.\+C\+G\+State\+Memento.\+C\+G\+State\+Memento (
+\begin{DoxyParamCaption}
+\item[{Choice\+Generator$<$?$>$}]{cg}
+\end{DoxyParamCaption}
+)}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_default_forward_trace_manager_1_1_c_g_state_memento_a242d2bdcd3450eca5ab5812f92d46794}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_default_forward_trace_manager_1_1_c_g_state_memento_a242d2bdcd3450eca5ab5812f92d46794}
+
+
+Definition at line 46 of file Default\+Forward\+Trace\+Manager.\+java.
+
+
+\begin{DoxyCode}
+46                                                   \{
+47       assert cg != null;
+48 
+49       \textcolor{keywordtype}{id} = cg.getId();
+50       \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_default_forward_trace_manager_1_1_c_g_state_memento_a84673ec3abdd6b60e5636108fe6090ba}{ins} = cg.getInsn();
+51       \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_default_forward_trace_manager_1_1_c_g_state_memento_a0df8f1d8e048a64e584737e11d506eb3}{threadID} = cg.getThreadInfo().getId();
+52 
+53       \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_default_forward_trace_manager_1_1_c_g_state_memento_ab02f1d7ec6e3c3ae21ce64e66f2d4001}{selectedChoice} = cg.getNextChoice();
+54 
+55       \textcolor{comment}{// Obtain all possible Choices}
+56       \textcolor{keywordtype}{int} processedChoices = cg.getProcessedNumberOfChoices();
+57       cg.reset();
+58       \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_default_forward_trace_manager_1_1_c_g_state_memento_abd1aa7e8e5f3401d8cdf5f5824d8a59d}{choices} = \textcolor{keyword}{new} Object[cg.getTotalNumberOfChoices()];
+59 
+60       \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_default_forward_trace_manager_1_1_c_g_state_memento_abd1aa7e8e5f3401d8cdf5f5824d8a59d}{choices}.length; i++) \{
+61         cg.advance();
+62         \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_default_forward_trace_manager_1_1_c_g_state_memento_abd1aa7e8e5f3401d8cdf5f5824d8a59d}{choices}[i] = cg.getNextChoice();
+63       \}
+64 
+65       cg.reset();
+66       cg.advance(processedChoices);
+67 
+68       \textcolor{comment}{// CG state restored properly}
+69       assert (cg.getNextChoice() != null ? cg.getNextChoice().equals(
+      \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_default_forward_trace_manager_1_1_c_g_state_memento_ab02f1d7ec6e3c3ae21ce64e66f2d4001}{selectedChoice}) : \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_default_forward_trace_manager_1_1_c_g_state_memento_ab02f1d7ec6e3c3ae21ce64e66f2d4001}{selectedChoice} == null);
+70       \textcolor{comment}{// determinize choice order (to handle randomized CG)g}
+71       \textcolor{keywordflow}{if} (Comparable.class.isAssignableFrom(cg.getChoiceType())) \{
+72         \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_default_forward_trace_manager_1_1_c_g_state_memento_a1f0b1592390489421947f45ca6d9785b}{choicesSorted} = \textcolor{keyword}{true};
+73         Arrays.sort(\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_default_forward_trace_manager_1_1_c_g_state_memento_abd1aa7e8e5f3401d8cdf5f5824d8a59d}{choices});
+74       \} \textcolor{keywordflow}{else} \{
+75         \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_default_forward_trace_manager_1_1_c_g_state_memento_a1f0b1592390489421947f45ca6d9785b}{choicesSorted} = \textcolor{keyword}{false};
+76       \}
+77     \}
+\end{DoxyCode}
+
+
+\subsection{Member Function Documentation}
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Default\+Forward\+Trace\+Manager\+::\+C\+G\+State\+Memento@{gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Default\+Forward\+Trace\+Manager\+::\+C\+G\+State\+Memento}!equals@{equals}}
+\index{equals@{equals}!gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Default\+Forward\+Trace\+Manager\+::\+C\+G\+State\+Memento@{gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Default\+Forward\+Trace\+Manager\+::\+C\+G\+State\+Memento}}
+\subsubsection[{\texorpdfstring{equals(\+Object obj)}{equals(Object obj)}}]{\setlength{\rightskip}{0pt plus 5cm}boolean gov.\+nasa.\+jpf.\+inspector.\+server.\+breakpoints.\+Default\+Forward\+Trace\+Manager.\+C\+G\+State\+Memento.\+equals (
+\begin{DoxyParamCaption}
+\item[{Object}]{obj}
+\end{DoxyParamCaption}
+)}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_default_forward_trace_manager_1_1_c_g_state_memento_ad6b5f7c5b0768fc6bcc45c54f6b1cc44}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_default_forward_trace_manager_1_1_c_g_state_memento_ad6b5f7c5b0768fc6bcc45c54f6b1cc44}
+
+
+Definition at line 139 of file Default\+Forward\+Trace\+Manager.\+java.
+
+
+\begin{DoxyCode}
+139                                        \{
+140       \textcolor{keywordflow}{if} (\textcolor{keyword}{this} == obj)
+141         \textcolor{keywordflow}{return} \textcolor{keyword}{true};
+142       \textcolor{keywordflow}{if} (obj == null)
+143         \textcolor{keywordflow}{return} \textcolor{keyword}{false};
+144       \textcolor{keywordflow}{if} (getClass() != obj.getClass())
+145         \textcolor{keywordflow}{return} \textcolor{keyword}{false};
+146       \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_default_forward_trace_manager_1_1_c_g_state_memento_a242d2bdcd3450eca5ab5812f92d46794}{CGStateMemento} other = (\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_default_forward_trace_manager_1_1_c_g_state_memento_a242d2bdcd3450eca5ab5812f92d46794}{CGStateMemento}) obj;
+147       \textcolor{keywordflow}{if} (\textcolor{keywordtype}{id} == null) \{
+148         \textcolor{keywordflow}{if} (other.id != null)
+149           \textcolor{keywordflow}{return} \textcolor{keyword}{false};
+150       \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (!\textcolor{keywordtype}{id}.\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_default_forward_trace_manager_1_1_c_g_state_memento_ad6b5f7c5b0768fc6bcc45c54f6b1cc44}{equals}(other.id))
+151         \textcolor{keywordflow}{return} \textcolor{keyword}{false};
+152 
+153       \textcolor{keywordflow}{if} (\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_default_forward_trace_manager_1_1_c_g_state_memento_a84673ec3abdd6b60e5636108fe6090ba}{ins} == null) \{
+154         \textcolor{keywordflow}{if} (other.ins != null)
+155           \textcolor{keywordflow}{return} \textcolor{keyword}{false};
+156       \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (!\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_default_forward_trace_manager_1_1_c_g_state_memento_a84673ec3abdd6b60e5636108fe6090ba}{ins}.equals(other.ins))
+157         \textcolor{keywordflow}{return} \textcolor{keyword}{false};
+158       \textcolor{keywordflow}{if} (\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_default_forward_trace_manager_1_1_c_g_state_memento_a0df8f1d8e048a64e584737e11d506eb3}{threadID} != other.threadID)
+159         \textcolor{keywordflow}{return} \textcolor{keyword}{false};
+160 
+161       \textcolor{keywordflow}{if} (\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_default_forward_trace_manager_1_1_c_g_state_memento_ab02f1d7ec6e3c3ae21ce64e66f2d4001}{selectedChoice} == null) \{
+162         \textcolor{keywordflow}{if} (other.selectedChoice != null)
+163           \textcolor{keywordflow}{return} \textcolor{keyword}{false};
+164       \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (!\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_default_forward_trace_manager_1_1_c_g_state_memento_ab02f1d7ec6e3c3ae21ce64e66f2d4001}{selectedChoice}.equals(other.selectedChoice))
+165         \textcolor{keywordflow}{return} \textcolor{keyword}{false};
+166 
+167       \textcolor{keywordflow}{if} (\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_default_forward_trace_manager_1_1_c_g_state_memento_abd1aa7e8e5f3401d8cdf5f5824d8a59d}{choices} == null) \{
+168         \textcolor{keywordflow}{return} other.choices == null;
+169       \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (other.choices == null) \{
+170         \textcolor{keywordflow}{return} \textcolor{keyword}{false};
+171       \}
+172 
+173       \textcolor{keywordflow}{if} (\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_default_forward_trace_manager_1_1_c_g_state_memento_abd1aa7e8e5f3401d8cdf5f5824d8a59d}{choices}.length != other.choices.length) \{
+174         \textcolor{keywordflow}{return} \textcolor{keyword}{false};
+175       \}
+176 
+177       \textcolor{keywordflow}{if} (\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_default_forward_trace_manager_1_1_c_g_state_memento_a1f0b1592390489421947f45ca6d9785b}{choicesSorted} && other.choicesSorted) \{
+178         \textcolor{keywordflow}{return} Arrays.equals(\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_default_forward_trace_manager_1_1_c_g_state_memento_abd1aa7e8e5f3401d8cdf5f5824d8a59d}{choices}, other.choices);
+179       \} \textcolor{keywordflow}{else} \{
+180         \textcolor{comment}{// this.choices has counterpart in other.choices}
+181         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_default_forward_trace_manager_1_1_c_g_state_memento_abd1aa7e8e5f3401d8cdf5f5824d8a59d}{choices}.length; i++) \{
+182           \textcolor{keywordtype}{int} j;
+183           \textcolor{keywordflow}{for} (j = 0; j < other.choices.length; j++) \{
+184             \textcolor{keywordflow}{if} (\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_default_forward_trace_manager_1_1_c_g_state_memento_abd1aa7e8e5f3401d8cdf5f5824d8a59d}{choices}[i] == null) \{
+185               \textcolor{keywordflow}{if} (other.choices[j] == null) \{
+186                 \textcolor{keywordflow}{break};
+187               \}
+188             \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_default_forward_trace_manager_1_1_c_g_state_memento_abd1aa7e8e5f3401d8cdf5f5824d8a59d}{choices}[i].\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_default_forward_trace_manager_1_1_c_g_state_memento_ad6b5f7c5b0768fc6bcc45c54f6b1cc44}{equals}(other.choices[j])) \{
+189               \textcolor{keywordflow}{break};
+190             \}
+191           \} \textcolor{comment}{// other.choices cycles}
+192           \textcolor{keywordflow}{if} (j == other.choices.length) \{
+193             \textcolor{keywordflow}{return} \textcolor{keyword}{false};
+194           \}
+195         \}
+196 
+197         \textcolor{comment}{// other.choices has counterpart in this.choices}
+198         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < other.choices.length; i++) \{
+199           \textcolor{keywordtype}{int} j;
+200           \textcolor{keywordflow}{for} (j = 0; j < \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_default_forward_trace_manager_1_1_c_g_state_memento_abd1aa7e8e5f3401d8cdf5f5824d8a59d}{choices}.length; j++) \{
+201             \textcolor{keywordflow}{if} (other.choices[i] == null) \{
+202               \textcolor{keywordflow}{if} (\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_default_forward_trace_manager_1_1_c_g_state_memento_abd1aa7e8e5f3401d8cdf5f5824d8a59d}{choices}[j] == null) \{
+203                 \textcolor{keywordflow}{break};
+204               \}
+205             \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (other.choices[i].equals(\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_default_forward_trace_manager_1_1_c_g_state_memento_abd1aa7e8e5f3401d8cdf5f5824d8a59d}{choices}[j])) \{
+206               \textcolor{keywordflow}{break};
+207             \}
+208           \} \textcolor{comment}{// other.choices cycles}
+209           \textcolor{keywordflow}{if} (j == \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_default_forward_trace_manager_1_1_c_g_state_memento_abd1aa7e8e5f3401d8cdf5f5824d8a59d}{choices}.length) \{
+210             \textcolor{keywordflow}{return} \textcolor{keyword}{false};
+211           \}
+212         \}
+213       \}
+214       \textcolor{comment}{// Passed all tests}
+215       \textcolor{keywordflow}{return} \textcolor{keyword}{true};
+216     \}
+\end{DoxyCode}
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Default\+Forward\+Trace\+Manager\+::\+C\+G\+State\+Memento@{gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Default\+Forward\+Trace\+Manager\+::\+C\+G\+State\+Memento}!get\+Default\+Choice@{get\+Default\+Choice}}
+\index{get\+Default\+Choice@{get\+Default\+Choice}!gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Default\+Forward\+Trace\+Manager\+::\+C\+G\+State\+Memento@{gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Default\+Forward\+Trace\+Manager\+::\+C\+G\+State\+Memento}}
+\subsubsection[{\texorpdfstring{get\+Default\+Choice(\+Choice\+Generator$<$?$>$ cg)}{getDefaultChoice(ChoiceGenerator<?> cg)}}]{\setlength{\rightskip}{0pt plus 5cm}int gov.\+nasa.\+jpf.\+inspector.\+server.\+breakpoints.\+Default\+Forward\+Trace\+Manager.\+C\+G\+State\+Memento.\+get\+Default\+Choice (
+\begin{DoxyParamCaption}
+\item[{Choice\+Generator$<$?$>$}]{cg}
+\end{DoxyParamCaption}
+)}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_default_forward_trace_manager_1_1_c_g_state_memento_aa8157b94e44501a14ab958737e9afa16}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_default_forward_trace_manager_1_1_c_g_state_memento_aa8157b94e44501a14ab958737e9afa16}
+
+
+Definition at line 79 of file Default\+Forward\+Trace\+Manager.\+java.
+
+
+\begin{DoxyCode}
+79                                                         \{
+80       \textcolor{keywordtype}{int} cgOrigProcessedChoices = cg.getProcessedNumberOfChoices();
+81       Object cgOrigSelectedChoice = cg.getNextChoice();
+82 
+83       \textcolor{keywordtype}{int} result = ChoiceGeneratorsInterface.NO\_DEFAULT\_CHOICE;
+84       \textcolor{keywordflow}{if} (\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_default_forward_trace_manager_1_1_c_g_state_memento_ab02f1d7ec6e3c3ae21ce64e66f2d4001}{selectedChoice} == null) \{
+85         \textcolor{comment}{// Cannot use equals}
+86         \textcolor{keywordflow}{if} (cgOrigSelectedChoice == null) \{
+87           \textcolor{keywordflow}{return} cg.getProcessedNumberOfChoices();
+88         \}
+89 
+90         cg.reset();
+91         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < cg.getTotalNumberOfChoices(); i++) \{
+92           cg.advance();
+93           Object choice = cg.getNextChoice();
+94           \textcolor{keywordflow}{if} (choice == null) \{
+95             result = i;
+96             \textcolor{keywordflow}{break};
+97           \}
+98         \}
+99       \} \textcolor{keywordflow}{else} \{
+100         \textcolor{comment}{// TODO - ThreadInfo - pres ThreadCreate - not working - new instances + TI does not have equals}
+101         \textcolor{keywordflow}{if} (\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_default_forward_trace_manager_1_1_c_g_state_memento_ab02f1d7ec6e3c3ae21ce64e66f2d4001}{selectedChoice}.equals(cgOrigSelectedChoice)) \{
+102           \textcolor{keywordflow}{return} cg.getProcessedNumberOfChoices();
+103         \}
+104 
+105         cg.reset();
+106         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < cg.getTotalNumberOfChoices(); i++) \{
+107           cg.advance();
+108           Object choice = cg.getNextChoice();
+109           \textcolor{keywordflow}{if} (\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_default_forward_trace_manager_1_1_c_g_state_memento_ab02f1d7ec6e3c3ae21ce64e66f2d4001}{selectedChoice}.equals(choice)) \{
+110             result = i + 1;
+111             \textcolor{keywordflow}{break};
+112           \}
+113         \}
+114 
+115       \}
+116 
+117       \textcolor{comment}{// Restore CG state}
+118       cg.reset();
+119       cg.advance(cgOrigProcessedChoices);
+120       assert (cg.getNextChoice() != null ? cg.getNextChoice().equals(cgOrigSelectedChoice) : 
+      cgOrigSelectedChoice == null);
+121 
+122       \textcolor{keywordflow}{return} result;
+123 
+124     \}
+\end{DoxyCode}
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Default\+Forward\+Trace\+Manager\+::\+C\+G\+State\+Memento@{gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Default\+Forward\+Trace\+Manager\+::\+C\+G\+State\+Memento}!hash\+Code@{hash\+Code}}
+\index{hash\+Code@{hash\+Code}!gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Default\+Forward\+Trace\+Manager\+::\+C\+G\+State\+Memento@{gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Default\+Forward\+Trace\+Manager\+::\+C\+G\+State\+Memento}}
+\subsubsection[{\texorpdfstring{hash\+Code()}{hashCode()}}]{\setlength{\rightskip}{0pt plus 5cm}int gov.\+nasa.\+jpf.\+inspector.\+server.\+breakpoints.\+Default\+Forward\+Trace\+Manager.\+C\+G\+State\+Memento.\+hash\+Code (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_default_forward_trace_manager_1_1_c_g_state_memento_af7096347e4c8a54776da1eea80616d4f}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_default_forward_trace_manager_1_1_c_g_state_memento_af7096347e4c8a54776da1eea80616d4f}
+
+
+Definition at line 127 of file Default\+Forward\+Trace\+Manager.\+java.
+
+
+\begin{DoxyCode}
+127                            \{
+128       \textcolor{keyword}{final} \textcolor{keywordtype}{int} prime = 31;
+129       \textcolor{keywordtype}{int} result = 1;
+130       result = prime * result + Arrays.hashCode(\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_default_forward_trace_manager_1_1_c_g_state_memento_abd1aa7e8e5f3401d8cdf5f5824d8a59d}{choices});
+131       result = prime * result + ((\textcolor{keywordtype}{id} == null) ? 0 : \textcolor{keywordtype}{id}.\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_default_forward_trace_manager_1_1_c_g_state_memento_af7096347e4c8a54776da1eea80616d4f}{hashCode}());
+132       result = prime * result + ((\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_default_forward_trace_manager_1_1_c_g_state_memento_a84673ec3abdd6b60e5636108fe6090ba}{ins} == null) ? 0 : ins.hashCode());
+133       result = prime * result + ((\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_default_forward_trace_manager_1_1_c_g_state_memento_ab02f1d7ec6e3c3ae21ce64e66f2d4001}{selectedChoice} == null) ? 0 : selectedChoice.hashCode());
+134       result = prime * result + \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_default_forward_trace_manager_1_1_c_g_state_memento_a0df8f1d8e048a64e584737e11d506eb3}{threadID};
+135       \textcolor{keywordflow}{return} result;
+136     \}
+\end{DoxyCode}
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Default\+Forward\+Trace\+Manager\+::\+C\+G\+State\+Memento@{gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Default\+Forward\+Trace\+Manager\+::\+C\+G\+State\+Memento}!to\+String@{to\+String}}
+\index{to\+String@{to\+String}!gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Default\+Forward\+Trace\+Manager\+::\+C\+G\+State\+Memento@{gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Default\+Forward\+Trace\+Manager\+::\+C\+G\+State\+Memento}}
+\subsubsection[{\texorpdfstring{to\+String()}{toString()}}]{\setlength{\rightskip}{0pt plus 5cm}String gov.\+nasa.\+jpf.\+inspector.\+server.\+breakpoints.\+Default\+Forward\+Trace\+Manager.\+C\+G\+State\+Memento.\+to\+String (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_default_forward_trace_manager_1_1_c_g_state_memento_a2a63d62735720c90cd0769b4b37068e0}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_default_forward_trace_manager_1_1_c_g_state_memento_a2a63d62735720c90cd0769b4b37068e0}
+
+
+Definition at line 219 of file Default\+Forward\+Trace\+Manager.\+java.
+
+
+\begin{DoxyCode}
+219                               \{
+220       \textcolor{keywordflow}{return} \textcolor{stringliteral}{"[threadID="} + \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_default_forward_trace_manager_1_1_c_g_state_memento_a0df8f1d8e048a64e584737e11d506eb3}{threadID} + \textcolor{stringliteral}{", id="} + \textcolor{keywordtype}{id} + \textcolor{stringliteral}{", ins="} + \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_default_forward_trace_manager_1_1_c_g_state_memento_a84673ec3abdd6b60e5636108fe6090ba}{ins} + (
+      \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_default_forward_trace_manager_1_1_c_g_state_memento_a84673ec3abdd6b60e5636108fe6090ba}{ins} != null ? \textcolor{charliteral}{'('} + \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_default_forward_trace_manager_1_1_c_g_state_memento_a84673ec3abdd6b60e5636108fe6090ba}{ins}.getFilePos() + \textcolor{charliteral}{')'} : \textcolor{stringliteral}{""}) + \textcolor{stringliteral}{", selectedChoice="} + 
+      \hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_default_forward_trace_manager_1_1_c_g_state_memento_ab02f1d7ec6e3c3ae21ce64e66f2d4001}{selectedChoice}
+221           + \textcolor{stringliteral}{", choices="} + Arrays.toString(\hyperlink{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_default_forward_trace_manager_1_1_c_g_state_memento_abd1aa7e8e5f3401d8cdf5f5824d8a59d}{choices}) + \textcolor{stringliteral}{"]"};
+222     \}
+\end{DoxyCode}
+
+
+\subsection{Member Data Documentation}
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Default\+Forward\+Trace\+Manager\+::\+C\+G\+State\+Memento@{gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Default\+Forward\+Trace\+Manager\+::\+C\+G\+State\+Memento}!choices@{choices}}
+\index{choices@{choices}!gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Default\+Forward\+Trace\+Manager\+::\+C\+G\+State\+Memento@{gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Default\+Forward\+Trace\+Manager\+::\+C\+G\+State\+Memento}}
+\subsubsection[{\texorpdfstring{choices}{choices}}]{\setlength{\rightskip}{0pt plus 5cm}final Object \mbox{[}$\,$\mbox{]} gov.\+nasa.\+jpf.\+inspector.\+server.\+breakpoints.\+Default\+Forward\+Trace\+Manager.\+C\+G\+State\+Memento.\+choices\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_default_forward_trace_manager_1_1_c_g_state_memento_abd1aa7e8e5f3401d8cdf5f5824d8a59d}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_default_forward_trace_manager_1_1_c_g_state_memento_abd1aa7e8e5f3401d8cdf5f5824d8a59d}
+
+
+Definition at line 43 of file Default\+Forward\+Trace\+Manager.\+java.
+
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Default\+Forward\+Trace\+Manager\+::\+C\+G\+State\+Memento@{gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Default\+Forward\+Trace\+Manager\+::\+C\+G\+State\+Memento}!choices\+Sorted@{choices\+Sorted}}
+\index{choices\+Sorted@{choices\+Sorted}!gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Default\+Forward\+Trace\+Manager\+::\+C\+G\+State\+Memento@{gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Default\+Forward\+Trace\+Manager\+::\+C\+G\+State\+Memento}}
+\subsubsection[{\texorpdfstring{choices\+Sorted}{choicesSorted}}]{\setlength{\rightskip}{0pt plus 5cm}final boolean gov.\+nasa.\+jpf.\+inspector.\+server.\+breakpoints.\+Default\+Forward\+Trace\+Manager.\+C\+G\+State\+Memento.\+choices\+Sorted\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_default_forward_trace_manager_1_1_c_g_state_memento_a1f0b1592390489421947f45ca6d9785b}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_default_forward_trace_manager_1_1_c_g_state_memento_a1f0b1592390489421947f45ca6d9785b}
+
+
+Definition at line 44 of file Default\+Forward\+Trace\+Manager.\+java.
+
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Default\+Forward\+Trace\+Manager\+::\+C\+G\+State\+Memento@{gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Default\+Forward\+Trace\+Manager\+::\+C\+G\+State\+Memento}!id@{id}}
+\index{id@{id}!gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Default\+Forward\+Trace\+Manager\+::\+C\+G\+State\+Memento@{gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Default\+Forward\+Trace\+Manager\+::\+C\+G\+State\+Memento}}
+\subsubsection[{\texorpdfstring{id}{id}}]{\setlength{\rightskip}{0pt plus 5cm}final String gov.\+nasa.\+jpf.\+inspector.\+server.\+breakpoints.\+Default\+Forward\+Trace\+Manager.\+C\+G\+State\+Memento.\+id\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_default_forward_trace_manager_1_1_c_g_state_memento_a647b61390c0a8805961939e1ed75a6e1}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_default_forward_trace_manager_1_1_c_g_state_memento_a647b61390c0a8805961939e1ed75a6e1}
+
+
+Definition at line 38 of file Default\+Forward\+Trace\+Manager.\+java.
+
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Default\+Forward\+Trace\+Manager\+::\+C\+G\+State\+Memento@{gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Default\+Forward\+Trace\+Manager\+::\+C\+G\+State\+Memento}!ins@{ins}}
+\index{ins@{ins}!gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Default\+Forward\+Trace\+Manager\+::\+C\+G\+State\+Memento@{gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Default\+Forward\+Trace\+Manager\+::\+C\+G\+State\+Memento}}
+\subsubsection[{\texorpdfstring{ins}{ins}}]{\setlength{\rightskip}{0pt plus 5cm}final Instruction gov.\+nasa.\+jpf.\+inspector.\+server.\+breakpoints.\+Default\+Forward\+Trace\+Manager.\+C\+G\+State\+Memento.\+ins\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_default_forward_trace_manager_1_1_c_g_state_memento_a84673ec3abdd6b60e5636108fe6090ba}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_default_forward_trace_manager_1_1_c_g_state_memento_a84673ec3abdd6b60e5636108fe6090ba}
+
+
+Definition at line 39 of file Default\+Forward\+Trace\+Manager.\+java.
+
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Default\+Forward\+Trace\+Manager\+::\+C\+G\+State\+Memento@{gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Default\+Forward\+Trace\+Manager\+::\+C\+G\+State\+Memento}!selected\+Choice@{selected\+Choice}}
+\index{selected\+Choice@{selected\+Choice}!gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Default\+Forward\+Trace\+Manager\+::\+C\+G\+State\+Memento@{gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Default\+Forward\+Trace\+Manager\+::\+C\+G\+State\+Memento}}
+\subsubsection[{\texorpdfstring{selected\+Choice}{selectedChoice}}]{\setlength{\rightskip}{0pt plus 5cm}final Object gov.\+nasa.\+jpf.\+inspector.\+server.\+breakpoints.\+Default\+Forward\+Trace\+Manager.\+C\+G\+State\+Memento.\+selected\+Choice\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_default_forward_trace_manager_1_1_c_g_state_memento_ab02f1d7ec6e3c3ae21ce64e66f2d4001}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_default_forward_trace_manager_1_1_c_g_state_memento_ab02f1d7ec6e3c3ae21ce64e66f2d4001}
+
+
+Definition at line 42 of file Default\+Forward\+Trace\+Manager.\+java.
+
+\index{gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Default\+Forward\+Trace\+Manager\+::\+C\+G\+State\+Memento@{gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Default\+Forward\+Trace\+Manager\+::\+C\+G\+State\+Memento}!thread\+ID@{thread\+ID}}
+\index{thread\+ID@{thread\+ID}!gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Default\+Forward\+Trace\+Manager\+::\+C\+G\+State\+Memento@{gov\+::nasa\+::jpf\+::inspector\+::server\+::breakpoints\+::\+Default\+Forward\+Trace\+Manager\+::\+C\+G\+State\+Memento}}
+\subsubsection[{\texorpdfstring{thread\+ID}{threadID}}]{\setlength{\rightskip}{0pt plus 5cm}final int gov.\+nasa.\+jpf.\+inspector.\+server.\+breakpoints.\+Default\+Forward\+Trace\+Manager.\+C\+G\+State\+Memento.\+thread\+ID\hspace{0.3cm}{\ttfamily [private]}}\hypertarget{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_default_forward_trace_manager_1_1_c_g_state_memento_a0df8f1d8e048a64e584737e11d506eb3}{}\label{classgov_1_1nasa_1_1jpf_1_1inspector_1_1server_1_1breakpoints_1_1_default_forward_trace_manager_1_1_c_g_state_memento_a0df8f1d8e048a64e584737e11d506eb3}
+
+
+Definition at line 40 of file Default\+Forward\+Trace\+Manager.\+java.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/gsoc/jpf-\/inspector/src/main/gov/nasa/jpf/inspector/server/breakpoints/\hyperlink{_default_forward_trace_manager_8java}{Default\+Forward\+Trace\+Manager.\+java}\end{DoxyCompactItemize}
