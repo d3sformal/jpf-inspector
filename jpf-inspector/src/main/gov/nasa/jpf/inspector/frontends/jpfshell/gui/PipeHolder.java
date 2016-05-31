@@ -42,7 +42,7 @@ final class PipeHolder extends Thread {
       start();
       try {
         wait();
-      } catch (InterruptedException e) {
+      } catch (InterruptedException ignored) {
       }
     }
   }
@@ -62,23 +62,21 @@ final class PipeHolder extends Thread {
       while (!terminate) {
         wait();
       }
-    } catch (InterruptedException e) {
+    } catch (InterruptedException ignored) {
     }
     notifyAll(); // Wake up closePipe
     terminated = true;
   }
-
   public synchronized void closePipe () {
     terminate = true;
     if (!terminated) {
       notifyAll();
       try {
         wait();
-      } catch (InterruptedException e) {
+      } catch (InterruptedException ignored) {
       }
     }
   }
-
   /**
    * @return Gets stream where to read data sent to pipe
    */
@@ -92,77 +90,4 @@ final class PipeHolder extends Thread {
   public PipedOutputStream getOutpoutStream () {
     return pOutputStream;
   }
-
 }
-
-// /**
-// * Creates and holds pipe until the {@link #closePipe} method is called.
-// *
-// * @author Alf
-// */
-// final class PipeHolder extends Thread {
-// private PipedReader reader = null;
-// private PipedWriter writer = null;
-//
-// private boolean terminate = false;
-// private boolean terminated = false; // If true run method has terminated
-//
-// public PipeHolder () {
-// super("PipeHolder");
-//
-// synchronized (this) {
-// start();
-// try {
-// wait();
-// } catch (InterruptedException e) {
-// }
-// }
-// }
-//
-// @Override
-// public synchronized void run () {
-// try {
-// reader = new PipedReader(512);
-// writer = new PipedWriter(reader);
-// } catch (IOException e) {
-// writer = null;
-// reader = null;
-// }
-// notifyAll();
-//
-// try {
-// while (!terminate) {
-// wait();
-// }
-// } catch (InterruptedException e) {
-// }
-// notifyAll(); // Wake up closePipe
-// terminated = true;
-// }
-//
-// public synchronized void closePipe () {
-// terminate = true;
-// if (!terminated) {
-// notifyAll();
-// try {
-// wait();
-// } catch (InterruptedException e) {
-// }
-// }
-// }
-//
-// /**
-// * @return Gets reader where to read characters sent to pipe
-// */
-// public PipedReader getReader () {
-// return reader;
-// }
-//
-// /**
-// * @return Gets writer where to write character to pipe
-// */
-// public PipedWriter getWriter () {
-// return writer;
-// }
-//
-// }

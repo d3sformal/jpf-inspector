@@ -100,11 +100,11 @@ public class SwingTerminal extends Terminal {
    * @param foreground Color of the text.
    * @param backgound Color of the background.
    */
-  public SwingTerminal (Color foreground, Color backgound) {
+  private SwingTerminal(Color foreground, Color backgound) {
     this(new JTextPane());
     Font defaultFont = console.getFont();
 
-    Font newFont = null;
+    Font newFont;
     if (fontExists("Courier New")) {
       newFont = new Font("Courier New", defaultFont.getStyle(), defaultFont.getSize());
     } else {
@@ -128,7 +128,7 @@ public class SwingTerminal extends Terminal {
    * @param console
    *        Console to use
    */
-  public SwingTerminal (JEditorPane console) {
+  private SwingTerminal(JEditorPane console) {
     this.console = console;
 
     scroll = new JScrollPane();
@@ -431,7 +431,7 @@ public class SwingTerminal extends Terminal {
 
       try {
         output.flush();
-      } catch (IOException e1) {
+      } catch (IOException ignored) {
       }
     }
 
@@ -458,7 +458,7 @@ public class SwingTerminal extends Terminal {
 
       try {
         output.flush();
-      } catch (IOException e1) {
+      } catch (IOException ignored) {
       }
     }
 

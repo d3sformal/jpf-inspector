@@ -24,7 +24,6 @@ import gov.nasa.jpf.JPF;
 import gov.nasa.jpf.inspector.JPFInspectorFacade;
 import gov.nasa.jpf.inspector.client.JPFInspectorClientInterface;
 import gov.nasa.jpf.inspector.common.Constants;
-import gov.nasa.jpf.inspector.frontends.jpfshell.commands.completors.CmdRunCompletor;
 import gov.nasa.jpf.inspector.frontends.jpfshell.gui.SwingTerminal;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorGenericErrorException;
 import gov.nasa.jpf.inspector.utils.Debugging;
@@ -43,8 +42,8 @@ import java.util.logging.Logger;
 import jline.ConsoleReader;
 
 /**
- * JPF Shell panel. <br>
- * Contains main command loop,
+ * This a panel for JPF Shell that contains the Inspector console.
+ * This is the main entry point for JPF Inspector, if it is launched by means of a graphical shell.
  * 
  */
 public class JPFShellInspectorPanel extends ShellPanel implements VerifyCommandListener {
@@ -104,9 +103,6 @@ public class JPFShellInspectorPanel extends ShellPanel implements VerifyCommandL
 
     add(terminal.getScrollPanel());
 
-    // TODO document that multiple calls to consolePrintStream.println will fail because of how text is appended/inserted in TextComponentFeeder::getPositionBeforePrompt.
-    // TODO Alternatively, make the output stream work better so that it does not insert before prompt, but prompt is just intelligently
-    // displayed after
     startingInfoStream.println("This is the JPF Inspector console for debugging the target \"" + target + "\".");
     startingInfoStream.println("Type \"hello\" to test if the Inspector is working or \"help\" to get a list of commands.");
     startingInfoStream.println();
@@ -115,9 +111,6 @@ public class JPFShellInspectorPanel extends ShellPanel implements VerifyCommandL
 
     Thread t = new CommandProcessingThread();
     t.start();
-
-    // Prepare all completors
-    console.addCompletor(CmdRunCompletor.getInstance());
   }
 
   /**
@@ -155,9 +148,8 @@ public class JPFShellInspectorPanel extends ShellPanel implements VerifyCommandL
               inspector.executeCommand(s);
             }
           } catch (IOException e) {
-            consolePrintStream.println("ERR: Error while parsing command");
+            consolePrintStream.println("ERR: Error while reading a command.");
           }
-
         } // end of while
       } catch (InterruptedException e) {
         // Terminate the command loop
@@ -173,7 +165,7 @@ public class JPFShellInspectorPanel extends ShellPanel implements VerifyCommandL
     JPF jpf = command.getJPF();
     try {
       inspector.connect2JPF(jpf);
-    } catch (JPFInspectorGenericErrorException e) {
+    } catch (JPFInspectorGenericErrorException ignored) {
       // Silently ignore - error is reported in connect2JPF method
     }
   }
@@ -181,21 +173,18 @@ public class JPFShellInspectorPanel extends ShellPanel implements VerifyCommandL
   @Override
   public void postCommand (VerifyCommand command) {
     // Nothing to do
-
   }
-
   @Override
   public void preCommand (VerifyCommand command) {
     // Nothing to do
   }
-
   @Override
   public void exceptionDuringVerify (Exception ex) {
     ex.printStackTrace();
   }
 
   /**
-   * If JPFInspector panel selected then sets focus directly into terminal.
+   * When JPFInspector panel is selected, this sets focus directly on terminal.
    */
   private class PanelComponentListener implements ComponentListener {
 
