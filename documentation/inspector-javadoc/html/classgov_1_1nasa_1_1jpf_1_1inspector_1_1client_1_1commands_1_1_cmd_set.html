@@ -118,6 +118,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:af38f6d129a5b40e09c00d2e439ea6c9d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_set.html#af38f6d129a5b40e09c00d2e439ea6c9d">executeCommands</a> (<a class="el" href="classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1_j_p_f_inspector_client.html">JPFInspectorClient</a> client, <a class="el" href="interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1interfaces_1_1_j_p_f_inspector_back_end_interface.html">JPFInspectorBackEndInterface</a> inspector, PrintStream outStream)</td></tr>
 <tr class="memdesc:af38f6d129a5b40e09c00d2e439ea6c9d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends the command to the server and prints the result into a stream.  <a href="#af38f6d129a5b40e09c00d2e439ea6c9d">More...</a><br /></td></tr>
 <tr class="separator:af38f6d129a5b40e09c00d2e439ea6c9d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a000859c6f0a131f16278a8d69f587a9f"><td class="memItemLeft" align="right" valign="top">boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_set.html#a000859c6f0a131f16278a8d69f587a9f">isSafeToExecuteWhenNotPaused</a> ()</td></tr>
+<tr class="memdesc:a000859c6f0a131f16278a8d69f587a9f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns true if it is safe to execute this command while JPF is running and not paused.  <a href="#a000859c6f0a131f16278a8d69f587a9f">More...</a><br /></td></tr>
+<tr class="separator:a000859c6f0a131f16278a8d69f587a9f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abff88716bb353e748b3fc879539ef8f8"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_set.html#abff88716bb353e748b3fc879539ef8f8">getNormalizedCommand</a> ()</td></tr>
 <tr class="memdesc:abff88716bb353e748b3fc879539ef8f8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts the command to a string.  <a href="#abff88716bb353e748b3fc879539ef8f8">More...</a><br /></td></tr>
 <tr class="separator:abff88716bb353e748b3fc879539ef8f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -230,8 +233,8 @@ Private Attributes</h2></td></tr>
 
 <p>Implements <a class="el" href="interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1_client_command_interface.html#a393044f5be05c3ab3451b72aeff7af62">gov.nasa.jpf.inspector.client.ClientCommandInterface</a>.</p>
 
-<p>Definition at line <a class="el" href="_cmd_set_8java_source.html#l00070">70</a> of file <a class="el" href="_cmd_set_8java_source.html">CmdSet.java</a>.</p>
-<div class="fragment"><div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;                                        {</div><div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    <span class="keywordflow">return</span> <span class="stringliteral">&quot;set &quot;</span> + <a class="code" href="classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_set.html#aed86c1fec85487f1a1a4ba772aa260bd">expression</a>;</div><div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;  }</div><div class="ttc" id="classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_set_html_aed86c1fec85487f1a1a4ba772aa260bd"><div class="ttname"><a href="classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_set.html#aed86c1fec85487f1a1a4ba772aa260bd">gov.nasa.jpf.inspector.client.commands.CmdSet.expression</a></div><div class="ttdeci">final String expression</div><div class="ttdef"><b>Definition:</b> <a href="_cmd_set_8java_source.html#l00036">CmdSet.java:36</a></div></div>
+<p>Definition at line <a class="el" href="_cmd_set_8java_source.html#l00075">75</a> of file <a class="el" href="_cmd_set_8java_source.html">CmdSet.java</a>.</p>
+<div class="fragment"><div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;                                        {</div><div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    <span class="keywordflow">return</span> <span class="stringliteral">&quot;set &quot;</span> + <a class="code" href="classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_set.html#aed86c1fec85487f1a1a4ba772aa260bd">expression</a>;</div><div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;  }</div><div class="ttc" id="classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_set_html_aed86c1fec85487f1a1a4ba772aa260bd"><div class="ttname"><a href="classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_set.html#aed86c1fec85487f1a1a4ba772aa260bd">gov.nasa.jpf.inspector.client.commands.CmdSet.expression</a></div><div class="ttdeci">final String expression</div><div class="ttdef"><b>Definition:</b> <a href="_cmd_set_8java_source.html#l00036">CmdSet.java:36</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -263,6 +266,27 @@ Private Attributes</h2></td></tr>
 
 <p>Definition at line <a class="el" href="_client_command_8java_source.html#l00028">28</a> of file <a class="el" href="_client_command_8java_source.html">ClientCommand.java</a>.</p>
 <div class="fragment"><div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;                                    {</div><div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div><div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;  }</div></div><!-- fragment -->
+</div>
+</div>
+<a class="anchor" id="a000859c6f0a131f16278a8d69f587a9f"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">boolean gov.nasa.jpf.inspector.client.commands.CmdSet.isSafeToExecuteWhenNotPaused </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns true if it is safe to execute this command while JPF is running and not paused. </p>
+
+<p>Implements <a class="el" href="interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1_client_command_interface.html#af80d7df837ed283130747183ed41e441">gov.nasa.jpf.inspector.client.ClientCommandInterface</a>.</p>
+
+<p>Definition at line <a class="el" href="_cmd_set_8java_source.html#l00069">69</a> of file <a class="el" href="_cmd_set_8java_source.html">CmdSet.java</a>.</p>
+<div class="fragment"><div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;                                                {</div><div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div><div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;  }</div></div><!-- fragment -->
 </div>
 </div>
 <a class="anchor" id="ae0670332ec750bc5b9016d0b04d8adfe"></a>
@@ -354,11 +378,10 @@ Private Attributes</h2></td></tr>
 <li>D:/gsoc/jpf-inspector/src/main/gov/nasa/jpf/inspector/client/commands/<a class="el" href="_cmd_set_8java_source.html">CmdSet.java</a></li>
 </ul>
 </div><!-- contents -->
-<!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
+    Generated by &#160;<a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>
-</body>
-</html>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>

@@ -1,6 +1,7 @@
 var searchData=
 [
   ['inspectorcallbacks_2ejava',['InspectorCallBacks.java',['../_inspector_call_backs_8java.html',1,'']]],
+  ['inspectorconfiguration_2ejava',['InspectorConfiguration.java',['../_inspector_configuration_8java.html',1,'']]],
   ['inspectorlistener_2ejava',['InspectorListener.java',['../_inspector_listener_8java.html',1,'']]],
   ['inspectorlistenermodenotifications_2ejava',['InspectorListenerModeNotifications.java',['../_inspector_listener_mode_notifications_8java.html',1,'']]],
   ['inspectorlistenermodesilent_2ejava',['InspectorListenerModeSilent.java',['../_inspector_listener_mode_silent_8java.html',1,'']]],

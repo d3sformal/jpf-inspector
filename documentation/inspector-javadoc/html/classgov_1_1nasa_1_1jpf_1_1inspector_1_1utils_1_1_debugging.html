@@ -107,6 +107,9 @@ Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a06cdc92a97816ad85793b034bfd5822a"><td class="memItemLeft" align="right" valign="top">static Logger&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgov_1_1nasa_1_1jpf_1_1inspector_1_1utils_1_1_debugging.html#a06cdc92a97816ad85793b034bfd5822a">getLogger</a> (Config config)</td></tr>
 <tr class="memdesc:a06cdc92a97816ad85793b034bfd5822a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the logger that should be used inside JPF Inspector.  <a href="#a06cdc92a97816ad85793b034bfd5822a">More...</a><br /></td></tr>
 <tr class="separator:a06cdc92a97816ad85793b034bfd5822a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7a4457af34c8e60b20bba3b0339dbba9"><td class="memItemLeft" align="right" valign="top">static Logger&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgov_1_1nasa_1_1jpf_1_1inspector_1_1utils_1_1_debugging.html#a7a4457af34c8e60b20bba3b0339dbba9">getLogger</a> ()</td></tr>
+<tr class="memdesc:a7a4457af34c8e60b20bba3b0339dbba9"><td class="mdescLeft">&#160;</td><td class="mdescRight">TODO account for shell execution as well.  <a href="#a7a4457af34c8e60b20bba3b0339dbba9">More...</a><br /></td></tr>
+<tr class="separator:a7a4457af34c8e60b20bba3b0339dbba9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a23851f3e2354b6b84d3ddc05dac7965e"><td class="memItemLeft" align="right" valign="top">static Logger&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgov_1_1nasa_1_1jpf_1_1inspector_1_1utils_1_1_debugging.html#a23851f3e2354b6b84d3ddc05dac7965e">getSwingShellLogger</a> ()</td></tr>
 <tr class="memdesc:a23851f3e2354b6b84d3ddc05dac7965e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the logger that should be used inside JPF Inspector if the Inspector is launched via a Shell handled by the Shell Manager (e.g.  <a href="#a23851f3e2354b6b84d3ddc05dac7965e">More...</a><br /></td></tr>
 <tr class="separator:a23851f3e2354b6b84d3ddc05dac7965e"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -154,6 +157,34 @@ Static Public Member Functions</h2></td></tr>
 <div class="fragment"><div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;                                                {</div><div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    Logger logger = JPF.getLogger(<span class="stringliteral">&quot;inspector&quot;</span>);</div><div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <span class="keywordflow">try</span> {</div><div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;      logger.setLevel(Level.parse(config.getString(<span class="stringliteral">&quot;log.level&quot;</span>, <span class="stringliteral">&quot;WARNING&quot;</span>).toUpperCase()));</div><div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    } <span class="keywordflow">catch</span> (IllegalArgumentException ex) {</div><div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;      logger.warning(<span class="stringliteral">&quot;The log level from configuration files (&quot;</span> + config.getString(<span class="stringliteral">&quot;log.level&quot;</span>) + <span class="stringliteral">&quot;) does not exist.&quot;</span>);</div><div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    }</div><div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <span class="keywordflow">return</span> logger;</div><div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;  }</div></div><!-- fragment -->
 </div>
 </div>
+<a class="anchor" id="a7a4457af34c8e60b20bba3b0339dbba9"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static Logger gov.nasa.jpf.inspector.utils.Debugging.getLogger </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>TODO account for shell execution as well. </p>
+
+<p>Definition at line <a class="el" href="_debugging_8java_source.html#l00038">38</a> of file <a class="el" href="_debugging_8java_source.html">Debugging.java</a>.</p>
+<div class="fragment"><div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;                                   {</div><div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="classgov_1_1nasa_1_1jpf_1_1inspector_1_1utils_1_1_debugging.html#a23851f3e2354b6b84d3ddc05dac7965e">getSwingShellLogger</a>();</div><div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;  }</div><div class="ttc" id="classgov_1_1nasa_1_1jpf_1_1inspector_1_1utils_1_1_debugging_html_a23851f3e2354b6b84d3ddc05dac7965e"><div class="ttname"><a href="classgov_1_1nasa_1_1jpf_1_1inspector_1_1utils_1_1_debugging.html#a23851f3e2354b6b84d3ddc05dac7965e">gov.nasa.jpf.inspector.utils.Debugging.getSwingShellLogger</a></div><div class="ttdeci">static Logger getSwingShellLogger()</div><div class="ttdoc">Gets the logger that should be used inside JPF Inspector if the Inspector is launched via a Shell han...</div><div class="ttdef"><b>Definition:</b> <a href="_debugging_8java_source.html#l00047">Debugging.java:47</a></div></div>
+</div><!-- fragment -->
+</div>
+</div>
 <a class="anchor" id="a23851f3e2354b6b84d3ddc05dac7965e"></a>
 <div class="memitem">
 <div class="memproto">
@@ -178,8 +209,8 @@ Static Public Member Functions</h2></td></tr>
 <p>Gets the logger that should be used inside JPF Inspector if the Inspector is launched via a Shell handled by the Shell Manager (e.g. </p>
 <p>a graphical Swing shell). </p><dl class="section return"><dt>Returns</dt><dd>A logger for JPF Inspector. </dd></dl>
 
-<p>Definition at line <a class="el" href="_debugging_8java_source.html#l00040">40</a> of file <a class="el" href="_debugging_8java_source.html">Debugging.java</a>.</p>
-<div class="fragment"><div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;                                             {</div><div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="classgov_1_1nasa_1_1jpf_1_1inspector_1_1utils_1_1_debugging.html#a06cdc92a97816ad85793b034bfd5822a">getLogger</a>(ShellManager.getManager().getConfig());</div><div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;  }</div><div class="ttc" id="classgov_1_1nasa_1_1jpf_1_1inspector_1_1utils_1_1_debugging_html_a06cdc92a97816ad85793b034bfd5822a"><div class="ttname"><a href="classgov_1_1nasa_1_1jpf_1_1inspector_1_1utils_1_1_debugging.html#a06cdc92a97816ad85793b034bfd5822a">gov.nasa.jpf.inspector.utils.Debugging.getLogger</a></div><div class="ttdeci">static Logger getLogger(Config config)</div><div class="ttdoc">Gets the logger that should be used inside JPF Inspector. </div><div class="ttdef"><b>Definition:</b> <a href="_debugging_8java_source.html#l00025">Debugging.java:25</a></div></div>
+<p>Definition at line <a class="el" href="_debugging_8java_source.html#l00047">47</a> of file <a class="el" href="_debugging_8java_source.html">Debugging.java</a>.</p>
+<div class="fragment"><div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;                                             {</div><div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="classgov_1_1nasa_1_1jpf_1_1inspector_1_1utils_1_1_debugging.html#a7a4457af34c8e60b20bba3b0339dbba9">getLogger</a>(ShellManager.getManager().getConfig());</div><div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;  }</div><div class="ttc" id="classgov_1_1nasa_1_1jpf_1_1inspector_1_1utils_1_1_debugging_html_a7a4457af34c8e60b20bba3b0339dbba9"><div class="ttname"><a href="classgov_1_1nasa_1_1jpf_1_1inspector_1_1utils_1_1_debugging.html#a7a4457af34c8e60b20bba3b0339dbba9">gov.nasa.jpf.inspector.utils.Debugging.getLogger</a></div><div class="ttdeci">static Logger getLogger()</div><div class="ttdoc">TODO account for shell execution as well. </div><div class="ttdef"><b>Definition:</b> <a href="_debugging_8java_source.html#l00038">Debugging.java:38</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -187,11 +218,10 @@ Static Public Member Functions</h2></td></tr>
 <li>D:/gsoc/jpf-inspector/src/main/gov/nasa/jpf/inspector/utils/<a class="el" href="_debugging_8java_source.html">Debugging.java</a></li>
 </ul>
 </div><!-- contents -->
-<!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
+    Generated by &#160;<a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>
-</body>
-</html>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
