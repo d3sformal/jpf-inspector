@@ -9,13 +9,3 @@
 **More information is available [in the wiki](http://github.com/Soothsilver/gsoc-inspector/wiki).**
 
 
-
-
-
-
-## User guide
-
-The [JPF Inspector User guide](documentation/md/userguide.md) describes the currently supported commands and extension points (API) of the Inspector tool. It includes some examples and a screenshot of the Inspector user interface.
-
-
-
