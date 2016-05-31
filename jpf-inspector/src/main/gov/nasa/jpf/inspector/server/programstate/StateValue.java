@@ -530,7 +530,12 @@ public abstract class StateValue extends StateNode implements StateReadableValue
       return '\"' + dei.asString() + '\"';
     }
 
-    return ei.toString();
+    // Normally, we would have ElementInfo.toString here. However, we want to display the heap index
+    // as a decimal value, not hexadecimal.
+    //     return ((ci != null ? ci.getName() : "ElementInfo") + '@' + Integer.toHexString(objRef));
+    String className =  (ei.getClassInfo()!= null ? ei.getClassInfo().getName() : "ElementInfo");
+    String heapIndex = Integer.toString(ei.getObjectRef(), 10);
+    return className + "@" + heapIndex;
   }
 
   /**

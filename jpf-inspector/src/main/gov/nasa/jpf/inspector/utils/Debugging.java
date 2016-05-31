@@ -2,6 +2,7 @@ package gov.nasa.jpf.inspector.utils;
 
 import gov.nasa.jpf.Config;
 import gov.nasa.jpf.JPF;
+import gov.nasa.jpf.shell.Shell;
 import gov.nasa.jpf.shell.ShellManager;
 
 import java.security.cert.TrustAnchor;
@@ -37,7 +38,7 @@ public class Debugging {
    * TODO account for shell execution as well
    */
   public static Logger getLogger() {
-    return getSwingShellLogger();
+      return ShellManager.getLogger(); // TODO fix this to use config
   }
 
   /**
