@@ -40,7 +40,6 @@ public class ExpressionStateThread extends ExpressionStateUnaryOperator<Expressi
   /**
    * 
    * @param threadNum For which thread we should be uses in the expression
-   * @param callBack Client where report errors
    * @param child Follower in the expression
    */
   public ExpressionStateThread (Integer threadNum, ExpressionStateStackFrame child) {

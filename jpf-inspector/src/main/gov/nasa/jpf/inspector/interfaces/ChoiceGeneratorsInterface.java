@@ -102,7 +102,7 @@ public interface ChoiceGeneratorsInterface {
   /**
    * Specifies which choice should the current {@link ChoiceGenerator} use.
    * 
-   * <br>Useful only immediately after {@link InspectorCallBacks#notifyChoiceGeneratorNewChoice(CGTypes, String, int, String[], int)} is called.
+   * <br>Useful only immediately after {@link InspectorCallBacks#notifyChoiceGeneratorNewChoice(CGTypes, String, int, String[], int, int)} is called.
    * 
    * @param selectedChoice Choice which the {@link ChoiceGenerator} will return.
    *        Value {@link #USE_DEFAULT_CHOICE} can be specify to uses value from previous execution.

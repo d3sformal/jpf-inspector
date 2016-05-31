@@ -31,10 +31,6 @@ import java.io.PrintStream;
  */
 public class CmdAssertions extends ClientCommand {
 
-  /**
-   * @param mode40
-   * @param string
-   */
   public CmdAssertions (boolean enable, String classNameExpr) {
     // TODO Auto-generated constructor stub
   }

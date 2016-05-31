@@ -59,13 +59,14 @@ public abstract class JPFInspector implements JPFInspectorBackEndInterface {
   protected final DefaultForwardTraceManager dftMgr; // / Manager which holds default forward trace informations
   private InspectorListener listener = null; // Observes jpf execution and notify another parts of the inpector about interested events
 
-  /** Configuration entry which holds original value of {@link Search#SEARCH_MULTIPLE_ERRORS}. */
+  /** Configuration entry which holds original value of "Search#SEARCH_MULTIPLE_ERRORS". However, that constant,
+   * originally planned to be merged with jpf-core, never made it there. */
   public static final String JPF_INSPECTOR_ORIGINAL_CONFIG_SEARCH_SEARCH_MULTIPLE_ERRORS = "jpf-inspector.original_settings.search.multiple_errors";
 
   /**
    * Creates and initialize instance of inspector's server part.
    * 
-   * @param callBacks Interface where callback events should take place. Cann't be null.
+   * @param userCallBacks Interface where callback events should take place. Cann't be null.
    */
   protected JPFInspector (InspectorCallBacks userCallBacks) {
     debugOutStream = System.out; // Fail safe
@@ -73,7 +74,7 @@ public abstract class JPFInspector implements JPFInspectorBackEndInterface {
     if (DEBUG_OUTPUT_FILE != null && !DEBUG_OUTPUT_FILE.isEmpty()) {
       try {
         debugOutStream = new PrintStream("/tmp/alf/Inspector.log");
-      } catch (FileNotFoundException e) {
+      } catch (FileNotFoundException ignored) {
       }
     }
 
