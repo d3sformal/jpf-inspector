@@ -6,8 +6,41 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1bb13837-3373-4c0e-b913-a784e8239749" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/jpf-inspector/src/examples/sooth/Quick.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/jpf-inspector/src/examples/sooth/quick.jpf" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/documentation/wiki/Legacy-User-Guide.md" afterPath="$PROJECT_DIR$/documentation/wiki/Legacy-User-Guide.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/documentation/inspector-javadoc/html/_cmd_assertions_breakpoint_8java.html" afterPath="$PROJECT_DIR$/documentation/inspector-javadoc/html/_cmd_assertions_breakpoint_8java.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/documentation/inspector-javadoc/html/_cmd_assertions_breakpoint_8java_source.html" afterPath="$PROJECT_DIR$/documentation/inspector-javadoc/html/_cmd_assertions_breakpoint_8java_source.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/documentation/inspector-javadoc/html/classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_assertions_breakpoint_1_1_console_assertion_creator-members.html" afterPath="$PROJECT_DIR$/documentation/inspector-javadoc/html/classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_assertions_breakpoint_1_1_console_assertion_creator-members.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/documentation/inspector-javadoc/html/classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_assertions_breakpoint_1_1_console_assertion_creator.html" afterPath="$PROJECT_DIR$/documentation/inspector-javadoc/html/classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_assertions_breakpoint_1_1_console_assertion_creator.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/documentation/inspector-javadoc/html/classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_breakpoint_create_1_1_console_breakpoint_creation_expression.html" afterPath="$PROJECT_DIR$/documentation/inspector-javadoc/html/classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_breakpoint_create_1_1_console_breakpoint_creation_expression.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/documentation/inspector-javadoc/html/functions_c.html" afterPath="$PROJECT_DIR$/documentation/inspector-javadoc/html/functions_c.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/documentation/inspector-javadoc/html/functions_e.html" afterPath="$PROJECT_DIR$/documentation/inspector-javadoc/html/functions_e.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/documentation/inspector-javadoc/html/functions_func_c.html" afterPath="$PROJECT_DIR$/documentation/inspector-javadoc/html/functions_func_c.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/documentation/inspector-javadoc/html/functions_func_g.html" afterPath="$PROJECT_DIR$/documentation/inspector-javadoc/html/functions_func_g.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/documentation/inspector-javadoc/html/functions_g.html" afterPath="$PROJECT_DIR$/documentation/inspector-javadoc/html/functions_g.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/documentation/inspector-javadoc/html/functions_p.html" afterPath="$PROJECT_DIR$/documentation/inspector-javadoc/html/functions_p.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/documentation/inspector-javadoc/html/functions_s.html" afterPath="$PROJECT_DIR$/documentation/inspector-javadoc/html/functions_s.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/documentation/inspector-javadoc/html/functions_vars_e.html" afterPath="$PROJECT_DIR$/documentation/inspector-javadoc/html/functions_vars_e.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/documentation/inspector-javadoc/html/functions_vars_p.html" afterPath="$PROJECT_DIR$/documentation/inspector-javadoc/html/functions_vars_p.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/documentation/inspector-javadoc/html/functions_vars_s.html" afterPath="$PROJECT_DIR$/documentation/inspector-javadoc/html/functions_vars_s.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/documentation/inspector-javadoc/html/hierarchy.html" afterPath="$PROJECT_DIR$/documentation/inspector-javadoc/html/hierarchy.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/documentation/inspector-javadoc/html/interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1interfaces_1_1_assert_create.html" afterPath="$PROJECT_DIR$/documentation/inspector-javadoc/html/interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1interfaces_1_1_assert_create.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/documentation/inspector-javadoc/html/interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1interfaces_1_1_assert_status.html" afterPath="$PROJECT_DIR$/documentation/inspector-javadoc/html/interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1interfaces_1_1_assert_status.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/documentation/inspector-javadoc/html/interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1interfaces_1_1_break_point_creation_information.html" afterPath="$PROJECT_DIR$/documentation/inspector-javadoc/html/interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1interfaces_1_1_break_point_creation_information.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/documentation/inspector-javadoc/latex/classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_assertions_breakpoint_1_1_console_assertion_creator.eps" afterPath="$PROJECT_DIR$/documentation/inspector-javadoc/latex/classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_assertions_breakpoint_1_1_console_assertion_creator.eps" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/documentation/inspector-javadoc/latex/classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_breakpoint_create_1_1_console_breakpoint_creation_expression.eps" afterPath="$PROJECT_DIR$/documentation/inspector-javadoc/latex/classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_breakpoint_create_1_1_console_breakpoint_creation_expression.eps" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/documentation/inspector-javadoc/latex/interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1interfaces_1_1_assert_create.eps" afterPath="$PROJECT_DIR$/documentation/inspector-javadoc/latex/interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1interfaces_1_1_assert_create.eps" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/documentation/inspector-javadoc/latex/interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1interfaces_1_1_break_point_creation_information.eps" afterPath="$PROJECT_DIR$/documentation/inspector-javadoc/latex/interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1interfaces_1_1_break_point_creation_information.eps" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/documentation/wiki/Commands.md" afterPath="$PROJECT_DIR$/documentation/wiki/Commands.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jpf-inspector/src/main/gov/nasa/jpf/inspector/client/JPFClientCallbackHandler.java" afterPath="$PROJECT_DIR$/jpf-inspector/src/main/gov/nasa/jpf/inspector/client/JPFClientCallbackHandler.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jpf-inspector/src/main/gov/nasa/jpf/inspector/client/commands/CmdAssertions.java" afterPath="$PROJECT_DIR$/jpf-inspector/src/main/gov/nasa/jpf/inspector/client/commands/CmdAssertions.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jpf-inspector/src/main/gov/nasa/jpf/inspector/client/commands/CmdAssertionsBreakpoint.java" afterPath="$PROJECT_DIR$/jpf-inspector/src/main/gov/nasa/jpf/inspector/client/commands/CmdAssertionsBreakpoint.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jpf-inspector/src/main/gov/nasa/jpf/inspector/client/commands/CmdSet.java" afterPath="$PROJECT_DIR$/jpf-inspector/src/main/gov/nasa/jpf/inspector/client/commands/CmdSet.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jpf-inspector/src/main/gov/nasa/jpf/inspector/server/breakpoints/BreakPointHandler.java" afterPath="$PROJECT_DIR$/jpf-inspector/src/main/gov/nasa/jpf/inspector/server/breakpoints/BreakPointHandler.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jpf-inspector/src/main/gov/nasa/jpf/inspector/server/expression/ExpressionParser.java" afterPath="$PROJECT_DIR$/jpf-inspector/src/main/gov/nasa/jpf/inspector/server/expression/ExpressionParser.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jpf-inspector/src/main/gov/nasa/jpf/inspector/server/expression/parser/ExpressionGrammar.g4" afterPath="$PROJECT_DIR$/jpf-inspector/src/main/gov/nasa/jpf/inspector/server/expression/parser/ExpressionGrammar.g4" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jpf-inspector/src/tests/gov/nasa/jpf/inspector/tests/AssertSimpleTest.java" afterPath="$PROJECT_DIR$/jpf-inspector/src/tests/gov/nasa/jpf/inspector/tests/AssertSimpleTest.java" />
     </list>
     <ignored path="gsoc.iws" />
     <ignored path="$PROJECT_DIR$/out/" />
@@ -58,6 +91,27 @@
         </state>
       </content>
     </window>
+    <window id="2">
+      <content type="file-editors">
+        <state>
+          <leaf>
+            <file leaf-file-name="Legacy-User-Guide.md" pinned="false" current-in-tab="true">
+              <entry file="file://$PROJECT_DIR$/documentation/wiki/Legacy-User-Guide.md">
+                <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+                  <state split_layout="SPLIT">
+                    <first_editor relative-caret-position="353">
+                      <caret line="176" column="204" selection-start-line="176" selection-start-column="204" selection-end-line="176" selection-end-column="204" />
+                      <folding />
+                    </first_editor>
+                    <second_editor />
+                  </state>
+                </provider>
+              </entry>
+            </file>
+          </leaf>
+        </state>
+      </content>
+    </window>
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FavoritesManager">
@@ -65,129 +119,114 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="JPF-Inspector-Configuration.md" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/documentation/wiki/JPF-Inspector-Configuration.md">
-          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-            <state split_layout="SPLIT">
-              <first_editor relative-caret-position="463">
-                <caret line="8" column="191" selection-start-line="8" selection-start-column="191" selection-end-line="8" selection-end-column="191" />
-                <folding />
-              </first_editor>
-              <second_editor />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="README.md" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/README.md">
-          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-            <state split_layout="SPLIT">
-              <first_editor relative-caret-position="340">
-                <caret line="8" column="99" selection-start-line="8" selection-start-column="99" selection-end-line="8" selection-end-column="99" />
-                <folding />
-              </first_editor>
-              <second_editor />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Legacy-User-Guide.md" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/documentation/wiki/Legacy-User-Guide.md">
-          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-            <state split_layout="SPLIT">
-              <first_editor relative-caret-position="153">
-                <caret line="4" column="351" selection-start-line="4" selection-start-column="351" selection-end-line="4" selection-end-column="351" />
-                <folding />
-              </first_editor>
-              <second_editor />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="userguide.md" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/documentation/md/userguide.md">
-          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-            <state split_layout="SPLIT">
-              <first_editor relative-caret-position="153">
-                <caret line="6" column="183" selection-start-line="6" selection-start-column="183" selection-end-line="6" selection-end-column="183" />
-                <folding />
-              </first_editor>
-              <second_editor />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Javadoc.md" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/documentation/wiki/Javadoc.md">
-          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-            <state split_layout="SPLIT">
-              <first_editor relative-caret-position="0">
-                <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-                <folding />
-              </first_editor>
-              <second_editor />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="JPF-Inspector-Architecture.md" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/documentation/wiki/JPF-Inspector-Architecture.md">
-          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-            <state split_layout="SPLIT">
-              <first_editor relative-caret-position="0">
-                <caret line="0" column="16" selection-start-line="0" selection-start-column="16" selection-end-line="0" selection-end-column="16" />
-                <folding />
-              </first_editor>
-              <second_editor />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Threads.md" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/documentation/wiki/Threads.md">
-          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-            <state split_layout="SPLIT">
-              <first_editor relative-caret-position="0">
-                <caret line="0" column="16" selection-start-line="0" selection-start-column="16" selection-end-line="0" selection-end-column="16" />
-                <folding />
-              </first_editor>
-              <second_editor />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Tutorial.md" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/documentation/wiki/Tutorial.md">
-          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-            <state split_layout="SPLIT">
-              <first_editor relative-caret-position="17">
-                <caret line="0" column="80" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="80" />
-                <folding />
-              </first_editor>
-              <second_editor />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Introduction.md" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/documentation/wiki/Introduction.md">
-          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-            <state split_layout="SPLIT">
-              <first_editor relative-caret-position="17">
-                <caret line="0" column="80" selection-start-line="0" selection-start-column="80" selection-end-line="0" selection-end-column="80" />
-                <folding />
-              </first_editor>
-              <second_editor />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="jpf.properties" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/jpf-inspector/jpf.properties">
+      <file leaf-file-name="CmdAssertionsBreakpoint.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/jpf-inspector/src/main/gov/nasa/jpf/inspector/client/commands/CmdAssertionsBreakpoint.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="22" column="14" selection-start-line="22" selection-start-column="14" selection-end-line="22" selection-end-column="50" />
+            <state relative-caret-position="289">
+              <caret line="50" column="25" selection-start-line="50" selection-start-column="25" selection-end-line="50" selection-end-column="25" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ExpressionGrammar.g4" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/jpf-inspector/src/main/gov/nasa/jpf/inspector/server/expression/parser/ExpressionGrammar.g4">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="283">
+              <caret line="300" column="0" selection-start-line="300" selection-start-column="0" selection-end-line="300" selection-end-column="0" />
+              <folding>
+                <element signature="e#0#33270#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Commands.md" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/documentation/wiki/Commands.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="179">
+                <caret line="34" column="15" selection-start-line="34" selection-start-column="15" selection-end-line="34" selection-end-column="15" />
+                <folding />
+              </first_editor>
+              <second_editor />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CmdAssertions.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/jpf-inspector/src/main/gov/nasa/jpf/inspector/client/commands/CmdAssertions.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="357">
+              <caret line="42" column="11" selection-start-line="42" selection-start-column="11" selection-end-line="42" selection-end-column="11" />
+              <folding>
+                <element signature="e#1401#1402#0" expanded="true" />
+                <element signature="e#1431#1432#0" expanded="true" />
+                <element signature="e#1645#1646#0" expanded="true" />
+                <element signature="e#1709#1710#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CmdSet.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/jpf-inspector/src/main/gov/nasa/jpf/inspector/client/commands/CmdSet.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="153">
+              <caret line="44" column="23" selection-start-line="44" selection-start-column="23" selection-end-line="44" selection-end-column="23" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ProgramStateInterface.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/jpf-inspector/src/main/gov/nasa/jpf/inspector/interfaces/ProgramStateInterface.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="174">
+              <caret line="68" column="14" selection-start-line="68" selection-start-column="14" selection-end-line="68" selection-end-column="14" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ProgramStateManager.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/jpf-inspector/src/main/gov/nasa/jpf/inspector/server/programstate/ProgramStateManager.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="208">
+              <caret line="171" column="53" selection-start-line="171" selection-start-column="53" selection-end-line="171" selection-end-column="53" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ExpressionParserInterface.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/jpf-inspector/src/main/gov/nasa/jpf/inspector/server/expression/ExpressionParserInterface.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="191">
+              <caret line="46" column="52" selection-start-line="46" selection-start-column="52" selection-end-line="46" selection-end-column="52" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ExpressionParser.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/jpf-inspector/src/main/gov/nasa/jpf/inspector/server/expression/ExpressionParser.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="514">
+              <caret line="135" column="33" selection-start-line="135" selection-start-column="33" selection-end-line="135" selection-end-column="33" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ConsoleGrammar.g4" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/jpf-inspector/src/main/gov/nasa/jpf/inspector/client/parser/ConsoleGrammar.g4">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="62">
+              <caret line="263" column="66" selection-start-line="263" selection-start-column="66" selection-end-line="263" selection-end-column="66" />
+              <folding>
+                <element signature="e#0#19265#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -202,7 +241,7 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/documentation/wiki" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GradleLocalSettings">
     <option name="externalProjectsViewState">
@@ -212,15 +251,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/jpf-inspector/src/main/gov/nasa/jpf/inspector/utils/InspectorConfiguration.java" />
-        <option value="$PROJECT_DIR$/jpf-inspector/src/main/gov/nasa/jpf/inspector/client/ClientCommandInterface.java" />
-        <option value="$PROJECT_DIR$/jpf-inspector/src/main/gov/nasa/jpf/inspector/client/ClientCommand.java" />
-        <option value="$PROJECT_DIR$/jpf-inspector/src/main/gov/nasa/jpf/inspector/client/commands/CmdPrint.java" />
-        <option value="$PROJECT_DIR$/jpf-inspector/src/main/gov/nasa/jpf/inspector/client/commands/CmdSet.java" />
-        <option value="$PROJECT_DIR$/jpf-inspector/src/main/gov/nasa/jpf/inspector/client/commands/CmdSingleStepping.java" />
-        <option value="$PROJECT_DIR$/jpf-inspector/src/main/gov/nasa/jpf/inspector/client/commands/CmdStatusThreads.java" />
-        <option value="$PROJECT_DIR$/jpf-inspector/src/main/gov/nasa/jpf/inspector/client/commands/CmdThreadsPC.java" />
-        <option value="$PROJECT_DIR$/jpf-inspector/src/main/gov/nasa/jpf/inspector/client/JPFInspectorClient.java" />
         <option value="$PROJECT_DIR$/jpf-inspector/src/examples/sooth/TestJavax.java" />
         <option value="$PROJECT_DIR$/juneTasks.txt" />
         <option value="$PROJECT_DIR$/documentation/doxyfooter.html" />
@@ -240,7 +270,6 @@
         <option value="$PROJECT_DIR$/jpf-inspector/src/examples/Crossing.java" />
         <option value="$PROJECT_DIR$/jpf-inspector/src/main/gov/nasa/jpf/inspector/server/jpf/InspectorListenerModeSilent.java" />
         <option value="$PROJECT_DIR$/jpf-inspector/src/main/gov/nasa/jpf/inspector/server/choicegenerators/ChoiceGeneratorNotifications.java" />
-        <option value="$PROJECT_DIR$/jpf-inspector/src/main/gov/nasa/jpf/inspector/client/commands/CmdAssertions.java" />
         <option value="$PROJECT_DIR$/jpf-inspector/src/main/gov/nasa/jpf/inspector/server/expression/ExpressionStateInterface.java" />
         <option value="$PROJECT_DIR$/jpf-inspector/src/main/gov/nasa/jpf/inspector/server/expression/expressions/ExpressionStateThread.java" />
         <option value="$PROJECT_DIR$/jpf-inspector/src/main/gov/nasa/jpf/inspector/server/jpf/JPFInspector.java" />
@@ -263,6 +292,16 @@
         <option value="$PROJECT_DIR$/documentation/wiki/Home.md" />
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/documentation/wiki/Legacy-User-Guide.md" />
+        <option value="$PROJECT_DIR$/jpf-inspector/src/examples/sooth/quick.jpf" />
+        <option value="$PROJECT_DIR$/jpf-inspector/src/examples/sooth/Quick.java" />
+        <option value="$PROJECT_DIR$/jpf-inspector/src/main/gov/nasa/jpf/inspector/client/JPFClientCallbackHandler.java" />
+        <option value="$PROJECT_DIR$/jpf-inspector/src/main/gov/nasa/jpf/inspector/client/commands/CmdAssertionsBreakpoint.java" />
+        <option value="$PROJECT_DIR$/jpf-inspector/src/main/gov/nasa/jpf/inspector/server/breakpoints/BreakPointHandler.java" />
+        <option value="$PROJECT_DIR$/jpf-inspector/src/main/gov/nasa/jpf/inspector/client/commands/CmdAssertions.java" />
+        <option value="$PROJECT_DIR$/jpf-inspector/src/main/gov/nasa/jpf/inspector/client/commands/CmdSet.java" />
+        <option value="$PROJECT_DIR$/jpf-inspector/src/main/gov/nasa/jpf/inspector/server/expression/ExpressionParser.java" />
+        <option value="$PROJECT_DIR$/documentation/wiki/Commands.md" />
+        <option value="$PROJECT_DIR$/jpf-inspector/src/main/gov/nasa/jpf/inspector/server/expression/parser/ExpressionGrammar.g4" />
       </list>
     </option>
   </component>
@@ -382,6 +421,20 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="sooth-examples" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gsoc" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gsoc" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="jpf-inspector" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -396,7 +449,237 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="documentation" />
+              <option name="myItemId" value="jpf-inspector" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gsoc" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gsoc" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jpf-inspector" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="inspector" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gsoc" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gsoc" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jpf-inspector" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="inspector" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="server" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gsoc" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gsoc" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jpf-inspector" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="inspector" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="server" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="expression" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gsoc" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gsoc" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jpf-inspector" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="inspector" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="server" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="expression" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="parser" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gsoc" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gsoc" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jpf-inspector" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="inspector" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="client" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gsoc" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gsoc" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jpf-inspector" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="inspector" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="client" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="parser" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gsoc" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gsoc" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jpf-inspector" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="inspector" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="client" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="commands" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -411,28 +694,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="documentation" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="wiki" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gsoc" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gsoc" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="documentation" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="md" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -506,7 +767,7 @@
       <recent name="D:\gsoc\sooth-examples" />
     </key>
   </component>
-  <component name="RunManager" selected="JAR Application.simple.jpf">
+  <component name="RunManager" selected="JAR Application.quick.jpf">
     <configuration default="true" type="Applet" factoryName="Applet">
       <option name="HTML_USED" value="false" />
       <option name="WIDTH" value="400" />
@@ -643,6 +904,19 @@
         <option name="AntTarget" enabled="true" antfile="file://$PROJECT_DIR$/jpf-inspector/build.xml" target="build" />
       </method>
     </configuration>
+    <configuration default="false" name="quick.jpf" type="JarApplication" factoryName="JAR Application">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="JAR_PATH" value="$PROJECT_DIR$/core8/build/RunJPF.jar" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PROGRAM_PARAMETERS" value=".\jpf-inspector\src\examples\sooth\quick.jpf" />
+      <option name="WORKING_DIRECTORY" value="D:\gsoc" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+      <option name="ALTERNATIVE_JRE_PATH" value="Amethyst Star 1.8" />
+      <envs />
+      <method>
+        <option name="AntTarget" enabled="true" antfile="file://$PROJECT_DIR$/jpf-inspector/build.xml" target="build" />
+      </method>
+    </configuration>
     <configuration default="false" name="JUnit Inspector Major" type="JUnit" factoryName="JUnit">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <module name="jpf-inspector" />
@@ -690,11 +964,12 @@
         <option name="AntTarget" enabled="true" antfile="file://$PROJECT_DIR$/jpf-inspector/build.xml" target="build" />
       </method>
     </configuration>
-    <list size="4">
+    <list size="5">
       <item index="0" class="java.lang.String" itemvalue="JAR Application.simple.jpf" />
       <item index="1" class="java.lang.String" itemvalue="JAR Application.testjavax.jpf" />
-      <item index="2" class="java.lang.String" itemvalue="JUnit.JUnit Inspector Major" />
-      <item index="3" class="java.lang.String" itemvalue="JUnit.Parsing Tests" />
+      <item index="2" class="java.lang.String" itemvalue="JAR Application.quick.jpf" />
+      <item index="3" class="java.lang.String" itemvalue="JUnit.JUnit Inspector Major" />
+      <item index="4" class="java.lang.String" itemvalue="JUnit.Parsing Tests" />
     </list>
   </component>
   <component name="ShelveChangesManager" show_recycled="false">
@@ -713,7 +988,7 @@
       <workItem from="1464614599034" duration="2086000" />
       <workItem from="1464616703659" duration="1091000" />
       <workItem from="1464618022351" duration="10659000" />
-      <workItem from="1464673495308" duration="18749000" />
+      <workItem from="1464673495308" duration="22171000" />
     </task>
     <task id="LOCAL-00001" summary="add JUnit libraries, IDE reset">
       <created>1464614713273</created>
@@ -869,7 +1144,14 @@
       <option name="project" value="LOCAL" />
       <updated>1464692271657</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="image fix">
+      <created>1464692385565</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1464692385565</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -905,7 +1187,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="32585000" />
+    <option name="totallyTimeSpent" value="36007000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1696" height="1026" extended-state="6" />
@@ -924,7 +1206,6 @@
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20535715" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Problems" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
-      <window_info id="Byte Code Viewer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" x="-1607" y="72" width="1496" height="826" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32532752" sideWeight="0.4904762" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="ANTLR Preview" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32969433" sideWeight="0.5011905" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -937,6 +1218,7 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.027380953" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Byte Code Viewer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" x="92" y="92" width="1496" height="826" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -962,7 +1244,6 @@
       <path value="$PROJECT_DIR$/jpf-inspector" />
       <path value="$PROJECT_DIR$/jpf-shell" />
     </ignored-roots>
-    <MESSAGE value="fix SearchGraphTracker" />
     <MESSAGE value="fix from email" />
     <MESSAGE value="ClassInfoCache" />
     <MESSAGE value="add JUnit libraries, IDE reset" />
@@ -987,7 +1268,8 @@
     <MESSAGE value="now print displays in decimals" />
     <MESSAGE value="wiki update" />
     <MESSAGE value="quick doc fix" />
-    <option name="LAST_COMMIT_MESSAGE" value="quick doc fix" />
+    <MESSAGE value="image fix" />
+    <option name="LAST_COMMIT_MESSAGE" value="image fix" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -1101,422 +1383,6 @@
     </buildFile>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/jpf-inspector/src/tests/gov/nasa/jpf/inspector/tests/infrastructure/Breakpoint.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="11" column="21" selection-start-line="11" selection-start-column="21" selection-end-line="11" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/jpf-inspector/src/tests/gov/nasa/jpf/inspector/tests/parsing/ParsingTests.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1440">
-          <caret line="223" column="36" selection-start-line="223" selection-start-column="36" selection-end-line="223" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/jpf-inspector/src/main/gov/nasa/jpf/inspector/client/commands/CmdBreakpointCreate.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="226">
-          <caret line="129" column="0" selection-start-line="129" selection-start-column="0" selection-end-line="129" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/jpf-inspector/src/main/gov/nasa/jpf/inspector/server/expression/parser/ExpressionGrammar.g4">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="98">
-          <caret line="10" column="71" selection-start-line="10" selection-start-column="71" selection-end-line="10" selection-end-column="71" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/jpf-inspector/src/main/gov/nasa/jpf/inspector/client/parser/ConsoleGrammarParser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="226">
-          <caret line="2167" column="0" selection-start-line="2167" selection-start-column="0" selection-end-line="2167" selection-end-column="0" />
-          <folding>
-            <element signature="e#46793#46794#0" expanded="false" />
-            <element signature="e#46973#46974#0" expanded="false" />
-            <element signature="e#47087#47088#0" expanded="false" />
-            <element signature="e#47139#47140#0" expanded="false" />
-            <element signature="e#47222#47223#0" expanded="false" />
-            <element signature="e#47259#47260#0" expanded="false" />
-            <element signature="e#49316#49317#0" expanded="false" />
-            <element signature="e#49378#49379#0" expanded="false" />
-            <element signature="e#49610#49611#0" expanded="false" />
-            <element signature="e#49647#49648#0" expanded="false" />
-            <element signature="e#51844#51845#0" expanded="false" />
-            <element signature="e#51905#51906#0" expanded="false" />
-            <element signature="e#51955#51956#0" expanded="false" />
-            <element signature="e#52130#52131#0" expanded="false" />
-            <element signature="e#52190#52191#0" expanded="false" />
-            <element signature="e#52256#52257#0" expanded="false" />
-            <element signature="e#52400#52401#0" expanded="false" />
-            <element signature="e#52460#52461#0" expanded="false" />
-            <element signature="e#52514#52515#0" expanded="false" />
-            <element signature="e#58753#58754#0" expanded="false" />
-            <element signature="e#59121#59122#0" expanded="false" />
-            <element signature="e#59180#59181#0" expanded="false" />
-            <element signature="e#59230#59231#0" expanded="false" />
-            <element signature="e#59287#59288#0" expanded="false" />
-            <element signature="e#59336#59337#0" expanded="false" />
-            <element signature="e#59394#59395#0" expanded="false" />
-            <element signature="e#59472#59473#0" expanded="false" />
-            <element signature="e#59509#59510#0" expanded="false" />
-            <element signature="e#63297#63298#0" expanded="false" />
-            <element signature="e#63351#63352#0" expanded="false" />
-            <element signature="e#63465#63466#0" expanded="false" />
-            <element signature="e#63517#63518#0" expanded="false" />
-            <element signature="e#63886#63887#0" expanded="false" />
-            <element signature="e#63983#63984#0" expanded="false" />
-            <element signature="e#64038#64039#0" expanded="false" />
-            <element signature="e#64158#64159#0" expanded="false" />
-            <element signature="e#64212#64213#0" expanded="false" />
-            <element signature="e#69217#69218#0" expanded="false" />
-            <element signature="e#69254#69255#0" expanded="false" />
-            <element signature="e#71493#71494#0" expanded="false" />
-            <element signature="e#71549#71550#0" expanded="false" />
-            <element signature="e#71878#71879#0" expanded="false" />
-            <element signature="e#77414#77415#0" expanded="false" />
-            <element signature="e#77917#77918#0" expanded="false" />
-            <element signature="e#77970#77971#0" expanded="false" />
-            <element signature="e#78741#78742#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/jpf-inspector/src/tests/gov/nasa/jpf/inspector/tests/cmd2text/NormalizedTextParsingTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="974">
-          <caret line="148" column="0" selection-start-line="148" selection-start-column="0" selection-end-line="148" selection-end-column="0" />
-          <folding>
-            <element signature="e#1267#1268#0" expanded="false" />
-            <element signature="e#1303#1304#0" expanded="false" />
-            <element signature="e#2654#2655#0" expanded="false" />
-            <element signature="e#2696#2697#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/jpf-inspector/src/main/gov/nasa/jpf/inspector/client/parser/ConsoleGrammar.g4">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="223">
-          <caret line="145" column="21" selection-start-line="145" selection-start-column="21" selection-end-line="145" selection-end-column="21" />
-          <folding>
-            <element signature="e#0#19265#0" expanded="true" />
-            <marker date="1464687981716" expanded="true" signature="2419:4818" ph=":...;" />
-            <marker date="1464687981716" expanded="true" signature="6620:7247" ph=":...;" />
-            <marker date="1464687981716" expanded="true" signature="8325:10225" ph=":...;" />
-            <marker date="1464687981716" expanded="true" signature="10868:11437" ph=":...;" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/jpf-inspector/src/main/gov/nasa/jpf/inspector/client/parser/CommandParser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="182">
-          <caret line="32" column="12" selection-start-line="32" selection-start-column="12" selection-end-line="32" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/jpf-inspector/src/tests/gov/nasa/jpf/inspector/tests/unit/ExpressionNameMatchingTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="16" column="32" selection-start-line="16" selection-start-column="32" selection-end-line="16" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/jpf-inspector/src/tests/gov/nasa/jpf/inspector/tests/cmd2text/NormalizedExpressionParsingTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="318">
-          <caret line="205" column="16" selection-start-line="205" selection-start-column="16" selection-end-line="205" selection-end-column="16" />
-          <folding>
-            <element signature="e#2804#2805#0" expanded="false" />
-            <element signature="e#2852#2853#0" expanded="false" />
-            <element signature="e#8224#8225#0" expanded="false" />
-            <element signature="e#8266#8267#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/jpf-inspector/src/tests/gov/nasa/jpf/inspector/tests/infrastructure/InspectorTestDriver.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="32" column="33" selection-start-line="32" selection-start-column="33" selection-end-line="32" selection-end-column="33" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://D:/PROGRAMS/Java/jdk1.8.0_73/src.zip!/java/lang/Thread.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="182">
-          <caret line="1327" column="23" selection-start-line="1327" selection-start-column="23" selection-end-line="1327" selection-end-column="23" />
-          <folding>
-            <element signature="e#50771#50772#0" expanded="false" />
-            <element signature="e#50833#50834#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/jpf-shell/src/main/gov/nasa/jpf/shell/ShellManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="182">
-          <caret line="93" column="17" selection-start-line="93" selection-start-column="17" selection-end-line="93" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/jpf-inspector/src/main/gov/nasa/jpf/inspector/server/breakpoints/InternalBreakpointHolder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="182">
-          <caret line="42" column="44" selection-start-line="42" selection-start-column="44" selection-end-line="42" selection-end-column="44" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/jpf-inspector/src/main/gov/nasa/jpf/inspector/utils/Debugging.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="199">
-          <caret line="40" column="69" selection-start-line="40" selection-start-column="69" selection-end-line="40" selection-end-column="69" />
-          <folding>
-            <element signature="e#1599#1600#0" expanded="false" />
-            <element signature="e#1673#1674#0" expanded="false" />
-            <element signature="e#1943#1944#0" expanded="false" />
-            <element signature="e#2008#2009#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core8/src/main/gov/nasa/jpf/vm/NativeMethodInfo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="590">
-          <caret line="185" column="0" selection-start-line="185" selection-start-column="0" selection-end-line="185" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/jpf-inspector/build/tests/gov/nasa/jpf/inspector/tests/AssertSimpleTest.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="94" column="21" selection-start-line="94" selection-start-column="21" selection-end-line="94" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/jpf-inspector/build.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1654">
-          <caret line="66" column="36" selection-start-line="66" selection-start-column="36" selection-end-line="66" selection-end-column="36" />
-          <folding>
-            <element signature="e#24#459#0" expanded="false" />
-            <element signature="e#604#750#0" expanded="false" />
-            <element signature="e#2137#2211#0" expanded="false" />
-            <element signature="n#fileset#0;n#path#0;n#project#0;n#!!top" expanded="false" />
-            <element signature="n#path#1;n#project#0;n#!!top" expanded="false" />
-            <element signature="e#2605#2679#0" expanded="false" />
-            <element signature="n#fileset#0;n#path#1;n#project#0;n#!!top" expanded="false" />
-            <element signature="n#fileset#1;n#path#1;n#project#0;n#!!top" expanded="false" />
-            <element signature="n#target#0;n#project#0;n#!!top" expanded="false" />
-            <element signature="n#condition#0;n#target#0;n#project#0;n#!!top" expanded="false" />
-            <element signature="n#or#0;n#condition#0;n#target#0;n#project#0;n#!!top" expanded="false" />
-            <element signature="n#condition#1;n#target#0;n#project#0;n#!!top" expanded="false" />
-            <element signature="n#or#0;n#condition#1;n#target#0;n#project#0;n#!!top" expanded="false" />
-            <element signature="e#4335#4521#0" expanded="false" />
-            <element signature="n#target#1;n#project#0;n#!!top" expanded="false" />
-            <element signature="e#4865#5020#0" expanded="false" />
-            <element signature="n#fileset#0;n#project#0;n#!!top" expanded="false" />
-            <element signature="n#target#2;n#project#0;n#!!top" expanded="false" />
-            <element signature="n#dependset#0;n#target#2;n#project#0;n#!!top" expanded="false" />
-            <element signature="n#srcfilelist#0;n#dependset#0;n#target#2;n#project#0;n#!!top" expanded="false" />
-            <element signature="n#target#3;n#project#0;n#!!top" expanded="false" />
-            <element signature="n#condition#0;n#target#3;n#project#0;n#!!top" expanded="false" />
-            <element signature="n#not#0;n#condition#0;n#target#3;n#project#0;n#!!top" expanded="false" />
-            <element signature="n#target#4;n#project#0;n#!!top" expanded="false" />
-            <element signature="n#java#0;n#target#4;n#project#0;n#!!top" expanded="false" />
-            <element signature="n#fileset#1;n#project#0;n#!!top" expanded="false" />
-            <element signature="n#target#5;n#project#0;n#!!top" expanded="false" />
-            <element signature="n#dependset#0;n#target#5;n#project#0;n#!!top" expanded="false" />
-            <element signature="n#srcfilelist#0;n#dependset#0;n#target#5;n#project#0;n#!!top" expanded="false" />
-            <element signature="n#target#6;n#project#0;n#!!top" expanded="false" />
-            <element signature="n#condition#0;n#target#6;n#project#0;n#!!top" expanded="false" />
-            <element signature="n#not#0;n#condition#0;n#target#6;n#project#0;n#!!top" expanded="false" />
-            <element signature="n#target#7;n#project#0;n#!!top" expanded="false" />
-            <element signature="n#java#0;n#target#7;n#project#0;n#!!top" expanded="false" />
-            <element signature="n#target#8;n#project#0;n#!!top" expanded="false" />
-            <element signature="n#target#9;n#project#0;n#!!top" expanded="false" />
-            <element signature="n#delete#0;n#target#9;n#project#0;n#!!top" expanded="false" />
-            <element signature="n#target#10;n#project#0;n#!!top" expanded="false" />
-            <element signature="n#javac#0;n#target#10;n#project#0;n#!!top" expanded="false" />
-            <element signature="n#target#11;n#project#0;n#!!top" expanded="false" />
-            <element signature="n#javac#0;n#target#11;n#project#0;n#!!top" expanded="false" />
-            <element signature="n#copy#0;n#target#11;n#project#0;n#!!top" expanded="false" />
-            <element signature="n#target#12;n#project#0;n#!!top" expanded="false" />
-            <element signature="n#javac#0;n#target#12;n#project#0;n#!!top" expanded="false" />
-            <element signature="n#target#13;n#project#0;n#!!top" expanded="false" />
-            <element signature="n#javac#0;n#target#13;n#project#0;n#!!top" expanded="false" />
-            <element signature="n#classpath#0;n#javac#0;n#target#13;n#project#0;n#!!top" expanded="false" />
-            <element signature="n#target#14;n#project#0;n#!!top" expanded="false" />
-            <element signature="n#javac#0;n#target#14;n#project#0;n#!!top" expanded="false" />
-            <element signature="n#classpath#0;n#javac#0;n#target#14;n#project#0;n#!!top" expanded="false" />
-            <element signature="n#target#15;n#project#0;n#!!top" expanded="false" />
-            <element signature="n#javac#0;n#target#15;n#project#0;n#!!top" expanded="false" />
-            <element signature="n#target#16;n#project#0;n#!!top" expanded="false" />
-            <element signature="n#target#17;n#project#0;n#!!top" expanded="false" />
-            <element signature="n#condition#0;n#target#17;n#project#0;n#!!top" expanded="false" />
-            <element signature="n#target#18;n#project#0;n#!!top" expanded="false" />
-            <element signature="n#jar#0;n#target#18;n#project#0;n#!!top" expanded="false" />
-            <element signature="e#11927#12009#0" expanded="false" />
-            <element signature="n#target#19;n#project#0;n#!!top" expanded="false" />
-            <element signature="n#jar#0;n#target#19;n#project#0;n#!!top" expanded="false" />
-            <element signature="n#target#20;n#project#0;n#!!top" expanded="false" />
-            <element signature="n#target#21;n#project#0;n#!!top" expanded="false" />
-            <element signature="n#jar#0;n#target#21;n#project#0;n#!!top" expanded="false" />
-            <element signature="n#target#22;n#project#0;n#!!top" expanded="false" />
-            <element signature="n#jar#0;n#target#22;n#project#0;n#!!top" expanded="false" />
-            <element signature="n#target#23;n#project#0;n#!!top" expanded="false" />
-            <element signature="n#target#24;n#project#0;n#!!top" expanded="false" />
-            <element signature="n#jar#0;n#target#24;n#project#0;n#!!top" expanded="false" />
-            <element signature="n#target#25;n#project#0;n#!!top" expanded="false" />
-            <element signature="n#jar#0;n#target#25;n#project#0;n#!!top" expanded="false" />
-            <element signature="n#target#26;n#project#0;n#!!top" expanded="false" />
-            <element signature="n#target#27;n#project#0;n#!!top" expanded="false" />
-            <element signature="n#delete#2;n#target#27;n#project#0;n#!!top" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/jpf-inspector/src/tests/gov/nasa/jpf/inspector/tests/infrastructure/InspectorTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="174">
-          <caret line="111" column="21" selection-start-line="111" selection-start-column="21" selection-end-line="111" selection-end-column="21" />
-          <folding>
-            <element signature="docComment;method#runInspectorTest#0;class#InspectorTest#0" expanded="false" />
-            <element signature="method#runInspectorTest#1;class#InspectorTest#0" expanded="false" />
-            <element signature="docComment;method#runInspectorTest#2;class#InspectorTest#0" expanded="false" />
-            <element signature="method#getInstance#0;class#InspectorTest#0" expanded="false" />
-            <element signature="method#concatArrays#0;class#InspectorTest#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core8/src/main/gov/nasa/jpf/util/test/TestJPF.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-30">
-          <caret line="682" column="16" selection-start-line="682" selection-start-column="16" selection-end-line="682" selection-end-column="16" />
-          <folding>
-            <element signature="class#GlobalArg#0;class#TestJPF#0" expanded="false" />
-            <element signature="method#GlobalArg#0;class#GlobalArg#0;class#TestJPF#0" expanded="false" />
-            <element signature="e#3635#3703#0" expanded="false" />
-            <element signature="method#getGlobalArgs#0;class#TestJPF#0" expanded="false" />
-            <element signature="e#4390#4461#0" expanded="false" />
-            <element signature="initializer##0;class#TestJPF#0" expanded="false" />
-            <element signature="method#fail#0;class#TestJPF#0" expanded="false" />
-            <element signature="method#report#0;class#TestJPF#0" expanded="false" />
-            <element signature="docComment;method#getSutClassName#0;class#TestJPF#0" expanded="false" />
-            <element signature="method#getSutClassName#0;class#TestJPF#0" expanded="false" />
-            <element signature="e#6314#6333#0" expanded="false" />
-            <element signature="e#6693#6712#0" expanded="false" />
-            <element signature="docComment;method#TestJPF#1;class#TestJPF#0" expanded="false" />
-            <element signature="method#isJUnitRun#0;class#TestJPF#0" expanded="false" />
-            <element signature="method#isRunTestRun#0;class#TestJPF#0" expanded="false" />
-            <element signature="method#getOptions#0;class#TestJPF#0" expanded="false" />
-            <element signature="method#hasExplicitTestMethods#0;class#TestJPF#0" expanded="false" />
-            <element signature="method#getMatchingMethods#0;class#TestJPF#0" expanded="false" />
-            <element signature="method#isMatchingMethod#0;class#TestJPF#0" expanded="false" />
-            <element signature="method#getContextMethods#0;class#TestJPF#0" expanded="false" />
-            <element signature="method#getBeforeMethods#0;class#TestJPF#0" expanded="false" />
-            <element signature="method#getAfterMethods#0;class#TestJPF#0" expanded="false" />
-            <element signature="method#getBeforeClassMethods#0;class#TestJPF#0" expanded="false" />
-            <element signature="method#getAfterClassMethods#0;class#TestJPF#0" expanded="false" />
-            <element signature="method#haveTestMethodSpecs#0;class#TestJPF#0" expanded="false" />
-            <element signature="method#getTestMethods#0;class#TestJPF#0" expanded="false" />
-            <element signature="method#reportTestStart#0;class#TestJPF#0" expanded="false" />
-            <element signature="method#reportTestInitialization#0;class#TestJPF#0" expanded="false" />
-            <element signature="method#reportTestCleanup#0;class#TestJPF#0" expanded="false" />
-            <element signature="method#reportTestFinished#0;class#TestJPF#0" expanded="false" />
-            <element signature="method#reportResults#0;class#TestJPF#0" expanded="false" />
-            <element signature="method#invoke#0;class#TestJPF#0" expanded="false" />
-            <element signature="docComment;method#runTests#0;class#TestJPF#0" expanded="false" />
-            <element signature="method#runTests#0;class#TestJPF#0" expanded="false" />
-            <element signature="e#16250#16322#0" expanded="false" />
-            <element signature="method#getProperty#0;class#TestJPF#0" expanded="false" />
-            <element signature="docComment;method#runTestMethod#0;class#TestJPF#0" expanded="false" />
-            <element signature="method#runTestMethod#0;class#TestJPF#0" expanded="false" />
-            <element signature="docComment;method#runTestsOfThisClass#0;class#TestJPF#0" expanded="false" />
-            <element signature="docComment;method#createAndRunJPF#0;class#TestJPF#0" expanded="false" />
-            <element signature="method#createAndRunJPF#0;class#TestJPF#0" expanded="false" />
-            <element signature="docComment;method#createJPF#0;class#TestJPF#0" expanded="false" />
-            <element signature="method#setTestTargetKeys#0;class#TestJPF#0" expanded="false" />
-            <element signature="method#start#0;class#TestJPF#0" expanded="false" />
-            <element signature="method#getCaller#0;class#TestJPF#0" expanded="false" />
-            <element signature="method#setTestMethod#0;class#TestJPF#0" expanded="false" />
-            <element signature="method#setTestMethod#1;class#TestJPF#0" expanded="false" />
-            <element signature="docComment;method#assertionError#0;class#TestJPF#0" expanded="false" />
-            <element signature="method#assertionError#0;class#TestJPF#0" expanded="false" />
-            <element signature="method#assertionError#1;class#TestJPF#0" expanded="false" />
-            <element signature="method#assertionErrorDetails#0;class#TestJPF#0" expanded="false" />
-            <element signature="method#assertionErrorDetails#1;class#TestJPF#0" expanded="false" />
-            <element signature="method#verifyAssertionErrorDetails#0;class#TestJPF#0" expanded="false" />
-            <element signature="method#verifyAssertionError#0;class#TestJPF#0" expanded="false" />
-            <element signature="docComment;method#noPropertyViolation#0;class#TestJPF#0" expanded="false" />
-            <element signature="method#noPropertyViolation#0;class#TestJPF#0" expanded="false" />
-            <element signature="method#verifyNoPropertyViolation#0;class#TestJPF#0" expanded="false" />
-            <element signature="docComment;method#unhandledException#0;class#TestJPF#0" expanded="false" />
-            <element signature="method#unhandledException#0;class#TestJPF#0" expanded="false" />
-            <element signature="method#unhandledException#1;class#TestJPF#0" expanded="false" />
-            <element signature="method#verifyUnhandledExceptionDetails#0;class#TestJPF#0" expanded="false" />
-            <element signature="method#verifyUnhandledException#0;class#TestJPF#0" expanded="false" />
-            <element signature="docComment;method#jpfException#0;class#TestJPF#0" expanded="false" />
-            <element signature="method#jpfException#0;class#TestJPF#0" expanded="false" />
-            <element signature="method#jpfException#1;class#TestJPF#0" expanded="false" />
-            <element signature="method#verifyJPFException#0;class#TestJPF#0" expanded="false" />
-            <element signature="docComment;method#propertyViolation#0;class#TestJPF#0" expanded="false" />
-            <element signature="method#propertyViolation#0;class#TestJPF#0" expanded="false" />
-            <element signature="method#propertyViolation#1;class#TestJPF#0" expanded="false" />
-            <element signature="method#verifyPropertyViolation#0;class#TestJPF#0" expanded="false" />
-            <element signature="docComment;method#deadlock#0;class#TestJPF#0" expanded="false" />
-            <element signature="method#deadlock#0;class#TestJPF#0" expanded="false" />
-            <element signature="method#verifyDeadlock#0;class#TestJPF#0" expanded="false" />
-            <element signature="e#31842#31915#0" expanded="false" />
-            <element signature="method#assertEquals#0;class#TestJPF#0" expanded="false" />
-            <element signature="method#assertEquals#2;class#TestJPF#0" expanded="false" />
-            <element signature="method#assertEquals#3;class#TestJPF#0" expanded="false" />
-            <element signature="method#assertEquals#4;class#TestJPF#0" expanded="false" />
-            <element signature="method#assertEquals#5;class#TestJPF#0" expanded="false" />
-            <element signature="method#assertEquals#6;class#TestJPF#0" expanded="false" />
-            <element signature="method#assertEquals#7;class#TestJPF#0" expanded="false" />
-            <element signature="method#assertEquals#8;class#TestJPF#0" expanded="false" />
-            <element signature="method#assertEquals#9;class#TestJPF#0" expanded="false" />
-            <element signature="method#assertEquals#10;class#TestJPF#0" expanded="false" />
-            <element signature="method#assertEquals#11;class#TestJPF#0" expanded="false" />
-            <element signature="method#assertEquals#12;class#TestJPF#0" expanded="false" />
-            <element signature="method#assertEquals#13;class#TestJPF#0" expanded="false" />
-            <element signature="method#assertArrayEquals#0;class#TestJPF#0" expanded="false" />
-            <element signature="method#assertNotNull#0;class#TestJPF#0" expanded="false" />
-            <element signature="method#assertNull#0;class#TestJPF#0" expanded="false" />
-            <element signature="method#assertSame#0;class#TestJPF#0" expanded="false" />
-            <element signature="method#assertSame#1;class#TestJPF#0" expanded="false" />
-            <element signature="method#assertFalse#0;class#TestJPF#0" expanded="false" />
-            <element signature="method#assertTrue#0;class#TestJPF#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core8/src/main/gov/nasa/jpf/tool/RunTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1989">
-          <caret line="51" column="29" selection-start-line="51" selection-start-column="29" selection-end-line="51" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/jpf-inspector/src/tests/gov/nasa/jpf/inspector/tests/Assignments01Test.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
@@ -1653,10 +1519,10 @@
         <state relative-caret-position="187">
           <caret line="556" column="19" selection-start-line="556" selection-start-column="19" selection-end-line="556" selection-end-column="19" />
           <folding>
-            <element signature="e#7293#7294#0" expanded="true" />
-            <element signature="e#7391#7392#0" expanded="true" />
-            <element signature="e#16962#16963#0" expanded="true" />
-            <element signature="e#16981#16982#0" expanded="true" />
+            <element signature="e#7293#7294#0" expanded="false" />
+            <element signature="e#7391#7392#0" expanded="false" />
+            <element signature="e#16962#16963#0" expanded="false" />
+            <element signature="e#16981#16982#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1784,14 +1650,197 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/jpf-inspector/src/main/gov/nasa/jpf/inspector/client/JPFClientCallbackHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="208">
+          <caret line="133" column="42" selection-start-line="133" selection-start-column="42" selection-end-line="133" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jpf-inspector/src/examples/sooth/quick.jpf">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="12" selection-start-line="1" selection-start-column="12" selection-end-line="1" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jpf-inspector/src/examples/sooth/Quick.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="39" selection-start-line="7" selection-start-column="39" selection-end-line="7" selection-end-column="39" />
+          <folding>
+            <element signature="e#304#305#0" expanded="false" />
+            <element signature="e#322#323#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jpf-inspector/src/main/gov/nasa/jpf/inspector/client/commands/CmdBreakpointCreate.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="196">
+          <caret line="77" column="22" selection-start-line="77" selection-start-column="22" selection-end-line="77" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jpf-inspector/src/main/gov/nasa/jpf/inspector/interfaces/BreakPointManagerInterface.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="196">
+          <caret line="50" column="15" selection-start-line="50" selection-start-column="15" selection-end-line="50" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jpf-inspector/src/main/gov/nasa/jpf/inspector/server/breakpoints/BreakPointHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="178" column="23" selection-start-line="178" selection-start-column="23" selection-end-line="178" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jpf-inspector/src/main/gov/nasa/jpf/inspector/server/breakpoints/InternalBreakpointHolder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2601">
+          <caret line="39" column="6" selection-start-line="39" selection-start-column="6" selection-end-line="39" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jpf-inspector/src/main/gov/nasa/jpf/inspector/server/breakpoints/AssertStatusImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="298">
+          <caret line="38" column="9" selection-start-line="38" selection-start-column="9" selection-end-line="38" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jpf-inspector/src/main/gov/nasa/jpf/inspector/server/breakpoints/InternalAssertHolder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="67" column="46" selection-start-line="67" selection-start-column="46" selection-end-line="67" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jpf-inspector/src/main/gov/nasa/jpf/inspector/interfaces/AssertStatus.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="25" column="17" selection-start-line="25" selection-start-column="17" selection-end-line="25" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jpf-inspector/src/main/gov/nasa/jpf/inspector/interfaces/AssertCreate.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="36" column="1" selection-start-line="36" selection-start-column="1" selection-end-line="36" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jpf-inspector/src/main/gov/nasa/jpf/inspector/client/commands/CmdAssertionsBreakpoint.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="50" column="25" selection-start-line="50" selection-start-column="25" selection-end-line="50" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jpf-inspector/src/main/gov/nasa/jpf/inspector/client/parser/ConsoleGrammar.g4">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="62">
+          <caret line="263" column="66" selection-start-line="263" selection-start-column="66" selection-end-line="263" selection-end-column="66" />
+          <folding>
+            <element signature="e#0#19265#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jpf-inspector/src/main/gov/nasa/jpf/inspector/client/commands/CmdAssertions.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="42" column="11" selection-start-line="42" selection-start-column="11" selection-end-line="42" selection-end-column="11" />
+          <folding>
+            <element signature="e#1401#1402#0" expanded="true" />
+            <element signature="e#1431#1432#0" expanded="true" />
+            <element signature="e#1645#1646#0" expanded="true" />
+            <element signature="e#1709#1710#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jpf-inspector/src/main/gov/nasa/jpf/inspector/client/commands/CmdSet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="44" column="23" selection-start-line="44" selection-start-column="23" selection-end-line="44" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jpf-inspector/src/main/gov/nasa/jpf/inspector/interfaces/ProgramStateInterface.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="174">
+          <caret line="68" column="14" selection-start-line="68" selection-start-column="14" selection-end-line="68" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jpf-inspector/src/main/gov/nasa/jpf/inspector/server/programstate/ProgramStateManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="208">
+          <caret line="171" column="53" selection-start-line="171" selection-start-column="53" selection-end-line="171" selection-end-column="53" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jpf-inspector/src/main/gov/nasa/jpf/inspector/server/expression/ExpressionParserInterface.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="191">
+          <caret line="46" column="52" selection-start-line="46" selection-start-column="52" selection-end-line="46" selection-end-column="52" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jpf-inspector/src/main/gov/nasa/jpf/inspector/server/expression/ExpressionParser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="514">
+          <caret line="135" column="33" selection-start-line="135" selection-start-column="33" selection-end-line="135" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/documentation/wiki/Legacy-User-Guide.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="153">
-            <caret line="4" column="351" selection-start-line="4" selection-start-column="351" selection-end-line="4" selection-end-column="351" />
+          <first_editor relative-caret-position="353">
+            <caret line="176" column="204" selection-start-line="176" selection-start-column="204" selection-end-line="176" selection-end-column="204" />
             <folding />
           </first_editor>
           <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/documentation/wiki/Commands.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="179">
+            <caret line="34" column="15" selection-start-line="34" selection-start-column="15" selection-end-line="34" selection-end-column="15" />
+            <folding />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jpf-inspector/src/main/gov/nasa/jpf/inspector/server/expression/parser/ExpressionGrammar.g4">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="283">
+          <caret line="300" column="0" selection-start-line="300" selection-start-column="0" selection-end-line="300" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#33270#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

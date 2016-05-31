@@ -21,6 +21,7 @@ package gov.nasa.jpf.inspector.client.commands;
 
 import gov.nasa.jpf.inspector.client.ClientCommand;
 import gov.nasa.jpf.inspector.client.JPFInspectorClient;
+import gov.nasa.jpf.inspector.common.ConsoleInformation;
 import gov.nasa.jpf.inspector.interfaces.JPFInspectorBackEndInterface;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorException;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorParsingErrorException;
@@ -28,8 +29,7 @@ import gov.nasa.jpf.inspector.exceptions.JPFInspectorParsingErrorException;
 import java.io.PrintStream;
 
 /**
- * @author Alf
- * 
+ * Represents the "set" command that modifies the program state.
  */
 public class CmdSet extends ClientCommand {
 
@@ -39,10 +39,6 @@ public class CmdSet extends ClientCommand {
     this.expression = expression;
   }
 
-  /*
-   * @see gov.nasa.jpf.inspector.client.ClientCommandInterface#executeCommands(gov.nasa.jpf.inspector.client.JPFInspectorClient,
-   * gov.nasa.jpf.inspector.interfaces.JPFInspectorBackEndInterface, java.io.PrintStream)
-   */
   @Override
   public void executeCommands (JPFInspectorClient client, JPFInspectorBackEndInterface inspector, PrintStream outStream) {
     try {
@@ -52,8 +48,7 @@ public class CmdSet extends ClientCommand {
 
     } catch (JPFInspectorParsingErrorException e) {
       outStream.println(e.getMessage());
-      // TODO - Extend/replace outStream to be able to report line length - not use magic constant 50
-      outStream.println(e.expressError(50));
+      outStream.println(e.expressError(ConsoleInformation.MAX_ERROR_LINE_LENGTH));
 
       client.recordComment(e.getMessage());
       client.recordComment(e.expressError(JPFInspectorParsingErrorException.DEFAULT_LINE_LENGTH));
@@ -61,8 +56,6 @@ public class CmdSet extends ClientCommand {
       outStream.print(e.getMessage());
       client.recordComment(e.getMessage());
     }
-    //
-
   }
 
   @Override
@@ -70,7 +63,6 @@ public class CmdSet extends ClientCommand {
     return false;
   }
 
-  /* @see gov.nasa.jpf.inspector.client.ClientCommandInterface#getNormalizedCommand() */
   @Override
   public String getNormalizedCommand () {
     return "set " + expression;

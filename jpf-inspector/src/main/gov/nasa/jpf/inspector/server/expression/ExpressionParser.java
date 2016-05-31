@@ -115,7 +115,6 @@ public class ExpressionParser implements ExpressionParserInterface {
       return parser;
   }
 
-  /* @see gov.nasa.jpf.inspector.server.expression.ExpressionParserInterface#getExpressionAssignment(java.lang.String) */
   @Override
   public ExpressionStateAssignment getExpressionAssignment (String expr) throws JPFInspectorParsingErrorException, JPFInspectorGenericErrorException {
     if (expr == null) {

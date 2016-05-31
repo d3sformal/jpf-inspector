@@ -121,7 +121,6 @@ public class BreakPointHandler implements BreakPointManagerInterface {
     return createBreakPointImpl(newBP, newBPExpression, false, false);
   }
 
-  /* @see gov.nasa.jpf.inspector.interfaces.BreakPointManagerInterface#createAssert(gov.nasa.jpf.inspector.interfaces.AssertCreate) */
   @Override
   public AssertStatus createAssert (AssertCreate newAssert) throws JPFInspectorParsingErrorException, JPFInspectorGenericErrorException {
 
@@ -181,10 +180,10 @@ public class BreakPointHandler implements BreakPointManagerInterface {
       if (newAssert.getBPID() != BreakPointCreationInformation.BP_ID_NOT_DEFINED) {
         InternalBreakpointHolder ibp = breakpoints.get(newAssert.getBPID());
         if (ibp == null) {
-          throw new JPFInspectorGenericErrorException("Assertion with ID=" + newAssert.getBPID() + " not exists --> cann't be modified");
+          throw new JPFInspectorGenericErrorException("Assertion with ID " + newAssert.getBPID() + " does not exist so it can't be modified.");
         }
         if (ibp.isAssert() == false) {
-          throw new JPFInspectorGenericErrorException("ID=" + newAssert.getBPID() + " does not represent assert");
+          throw new JPFInspectorGenericErrorException("The breakpoint with ID " + newAssert.getBPID() + " is not an assertion.");
         }
 
         assert (ibp instanceof InternalAssertHolder);

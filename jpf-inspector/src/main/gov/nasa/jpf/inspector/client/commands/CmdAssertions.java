@@ -26,30 +26,23 @@ import gov.nasa.jpf.inspector.interfaces.JPFInspectorBackEndInterface;
 import java.io.PrintStream;
 
 /**
- * @author Alf
- * 
+ * Represents the "assertions" command that does nothing.
  */
 public class CmdAssertions extends ClientCommand {
 
+  boolean enable;
   public CmdAssertions (boolean enable, String classNameExpr) {
-    // TODO Auto-generated constructor stub
+    this.enable = enable;
   }
 
-  /*
-   * @see gov.nasa.jpf.inspector.client.ClientCommandInterface#executeCommands(gov.nasa.jpf.inspector.client.JPFInspectorClient,
-   * gov.nasa.jpf.inspector.interfaces.JPFInspectorBackEndInterface, java.io.PrintStream)
-   */
   @Override
   public void executeCommands (JPFInspectorClient client, JPFInspectorBackEndInterface inspector, PrintStream outStream) {
-    // TODO Auto-generated method stub
-
+    // Do nothing.
   }
 
-  /* @see gov.nasa.jpf.inspector.client.ClientCommandInterface#getNormalizedCommand() */
   @Override
   public String getNormalizedCommand () {
-    // TODO Auto-generated method stub
-    return null;
+    return "assertions " + (enable ? "enable" : "disable");
   }
 
 }

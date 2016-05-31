@@ -22,6 +22,7 @@ package gov.nasa.jpf.inspector.client.commands;
 import gov.nasa.jpf.inspector.client.ClientCommand;
 import gov.nasa.jpf.inspector.client.JPFInspectorClient;
 import gov.nasa.jpf.inspector.client.commands.CmdBreakpointCreate.ConsoleBreakpointCreationExpression;
+import gov.nasa.jpf.inspector.common.ConsoleInformation;
 import gov.nasa.jpf.inspector.interfaces.AssertCreate;
 import gov.nasa.jpf.inspector.interfaces.AssertStatus;
 import gov.nasa.jpf.inspector.interfaces.JPFInspectorBackEndInterface;
@@ -31,8 +32,7 @@ import gov.nasa.jpf.inspector.exceptions.JPFInspectorParsingErrorException;
 import java.io.PrintStream;
 
 /**
- * @author Alf
- * 
+ * Represents the "assert" command that creates a new assetion.
  */
 public class CmdAssertionsBreakpoint extends ClientCommand {
 
@@ -46,18 +46,14 @@ public class CmdAssertionsBreakpoint extends ClientCommand {
     this.assertExpression = assertExpression;
   }
 
-  /*
-   * @see gov.nasa.jpf.inspector.client.ClientCommandInterface#executeCommands(gov.nasa.jpf.inspector.client.JPFInspectorClient,
-   * gov.nasa.jpf.inspector.interfaces.JPFInspectorBackEndInterface, java.io.PrintStream)
-   */
   @Override
   public void executeCommands (JPFInspectorClient client, JPFInspectorBackEndInterface inspector, PrintStream outStream) {
     createdAssert = null;
     try {
 
-      createdAssert = inspector.createAssert(new ConsoleAssertionCreator(position, assertExpression));
+      createdAssert = inspector.createAssert(new ConsoleAssertionCreationExpression(position, assertExpression));
       if (createdAssert != null) {
-        outStream.println("New assertion succesfully created with ID=" + createdAssert.getBPID());
+        outStream.println("New assertion succesfully created with ID " + createdAssert.getBPID() + ".");
       }
 
       if (rec != null) {
@@ -67,8 +63,7 @@ public class CmdAssertionsBreakpoint extends ClientCommand {
     } catch (JPFInspectorParsingErrorException e) {
 
       outStream.println(e.getMessage());
-      // TODO - Extend/replace outStream to be able to report line length - not use magic constant 50
-      outStream.println(e.expressError(50));
+      outStream.println(e.expressError(ConsoleInformation.MAX_ERROR_LINE_LENGTH));
 
       client.recordComment(e.getMessage());
       client.recordComment(e.expressError(JPFInspectorParsingErrorException.DEFAULT_LINE_LENGTH));
@@ -79,7 +74,6 @@ public class CmdAssertionsBreakpoint extends ClientCommand {
 
   }
 
-  /* @see gov.nasa.jpf.inspector.client.ClientCommandInterface#getNormalizedCommand() */
   @Override
   public String getNormalizedCommand () {
     if (createdAssert == null) {
@@ -89,26 +83,24 @@ public class CmdAssertionsBreakpoint extends ClientCommand {
     }
   }
 
-  static public class ConsoleAssertionCreator extends ConsoleBreakpointCreationExpression implements AssertCreate {
+  static public class ConsoleAssertionCreationExpression extends ConsoleBreakpointCreationExpression implements AssertCreate {
 
     private static final long serialVersionUID = -7840321111358650898L;
 
     private final String position;
     private final String expression;
 
-    public ConsoleAssertionCreator (String position, String expression) {
+    public ConsoleAssertionCreationExpression(String position, String expression) {
       super();
       this.position = position;
       this.expression = expression;
     }
 
-    /* @see gov.nasa.jpf.inspector.interfaces.AssertCreate#getPosition() */
     @Override
     public String getPosition () {
       return position;
     }
 
-    /* @see gov.nasa.jpf.inspector.interfaces.AssertCreate#getExpression() */
     @Override
     public String getCondition () {
       return expression;

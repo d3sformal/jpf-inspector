@@ -273,7 +273,8 @@ cmdStateExpression1Value    [ExpressionFactory expFactory] returns [ExpressionSt
 cmdStateExpressionThread [ExpressionFactory expFactory] returns [ExpressionStateThread expr]
     : TOKEN_HASH_THREAD WS? ('[' WS? intValue WS? ']' WS?)? ('.' WS? a=cmdStateExpressionStackFrame[$expFactory])?
      { $expr = $expFactory.getStateThread($intValue.ctx != null ? $intValue.value : null, $a.ctx != null ? $a.expr : null); }
-    |                                                                a=cmdStateExpressionStackFrame[$expFactory]
+    |
+      a=cmdStateExpressionStackFrame[$expFactory]
      { $expr = $expFactory.getStateThread(null,            $a.expr); }
     ;
 
@@ -285,15 +286,16 @@ cmdStateExpressionThreadValue [ExpressionFactory expFactory] returns [Expression
     ;
 
 cmdStateExpressionStackFrame [ExpressionFactory expFactory] returns [ExpressionStateStackFrame expr]
-    : TOKEN_HASH_STACK_FRAME WS? ('[' WS? intValue WS? ']' WS?)? ('.' WS? a=cmdStateExpressionStackFrame1[$expFactory, $intValue.ctx!=null?$intValue.value:null])?
-    { $expr = ( $a.expr!=null ? $a.expr :  $expFactory.getStateStackFrame($intValue.ctx!=null?$intValue.value:null, null) ); }
-    |                                                                     b=cmdStateExpressionStackFrame1[$expFactory, null]               { $expr = $b.expr; }
-    |                                                                                                                                      { $expr = $expFactory.getStateStackFrame(null, null); }
+    : TOKEN_HASH_STACK_FRAME WS? ('[' WS? intValue WS? ']' WS?)?
+     ('.' WS? a=cmdStateExpressionStackFrame1[$expFactory, $intValue.ctx!=null?$intValue.value:null])?
+    { $expr = ( $a.ctx !=null ? $a.expr :  $expFactory.getStateStackFrame($intValue.ctx!=null?$intValue.value:null, null) ); }
+    | b=cmdStateExpressionStackFrame1[$expFactory, null] { $expr = $b.expr; }
+    | { $expr = $expFactory.getStateStackFrame(null, null); }
     ;
 
 cmdStateExpressionStackFrameValue [ExpressionFactory expFactory] returns [ExpressionStateStackFrame expr]
     : TOKEN_HASH_STACK_FRAME WS? ('[' WS? intValue WS? ']' WS?)? ('.' WS? a=cmdStateExpressionStackFrame1[$expFactory, $intValue.ctx!=null?$intValue.value:null])  
-     { $expr = ( $a.expr!=null ? $a.expr :  $expFactory.getStateStackFrame($intValue.ctx!=null?$intValue.value:null, null) ); }
+     { $expr = ( $a.ctx!=null ? $a.expr :  $expFactory.getStateStackFrame($intValue.ctx!=null?$intValue.value:null, null) ); }
     |                                                                     b=cmdStateExpressionStackFrame1[$expFactory, null]               { $expr = $b.expr; }
     ;
 
