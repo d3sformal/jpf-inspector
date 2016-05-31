@@ -1,24 +1,30 @@
 package gov.nasa.jpf.inspector.client;
 
+import com.sun.org.apache.xpath.internal.functions.FuncFalse;
 import gov.nasa.jpf.JPF;
 import gov.nasa.jpf.JPF.Status;
 import gov.nasa.jpf.inspector.JPFInspectorFacade;
 import gov.nasa.jpf.inspector.client.parser.CommandParserFactory;
 import gov.nasa.jpf.inspector.client.parser.CommandParserInterface;
 import gov.nasa.jpf.inspector.common.ConsoleInformation;
-import gov.nasa.jpf.inspector.common.Constants;
 import gov.nasa.jpf.inspector.interfaces.InspectorCallBacks;
 import gov.nasa.jpf.inspector.interfaces.JPFInspectorBackEndInterface;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorGenericErrorException;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorParsingErrorException;
+import gov.nasa.jpf.inspector.utils.Debugging;
+import gov.nasa.jpf.inspector.utils.InspectorConfiguration;
+import jdk.nashorn.internal.runtime.Debug;
 
+import javax.swing.plaf.TreeUI;
 import java.io.PrintStream;
+import java.util.logging.Logger;
 
 /**
  * Represents the JPF Inspector client.
  * All the commands use this concrete class rather than the interface.
  */
 public class JPFInspectorClient implements JPFInspectorClientInterface {
+  private static Logger log = Debugging.getLogger();
   private final PrintStream outputStream;
   private final JPFInspectorBackEndInterface inspector;
   private final CallbackExecutionDecorator cbExecutionDecorator;
@@ -105,22 +111,47 @@ public class JPFInspectorClient implements JPFInspectorClientInterface {
     if (cmd == null) {
       return;
     }
-    // To serialize recordingof executed commands and commands related to command execution
+    // To serialize recording of executed commands and commands related to command execution
     synchronized (recorder) {
       try {
         if (!cmd.isHiddenCommand()) {
           outputStream.println("cmd>" + cmd.getNormalizedCommand());
         }
         cmd.recordCommand(recorder);
-        cmd.executeCommands(this, inspector, outputStream);
+
+        if (isSafe(cmd)) {
+          cmd.executeCommands(this, inspector, outputStream);
+        }
       } catch (Throwable e) {
-        outputStream.println("ERR: Generic error while processing command:");
+        outputStream.println("ERR: Generic error while processing a command:");
         e.printStackTrace(outputStream);
 
-        recordComment("ERR: Generic error while processing command:");
+        recordComment("ERR: Generic error while processing a command:");
         recordComment(e.getMessage());
       }
     }
+  }
+
+  /**
+   * Returns true if safe mode is disabled or if the command is safe. Otherwise prints an error message.
+   *
+   * This is not very thread-safe because after this check is over, the Inspector may be already paused.
+   * That is okay, however, as the "break" command is the only one that doesn't make sense when paused and it
+   * does nothing when pause is already in progress. And, there is no way to get out of pause except by launching
+   * an instruction, and this thread is the only one capable of launching instructions.
+   *
+   * @param cmd Command instance.
+   */
+  private boolean isSafe(ClientCommandInterface cmd) {
+    if (InspectorConfiguration.getInstance().isSafeModeActive()) {
+      boolean paused = inspector.isPaused();
+      if (!paused && !cmd.isSafeToExecuteWhenNotPaused()) {
+        outputStream.println("ERR: This command may only be used when JPF has started and is paused.\n\nIf JPF is not already started, then start it using 'run' and if it is already running, then pause it using 'break'. Then you will be able to execute this command.\n\nAlternatively, you may disable safe mode in the configuration file by setting 'jpf-inspector.safe-mode = false'.");
+        recordComment("The previous command failed because safe mode disabled it.");
+        return false;
+      }
+    }
+    return true;
   }
 
   @Override

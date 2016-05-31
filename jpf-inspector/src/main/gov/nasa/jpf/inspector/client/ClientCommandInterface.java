@@ -57,4 +57,9 @@ public interface ClientCommandInterface {
    * Only {@link CmdCallback} is a hidden command.
    */
   boolean isHiddenCommand();
+
+  /**
+   * Returns true if it is safe to execute this command while JPF is running and not paused.
+   */
+  boolean isSafeToExecuteWhenNotPaused();
 }

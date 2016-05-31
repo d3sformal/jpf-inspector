@@ -47,6 +47,11 @@ public class JPFInspectorParallel extends JPFInspector {
   }
 
   @Override
+  public boolean isPaused() {
+    return cmdMgr.isPaused();
+  }
+
+  @Override
   public void stop () throws JPFInspectorGenericErrorException {
     cmdMgr.stop();
   }

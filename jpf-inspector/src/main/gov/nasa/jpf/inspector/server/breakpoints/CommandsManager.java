@@ -20,6 +20,7 @@
 package gov.nasa.jpf.inspector.server.breakpoints;
 
 import gov.nasa.jpf.inspector.client.commands.CmdBreakpointCreate;
+import gov.nasa.jpf.inspector.exceptions.JPFInspectorException;
 import gov.nasa.jpf.inspector.interfaces.BreakPointStates;
 import gov.nasa.jpf.inspector.interfaces.CommandsInterface;
 import gov.nasa.jpf.inspector.interfaces.InspectorCallBacks;
@@ -77,16 +78,21 @@ public class CommandsManager implements CommandsInterface {
   @Override
   public synchronized void start () throws JPFInspectorGenericErrorException {
     if (inspector.getJPF() == null) {
-      throw new JPFInspectorGenericErrorException("No JPF instance to start");
+      throw new JPFInspectorGenericErrorException("No JPF instance to start.");
     }
     run = true;
     stopHolder.resumeExecution();
   }
 
   @Override
+  public synchronized  boolean isPaused() {
+    return inspector.getJPF() != null && stopHolder.isStopped();
+  }
+
+  @Override
   public synchronized void stop () throws JPFInspectorGenericErrorException {
     if (inspector.getJPF() == null) {
-      throw new JPFInspectorGenericErrorException("No JPF instance to stop");
+      throw new JPFInspectorGenericErrorException("No JPF instance to stop.");
     }
     run = false; // Stops on the next event.
   }

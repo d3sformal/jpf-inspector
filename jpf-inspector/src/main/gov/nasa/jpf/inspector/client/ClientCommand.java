@@ -29,4 +29,8 @@ public abstract class ClientCommand implements ClientCommandInterface {
     return false;
   }
 
+  @Override
+  public boolean isSafeToExecuteWhenNotPaused() {
+    return true;
+  }
 }

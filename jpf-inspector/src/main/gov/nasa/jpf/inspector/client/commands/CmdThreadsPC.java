@@ -66,6 +66,11 @@ public class CmdThreadsPC extends ClientCommand {
   }
 
   @Override
+  public boolean isSafeToExecuteWhenNotPaused() {
+    return false;
+  }
+
+  @Override
   public String getNormalizedCommand () {
     String result = "thread_pc";
     if (threadNum == null) {

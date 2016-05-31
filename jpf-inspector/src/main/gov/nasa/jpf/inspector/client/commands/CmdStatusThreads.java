@@ -47,6 +47,11 @@ public class CmdStatusThreads extends ClientCommand {
   }
 
   @Override
+  public boolean isSafeToExecuteWhenNotPaused() {
+    return false;
+  }
+
+  @Override
   public String getNormalizedCommand () {
     String result = "thread";
     if (tn == null) {

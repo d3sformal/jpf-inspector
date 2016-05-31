@@ -80,6 +80,11 @@ public class CmdPrint extends ClientCommand {
     return "print " + expression;
   }
 
+  @Override
+  public boolean isSafeToExecuteWhenNotPaused() {
+    return false;
+  }
+
   private static class ValuePrinter implements PSEVisitor<StringBuilder> {
 
     /**

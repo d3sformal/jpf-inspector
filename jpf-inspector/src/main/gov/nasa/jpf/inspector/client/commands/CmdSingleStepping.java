@@ -70,6 +70,11 @@ public class CmdSingleStepping extends ClientCommand {
   }
 
   @Override
+  public boolean isSafeToExecuteWhenNotPaused() {
+    return false;
+  }
+
+  @Override
   public void executeCommands (JPFInspectorClient client, JPFInspectorBackEndInterface inspector, PrintStream outStream) {
     assert inspector != null;
 

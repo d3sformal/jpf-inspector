@@ -65,6 +65,11 @@ public class CmdSet extends ClientCommand {
 
   }
 
+  @Override
+  public boolean isSafeToExecuteWhenNotPaused() {
+    return false;
+  }
+
   /* @see gov.nasa.jpf.inspector.client.ClientCommandInterface#getNormalizedCommand() */
   @Override
   public String getNormalizedCommand () {

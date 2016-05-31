@@ -24,7 +24,7 @@ import gov.nasa.jpf.inspector.exceptions.JPFInspectorException;
 
 public interface CommandsInterface {
 
-  static public enum InspectorStates {
+  enum InspectorStates {
     JPF_STARTED,
     JPF_RUNNING,
     JPF_STOPPED,
@@ -32,16 +32,21 @@ public interface CommandsInterface {
   }
 
   /**
+   * Indicates whether a JPF instance has started but its execution is currently stopped. This is the only time
+   * at which program state inspection can take place.
+   */
+  boolean isPaused();
+  /**
    * Stops an execution (like on breakpoint)
    */
-  public void stop () throws JPFInspectorException;
+  void stop() throws JPFInspectorException;
 
   /**
    * Resumes stopped execution
    */
-  public void start () throws JPFInspectorException;
+  void start() throws JPFInspectorException;
 
-  static public enum StepType {
+  enum StepType {
     ST_TRANSITION_ALL,
     ST_TRANSITION_DATA,
     ST_TRANSITION_SCHED,
@@ -51,8 +56,8 @@ public interface CommandsInterface {
     ST_STEP_OUT
   }
 
-  public void forwardStep (StepType type) throws JPFInspectorException;
+  void forwardStep(StepType type) throws JPFInspectorException;
 
-  public void backwardStep (StepType type) throws JPFInspectorException;
+  void backwardStep(StepType type) throws JPFInspectorException;
 
 }

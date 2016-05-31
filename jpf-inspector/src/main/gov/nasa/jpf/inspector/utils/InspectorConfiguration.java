@@ -6,8 +6,6 @@ import gov.nasa.jpf.shell.ShellManager;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import static com.sun.scenario.Settings.getBoolean;
-
 /**
  * Contains loaded configuration relevant to JPF Inspector.
  *
@@ -55,5 +53,13 @@ public final class InspectorConfiguration {
       }
     }
     return false;
+  }
+
+  /**
+   * Indicates whether safe mode is active. In safe mode, program state inspection and stepping can only happen when the
+   * JPF is paused.
+   */
+  public boolean isSafeModeActive() {
+    return config.getBoolean("jpf-inspector.safe-mode", true);
   }
 }
