@@ -166,16 +166,26 @@ bpExpression returns [String expr]
     ;
 
 cmdSingleSteps returns [CmdSingleStepping value]
-    : TOKEN_STEP_INSTRUCTION                      intValue?  { $value = new CmdSingleStepping(true, StepType.ST_INSTRUCTION,   $intValue.ctx != null ? $intValue.value : 1); }
-    | TOKEN_STEP_OVER                             intValue?  { $value = new CmdSingleStepping(true, StepType.ST_LINE,          $intValue.ctx != null ? $intValue.value : 1); }
-    | TOKEN_STEP_IN                               intValue?  { $value = new CmdSingleStepping(true, StepType.ST_STEP_IN,       $intValue.ctx != null ? $intValue.value : 1); }
-    | TOKEN_STEP_OUT                              intValue?  { $value = new CmdSingleStepping(true, StepType.ST_STEP_OUT,      $intValue.ctx != null ? $intValue.value : 1); }
-    | TOKEN_STEP_TRANSITION (WS? c=cgType)?       intValue?  { $value = CmdSingleStepping.createCmdSingleSteppingTransition(true, $c.cgsType != null ? $c.cgsType : null, $intValue.ctx != null ? $intValue.value : 1); }
-    | TOKEN_BACK_STEP_INSTRUCTION                 intValue?  { $value = new CmdSingleStepping(false, StepType.ST_INSTRUCTION,  $intValue.ctx != null ? $intValue.value : 1); }
-    | TOKEN_BACK_STEP_OVER                        intValue?  { $value = new CmdSingleStepping(false, StepType.ST_LINE,         $intValue.ctx != null ? $intValue.value : 1); }
-    | TOKEN_BACK_STEP_IN                          intValue?  { $value = new CmdSingleStepping(false, StepType.ST_STEP_IN,      $intValue.ctx != null ? $intValue.value : 1); }
-    | TOKEN_BACK_STEP_OUT                         intValue?  { $value = new CmdSingleStepping(false, StepType.ST_STEP_OUT,     $intValue.ctx != null ? $intValue.value : 1); }
-    | TOKEN_BACK_STEP_TRANSITION (WS? c=cgType)?  intValue?  { $value = CmdSingleStepping.createCmdSingleSteppingTransition(false, $c.cgsType != null ? $c.cgsType : null, $intValue.ctx != null ? $intValue.value : 1); }
+    : TOKEN_STEP_INSTRUCTION                      intValue?
+    { $value = new CmdSingleStepping(true, StepType.ST_INSTRUCTION,   $intValue.ctx != null ? $intValue.value : 1); }
+    | TOKEN_STEP_OVER                             intValue?
+     { $value = new CmdSingleStepping(true, StepType.ST_LINE,          $intValue.ctx != null ? $intValue.value : 1); }
+    | TOKEN_STEP_IN                               intValue?
+    { $value = new CmdSingleStepping(true, StepType.ST_STEP_IN,       $intValue.ctx != null ? $intValue.value : 1); }
+    | TOKEN_STEP_OUT                              intValue?
+    { $value = new CmdSingleStepping(true, StepType.ST_STEP_OUT,      $intValue.ctx != null ? $intValue.value : 1); }
+    | TOKEN_STEP_TRANSITION (WS? c=cgType)?       intValue?
+    { $value = CmdSingleStepping.createCmdSingleSteppingTransition(true, $c.ctx != null ? $c.cgsType : null, $intValue.ctx != null ? $intValue.value : 1); }
+    | TOKEN_BACK_STEP_INSTRUCTION                 intValue?
+    { $value = new CmdSingleStepping(false, StepType.ST_INSTRUCTION,  $intValue.ctx != null ? $intValue.value : 1); }
+    | TOKEN_BACK_STEP_OVER                        intValue?
+    { $value = new CmdSingleStepping(false, StepType.ST_LINE,         $intValue.ctx != null ? $intValue.value : 1); }
+    | TOKEN_BACK_STEP_IN                          intValue?
+    { $value = new CmdSingleStepping(false, StepType.ST_STEP_IN,      $intValue.ctx != null ? $intValue.value : 1); }
+    | TOKEN_BACK_STEP_OUT                         intValue?
+    { $value = new CmdSingleStepping(false, StepType.ST_STEP_OUT,     $intValue.ctx != null ? $intValue.value : 1); }
+    | TOKEN_BACK_STEP_TRANSITION (WS? c=cgType)?  intValue?
+    { $value = CmdSingleStepping.createCmdSingleSteppingTransition(false, $c.ctx != null ? $c.cgsType : null, $intValue.ctx != null ? $intValue.value : 1); }
     ;
 
 cmdInformational returns [ClientCommand value]
@@ -196,8 +206,8 @@ cmdChoiceGenerators returns [ClientCommand value]
     | a=enableOrDisable  WS? (b=cgMode WS?)? (c=cgType WS?)? TOKEN_CHOICE_GENERATORS
      {
       $value = new CmdChoiceGeneratorsTracking(
-      ($c.cgsType!=null ? $c.cgsType : CmdChoiceGeneratorsTracking.CGTypeSpec.CGS_ALL),
-      ($b.cg_mode != null ? $b.cg_mode : ChoiceGeneratorsInterface.CGMode.CG_MODE_PRINT),
+      ($c.ctx !=null ? $c.cgsType : CmdChoiceGeneratorsTracking.CGTypeSpec.CGS_ALL),
+      ($b.ctx != null ? $b.cg_mode : ChoiceGeneratorsInterface.CGMode.CG_MODE_PRINT),
       $a.value);
       }
     | TOKEN_CHOICE_GENERATORS WS? TOKEN_SELECT cgChoice { $value = new CmdChoiceSelect($cgChoice.choice); }
