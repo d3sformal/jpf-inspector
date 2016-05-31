@@ -26,6 +26,7 @@
   <property file="jpf.properties"/>
   
   <!-- this is where we get the 'jpf.core' location from -->
+  <!--suppress AntResolveInspection, AntMissingPropertiesFileInspection -->
   <property file="${user.home}/.jpf/site.properties"/>
 
   <!-- if there is none, default to a 'jpf-core' peer dir -->
@@ -75,7 +76,7 @@
     <pathelement location="build/peers"/>
     -->
     <fileset dir=".">
-  	    <include name="lib/*.jar"/>
+       <include name="lib/*.jar"/>
     </fileset>
 
     <fileset dir=".">
@@ -84,8 +85,7 @@
 
     <!-- add in what we need from the core -->
     <pathelement path="${jpf-core.native_classpath}"/>
-
-  	<pathelement path="${jpf-inspector.classpath}"/>
+    <pathelement path="${jpf-inspector.classpath}"/>
   </path>
 
   <!-- init: common initialization -->
@@ -319,12 +319,12 @@
 
   <target name="-jar-jvm-with-src" depends="-debug.check" if="debug.check">
     <jar jarfile="build/${ant.project.name}.jar" >
-	  <fileset dir="build/main"/>
+      <fileset dir="build/main"/>
       <fileset dir="src/main"/>
-	  <!-- 
+      <!--
       <fileset dir="build/peers"/>
-	  <fileset dir="src/peers"/>
-	  -->
+      <fileset dir="src/peers"/>
+      -->
     </jar>
   </target>
 

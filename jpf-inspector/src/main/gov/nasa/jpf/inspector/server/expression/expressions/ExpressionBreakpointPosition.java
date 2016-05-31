@@ -201,13 +201,11 @@ public class ExpressionBreakpointPosition extends ExpressionBooleanLeaf {
 
   @Override
   public String getNormalizedExpression () {
-    StringBuffer sb = new StringBuffer(30);
-    sb.append("position=");
-    sb.append(instPos.getFileName());
-    sb.append(':');
-    sb.append(instPos.getLineNumber());
-
-    return sb.toString();
+    String string = "position=" +
+            instPos.getFileName() +
+            ':' +
+            instPos.getLineNumber();
+    return string;
   }
 
 }

@@ -49,7 +49,7 @@ public class CallbacksSender extends Thread {
 
     terminating = false;
     notifyEnable = true;
-    cmdCBQueue = Collections.synchronizedList(new LinkedList<CallbackCommand>());
+    cmdCBQueue = Collections.synchronizedList(new LinkedList<>());
 
     this.callbacks = callbacks;
     this.out = inspector.getDebugPrintStream();

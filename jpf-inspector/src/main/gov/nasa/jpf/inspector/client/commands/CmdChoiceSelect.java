@@ -12,7 +12,7 @@ public class CmdChoiceSelect extends ClientCommand {
 
   public static final int USE_CURENT_CHOICE = -2;
 
-  {
+  static {
     assert (USE_CURENT_CHOICE != ChoiceGeneratorsInterface.USE_DEFAULT_CHOICE);
   }
 

@@ -89,7 +89,7 @@ public class ChoiceGeneratorsManager implements ChoiceGeneratorsInterface, Choic
     VM vm = stopHolder.getJVM();
     JPFInspectorNoVMConnected.checkVM(vm);
 
-    List<ChoiceGeneratorWrapper> result = new ArrayList<ChoiceGeneratorWrapper>(vm.getPathLength());
+    List<ChoiceGeneratorWrapper> result = new ArrayList<>(vm.getPathLength());
     Path path = vm.getPath();
     for (Transition tr : path) {
       ChoiceGenerator<?> cg = tr.getChoiceGenerator();

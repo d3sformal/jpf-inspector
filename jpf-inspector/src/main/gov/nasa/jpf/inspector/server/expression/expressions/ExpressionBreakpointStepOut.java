@@ -142,15 +142,13 @@ public class ExpressionBreakpointStepOut extends ExpressionBooleanLeaf {
 
   @Override
   public String getNormalizedExpression () {
-    StringBuilder sb = new StringBuilder();
+    String string = "step_out" +
+            " thread=" +
+            threadNum +
+            " stack_frame=" +
+            stackDepth;
 
-    sb.append("step_out");
-    sb.append(" thread=");
-    sb.append(threadNum);
-    sb.append(" stack_frame=");
-    sb.append(stackDepth);
-
-    return sb.toString();
+    return string;
   }
 
 }

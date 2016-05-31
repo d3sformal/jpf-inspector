@@ -60,14 +60,12 @@ public class ExpressionBreakpointOperatorOr extends ExpressionBooleanBinaryOpera
 
   @Override
   public String getNormalizedExpression () {
-    StringBuffer sb = new StringBuffer();
-    sb.append("( ");
-    sb.append(children.get(0).getNormalizedExpression());
-    sb.append(" ) or ( ");
-    sb.append(children.get(1).getNormalizedExpression());
-    sb.append(" )");
-
-    return sb.toString();
+    String string = "( " +
+            children.get(0).getNormalizedExpression() +
+            " ) or ( " +
+            children.get(1).getNormalizedExpression() +
+            " )";
+    return string;
   }
 
 }

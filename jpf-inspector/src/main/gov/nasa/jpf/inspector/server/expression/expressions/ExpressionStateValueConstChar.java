@@ -100,7 +100,7 @@ public class ExpressionStateValueConstChar extends ExpressionStateValueConst {
       super();
       this.strArr = str.toCharArray();
       this.pos = 0;
-      this.bannedUnescapedCharacters = new HashSet<Character>();
+      this.bannedUnescapedCharacters = new HashSet<>();
       bannedUnescapedCharacters.add(bannedUnsescapedChar);
     }
   }

@@ -54,7 +54,7 @@ public class StateHeapEntryList extends StateNode {
   @Override
   public ProgramStateEntry getResultExpression (String name, int clientID) throws JPFInspectorException {
 
-    List<PSEVariable> heapEntryList = new ArrayList<PSEVariable>(heapEntries.size());
+    List<PSEVariable> heapEntryList = new ArrayList<>(heapEntries.size());
     final int entries = heapEntries.size();
     for (int i = 0; i < entries; i++) {
       StateElementInfo sei = heapEntries.get(i);
@@ -74,7 +74,7 @@ public class StateHeapEntryList extends StateNode {
     assert heap != null;
     assert filter != null;
 
-    List<StateElementInfo> result = new ArrayList<StateElementInfo>();
+    List<StateElementInfo> result = new ArrayList<>();
 
     Iterator<ElementInfo> heapIterator = heap.liveObjects().iterator();
     while (heapIterator.hasNext()) {

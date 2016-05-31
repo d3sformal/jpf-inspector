@@ -92,16 +92,13 @@ public class ExpressionBreakpointAssert extends ExpressionBooleanBinaryOperator 
 
   @Override
   public String getNormalizedExpression () {
-    StringBuffer sb = new StringBuffer();
-    sb.append(TOKEN_ASSERT);
-    sb.append(" ( ");
-    // Position
-    sb.append(getNormalizedPosition());
-    sb.append(" ) ( ");
-    // Condition
-    sb.append(getNormalizedCondition());
-    sb.append(" )");
+    String sb = TOKEN_ASSERT +
+            " ( " +
+            getNormalizedPosition() +
+            " ) ( " +
+            getNormalizedCondition() +
+            " )";
 
-    return sb.toString();
+    return sb;
   }
 }

@@ -69,13 +69,13 @@ public class ProgramStateManager implements ProgramStateInterface {
     }
 
     if (threadNum != null) {
-      result = new HashMap<Integer, PSEThread>(1);
+      result = new HashMap<>(1);
       StateThreadInfo sti = new StateThreadInfo(inspector, vm, threadNum);
       result.put(threadNum, sti.getResultExpression("", 0));
 
     } else {
       ThreadList tl = vm.getThreadList();
-      result = new HashMap<Integer, PSEThread>(tl.length());
+      result = new HashMap<>(tl.length());
 
       for (ThreadInfo ti : tl) {
         StateThreadInfo sti = new StateThreadInfo(inspector, vm, ti.getId(), 2);

@@ -40,7 +40,7 @@ public abstract class ExpressionStateUnaryOperator<T> implements ExpressionState
   @Override
   public List<? extends T> getChilds () {
     if (childList == null) {
-      List<T> result = new ArrayList<T>(1);
+      List<T> result = new ArrayList<>(1);
       result.add(child);
       childList = Collections.unmodifiableList(result);
     }

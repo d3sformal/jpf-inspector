@@ -83,7 +83,7 @@ class CacheManager {
 
   public CacheManager () throws InterruptedException {
     loader = new FileLoader(this);
-    cache = Collections.synchronizedMap(new HashMap<File, String>());
+    cache = Collections.synchronizedMap(new HashMap<>());
   }
 
   public void terminate () throws Throwable {

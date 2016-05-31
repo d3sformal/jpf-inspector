@@ -67,11 +67,8 @@ public class ExpressionBreakpointMethodInvoke extends ExpressionBooleanLeaf {
     }
 
     InvokeInstruction iiInst = (InvokeInstruction) inst;
-    if (bpMode == BreakPointModes.BP_MODE_METHOD_INVOKE) {
-      return mn.isSameMethod(iiInst.getInvokedMethod());
-    }
+    return bpMode == BreakPointModes.BP_MODE_METHOD_INVOKE && mn.isSameMethod(iiInst.getInvokedMethod());
 
-    return false;
   }
 
   @Override
@@ -81,13 +78,12 @@ public class ExpressionBreakpointMethodInvoke extends ExpressionBooleanLeaf {
 
   @Override
   public String getNormalizedExpression() {
-    StringBuffer result = new StringBuffer();
-    result.append("method_invoke");
-    result.append('=');
-    result.append(mn.getClassName());
-    result.append(':');
-    result.append(mn.getMethodName());
-    return result.toString();
+    String result = "method_invoke" +
+            '=' +
+            mn.getClassName() +
+            ':' +
+            mn.getMethodName();
+    return result;
   }
 
 }

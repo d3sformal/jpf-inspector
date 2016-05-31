@@ -146,7 +146,7 @@ public class JPFInspectorClient implements JPFInspectorClientInterface {
     if (InspectorConfiguration.getInstance().isSafeModeActive()) {
       boolean paused = inspector.isPaused();
       if (!paused && !cmd.isSafeToExecuteWhenNotPaused()) {
-        outputStream.println("ERR: This command may only be used when JPF has started and is paused.\n\nIf JPF is not already started, then start it using 'run' and if it is already running, then pause it using 'break'. Then you will be able to execute this command.\n\nAlternatively, you may disable safe mode in the configuration file by setting 'jpf-inspector.safe-mode = false'.");
+        outputStream.println("ERR: This command may only be used when JPF has started and is paused. If JPF is not already started, then start it using 'run' and if it is already running, then pause it using 'break'. Then you will be able to execute this command. Alternatively, you may disable safe mode in the configuration file by setting 'jpf-inspector.safe-mode = false'.");
         recordComment("The previous command failed because safe mode disabled it.");
         return false;
       }

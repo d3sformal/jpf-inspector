@@ -1,0 +1,16 @@
+Until June 20:
+
+Fix all use cases.
+Fix unit testing.
+Fix all English.
+Complete GitHub documentation.
+Fix and complete Javadoc documentation.
+Upgrade JLine and remove the bell sound.
+Fix copyright headers.
+Handle hexadecimal output.
+Refactor names.
+Handle static analysis inspections.
+
+
+If extra time is available:
+Fix any problems with ANTLR grammar as they happen.

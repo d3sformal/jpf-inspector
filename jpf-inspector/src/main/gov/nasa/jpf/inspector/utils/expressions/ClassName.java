@@ -44,7 +44,7 @@ public class ClassName {
     this.classNameProcessed = ClassName.convertName2RegExp(className);
     classNamePattern = Pattern.compile(classNameProcessed);
     
-    classNamesMatches = new HashMap<String, Boolean>();
+    classNamesMatches = new HashMap<>();
   }
   
   final public String getClassName() {

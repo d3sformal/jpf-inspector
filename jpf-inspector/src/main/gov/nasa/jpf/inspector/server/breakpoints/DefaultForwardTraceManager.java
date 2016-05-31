@@ -237,7 +237,7 @@ public class DefaultForwardTraceManager {
       stateID = tr.getStateId();
       lastInst = tr.getLastStep().getInstruction();
 
-      cgs = new HashMap<String, DefaultForwardTraceManager.CGStateMemento>();
+      cgs = new HashMap<>();
       ChoiceGenerator<?> cg = tr.getChoiceGenerator();
       while (cg != null) {
         cgs.put(cg.getId(), new CGStateMemento(cg));
@@ -308,8 +308,14 @@ public class DefaultForwardTraceManager {
     @Override
     public String toString () {
       StringBuilder sb = new StringBuilder();
-      sb.append(this.getClass().getSimpleName() + "[stateID=" + stateID + ", lastInst=" + lastInst
-          + (lastInst != null ? '(' + lastInst.getFilePos() + ')' : "") + "\n");
+      sb.append(this.getClass().getSimpleName())
+              .append("[stateID=")
+              .append(stateID)
+              .append(", lastInst=")
+              .append(lastInst)
+              .append(lastInst != null ? '(' + lastInst.getFilePos() + ')' : "")
+              .append("\n");
+
       for (CGStateMemento cgMem : cgs.values()) {
         sb.append('\t');
         sb.append(cgMem.toString());
@@ -332,7 +338,7 @@ public class DefaultForwardTraceManager {
     }
   }
 
-  private final LinkedList<TransitionMemento> forwardTrace = new LinkedList<TransitionMemento>();
+  private final LinkedList<TransitionMemento> forwardTrace = new LinkedList<>();
 
   public DefaultForwardTraceManager (JPFInspector inspector) {
     this.inspector = inspector;

@@ -145,6 +145,7 @@ public class StopHolder {
 
   public synchronized void resumeExecution () {
     assert (isStopped()); // Illegal usage
+
 /**
    * The only blocked thread should be the JPF thread in the {@link #stopExecution(InspectorState, boolean) method Threads which calls
    * 
@@ -166,11 +167,19 @@ public class StopHolder {
 
     sb.append("SuT ");
     if (vm.getCurrentThread() != null) {
-      sb.append(" (Thread=" + vm.getCurrentThread().getId() + ") ");
+      sb.append("(thread ")
+        .append(vm.getCurrentThread().getId())
+        .append(") ");
     }
 
-    sb.append("executes the " + instr.getMethodInfo().getSourceFileName() + ":" + instr.getLineNumber() + " - " + instr.toString() + " source: "
-        + instr.getSourceLine());
+    sb.append("will now execute ")
+            .append(instr.getMethodInfo().getSourceFileName())
+            .append(":")
+            .append(instr.getLineNumber())
+            .append(" - ")
+            .append(instr.toString())
+            .append(" source: ")
+            .append(instr.getSourceLine());
     return sb.toString();
   }
 

@@ -42,7 +42,7 @@ public class FileName {
     String  fileNameProcessed = ClassName.convertName2RegExp(fileName);
     fileNamePattern = Pattern.compile(fileNameProcessed);
 
-    fileNameMatches = new HashMap<String, Boolean>();
+    fileNameMatches = new HashMap<>();
   }
 
   final public String getFileName() {

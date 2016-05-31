@@ -28,7 +28,7 @@ import java.util.List;
 
 public abstract class ExpressionBooleanBinaryOperator extends ExpressionBoolean {
 
-  protected List<ExpressionBooleanInterface> children = new ArrayList<ExpressionBooleanInterface>(2);
+  protected List<ExpressionBooleanInterface> children = new ArrayList<>(2);
 
   public ExpressionBooleanBinaryOperator (ExpressionBooleanInterface left, ExpressionBooleanInterface right) {
     assert left != null;

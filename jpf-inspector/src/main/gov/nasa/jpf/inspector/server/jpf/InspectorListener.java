@@ -49,7 +49,7 @@ public class InspectorListener extends ListenerAdapter {
   private ListenerAdapter mode;
 
   // Stack with disabled modes
-  private final Stack<ListenerAdapter> modeStack = new Stack<ListenerAdapter>();
+  private final Stack<ListenerAdapter> modeStack = new Stack<>();
 
   private boolean finished = false; // Holds true if searchFinished was called
 

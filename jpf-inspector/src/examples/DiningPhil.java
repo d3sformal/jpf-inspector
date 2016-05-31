@@ -20,6 +20,7 @@
 import gov.nasa.jpf.vm.Verify;
 
 // Taken from jpf-core examples
+@SuppressWarnings("ALL")
 public class DiningPhil {
 
   static class Fork {
