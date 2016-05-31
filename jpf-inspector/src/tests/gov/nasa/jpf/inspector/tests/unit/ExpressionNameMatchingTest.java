@@ -8,7 +8,7 @@ import gov.nasa.jpf.vm.MethodInfo;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class ExpressionNameMatching {
+public class ExpressionNameMatchingTest {
   @Test
   public void testTestingWorks() {
     Assert.assertTrue(true);

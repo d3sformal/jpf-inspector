@@ -52,59 +52,59 @@ allKeyWordsWithoutHitCountBP returns [String text]
     | allKeyWordsWithoutCreateBPandHitCount { $text = $allKeyWordsWithoutCreateBPandHitCount.text; }
     ;
 allKeyWordsWithoutCreateBPandHitCount returns [String text]
-    : TOKEN_ALL
-    | TOKEN_ASK
-    | TOKEN_ASSERT
-    | TOKEN_ASSERTIONS
-    | TOKEN_BREAK
-    | TOKEN_BREAKPOINT
-    | TOKEN_CHOICE_GENERATORS
-    | TOKEN_CONTINUE
-    | TOKEN_CLEAR
-    | TOKEN_CREATE
-    | TOKEN_DATA
-    | TOKEN_DELETE
-    | TOKEN_DISABLE
-    | TOKEN_E
-    | TOKEN_ENABLE
-    | TOKEN_EXECUTE
-    | TOKEN_LOG
-    | TOKEN_PRINT
-    | TOKEN_RECORD
-    | TOKEN_RUN
-    | TOKEN_RUNNING
-    | TOKEN_SAVE
-    | TOKEN_SET
-    | TOKEN_SELECT
-    | TOKEN_SCHEDULING
-    | TOKEN_SHOW
-    | TOKEN_STARTED
-    | TOKEN_STOPPED
-    | TOKEN_USED
-    | TOKEN_TERMINATING
-    | TOKEN_THREAD
-    | TOKEN_THREAD_PC
-    | TOKEN_X
-    | TOKEN_STEP_INSTRUCTION
-    | TOKEN_STEP_OVER
-    | TOKEN_STEP_IN
-    | TOKEN_STEP_OUT
-    | TOKEN_STEP_TRANSITION
-    | TOKEN_BACK_STEP_INSTRUCTION
-    | TOKEN_BACK_STEP_OVER
-    | TOKEN_BACK_STEP_IN
-    | TOKEN_BACK_STEP_OUT
-    | TOKEN_BACK_STEP_TRANSITION
-    | TOKEN_CB_STATE_CHANGE
-    | TOKEN_CB_GENERIC_ERROR
-    | TOKEN_CB_GENERIC_INFO
-    | TOKEN_CB_BREAKPOINT_HIT
-    | TOKEN_CB_CG_NEW_CHOICE
-    | TOKEN_CB_CG_CHOICE_TO_USE
-    | TOKEN_CB_CG_USED_CHOICE
-    | TOKEN_QUIT
-    | TOKEN_HELLO
-    | TOKEN_HELP
+    : a=TOKEN_ALL { $text = $a.text; }
+    | a=TOKEN_ASK { $text = $a.text; }
+    | a=TOKEN_ASSERT { $text = $a.text; }
+    | a=TOKEN_ASSERTIONS { $text = $a.text; }
+    | a=TOKEN_BREAK { $text = $a.text; }
+    | a=TOKEN_BREAKPOINT { $text = $a.text; }
+    | a=TOKEN_CHOICE_GENERATORS { $text = $a.text; }
+    | a=TOKEN_CONTINUE { $text = $a.text; }
+    | a=TOKEN_CLEAR { $text = $a.text; }
+    | a=TOKEN_CREATE { $text = $a.text; }
+    | a=TOKEN_DATA { $text = $a.text; }
+    | a=TOKEN_DELETE { $text = $a.text; }
+    | a=TOKEN_DISABLE { $text = $a.text; }
+    | a=TOKEN_E { $text = $a.text; }
+    | a=TOKEN_ENABLE { $text = $a.text; }
+    | a=TOKEN_EXECUTE { $text = $a.text; }
+    | a=TOKEN_LOG { $text = $a.text; }
+    | a=TOKEN_PRINT { $text = $a.text; }
+    | a=TOKEN_RECORD { $text = $a.text; }
+    | a=TOKEN_RUN { $text = $a.text; }
+    | a=TOKEN_RUNNING { $text = $a.text; }
+    | a=TOKEN_SAVE { $text = $a.text; }
+    | a=TOKEN_SET { $text = $a.text; }
+    | a=TOKEN_SELECT { $text = $a.text; }
+    | a=TOKEN_SCHEDULING { $text = $a.text; }
+    | a=TOKEN_SHOW { $text = $a.text; }
+    | a=TOKEN_STARTED { $text = $a.text; }
+    | a=TOKEN_STOPPED { $text = $a.text; }
+    | a=TOKEN_USED { $text = $a.text; }
+    | a=TOKEN_TERMINATING { $text = $a.text; }
+    | a=TOKEN_THREAD { $text = $a.text; }
+    | a=TOKEN_THREAD_PC { $text = $a.text; }
+    | a=TOKEN_X { $text = $a.text; }
+    | a=TOKEN_STEP_INSTRUCTION { $text = $a.text; }
+    | a=TOKEN_STEP_OVER { $text = $a.text; }
+    | a=TOKEN_STEP_IN { $text = $a.text; }
+    | a=TOKEN_STEP_OUT { $text = $a.text; }
+    | a=TOKEN_STEP_TRANSITION { $text = $a.text; }
+    | a=TOKEN_BACK_STEP_INSTRUCTION { $text = $a.text; }
+    | a=TOKEN_BACK_STEP_OVER { $text = $a.text; }
+    | a=TOKEN_BACK_STEP_IN { $text = $a.text; }
+    | a=TOKEN_BACK_STEP_OUT { $text = $a.text; }
+    | a=TOKEN_BACK_STEP_TRANSITION { $text = $a.text; }
+    | a=TOKEN_CB_STATE_CHANGE { $text = $a.text; }
+    | a=TOKEN_CB_GENERIC_ERROR { $text = $a.text; }
+    | a=TOKEN_CB_GENERIC_INFO { $text = $a.text; }
+    | a=TOKEN_CB_BREAKPOINT_HIT { $text = $a.text; }
+    | a=TOKEN_CB_CG_NEW_CHOICE { $text = $a.text; }
+    | a=TOKEN_CB_CG_CHOICE_TO_USE { $text = $a.text; }
+    | a=TOKEN_CB_CG_USED_CHOICE { $text = $a.text; }
+    | a=TOKEN_QUIT { $text = $a.text; }
+    | a=TOKEN_HELLO { $text = $a.text; }
+    | a=TOKEN_HELP { $text = $a.text; }
     ;
 
 // Can parse all Client commands as well as text representation of Callbacks - used for Record&Replay approach

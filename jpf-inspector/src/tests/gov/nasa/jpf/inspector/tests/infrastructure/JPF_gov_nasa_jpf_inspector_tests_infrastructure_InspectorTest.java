@@ -1,8 +1,9 @@
 package gov.nasa.jpf.inspector.tests.infrastructure;
 
 import gov.nasa.jpf.vm.MJIEnv;
+import gov.nasa.jpf.vm.NativePeer;
 
-public class JPF_gov_nasa_jpf_inspector_tests_infrastructure_InspectorTest {
+public class JPF_gov_nasa_jpf_inspector_tests_infrastructure_InspectorTest extends NativePeer {
 
   // protected boolean runInspectorTest (ClassSpec inspectorCallbacksClsSpec, ClassSpec inspectorTestDriverClsSpec, Class<?>[] testDriverParamsClasses,
   // Object[] testDriverParams, int testMethodDepth, String... jpfArgs) {
