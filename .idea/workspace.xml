@@ -6,41 +6,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1bb13837-3373-4c0e-b913-a784e8239749" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/jpf-inspector/src/examples/sooth/Quick.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/jpf-inspector/src/examples/sooth/quick.jpf" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/documentation/inspector-javadoc/html/_cmd_assertions_breakpoint_8java.html" afterPath="$PROJECT_DIR$/documentation/inspector-javadoc/html/_cmd_assertions_breakpoint_8java.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/documentation/inspector-javadoc/html/_cmd_assertions_breakpoint_8java_source.html" afterPath="$PROJECT_DIR$/documentation/inspector-javadoc/html/_cmd_assertions_breakpoint_8java_source.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/documentation/inspector-javadoc/html/classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_assertions_breakpoint_1_1_console_assertion_creator-members.html" afterPath="$PROJECT_DIR$/documentation/inspector-javadoc/html/classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_assertions_breakpoint_1_1_console_assertion_creator-members.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/documentation/inspector-javadoc/html/classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_assertions_breakpoint_1_1_console_assertion_creator.html" afterPath="$PROJECT_DIR$/documentation/inspector-javadoc/html/classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_assertions_breakpoint_1_1_console_assertion_creator.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/documentation/inspector-javadoc/html/classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_breakpoint_create_1_1_console_breakpoint_creation_expression.html" afterPath="$PROJECT_DIR$/documentation/inspector-javadoc/html/classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_breakpoint_create_1_1_console_breakpoint_creation_expression.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/documentation/inspector-javadoc/html/functions_c.html" afterPath="$PROJECT_DIR$/documentation/inspector-javadoc/html/functions_c.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/documentation/inspector-javadoc/html/functions_e.html" afterPath="$PROJECT_DIR$/documentation/inspector-javadoc/html/functions_e.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/documentation/inspector-javadoc/html/functions_func_c.html" afterPath="$PROJECT_DIR$/documentation/inspector-javadoc/html/functions_func_c.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/documentation/inspector-javadoc/html/functions_func_g.html" afterPath="$PROJECT_DIR$/documentation/inspector-javadoc/html/functions_func_g.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/documentation/inspector-javadoc/html/functions_g.html" afterPath="$PROJECT_DIR$/documentation/inspector-javadoc/html/functions_g.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/documentation/inspector-javadoc/html/functions_p.html" afterPath="$PROJECT_DIR$/documentation/inspector-javadoc/html/functions_p.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/documentation/inspector-javadoc/html/functions_s.html" afterPath="$PROJECT_DIR$/documentation/inspector-javadoc/html/functions_s.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/documentation/inspector-javadoc/html/functions_vars_e.html" afterPath="$PROJECT_DIR$/documentation/inspector-javadoc/html/functions_vars_e.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/documentation/inspector-javadoc/html/functions_vars_p.html" afterPath="$PROJECT_DIR$/documentation/inspector-javadoc/html/functions_vars_p.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/documentation/inspector-javadoc/html/functions_vars_s.html" afterPath="$PROJECT_DIR$/documentation/inspector-javadoc/html/functions_vars_s.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/documentation/inspector-javadoc/html/hierarchy.html" afterPath="$PROJECT_DIR$/documentation/inspector-javadoc/html/hierarchy.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/documentation/inspector-javadoc/html/interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1interfaces_1_1_assert_create.html" afterPath="$PROJECT_DIR$/documentation/inspector-javadoc/html/interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1interfaces_1_1_assert_create.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/documentation/inspector-javadoc/html/interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1interfaces_1_1_assert_status.html" afterPath="$PROJECT_DIR$/documentation/inspector-javadoc/html/interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1interfaces_1_1_assert_status.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/documentation/inspector-javadoc/html/interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1interfaces_1_1_break_point_creation_information.html" afterPath="$PROJECT_DIR$/documentation/inspector-javadoc/html/interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1interfaces_1_1_break_point_creation_information.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/documentation/inspector-javadoc/latex/classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_assertions_breakpoint_1_1_console_assertion_creator.eps" afterPath="$PROJECT_DIR$/documentation/inspector-javadoc/latex/classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_assertions_breakpoint_1_1_console_assertion_creator.eps" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/documentation/inspector-javadoc/latex/classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_breakpoint_create_1_1_console_breakpoint_creation_expression.eps" afterPath="$PROJECT_DIR$/documentation/inspector-javadoc/latex/classgov_1_1nasa_1_1jpf_1_1inspector_1_1client_1_1commands_1_1_cmd_breakpoint_create_1_1_console_breakpoint_creation_expression.eps" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/documentation/inspector-javadoc/latex/interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1interfaces_1_1_assert_create.eps" afterPath="$PROJECT_DIR$/documentation/inspector-javadoc/latex/interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1interfaces_1_1_assert_create.eps" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/documentation/inspector-javadoc/latex/interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1interfaces_1_1_break_point_creation_information.eps" afterPath="$PROJECT_DIR$/documentation/inspector-javadoc/latex/interfacegov_1_1nasa_1_1jpf_1_1inspector_1_1interfaces_1_1_break_point_creation_information.eps" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/documentation/wiki/Commands.md" afterPath="$PROJECT_DIR$/documentation/wiki/Commands.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jpf-inspector/src/main/gov/nasa/jpf/inspector/client/JPFClientCallbackHandler.java" afterPath="$PROJECT_DIR$/jpf-inspector/src/main/gov/nasa/jpf/inspector/client/JPFClientCallbackHandler.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jpf-inspector/src/main/gov/nasa/jpf/inspector/client/commands/CmdAssertions.java" afterPath="$PROJECT_DIR$/jpf-inspector/src/main/gov/nasa/jpf/inspector/client/commands/CmdAssertions.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jpf-inspector/src/main/gov/nasa/jpf/inspector/client/commands/CmdAssertionsBreakpoint.java" afterPath="$PROJECT_DIR$/jpf-inspector/src/main/gov/nasa/jpf/inspector/client/commands/CmdAssertionsBreakpoint.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jpf-inspector/src/main/gov/nasa/jpf/inspector/client/commands/CmdSet.java" afterPath="$PROJECT_DIR$/jpf-inspector/src/main/gov/nasa/jpf/inspector/client/commands/CmdSet.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jpf-inspector/src/main/gov/nasa/jpf/inspector/server/breakpoints/BreakPointHandler.java" afterPath="$PROJECT_DIR$/jpf-inspector/src/main/gov/nasa/jpf/inspector/server/breakpoints/BreakPointHandler.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jpf-inspector/src/main/gov/nasa/jpf/inspector/server/expression/ExpressionParser.java" afterPath="$PROJECT_DIR$/jpf-inspector/src/main/gov/nasa/jpf/inspector/server/expression/ExpressionParser.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jpf-inspector/src/main/gov/nasa/jpf/inspector/server/expression/parser/ExpressionGrammar.g4" afterPath="$PROJECT_DIR$/jpf-inspector/src/main/gov/nasa/jpf/inspector/server/expression/parser/ExpressionGrammar.g4" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jpf-inspector/src/tests/gov/nasa/jpf/inspector/tests/AssertSimpleTest.java" afterPath="$PROJECT_DIR$/jpf-inspector/src/tests/gov/nasa/jpf/inspector/tests/AssertSimpleTest.java" />
     </list>
     <ignored path="gsoc.iws" />
     <ignored path="$PROJECT_DIR$/out/" />
@@ -99,8 +66,8 @@
               <entry file="file://$PROJECT_DIR$/documentation/wiki/Legacy-User-Guide.md">
                 <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
                   <state split_layout="SPLIT">
-                    <first_editor relative-caret-position="353">
-                      <caret line="176" column="204" selection-start-line="176" selection-start-column="204" selection-end-line="176" selection-end-column="204" />
+                    <first_editor relative-caret-position="2835">
+                      <caret line="196" column="467" selection-start-line="196" selection-start-column="467" selection-end-line="196" selection-end-column="467" />
                       <folding />
                     </first_editor>
                     <second_editor />
@@ -129,7 +96,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ExpressionGrammar.g4" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ExpressionGrammar.g4" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/jpf-inspector/src/main/gov/nasa/jpf/inspector/server/expression/parser/ExpressionGrammar.g4">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="283">
@@ -141,12 +108,12 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Commands.md" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Commands.md" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/documentation/wiki/Commands.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="179">
-                <caret line="34" column="15" selection-start-line="34" selection-start-column="15" selection-end-line="34" selection-end-column="15" />
+              <first_editor relative-caret-position="145">
+                <caret line="67" column="3" selection-start-line="67" selection-start-column="3" selection-end-line="67" selection-end-column="3" />
                 <folding />
               </first_editor>
               <second_editor />
@@ -241,7 +208,7 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/documentation/wiki" />
   </component>
   <component name="GradleLocalSettings">
     <option name="externalProjectsViewState">
@@ -300,8 +267,8 @@
         <option value="$PROJECT_DIR$/jpf-inspector/src/main/gov/nasa/jpf/inspector/client/commands/CmdAssertions.java" />
         <option value="$PROJECT_DIR$/jpf-inspector/src/main/gov/nasa/jpf/inspector/client/commands/CmdSet.java" />
         <option value="$PROJECT_DIR$/jpf-inspector/src/main/gov/nasa/jpf/inspector/server/expression/ExpressionParser.java" />
-        <option value="$PROJECT_DIR$/documentation/wiki/Commands.md" />
         <option value="$PROJECT_DIR$/jpf-inspector/src/main/gov/nasa/jpf/inspector/server/expression/parser/ExpressionGrammar.g4" />
+        <option value="$PROJECT_DIR$/documentation/wiki/Commands.md" />
       </list>
     </option>
   </component>
@@ -988,7 +955,7 @@
       <workItem from="1464614599034" duration="2086000" />
       <workItem from="1464616703659" duration="1091000" />
       <workItem from="1464618022351" duration="10659000" />
-      <workItem from="1464673495308" duration="22171000" />
+      <workItem from="1464673495308" duration="23474000" />
     </task>
     <task id="LOCAL-00001" summary="add JUnit libraries, IDE reset">
       <created>1464614713273</created>
@@ -1151,7 +1118,14 @@
       <option name="project" value="LOCAL" />
       <updated>1464692385565</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="fix nullity, assertions">
+      <created>1464695813545</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1464695813545</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1187,7 +1161,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="36007000" />
+    <option name="totallyTimeSpent" value="37310000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1696" height="1026" extended-state="6" />
@@ -1244,7 +1218,6 @@
       <path value="$PROJECT_DIR$/jpf-inspector" />
       <path value="$PROJECT_DIR$/jpf-shell" />
     </ignored-roots>
-    <MESSAGE value="fix from email" />
     <MESSAGE value="ClassInfoCache" />
     <MESSAGE value="add JUnit libraries, IDE reset" />
     <MESSAGE value="well, I won't understand StopHolder today..." />
@@ -1269,7 +1242,8 @@
     <MESSAGE value="wiki update" />
     <MESSAGE value="quick doc fix" />
     <MESSAGE value="image fix" />
-    <option name="LAST_COMMIT_MESSAGE" value="image fix" />
+    <MESSAGE value="fix nullity, assertions" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix nullity, assertions" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -1812,11 +1786,21 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/jpf-inspector/src/main/gov/nasa/jpf/inspector/server/expression/parser/ExpressionGrammar.g4">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="283">
+          <caret line="300" column="0" selection-start-line="300" selection-start-column="0" selection-end-line="300" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#33270#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/documentation/wiki/Legacy-User-Guide.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="353">
-            <caret line="176" column="204" selection-start-line="176" selection-start-column="204" selection-end-line="176" selection-end-column="204" />
+          <first_editor relative-caret-position="2835">
+            <caret line="196" column="467" selection-start-line="196" selection-start-column="467" selection-end-line="196" selection-end-column="467" />
             <folding />
           </first_editor>
           <second_editor />
@@ -1826,21 +1810,11 @@
     <entry file="file://$PROJECT_DIR$/documentation/wiki/Commands.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="179">
-            <caret line="34" column="15" selection-start-line="34" selection-start-column="15" selection-end-line="34" selection-end-column="15" />
+          <first_editor relative-caret-position="145">
+            <caret line="67" column="3" selection-start-line="67" selection-start-column="3" selection-end-line="67" selection-end-column="3" />
             <folding />
           </first_editor>
           <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/jpf-inspector/src/main/gov/nasa/jpf/inspector/server/expression/parser/ExpressionGrammar.g4">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="283">
-          <caret line="300" column="0" selection-start-line="300" selection-start-column="0" selection-end-line="300" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#33270#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
