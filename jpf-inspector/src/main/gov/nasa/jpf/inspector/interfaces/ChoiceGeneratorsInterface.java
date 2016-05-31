@@ -15,7 +15,7 @@ public interface ChoiceGeneratorsInterface {
   /**
    * Represents types of {@link ChoiceGenerator} in JPF.
    */
-  public enum CGTypes {
+  enum CGTypes {
     CG_TYPE_SCHEDULING,
     CG_TYPE_DATA
   }
@@ -23,16 +23,21 @@ public interface ChoiceGeneratorsInterface {
   /**
    * Mode of work with {@link ChoiceGenerator}.
    */
-  public enum CGMode {
-    CG_MODE_PRINT, // / User (client) is notified about used choices
+  enum CGMode {
+    /**
+     * User (client) is merely notified about used choices
+     */
+    CG_MODE_PRINT,
+    /**
+     * User (client) is notified about possible choices and must select the choice to use
+     */
     CG_MODE_ASK
-    // / User (client) is notified about possible choices and may select the choice to use
   }
 
   /**
    * Class used to specify/obtain current state of notifications.
    */
-  static class CGNotificationSpecification implements Serializable {
+  class CGNotificationSpecification implements Serializable {
 
     private static final long serialVersionUID = 5858782042646431620L;
 
@@ -74,14 +79,14 @@ public interface ChoiceGeneratorsInterface {
    * 
    * Can be used in {@link InspectorCallBacks#notifyChoiceGeneratorNewChoice(CGTypes, String, int, String[], int, int)} as value of defaultChoice parameter.
    */
-  public final static int NO_DEFAULT_CHOICE = -1;
+  int NO_DEFAULT_CHOICE = -1;
 
   /**
    * Constant that marks that for the current value for the CoiceGenerator should by taken from the default forward choice.
    * 
    * Can be used in {@link #selectChoice(int) method call.
    */
-  public final static int USE_DEFAULT_CHOICE = -1;
+  int USE_DEFAULT_CHOICE = -1;
 
   /**
    * Updates the behavior (user is notified or prompted) of the JPF if ChoiceGenetator event occurs.
@@ -90,14 +95,14 @@ public interface ChoiceGeneratorsInterface {
    * 
    * @param nofitySpec Specifies how to change notification
    */
-  public void modifyCGNotifications (CGNotificationSpecification nofitySpec);
+  void modifyCGNotifications(CGNotificationSpecification nofitySpec);
 
   /**
    * Get status of CG notifications. Returned array holds entry for any combination of {@link CGMode} and {@link CGTypes}.
    * 
    * @return Get status of CG notifications.
    */
-  public CGNotificationSpecification[] getCGNotificationStatus ();
+  CGNotificationSpecification[] getCGNotificationStatus();
 
   /**
    * Specifies which choice should the current {@link ChoiceGenerator} use.
@@ -108,12 +113,12 @@ public interface ChoiceGeneratorsInterface {
    *        Value {@link #USE_DEFAULT_CHOICE} can be specify to uses value from previous execution.
    *        If no default value exists, no value is selected and error is reported to the user.
    */
-  public void selectChoice (int selectedChoice) throws JPFInspectorException;
+  void selectChoice(int selectedChoice) throws JPFInspectorException;
 
   /**
    * @param wait Specify behavior if the SuT is running when the command is invoked. If false error is reported, if try to stop the SuT is get result and resume
    *        the SuT
    */
-  public List<ChoiceGeneratorWrapper> getUsedChoiceGenerators (boolean wait) throws JPFInspectorException;
+  List<ChoiceGeneratorWrapper> getUsedChoiceGenerators(boolean wait) throws JPFInspectorException;
 
 }

@@ -6,9 +6,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1bb13837-3373-4c0e-b913-a784e8239749" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documentation/wiki/Introduction.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documentation/wiki/JPF-Inspector-Architecture.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documentation/wiki/Javadoc.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documentation/wiki/Legacy-User-Guide.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documentation/wiki/Threads.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/documentation/wiki/Tutorial.md" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jpf-inspector/src/main/gov/nasa/jpf/inspector/server/programstate/StateValue.java" afterPath="$PROJECT_DIR$/jpf-inspector/src/main/gov/nasa/jpf/inspector/server/programstate/StateValue.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jpf-inspector/src/main/gov/nasa/jpf/inspector/utils/Debugging.java" afterPath="$PROJECT_DIR$/jpf-inspector/src/main/gov/nasa/jpf/inspector/utils/Debugging.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/documentation/wiki/Home.md" afterPath="$PROJECT_DIR$/documentation/wiki/Home.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/documentation/wiki/JPF-Inspector-Configuration.md" afterPath="$PROJECT_DIR$/documentation/wiki/JPF-Inspector-Configuration.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jpf-inspector/src/main/gov/nasa/jpf/inspector/interfaces/ChoiceGeneratorsInterface.java" afterPath="$PROJECT_DIR$/jpf-inspector/src/main/gov/nasa/jpf/inspector/interfaces/ChoiceGeneratorsInterface.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/site.iml" afterPath="$PROJECT_DIR$/site.iml" />
     </list>
     <ignored path="gsoc.iws" />
     <ignored path="$PROJECT_DIR$/out/" />
@@ -37,115 +46,157 @@
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
   </component>
+  <component name="DockManager">
+    <window id="1">
+      <content type="file-editors">
+        <state>
+          <leaf>
+            <file leaf-file-name="Home.md" pinned="false" current-in-tab="true">
+              <entry file="file://$PROJECT_DIR$/documentation/wiki/Home.md">
+                <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+                  <state split_layout="SPLIT">
+                    <first_editor relative-caret-position="255">
+                      <caret line="9" column="74" selection-start-line="9" selection-start-column="74" selection-end-line="9" selection-end-column="74" />
+                      <folding />
+                    </first_editor>
+                    <second_editor />
+                  </state>
+                </provider>
+              </entry>
+            </file>
+          </leaf>
+        </state>
+      </content>
+    </window>
+  </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FavoritesManager">
     <favorites_list name="gsoc" />
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="StateValue.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/jpf-inspector/src/main/gov/nasa/jpf/inspector/server/programstate/StateValue.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="534" column="32" selection-start-line="534" selection-start-column="32" selection-end-line="534" selection-end-column="32" />
-              <folding />
+      <file leaf-file-name="JPF-Inspector-Configuration.md" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/documentation/wiki/JPF-Inspector-Configuration.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="463">
+                <caret line="8" column="191" selection-start-line="8" selection-start-column="191" selection-end-line="8" selection-end-column="191" />
+                <folding />
+              </first_editor>
+              <second_editor />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ElementInfo.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/core8/src/main/gov/nasa/jpf/vm/ElementInfo.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="556" column="19" selection-start-line="556" selection-start-column="19" selection-end-line="556" selection-end-column="19" />
-              <folding>
-                <element signature="e#7293#7294#0" expanded="true" />
-                <element signature="e#7391#7392#0" expanded="true" />
-                <element signature="e#16962#16963#0" expanded="true" />
-                <element signature="e#16981#16982#0" expanded="true" />
-              </folding>
+      <file leaf-file-name="README.md" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/README.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="17">
+                <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+                <folding />
+              </first_editor>
+              <second_editor />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="StateNode.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/jpf-inspector/src/main/gov/nasa/jpf/inspector/server/programstate/StateNode.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="29" column="22" selection-start-line="29" selection-start-column="22" selection-end-line="29" selection-end-column="22" />
-              <folding />
+      <file leaf-file-name="Legacy-User-Guide.md" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/documentation/wiki/Legacy-User-Guide.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="164">
+                <caret line="190" column="27" selection-start-line="190" selection-start-column="27" selection-end-line="190" selection-end-column="27" />
+                <folding />
+              </first_editor>
+              <second_editor />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="StateReadableValueInterface.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/jpf-inspector/src/main/gov/nasa/jpf/inspector/server/programstate/StateReadableValueInterface.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="37" column="17" selection-start-line="37" selection-start-column="17" selection-end-line="37" selection-end-column="17" />
-              <folding />
+      <file leaf-file-name="userguide.md" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/documentation/md/userguide.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="153">
+                <caret line="6" column="183" selection-start-line="6" selection-start-column="183" selection-end-line="6" selection-end-column="183" />
+                <folding />
+              </first_editor>
+              <second_editor />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CmdPrint.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/jpf-inspector/src/main/gov/nasa/jpf/inspector/client/commands/CmdPrint.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="117" column="31" selection-start-line="117" selection-start-column="31" selection-end-line="117" selection-end-column="31" />
-              <folding />
+      <file leaf-file-name="Javadoc.md" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/documentation/wiki/Javadoc.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="0">
+                <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+                <folding />
+              </first_editor>
+              <second_editor />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PSEVariable.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/jpf-inspector/src/main/gov/nasa/jpf/inspector/common/pse/PSEVariable.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="94">
-              <caret line="52" column="18" selection-start-line="52" selection-start-column="18" selection-end-line="52" selection-end-column="18" />
-              <folding>
-                <element signature="e#4030#4031#0" expanded="true" />
-                <element signature="e#4055#4056#0" expanded="true" />
-              </folding>
+      <file leaf-file-name="JPF-Inspector-Architecture.md" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/documentation/wiki/JPF-Inspector-Architecture.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="0">
+                <caret line="0" column="16" selection-start-line="0" selection-start-column="16" selection-end-line="0" selection-end-column="16" />
+                <folding />
+              </first_editor>
+              <second_editor />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PSEVariableArray.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/jpf-inspector/src/main/gov/nasa/jpf/inspector/common/pse/PSEVariableArray.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="196">
-              <caret line="54" column="4" selection-start-line="54" selection-start-column="4" selection-end-line="54" selection-end-column="4" />
-              <folding />
+      <file leaf-file-name="Threads.md" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/documentation/wiki/Threads.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="0">
+                <caret line="0" column="16" selection-start-line="0" selection-start-column="16" selection-end-line="0" selection-end-column="16" />
+                <folding />
+              </first_editor>
+              <second_editor />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PSEVariableObject.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/jpf-inspector/src/main/gov/nasa/jpf/inspector/common/pse/PSEVariableObject.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="145">
-              <caret line="38" column="20" selection-start-line="38" selection-start-column="20" selection-end-line="38" selection-end-column="20" />
-              <folding />
+      <file leaf-file-name="Tutorial.md" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/documentation/wiki/Tutorial.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="17">
+                <caret line="0" column="80" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="80" />
+                <folding />
+              </first_editor>
+              <second_editor />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AssertSimpleTest.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/jpf-inspector/src/tests/gov/nasa/jpf/inspector/tests/AssertSimpleTest.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="196">
-              <caret line="111" column="49" selection-start-line="111" selection-start-column="49" selection-end-line="111" selection-end-column="49" />
-              <folding />
+      <file leaf-file-name="Introduction.md" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/documentation/wiki/Introduction.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="17">
+                <caret line="0" column="80" selection-start-line="0" selection-start-column="80" selection-end-line="0" selection-end-column="80" />
+                <folding />
+              </first_editor>
+              <second_editor />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="RelationOperator.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/jpf-inspector/src/main/gov/nasa/jpf/inspector/server/programstate/relop/RelationOperator.java">
+      <file leaf-file-name="jpf.properties" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/jpf-inspector/jpf.properties">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="28" column="17" selection-start-line="28" selection-start-column="17" selection-end-line="28" selection-end-column="17" />
+            <state relative-caret-position="221">
+              <caret line="22" column="14" selection-start-line="22" selection-start-column="14" selection-end-line="22" selection-end-column="50" />
               <folding />
             </state>
           </provider>
@@ -161,7 +212,7 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/documentation/wiki" />
   </component>
   <component name="GradleLocalSettings">
     <option name="externalProjectsViewState">
@@ -171,14 +222,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/jpf-inspector/src/main/gov/nasa/jpf/inspector/server/jpf/InspectorListener.java" />
-        <option value="$PROJECT_DIR$/jpf-inspector/src/main/gov/nasa/jpf/inspector/server/expression/InspectorStateImpl.java" />
-        <option value="$PROJECT_DIR$/jpf-inspector/src/main/gov/nasa/jpf/inspector/server/breakpoints/BreakPointHandler.java" />
-        <option value="$PROJECT_DIR$/jpf-inspector/src/main/gov/nasa/jpf/inspector/server/breakpoints/InternalBreakpointHolder.java" />
-        <option value="$PROJECT_DIR$/jpf-inspector/jpf.properties" />
-        <option value="$PROJECT_DIR$/jpf-inspector/src/main/gov/nasa/jpf/inspector/interfaces/CommandsInterface.java" />
-        <option value="$PROJECT_DIR$/jpf-inspector/src/main/gov/nasa/jpf/inspector/server/breakpoints/CommandsManager.java" />
-        <option value="$PROJECT_DIR$/jpf-inspector/src/main/gov/nasa/jpf/inspector/server/jpf/JPFInspectorParallel.java" />
         <option value="$PROJECT_DIR$/jpf-inspector/src/main/gov/nasa/jpf/inspector/utils/InspectorConfiguration.java" />
         <option value="$PROJECT_DIR$/jpf-inspector/src/main/gov/nasa/jpf/inspector/client/ClientCommandInterface.java" />
         <option value="$PROJECT_DIR$/jpf-inspector/src/main/gov/nasa/jpf/inspector/client/ClientCommand.java" />
@@ -207,7 +250,6 @@
         <option value="$PROJECT_DIR$/jpf-inspector/src/examples/Crossing.java" />
         <option value="$PROJECT_DIR$/jpf-inspector/src/main/gov/nasa/jpf/inspector/server/jpf/InspectorListenerModeSilent.java" />
         <option value="$PROJECT_DIR$/jpf-inspector/src/main/gov/nasa/jpf/inspector/server/choicegenerators/ChoiceGeneratorNotifications.java" />
-        <option value="$PROJECT_DIR$/jpf-inspector/src/main/gov/nasa/jpf/inspector/interfaces/ChoiceGeneratorsInterface.java" />
         <option value="$PROJECT_DIR$/jpf-inspector/src/main/gov/nasa/jpf/inspector/client/commands/CmdAssertions.java" />
         <option value="$PROJECT_DIR$/jpf-inspector/src/main/gov/nasa/jpf/inspector/server/expression/ExpressionStateInterface.java" />
         <option value="$PROJECT_DIR$/jpf-inspector/src/main/gov/nasa/jpf/inspector/server/expression/expressions/ExpressionStateThread.java" />
@@ -222,6 +264,15 @@
         <option value="$PROJECT_DIR$/jpf-inspector/src/main/gov/nasa/jpf/inspector/utils/Debugging.java" />
         <option value="$PROJECT_DIR$/jpf-inspector/build/tests/gov/nasa/jpf/inspector/tests/AssertSimpleTest.class" />
         <option value="$PROJECT_DIR$/jpf-inspector/src/main/gov/nasa/jpf/inspector/server/programstate/StateValue.java" />
+        <option value="$PROJECT_DIR$/jpf-inspector/src/main/gov/nasa/jpf/inspector/interfaces/ChoiceGeneratorsInterface.java" />
+        <option value="$PROJECT_DIR$/documentation/wiki/JPF-Inspector-Configuration.md" />
+        <option value="$PROJECT_DIR$/documentation/wiki/Tutorial.md" />
+        <option value="$PROJECT_DIR$/documentation/wiki/Introduction.md" />
+        <option value="$PROJECT_DIR$/documentation/wiki/Threads.md" />
+        <option value="$PROJECT_DIR$/documentation/wiki/JPF-Inspector-Architecture.md" />
+        <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/documentation/wiki/Home.md" />
+        <option value="$PROJECT_DIR$/documentation/wiki/Legacy-User-Guide.md" />
       </list>
     </option>
   </component>
@@ -355,11 +406,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="jpf-inspector" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
+              <option name="myItemId" value="documentation" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -373,19 +420,11 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="jpf-inspector" />
+              <option name="myItemId" value="documentation" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="inspector" />
+              <option name="myItemId" value="wiki" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -399,163 +438,11 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="jpf-inspector" />
+              <option name="myItemId" value="documentation" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="inspector" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="server" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="programstate" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gsoc" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gsoc" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="jpf-inspector" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="inspector" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="server" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gsoc" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gsoc" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="jpf-inspector" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="build" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gsoc" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gsoc" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="core8" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gsoc" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gsoc" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="core8" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gsoc" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gsoc" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="core8" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="jpf" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gsoc" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gsoc" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="core8" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="jpf" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tool" />
+              <option name="myItemId" value="md" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -836,7 +723,7 @@
       <workItem from="1464614599034" duration="2086000" />
       <workItem from="1464616703659" duration="1091000" />
       <workItem from="1464618022351" duration="10659000" />
-      <workItem from="1464673495308" duration="16444000" />
+      <workItem from="1464673495308" duration="18403000" />
     </task>
     <task id="LOCAL-00001" summary="add JUnit libraries, IDE reset">
       <created>1464614713273</created>
@@ -971,7 +858,14 @@
       <option name="project" value="LOCAL" />
       <updated>1464688381773</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="now print displays in decimals">
+      <created>1464690081602</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1464690081602</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1007,7 +901,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="30280000" />
+    <option name="totallyTimeSpent" value="32239000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1696" height="1026" extended-state="6" />
@@ -1024,7 +918,7 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.39847162" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3077381" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20535715" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Problems" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Byte Code Viewer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" x="-1607" y="72" width="1496" height="826" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32532752" sideWeight="0.4904762" order="1" side_tool="false" content_ui="tabs" />
@@ -1064,7 +958,6 @@
       <path value="$PROJECT_DIR$/jpf-inspector" />
       <path value="$PROJECT_DIR$/jpf-shell" />
     </ignored-roots>
-    <MESSAGE value="removal" />
     <MESSAGE value="remove core6 build" />
     <MESSAGE value="fix warnings on startup" />
     <MESSAGE value="fix SearchGraphTracker" />
@@ -1089,7 +982,8 @@
     <MESSAGE value="javadoc link problems" />
     <MESSAGE value="fix console grammar to make unit test pass" />
     <MESSAGE value="fix console grammar to make more unit tests pass" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix console grammar to make more unit tests pass" />
+    <MESSAGE value="now print displays in decimals" />
+    <option name="LAST_COMMIT_MESSAGE" value="now print displays in decimals" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -1203,104 +1097,6 @@
     </buildFile>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/jpf-inspector/src/main/gov/nasa/jpf/inspector/server/choicegenerators/ChoiceGeneratorNotifications.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="30" column="78" selection-start-line="30" selection-start-column="78" selection-end-line="30" selection-end-column="78" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/jpf-inspector/src/main/gov/nasa/jpf/inspector/interfaces/ChoiceGeneratorsInterface.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="193">
-          <caret line="104" column="139" selection-start-line="104" selection-start-column="139" selection-end-line="104" selection-end-column="139" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/jpf-inspector/src/main/gov/nasa/jpf/inspector/client/commands/CmdAssertions.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="159">
-          <caret line="32" column="0" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/jpf-inspector/src/main/gov/nasa/jpf/inspector/server/expression/ExpressionStateInterface.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="28" column="89" selection-start-line="28" selection-start-column="89" selection-end-line="28" selection-end-column="89" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/jpf-inspector/src/main/gov/nasa/jpf/inspector/server/expression/expressions/ExpressionStateThread.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="193">
-          <caret line="42" column="12" selection-start-line="42" selection-start-column="12" selection-end-line="42" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/jpf-inspector/src/main/gov/nasa/jpf/inspector/server/jpf/JPFInspector.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="193">
-          <caret line="70" column="24" selection-start-line="70" selection-start-column="24" selection-end-line="70" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/jpf-inspector/build/tests/gov/nasa/jpf/inspector/tests/unit/ExpressionNameMatching.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core8/src/peers/gov/nasa/jpf/vm/JPF_gov_nasa_jpf_ConsoleOutputStream.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="27" column="13" selection-start-line="27" selection-start-column="13" selection-end-line="27" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core8/src/peers/gov/nasa/jpf/vm/JPF_gov_nasa_jpf_SerializationConstructor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="23" column="13" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/jpf-inspector/src/tests/gov/nasa/jpf/inspector/tests/BreakpointTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core8/src/main/gov/nasa/jpf/vm/NativePeer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-5139">
-          <caret line="37" column="44" selection-start-line="37" selection-start-column="44" selection-end-line="37" selection-end-column="44" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/jpf-inspector/src/tests/gov/nasa/jpf/inspector/tests/infrastructure/JPF_gov_nasa_jpf_inspector_tests_infrastructure_InspectorTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="11" column="20" selection-start-line="11" selection-start-column="20" selection-end-line="11" selection-end-column="20" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/jpf-inspector/src/tests/gov/nasa/jpf/inspector/tests/infrastructure/Breakpoint.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
@@ -1459,8 +1255,8 @@
         <state relative-caret-position="182">
           <caret line="1327" column="23" selection-start-line="1327" selection-start-column="23" selection-end-line="1327" selection-end-column="23" />
           <folding>
-            <element signature="e#50771#50772#0" expanded="true" />
-            <element signature="e#50833#50834#0" expanded="true" />
+            <element signature="e#50771#50772#0" expanded="false" />
+            <element signature="e#50833#50834#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1807,7 +1603,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/jpf-inspector/src/tests/gov/nasa/jpf/inspector/tests/AssertSimpleTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="196">
+        <state relative-caret-position="179">
           <caret line="111" column="49" selection-start-line="111" selection-start-column="49" selection-end-line="111" selection-end-column="49" />
           <folding />
         </state>
@@ -1815,7 +1611,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/jpf-inspector/src/main/gov/nasa/jpf/inspector/common/pse/PSEVariable.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="94">
+        <state relative-caret-position="-8">
           <caret line="52" column="18" selection-start-line="52" selection-start-column="18" selection-end-line="52" selection-end-column="18" />
           <folding>
             <element signature="e#4030#4031#0" expanded="true" />
@@ -1826,7 +1622,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/jpf-inspector/src/main/gov/nasa/jpf/inspector/common/pse/PSEVariableArray.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="196">
+        <state relative-caret-position="162">
           <caret line="54" column="4" selection-start-line="54" selection-start-column="4" selection-end-line="54" selection-end-column="4" />
           <folding />
         </state>
@@ -1863,9 +1659,135 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/jpf-inspector/src/main/gov/nasa/jpf/inspector/server/programstate/StateValue.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="534" column="32" selection-start-line="534" selection-start-column="32" selection-end-line="534" selection-end-column="32" />
+        <state relative-caret-position="204">
+          <caret line="530" column="5" selection-start-line="530" selection-start-column="5" selection-end-line="530" selection-end-column="5" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jpf-inspector/src/main/gov/nasa/jpf/inspector/interfaces/ChoiceGeneratorsInterface.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="395">
+          <caret line="33" column="15" selection-start-line="33" selection-start-column="15" selection-end-line="33" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jpf-inspector/jpf.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="22" column="14" selection-start-line="22" selection-start-column="14" selection-end-line="22" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/documentation/wiki/JPF-Inspector-Configuration.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="463">
+            <caret line="8" column="191" selection-start-line="8" selection-start-column="191" selection-end-line="8" selection-end-column="191" />
+            <folding />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/documentation/wiki/Tutorial.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="17">
+            <caret line="0" column="80" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="80" />
+            <folding />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/documentation/wiki/Introduction.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="17">
+            <caret line="0" column="80" selection-start-line="0" selection-start-column="80" selection-end-line="0" selection-end-column="80" />
+            <folding />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/documentation/wiki/Threads.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="0">
+            <caret line="0" column="16" selection-start-line="0" selection-start-column="16" selection-end-line="0" selection-end-column="16" />
+            <folding />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/documentation/wiki/JPF-Inspector-Architecture.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="0">
+            <caret line="0" column="16" selection-start-line="0" selection-start-column="16" selection-end-line="0" selection-end-column="16" />
+            <folding />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/documentation/wiki/Javadoc.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="0">
+            <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <folding />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/documentation/wiki/Home.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="255">
+            <caret line="9" column="74" selection-start-line="9" selection-start-column="74" selection-end-line="9" selection-end-column="74" />
+            <folding />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="17">
+            <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+            <folding />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/documentation/md/userguide.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="153">
+            <caret line="6" column="183" selection-start-line="6" selection-start-column="183" selection-end-line="6" selection-end-column="183" />
+            <folding />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/documentation/wiki/Legacy-User-Guide.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="164">
+            <caret line="190" column="27" selection-start-line="190" selection-start-column="27" selection-end-line="190" selection-end-column="27" />
+            <folding />
+          </first_editor>
+          <second_editor />
         </state>
       </provider>
     </entry>
@@ -1937,7 +1859,7 @@
       </state>
       <state key="ModuleStructureConfigurable.UI">
         <settings>
-          <last-edited>core8</last-edited>
+          <last-edited>site</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
