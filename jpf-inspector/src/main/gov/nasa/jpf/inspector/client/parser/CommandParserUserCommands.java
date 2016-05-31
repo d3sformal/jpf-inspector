@@ -24,9 +24,6 @@ import gov.nasa.jpf.inspector.common.AntlrParseException;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorParsingErrorException;
 import gov.nasa.jpf.inspector.utils.parser.RecognitionRuntimeException;
 
-import org.antlr.runtime.RecognitionException;
-import org.antlr.v4.runtime.misc.ParseCancellationException;
-
 /**
  * @author Alf
  * 

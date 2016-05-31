@@ -1,6 +1,5 @@
 package gov.nasa.jpf.inspector.client;
 
-import com.sun.org.apache.xpath.internal.functions.FuncFalse;
 import gov.nasa.jpf.JPF;
 import gov.nasa.jpf.JPF.Status;
 import gov.nasa.jpf.inspector.JPFInspectorFacade;
@@ -13,9 +12,7 @@ import gov.nasa.jpf.inspector.exceptions.JPFInspectorGenericErrorException;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorParsingErrorException;
 import gov.nasa.jpf.inspector.utils.Debugging;
 import gov.nasa.jpf.inspector.utils.InspectorConfiguration;
-import jdk.nashorn.internal.runtime.Debug;
 
-import javax.swing.plaf.TreeUI;
 import java.io.PrintStream;
 import java.util.logging.Logger;
 

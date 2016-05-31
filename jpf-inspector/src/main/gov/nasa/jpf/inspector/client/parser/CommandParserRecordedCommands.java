@@ -24,8 +24,6 @@ import gov.nasa.jpf.inspector.common.AntlrParseException;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorParsingErrorException;
 import gov.nasa.jpf.inspector.utils.parser.RecognitionRuntimeException;
 
-import org.antlr.runtime.RecognitionException;
-
 /**
  * 
  * Parses commands from user or textual representation of callbacks.

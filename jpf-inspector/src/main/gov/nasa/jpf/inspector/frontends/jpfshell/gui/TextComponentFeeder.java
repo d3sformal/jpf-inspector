@@ -6,7 +6,6 @@ import javax.swing.text.JTextComponent;
 
 import gov.nasa.jpf.inspector.utils.Debugging;
 import gov.nasa.jpf.shell.ShellManager;
-import gov.nasa.jpf.util.LogManager;
 import jline.ConsoleOperations;
 
 import java.util.logging.Level;

@@ -85,6 +85,7 @@ class Event {
 }
 
 //------- the two concurrent threads using the monitors
+@SuppressWarnings("ALL")
 class FirstTask extends Thread {
   private Event event1;
   private Event event2;
@@ -112,6 +113,7 @@ class FirstTask extends Thread {
   }
 }
 
+@SuppressWarnings("InfiniteLoopStatement")
 class SecondTask extends Thread {
   Event event1;
   Event event2;

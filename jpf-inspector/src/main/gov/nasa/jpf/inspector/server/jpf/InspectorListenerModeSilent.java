@@ -139,7 +139,7 @@ public class InspectorListenerModeSilent extends ListenerAdapter {
       
       // we must skip choices that have been processed before this call
       // special case: there might be a cascade with multiple CGs at one instruction
-      	// it is not possible to move back a CG in the cascade if there is one processed choice (the first one) -> we must manually "set all choices as being explored", so that this CG is explored again from the start (for the parent choice) on the way forward
+      // it is not possible to move back a CG in the cascade if there is one processed choice (the first one) -> we must manually "set all choices as being explored", so that this CG is explored again from the start (for the parent choice) on the way forward
       // this does not apply to the top CG in the cascade (which does not have a cascaded parent)
       while ((cg.getCascadedParent() != null) && (cg.getProcessedNumberOfChoices() == 1)) {
         // Set this to last value && end delegate to predecessor
@@ -159,7 +159,6 @@ public class InspectorListenerModeSilent extends ListenerAdapter {
 
     // Should not be reached
     reportError();
-    return;
   }
 
   @Override

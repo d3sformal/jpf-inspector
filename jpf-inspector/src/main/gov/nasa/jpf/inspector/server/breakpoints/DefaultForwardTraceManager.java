@@ -2,15 +2,14 @@ package gov.nasa.jpf.inspector.server.breakpoints;
 
 import gov.nasa.jpf.inspector.interfaces.ChoiceGeneratorsInterface;
 import gov.nasa.jpf.inspector.server.jpf.JPFInspector;
-import gov.nasa.jpf.vm.ChoiceGenerator;
-import gov.nasa.jpf.vm.VM;
-import gov.nasa.jpf.vm.Transition;
-import gov.nasa.jpf.vm.Instruction;
 import gov.nasa.jpf.search.Search;
+import gov.nasa.jpf.vm.ChoiceGenerator;
+import gov.nasa.jpf.vm.Instruction;
+import gov.nasa.jpf.vm.Transition;
+import gov.nasa.jpf.vm.VM;
 
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -178,14 +177,14 @@ public class DefaultForwardTraceManager {
         return Arrays.equals(choices, other.choices);
       } else {
         // this.choices has counterpart in other.choices
-        for (int i = 0; i < choices.length; i++) {
+        for (Object choice : choices) {
           int j;
           for (j = 0; j < other.choices.length; j++) {
-            if (choices[i] == null) {
+            if (choice == null) {
               if (other.choices[j] == null) {
                 break;
               }
-            } else if (choices[i].equals(other.choices[j])) {
+            } else if (choice.equals(other.choices[j])) {
               break;
             }
           } // other.choices cycles
@@ -415,9 +414,7 @@ public class DefaultForwardTraceManager {
   public String toString () {
     StringBuilder sb = new StringBuilder();
     sb.append("DefaultForwardTrace\n");
-    Iterator<TransitionMemento> it = forwardTrace.iterator();
-    while (it.hasNext()) {
-      TransitionMemento trMem = it.next();
+    for (TransitionMemento trMem : forwardTrace) {
       sb.append(trMem.toString());
     }
 

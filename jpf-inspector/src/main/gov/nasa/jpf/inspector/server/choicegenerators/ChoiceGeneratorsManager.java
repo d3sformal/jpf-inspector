@@ -34,11 +34,6 @@ import gov.nasa.jpf.inspector.server.programstate.StateValue;
 import gov.nasa.jpf.inspector.utils.ChoiceGeneratorWrapper;
 import gov.nasa.jpf.inspector.utils.InstructionWrapper;
 import gov.nasa.jpf.vm.*;
-import gov.nasa.jpf.vm.VM;
-import gov.nasa.jpf.vm.Path;
-import gov.nasa.jpf.vm.ThreadChoiceGenerator;
-import gov.nasa.jpf.vm.ThreadInfo;
-import gov.nasa.jpf.vm.Transition;
 
 import java.io.PrintStream;
 import java.util.ArrayList;

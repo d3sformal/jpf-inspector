@@ -19,11 +19,11 @@
 
 package gov.nasa.jpf.inspector.server.programstate;
 
+import gov.nasa.jpf.inspector.common.pse.PSEHeapEntryList;
+import gov.nasa.jpf.inspector.common.pse.PSEVariable;
 import gov.nasa.jpf.inspector.common.pse.ProgramStateEntry;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorException;
 import gov.nasa.jpf.inspector.server.jpf.JPFInspector;
-import gov.nasa.jpf.inspector.common.pse.PSEHeapEntryList;
-import gov.nasa.jpf.inspector.common.pse.PSEVariable;
 import gov.nasa.jpf.inspector.utils.expressions.ClassName;
 import gov.nasa.jpf.vm.ClassInfo;
 import gov.nasa.jpf.vm.ElementInfo;
@@ -31,7 +31,6 @@ import gov.nasa.jpf.vm.Heap;
 import gov.nasa.jpf.vm.VM;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -55,9 +54,7 @@ public class StateHeapEntryList extends StateNode {
   public ProgramStateEntry getResultExpression (String name, int clientID) throws JPFInspectorException {
 
     List<PSEVariable> heapEntryList = new ArrayList<>(heapEntries.size());
-    final int entries = heapEntries.size();
-    for (int i = 0; i < entries; i++) {
-      StateElementInfo sei = heapEntries.get(i);
+    for (StateElementInfo sei : heapEntries) {
       heapEntryList.add(sei.getResultExpression(name, clientID));
     }
     return new PSEHeapEntryList(this, heapEntryList);
@@ -76,10 +73,7 @@ public class StateHeapEntryList extends StateNode {
 
     List<StateElementInfo> result = new ArrayList<>();
 
-    Iterator<ElementInfo> heapIterator = heap.liveObjects().iterator();
-    while (heapIterator.hasNext()) {
-      ElementInfo dei = heapIterator.next();
-
+    for (ElementInfo dei : heap.liveObjects()) {
       // Filter items
       ClassInfo entryType = dei.getClassInfo();
       assert entryType != null;

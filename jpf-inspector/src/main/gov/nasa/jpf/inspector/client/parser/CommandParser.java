@@ -20,17 +20,9 @@
 package gov.nasa.jpf.inspector.client.parser;
 
 import gov.nasa.jpf.inspector.common.ThrowingErrorListener;
-import gov.nasa.jpf.inspector.exceptions.JPFInspectorParsingErrorException;
-
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.StringReader;
-import java.nio.charset.StandardCharsets;
 
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.CommonTokenStream;
-import org.antlr.v4.runtime.TokenStream;
 
 /**
  * @author Alf
