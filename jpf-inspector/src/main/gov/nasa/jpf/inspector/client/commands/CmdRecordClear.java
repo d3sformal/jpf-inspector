@@ -29,7 +29,7 @@ import java.io.PrintStream;
 /**
  * Represents the 'record clear' command that destroys the contents of the current command recorder's memory.
  * 
- * @author Alf *
+ * @author Alf
  */
 public class CmdRecordClear extends ClientCommand {
 

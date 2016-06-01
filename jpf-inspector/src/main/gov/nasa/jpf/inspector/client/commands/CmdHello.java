@@ -6,6 +6,9 @@ import gov.nasa.jpf.inspector.interfaces.JPFInspectorBackEndInterface;
 
 import java.io.PrintStream;
 
+/**
+ * Represents the "hello" command that is used to test whether JPF Inspector is working.
+ */
 public class CmdHello extends ClientCommand {
   @Override
   public void executeCommands(JPFInspectorClient client, JPFInspectorBackEndInterface inspector, PrintStream outStream) {

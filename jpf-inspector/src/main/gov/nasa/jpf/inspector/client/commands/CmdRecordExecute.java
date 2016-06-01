@@ -28,7 +28,7 @@ import java.io.PrintStream;
 
 /**
  * Represents the 'record execute' command that loads a recording from a file and immediately replays it.
- * @author Alf *
+ * @author Alf
  */
 public class CmdRecordExecute extends ClientCommand {
 

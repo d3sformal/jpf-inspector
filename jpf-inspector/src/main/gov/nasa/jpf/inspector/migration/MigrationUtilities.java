@@ -12,7 +12,7 @@ import java.util.Iterator;
  * <p>
  * Because the update may break things, some modifications that could have unintended consequences pass through this class so that when something breaks, we can fix it everywhere we broke it at the same time. When we are sure it works, this class will be removed and the functions' code inlined at the appropriate places.
  */
-public class MigrationUtilities {
+public final class MigrationUtilities {
 
 
   public static Instruction getLastInstruction(VM vm) {
@@ -40,9 +40,7 @@ public class MigrationUtilities {
    */
   public static ClassInfo[] getLoadedClasses() {
     ArrayList<ClassInfo> loadedClasses = new ArrayList<>();
-    Iterator<ClassInfo> loadedClassesIterator = ClassLoaderInfo.getCurrentClassLoader().iterator();
-    while (loadedClassesIterator.hasNext()) {
-      ClassInfo loadedClass = loadedClassesIterator.next();
+    for (ClassInfo loadedClass : ClassLoaderInfo.getCurrentClassLoader()) {
       loadedClasses.add(loadedClass);
     }
     ClassInfo[] array = new ClassInfo[loadedClasses.size()];
