@@ -61,12 +61,12 @@ public class ExpressionBreakpointCompare extends ExpressionBooleanLeaf {
       StateNodeInterface sniRight = rightOp.getResultExpression(inspector, state);
 
       if (!(sniLeft instanceof StateReadableValueInterface)) {
-        detail = "left operator does not represent a value";
+        detail = "left operand does not represent a value";
         return false;
       }
 
       if (!(sniRight instanceof StateReadableValueInterface)) {
-        detail = "right operator does not represent a value";
+        detail = "right operand does not represent a value";
         return false;
       }
 

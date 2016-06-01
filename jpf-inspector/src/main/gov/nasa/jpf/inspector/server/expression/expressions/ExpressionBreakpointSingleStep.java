@@ -232,7 +232,7 @@ public class ExpressionBreakpointSingleStep extends ExpressionBooleanLeaf {
   @Override
   public String getDetails (InspectorState state) {
     if (state != null && evaluateExpression(state)) {
-      return "SuT leaves the " + instPos.toString();
+      return "SuT leaves the position " + instPos.toString();
     }
     return "";
   }

@@ -79,7 +79,7 @@ public class ChoiceGeneratorsManager implements ChoiceGeneratorsInterface, Choic
 
   @Override
   public synchronized List<ChoiceGeneratorWrapper> getUsedChoiceGenerators (boolean wait) throws JPFInspectorException {
-    cmdMgr.initialStopTest(wait, "cann't get choice generators");
+    cmdMgr.initialStopTest(wait, "cnn't get choice generators");
 
     VM vm = stopHolder.getJVM();
     JPFInspectorNoVMConnected.checkVM(vm);
@@ -191,7 +191,7 @@ public class ChoiceGeneratorsManager implements ChoiceGeneratorsInterface, Choic
 
   @Override
   public void selectChoice (int selectedChoice) throws JPFInspectorGenericErrorException {
-    cmdMgr.initialStopTest(false, "'cg select' command can by called only if execution is stopped");
+    cmdMgr.initialStopTest(false, "'cg select' command can be called only if execution is stopped");
     VM vm = stopHolder.getJVM();
     assert vm != null;
 

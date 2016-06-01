@@ -165,7 +165,7 @@ public class CallbackExecutionDecorator implements InspectorCallBacks {
           if (!(CB_METHODS.CB_ANY.equals(calledCallback) || method.equals(calledCallback))) {
             // Set error state
             error = true;
-            errorMsg = "Unexpected callback. current callback: " + calledCallback + ", expected callback: " + method;
+            errorMsg = "Unexpected callback. Current callback: " + calledCallback + ", expected callback: " + method + ".";
           }
         }
       }
@@ -232,7 +232,7 @@ public class CallbackExecutionDecorator implements InspectorCallBacks {
 
         if (cbStateChange_expectedState != null && !newState.equals(cbStateChange_expectedState)) {
           error = true;
-          errorMsg = "Unexpected new state in notifyStateChange callback - newState: " + newState + ",  expected newState: " + cbStateChange_expectedState;
+          errorMsg = "Unexpected new state in notifyStateChange callback - actual newState: " + newState + ", expected newState: " + cbStateChange_expectedState + ".";
         }
       }
 

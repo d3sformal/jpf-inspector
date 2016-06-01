@@ -42,9 +42,9 @@ public class CmdBreakpointDelete extends ClientCommand {
       int bpIDint = Integer.parseInt(bpID);
       final boolean rc = inspector.deleteBreakPoint(bpIDint);
       if (!rc) {
-        outStream.println("Breakpoint with ID = " + bpIDint + " does not exist.");
+        outStream.println("Breakpoint with ID " + bpIDint + " does not exist.");
       } else {
-        outStream.println("Breakpoint with ID = " + bpIDint + " successfully deleted.");
+        outStream.println("Breakpoint with ID " + bpIDint + " successfully deleted.");
       }
     } catch (NumberFormatException e) {
       outStream.println("Malformed breakpoint identifier - \"" + bpID + "\" is not an integer.");

@@ -5,7 +5,6 @@ Fix unit testing.
 Fix all English.
 Complete GitHub documentation.
 Fix and complete Javadoc documentation.
-Upgrade JLine and remove the bell sound.
 Refactor names.
 
 If extra time is available:

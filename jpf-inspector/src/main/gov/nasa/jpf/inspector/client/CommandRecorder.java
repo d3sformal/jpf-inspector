@@ -80,7 +80,7 @@ public class CommandRecorder {
    */
   public synchronized void clearRecordedCommands () {
     init();
-    addComment("Recording started because of user-initiated clear command.");
+    addComment("Recording started because of a user-initiated clear command.");
   }
 
   /**

@@ -53,7 +53,7 @@ public class CmdAssertionsBreakpoint extends ClientCommand {
 
       createdAssert = inspector.createAssert(new ConsoleAssertionCreationExpression(position, assertExpression));
       if (createdAssert != null) {
-        outStream.println("New assertion succesfully created with ID " + createdAssert.getBPID() + ".");
+        outStream.println("New assertion successfully created with ID " + createdAssert.getBPID() + ".");
       }
 
       if (rec != null) {
