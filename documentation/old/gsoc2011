@@ -1,5 +1,0 @@
-= JPF Inspector =
-
-This project was a direct continuation from [http://babelfish.arc.nasa.gov/trac/jpf/wiki/summer-projects/2010-inspector GSoC 2010]. New features implemented in the year 2011 include backward single stepping, program state modification, record and replay of command sequences, and basic support for dynamic assertions.
-More information is available on the main wiki page of [http://babelfish.arc.nasa.gov/trac/jpf/wiki/projects/jpf-inspector JPF Inspector], including the user guide and source code repository.
-
