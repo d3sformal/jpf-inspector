@@ -39,6 +39,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextPane;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.text.DefaultCaret;
+import javax.swing.text.DefaultEditorKit;
 import javax.swing.text.JTextComponent;
 
 import gov.nasa.jpf.inspector.utils.Debugging;
@@ -120,6 +121,11 @@ public class SwingTerminal extends Terminal {
     console.setCaret(dc);
     console.setCaretColor(foreground);
     console.addFocusListener(new ConsoleFocusListener());
+
+    // Disable the beep on Windows computers
+    // http://stackoverflow.com/a/28638420/1580088
+    console.getActionMap().get(DefaultEditorKit.deletePrevCharAction).setEnabled(false);
+    console.getActionMap().get(DefaultEditorKit.insertBreakAction).setEnabled(false);
   }
 
   /**
