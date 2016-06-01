@@ -1,6 +1,17 @@
 package gov.nasa.jpf.inspector.frontends.cmd;
 
+import gov.nasa.jpf.Config;
 import gov.nasa.jpf.JPFShell;
+import gov.nasa.jpf.inspector.JPFInspectorFacade;
+import gov.nasa.jpf.inspector.client.JPFInspectorClientInterface;
+import gov.nasa.jpf.inspector.common.Constants;
+import gov.nasa.jpf.shell.Shell;
+import gov.nasa.jpf.shell.ShellCommand;
+import gov.nasa.jpf.shell.ShellManager;
+import gov.nasa.jpf.shell.ShellPanel;
+
+import java.io.IOException;
+import java.util.Scanner;
 
 /**
  *
@@ -13,9 +24,74 @@ import gov.nasa.jpf.JPFShell;
  * any implementations of JPFShell, we must redo most of the Shell's work from scratch here.
  *
  */
-public class CommandLineShell implements JPFShell {
+public final class CommandLineShell extends Shell {
   @Override
   public void start(String[] args) {
+    ShellManager.getManager().setStartingArgs(args);
+    System.out.println("Start: " + args);
+    Scanner scanner = new Scanner(System.in);
+    JPFInspectorClientInterface inspector = JPFInspectorFacade.getInspectorClient("target", System.out);
+    //noinspection InfiniteLoopStatement
+    while (true) {
+      System.out.print(Constants.PROMPT);
+      String s = scanner.nextLine();
 
+      String sTrimmed = s.trim();
+      if (sTrimmed.length() == 0) {
+        System.out.println("\n" + Constants.PROMPT);
+      }
+      if (s.trim().length() > 0) {
+        System.out.println();
+        inspector.executeCommand(s);
+      }
+    } // end of while
+  }
+
+  /**
+   * The constructor called on by JPF when instantiating a shell. This is
+   * equivalent to calling {@link #Shell(gov.nasa.jpf.Config, java.lang.String)}
+   * with the arguments: config, TITLE
+   * @param config the {@link gov.nasa.jpf.Config} object to be used for the
+   * {@link gov.nasa.jpf.shell.ShellManager}.
+   *
+   */
+  public CommandLineShell(Config config) {
+    System.out.println("Constructor!");
+    ShellManager.createShellManager(config);
+    if (!ShellManager.getManager().hasShell(this)) {
+      ShellManager.getManager().addShell(this);
+      // We will handle when to exit the VM in ShellManager
+    }
+    System.out.println("Constructor ends!");
+  }
+
+  @Override
+  public void installCommand(ShellCommand command) {
+    System.out.println("Command install: " + command);
+  }
+
+  @Override
+  public void uninstallCommand(ShellCommand command) {
+
+  }
+
+  @Override
+  public void updateShellCommand(ShellCommand command) {
+
+  }
+
+  @Override
+  public void updateShellPanel(ShellPanel panel) {
+
+  }
+
+  @Override
+  public void requestFocus(ShellPanel panel) {
+
+  }
+
+  @Override
+  public Shell createChildShell() {
+    return null;
   }
 }

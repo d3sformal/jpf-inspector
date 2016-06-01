@@ -34,7 +34,7 @@ import java.io.PrintStream;
  * The only implemented client is the {@link JPFInspectorClient}.
  * This class merely constructs those classes by calling constructors directly.
  */
-public class JPFInspectorFacade {
+public final class JPFInspectorFacade {
 
   /**
    * Creates an instance of the JPFInspector back-end (server part).

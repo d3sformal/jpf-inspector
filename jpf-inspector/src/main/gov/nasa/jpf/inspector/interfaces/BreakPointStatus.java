@@ -31,25 +31,25 @@ public interface BreakPointStatus extends BreakPointCreationInformation {
    * Gets the breakpoint's unique identifier.
    */
   @Override
-  public int getBPID ();
+  int getBPID();
 
   /**
    * Counts number of the breakpoint invocation position. (How many times has been location specified in condition reached by the current trace)
    */
-  public int getHitCounter ();
+  int getHitCounter();
 
   /**
    * Gets total number of the breakpoint invocation. How many times has been breakpoint reached
    */
-  public int getHitCounterTotal ();
+  int getHitCounterTotal();
 
-  public BreakPointModes getBPMode ();
+  BreakPointModes getBPMode();
 
   /**
    * Additional information about the Breakpoint for user.
    */
-  public String getDetails ();
+  String getDetails();
 
-  public String getNormalizedBreakpointExpression ();
+  String getNormalizedBreakpointExpression();
 
 }

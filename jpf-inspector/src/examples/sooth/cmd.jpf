@@ -1,0 +1,4 @@
+@using jpf-inspector
+shell=gov.nasa.jpf.inspector.frontends.cmd.CommandLineShell
+
+target = sooth.Quick

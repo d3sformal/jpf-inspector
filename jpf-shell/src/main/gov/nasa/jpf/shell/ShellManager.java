@@ -261,7 +261,7 @@ public class ShellManager {
 
   /**
    * Adds a listener for the command
-   * @param comman the command to listen for
+   * @param command the command to listen for
    * @param listener the listener to register for the command
    */
   public void addCommandListener(ShellCommand command,
