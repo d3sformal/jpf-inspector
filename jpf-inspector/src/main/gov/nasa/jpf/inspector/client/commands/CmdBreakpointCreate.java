@@ -23,7 +23,7 @@ import gov.nasa.jpf.inspector.client.ClientCommand;
 import gov.nasa.jpf.inspector.client.JPFInspectorClient;
 import gov.nasa.jpf.inspector.common.ConsoleInformation;
 import gov.nasa.jpf.inspector.interfaces.BreakPointCreationInformation;
-import gov.nasa.jpf.inspector.interfaces.BreakPointStates;
+import gov.nasa.jpf.inspector.interfaces.BreakpointState;
 import gov.nasa.jpf.inspector.interfaces.BreakPointStatus;
 import gov.nasa.jpf.inspector.interfaces.JPFInspectorBackEndInterface;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorGenericErrorException;
@@ -82,7 +82,7 @@ public class CmdBreakpointCreate extends ClientCommand {
     // Null values means not set by user.
     private String bpDefExpression = null;
 
-    private BreakPointStates bpState = null;
+    private BreakpointState bpState = null;
     private String bpName = null;
 
     private Integer lowerBound = null;
@@ -102,7 +102,7 @@ public class CmdBreakpointCreate extends ClientCommand {
     }
 
     @Override
-    public BreakPointStates getState () {
+    public BreakpointState getState () {
       return bpState;
     }
 
@@ -121,7 +121,7 @@ public class CmdBreakpointCreate extends ClientCommand {
       return bpDefExpression;
     }
 
-    public void setState (BreakPointStates bpState) {
+    public void setState (BreakpointState bpState) {
       assert bpState != null;
       this.bpState = bpState;
     }
@@ -163,7 +163,7 @@ public class CmdBreakpointCreate extends ClientCommand {
       upperBound = upper;
     }
 
-    public static String breakPointState2NormalizedString (BreakPointStates bpState) {
+    public static String breakPointState2NormalizedString (BreakpointState bpState) {
       assert (bpState != null);
 
       switch (bpState) {
@@ -193,7 +193,7 @@ public class CmdBreakpointCreate extends ClientCommand {
         sb.append(name);
       }
 
-      BreakPointStates state = bpc.getState();
+      BreakpointState state = bpc.getState();
       if (state != null) {
         // State is specified
         sb.append(" state=");

@@ -47,9 +47,15 @@ public interface BreakPointCreationInformation extends Serializable {
    */
   String getBPExpression();
 
+  /**
+   * Gets the name of the breakpoint, if any. If no name was specified, returns null.
+   */
   String getName();
 
-  BreakPointStates getState();
+  /**
+   * Gets the action that should occur when the breakpoint is hit.
+   */
+  BreakpointState getState();
 
   /**
    * Specify lower bound for breakpoint's hitCounter.

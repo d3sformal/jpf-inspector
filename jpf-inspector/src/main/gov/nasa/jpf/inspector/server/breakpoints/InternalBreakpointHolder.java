@@ -20,7 +20,7 @@
 package gov.nasa.jpf.inspector.server.breakpoints;
 
 import gov.nasa.jpf.inspector.interfaces.BreakPointCreationInformation;
-import gov.nasa.jpf.inspector.interfaces.BreakPointStates;
+import gov.nasa.jpf.inspector.interfaces.BreakpointState;
 import gov.nasa.jpf.inspector.interfaces.BreakPointStatus;
 import gov.nasa.jpf.inspector.interfaces.InspectorCallBacks;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorException;
@@ -60,7 +60,7 @@ class InternalBreakpointHolder implements Comparable<InternalBreakpointHolder> {
   private final boolean singleHitBreakpoint; // / Remove this breakpoint on the first breakpointHit (this or some other BP)
 
   protected BreakPointModes bpMode = BreakPointModes.BP_MODE_NONE;
-  protected BreakPointStates bpState = BreakPointStates.BP_STATE_ENABLED;
+  protected BreakpointState bpState = BreakpointState.BP_STATE_ENABLED;
   protected String bpName = "";
 
   protected int bpHitCounter = 0;
@@ -196,18 +196,18 @@ class InternalBreakpointHolder implements Comparable<InternalBreakpointHolder> {
       }
     }
     if (bpShouldExecuteAction && isUserBreakpoint()) {
-      if (bpState == BreakPointStates.BP_STATE_DISABLED) {
+      if (bpState == BreakpointState.BP_STATE_DISABLED) {
         // No action expected
-      } else if (bpState == BreakPointStates.BP_STATE_LOGGING) {
+      } else if (bpState == BreakpointState.BP_STATE_LOGGING) {
         callbacks.notifyBreakpointHit(getBreakpointStatus(state));
-      } else if (bpState == BreakPointStates.BP_STATE_ENABLED) {
+      } else if (bpState == BreakpointState.BP_STATE_ENABLED) {
         callbacks.notifyBreakpointHit(getBreakpointStatus(state));
       } else {
-        throw new RuntimeException("Unknown " + BreakPointStates.class.getSimpleName() + " entry " + bpState);
+        throw new RuntimeException("Unknown " + BreakpointState.class.getSimpleName() + " entry " + bpState);
       }
     }
 
-    return bpShouldExecuteAction && bpState == BreakPointStates.BP_STATE_ENABLED;
+    return bpShouldExecuteAction && bpState == BreakpointState.BP_STATE_ENABLED;
 
   }
 

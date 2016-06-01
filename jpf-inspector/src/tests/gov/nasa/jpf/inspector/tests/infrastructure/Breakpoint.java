@@ -2,7 +2,7 @@ package gov.nasa.jpf.inspector.tests.infrastructure;
 
 import gov.nasa.jpf.inspector.client.commands.CmdBreakpointCreate;
 import gov.nasa.jpf.inspector.interfaces.BreakPointCreationInformation;
-import gov.nasa.jpf.inspector.interfaces.BreakPointStates;
+import gov.nasa.jpf.inspector.interfaces.BreakpointState;
 
 public class Breakpoint {
 
@@ -17,7 +17,7 @@ public class Breakpoint {
   public static CmdBreakpointCreate.ConsoleBreakpointCreationExpression getBreakpoint () {
     CmdBreakpointCreate.ConsoleBreakpointCreationExpression result = new CmdBreakpointCreate.ConsoleBreakpointCreationExpression();
     result.setName(Breakpoint.class.getSimpleName() + ".breakMe:" + BREAKME_LINE);
-    result.setState(BreakPointStates.BP_STATE_ENABLED);
+    result.setState(BreakpointState.BP_STATE_ENABLED);
     result.setBounds(BreakPointCreationInformation.DEFAULT_LOWER_BOUND, BreakPointCreationInformation.DEFAULT_UPPER_BOUND);
     result.setBPExpression("position = " + FILE_NAME + ":" + BREAKME_LINE);
     return result;

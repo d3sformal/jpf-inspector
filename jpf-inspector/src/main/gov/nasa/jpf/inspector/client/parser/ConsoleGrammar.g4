@@ -105,6 +105,7 @@ allKeyWordsWithoutCreateBPandHitCount returns [String text]
     | a=TOKEN_QUIT { $text = $a.text; }
     | a=TOKEN_HELLO { $text = $a.text; }
     | a=TOKEN_HELP { $text = $a.text; }
+    | a=TOKEN_WAIT { $text = $a.text; }
     ;
 
 // Can parse all Client commands as well as text representation of Callbacks - used for Record&Replay approach
@@ -149,10 +150,10 @@ cmdCreateBP [ConsoleBreakpointCreationExpression bpCreate]
      }
     ;
 
-cmdBreakpointsStates returns [BreakPointStates bpState]
-    : TOKEN_DISABLE         { $bpState = BreakPointStates.BP_STATE_DISABLED; }
-    | TOKEN_LOG             { $bpState = BreakPointStates.BP_STATE_LOGGING; }
-    | TOKEN_ENABLE          { $bpState = BreakPointStates.BP_STATE_ENABLED; }
+cmdBreakpointsStates returns [BreakpointState bpState]
+    : TOKEN_DISABLE         { $bpState = BreakpointState.BP_STATE_DISABLED; }
+    | TOKEN_LOG             { $bpState = BreakpointState.BP_STATE_LOGGING; }
+    | TOKEN_ENABLE          { $bpState = BreakpointState.BP_STATE_ENABLED; }
     ;
 
 // We have to solve collision between bpExpression and "hitCountExpression" expression
@@ -191,6 +192,7 @@ cmdSingleSteps returns [CmdSingleStepping value]
 cmdInformational returns [ClientCommand value]
   : TOKEN_HELLO  { $value = new CmdHello(); }
   | TOKEN_HELP   { $value = new CmdHelp(); }
+  | TOKEN_WAIT   { $value = new CmdWait(); }
   ;
 
 cmdProgramState returns [ClientCommand value]
@@ -376,9 +378,10 @@ TOKEN_CB_CG_NEW_CHOICE : 'callback_choice_generator_new_choice' | 'cb_cg_new_cho
 TOKEN_CB_CG_CHOICE_TO_USE : 'callback_choice_generator_choice_to_use' | 'cb_cg_choice_to_use' ;
 TOKEN_CB_CG_USED_CHOICE : 'callback_choice_generator_used_choice' | 'cb_cg_used_choice' ;
 
-// Informational commmands
+// New commmands
 TOKEN_HELLO : 'hello';
 TOKEN_HELP : 'help';
+TOKEN_WAIT : 'wait';
 TOKEN_QUIT : 'quit' | 'exit';
 
 // End of keywords.

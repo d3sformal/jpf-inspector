@@ -55,17 +55,17 @@ public class JPFInspectorClient implements JPFInspectorClientInterface {
   @Override
   public void executeCommand (String cmdStr, ExecutionContext context) {
     CommandParserInterface parser = CommandParserFactory.getClientCommandParser();
-    ClientCommandInterface cmd = parseCommand(cmdStr, parser);
+    ClientCommandInterface cmd = parseCommand(cmdStr, parser, context);
     executeCommand(cmd, context);
   }
 
   public void executeCommandOrCallback (String cmdStr) {
     CommandParserInterface parser = CommandParserFactory.getRecordCommandParser();
-    ClientCommandInterface cmd = parseCommand(cmdStr, parser);
+    ClientCommandInterface cmd = parseCommand(cmdStr, parser, ExecutionContext.FROM_SWING_TERMINAL);
     executeCommand(cmd, ExecutionContext.FROM_SWING_TERMINAL); // TODO maybe do not hardcode
   }
 
-  private ClientCommandInterface parseCommand(String cmdStr, CommandParserInterface parser) {
+  private ClientCommandInterface parseCommand(String cmdStr, CommandParserInterface parser, ExecutionContext context) {
     // Prepare the input
 
     // Trim left white space
@@ -94,7 +94,9 @@ public class JPFInspectorClient implements JPFInspectorClientInterface {
     try {
       cmd = parser.parseCommands(cmdStr);
     } catch (JPFInspectorParsingErrorException e) {
-      outputStream.println("cmd>" + cmdStr);
+      if (context == ExecutionContext.FROM_SWING_TERMINAL) {
+        outputStream.println("cmd>" + cmdStr);
+      }
       outputStream.println(e.getMessage());
       outputStream.println(e.expressError(ConsoleInformation.MAX_ERROR_LINE_LENGTH));
 

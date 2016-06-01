@@ -48,7 +48,7 @@ public interface BreakPointManagerInterface {
    * @param newAssert Structure with new information about new Assert.
    * @return Get informations about state of the created/modified assertion or null if error takes place.
    */
-  AssertStatus createAssert(AssertCreate newAssert) throws JPFInspectorParsingErrorException, JPFInspectorGenericErrorException;
+  AssertStatus createAssert(AssertCreationInformation newAssert) throws JPFInspectorParsingErrorException, JPFInspectorGenericErrorException;
 
   /**
    * Deletes the breakpoint with specified ID.

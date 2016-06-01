@@ -1,5 +1,5 @@
 //
-// Copyright (C) 2010 United States Government as represented by the
+// Copyright (C) 2011 United States Government as represented by the
 // Administrator of the National Aeronautics and Space Administration
 // (NASA).  All Rights Reserved.
 // 
@@ -19,8 +19,19 @@
 
 package gov.nasa.jpf.inspector.interfaces;
 
-public enum BreakPointStates {
-  BP_STATE_DISABLED,
-  BP_STATE_ENABLED,
-  BP_STATE_LOGGING
+/**
+ * @author Alf
+ * 
+ */
+public interface AssertCreationInformation extends BreakPointCreationInformation {
+
+  /**
+   * Gets string which specification of the position where assertion should hit. FileName.java:lineNum
+   */
+  public String getPosition ();
+
+  /**
+   * Gets expression which should not hold to break the expression
+   */
+  public String getCondition ();
 }

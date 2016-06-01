@@ -21,7 +21,7 @@ package gov.nasa.jpf.inspector.client;
 
 import gov.nasa.jpf.inspector.client.commands.CmdBreakpointShow;
 import gov.nasa.jpf.inspector.interfaces.AssertStatus;
-import gov.nasa.jpf.inspector.interfaces.BreakPointStates;
+import gov.nasa.jpf.inspector.interfaces.BreakpointState;
 import gov.nasa.jpf.inspector.interfaces.BreakPointStatus;
 import gov.nasa.jpf.inspector.interfaces.ChoiceGeneratorsInterface;
 import gov.nasa.jpf.inspector.interfaces.ChoiceGeneratorsInterface.CGTypes;
@@ -122,7 +122,7 @@ public class JPFClientCallbackHandler implements InspectorCallBacks {
       AssertStatus as = (AssertStatus) bp;
 
       String message = "Assertion violated.";
-      if (bp.getState() == BreakPointStates.BP_STATE_LOGGING) {
+      if (bp.getState() == BreakpointState.BP_STATE_LOGGING) {
         message = "Logging assertion violated";
       }
       out.println("INFO: " + message + " [assert " + as.getNormalizedPosition() + " " + as.getNormalizedCondition() + "]");
@@ -130,7 +130,7 @@ public class JPFClientCallbackHandler implements InspectorCallBacks {
     } else {
       // Standard breakpoint
       String message = "Breakpoint hit:";
-      if (bp.getState() == BreakPointStates.BP_STATE_LOGGING) {
+      if (bp.getState() == BreakpointState.BP_STATE_LOGGING) {
         message = "Logging breakpoint hit:";
       }
       out.println("INFO: " + message + " [" + CmdBreakpointShow.breakpointToString(bp) + "]");

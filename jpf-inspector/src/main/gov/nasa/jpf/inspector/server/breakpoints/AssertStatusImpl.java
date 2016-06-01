@@ -20,7 +20,7 @@
 package gov.nasa.jpf.inspector.server.breakpoints;
 
 import gov.nasa.jpf.inspector.interfaces.AssertStatus;
-import gov.nasa.jpf.inspector.interfaces.BreakPointStates;
+import gov.nasa.jpf.inspector.interfaces.BreakpointState;
 
 /**
  * @author Alf
@@ -36,7 +36,7 @@ public class AssertStatusImpl extends BreakPointStatusImpl implements AssertStat
   private final String normalizedPosition;
   private final String normalizedCondition;
 
-  public AssertStatusImpl (int bpID, String bpName, int bpHitCounter, int bpHitCounterTotal, Integer lowerBound, Integer upperBound, BreakPointStates bpState,
+  public AssertStatusImpl (int bpID, String bpName, int bpHitCounter, int bpHitCounterTotal, Integer lowerBound, Integer upperBound, BreakpointState bpState,
       BreakPointModes bpMode, String bpExpression, String bpExpressionNormalized, String details, String position, String condition, String normalizedPosition,
       String normalizedCondition) {
     super(bpID, bpName, bpHitCounter, bpHitCounterTotal, lowerBound, upperBound, bpState, bpMode, bpExpression, bpExpressionNormalized, details);
@@ -47,13 +47,13 @@ public class AssertStatusImpl extends BreakPointStatusImpl implements AssertStat
     this.normalizedCondition = normalizedCondition;
   }
 
-  /* @see gov.nasa.jpf.inspector.interfaces.AssertCreate#getPosition() */
+  /* @see gov.nasa.jpf.inspector.interfaces.AssertCreationInformation#getPosition() */
   @Override
   public String getPosition () {
     return position;
   }
 
-  /* @see gov.nasa.jpf.inspector.interfaces.AssertCreate#getExpression() */
+  /* @see gov.nasa.jpf.inspector.interfaces.AssertCreationInformation#getExpression() */
   @Override
   public String getCondition () {
     return condition;

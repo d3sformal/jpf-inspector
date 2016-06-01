@@ -20,7 +20,7 @@
 package gov.nasa.jpf.inspector.server.breakpoints;
 
 import gov.nasa.jpf.ListenerAdapter;
-import gov.nasa.jpf.inspector.interfaces.AssertCreate;
+import gov.nasa.jpf.inspector.interfaces.AssertCreationInformation;
 import gov.nasa.jpf.inspector.interfaces.AssertStatus;
 import gov.nasa.jpf.inspector.interfaces.BreakPointCreationInformation;
 import gov.nasa.jpf.inspector.interfaces.BreakPointManagerInterface;
@@ -122,7 +122,7 @@ public class BreakPointHandler implements BreakPointManagerInterface {
   }
 
   @Override
-  public AssertStatus createAssert (AssertCreate newAssert) throws JPFInspectorParsingErrorException, JPFInspectorGenericErrorException {
+  public AssertStatus createAssert (AssertCreationInformation newAssert) throws JPFInspectorParsingErrorException, JPFInspectorGenericErrorException {
 
     // Position BP
     ExpressionBooleanInterface newBPExpressionPos = expParser.getBreakpointExpression("pos=" + newAssert.getPosition());
@@ -171,7 +171,7 @@ public class BreakPointHandler implements BreakPointManagerInterface {
     } // end sync
   }
 
-  private AssertStatus createAssertImpl (AssertCreate newAssert, ExpressionBreakpointAssert newBPExpression) throws JPFInspectorGenericErrorException {
+  private AssertStatus createAssertImpl (AssertCreationInformation newAssert, ExpressionBreakpointAssert newBPExpression) throws JPFInspectorGenericErrorException {
     assert newAssert != null;
     assert newBPExpression != null;
 

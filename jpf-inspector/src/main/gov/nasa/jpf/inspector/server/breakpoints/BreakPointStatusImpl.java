@@ -19,7 +19,7 @@
 
 package gov.nasa.jpf.inspector.server.breakpoints;
 
-import gov.nasa.jpf.inspector.interfaces.BreakPointStates;
+import gov.nasa.jpf.inspector.interfaces.BreakpointState;
 import gov.nasa.jpf.inspector.interfaces.BreakPointStatus;
 
 public class BreakPointStatusImpl implements BreakPointStatus {
@@ -29,7 +29,7 @@ public class BreakPointStatusImpl implements BreakPointStatus {
   private final int bpID; // ID of the breakpoint
 
   private BreakPointModes bpMode = null;
-  private BreakPointStates bpState = null;
+  private BreakpointState bpState = null;
   private String bpName = null;
 
   private String bpExpression = null;
@@ -45,7 +45,7 @@ public class BreakPointStatusImpl implements BreakPointStatus {
 
   // Common constructor
   public BreakPointStatusImpl (int bpID, String bpName, int bpHitCounter, int bpHitCounterTotal, Integer lowerBound, Integer upperBound,
-      BreakPointStates bpState, BreakPointModes bpMode, String bpExpression, String bpExpressionNormalized, String details) {
+                               BreakpointState bpState, BreakPointModes bpMode, String bpExpression, String bpExpressionNormalized, String details) {
     this.bpID = bpID;
     this.bpName = bpName;
     this.bpHitCounter = bpHitCounter;
@@ -86,7 +86,7 @@ public class BreakPointStatusImpl implements BreakPointStatus {
   }
 
   @Override
-  public BreakPointStates getState () {
+  public BreakpointState getState () {
     return bpState;
   }
 

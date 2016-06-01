@@ -1,7 +1,7 @@
 package gov.nasa.jpf.inspector.server.pathanalysis;
 
 import gov.nasa.jpf.inspector.client.commands.CmdBreakpointCreate;
-import gov.nasa.jpf.inspector.interfaces.BreakPointStates;
+import gov.nasa.jpf.inspector.interfaces.BreakpointState;
 import gov.nasa.jpf.inspector.interfaces.BreakPointStatus;
 import gov.nasa.jpf.inspector.interfaces.InstructionPosition;
 import gov.nasa.jpf.inspector.server.breakpoints.BreakPointHandler;
@@ -37,7 +37,7 @@ public class BackwardBreakpointCreator {
     // TODO Create inspector.server class copy ... don't use inspector.client package version !!
     CmdBreakpointCreate.ConsoleBreakpointCreationExpression newBP = new CmdBreakpointCreate.ConsoleBreakpointCreationExpression();
     newBP.setBounds(1, 1);
-    newBP.setState(BreakPointStates.BP_STATE_ENABLED);
+    newBP.setState(BreakpointState.BP_STATE_ENABLED);
 
     BreakPointStatus bps = breakpointMgr.createInternalBreakpoint(newBP, backwardBreakpoint, true);
     if (bps == null) {

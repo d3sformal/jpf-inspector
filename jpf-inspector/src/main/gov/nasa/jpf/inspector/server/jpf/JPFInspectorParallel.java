@@ -19,12 +19,8 @@
 
 package gov.nasa.jpf.inspector.server.jpf;
 
-import gov.nasa.jpf.inspector.interfaces.AssertCreate;
-import gov.nasa.jpf.inspector.interfaces.AssertStatus;
-import gov.nasa.jpf.inspector.interfaces.BreakPointCreationInformation;
-import gov.nasa.jpf.inspector.interfaces.BreakPointStatus;
-import gov.nasa.jpf.inspector.interfaces.InspectorCallBacks;
-import gov.nasa.jpf.inspector.interfaces.InstructionPosition;
+import gov.nasa.jpf.inspector.interfaces.*;
+import gov.nasa.jpf.inspector.interfaces.AssertCreationInformation;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorException;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorGenericErrorException;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorParsingErrorException;
@@ -61,9 +57,9 @@ public class JPFInspectorParallel extends JPFInspector {
     return breakpointMgr.createBreakPoint(newBP);
   }
 
-  /* @see gov.nasa.jpf.inspector.interfaces.BreakPointManagerInterface#createAssert(gov.nasa.jpf.inspector.interfaces.AssertCreate) */
+  /* @see gov.nasa.jpf.inspector.interfaces.BreakPointManagerInterface#createAssert(gov.nasa.jpf.inspector.interfaces.AssertCreationInformation) */
   @Override
-  public AssertStatus createAssert (AssertCreate newAssert) throws JPFInspectorParsingErrorException, JPFInspectorGenericErrorException {
+  public AssertStatus createAssert (AssertCreationInformation newAssert) throws JPFInspectorParsingErrorException, JPFInspectorGenericErrorException {
     return breakpointMgr.createAssert(newAssert);
   }
 

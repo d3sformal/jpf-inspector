@@ -20,7 +20,7 @@
 package gov.nasa.jpf.inspector.tests;
 
 import gov.nasa.jpf.inspector.client.commands.CmdAssertionsBreakpoint;
-import gov.nasa.jpf.inspector.interfaces.AssertCreate;
+import gov.nasa.jpf.inspector.interfaces.AssertCreationInformation;
 import gov.nasa.jpf.inspector.interfaces.CommandsInterface.InspectorStates;
 import gov.nasa.jpf.inspector.interfaces.InstructionPosition;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorException;
@@ -74,7 +74,7 @@ public class AssertSimpleTest extends InspectorTest  {
     public void driveInspector () throws JPFInspectorException {
       System.out.println("InspectorDriver");
 
-      AssertCreate ac = new CmdAssertionsBreakpoint.ConsoleAssertionCreationExpression(Breakpoint.FILE_NAME + ":" + Breakpoint.BREAKME_LINE, "#stackFrame[1].i < "
+      AssertCreationInformation ac = new CmdAssertionsBreakpoint.ConsoleAssertionCreationExpression(Breakpoint.FILE_NAME + ":" + Breakpoint.BREAKME_LINE, "#stackFrame[1].i < "
           + (ASSERT_TEST_01_RANDOM_MAX - 2));
       System.out.println("\tCreating assertion " + ac);
       System.out.println("\tinspector.createAssertion(ac) ... " + inspector.createAssert(ac));

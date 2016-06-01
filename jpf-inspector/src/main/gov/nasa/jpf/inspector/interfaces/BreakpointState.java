@@ -1,5 +1,5 @@
 //
-// Copyright (C) 2011 United States Government as represented by the
+// Copyright (C) 2010 United States Government as represented by the
 // Administrator of the National Aeronautics and Space Administration
 // (NASA).  All Rights Reserved.
 // 
@@ -20,18 +20,19 @@
 package gov.nasa.jpf.inspector.interfaces;
 
 /**
- * @author Alf
- * 
+ * Determines the action that occurs when the breakpoint is hit.
  */
-public interface AssertCreate extends BreakPointCreationInformation {
-
+public enum BreakpointState {
   /**
-   * Gets string which specification of the position where assertion should hit. FileName.java:lineNum
+   * The hit counter is updated but nothing is shown to the user.
    */
-  public String getPosition ();
-
+  BP_STATE_DISABLED,
   /**
-   * Gets expression which should not hold to break the expression
+   * The hit counter is updated and execution is suspended.
    */
-  public String getCondition ();
+  BP_STATE_ENABLED,
+  /**
+   * The hit counter is updated and a message is shown to the user.
+   */
+  BP_STATE_LOGGING
 }

@@ -20,7 +20,7 @@
 package gov.nasa.jpf.inspector.server.breakpoints;
 
 import gov.nasa.jpf.inspector.client.commands.CmdBreakpointCreate;
-import gov.nasa.jpf.inspector.interfaces.BreakPointStates;
+import gov.nasa.jpf.inspector.interfaces.BreakpointState;
 import gov.nasa.jpf.inspector.interfaces.CommandsInterface;
 import gov.nasa.jpf.inspector.interfaces.InspectorCallBacks;
 import gov.nasa.jpf.inspector.interfaces.InstructionTypes;
@@ -186,7 +186,7 @@ public class CommandsManager implements CommandsInterface {
     // TODO Create inspector.server class copy ... don't use inspector.client package version !!
     CmdBreakpointCreate.ConsoleBreakpointCreationExpression newBP = new CmdBreakpointCreate.ConsoleBreakpointCreationExpression();
     newBP.setBounds(null, null, "<=", 1);
-    newBP.setState(BreakPointStates.BP_STATE_ENABLED);
+    newBP.setState(BreakpointState.BP_STATE_ENABLED);
 
     ExpressionBoolean bpExpression = null;
     if (type == StepType.ST_TRANSITION_DATA) {

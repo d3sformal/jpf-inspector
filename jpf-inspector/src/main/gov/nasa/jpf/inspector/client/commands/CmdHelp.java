@@ -30,6 +30,7 @@ public class CmdHelp extends ClientCommand {
     execution.add(new CommandHelpInfo("quit", "exit", "Closes the shell and terminates the process."));
     execution.add(new CommandHelpInfo("continue", "run, cont", "Starts or resumes execution."));
     execution.add(new CommandHelpInfo("break", null, "Suspends execution."));
+    execution.add(new CommandHelpInfo("wait", null, "Blocks until JPF becomes stopped."));
     execution.add(new CommandHelpInfo("set [target] = [value]", null, "Modifies a variable's value."));
     categories.put("Execution commands", execution);
 
