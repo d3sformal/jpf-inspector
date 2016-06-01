@@ -31,7 +31,6 @@ public class JPFInspectorNoStaticElementInfoException extends JPFInspectorExcept
   private static final long serialVersionUID = 9103065793392778213L;
 
   /**
-   * 
    * @param ci Class Info without static element info
    */
   public JPFInspectorNoStaticElementInfoException (ClassInfo ci) {

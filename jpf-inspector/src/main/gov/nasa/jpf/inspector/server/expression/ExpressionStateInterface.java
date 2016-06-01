@@ -32,6 +32,6 @@ import gov.nasa.jpf.inspector.server.jpf.JPFInspector;
  * @author Alfifi
  * 
  */
-public interface ExpressionStateInterface<T> extends ExpressionNodeInterface<T> {
+public interface ExpressionStateInterface<T> extends ExpressionNodeInterface {
 
 }

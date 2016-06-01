@@ -24,7 +24,6 @@ import gov.nasa.jpf.inspector.exceptions.JPFInspectorNoVMConnected;
 import gov.nasa.jpf.inspector.server.expression.ExpressionStateRootNode;
 import gov.nasa.jpf.inspector.server.expression.ExpressionStateUnaryOperator;
 import gov.nasa.jpf.inspector.server.expression.InspectorState;
-import gov.nasa.jpf.inspector.server.expression.Types;
 import gov.nasa.jpf.inspector.server.jpf.JPFInspector;
 import gov.nasa.jpf.inspector.server.programstate.StateHeapEntryList;
 import gov.nasa.jpf.inspector.utils.expressions.ClassName;
@@ -55,10 +54,7 @@ public class ExpressionStateHeapEntryList extends ExpressionStateUnaryOperator<E
     return shel;
   }
 
-  @Override
-  public Types getType () {
-    return Types.ET_STATE_VALUE;
-  }
+
 
   /* @see gov.nasa.jpf.inspector.server.expression.ExpressionNodeInterface#getNormalizedExpression() */
   @Override

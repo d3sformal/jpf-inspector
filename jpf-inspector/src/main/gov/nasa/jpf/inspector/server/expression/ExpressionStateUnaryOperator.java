@@ -19,8 +19,6 @@
 
 package gov.nasa.jpf.inspector.server.expression;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public abstract class ExpressionStateUnaryOperator<T> implements ExpressionStateInterface<T> {
@@ -35,16 +33,6 @@ public abstract class ExpressionStateUnaryOperator<T> implements ExpressionState
 
   protected T getChild () {
     return child;
-  }
-
-  @Override
-  public List<? extends T> getChilds () {
-    if (childList == null) {
-      List<T> result = new ArrayList<>(1);
-      result.add(child);
-      childList = Collections.unmodifiableList(result);
-    }
-    return childList;
   }
 
 }

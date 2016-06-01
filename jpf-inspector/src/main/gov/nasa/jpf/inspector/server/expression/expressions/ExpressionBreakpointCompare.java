@@ -21,7 +21,6 @@ package gov.nasa.jpf.inspector.server.expression.expressions;
 
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorException;
 import gov.nasa.jpf.inspector.server.breakpoints.BreakPointModes;
-import gov.nasa.jpf.inspector.server.expression.ExpressionBooleanInterface;
 import gov.nasa.jpf.inspector.server.expression.ExpressionBooleanLeaf;
 import gov.nasa.jpf.inspector.server.expression.ExpressionStateRootNode;
 import gov.nasa.jpf.inspector.server.expression.InspectorState;
@@ -29,8 +28,6 @@ import gov.nasa.jpf.inspector.server.jpf.JPFInspector;
 import gov.nasa.jpf.inspector.server.programstate.StateNodeInterface;
 import gov.nasa.jpf.inspector.server.programstate.StateReadableValueInterface;
 import gov.nasa.jpf.inspector.server.programstate.relop.RelationOperator;
-
-import java.util.List;
 
 /**
  * @author Alf
@@ -92,12 +89,6 @@ public class ExpressionBreakpointCompare extends ExpressionBooleanLeaf {
   @Override
   public String getNormalizedExpression () {
     return '(' + leftOp.getNormalizedExpression() + ' ' + relOper.getNormalizedText() + ' ' + rightOp.getNormalizedExpression() + ')';
-  }
-
-  /* @see gov.nasa.jpf.inspector.server.expression.ExpressionNodeInterface#getChilds() */
-  @Override
-  public List<? extends ExpressionBooleanInterface> getChilds () {
-    return null;
   }
 
   @Override

@@ -22,11 +22,6 @@ package gov.nasa.jpf.inspector.server.expression;
 public abstract class ExpressionBoolean implements ExpressionBooleanInterface {
 
   @Override
-  public Types getType () {
-    return Types.ET_BOOLEAN;
-  }
-
-  @Override
   // Default implementation for those expression that doesn't provide detailed messages. Should be overridden.
   public String getDetails (InspectorState state) {
     return null;

@@ -36,6 +36,6 @@ public abstract class JPFInspectorException extends Exception {
   private static final long serialVersionUID = -1872156091293046263L;
 
   protected JPFInspectorException (String msg) {
-    super((msg != null ? ("ERR: " + msg) : "ERROR"));
+    super(((msg != null) ? ("ERR: " + msg) : "ERROR"));
   }
 }

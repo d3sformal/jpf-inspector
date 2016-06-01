@@ -24,7 +24,7 @@ import gov.nasa.jpf.inspector.server.breakpoints.BreakPointModes;
 
 /**
  */
-public interface ExpressionBooleanInterface extends ExpressionNodeInterface<ExpressionBooleanInterface> {
+public interface ExpressionBooleanInterface extends ExpressionNodeInterface {
 
   /**
    * Evaluate condition and get boolean result.

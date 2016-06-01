@@ -19,7 +19,6 @@
 
 package gov.nasa.jpf.inspector.exceptions;
 
-//TODO Rename (add Suffix exception and move to (.interfaces.exceptions)
 /**
  * @author Alf
  */
@@ -28,7 +27,7 @@ public class JPFInspectorInvalidHeapReferenceException extends JPFInspectorExcep
   private static final long serialVersionUID = -2362760976190122253L;
 
   public JPFInspectorInvalidHeapReferenceException (int heapElementIndex) {
-    super("Heap doesn't contain object with address/objref " + heapElementIndex);
+    super("Heap doesn't contain an object at index " + heapElementIndex + ".");
   }
 
 }

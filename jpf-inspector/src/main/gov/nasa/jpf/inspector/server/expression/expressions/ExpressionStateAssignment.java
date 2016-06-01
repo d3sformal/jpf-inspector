@@ -20,6 +20,7 @@
 package gov.nasa.jpf.inspector.server.expression.expressions;
 
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorException;
+import gov.nasa.jpf.inspector.exceptions.JPFInspectorNotLValueException;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorNotValueException;
 import gov.nasa.jpf.inspector.server.expression.ExpressionStateRootNode;
 import gov.nasa.jpf.inspector.server.expression.InspectorState;
@@ -66,7 +67,7 @@ public class ExpressionStateAssignment {
     assert (sni != null);
 
     if (!(sni instanceof StateValue)) {
-      throw new JPFInspectorNotValueException(sni.getStateExpr());
+      throw new JPFInspectorNotLValueException(sni.getStateExpr());
     }
     return (StateValue) sni;
   }

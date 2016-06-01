@@ -21,7 +21,6 @@ package gov.nasa.jpf.inspector.server.expression.expressions;
 
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorException;
 import gov.nasa.jpf.inspector.server.expression.ExpressionStateUnaryOperator;
-import gov.nasa.jpf.inspector.server.expression.Types;
 import gov.nasa.jpf.inspector.server.programstate.StateNodeInterface;
 import gov.nasa.jpf.inspector.server.programstate.StateStackFrame;
 import gov.nasa.jpf.inspector.server.programstate.StateThreadInfo;
@@ -80,11 +79,6 @@ public class ExpressionStateStackFrame extends ExpressionStateUnaryOperator<Expr
         throw new RuntimeException("Invalid child type");
       }
     }
-  }
-
-  @Override
-  public Types getType () {
-    return Types.ET_STATE_STACK_FRAME;
   }
 
   /* @see gov.nasa.jpf.inspector.server.expression.ExpressionNodeInterface#getNormalizedExpression() */

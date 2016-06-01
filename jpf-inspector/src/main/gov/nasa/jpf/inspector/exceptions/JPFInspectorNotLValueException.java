@@ -30,5 +30,4 @@ public class JPFInspectorNotLValueException extends JPFInspectorException {
   public JPFInspectorNotLValueException (String expr) {
     super("The expression (" + expr + ") does not represent an assignable value (l-value).");
   }
-
 }

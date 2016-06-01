@@ -19,13 +19,6 @@
 
 package gov.nasa.jpf.inspector.server.expression;
 
-import java.util.List;
-
 public abstract class ExpressionBooleanLeaf extends ExpressionBoolean {
-
-  @Override
-  public List<? extends ExpressionBooleanInterface> getChilds () {
-    return null;
-  }
 
 }

@@ -37,11 +37,7 @@ public final class CommandLineShell extends Shell {
       String s = scanner.nextLine();
 
       String sTrimmed = s.trim();
-      if (sTrimmed.length() == 0) {
-        System.out.println("\n" + Constants.PROMPT);
-      }
       if (s.trim().length() > 0) {
-        System.out.println();
         inspector.executeCommand(s);
       }
     } // end of while

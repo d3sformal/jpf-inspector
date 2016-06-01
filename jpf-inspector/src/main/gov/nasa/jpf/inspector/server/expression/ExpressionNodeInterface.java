@@ -21,20 +21,18 @@ package gov.nasa.jpf.inspector.server.expression;
 
 import java.util.List;
 
-public interface ExpressionNodeInterface<T> {
-
-  public Types getType ();
-
-  public List<? extends T> getChilds ();
-
+/**
+ * Represents a node in the expression abstract syntax tree.
+ */
+public interface ExpressionNodeInterface {
   /**
-   * Gets string which represents normalized version of the represented expression.
+   * Gets string which represents the normalized version of the represented expression.
    * 
-   * Note: Long version of the options should be used.
-   * Note: Given string has to be parsable by the expression parser.
+   * Note: Long versions of all keywords should be used.
+   * Note: The returned has to be parsable by the expression parser.
    * 
    * @return Normalized parsable version of the represented expression.
    */
-  public String getNormalizedExpression ();
+  String getNormalizedExpression();
 
 }
