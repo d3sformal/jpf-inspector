@@ -24,7 +24,7 @@ options {
 }
 
 @header{ 
-    package gov.nasa.jpf.inspector.server.expression.parser;
+    package gov.nasa.jpf.inspector.server.expression.generated;
     
     import gov.nasa.jpf.inspector.server.expression.*;
     import gov.nasa.jpf.inspector.server.expression.expressions.*;

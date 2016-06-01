@@ -20,5 +20,5 @@ intellij-project-output/
 *workspace.xml
 
 # Grammar
-jpf-inspector/src/main/gov/nasa/jpf/inspector/client/parser/generated/
-jpf-inspector/src/main/gov/nasa/jpf/inspector/server/expression/parser/generated
+jpf-inspector/src/main/gov/nasa/jpf/inspector/client/parser/generated/ConsoleGrammar*
+jpf-inspector/src/main/gov/nasa/jpf/inspector/server/expression/generated/ExpressionGrammar*
