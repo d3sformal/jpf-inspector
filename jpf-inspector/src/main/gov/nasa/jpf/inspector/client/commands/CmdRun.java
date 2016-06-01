@@ -49,7 +49,7 @@ public class CmdRun extends ClientCommand {
   }
 
   @Override
-  public void executeCommands (JPFInspectorClient client, JPFInspectorBackEndInterface inspector, final PrintStream outStream) {
+  public void execute(JPFInspectorClient client, JPFInspectorBackEndInterface inspector, final PrintStream outStream) {
     if (type == CmdRunTypes.RUN) {
       // TODO this will need to be changed for command line execution because we won't be able to use ShellManager there
       final ShellManager shellMgr = ShellManager.getManager();

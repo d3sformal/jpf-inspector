@@ -75,7 +75,7 @@ public class CmdSingleStepping extends ClientCommand {
   }
 
   @Override
-  public void executeCommands (JPFInspectorClient client, JPFInspectorBackEndInterface inspector, PrintStream outStream) {
+  public void execute(JPFInspectorClient client, JPFInspectorBackEndInterface inspector, PrintStream outStream) {
     assert inspector != null;
 
     if (stepCnt != 1) {

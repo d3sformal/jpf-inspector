@@ -36,7 +36,7 @@ public interface ClientCommandInterface {
    * @param inspector JPF inspector server
    * @param outStream Stream where results (output and errors) of the executed command are printed.
    */
-  void executeCommands(JPFInspectorClient client, JPFInspectorBackEndInterface inspector, PrintStream outStream);
+  void execute(JPFInspectorClient client, JPFInspectorBackEndInterface inspector, PrintStream outStream);
 
   /**
    * Converts the command to a string. The string must represent the command using non-abbreviated versions of all keywords. The returned string must be a legal command that, if parsed, would result in the same ClientCommandInterface object.

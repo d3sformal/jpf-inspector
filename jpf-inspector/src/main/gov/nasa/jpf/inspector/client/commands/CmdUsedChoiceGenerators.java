@@ -36,7 +36,7 @@ import java.util.List;
 public class CmdUsedChoiceGenerators extends ClientCommand {
 
   @Override
-  public void executeCommands (JPFInspectorClient client, JPFInspectorBackEndInterface inspector, PrintStream outStream) {
+  public void execute(JPFInspectorClient client, JPFInspectorBackEndInterface inspector, PrintStream outStream) {
     try {
       List<ChoiceGeneratorWrapper> result = inspector.getUsedChoiceGenerators(true);
       if (result == null) {

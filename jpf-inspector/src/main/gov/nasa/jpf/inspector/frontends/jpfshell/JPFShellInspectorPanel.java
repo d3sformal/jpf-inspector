@@ -22,6 +22,7 @@ package gov.nasa.jpf.inspector.frontends.jpfshell;
 import gov.nasa.jpf.Config;
 import gov.nasa.jpf.JPF;
 import gov.nasa.jpf.inspector.JPFInspectorFacade;
+import gov.nasa.jpf.inspector.client.ExecutionContext;
 import gov.nasa.jpf.inspector.client.JPFInspectorClientInterface;
 import gov.nasa.jpf.inspector.common.Constants;
 import gov.nasa.jpf.inspector.frontends.jpfshell.gui.SwingTerminal;
@@ -145,7 +146,7 @@ public class JPFShellInspectorPanel extends ShellPanel implements VerifyCommandL
             }
             if (s.trim().length() > 0) {
               consolePrintStream.println();
-              inspector.executeCommand(s);
+              inspector.executeCommand(s, ExecutionContext.FROM_SWING_TERMINAL);
             }
           } catch (IOException e) {
             consolePrintStream.println("ERR: Error while reading a command.");

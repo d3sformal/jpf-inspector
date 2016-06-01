@@ -7,7 +7,7 @@ import java.io.PrintStream;
 /**
  * Represents a single instance of a command sent by the user.
  *
- * Whenever the user executes a command by typing in the Inspector console and pressing Enter, an instance of ClientCommand is created, and then executed using its {@link ClientCommand#executeCommands(JPFInspectorClient, JPFInspectorBackEndInterface, PrintStream)} method.
+ * Whenever the user executes a command by typing in the Inspector console and pressing Enter, an instance of ClientCommand is created, and then executed using its {@link ClientCommand#execute(JPFInspectorClient, JPFInspectorBackEndInterface, PrintStream)} method.
  *
  * Each command (such as "help" or "print") has its own subclass.
  */

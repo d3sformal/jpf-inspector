@@ -13,12 +13,14 @@ import gov.nasa.jpf.inspector.exceptions.JPFInspectorParsingErrorException;
 import gov.nasa.jpf.inspector.utils.Debugging;
 import gov.nasa.jpf.inspector.utils.InspectorConfiguration;
 
+import javax.naming.Context;
 import java.io.PrintStream;
 import java.util.logging.Logger;
 
 /**
  * Represents the JPF Inspector client.
  * All the commands use this concrete class rather than the interface.
+ * This is the only implementatino of {@link JPFInspectorClientInterface}.
  */
 public class JPFInspectorClient implements JPFInspectorClientInterface {
   private static Logger log = Debugging.getLogger();
@@ -51,16 +53,16 @@ public class JPFInspectorClient implements JPFInspectorClientInterface {
   }
 
   @Override
-  public void executeCommand (String cmdStr) {
+  public void executeCommand (String cmdStr, ExecutionContext context) {
     CommandParserInterface parser = CommandParserFactory.getClientCommandParser();
     ClientCommandInterface cmd = parseCommand(cmdStr, parser);
-    executeCommand(cmd);
+    executeCommand(cmd, context);
   }
 
   public void executeCommandOrCallback (String cmdStr) {
     CommandParserInterface parser = CommandParserFactory.getRecordCommandParser();
     ClientCommandInterface cmd = parseCommand(cmdStr, parser);
-    executeCommand(cmd);
+    executeCommand(cmd, ExecutionContext.FROM_SWING_TERMINAL); // TODO maybe do not hardcode
   }
 
   private ClientCommandInterface parseCommand(String cmdStr, CommandParserInterface parser) {
@@ -69,7 +71,7 @@ public class JPFInspectorClient implements JPFInspectorClientInterface {
     // Trim left white space
     int i = 0;
     int maxLen = cmdStr.length();
-    while (i < maxLen && isWhiteSpace(cmdStr.charAt(i))) {
+    while ((i < maxLen) && isWhiteSpace(cmdStr.charAt(i))) {
       i++;
     }
     if (i == maxLen) {
@@ -80,7 +82,7 @@ public class JPFInspectorClient implements JPFInspectorClientInterface {
     // Ignore comments
     if (cmdStr.charAt(0) == '#') {
       // Remove "# " if present
-      if (cmdStr.length() > 1 && cmdStr.charAt(1) == ' ') {
+      if ((cmdStr.length() > 1) && (cmdStr.charAt(1) == ' ')) {
         cmdStr = cmdStr.substring(2);
       }
       recordComment(cmdStr);
@@ -104,25 +106,26 @@ public class JPFInspectorClient implements JPFInspectorClientInterface {
     return cmd;
   }
 
-  private void executeCommand(ClientCommandInterface cmd) {
+  private void executeCommand(ClientCommandInterface cmd, ExecutionContext context) {
     if (cmd == null) {
       return;
     }
     // To serialize recording of executed commands and commands related to command execution
     synchronized (recorder) {
       try {
-        if (!cmd.isHiddenCommand()) {
+        if (!cmd.isHiddenCommand() && (context == ExecutionContext.FROM_SWING_TERMINAL)) {
           outputStream.println("cmd>" + cmd.getNormalizedCommand());
         }
         cmd.recordCommand(recorder);
 
         if (isSafe(cmd)) {
-          cmd.executeCommands(this, inspector, outputStream);
+          cmd.execute(this, inspector, outputStream);
         }
+
       } catch (Throwable e) {
+
         outputStream.println("ERR: Generic error while processing a command:");
         e.printStackTrace(outputStream);
-
         recordComment("ERR: Generic error while processing a command:");
         recordComment(e.getMessage());
       }

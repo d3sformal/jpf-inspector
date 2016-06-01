@@ -15,7 +15,7 @@ import java.util.Map;
  */
 public class CmdHelp extends ClientCommand {
   @Override
-  public void executeCommands(JPFInspectorClient client, JPFInspectorBackEndInterface inspector, PrintStream outStream) {
+  public void execute(JPFInspectorClient client, JPFInspectorBackEndInterface inspector, PrintStream outStream) {
     Map<String, List<CommandHelpInfo>> categories = new HashMap<>();
 
     ArrayList<CommandHelpInfo> informationalCommands = new ArrayList<>();

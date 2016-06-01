@@ -47,7 +47,7 @@ public class CmdBreakpointCreate extends ClientCommand {
   }
 
   @Override
-  public void executeCommands (JPFInspectorClient client, JPFInspectorBackEndInterface inspector, PrintStream outStream) {
+  public void execute(JPFInspectorClient client, JPFInspectorBackEndInterface inspector, PrintStream outStream) {
     createdBP = null;
     try {
       createdBP = inspector.createBreakPoint(creationExpression);

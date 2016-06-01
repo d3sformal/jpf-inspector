@@ -9,15 +9,15 @@ import gov.nasa.jpf.inspector.exceptions.JPFInspectorGenericErrorException;
  */
 public interface JPFInspectorClientInterface {
   /**
-   * Parse and execute a command given by the user.
+   * Parses and executes a command given by the user.
    * 
    * @param cmd The command to execute.
    */
 
-  public void executeCommand (String cmd);
+  void executeCommand(String cmd, ExecutionContext context);
 
   /**
-   * Connect client to specific instance of Java PathFinder.
+   * Connects the client to a specific instance of Java PathFinder.
    * 
    * Note: Should be called before JPF.run method is called.
    * Note: Modifies JPF Configuration.
@@ -25,6 +25,6 @@ public interface JPFInspectorClientInterface {
    * @param jpf JPF to connect to.
    * @throws JPFInspectorGenericErrorException
    */
-  public void connect2JPF (JPF jpf) throws JPFInspectorGenericErrorException;
+  void connect2JPF(JPF jpf) throws JPFInspectorGenericErrorException;
 
 }

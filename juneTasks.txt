@@ -2,7 +2,6 @@ Until June 20:
 
 Fix all use cases.
 Fix unit testing.
-Fix all English.
 Complete GitHub documentation.
 Fix and complete Javadoc documentation.
 Refactor names.

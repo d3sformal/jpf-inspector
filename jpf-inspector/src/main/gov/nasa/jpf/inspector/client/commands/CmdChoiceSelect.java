@@ -23,7 +23,7 @@ public class CmdChoiceSelect extends ClientCommand {
   }
 
   @Override
-  public void executeCommands (JPFInspectorClient client, JPFInspectorBackEndInterface inspector, PrintStream outStream) {
+  public void execute(JPFInspectorClient client, JPFInspectorBackEndInterface inspector, PrintStream outStream) {
     try {
       if (choice == USE_CURENT_CHOICE) {
         inspector.start(); // Continue until next CG

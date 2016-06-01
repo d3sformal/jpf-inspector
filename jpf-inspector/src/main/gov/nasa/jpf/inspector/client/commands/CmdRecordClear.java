@@ -34,7 +34,7 @@ import java.io.PrintStream;
 public class CmdRecordClear extends ClientCommand {
 
   @Override
-  public void executeCommands (JPFInspectorClient client, JPFInspectorBackEndInterface inspector, PrintStream outStream) {
+  public void execute(JPFInspectorClient client, JPFInspectorBackEndInterface inspector, PrintStream outStream) {
     CommandRecorder rec = client.getCommandRecorder();
     rec.clearRecordedCommands();
     outStream.println("List of recorded commands has been cleared.");

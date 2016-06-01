@@ -3,6 +3,7 @@ package gov.nasa.jpf.inspector.frontends.cmd;
 import gov.nasa.jpf.Config;
 import gov.nasa.jpf.JPFShell;
 import gov.nasa.jpf.inspector.JPFInspectorFacade;
+import gov.nasa.jpf.inspector.client.ExecutionContext;
 import gov.nasa.jpf.inspector.client.JPFInspectorClientInterface;
 import gov.nasa.jpf.inspector.common.Constants;
 import gov.nasa.jpf.shell.Shell;
@@ -28,17 +29,18 @@ public final class CommandLineShell extends Shell {
   @Override
   public void start(String[] args) {
     ShellManager.getManager().setStartingArgs(args);
-    System.out.println("Start: " + args);
+    Config config = ShellManager.getManager().getConfig();
     Scanner scanner = new Scanner(System.in);
-    JPFInspectorClientInterface inspector = JPFInspectorFacade.getInspectorClient("target", System.out);
+    JPFInspectorClientInterface inspector = JPFInspectorFacade.getInspectorClient(config.getTarget(), System.out);
+
     //noinspection InfiniteLoopStatement
     while (true) {
       System.out.print(Constants.PROMPT);
       String s = scanner.nextLine();
 
       String sTrimmed = s.trim();
-      if (s.trim().length() > 0) {
-        inspector.executeCommand(s);
+      if (sTrimmed.length() > 0) {
+        inspector.executeCommand(s, ExecutionContext.FROM_COMMAND_LINE_TERMINAL);
       }
     } // end of while
   }
@@ -52,18 +54,16 @@ public final class CommandLineShell extends Shell {
    *
    */
   public CommandLineShell(Config config) {
-    System.out.println("Constructor!");
     ShellManager.createShellManager(config);
     if (!ShellManager.getManager().hasShell(this)) {
       ShellManager.getManager().addShell(this);
       // We will handle when to exit the VM in ShellManager
     }
-    System.out.println("Constructor ends!");
   }
 
   @Override
   public void installCommand(ShellCommand command) {
-    System.out.println("Command install: " + command);
+
   }
 
   @Override

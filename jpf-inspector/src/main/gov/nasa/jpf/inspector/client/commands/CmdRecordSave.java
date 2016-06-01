@@ -40,7 +40,7 @@ public class CmdRecordSave extends ClientCommand {
   }
 
   @Override
-  public void executeCommands (JPFInspectorClient client, JPFInspectorBackEndInterface inspector, PrintStream outStream) {
+  public void execute(JPFInspectorClient client, JPFInspectorBackEndInterface inspector, PrintStream outStream) {
     CommandRecorder rec = client.getCommandRecorder();
     if (rec.saveRecordedCommmands(fileName)) {
       // Successfully saved

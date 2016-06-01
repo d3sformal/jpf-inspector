@@ -41,7 +41,7 @@ public class CmdThreadsPC extends ClientCommand {
   }
 
   @Override
-  public void executeCommands (JPFInspectorClient client, JPFInspectorBackEndInterface inspector, PrintStream outStream) {
+  public void execute(JPFInspectorClient client, JPFInspectorBackEndInterface inspector, PrintStream outStream) {
     assert inspector != null;
     try {
       Map<Integer, InstructionPosition> places = inspector.getThreadsPC(threadNum);

@@ -11,7 +11,7 @@ import java.io.PrintStream;
  */
 public class CmdHello extends ClientCommand {
   @Override
-  public void executeCommands(JPFInspectorClient client, JPFInspectorBackEndInterface inspector, PrintStream outStream) {
+  public void execute(JPFInspectorClient client, JPFInspectorBackEndInterface inspector, PrintStream outStream) {
     outStream.println("Hello to you, too, dear user! The JPF Inspector command loop is working!");
   }
 

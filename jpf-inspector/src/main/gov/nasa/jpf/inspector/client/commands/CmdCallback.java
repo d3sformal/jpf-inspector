@@ -36,7 +36,7 @@ public class CmdCallback extends ClientCommand {
   }
 
   @Override
-  public void executeCommands (JPFInspectorClient client, JPFInspectorBackEndInterface inspector, PrintStream outStream) {
+  public void execute(JPFInspectorClient client, JPFInspectorBackEndInterface inspector, PrintStream outStream) {
     CallbackExecutionDecorator cb = client.getDecoratedCallbacks();
 
     switch (cbType) {
@@ -65,7 +65,7 @@ public class CmdCallback extends ClientCommand {
       throw new RuntimeException("Unknown enum " + cbType.getClass().getName() + " entry " + cbType);
     }
 
-    // Errors are reported in CommandRecorder.executeCommands (to prevent multiplication of error log in each replay)
+    // Errors are reported in CommandRecorder.execute (to prevent multiplication of error log in each replay)
 
   }
 

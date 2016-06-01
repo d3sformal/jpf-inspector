@@ -29,7 +29,7 @@ public class CmdChoiceGeneratorsTracking extends ClientCommand {
   }
 
   @Override
-  public void executeCommands (JPFInspectorClient client, JPFInspectorBackEndInterface inspector, PrintStream outStream) {
+  public void execute(JPFInspectorClient client, JPFInspectorBackEndInterface inspector, PrintStream outStream) {
     if (CGTypeSpec.CGS_SCHEDULING.equals(cgsType) || CGTypeSpec.CGS_ALL.equals(cgsType)) {
       inspector.modifyCGNotifications(new CGNotificationSpecification(CGTypes.CG_TYPE_SCHEDULING, cgMode, enabled));
     }

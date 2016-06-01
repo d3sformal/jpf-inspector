@@ -33,7 +33,7 @@ import java.io.PrintStream;
 public class CmdRecordPrint extends ClientCommand {
 
   @Override
-  public void executeCommands (JPFInspectorClient client, JPFInspectorBackEndInterface inspector, PrintStream outStream) {
+  public void execute(JPFInspectorClient client, JPFInspectorBackEndInterface inspector, PrintStream outStream) {
     CommandRecorder rec = client.getCommandRecorder();
     String recordedCmds = rec.getRecordedEvents();
     outStream.print(recordedCmds);
