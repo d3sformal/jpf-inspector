@@ -1,7 +1,6 @@
 package gov.nasa.jpf.inspector.frontends.cmd;
 
 import gov.nasa.jpf.Config;
-import gov.nasa.jpf.JPFShell;
 import gov.nasa.jpf.inspector.JPFInspectorFacade;
 import gov.nasa.jpf.inspector.client.ExecutionContext;
 import gov.nasa.jpf.inspector.client.JPFInspectorClientInterface;
@@ -11,7 +10,6 @@ import gov.nasa.jpf.shell.ShellCommand;
 import gov.nasa.jpf.shell.ShellManager;
 import gov.nasa.jpf.shell.ShellPanel;
 
-import java.io.IOException;
 import java.util.Scanner;
 
 /**
@@ -33,6 +31,9 @@ public final class CommandLineShell extends Shell {
     Scanner scanner = new Scanner(System.in);
     JPFInspectorClientInterface inspector = JPFInspectorFacade.getInspectorClient(config.getTarget(), System.out);
 
+    System.out.println("This is the JPF Inspector console for debugging the target \"" + config.getTarget() + "\".");
+    System.out.println("Type \"hello\" to test if the Inspector is working or \"help\" to get a list of commands.");
+
     //noinspection InfiniteLoopStatement
     while (true) {
       System.out.print(Constants.PROMPT);
@@ -45,14 +46,7 @@ public final class CommandLineShell extends Shell {
     } // end of while
   }
 
-  /**
-   * The constructor called on by JPF when instantiating a shell. This is
-   * equivalent to calling {@link #Shell(gov.nasa.jpf.Config, java.lang.String)}
-   * with the arguments: config, TITLE
-   * @param config the {@link gov.nasa.jpf.Config} object to be used for the
-   * {@link gov.nasa.jpf.shell.ShellManager}.
-   *
-   */
+
   public CommandLineShell(Config config) {
     ShellManager.createShellManager(config);
     if (!ShellManager.getManager().hasShell(this)) {
