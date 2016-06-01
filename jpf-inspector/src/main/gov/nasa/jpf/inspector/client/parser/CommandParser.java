@@ -23,6 +23,8 @@ import gov.nasa.jpf.inspector.common.ThrowingErrorListener;
 
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.CommonTokenStream;
+import gov.nasa.jpf.inspector.client.parser.generated.*;
+
 
 /**
  * @author Alf

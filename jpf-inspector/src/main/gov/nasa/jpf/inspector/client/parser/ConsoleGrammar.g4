@@ -21,7 +21,7 @@ options {
     language=Java;
 }
 @header{
-package gov.nasa.jpf.inspector.client.parser;
+package gov.nasa.jpf.inspector.client.parser.generated;
 import gov.nasa.jpf.inspector.interfaces.*;
 import gov.nasa.jpf.inspector.interfaces.CommandsInterface.InspectorStates;
 import gov.nasa.jpf.inspector.interfaces.InspectorCallBacks.CB_METHODS;

@@ -1,5 +1,6 @@
 package gov.nasa.jpf.inspector.migration;
 
+import gov.nasa.jpf.inspector.server.jpf.InspectorListenerModeNotifications;
 import gov.nasa.jpf.vm.*;
 
 import java.util.ArrayList;
@@ -12,6 +13,7 @@ import java.util.Iterator;
  * Because the update may break things, some modifications that could have unintended consequences pass through this class so that when something breaks, we can fix it everywhere we broke it at the same time. When we are sure it works, this class will be removed and the functions' code inlined at the appropriate places.
  */
 public class MigrationUtilities {
+
 
   public static Instruction getLastInstruction(VM vm) {
     return vm.getInstruction(); // This is sketchy.
@@ -48,29 +50,40 @@ public class MigrationUtilities {
     return array;
   }
 
+  private static ElementInfo lastElementInfo;
   /**
-   * This method is not implemented.
-   * This will cause the following classes to fail to work:
-   *  - ExpressionBreakpointSpecificClass
+   * Gets the last ElementInfo manipulated via specific functions of the InspectorListener.
+   * @see MigrationUtilities#setLastElementInfo(ElementInfo)
    */
   public static ElementInfo getLastElementInfo(VM vm) {
-    throw new RuntimeException("The method getLastElementInfo() was not yet migrated.");
+    return lastElementInfo;
   }
 
   /**
-   * This method is not implemented.
-   * This will cause the following classes to fail to work:
-   *  - ExpressionStateValueName (only in some cases)
+   * Remembers the last manipulated ElementInfo as a global variable.
+   * This replaces functionality that was present in the JVM class in JPF6 but was abandoned during refactoring to JPF8.
+   *
+   * Called from {@link InspectorListenerModeNotifications#objectCreated(VM, ThreadInfo, ElementInfo)}.
+   * Called from {@link InspectorListenerModeNotifications#objectReleased(VM, ThreadInfo, ElementInfo)}.
+   * Called from {@link InspectorListenerModeNotifications#exceptionThrown(VM, ThreadInfo, ElementInfo)}.
+   */
+  public static void setLastElementInfo(ElementInfo lastElementInfo) {
+    MigrationUtilities.lastElementInfo = lastElementInfo;
+  }
+
+  /**
+   * I still don't understand this...
+   * Test it.
    */
   public static StaticElementInfo getStaticElementInfoFromName(String varName) {
-    throw new RuntimeException("A way to access static element info from variable name was not yet migrated.");
-    /*
     Statics statics = ClassLoaderInfo.getCurrentClassLoader().getStatics();
     for (int i = 0; i < statics.size(); i++) {
       StaticElementInfo sei = statics.get(i);
-      if (sei.get)
+      if (varName.equals(sei.getClassInfo().getName())) {
+        return sei;
+      }
     }
-    */
+    return null;
   }
 
   /**
@@ -81,4 +94,6 @@ public class MigrationUtilities {
   public static ClassInfo getResolvedClassInfo_StateValueStackSlot(String className) {
     return MigrationUtilities.getResolvedClassInfo(className);
   }
+
+
 }

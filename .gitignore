@@ -16,6 +16,8 @@ core6/build/
 
 # IDE-specific
 intellij-project-output/
+.idea/workspace.xml
+*workspace.xml
 
 # Grammar
 jpf-inspector/src/main/gov/nasa/jpf/inspector/client/parser/generated/

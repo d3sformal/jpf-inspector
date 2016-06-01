@@ -1,6 +1,7 @@
 package gov.nasa.jpf.inspector.server.jpf;
 
 import gov.nasa.jpf.ListenerAdapter;
+import gov.nasa.jpf.inspector.migration.MigrationUtilities;
 import gov.nasa.jpf.inspector.server.breakpoints.BreakPointHandler;
 import gov.nasa.jpf.inspector.server.breakpoints.CommandsManager;
 import gov.nasa.jpf.inspector.server.breakpoints.DefaultForwardTraceManager;
@@ -146,6 +147,7 @@ public class InspectorListenerModeNotifications extends ListenerAdapter {
     if (DEBUG) {
       inspector.getDebugPrintStream().println(this.getClass().getSimpleName() + ".objectCreated()");
     }
+    MigrationUtilities.setLastElementInfo(newObject);
     inspState.notifyListenerMethodCall(ListenerMethod.LM_OBJECT_CREATED, vm);
     bpMgr.checkBreakpoints(inspState);
   }
@@ -155,6 +157,7 @@ public class InspectorListenerModeNotifications extends ListenerAdapter {
     if (DEBUG) {
       inspector.getDebugPrintStream().println(this.getClass().getSimpleName() + ".objectCreated()");
     }
+    MigrationUtilities.setLastElementInfo(releasedObject);
     inspState.notifyListenerMethodCall(ListenerMethod.LM_OBJECT_RELEASED, vm);
     bpMgr.checkBreakpoints(inspState);
   }
@@ -164,6 +167,7 @@ public class InspectorListenerModeNotifications extends ListenerAdapter {
     if (DEBUG) {
       inspector.getDebugPrintStream().println(this.getClass().getSimpleName() + ".objectCreated()");
     }
+    MigrationUtilities.setLastElementInfo(thrownException);
     inspState.notifyListenerMethodCall(ListenerMethod.LM_EXCEPTION_THROWN, vm);
     bpMgr.checkBreakpoints(inspState);
   }

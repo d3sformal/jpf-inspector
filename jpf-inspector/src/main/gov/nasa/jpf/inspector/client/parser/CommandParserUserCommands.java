@@ -20,6 +20,7 @@
 package gov.nasa.jpf.inspector.client.parser;
 
 import gov.nasa.jpf.inspector.client.ClientCommandInterface;
+import gov.nasa.jpf.inspector.client.parser.generated.ConsoleGrammarParser;
 import gov.nasa.jpf.inspector.common.AntlrParseException;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorParsingErrorException;
 import gov.nasa.jpf.inspector.utils.parser.RecognitionRuntimeException;
