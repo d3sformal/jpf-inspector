@@ -1,22 +1,22 @@
+# Documentation
 documentation/wiki/
 documentation/pages/
-core8/.hg/
-core8/build/
 
-intellij-project-output/
-jpf-inspector/.hg/
-jpf-inspector/build/
-jpf-inspector/src/main/gov/nasa/jpf/inspector/client/parser/ConsoleGrammar.tokens
-jpf-inspector/src/main/gov/nasa/jpf/inspector/client/parser/ConsoleGrammarBaseListener.java
-jpf-inspector/src/main/gov/nasa/jpf/inspector/client/parser/ConsoleGrammarLexer.java
-jpf-inspector/src/main/gov/nasa/jpf/inspector/client/parser/ConsoleGrammarLexer.tokens
-jpf-inspector/src/main/gov/nasa/jpf/inspector/client/parser/ConsoleGrammarListener.java
-jpf-inspector/src/main/gov/nasa/jpf/inspector/client/parser/ConsoleGrammarParser.java
-jpf-inspector/src/main/gov/nasa/jpf/inspector/server/expression/parser/ExpressionGrammar.tokens
-jpf-inspector/src/main/gov/nasa/jpf/inspector/server/expression/parser/ExpressionGrammarBaseListener.java
-jpf-inspector/src/main/gov/nasa/jpf/inspector/server/expression/parser/ExpressionGrammarLexer.java
-jpf-inspector/src/main/gov/nasa/jpf/inspector/server/expression/parser/ExpressionGrammarLexer.tokens
-jpf-inspector/src/main/gov/nasa/jpf/inspector/server/expression/parser/ExpressionGrammarListener.java
-jpf-inspector/src/main/gov/nasa/jpf/inspector/server/expression/parser/ExpressionGrammarParser.java
-jpf-shell/.hg/
+# Miscellaneous
+core8/.version
+core8/file
+core8/lib/
+
+# Built classes
+core8/build/
 jpf-shell/build/
+jpf-inspector/build/
+core6/build/
+
+
+# IDE-specific
+intellij-project-output/
+
+# Grammar
+jpf-inspector/src/main/gov/nasa/jpf/inspector/client/parser/generated/
+jpf-inspector/src/main/gov/nasa/jpf/inspector/server/expression/parser/generated
