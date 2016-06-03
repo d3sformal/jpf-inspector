@@ -20,17 +20,33 @@
 package gov.nasa.jpf.inspector.server.jpf;
 
 
+import gov.nasa.jpf.search.Search;
+
 /**
- * The search class has to implement this interface to be able to use in the as a
- * search class in the inspector.
+ * When using JPF Inspector, your search class MUST implement this interface. Only search classes should
+ * implement this interface.
+ *
+ * See {@link DFSearchInspector} for a reference implementation, or use {@link SearchWrapper} if you don't
+ * want to create your own Search subclass.
  */
 public interface SearchInspectorExtension {
 
-  public void setInspector(JPFInspector inspector);
-  
-  /* Don't forgot update terminate method. New version has to call JPFInsector.getStopHolder().terminating()
+  /**
+   * Implementor should use this method to remember the reference to JPF Inspector.
+   * @param inspector The running JPF Inspector.
    */
-  public void terminate ();
-
-
+  void setInspector(JPFInspector inspector);
+  
+  /**
+   * The implementor's terminate method (overriden from the class {@link Search}) must
+   * contain the code:
+   * <pre>
+   * {@code
+   * if (inspector != null) {
+   *   inspector.getStopHolder().terminating();
+   * }
+   * }
+   * </pre>
+   */
+  void terminate();
 }

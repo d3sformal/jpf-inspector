@@ -55,7 +55,7 @@ public class SearchWrapper extends Search implements SearchInspectorExtension {
     if (Search.class.getMethods().length != 49) {
       System.err.println("New version of Search class. Update SearchWrapper appropriately. (See comments)\n\t New search has "
           + Search.class.getMethods().length + " methods.");
-      assert (false);
+      System.exit(1);
     }
   }
 
@@ -74,12 +74,12 @@ public class SearchWrapper extends Search implements SearchInspectorExtension {
   /**
    * @return Gets wrapped object
    */
-  public Search getWrapSearch () {
+  public Search getWrappedSearch () {
     return getWrappedSearch(Search.class);
   }
 
   /**
-   * @return Gets wrapped object with type checks. If provided type is incompatible null is returned.
+   * Gets wrapped object with type checks. If provided type is incompatible ,null is returned.
    */
   public <T> T getWrappedSearch (Class<T> type) {
     if (type.isInstance(search)) {
