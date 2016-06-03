@@ -167,25 +167,25 @@ bpExpression returns [String expr]
     ;
 
 cmdSingleSteps returns [CmdSingleStepping value]
-    : TOKEN_STEP_INSTRUCTION                      intValue?
+    : TOKEN_STEP_INSTRUCTION                      WS intValue?
     { $value = new CmdSingleStepping(true, StepType.ST_INSTRUCTION,   $intValue.ctx != null ? $intValue.value : 1); }
-    | TOKEN_STEP_OVER                             intValue?
+    | TOKEN_STEP_OVER                             WS intValue?
      { $value = new CmdSingleStepping(true, StepType.ST_LINE,          $intValue.ctx != null ? $intValue.value : 1); }
-    | TOKEN_STEP_IN                               intValue?
+    | TOKEN_STEP_IN                               WS intValue?
     { $value = new CmdSingleStepping(true, StepType.ST_STEP_IN,       $intValue.ctx != null ? $intValue.value : 1); }
-    | TOKEN_STEP_OUT                              intValue?
+    | TOKEN_STEP_OUT                              WS intValue?
     { $value = new CmdSingleStepping(true, StepType.ST_STEP_OUT,      $intValue.ctx != null ? $intValue.value : 1); }
-    | TOKEN_STEP_TRANSITION (WS? c=cgType)?       intValue?
+    | TOKEN_STEP_TRANSITION (WS? c=cgType)?       WS intValue?
     { $value = CmdSingleStepping.createCmdSingleSteppingTransition(true, $c.ctx != null ? $c.cgsType : null, $intValue.ctx != null ? $intValue.value : 1); }
-    | TOKEN_BACK_STEP_INSTRUCTION                 intValue?
+    | TOKEN_BACK_STEP_INSTRUCTION                 WS intValue?
     { $value = new CmdSingleStepping(false, StepType.ST_INSTRUCTION,  $intValue.ctx != null ? $intValue.value : 1); }
-    | TOKEN_BACK_STEP_OVER                        intValue?
+    | TOKEN_BACK_STEP_OVER                        WS intValue?
     { $value = new CmdSingleStepping(false, StepType.ST_LINE,         $intValue.ctx != null ? $intValue.value : 1); }
-    | TOKEN_BACK_STEP_IN                          intValue?
+    | TOKEN_BACK_STEP_IN                          WS intValue?
     { $value = new CmdSingleStepping(false, StepType.ST_STEP_IN,      $intValue.ctx != null ? $intValue.value : 1); }
-    | TOKEN_BACK_STEP_OUT                         intValue?
+    | TOKEN_BACK_STEP_OUT                         WS intValue?
     { $value = new CmdSingleStepping(false, StepType.ST_STEP_OUT,     $intValue.ctx != null ? $intValue.value : 1); }
-    | TOKEN_BACK_STEP_TRANSITION (WS? c=cgType)?  intValue?
+    | TOKEN_BACK_STEP_TRANSITION (WS? c=cgType)?  WS intValue?
     { $value = CmdSingleStepping.createCmdSingleSteppingTransition(false, $c.ctx != null ? $c.cgsType : null, $intValue.ctx != null ? $intValue.value : 1); }
     ;
 
@@ -269,6 +269,18 @@ cmdAssertions returns [ClientCommand value]
        { $value = new CmdAssertionsBreakpoint($a.expr, $b.expr); }
     ;
 
+// TOKEN_PRINT is defined cmdProgramStateText
+signs : SIGN_DOLLAR | SIGN_DOT | SIGN_EQUAL | SIGN_HASH | SIGN_COLON | SIGN_LSBRA | SIGN_RSBRA | SIGN_ASTERISK | SIGN_SLASH | SIGN_BACKSLASH ;
+
+
+intValue returns [Integer value]
+    : SIGN_PLUS? INT { $value =  Integer.valueOf($INT.text); }
+    | SIGN_MINUS INT { $value = -Integer.valueOf($INT.text); }
+    | SIGN_PLUS? HEX { $value =  Integer.valueOf(($HEX.text).substring(2), 16); }
+    | SIGN_MINUS HEX { $value = -Integer.valueOf(($HEX.text).substring(2), 16); }
+    ;
+
+
 allText returns [String expr]
     : anyWord                                   b02=allTextWS?     { $expr = $anyWord.text +                            ($b02.text!=null?$b02.text:""); }
     | allNonKeywordsRules                       b03=allTextWS?     { $expr = $allNonKeywordsRules.text +                ($b03.text!=null?$b03.text:""); }
@@ -301,16 +313,7 @@ allNonKeywordsRulesBase
 
 
 
-// TOKEN_PRINT is defined cmdProgramStateText
-signs : SIGN_DOLLAR | SIGN_DOT | SIGN_EQUAL | SIGN_HASH | SIGN_COLON | SIGN_LSBRA | SIGN_RSBRA | SIGN_ASTERISK | SIGN_SLASH | SIGN_BACKSLASH ;
 
-
-intValue returns [Integer value]
-    : SIGN_PLUS? INT { $value =  Integer.valueOf($INT.text); }
-    | SIGN_MINUS INT { $value = -Integer.valueOf($INT.text); }
-    | SIGN_PLUS? HEX { $value =  Integer.valueOf(($HEX.text).substring(2), 16); }
-    | SIGN_MINUS HEX { $value = -Integer.valueOf(($HEX.text).substring(2), 16); }
-    ;
 specialChar : SPECIAL_CHAR ;
 
 // *******************************

@@ -28,19 +28,21 @@ import gov.nasa.jpf.inspector.exceptions.JPFInspectorException;
 
 import java.io.PrintStream;
 
-//TODO implement step count (there are 2 possibilities)
-// a) add cycle into execute command + (wait until sJPF is stoped) + comment (with original repetition count)
-// b) update normalized expression + pass stepCnt to the JPFInspectorBackEnd + implement there
-
 /**
- * Represents a single-stepping command such as "step_in" or "step_over". All such commands, including back-stepping
- * commands, are handled by this class.
+ * Represents a single-stepping command such as "step_in" or "back_step_over".
+ * All such commands, including back-stepping commands, are handled by this class.
  */
 public class CmdSingleStepping extends ClientCommand {
 
-  final private boolean forward; // forward/backward step
+  /**
+   * Whether this is a forward or backward step.
+   */
+  final private boolean forward;
   final private StepType stepType;
-  final private int stepCnt; // How many times repeat the command
+  /**
+   * Number of times to execute this command.
+   */
+  final private int stepCount;
 
   public static CmdSingleStepping createCmdSingleSteppingTransition (boolean forward, CGTypeSpec type, Integer repeatCnt) {
     // Set default value
@@ -66,7 +68,7 @@ public class CmdSingleStepping extends ClientCommand {
 
     this.forward = forward;
     this.stepType = stepType;
-    this.stepCnt = repeatCnt;
+    this.stepCount = repeatCnt;
   }
 
   @Override
@@ -78,45 +80,51 @@ public class CmdSingleStepping extends ClientCommand {
   public void execute(JPFInspectorClient client, JPFInspectorBackEndInterface inspector, PrintStream outStream) {
     assert inspector != null;
 
-    if (stepCnt != 1) {
-      outStream.println("ERR: StepCount not implemented yet. Repeat command manually.");
-    }
-
-    try {
-      if (forward) {
-        inspector.forwardStep(stepType);
-      } else {
-        inspector.backwardStep(stepType);
+    for (int i = 0; i < stepCount; i++) {
+      try {
+        if (forward) {
+          inspector.forwardStep(stepType);
+        } else {
+          inspector.backwardStep(stepType);
+        }
+      } catch (JPFInspectorException e) {
+        outStream.println(e.getMessage());
+        client.recordComment(e.getMessage());
       }
-    } catch (JPFInspectorException e) {
-      outStream.println(e.getMessage());
-      client.recordComment(e.getMessage());
+      boolean isFinalStep = (i == (stepCount - 1));
+      if (!isFinalStep) {
+        inspector.waitUntilStopped();
+      }
     }
 
   }
 
   @Override
   public String getNormalizedCommand () {
-    String result = "";
+    String optionalDirection = "";
     if (forward == false) {
-      result = "back_";
+      optionalDirection = "back_";
+    }
+    String optionalCount = "";
+    if (stepCount != 1) {
+      optionalCount = " " + stepCount;
     }
 
     switch (stepType) {
     case ST_INSTRUCTION:
-      return result + "step_instruction";
+      return optionalDirection + "step_instruction" + optionalCount;
     case ST_LINE:
-      return result + "step_over";
+      return optionalDirection + "step_over" + optionalCount;
     case ST_STEP_IN:
-      return result + "step_in";
+      return optionalDirection + "step_in" + optionalCount;
     case ST_STEP_OUT:
-      return result + "step_out";
+      return optionalDirection + "step_out" + optionalCount;
     case ST_TRANSITION_ALL:
-      return result + "step_transition all";
+      return optionalDirection + "step_transition all" + optionalCount;
     case ST_TRANSITION_DATA:
-      return result + "step_transition data";
+      return optionalDirection + "step_transition data" + optionalCount;
     case ST_TRANSITION_SCHED:
-      return result + "step_transition scheduling";
+      return optionalDirection + "step_transition scheduling" + optionalCount;
     default:
       throw new RuntimeException("Internal error: Unknown " + stepType.getClass().getName() + " entry: " + stepType);
     }

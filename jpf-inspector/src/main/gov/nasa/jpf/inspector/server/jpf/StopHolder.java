@@ -140,7 +140,9 @@ public class StopHolder {
       return;
     }
     try {
-      wait();
+      while (!isStopped()) {
+        wait();
+      }
     } catch (InterruptedException ignored) {
     }
   }
@@ -155,7 +157,7 @@ public class StopHolder {
     assert (isStopped()); // Illegal usage
 
 
-    notify();
+    notifyAll(); // TODO used to be: notify() only.
   }
 
   static public String getLocationDetails (InspectorState inspState) {
