@@ -13,6 +13,7 @@ public class CmdWait extends ClientCommand {
   @Override
   public void execute(JPFInspectorClient client, JPFInspectorBackEndInterface inspector, PrintStream outStream) {
     while (!inspector.isPaused()) {
+        // TODO Consider using StopHolder::waitUntilStop.
         Thread.yield();
     }
   }

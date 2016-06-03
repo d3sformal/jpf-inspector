@@ -46,7 +46,7 @@ public class CommandParserRecordedCommands extends CommandParser {
    * @throws JPFInspectorParsingErrorException In case of malformed command
    */
   @Override
-  public ClientCommandInterface parseCommands (String cmd) throws JPFInspectorParsingErrorException {
+  public ClientCommandInterface parseCommand(String cmd) throws JPFInspectorParsingErrorException {
     if (cmd == null) {
       return null;
     }

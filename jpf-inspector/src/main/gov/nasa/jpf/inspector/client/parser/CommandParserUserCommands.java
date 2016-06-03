@@ -39,7 +39,7 @@ public class CommandParserUserCommands extends CommandParser {
    * @return Representation of the parsed command.
    */
   @Override
-  public ClientCommandInterface parseCommands (String cmd) throws JPFInspectorParsingErrorException {
+  public ClientCommandInterface parseCommand(String cmd) throws JPFInspectorParsingErrorException {
     if (cmd == null) {
       return null;
     }

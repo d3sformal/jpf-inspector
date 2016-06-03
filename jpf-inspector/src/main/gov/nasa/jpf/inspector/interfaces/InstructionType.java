@@ -19,18 +19,21 @@
 
 package gov.nasa.jpf.inspector.interfaces;
 
-public enum InstructionTypes {
-	IT_ANY,
-	IT_NONE,
-	IT_INVOKE,
-	IT_RETURN,
-	IT_FIELD_ACCESS,
-	IT_FIELD_READ,
-	IT_FIELD_WRITE,
-	IT_IFCOND,
-	/**
-	 * MoniterEnter/MonitorExit
-	 */
-	IT_LOCK,
-	IT_ARRAY
+/**
+ * Represents the argument of the "instruction type = [type]" hit condition.
+ */
+public enum InstructionType {
+  IT_ANY,
+  IT_NONE,
+  IT_INVOKE,
+  IT_RETURN,
+  IT_FIELD_ACCESS,
+  IT_FIELD_READ,
+  IT_FIELD_WRITE,
+  IT_IFCOND,
+  /**
+   * MoniterEnter/MonitorExit
+   */
+  IT_LOCK,
+  IT_ARRAY
 }

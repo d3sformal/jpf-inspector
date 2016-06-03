@@ -146,7 +146,7 @@ public class NormalizedTextParsingTest extends InspectorTest {
 
       ClientCommandInterface cmd = null;
       try {
-        cmd = CommandParserFactory.getClientCommandParser().parseCommands(origCmd);
+        cmd = CommandParserFactory.getClientCommandParser().parseCommand(origCmd);
       } catch (JPFInspectorParsingErrorException e) {
         fail("Error while parsing initial command: " + origCmd + " error" + e.getMessage());
       }
@@ -163,7 +163,7 @@ public class NormalizedTextParsingTest extends InspectorTest {
         out.println("\tNormalized command version \"" + normalizedText + "\"");
       }
       try {
-        CommandParserFactory.getClientCommandParser().parseCommands(normalizedText);
+        CommandParserFactory.getClientCommandParser().parseCommand(normalizedText);
       } catch (JPFInspectorParsingErrorException e) {
         fail("Error while parsing normalized command: " + origCmd + " error" + e.getMessage());
       }

@@ -6,9 +6,7 @@
     import gov.nasa.jpf.inspector.server.expression.expressions.*;
     import gov.nasa.jpf.inspector.server.programstate.relop.*;
     import gov.nasa.jpf.inspector.server.breakpoints.*;
-    import gov.nasa.jpf.inspector.utils.parser.*;
-    import gov.nasa.jpf.inspector.utils.*;
-    import gov.nasa.jpf.inspector.utils.expressions.*;
+		import gov.nasa.jpf.inspector.utils.expressions.*;
     import gov.nasa.jpf.inspector.interfaces.*;
     import gov.nasa.jpf.inspector.interfaces.CommandsInterface.StepType;
     
@@ -16,11 +14,8 @@
 import org.antlr.v4.runtime.atn.*;
 import org.antlr.v4.runtime.dfa.DFA;
 import org.antlr.v4.runtime.*;
-import org.antlr.v4.runtime.misc.*;
-import org.antlr.v4.runtime.tree.*;
+		import org.antlr.v4.runtime.tree.*;
 import java.util.List;
-import java.util.Iterator;
-import java.util.ArrayList;
 
 @SuppressWarnings({"all", "warnings", "unchecked", "unused", "cast"})
 public class ExpressionGrammarParser extends Parser {
@@ -2416,7 +2411,7 @@ public class ExpressionGrammarParser extends Parser {
 	}
 
 	public static class CmdInstructionTypesContext extends ParserRuleContext {
-		public InstructionTypes instructionType;
+		public InstructionType instructionType;
 		public TerminalNode TOKEN_ANY() { return getToken(ExpressionGrammarParser.TOKEN_ANY, 0); }
 		public TerminalNode TOKEN_NONE() { return getToken(ExpressionGrammarParser.TOKEN_NONE, 0); }
 		public TerminalNode TOKEN_INVOKE() { return getToken(ExpressionGrammarParser.TOKEN_INVOKE, 0); }
@@ -2452,7 +2447,7 @@ public class ExpressionGrammarParser extends Parser {
 				{
 				setState(588);
 				match(TOKEN_ANY);
-				 ((CmdInstructionTypesContext)_localctx).instructionType =  InstructionTypes.IT_ANY; 
+				 ((CmdInstructionTypesContext)_localctx).instructionType =  InstructionType.IT_ANY;
 				}
 				break;
 			case TOKEN_NONE:
@@ -2460,7 +2455,7 @@ public class ExpressionGrammarParser extends Parser {
 				{
 				setState(590);
 				match(TOKEN_NONE);
-				 ((CmdInstructionTypesContext)_localctx).instructionType =  InstructionTypes.IT_NONE; 
+				 ((CmdInstructionTypesContext)_localctx).instructionType =  InstructionType.IT_NONE;
 				}
 				break;
 			case TOKEN_INVOKE:
@@ -2468,7 +2463,7 @@ public class ExpressionGrammarParser extends Parser {
 				{
 				setState(592);
 				match(TOKEN_INVOKE);
-				 ((CmdInstructionTypesContext)_localctx).instructionType =  InstructionTypes.IT_INVOKE; 
+				 ((CmdInstructionTypesContext)_localctx).instructionType =  InstructionType.IT_INVOKE;
 				}
 				break;
 			case TOKEN_RETURN:
@@ -2476,7 +2471,7 @@ public class ExpressionGrammarParser extends Parser {
 				{
 				setState(594);
 				match(TOKEN_RETURN);
-				 ((CmdInstructionTypesContext)_localctx).instructionType =  InstructionTypes.IT_RETURN; 
+				 ((CmdInstructionTypesContext)_localctx).instructionType =  InstructionType.IT_RETURN;
 				}
 				break;
 			case TOKEN_FIELD_ACCESS:
@@ -2484,7 +2479,7 @@ public class ExpressionGrammarParser extends Parser {
 				{
 				setState(596);
 				match(TOKEN_FIELD_ACCESS);
-				 ((CmdInstructionTypesContext)_localctx).instructionType =  InstructionTypes.IT_FIELD_ACCESS; 
+				 ((CmdInstructionTypesContext)_localctx).instructionType =  InstructionType.IT_FIELD_ACCESS;
 				}
 				break;
 			case TOKEN_FIELD_READ:
@@ -2492,7 +2487,7 @@ public class ExpressionGrammarParser extends Parser {
 				{
 				setState(598);
 				match(TOKEN_FIELD_READ);
-				 ((CmdInstructionTypesContext)_localctx).instructionType =  InstructionTypes.IT_FIELD_READ; 
+				 ((CmdInstructionTypesContext)_localctx).instructionType =  InstructionType.IT_FIELD_READ;
 				}
 				break;
 			case TOKEN_FIELD_WRITE:
@@ -2500,7 +2495,7 @@ public class ExpressionGrammarParser extends Parser {
 				{
 				setState(600);
 				match(TOKEN_FIELD_WRITE);
-				 ((CmdInstructionTypesContext)_localctx).instructionType =  InstructionTypes.IT_FIELD_WRITE; 
+				 ((CmdInstructionTypesContext)_localctx).instructionType =  InstructionType.IT_FIELD_WRITE;
 				}
 				break;
 			case TOKEN_CONDITION:
@@ -2508,7 +2503,7 @@ public class ExpressionGrammarParser extends Parser {
 				{
 				setState(602);
 				match(TOKEN_CONDITION);
-				 ((CmdInstructionTypesContext)_localctx).instructionType =  InstructionTypes.IT_IFCOND; 
+				 ((CmdInstructionTypesContext)_localctx).instructionType =  InstructionType.IT_IFCOND;
 				}
 				break;
 			case TOKEN_LOCK:
@@ -2516,7 +2511,7 @@ public class ExpressionGrammarParser extends Parser {
 				{
 				setState(604);
 				match(TOKEN_LOCK);
-				 ((CmdInstructionTypesContext)_localctx).instructionType =  InstructionTypes.IT_LOCK; 
+				 ((CmdInstructionTypesContext)_localctx).instructionType =  InstructionType.IT_LOCK;
 				}
 				break;
 			case TOKEN_ARRAY:
@@ -2524,7 +2519,7 @@ public class ExpressionGrammarParser extends Parser {
 				{
 				setState(606);
 				match(TOKEN_ARRAY);
-				 ((CmdInstructionTypesContext)_localctx).instructionType =  InstructionTypes.IT_ARRAY; 
+				 ((CmdInstructionTypesContext)_localctx).instructionType =  InstructionType.IT_ARRAY;
 				}
 				break;
 			default:

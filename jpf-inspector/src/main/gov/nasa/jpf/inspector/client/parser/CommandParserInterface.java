@@ -19,20 +19,20 @@
 
 package gov.nasa.jpf.inspector.client.parser;
 
+import gov.nasa.jpf.inspector.client.ClientCommand;
 import gov.nasa.jpf.inspector.client.ClientCommandInterface;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorParsingErrorException;
 
 /**
- * @author Alf
+ * An ANTLR parser that takes a string and returns a {@link ClientCommand}.
  */
 public interface CommandParserInterface {
   /**
+   * Parses a command and returns its representation.
    * 
-   * Parse commands from user.
-   * 
-   * @param cmd String with command to parse.
+   * @param cmd String with the command to parse.
    * @return Representation of the parsed command.
    */
-  public ClientCommandInterface parseCommands (String cmd) throws JPFInspectorParsingErrorException;
+  ClientCommandInterface parseCommand(String cmd) throws JPFInspectorParsingErrorException;
 
 }

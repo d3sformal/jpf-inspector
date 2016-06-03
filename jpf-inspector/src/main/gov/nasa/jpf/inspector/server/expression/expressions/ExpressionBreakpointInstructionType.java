@@ -19,7 +19,7 @@
 
 package gov.nasa.jpf.inspector.server.expression.expressions;
 
-import gov.nasa.jpf.inspector.interfaces.InstructionTypes;
+import gov.nasa.jpf.inspector.interfaces.InstructionType;
 import gov.nasa.jpf.inspector.migration.MigrationUtilities;
 import gov.nasa.jpf.inspector.server.breakpoints.BreakPointModes;
 import gov.nasa.jpf.inspector.server.expression.ExpressionBooleanLeaf;
@@ -40,9 +40,9 @@ import gov.nasa.jpf.vm.bytecode.ReturnInstruction;
 
 public class ExpressionBreakpointInstructionType extends ExpressionBooleanLeaf {
 
-  final public InstructionTypes instType;
+  final public InstructionType instType;
 
-  public ExpressionBreakpointInstructionType (InstructionTypes instType) {
+  public ExpressionBreakpointInstructionType (InstructionType instType) {
     assert instType != null;
     this.instType = instType;
   }
@@ -58,26 +58,26 @@ public class ExpressionBreakpointInstructionType extends ExpressionBooleanLeaf {
 
     if (inst == null) {
       return false;
-    } else if (instType == InstructionTypes.IT_ANY) {
+    } else if (instType == InstructionType.IT_ANY) {
       return true;
-    } else if (instType == InstructionTypes.IT_ARRAY) {
+    } else if (instType == InstructionType.IT_ARRAY) {
       return (inst instanceof ArrayElementInstruction);
-    } else if (instType == InstructionTypes.IT_FIELD_ACCESS) {
+    } else if (instType == InstructionType.IT_FIELD_ACCESS) {
       return (inst instanceof FieldInstruction);
-    } else if (instType == InstructionTypes.IT_FIELD_READ) {
+    } else if (instType == InstructionType.IT_FIELD_READ) {
       return (inst instanceof GETFIELD) || (inst instanceof GETSTATIC);
-    } else if (instType == InstructionTypes.IT_FIELD_WRITE) {
+    } else if (instType == InstructionType.IT_FIELD_WRITE) {
       return (inst instanceof PUTFIELD) || (inst instanceof PUTSTATIC);
-    } else if (instType == InstructionTypes.IT_IFCOND) {
+    } else if (instType == InstructionType.IT_IFCOND) {
       return (inst instanceof IfInstruction);
-    } else if (instType == InstructionTypes.IT_INVOKE) {
+    } else if (instType == InstructionType.IT_INVOKE) {
       return (inst instanceof InvokeInstruction);
-    } else if (instType == InstructionTypes.IT_LOCK) {
+    } else if (instType == InstructionType.IT_LOCK) {
       return (inst instanceof LockInstruction);
-    } else if (instType == InstructionTypes.IT_RETURN) {
+    } else if (instType == InstructionType.IT_RETURN) {
       return (inst instanceof ReturnInstruction);
     } else {
-      throw new RuntimeException("Internal error - Unknown enum " + InstructionTypes.class.getSimpleName() + " entry " + instType);
+      throw new RuntimeException("Internal error - Unknown enum " + InstructionType.class.getSimpleName() + " entry " + instType);
     }
   }
 
@@ -86,7 +86,7 @@ public class ExpressionBreakpointInstructionType extends ExpressionBooleanLeaf {
     return BreakPointModes.BP_MODE_SPECIFIC_INSTRUCTION_TYPE;
   }
 
-  public InstructionTypes getInstructionType () {
+  public InstructionType getInstructionType () {
     return instType;
   }
 
@@ -104,25 +104,25 @@ public class ExpressionBreakpointInstructionType extends ExpressionBooleanLeaf {
   public String getNormalizedExpression () {
     StringBuffer sb = new StringBuffer(30);
     sb.append("instruction_type=");
-    if (instType == InstructionTypes.IT_ANY) {
+    if (instType == InstructionType.IT_ANY) {
       sb.append("any");
-    } else if (instType == InstructionTypes.IT_NONE) {
+    } else if (instType == InstructionType.IT_NONE) {
       sb.append("none");
-    } else if (instType == InstructionTypes.IT_INVOKE) {
+    } else if (instType == InstructionType.IT_INVOKE) {
       sb.append("invoke");
-    } else if (instType == InstructionTypes.IT_RETURN) {
+    } else if (instType == InstructionType.IT_RETURN) {
       sb.append("return");
-    } else if (instType == InstructionTypes.IT_FIELD_ACCESS) {
+    } else if (instType == InstructionType.IT_FIELD_ACCESS) {
       sb.append("field_access");
-    } else if (instType == InstructionTypes.IT_FIELD_READ) {
+    } else if (instType == InstructionType.IT_FIELD_READ) {
       sb.append("field_read");
-    } else if (instType == InstructionTypes.IT_FIELD_WRITE) {
+    } else if (instType == InstructionType.IT_FIELD_WRITE) {
       sb.append("field_write");
-    } else if (instType == InstructionTypes.IT_IFCOND) {
+    } else if (instType == InstructionType.IT_IFCOND) {
       sb.append("condition");
-    } else if (instType == InstructionTypes.IT_LOCK) {
+    } else if (instType == InstructionType.IT_LOCK) {
       sb.append("lock");
-    } else if (instType == InstructionTypes.IT_ARRAY) {
+    } else if (instType == InstructionType.IT_ARRAY) {
       sb.append("array");
     } else {
       throw new RuntimeException("Internal error - Unsupported " + instType.getClass().getSimpleName() + "(" + instType + ")");

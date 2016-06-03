@@ -20,19 +20,20 @@
 package gov.nasa.jpf.inspector.client.parser;
 
 /**
- * Uses ANTLT generated parser to user input and creates ConsoleCommands
+ * This class is used to create an ANTLR parser for client commands.
+ * TODO: Consider deleting this class.
  */
-public class CommandParserFactory {
+public final class CommandParserFactory {
 
   /**
-   * @return Get parser which parses user commands.
+   * Returns a new parser for parsing commands directly from the user.
    */
   public static CommandParserInterface getClientCommandParser () {
     return new CommandParserUserCommands();
   }
 
   /**
-   * @return Gets parser which parses recorded commands and callbacks.
+   * Returns a new parser for parsing commands replayed by the recorder (which includes the hidden callback commands).
    */
   public static CommandParserInterface getRecordCommandParser () {
     return new CommandParserRecordedCommands();

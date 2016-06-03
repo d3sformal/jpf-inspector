@@ -23,7 +23,7 @@ import gov.nasa.jpf.inspector.client.commands.CmdBreakpointCreate;
 import gov.nasa.jpf.inspector.interfaces.BreakpointState;
 import gov.nasa.jpf.inspector.interfaces.CommandsInterface;
 import gov.nasa.jpf.inspector.interfaces.InspectorCallBacks;
-import gov.nasa.jpf.inspector.interfaces.InstructionTypes;
+import gov.nasa.jpf.inspector.interfaces.InstructionType;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorGenericErrorException;
 import gov.nasa.jpf.inspector.migration.MigrationUtilities;
 import gov.nasa.jpf.inspector.server.expression.ExpressionBoolean;
@@ -196,7 +196,7 @@ public class CommandsManager implements CommandsInterface {
     } else if (type == StepType.ST_TRANSITION_ALL) {
       bpExpression = new ExpressionBreakpointChoiceGenerator(BreakPointModes.BP_MODE_CHOICE_BOTH);
     } else if (type == StepType.ST_INSTRUCTION) {
-      bpExpression = new ExpressionBreakpointInstructionType(InstructionTypes.IT_ANY);
+      bpExpression = new ExpressionBreakpointInstructionType(InstructionType.IT_ANY);
     } else if (type == StepType.ST_LINE) {
       bpExpression = new ExpressionBreakpointSingleStep(inspector, stopHolder.getJVM(), LocationTypes.LT_POSITION_LEAVED_STEP_OVER);
     } else if (type == StepType.ST_STEP_IN) {

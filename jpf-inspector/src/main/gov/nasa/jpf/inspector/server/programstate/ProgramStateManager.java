@@ -41,8 +41,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Handles command that can be used to inspect program state like
- * called methods and threads and variable values.
+ * Handles commands that can be used to inspect program state, e.g. the "print" and "thread" commands.
+ *
+ * This class is a component of {@link JPFInspector}.
  */
 public class ProgramStateManager implements ProgramStateInterface {
 
@@ -61,7 +62,7 @@ public class ProgramStateManager implements ProgramStateInterface {
   public Map<Integer, PSEThread> getThreads (Integer threadNum) throws JPFInspectorException {
     initialStopTest(true, "threads");
 
-    Map<Integer, PSEThread> result = null;
+    Map<Integer, PSEThread> result;
 
     VM vm = getJVM();
     if (vm == null) {
@@ -89,7 +90,6 @@ public class ProgramStateManager implements ProgramStateInterface {
   @Override
   public Map<Integer, InstructionPosition> getThreadsPC (Integer threadNum) throws JPFInspectorGenericErrorException {
     initialStopTest(true, "threads");
-    Map<Integer, InstructionPosition> result = null;
 
     VM vm = getJVM();
     if (vm == null) {
@@ -97,6 +97,8 @@ public class ProgramStateManager implements ProgramStateInterface {
     }
 
     ThreadList tl = vm.getThreadList();
+
+    Map<Integer, InstructionPosition> result;
     if (threadNum != null) {
       result = new HashMap<>(1);
     } else {
@@ -104,7 +106,7 @@ public class ProgramStateManager implements ProgramStateInterface {
     }
 
     for (ThreadInfo ti : tl) {
-      if (!(threadNum == null || (ti.getId() == threadNum))) {
+      if (!((threadNum == null) || (ti.getId() == threadNum))) {
         continue;
       }
       Instruction pc = ti.getPC();

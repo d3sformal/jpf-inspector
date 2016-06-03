@@ -1,5 +1,6 @@
 package gov.nasa.jpf.inspector.client;
 
+import gov.nasa.jpf.Config;
 import gov.nasa.jpf.JPF;
 import gov.nasa.jpf.JPF.Status;
 import gov.nasa.jpf.inspector.JPFInspectorFacade;
@@ -12,8 +13,8 @@ import gov.nasa.jpf.inspector.exceptions.JPFInspectorGenericErrorException;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorParsingErrorException;
 import gov.nasa.jpf.inspector.utils.Debugging;
 import gov.nasa.jpf.inspector.utils.InspectorConfiguration;
+import gov.nasa.jpf.shell.ShellManager;
 
-import javax.naming.Context;
 import java.io.PrintStream;
 import java.util.logging.Logger;
 
@@ -27,6 +28,7 @@ public class JPFInspectorClient implements JPFInspectorClientInterface {
   private final PrintStream outputStream;
   private final JPFInspectorBackEndInterface inspector;
   private final CallbackExecutionDecorator cbExecutionDecorator;
+  private final Config config;
 
   private final CommandRecorder recorder;
 
@@ -35,6 +37,7 @@ public class JPFInspectorClient implements JPFInspectorClientInterface {
   }
 
   public JPFInspectorClient (String target, PrintStream outStream, InspectorCallBacks callbacks) {
+    config = ShellManager.getManager().getConfig();
     if (outStream == null) {
       throw new IllegalArgumentException("Output stream not specified (null)");
     }
@@ -92,7 +95,7 @@ public class JPFInspectorClient implements JPFInspectorClientInterface {
     // Parse the command and process errors
     ClientCommandInterface cmd = null;
     try {
-      cmd = parser.parseCommands(cmdStr);
+      cmd = parser.parseCommand(cmdStr);
     } catch (JPFInspectorParsingErrorException e) {
       if (context == ExecutionContext.FROM_SWING_TERMINAL) {
         outputStream.println("cmd>" + cmdStr);
@@ -115,17 +118,33 @@ public class JPFInspectorClient implements JPFInspectorClientInterface {
     // To serialize recording of executed commands and commands related to command execution
     synchronized (recorder) {
       try {
+        // In Swing, we must echo the prompt.
         if (!cmd.isHiddenCommand() && (context == ExecutionContext.FROM_SWING_TERMINAL)) {
           outputStream.println("cmd>" + cmd.getNormalizedCommand());
         }
+
+        // Record.
         cmd.recordCommand(recorder);
 
+        // In batch mode, block until safe.
+        if (context == ExecutionContext.FROM_COMMAND_LINE_TERMINAL) {
+
+          boolean batchMode = config.getBoolean("jpf-inspector.batch-mode", false);
+          boolean safeMode = config.getBoolean("jpf-inspector.safe-mode", true);
+          boolean batchModeBlocking = batchMode && safeMode && config.getBoolean("jpf-inspector.batch-mode.block-unsafe", true);
+          if (batchModeBlocking && !cmd.isSafeToExecuteWhenNotPaused()) {
+            while (!inspector.isPaused()) {
+              Thread.yield(); // TODO maybe changed these busy waits later.
+            }
+          }
+        }
+
+        // Execute.
         if (isSafe(cmd)) {
           cmd.execute(this, inspector, outputStream);
         }
 
       } catch (Throwable e) {
-
         outputStream.println("ERR: Generic error while processing a command:");
         e.printStackTrace(outputStream);
         recordComment("ERR: Generic error while processing a command:");

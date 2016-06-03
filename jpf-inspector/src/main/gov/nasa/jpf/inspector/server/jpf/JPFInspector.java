@@ -36,8 +36,11 @@ import java.io.FileNotFoundException;
 import java.io.PrintStream;
 
 /**
- * Core server class. Represents the server part.
- * Can be used to obtain all server subinterfaces.
+ * Represents the server part of JPF Inspector.
+ *
+ * This class uses object composition: different commands are handled by different subcomponents, but all of these
+ * components are instantiated and held by a {@link JPFInspector} object.
+ *
  */
 public abstract class JPFInspector implements JPFInspectorBackEndInterface {
   protected static final boolean DEBUG = false;
@@ -71,7 +74,7 @@ public abstract class JPFInspector implements JPFInspectorBackEndInterface {
   protected JPFInspector (InspectorCallBacks userCallBacks) {
     debugOutStream = System.out; // Fail safe
 
-    if (DEBUG_OUTPUT_FILE != null && !DEBUG_OUTPUT_FILE.isEmpty()) {
+    if ((DEBUG_OUTPUT_FILE != null) && !DEBUG_OUTPUT_FILE.isEmpty()) {
       try {
         debugOutStream = new PrintStream("/tmp/alf/Inspector.log");
       } catch (FileNotFoundException ignored) {
@@ -133,7 +136,7 @@ public abstract class JPFInspector implements JPFInspectorBackEndInterface {
       return;
     }
 
-    if (this.jpf != null && listener.getFinished() == false) {
+    if ((this.jpf != null) && (listener.getFinished() == false)) {
       stopHolder.terminating();
       // Currently there is running older instance ... we should terminate it
       // TODO: Is not better to force previous instance to stop.

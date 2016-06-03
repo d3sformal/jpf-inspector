@@ -21,7 +21,7 @@ package gov.nasa.jpf.inspector.server.expression;
 
 import gov.nasa.jpf.inspector.interfaces.CommandsInterface.StepType;
 import gov.nasa.jpf.inspector.interfaces.InstructionPosition;
-import gov.nasa.jpf.inspector.interfaces.InstructionTypes;
+import gov.nasa.jpf.inspector.interfaces.InstructionType;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorGenericErrorException;
 import gov.nasa.jpf.inspector.server.breakpoints.BreakPointModes;
 import gov.nasa.jpf.inspector.server.breakpoints.InstructionPositionImpl;
@@ -110,7 +110,7 @@ public class ExpressionFactory {
     return new ExpressionBreakpointSpecificClass(cn, Mode.SC_MODE_EXCEPTION_THROWN);
   }
 
-  public ExpressionBreakpointInstructionType getBreakpointInstructionType (InstructionTypes instType) {
+  public ExpressionBreakpointInstructionType getBreakpointInstructionType (InstructionType instType) {
     return new ExpressionBreakpointInstructionType(instType);
   }
 

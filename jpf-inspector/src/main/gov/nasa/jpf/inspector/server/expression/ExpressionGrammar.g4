@@ -228,16 +228,16 @@ cmdChoiceGeneratorType returns [BreakPointModes bpMode]
     ;
 
 cmdInstructionTypes returns [InstructionTypes instructionType]
-    : TOKEN_ANY               { $instructionType = InstructionTypes.IT_ANY; }
-    | TOKEN_NONE              { $instructionType = InstructionTypes.IT_NONE; }
-    | TOKEN_INVOKE            { $instructionType = InstructionTypes.IT_INVOKE; }
-    | TOKEN_RETURN            { $instructionType = InstructionTypes.IT_RETURN; }
-    | TOKEN_FIELD_ACCESS      { $instructionType = InstructionTypes.IT_FIELD_ACCESS; }
-    | TOKEN_FIELD_READ        { $instructionType = InstructionTypes.IT_FIELD_READ; }
-    | TOKEN_FIELD_WRITE       { $instructionType = InstructionTypes.IT_FIELD_WRITE; }
-    | TOKEN_CONDITION         { $instructionType = InstructionTypes.IT_IFCOND; }
-    | TOKEN_LOCK              { $instructionType = InstructionTypes.IT_LOCK; }
-    | TOKEN_ARRAY             { $instructionType = InstructionTypes.IT_ARRAY; }
+    : TOKEN_ANY               { $instructionType = InstructionType.IT_ANY; }
+    | TOKEN_NONE              { $instructionType = InstructionType.IT_NONE; }
+    | TOKEN_INVOKE            { $instructionType = InstructionType.IT_INVOKE; }
+    | TOKEN_RETURN            { $instructionType = InstructionType.IT_RETURN; }
+    | TOKEN_FIELD_ACCESS      { $instructionType = InstructionType.IT_FIELD_ACCESS; }
+    | TOKEN_FIELD_READ        { $instructionType = InstructionType.IT_FIELD_READ; }
+    | TOKEN_FIELD_WRITE       { $instructionType = InstructionType.IT_FIELD_WRITE; }
+    | TOKEN_CONDITION         { $instructionType = InstructionType.IT_IFCOND; }
+    | TOKEN_LOCK              { $instructionType = InstructionType.IT_LOCK; }
+    | TOKEN_ARRAY             { $instructionType = InstructionType.IT_ARRAY; }
     ;
 
 cmdThreadScheduledDirection returns [BreakPointModes bpMode]

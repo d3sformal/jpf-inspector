@@ -25,7 +25,11 @@ import gov.nasa.jpf.inspector.exceptions.JPFInspectorGenericErrorException;
 /**
  * Interface provided by JPFInspector back-end ("server") part. Low level interface.
  */
-public interface JPFInspectorBackEndInterface extends CommandsInterface, BreakPointManagerInterface, ProgramStateInterface, ChoiceGeneratorsInterface {
+public interface JPFInspectorBackEndInterface extends
+        CommandsInterface,
+        BreakPointManagerInterface,
+        ProgramStateInterface,
+        ChoiceGeneratorsInterface {
 
   /**
    * New JPF can be bound only if previous one has finished (stops execution) or no JPF is bound.
@@ -34,8 +38,8 @@ public interface JPFInspectorBackEndInterface extends CommandsInterface, BreakPo
    *        Instance of the JPF that should the Inspector use. JPF mustn't be running. (The {@link JPF#run()} method is not called.)
    * @throws JPFInspectorGenericErrorException -Error when connection new JPF occur (previous connected JPF instance is still running, ..)
    */
-  public void bindWithJPF (JPF jpf) throws JPFInspectorGenericErrorException;
+  void bindWithJPF(JPF jpf) throws JPFInspectorGenericErrorException;
 
-  public InspectorCallBacks getCallBack ();
+  InspectorCallBacks getCallBack();
 
 }
