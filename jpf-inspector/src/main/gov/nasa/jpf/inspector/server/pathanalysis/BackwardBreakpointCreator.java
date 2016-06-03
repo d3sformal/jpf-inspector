@@ -4,7 +4,7 @@ import gov.nasa.jpf.inspector.client.commands.CmdBreakpointCreate;
 import gov.nasa.jpf.inspector.interfaces.BreakpointState;
 import gov.nasa.jpf.inspector.interfaces.BreakPointStatus;
 import gov.nasa.jpf.inspector.interfaces.InstructionPosition;
-import gov.nasa.jpf.inspector.server.breakpoints.BreakPointHandler;
+import gov.nasa.jpf.inspector.server.breakpoints.BreakpointHandler;
 import gov.nasa.jpf.inspector.server.breakpoints.InstructionPositionImpl;
 import gov.nasa.jpf.inspector.server.expression.ExpressionBoolean;
 import gov.nasa.jpf.inspector.server.expression.InspectorState;
@@ -33,7 +33,7 @@ public class BackwardBreakpointCreator {
    * @param breakpointMgr Manager where to create new Breakpoint
    * @return BreakpointID of created BP
    */
-  public int createBreakpoint (BreakPointHandler breakpointMgr) {
+  public int createBreakpoint (BreakpointHandler breakpointMgr) {
     // TODO Create inspector.server class copy ... don't use inspector.client package version !!
     CmdBreakpointCreate.ConsoleBreakpointCreationExpression newBP = new CmdBreakpointCreate.ConsoleBreakpointCreationExpression();
     newBP.setBounds(1, 1);

@@ -47,6 +47,8 @@ public final class JPFInspectorFacade {
   }
 
   /**
+   * Creates an instance of the JPFInspectorClient (the client part).
+   *
    * @param target Name of the target (.jpf file name, without the .jpf extension). For logging purposes only.
    * @param out Stream where command output should be printed.
    * @return New instance of high level client part of the JPF Inspector.   *

@@ -39,6 +39,9 @@ import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Manages choice generators and used choices.
+ */
 public class ChoiceGeneratorsManager implements ChoiceGeneratorsInterface, ChoiceGeneratorNotifications {
   private final static boolean DEBUG = false;
   private final PrintStream out;

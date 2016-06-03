@@ -60,7 +60,7 @@ public class StopHolder {
    * Notifies the client that JPF is now stopped and then blocks execution until it is woken up by a notify call.
    * Executed by the JPF thread.
    *
-   * Note: To prevent deadlocks cannot hold any lock if this methods is called.  *
+   * Note: To prevent deadlocks cannot hold any lock if this methods is called.
    *
    * @param inspState Current state of the JVM and Inspector. Can't be null.
    */
@@ -142,16 +142,17 @@ public class StopHolder {
     } catch (InterruptedException e) {
     }
   }
-
+  /**
+   * The only blocked thread should be the JPF thread in the {@link #stopExecution(InspectorState)} method
+   *
+   * Threads which calls {@link #waitUntilStopped()}
+   * a) before {@link #stopExecution(InspectorState)}  are notified in {@link #stopExecution(InspectorState)}
+   * b) after {@link #stopExecution(InspectorState)} are not blocked and pass through {@link #waitUntilStopped()} method.
+   */
   public synchronized void resumeExecution () {
     assert (isStopped()); // Illegal usage
 
-/**
-   * The only blocked thread should be the JPF thread in the {@link #stopExecution(InspectorState, boolean) method Threads which calls
-   * 
-   * @link #waitUntilStopped()} a) before {@link #stopExecution(InspectorState, boolean) are notified in {@link #stopExecution(InspectorState, boolean) b)
-   * after {@link #stopExecution(InspectorState, boolean) are not blocked and pass through {@link #waitUntilStopped()} method.
-   */
+
     notify();
   }
 

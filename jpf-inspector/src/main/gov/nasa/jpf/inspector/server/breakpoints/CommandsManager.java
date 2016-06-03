@@ -43,12 +43,12 @@ import gov.nasa.jpf.vm.ChoiceGenerator;
 import gov.nasa.jpf.search.Search;
 
 /**
- * Handles start and stop commands. Stopping and resuming of the SuT.
+ * Handles start and stop commands, stepping, and stopping and resuming of the SuT.
  */
 public class CommandsManager implements CommandsInterface {
 
   /**
-   *  If true, then the inspector should run and continue execution.
+   *  If true, then the inspector should continue execution.
    *  If false, it should stop on next step because of a user command (not breakpoint).
    *  Calling "break" is the primary way to set this variable to false.
    *
@@ -62,10 +62,10 @@ public class CommandsManager implements CommandsInterface {
   private final StopHolder stopHolder;
   private final InspectorCallBacks callbacks;
   private final DefaultForwardTraceManager dftMgr;
-  private final BreakPointHandler breakpointMgr;
+  private final BreakpointHandler breakpointMgr;
 
-  public CommandsManager (JPFInspector inspector, StopHolder stopHolder, BreakPointHandler breakpointMgr, InspectorCallBacks callbacks,
-      DefaultForwardTraceManager dftMgr) {
+  public CommandsManager (JPFInspector inspector, StopHolder stopHolder, BreakpointHandler breakpointMgr, InspectorCallBacks callbacks,
+                          DefaultForwardTraceManager dftMgr) {
     this.inspector = inspector;
     this.stopHolder = stopHolder;
     this.callbacks = callbacks;

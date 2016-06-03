@@ -28,6 +28,7 @@ import gov.nasa.jpf.inspector.common.Constants;
 import gov.nasa.jpf.inspector.frontends.jpfshell.gui.SwingTerminal;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorGenericErrorException;
 import gov.nasa.jpf.inspector.utils.Debugging;
+import gov.nasa.jpf.inspector.utils.InspectorConfiguration;
 import gov.nasa.jpf.shell.ShellManager;
 import gov.nasa.jpf.shell.ShellPanel;
 import gov.nasa.jpf.shell.commands.VerifyCommand;
@@ -177,7 +178,9 @@ public class JPFShellInspectorPanel extends ShellPanel implements VerifyCommandL
   }
   @Override
   public void preCommand (VerifyCommand command) {
-    // Nothing to do
+    if (InspectorConfiguration.getInstance().shouldRequestFocusOnVerify()) {
+      requestShellFocus();
+    }
   }
   @Override
   public void exceptionDuringVerify (Exception ex) {

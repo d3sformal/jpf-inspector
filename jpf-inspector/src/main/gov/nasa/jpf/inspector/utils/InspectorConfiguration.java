@@ -62,4 +62,11 @@ public final class InspectorConfiguration {
   public boolean isSafeModeActive() {
     return config.getBoolean("jpf-inspector.safe-mode", true);
   }
+
+  /**
+   * Indicates whether, after the "run" command is executed, the JPF Inspector console should retain visibility.
+   */
+  public boolean shouldRequestFocusOnVerify() {
+    return config.getBoolean("jpf-inspector.request-focus-on-verify", true);
+  }
 }

@@ -2,7 +2,7 @@ package gov.nasa.jpf.inspector.server.jpf;
 
 import gov.nasa.jpf.ListenerAdapter;
 import gov.nasa.jpf.inspector.migration.MigrationUtilities;
-import gov.nasa.jpf.inspector.server.breakpoints.BreakPointHandler;
+import gov.nasa.jpf.inspector.server.breakpoints.BreakpointHandler;
 import gov.nasa.jpf.inspector.server.breakpoints.CommandsManager;
 import gov.nasa.jpf.inspector.server.breakpoints.DefaultForwardTraceManager;
 import gov.nasa.jpf.inspector.server.choicegenerators.ChoiceGeneratorNotifications;
@@ -22,7 +22,7 @@ public class InspectorListenerModeNotifications extends ListenerAdapter {
 
   private final JPFInspector inspector;
   private final CommandsManager cmdMgr;
-  private final BreakPointHandler bpMgr;
+  private final BreakpointHandler bpMgr;
   private final ChoiceGeneratorNotifications cgNotify;
   private final DefaultForwardTraceManager dftMgr;
 
@@ -37,8 +37,8 @@ public class InspectorListenerModeNotifications extends ListenerAdapter {
    * @param inspector
    * @param dftMgr
    */
-  public InspectorListenerModeNotifications (JPFInspector inspector, CommandsManager cmdMgr, BreakPointHandler bpMgr, ChoiceGeneratorNotifications cgNotify,
-      DefaultForwardTraceManager dftMgr, boolean searchMultipleError) {
+  public InspectorListenerModeNotifications (JPFInspector inspector, CommandsManager cmdMgr, BreakpointHandler bpMgr, ChoiceGeneratorNotifications cgNotify,
+                                             DefaultForwardTraceManager dftMgr, boolean searchMultipleError) {
     this.inspector = inspector;
     this.cmdMgr = cmdMgr;
     this.bpMgr = bpMgr;

@@ -24,7 +24,7 @@ import gov.nasa.jpf.JPF;
 import gov.nasa.jpf.inspector.interfaces.InspectorCallBacks;
 import gov.nasa.jpf.inspector.interfaces.JPFInspectorBackEndInterface;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorGenericErrorException;
-import gov.nasa.jpf.inspector.server.breakpoints.BreakPointHandler;
+import gov.nasa.jpf.inspector.server.breakpoints.BreakpointHandler;
 import gov.nasa.jpf.inspector.server.breakpoints.CommandsManager;
 import gov.nasa.jpf.inspector.server.breakpoints.DefaultForwardTraceManager;
 import gov.nasa.jpf.inspector.server.callbacks.CallbacksSender;
@@ -42,29 +42,31 @@ import java.io.PrintStream;
  * components are instantiated and held by a {@link JPFInspector} object.
  *
  */
+@SuppressWarnings("WeakerAccess")
 public abstract class JPFInspector implements JPFInspectorBackEndInterface {
   protected static final boolean DEBUG = false;
 
-  private static final String DEBUG_OUTPUT_FILE = "/tmp/Inspector.log"; // / File where print debug outputs, if not file exists, or name is empty then
-                                                                            // Standard output is used
+  /**
+   * File where print debug outputs, if not file exists, or name is empty then standard output is used
+   */
+  private static final String DEBUG_OUTPUT_FILE = "/tmp/Inspector.log";
 
   private PrintStream debugOutStream;
 
-  private JPF jpf = null; // Represent currently used JPF instance. Is null when no JPF is bounded or if currently bounded JPF terminates.
+  /**
+   * Currently used JPF instance. Is null when no JPF is bound or if currently bound JPF terminates.
+   */
+  private JPF jpf = null;
 
   protected final InspectorCallBacks callBacks;
-  protected final CallbacksSender callBacksSender; // / Serializes and sends callbacks
-  protected final StopHolder stopHolder; // / Where JPF thread is blocked when Breakpoint or Stop command comes.
-  protected final CommandsManager cmdMgr; // / Server start and stop commands
-  protected final BreakPointHandler breakpointMgr; // / Handles breakpoint and tests whether the breakpoint is hitted.
-  protected final ProgramStateManager stateMgr; // / Inspects existing threads, heap, variables etc.
-  protected final ChoiceGeneratorsManager cgMgr; // / Manages choice generators and used choices
-  protected final DefaultForwardTraceManager dftMgr; // / Manager which holds default forward trace informations
-  private InspectorListener listener = null; // Observes jpf execution and notify another parts of the inpector about interested events
-
-  /** Configuration entry which holds original value of "Search#SEARCH_MULTIPLE_ERRORS". However, that constant,
-   * originally planned to be merged with jpf-core, never made it there. */
-  public static final String JPF_INSPECTOR_ORIGINAL_CONFIG_SEARCH_SEARCH_MULTIPLE_ERRORS = "jpf-inspector.original_settings.search.multiple_errors";
+  protected final CallbacksSender callBacksSender;
+  protected final StopHolder stopHolder;
+  protected final CommandsManager cmdMgr;
+  protected final BreakpointHandler breakpointMgr;
+  protected final ProgramStateManager stateMgr;
+  protected final ChoiceGeneratorsManager cgMgr;
+  protected final DefaultForwardTraceManager dftMgr;
+  private InspectorListener listener = null;
 
   /**
    * Creates and initialize instance of inspector's server part.
@@ -93,7 +95,7 @@ public abstract class JPFInspector implements JPFInspectorBackEndInterface {
     callBacksSender.enableSender(stopHolder);
 
     this.dftMgr = new DefaultForwardTraceManager(this);
-    this.breakpointMgr = new BreakPointHandler(this, callBacks, stopHolder);
+    this.breakpointMgr = new BreakpointHandler(this, callBacks, stopHolder);
     this.cmdMgr = new CommandsManager(this, stopHolder, breakpointMgr, callBacks, dftMgr);
     this.stateMgr = new ProgramStateManager(this, stopHolder);
     this.cgMgr = new ChoiceGeneratorsManager(this, callBacks, cmdMgr, stopHolder, dftMgr);
@@ -151,19 +153,11 @@ public abstract class JPFInspector implements JPFInspectorBackEndInterface {
     jpf.getVM().recordSteps(true);
     Config jpfCfg = jpf.getConfig();
 
-    // TODO - Temporarily comment - until changes will be propagated to the main trunk
-    // TODO This may actually explain some things. Have a look at this later.
-    // boolean originalSearchMultipleErrors = jpfCfg.getBoolean(Search.SEARCH_MULTIPLE_ERRORS);
-    // jpfCfg.setProperty(Search.SEARCH_MULTIPLE_ERRORS, Config.TRUE);
+    // Previously, there was a complex block of code here that I did not understand.
+    // It felt like it was trying to force a multiple-error search regardless of the "search.multiple_error"
+    // setting, but it also referenced a change "to be propagated to the trunk" which never made it to the trunk.
+    // I changed it to respect the property, hopefully that won't break it.
     boolean originalSearchMultipleErrors = jpfCfg.getBoolean("search.multiple_errors");
-    jpfCfg.setProperty("search.multiple_errors", "true");
-
-    if (jpfCfg.getProperty(JPF_INSPECTOR_ORIGINAL_CONFIG_SEARCH_SEARCH_MULTIPLE_ERRORS) == null) {
-      // JPF is bound for the first time with this configuration (not to overwrite the original value)
-      jpfCfg.setProperty(JPF_INSPECTOR_ORIGINAL_CONFIG_SEARCH_SEARCH_MULTIPLE_ERRORS, Boolean.toString(originalSearchMultipleErrors));
-    } else {
-      originalSearchMultipleErrors = jpfCfg.getBoolean(JPF_INSPECTOR_ORIGINAL_CONFIG_SEARCH_SEARCH_MULTIPLE_ERRORS);
-    }
 
     this.jpf = jpf;
     listener = new InspectorListener(this, cmdMgr, breakpointMgr, cgMgr, dftMgr, originalSearchMultipleErrors);

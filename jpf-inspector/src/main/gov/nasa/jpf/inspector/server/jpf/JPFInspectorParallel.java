@@ -31,6 +31,11 @@ import gov.nasa.jpf.inspector.utils.ChoiceGeneratorWrapper;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Represents the concrete server part of the Inspector.
+ * It is a mystery to me to why the server was separated into {@link JPFInspector} and {@link JPFInspectorParallel}.
+ * Maybe it should be merged?
+ */
 public class JPFInspectorParallel extends JPFInspector {
 
   public JPFInspectorParallel (InspectorCallBacks callBack) {
@@ -57,7 +62,6 @@ public class JPFInspectorParallel extends JPFInspector {
     return breakpointMgr.createBreakPoint(newBP);
   }
 
-  /* @see gov.nasa.jpf.inspector.interfaces.BreakPointManagerInterface#createAssert(gov.nasa.jpf.inspector.interfaces.AssertCreationInformation) */
   @Override
   public AssertStatus createAssert (AssertCreationInformation newAssert) throws JPFInspectorParsingErrorException, JPFInspectorGenericErrorException {
     return breakpointMgr.createAssert(newAssert);
@@ -119,13 +123,11 @@ public class JPFInspectorParallel extends JPFInspector {
     cgMgr.selectChoice(selectedChoice);
   }
 
-  /* @see gov.nasa.jpf.inspector.interfaces.ProgramStateInterface#setValue(java.lang.String) */
   @Override
   public void setValue (String expr) throws JPFInspectorException {
     stateMgr.setValue(expr);
   }
 
-  /* @see gov.nasa.jpf.inspector.interfaces.ProgramStateInterface#setValue(java.lang.String, java.lang.String) */
   @Override
   public void setValue (String lValue, String rValue) throws JPFInspectorException {
     stateMgr.setValue(lValue, rValue);

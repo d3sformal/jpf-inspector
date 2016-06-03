@@ -20,7 +20,7 @@
 package gov.nasa.jpf.inspector.server.jpf;
 
 import gov.nasa.jpf.ListenerAdapter;
-import gov.nasa.jpf.inspector.server.breakpoints.BreakPointHandler;
+import gov.nasa.jpf.inspector.server.breakpoints.BreakpointHandler;
 import gov.nasa.jpf.inspector.server.breakpoints.CommandsManager;
 import gov.nasa.jpf.inspector.server.breakpoints.DefaultForwardTraceManager;
 import gov.nasa.jpf.inspector.server.choicegenerators.ChoiceGeneratorNotifications;
@@ -31,7 +31,9 @@ import gov.nasa.jpf.search.Search;
 
 import java.util.Stack;
 
-/*
+/**
+ * Observes jpf execution and notify another parts of the inpector about interested events
+ *
  * Single entry from JPF inspector.
  *  Listener dynamically forwards all methods to specified listener instance.
  *  Class can dynamically change listener to which methods are forwarded and thus 
@@ -59,8 +61,8 @@ public class InspectorListener extends ListenerAdapter {
    * @param inspector
    * @param dftMgr
    */
-  public InspectorListener (JPFInspector inspector, CommandsManager cmdMgr, BreakPointHandler bpMgr, ChoiceGeneratorNotifications cgNotify,
-      DefaultForwardTraceManager dftMgr, boolean searchMultipleError) {
+  public InspectorListener (JPFInspector inspector, CommandsManager cmdMgr, BreakpointHandler bpMgr, ChoiceGeneratorNotifications cgNotify,
+                            DefaultForwardTraceManager dftMgr, boolean searchMultipleError) {
     this.inspector = inspector;
     mode = new InspectorListenerModeNotifications(inspector, cmdMgr, bpMgr, cgNotify, dftMgr, searchMultipleError);
   }

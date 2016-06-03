@@ -24,7 +24,7 @@ import gov.nasa.jpf.inspector.interfaces.BreakpointState;
 import gov.nasa.jpf.inspector.interfaces.BreakPointStatus;
 import gov.nasa.jpf.inspector.interfaces.InspectorCallBacks;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorException;
-import gov.nasa.jpf.inspector.server.breakpoints.BreakPointHandler.BreakPointPartialMemento;
+import gov.nasa.jpf.inspector.server.breakpoints.BreakpointHandler.BreakPointPartialMemento;
 import gov.nasa.jpf.inspector.server.expression.ExpressionBooleanInterface;
 import gov.nasa.jpf.inspector.server.expression.InspectorState;
 import gov.nasa.jpf.inspector.utils.Debugging;

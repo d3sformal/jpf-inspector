@@ -49,7 +49,7 @@ import java.util.TreeMap;
  * Holds list of all breakpoints. Manages changes in the breakpoints.
  * 
  */
-public class BreakPointHandler implements BreakPointManagerInterface {
+public class BreakpointHandler implements BreakPointManagerInterface {
   private static final boolean DEBUG = false;
   /**
    * Holds map of the user defined Breakpoint to the internal breakpoint representation.
@@ -69,7 +69,7 @@ public class BreakPointHandler implements BreakPointManagerInterface {
   final private ExpressionParserInterface expParser; // / Used to parse Breakpoint expression from clients
   private BreakPointsMemento transitionStartMemento; // / Memeto which holds states of breakpoints at the start of the transition
 
-  public BreakPointHandler (JPFInspector inspector, InspectorCallBacks callBacks, StopHolder stopHolder) {
+  public BreakpointHandler(JPFInspector inspector, InspectorCallBacks callBacks, StopHolder stopHolder) {
     this.breakpoints = new TreeMap<>();
 
     this.bpMementos = new Stack<>();
@@ -340,7 +340,7 @@ public class BreakPointHandler implements BreakPointManagerInterface {
      * Store state of all breakpoints
      */
     public BreakPointsMemento () {
-      synchronized (BreakPointHandler.this.breakpoints) {
+      synchronized (BreakpointHandler.this.breakpoints) {
         for (InternalBreakpointHolder bp : breakpoints.values()) {
           BreakPointPartialMemento bpm = bp.createPartialMemento();
           bpMementos.put(bp.getBPID(), bpm);
@@ -353,7 +353,7 @@ public class BreakPointHandler implements BreakPointManagerInterface {
      */
     public void restoreState () {
       BreakPointPartialMemento bpResetMemento = InternalBreakpointHolder.createInitialStateMemento();
-      synchronized (BreakPointHandler.this.breakpoints) {
+      synchronized (BreakpointHandler.this.breakpoints) {
 
         for (InternalBreakpointHolder bp : breakpoints.values()) {
           int bpID = bp.getBPID();
