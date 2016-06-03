@@ -20,16 +20,15 @@
 package gov.nasa.jpf.inspector.server.programstate.relop;
 
 /**
- * @author Alf
- * 
+ * Contains an instance of each of the six boolean operators and provides them publicly.
  */
-public class RelationOperatorFactory {
-  protected RelOpEqual relopEqual;
-  protected RelOpNotEqual relopNotEqual;
-  protected RelOpLess relopLess;
-  protected RelOpLessEqual relopLessEqual;
-  protected RelOpGreater relopGreater;
-  protected RelOpGreaterEqual relopGreaterEqual;
+public final class RelationOperatorFactory {
+  private RelOpEqual relopEqual;
+  private RelOpNotEqual relopNotEqual;
+  private RelOpLess relopLess;
+  private RelOpLessEqual relopLessEqual;
+  private RelOpGreater relopGreater;
+  private RelOpGreaterEqual relopGreaterEqual;
 
   public RelationOperatorFactory () {
     relopEqual = new RelOpEqual();

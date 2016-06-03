@@ -23,7 +23,7 @@ package gov.nasa.jpf.inspector.server.programstate.relop;
  * @author Alf
  * 
  */
-public class RelOpGreaterEqual extends RelOpComparableBase {
+class RelOpGreaterEqual extends RelOpComparableBase {
 
   /* @see gov.nasa.jpf.inspector.server.programstate.relop.RelationOperator#getNormalizedText() */
   @Override

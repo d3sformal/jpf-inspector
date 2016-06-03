@@ -23,22 +23,29 @@ import gov.nasa.jpf.inspector.exceptions.JPFInspectorIncompatibleTypesException;
 import gov.nasa.jpf.inspector.server.programstate.StateReadableValueInterface;
 
 /**
- * @author Alf
- * 
+ * An operator, such as "==" or "!=".
+ *
+ * This is the public interface in this package. To get it, use the {@link RelationOperatorFactory} class.
  */
 public interface RelationOperator {
 
   /**
-   * Gets true if given left and right values are of the suitable(comparable type) type. Does not comparing "<=" on references or reference with double.
+   * Compares the two operands and returns the result.
+   *
+   * TODO what does this mean: Does not comparing "<=" on references or reference with double.
    * 
-   * @param left left operand
-   * @param right right operand
-   * @return true if relation holds, false if types are incompatible of relation does not hold.
+   * @param left The left operand.
+   * @param right The right operand.
+   * @return True if relation holds, false otherwise.
+   * @throws JPFInspectorIncompatibleTypesException If the two operands cannot be compared.
    */
-  public boolean compare (StateReadableValueInterface left, StateReadableValueInterface right) throws JPFInspectorIncompatibleTypesException;
+  boolean compare(
+          StateReadableValueInterface left,
+          StateReadableValueInterface right)
+          throws JPFInspectorIncompatibleTypesException;
 
   /**
    * @return Gets representation of the operator in the input expression.
    */
-  public String getNormalizedText ();
+  String getNormalizedText();
 }

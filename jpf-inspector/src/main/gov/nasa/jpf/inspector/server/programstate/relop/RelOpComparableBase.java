@@ -32,7 +32,7 @@ import gov.nasa.jpf.vm.VM;
  * @author Alf
  * 
  */
-public abstract class RelOpComparableBase implements RelationOperator {
+abstract class RelOpComparableBase implements RelationOperator {
 
   protected static ClassInfoCache ciCache = null;
 

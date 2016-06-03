@@ -25,7 +25,7 @@ import gov.nasa.jpf.vm.ElementInfo;
  * @author Alf
  * 
  */
-public class RelOpEqual extends RelOpEqualBase {
+class RelOpEqual extends RelOpEqualBase {
 
   /* @see gov.nasa.jpf.inspector.server.programstate.relop.RelationOperator#getNormalizedText() */
   @Override

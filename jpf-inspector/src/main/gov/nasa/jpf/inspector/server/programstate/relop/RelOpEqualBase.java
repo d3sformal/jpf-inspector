@@ -30,7 +30,7 @@ import gov.nasa.jpf.vm.ElementInfo;
  * @author Alf
  * 
  */
-public abstract class RelOpEqualBase extends RelOpComparableBase {
+abstract class RelOpEqualBase extends RelOpComparableBase {
 
   @Override
   public boolean compare (StateReadableValueInterface left, StateReadableValueInterface right) throws JPFInspectorIncompatibleTypesException {
