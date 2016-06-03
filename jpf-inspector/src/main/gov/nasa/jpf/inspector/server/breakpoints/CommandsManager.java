@@ -84,8 +84,14 @@ public class CommandsManager implements CommandsInterface {
   }
 
   @Override
+  public void waitUntilStopped() {
+    if (inspector.getJPF() == null) return;
+    inspector.getStopHolder().waitUntilStopped();
+  }
+
+  @Override
   public synchronized  boolean isPaused() {
-    return inspector.getJPF() != null && stopHolder.isStopped();
+    return (inspector.getJPF() != null) && stopHolder.isStopped();
   }
 
   @Override
@@ -162,30 +168,30 @@ public class CommandsManager implements CommandsInterface {
   ChoiceGenerator[] allCGs = search.getVM().getSystemState().getChoiceGenerators();
   if (bbc.getTransitionsToBacktrack() >= allCGs.length) allCGs[0].reset();
     
-    // Stop current transition (to prevent invoke more instruction than necessary) - only if this makes sense - instruction/throw/object_created
-    // search.getVM().breakTransition(); // We cannot add new transition
-    // search.requestBacktrack();
-    search.getVM().ignoreState();
+  // Stop current transition (to prevent invoke more instruction than necessary) - only if this makes sense - instruction/throw/object_created
+  // search.getVM().breakTransition(); // We cannot add new transition
+  // search.requestBacktrack();
+  // search.getVM().ignoreState();
 
-    // Resume execution -> now silent backtrack and "breakpoint hit in single forward step should occur"
-    stopHolder.resumeExecution();
+  // Resume execution -> now silent backtrack and "breakpoint hit in single forward step should occur"
+  stopHolder.resumeExecution();
 
-    /*
-     * Rest is done in the listenerSilentMode Receives silent backtrack notifications Updates default trace Restores CG to same choice as before Start forward
-     * execution In the this.notifyBackwardStep() Enable normal mode in JPF Listener
-     */
+  /*
+   * Rest is done in the listenerSilentMode Receives silent backtrack notifications Updates default trace Restores CG to same choice as before Start forward
+   * execution In the this.notifyBackwardStep() Enable normal mode in JPF Listener
+   */
   }
 
   @Override
   public void forwardStep (StepType type) throws JPFInspectorGenericErrorException {
-    boolean wasStopped = initialStopTest(true, "cannot execute forward step");
+    initialStopTest(true, "cannot execute forward step");
 
     // TODO Create inspector.server class copy ... don't use inspector.client package version !!
     CmdBreakpointCreate.ConsoleBreakpointCreationExpression newBP = new CmdBreakpointCreate.ConsoleBreakpointCreationExpression();
     newBP.setBounds(null, null, "<=", 1);
     newBP.setState(BreakpointState.BP_STATE_ENABLED);
 
-    ExpressionBoolean bpExpression = null;
+    ExpressionBoolean bpExpression;
     if (type == StepType.ST_TRANSITION_DATA) {
       bpExpression = new ExpressionBreakpointChoiceGenerator(BreakPointModes.BP_MODE_CHOICE_DATA);
     } else if (type == StepType.ST_TRANSITION_SCHED) {

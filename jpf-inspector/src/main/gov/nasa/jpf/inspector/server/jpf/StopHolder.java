@@ -46,6 +46,9 @@ public class StopHolder {
   private final JPFInspector inspector;
   private final InspectorCallBacks callbacks;
 
+  /**
+   * Guarded by class instance lock.
+   */
   private boolean terminating = false;
   private boolean terminatingClientNotified = false;
   private boolean stopped = false;
@@ -68,7 +71,6 @@ public class StopHolder {
     assert inspState != null;
 
     boolean terminate; // Local synchronized version of this.terminating variable
-    // TODO (globally): make a map of threads and figure out how multithreading the Inspector works. Make a model, maybe :).
     synchronized (this) {
       terminate = terminating; // Use single value even if we leave synchronized block
 
@@ -129,9 +131,9 @@ public class StopHolder {
   }
 
   /**
-   * Waits until the JPF (SuT) is stopped. (in this class)
-   * 
-   * Note: If JPF is stopped then returns immediately
+   * Blocks until the JPF (SuT) becomes stopped. If JPF is already stopped, then returns immediately.
+   *
+   * This method is thread-safe.
    */
   public synchronized void waitUntilStopped () {
     if (isStopped()) {
@@ -139,7 +141,7 @@ public class StopHolder {
     }
     try {
       wait();
-    } catch (InterruptedException e) {
+    } catch (InterruptedException ignored) {
     }
   }
   /**
@@ -188,6 +190,9 @@ public class StopHolder {
     if (!terminatingClientNotified) {
       callbacks.notifyStateChange(InspectorStates.JPF_TERMINATING, null);
       terminatingClientNotified = true;
+      synchronized (this) {
+        notifyAll(); // Added to unblock commands waiting for JPF to be stopped or terminated.
+      }
     }
   }
 

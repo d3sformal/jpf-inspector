@@ -28,11 +28,23 @@ import gov.nasa.jpf.inspector.exceptions.JPFInspectorException;
 public interface CommandsInterface {
 
   /**
+   * Blocks until JPF is stopped. If JPF is not yet started, it returns immediately. If JPF has started but is currently
+   * paused, it returns immediately.
+   */
+  void waitUntilStopped();
+
+  /**
    * TODO this enum is used EVERYWHERE, and should be documented more throughly, also maybe renamed.
    */
   enum InspectorStates {
     JPF_STARTED,
+    /**
+     * JPF has started and is actively running in its thread.
+     */
     JPF_RUNNING,
+    /**
+     * JPF has started but is currently blocked by a wait() call inside the StopHolder.
+     */
     JPF_STOPPED,
     JPF_TERMINATING
   }

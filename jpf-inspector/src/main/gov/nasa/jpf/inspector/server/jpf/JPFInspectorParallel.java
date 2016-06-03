@@ -48,6 +48,11 @@ public class JPFInspectorParallel extends JPFInspector {
   }
 
   @Override
+  public void waitUntilStopped() {
+    cmdMgr.waitUntilStopped();
+  }
+
+  @Override
   public boolean isPaused() {
     return cmdMgr.isPaused();
   }

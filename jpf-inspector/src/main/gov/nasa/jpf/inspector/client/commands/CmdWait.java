@@ -12,14 +12,12 @@ import java.io.PrintStream;
 public class CmdWait extends ClientCommand {
   @Override
   public void execute(JPFInspectorClient client, JPFInspectorBackEndInterface inspector, PrintStream outStream) {
-    while (!inspector.isPaused()) {
-        // TODO Consider using StopHolder::waitUntilStop.
-        Thread.yield();
-    }
+    inspector.waitUntilStopped();
   }
 
   @Override
   public String getNormalizedCommand() {
     return "wait";
   }
+
 }
