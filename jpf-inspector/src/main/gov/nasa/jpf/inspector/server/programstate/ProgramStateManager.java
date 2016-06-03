@@ -60,7 +60,7 @@ public class ProgramStateManager implements ProgramStateInterface {
 
   @Override
   public Map<Integer, PSEThread> getThreads (Integer threadNum) throws JPFInspectorException {
-    initialStopTest(true, "threads");
+    stopHolder.waitUntilStopped();
 
     Map<Integer, PSEThread> result;
 
@@ -89,7 +89,7 @@ public class ProgramStateManager implements ProgramStateInterface {
 
   @Override
   public Map<Integer, InstructionPosition> getThreadsPC (Integer threadNum) throws JPFInspectorGenericErrorException {
-    initialStopTest(true, "threads");
+    stopHolder.waitUntilStopped();
 
     VM vm = getJVM();
     if (vm == null) {
@@ -121,7 +121,7 @@ public class ProgramStateManager implements ProgramStateInterface {
 
   @Override
   public ProgramStateEntry evaluateStateExpression (String expr) throws JPFInspectorException {
-    initialStopTest(true, "expression cannot be evaluated");
+    stopHolder.waitUntilStopped();
 
     // Create a parse tree
     ExpressionStateRootNode<?> parsedExpr = parser.getExpressionStateInterface(expr);
@@ -134,29 +134,6 @@ public class ProgramStateManager implements ProgramStateInterface {
 
     // Create client representation of the state
     return sni.getResultExpression("", 0);
-  }
-
-  // TODO Merge with Command Manager and move into StopHolder
-  /**
-   * Tests if any JPF is associated. Test if the JPF is running or stopped. If JPF runs then it tries to stop or report error.running
-   * 
-   * @param wait
-   * @param msg
-   * @return
-   */
-  public boolean initialStopTest (boolean wait, String msg) throws JPFInspectorGenericErrorException {
-    if (inspector.getJPF() == null) {
-      throw new JPFInspectorGenericErrorException("No JPF instance to observe");
-    }
-    boolean wasStopped = stopHolder.isStopped();
-    if (!wasStopped) {
-      if (!wait) {
-        throw new JPFInspectorGenericErrorException("SuT is running - " + msg);
-      } else {
-        stopHolder.waitUntilStopped();
-      }
-    }
-    return wasStopped;
   }
 
   private VM getJVM () throws JPFInspectorGenericErrorException {
@@ -195,7 +172,7 @@ public class ProgramStateManager implements ProgramStateInterface {
    * @throws JPFInspectorException
    */
   private void setValueInternal (ExpressionStateAssignment esa) throws JPFInspectorException {
-    initialStopTest(true, "value cannot be set");
+    stopHolder.waitUntilStopped();
 
     assert (esa != null);
 
