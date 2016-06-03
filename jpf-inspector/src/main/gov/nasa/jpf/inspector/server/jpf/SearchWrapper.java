@@ -53,7 +53,7 @@ public class SearchWrapper extends Search implements SearchInspectorExtension {
     // Eclipse -> Source -> Generate delegate methods -> Search ->
     // to generate delegates for new methods ... and adds @Override
     if (Search.class.getMethods().length != 49) {
-      System.err.println("New version of Search class. Update SearchWrapper appropriatelly. (See comments)\n\t New search has "
+      System.err.println("New version of Search class. Update SearchWrapper appropriately. (See comments)\n\t New search has "
           + Search.class.getMethods().length + " methods.");
       assert (false);
     }

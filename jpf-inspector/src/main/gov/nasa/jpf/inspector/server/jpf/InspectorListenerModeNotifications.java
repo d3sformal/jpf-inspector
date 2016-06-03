@@ -18,7 +18,7 @@ import gov.nasa.jpf.search.Search;
  * 
  */
 public class InspectorListenerModeNotifications extends ListenerAdapter {
-  private static final boolean DEBUG = false;
+  private static final boolean DEBUG = true;
 
   private final JPFInspector inspector;
   private final CommandsManager cmdMgr;

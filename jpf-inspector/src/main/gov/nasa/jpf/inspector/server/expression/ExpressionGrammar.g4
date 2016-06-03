@@ -227,7 +227,7 @@ cmdChoiceGeneratorType returns [BreakPointModes bpMode]
     | TOKEN_BOTH       { $bpMode = BreakPointModes.BP_MODE_CHOICE_BOTH; }
     ;
 
-cmdInstructionTypes returns [InstructionTypes instructionType]
+cmdInstructionTypes returns [InstructionType instructionType]
     : TOKEN_ANY               { $instructionType = InstructionType.IT_ANY; }
     | TOKEN_NONE              { $instructionType = InstructionType.IT_NONE; }
     | TOKEN_INVOKE            { $instructionType = InstructionType.IT_INVOKE; }

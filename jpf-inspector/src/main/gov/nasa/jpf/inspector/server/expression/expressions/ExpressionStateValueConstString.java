@@ -33,8 +33,7 @@ import gov.nasa.jpf.vm.Heap;
 import gov.nasa.jpf.vm.VM;
 
 /**
- * @author Alf
- * 
+ * Represents a string literal.
  */
 public class ExpressionStateValueConstString extends ExpressionStateValueConst {
 
@@ -91,7 +90,7 @@ public class ExpressionStateValueConstString extends ExpressionStateValueConst {
           + ". The terminating double quote (\") character is expected as a last character in string.", str, sps.pos + 1);
     }
 
-    if (sps.pos < sps.strArr.length - 1) {
+    if (sps.pos < (sps.strArr.length - 1)) {
       throw new JPFInspectorParsingErrorException("Error while parsing string at " + (sps.pos + 1) + ". Garbage after terminating double quote (\").", str,
           sps.pos + 1);
     }
@@ -102,6 +101,7 @@ public class ExpressionStateValueConstString extends ExpressionStateValueConst {
   private final String value; // Represented value
 
   /**
+   * Constructs a string literal from a string.
    * @param value Represented string
    */
   public ExpressionStateValueConstString (String value) {
@@ -109,29 +109,21 @@ public class ExpressionStateValueConstString extends ExpressionStateValueConst {
     this.value = value;
   }
 
-  /*
-   * @see gov.nasa.jpf.inspector.server.expression.ExpressionStateRootNode#getResultExpression(gov.nasa.jpf.inspector.server.jpf.JPFInspector,
-   * gov.nasa.jpf.inspector.server.expression.InspectorState)
-   */
   @Override
   public StateNodeInterface getResultExpression (JPFInspector inspector, InspectorState state) throws JPFInspectorException {
 
     // Create representation for the string in the JPF state.
     VM vm = state.getJVM();
     Heap heap = vm.getHeap();
-    /*
-     TODO change happened here: previously, there was no "getObjectRef".
-     */
-    int ref = heap.newString(value, null).getObjectRef();
+    int ref = heap.newString(value, state.getJVM().getCurrentThread()).getObjectRef();
     ElementInfo ei = heap.get(ref);
 
     return new StateReadableConstValue(inspector, 1, MigrationUtilities.getResolvedClassInfo("java.lang.String"), ei);
   }
 
-  /* @see gov.nasa.jpf.inspector.server.expression.ExpressionNodeInterface#getNormalizedExpression() */
   @Override
   public String getNormalizedExpression () {
-    StringBuffer sb = new StringBuffer(10 + value.length());
+    StringBuilder sb = new StringBuilder(10 + value.length());
     sb.append('\"');
     for (int i = 0; i < value.length(); i++) {
       sb.append(ExpressionStateValueConstChar.unparseChar(value.charAt(i)));

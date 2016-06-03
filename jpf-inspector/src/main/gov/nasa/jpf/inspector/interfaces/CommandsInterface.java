@@ -22,8 +22,14 @@ package gov.nasa.jpf.inspector.interfaces;
 
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorException;
 
+/**
+ * The server must implement this interface and the client uses it to start or stop execution and to do stepping.
+ */
 public interface CommandsInterface {
 
+  /**
+   * TODO this enum is used EVERYWHERE, and should be documented more throughly, also maybe renamed.
+   */
   enum InspectorStates {
     JPF_STARTED,
     JPF_RUNNING,
@@ -37,12 +43,12 @@ public interface CommandsInterface {
    */
   boolean isPaused();
   /**
-   * Stops an execution (like on breakpoint)
+   * Stops an execution (like on breakpoint).
    */
   void stop() throws JPFInspectorException;
 
   /**
-   * Resumes stopped execution
+   * Resumes stopped execution.
    */
   void start() throws JPFInspectorException;
 
@@ -51,10 +57,14 @@ public interface CommandsInterface {
     ST_TRANSITION_DATA,
     ST_TRANSITION_SCHED,
     ST_INSTRUCTION,
+    /**
+     * Step over.
+     */
     ST_LINE,
     ST_STEP_IN,
     ST_STEP_OUT
   }
+
 
   void forwardStep(StepType type) throws JPFInspectorException;
 

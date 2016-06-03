@@ -7,6 +7,7 @@ Complete GitHub documentation.
 Fix and complete Javadoc documentation.
 Refactor names.
 Look at TODO items.
+ Document publically what Search classes the user can use.
 
 If extra time is available:
 Fix any problems with ANTLR grammar as they happen.
