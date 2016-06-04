@@ -167,25 +167,25 @@ bpExpression returns [String expr]
     ;
 
 cmdSingleSteps returns [CmdSingleStepping value]
-    : TOKEN_STEP_INSTRUCTION                      WS intValue?
+    : TOKEN_STEP_INSTRUCTION                      (WS intValue)?
     { $value = new CmdSingleStepping(true, StepType.ST_INSTRUCTION,   $intValue.ctx != null ? $intValue.value : 1); }
-    | TOKEN_STEP_OVER                             WS intValue?
+    | TOKEN_STEP_OVER                            (WS intValue)?
      { $value = new CmdSingleStepping(true, StepType.ST_LINE,          $intValue.ctx != null ? $intValue.value : 1); }
-    | TOKEN_STEP_IN                               WS intValue?
+    | TOKEN_STEP_IN                               (WS intValue)?
     { $value = new CmdSingleStepping(true, StepType.ST_STEP_IN,       $intValue.ctx != null ? $intValue.value : 1); }
-    | TOKEN_STEP_OUT                              WS intValue?
+    | TOKEN_STEP_OUT                              (WS intValue)?
     { $value = new CmdSingleStepping(true, StepType.ST_STEP_OUT,      $intValue.ctx != null ? $intValue.value : 1); }
-    | TOKEN_STEP_TRANSITION (WS? c=cgType)?       WS intValue?
+    | TOKEN_STEP_TRANSITION (WS? c=cgType)?       (WS intValue)?
     { $value = CmdSingleStepping.createCmdSingleSteppingTransition(true, $c.ctx != null ? $c.cgsType : null, $intValue.ctx != null ? $intValue.value : 1); }
-    | TOKEN_BACK_STEP_INSTRUCTION                 WS intValue?
+    | TOKEN_BACK_STEP_INSTRUCTION                 (WS intValue)?
     { $value = new CmdSingleStepping(false, StepType.ST_INSTRUCTION,  $intValue.ctx != null ? $intValue.value : 1); }
-    | TOKEN_BACK_STEP_OVER                        WS intValue?
+    | TOKEN_BACK_STEP_OVER                       (WS intValue)?
     { $value = new CmdSingleStepping(false, StepType.ST_LINE,         $intValue.ctx != null ? $intValue.value : 1); }
-    | TOKEN_BACK_STEP_IN                          WS intValue?
+    | TOKEN_BACK_STEP_IN                          (WS intValue)?
     { $value = new CmdSingleStepping(false, StepType.ST_STEP_IN,      $intValue.ctx != null ? $intValue.value : 1); }
-    | TOKEN_BACK_STEP_OUT                         WS intValue?
+    | TOKEN_BACK_STEP_OUT                         (WS intValue)?
     { $value = new CmdSingleStepping(false, StepType.ST_STEP_OUT,     $intValue.ctx != null ? $intValue.value : 1); }
-    | TOKEN_BACK_STEP_TRANSITION (WS? c=cgType)?  WS intValue?
+    | TOKEN_BACK_STEP_TRANSITION (WS? c=cgType)?  (WS intValue)?
     { $value = CmdSingleStepping.createCmdSingleSteppingTransition(false, $c.ctx != null ? $c.cgsType : null, $intValue.ctx != null ? $intValue.value : 1); }
     ;
 

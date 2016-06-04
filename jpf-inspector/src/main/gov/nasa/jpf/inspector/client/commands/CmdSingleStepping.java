@@ -96,7 +96,6 @@ public class CmdSingleStepping extends ClientCommand {
         inspector.waitUntilStopped();
       }
     }
-
   }
 
   @Override

@@ -26,6 +26,7 @@ import gov.nasa.jpf.inspector.migration.MigrationUtilities;
 import gov.nasa.jpf.inspector.server.expression.InspectorState;
 import gov.nasa.jpf.vm.VM;
 import gov.nasa.jpf.vm.Instruction;
+import jdk.nashorn.internal.runtime.Debug;
 
 /**
  * Handles resuming and stopping JPF execution.
@@ -35,6 +36,7 @@ import gov.nasa.jpf.vm.Instruction;
  * Implementors: When modifying this class, make sure to think about thread safety and synchronization.
  */
 public class StopHolder {
+  private static final boolean DEBUG = false;
 
   /**
    * State of the stopped JVM.
@@ -92,6 +94,9 @@ public class StopHolder {
         }
       } catch (InterruptedException e) {
         stopped = false;
+        if (DEBUG) {
+          inspector.getDebugPrintStream().println(this.getClass().getSimpleName() + ": INTERRUPTED.");
+        }
       }
     } // End of synchronized block
 
@@ -136,8 +141,8 @@ public class StopHolder {
    * This method is thread-safe.
    */
   public synchronized void waitUntilStopped () {
-    if (isStopped()) {
-      return;
+    if (DEBUG) {
+      inspector.getDebugPrintStream().println(this.getClass().getSimpleName() + ".waitUntilStopped()");
     }
     try {
       while (!isStopped()) {
@@ -145,19 +150,23 @@ public class StopHolder {
       }
     } catch (InterruptedException ignored) {
     }
+    if (DEBUG) {
+      inspector.getDebugPrintStream().println(this.getClass().getSimpleName() + ".waitUntilStopped() - exit");
+    }
   }
   /**
    * The only blocked thread should be the JPF thread in the {@link #stopExecution(InspectorState)} method
    *
    * Threads which calls {@link #waitUntilStopped()}
-   * a) before {@link #stopExecution(InspectorState)}  are notified in {@link #stopExecution(InspectorState)}
+   * a) before {@link #stopExecution(InspectorState)} are notified in {@link #stopExecution(InspectorState)}
    * b) after {@link #stopExecution(InspectorState)} are not blocked and pass through {@link #waitUntilStopped()} method.
    */
   public synchronized void resumeExecution () {
     assert (isStopped()); // Illegal usage
 
 
-    notifyAll(); // TODO used to be: notify() only.
+    this.stopped = false;
+    notifyAll(); // TODO used to be: notify() only.]
   }
 
   static public String getLocationDetails (InspectorState inspState) {
