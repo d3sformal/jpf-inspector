@@ -21,7 +21,6 @@ package gov.nasa.jpf.inspector.client.parser;
 
 /**
  * This class is used to create an ANTLR parser for client commands.
- * TODO: Consider deleting this class.
  */
 public final class CommandParserFactory {
 

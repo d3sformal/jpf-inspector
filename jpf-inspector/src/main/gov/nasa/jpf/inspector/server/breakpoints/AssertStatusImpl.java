@@ -47,25 +47,21 @@ public class AssertStatusImpl extends BreakPointStatusImpl implements AssertStat
     this.normalizedCondition = normalizedCondition;
   }
 
-  /* @see gov.nasa.jpf.inspector.interfaces.AssertCreationInformation#getPosition() */
   @Override
   public String getPosition () {
     return position;
   }
 
-  /* @see gov.nasa.jpf.inspector.interfaces.AssertCreationInformation#getExpression() */
   @Override
   public String getCondition () {
     return condition;
   }
 
-  /* @see gov.nasa.jpf.inspector.interfaces.AssertStatus#getNormalizedFileName() */
   @Override
   public String getNormalizedPosition () {
     return normalizedPosition;
   }
 
-  /* @see gov.nasa.jpf.inspector.interfaces.AssertStatus#getNormalizedExpression() */
   @Override
   public String getNormalizedCondition () {
     return normalizedCondition;

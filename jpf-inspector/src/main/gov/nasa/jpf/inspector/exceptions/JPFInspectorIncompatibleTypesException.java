@@ -33,13 +33,13 @@ public class JPFInspectorIncompatibleTypesException extends JPFInspectorExceptio
 
   // Incompatible types when assigning
   public JPFInspectorIncompatibleTypesException (ClassInfo ci, ClassInfo newValCI) {
-    super("Cannot assign new value. The value of the \"" + StateValue.demangleTypeName(ci.getSignature()) + "\" type cannot be assigned to the value of the \""
-        + StateValue.demangleTypeName(newValCI.getSignature()) + "\" type.");
+    super("Cannot assign new value. A value of type \"" + StateValue.demangleTypeName(newValCI.getSignature()) + "\" cannot be assigned to a variable of type \""
+        + StateValue.demangleTypeName(ci.getSignature()) + "\".");
   }
 
   // Incompatible type when comparing
   public JPFInspectorIncompatibleTypesException (RelationOperator relOper, ClassInfo ci, ClassInfo newValCI) {
-    super("Cannot compare value of given types - incompatible types. \"" + StateValue.demangleTypeName(ci.getSignature()) + "\" " + relOper.getNormalizedText()
+    super("Cannot compare values of given types - incompatible types. \"" + StateValue.demangleTypeName(ci.getSignature()) + "\" " + relOper.getNormalizedText()
         + " \"" + StateValue.demangleTypeName(newValCI.getSignature()) + "\"");
   }
 

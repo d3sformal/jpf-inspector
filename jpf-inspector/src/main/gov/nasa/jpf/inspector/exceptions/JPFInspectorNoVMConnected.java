@@ -29,9 +29,9 @@ public class JPFInspectorNoVMConnected extends JPFInspectorException {
 
   private static final long serialVersionUID = -3191601258737187433L;
 
-  public JPFInspectorNoVMConnected () {
-    super("JVM not as a part of the state (JPF not connected)");
-    // TODO when does this occur?
+  private JPFInspectorNoVMConnected() {
+    super("The JPF virtual machine is not loaded (JPF is not connected).");
+    // This shouldn't actually ever happen - it's more like a failsafe.
   }
 
   /**

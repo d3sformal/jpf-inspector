@@ -100,7 +100,6 @@ public class StateValueStackSlot extends StateValue {
    * @param ssf
    * @param slotIndex
    * @param referenceDepth
-   * TODO This param no longer exists:  _param ci Type of the entry. Have to be super type of the slot type. If null real type of the value is used.
    * @param stateExpression
    * 
    * @throws JPFInspectorInvalidSlotIndexException

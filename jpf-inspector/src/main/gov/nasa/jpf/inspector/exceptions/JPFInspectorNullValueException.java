@@ -31,20 +31,18 @@ public class JPFInspectorNullValueException extends JPFInspectorException {
   private static final long serialVersionUID = -2461536983888931586L;
 
   public JPFInspectorNullValueException (String varName, ClassInfo ci) {
-    super("Dereferencing null value. Trying to dereference the field \"" + varName + "\" of class \"" + StateValue.getSimpleName(ci) + "\" which is null.");
+    super("Dereferencing null value: Trying to access the field \"" + varName + "\" of class \"" + StateValue.getSimpleName(ci) + "\" but the instance is null.");
   }
 
   // Dereferencing null array
   public JPFInspectorNullValueException (int arrayElementIndex, ClassInfo ci) {
-    super("Dereferencing null value. Trying to access an array (at index " + arrayElementIndex + ") while the (\"" + StateValue.getSimpleName(ci)
-        + "\") while the array is null.");
-    // TODO when does this occur?
+    super("Dereferencing null value: Trying to access an array of type " + StateValue.getSimpleName(ci) + " (at index " + arrayElementIndex + ") but the array is null.");
   }
 
   // While assigning value - Dereferencing null during unboxing of the value.
   public JPFInspectorNullValueException (ClassInfo ci) {
-    super("Dereferencing null pointer when unboxin value of the " + StateValue.getSimpleName(ci) + " type.");
-    // TODO when does this cocur?
+    super("Dereferencing null value: The new value is null, but the null value cannot be assigned to a primitive type. Unboxing failed.");
+    // super("Dereferencing null pointer when unboxin value of the " + StateValue.getSimpleName(ci) + " type.");
   }
 
 }

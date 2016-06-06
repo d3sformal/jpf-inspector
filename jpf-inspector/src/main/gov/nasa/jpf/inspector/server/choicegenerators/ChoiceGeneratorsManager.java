@@ -82,7 +82,7 @@ public class ChoiceGeneratorsManager implements ChoiceGeneratorsInterface, Choic
 
   @Override
   public synchronized List<ChoiceGeneratorWrapper> getUsedChoiceGenerators (boolean wait) throws JPFInspectorException {
-    cmdMgr.initialStopTest(wait, "cnn't get choice generators");
+    cmdMgr.initialStopTest(wait, "can't get choice generators");
 
     VM vm = stopHolder.getJVM();
     JPFInspectorNoVMConnected.checkVM(vm);

@@ -32,11 +32,6 @@ public final class CommandLineShell extends Shell {
     boolean batchMode = config.getBoolean("jpf-inspector.batch-mode", false);
     boolean safeMode = config.getBoolean("jpf-inspector.safe-mode", true);
     boolean batchModeEchoInput =  batchMode && config.getBoolean("jpf-inspector.batch-mode.echo-input", false);
-    // TODO make blocking mode work
-    // that will probably require more change to the Inspector client interface,
-    // perhaps via execution context as class rather than enum, or
-    // we could look at batch mode from in there, I guess
-    boolean batchModeBlocking = batchMode && safeMode && config.getBoolean("jpf-inspector.batch-mode.block-unsafe", true);
 
     Scanner scanner = new Scanner(System.in);
     JPFInspectorClientInterface inspector = JPFInspectorFacade.getInspectorClient(config.getTarget(), System.out);
