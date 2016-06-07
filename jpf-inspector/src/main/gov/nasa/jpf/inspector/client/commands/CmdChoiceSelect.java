@@ -8,12 +8,15 @@ import gov.nasa.jpf.inspector.exceptions.JPFInspectorException;
 
 import java.io.PrintStream;
 
+/**
+ * Represents the "cg select" command that forces the current choice generator to use the user-specified choice.
+ */
 public class CmdChoiceSelect extends ClientCommand {
 
-  public static final int USE_CURENT_CHOICE = -2;
+  public static final int USE_CURRENT_CHOICE = -2;
 
   static {
-    assert (USE_CURENT_CHOICE != ChoiceGeneratorsInterface.USE_DEFAULT_CHOICE);
+    assert (USE_CURRENT_CHOICE != ChoiceGeneratorsInterface.USE_DEFAULT_CHOICE);
   }
 
   private final int choice;
@@ -25,7 +28,7 @@ public class CmdChoiceSelect extends ClientCommand {
   @Override
   public void execute(JPFInspectorClient client, JPFInspectorBackEndInterface inspector, PrintStream outStream) {
     try {
-      if (choice == USE_CURENT_CHOICE) {
+      if (choice == USE_CURRENT_CHOICE) {
         inspector.start(); // Continue until next CG
       }
       inspector.selectChoice(choice);
@@ -40,7 +43,7 @@ public class CmdChoiceSelect extends ClientCommand {
   public String getNormalizedCommand () {
     String result = "choice_generators select";
     // Use current choice
-    if (choice == USE_CURENT_CHOICE) {
+    if (choice == USE_CURRENT_CHOICE) {
       return result;
     }
     // Default forward trace

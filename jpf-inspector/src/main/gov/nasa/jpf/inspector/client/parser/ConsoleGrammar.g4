@@ -266,7 +266,7 @@ cmdAssertions returns [ClientCommand value]
     : TOKEN_ASSERTIONS WS enableOrDisable          (WS b=allText)?
        { $value = new CmdAssertions($enableOrDisable.value, $b.ctx != null ? $b.expr : null); }
     | TOKEN_ASSERT     WS a=allTextNoWS  WS b=allText
-       { $value = new CmdAssertionsBreakpoint($a.expr, $b.expr); }
+       { $value = new CmdAssert($a.expr, $b.expr); }
     ;
 
 // TOKEN_PRINT is defined cmdProgramStateText

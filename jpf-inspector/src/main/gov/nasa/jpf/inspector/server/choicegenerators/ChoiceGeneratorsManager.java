@@ -94,6 +94,7 @@ public class ChoiceGeneratorsManager implements ChoiceGeneratorsInterface, Choic
       result.add(createCGWrapper(cg));
     }
 
+    // TODO it appears to me that we are forgotting to resume the VM here
     return result;
   }
 

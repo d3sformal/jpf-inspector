@@ -9,6 +9,10 @@ import gov.nasa.jpf.inspector.interfaces.JPFInspectorBackEndInterface;
 
 import java.io.PrintStream;
 
+/**
+ * Represents the "enable cg" command and its variants. These commands specify whether and how should user interact
+ * with choice generators.
+ */
 public class CmdChoiceGeneratorsTracking extends ClientCommand {
 
   public enum CGTypeSpec {
@@ -42,15 +46,11 @@ public class CmdChoiceGeneratorsTracking extends ClientCommand {
   public String getNormalizedCommand () {
     StringBuilder sb = new StringBuilder();
     sb.append(choiceGeneratorTrackingMode2NormalizedString(enabled));
-    if (cgMode != null) {
-      sb.append(' ');
-      sb.append(choiceGenetatorMode2NormalizedString(cgMode));
-    }
+    sb.append(' ');
+    sb.append(choiceGenetatorMode2NormalizedString(cgMode));
 
-    if (cgsType != null) {
-      sb.append(' ');
-      sb.append(choiceGenetatorSpecType2NormalizedString(cgsType));
-    }
+    sb.append(' ');
+    sb.append(choiceGenetatorSpecType2NormalizedString(cgsType));
     sb.append(" choice_generators");
     return sb.toString();
   }
@@ -74,11 +74,11 @@ public class CmdChoiceGeneratorsTracking extends ClientCommand {
     return sb.toString();
   }
 
-  public static String choiceGeneratorTrackingMode2NormalizedString (boolean mode) {
+  private static String choiceGeneratorTrackingMode2NormalizedString(boolean mode) {
     return mode ? "enable" : "disable";
   }
 
-  public static String choiceGenetatorMode2NormalizedString (CGMode cgMode) {
+  private static String choiceGenetatorMode2NormalizedString(CGMode cgMode) {
     assert (cgMode != null);
 
     switch (cgMode) {
@@ -87,11 +87,11 @@ public class CmdChoiceGeneratorsTracking extends ClientCommand {
     case CG_MODE_PRINT:
       return "print";
     default:
-      throw new RuntimeException("Internal error: Unkwnow " + cgMode.getClass().getName() + " entry: " + cgMode);
+      throw new RuntimeException("Internal error: Unknown " + cgMode.getClass().getName() + " entry: " + cgMode);
     }
   }
 
-  public static String choiceGenetatorSpecType2NormalizedString (CGTypeSpec cgsType) {
+  private static String choiceGenetatorSpecType2NormalizedString(CGTypeSpec cgsType) {
     assert (cgsType != null);
 
     switch (cgsType) {
@@ -102,11 +102,11 @@ public class CmdChoiceGeneratorsTracking extends ClientCommand {
     case CGS_SCHEDULING:
       return "scheduling"; // sched
     default:
-      throw new RuntimeException("Internal error: Unkwnow " + cgsType.getClass().getName() + " entry: " + cgsType);
+      throw new RuntimeException("Internal error: Unknown " + cgsType.getClass().getName() + " entry: " + cgsType);
     }
   }
 
-  public static String choiceGenetatorType2NormalizedString (CGTypes cgType) {
+  private static String choiceGenetatorType2NormalizedString(CGTypes cgType) {
     assert (cgType != null);
 
     switch (cgType) {
@@ -115,7 +115,7 @@ public class CmdChoiceGeneratorsTracking extends ClientCommand {
     case CG_TYPE_SCHEDULING:
       return "scheduling"; // sched
     default:
-      throw new RuntimeException("Internal error: Unkwnow " + cgType.getClass().getName() + " entry: " + cgType);
+      throw new RuntimeException("Internal error: Unknown " + cgType.getClass().getName() + " entry: " + cgType);
     }
   }
 

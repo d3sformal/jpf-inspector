@@ -31,7 +31,7 @@ import java.io.PrintStream;
 import java.util.List;
 
 /**
- * Represents used choice_generators command - prints used choices.
+ * Represents the "used choice_generators" command that prints used choices.
  */
 public class CmdUsedChoiceGenerators extends ClientCommand {
 
@@ -57,7 +57,7 @@ public class CmdUsedChoiceGenerators extends ClientCommand {
     return "used choice_generators";
   }
 
-  static public String cgWrapper2String (ChoiceGeneratorWrapper cgw) {
+  private static String cgWrapper2String(ChoiceGeneratorWrapper cgw) {
     if (cgw == null) {
       return "";
     }
@@ -72,21 +72,8 @@ public class CmdUsedChoiceGenerators extends ClientCommand {
       sb.append("(DATA)  ");
       break;
     default:
-      throw new RuntimeException("Unknown " + CGTypes.class.getName() + " entry " + cgw.getCgType());
+      throw new RuntimeException("Unknown " + CGTypes.class.getName() + " entry " + cgw.getCgType() + ".");
     }
-
-    // CG Id
-    // String id = cgw.getId();
-    // if (cgw.getId() != null) {
-    // sb.append(" - ");
-    // // sb.append("id=");
-    // sb.append(id);
-    // }
-    //
-    // // Cg threadID
-    // sb.append(" - ");
-    // // sb.append("tid=");
-    // sb.append(cgw.getThreadNum());
 
     sb.append(" - ");
     sb.append(cgw.getCgString());

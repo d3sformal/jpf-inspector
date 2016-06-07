@@ -34,14 +34,14 @@ import java.io.PrintStream;
 /**
  * Represents the "assert" command that creates a new assetion.
  */
-public class CmdAssertionsBreakpoint extends ClientCommand {
+public class CmdAssert extends ClientCommand {
 
   private final String position;
   private final String assertExpression;
 
   private AssertStatus createdAssert;
 
-  public CmdAssertionsBreakpoint (String position, String assertExpression) {
+  public CmdAssert(String position, String assertExpression) {
     this.position = position;
     this.assertExpression = assertExpression;
   }
