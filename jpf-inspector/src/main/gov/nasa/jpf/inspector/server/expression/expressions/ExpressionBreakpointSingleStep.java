@@ -92,7 +92,7 @@ public class ExpressionBreakpointSingleStep extends ExpressionBooleanLeaf {
           "cannot create breakpoint, JPF has to be connected and stopped - program state is required to create given breakpoint.");
     }
 
-    VM vm = inspState.getJVM();
+    VM vm = inspState.getVM();
     assert (vm != null);
 
     LocationTypes lt;
@@ -162,7 +162,7 @@ public class ExpressionBreakpointSingleStep extends ExpressionBooleanLeaf {
       return false;
     }
 
-    VM vm = state.getJVM();
+    VM vm = state.getVM();
     assert vm != null;
 
     // Check if we are in the same thread

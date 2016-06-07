@@ -59,7 +59,7 @@ public class ExpressionBreakpointMethodInvoke extends ExpressionBooleanLeaf {
       return false;
     }
 
-    VM vm = state.getJVM();
+    VM vm = state.getVM();
     Instruction inst = MigrationUtilities.getLastInstruction(vm);
 
     if (!(inst instanceof InvokeInstruction)) {

@@ -57,7 +57,7 @@ public class ExpressionBreakpointInstructionType extends ExpressionBooleanLeaf {
     if (state.getListenerMethod() != ListenerMethod.LM_EXECUTE_INSTRUCTION) {
       return false;
     }
-    VM vm = state.getJVM();
+    VM vm = state.getVM();
     Instruction inst = MigrationUtilities.getLastInstruction(vm);
 
     if (inst == null) {
@@ -93,8 +93,8 @@ public class ExpressionBreakpointInstructionType extends ExpressionBooleanLeaf {
   @Override
   public String getDetails (InspectorState state) {
     if (state != null && evaluateExpression(state)) {
-      Instruction instr = MigrationUtilities.getLastInstruction(state.getJVM());
-      return "SuT (Thread=" + state.getJVM().getCurrentThread().getId() + ") executes the " + instr.getMethodInfo().getSourceFileName() + ":"
+      Instruction instr = MigrationUtilities.getLastInstruction(state.getVM());
+      return "SuT (Thread=" + state.getVM().getCurrentThread().getId() + ") executes the " + instr.getMethodInfo().getSourceFileName() + ":"
           + instr.getLineNumber() + " - " + instr.toString();
     }
     return "";

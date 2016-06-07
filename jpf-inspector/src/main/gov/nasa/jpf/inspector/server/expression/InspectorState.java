@@ -86,7 +86,7 @@ public interface InspectorState {
   // / For all threads gets previously executed instruction
   Map<Integer, Instruction> getPreviousSteps();
 
-  VM getJVM();
+  VM getVM();
 
   Instruction getLastExecutedInstruction(int thread);
 

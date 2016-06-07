@@ -56,7 +56,7 @@ public class ExpressionBreakpointThreadScheduled extends ExpressionBooleanLeaf {
       return true;
     }
 
-    VM vm = state.getJVM();
+    VM vm = state.getVM();
     if (bpMode == BreakPointModes.BP_MODE_THREAD_SCHEDULED_BOTH) {
       Transition tr = vm.getLastTransition();
       ThreadInfo prevTi = (tr != null ? tr.getThreadInfo() : null);

@@ -49,7 +49,7 @@ public class ExpressionStateStaticAreaEntryList extends ExpressionStateUnaryOper
   @Override
   public StateHeapEntryList getResultExpression (JPFInspector inspector, InspectorState state) throws JPFInspectorException {
 
-    VM vm = state.getJVM();
+    VM vm = state.getVM();
     JPFInspectorNoVMConnected.checkVM(vm);
 
     assert (heapItemsFilter != null);

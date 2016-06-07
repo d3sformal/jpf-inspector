@@ -25,51 +25,13 @@ import gov.nasa.jpf.inspector.interfaces.InstructionType;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorGenericErrorException;
 import gov.nasa.jpf.inspector.server.breakpoints.BreakPointModes;
 import gov.nasa.jpf.inspector.server.breakpoints.InstructionPositionImpl;
-import gov.nasa.jpf.inspector.server.expression.expressions.ExpressionBreakpointAssert;
-import gov.nasa.jpf.inspector.server.expression.expressions.ExpressionBreakpointChoiceGenerator;
-import gov.nasa.jpf.inspector.server.expression.expressions.ExpressionBreakpointCompare;
-import gov.nasa.jpf.inspector.server.expression.expressions.ExpressionBreakpointFieldAccess;
-import gov.nasa.jpf.inspector.server.expression.expressions.ExpressionBreakpointGarbageCollection;
-import gov.nasa.jpf.inspector.server.expression.expressions.ExpressionBreakpointInstruction;
-import gov.nasa.jpf.inspector.server.expression.expressions.ExpressionBreakpointInstructionType;
-import gov.nasa.jpf.inspector.server.expression.expressions.ExpressionBreakpointMethodInvoke;
-import gov.nasa.jpf.inspector.server.expression.expressions.ExpressionBreakpointOperatorAnd;
-import gov.nasa.jpf.inspector.server.expression.expressions.ExpressionBreakpointOperatorOr;
-import gov.nasa.jpf.inspector.server.expression.expressions.ExpressionBreakpointPosition;
-import gov.nasa.jpf.inspector.server.expression.expressions.ExpressionBreakpointPropertyViolated;
-import gov.nasa.jpf.inspector.server.expression.expressions.ExpressionBreakpointSingleStep;
-import gov.nasa.jpf.inspector.server.expression.expressions.ExpressionBreakpointSpecificClass;
+import gov.nasa.jpf.inspector.server.expression.expressions.*;
 import gov.nasa.jpf.inspector.server.expression.expressions.ExpressionBreakpointSpecificClass.Mode;
-import gov.nasa.jpf.inspector.server.expression.expressions.ExpressionBreakpointStateAdvanced;
-import gov.nasa.jpf.inspector.server.expression.expressions.ExpressionBreakpointStepOut;
-import gov.nasa.jpf.inspector.server.expression.expressions.ExpressionBreakpointThreadScheduled;
-import gov.nasa.jpf.inspector.server.expression.expressions.ExpressionStateAssignment;
-import gov.nasa.jpf.inspector.server.expression.expressions.ExpressionStateHeap;
-import gov.nasa.jpf.inspector.server.expression.expressions.ExpressionStateHeapEntryList;
-import gov.nasa.jpf.inspector.server.expression.expressions.ExpressionStateStackFrame;
-import gov.nasa.jpf.inspector.server.expression.expressions.ExpressionStateStackFrameSlot;
-import gov.nasa.jpf.inspector.server.expression.expressions.ExpressionStateStaticAreaEntryList;
-import gov.nasa.jpf.inspector.server.expression.expressions.ExpressionStateThread;
-import gov.nasa.jpf.inspector.server.expression.expressions.ExpressionStateValue;
-import gov.nasa.jpf.inspector.server.expression.expressions.ExpressionStateValueArrayIndex;
-import gov.nasa.jpf.inspector.server.expression.expressions.ExpressionStateValueConstBoolean;
-import gov.nasa.jpf.inspector.server.expression.expressions.ExpressionStateValueConstChar;
-import gov.nasa.jpf.inspector.server.expression.expressions.ExpressionStateValueConstDouble;
-import gov.nasa.jpf.inspector.server.expression.expressions.ExpressionStateValueConstFloat;
-import gov.nasa.jpf.inspector.server.expression.expressions.ExpressionStateValueConstInteger;
-import gov.nasa.jpf.inspector.server.expression.expressions.ExpressionStateValueConstLong;
-import gov.nasa.jpf.inspector.server.expression.expressions.ExpressionStateValueConstNull;
-import gov.nasa.jpf.inspector.server.expression.expressions.ExpressionStateValueConstString;
-import gov.nasa.jpf.inspector.server.expression.expressions.ExpressionStateValueFieldIndex;
-import gov.nasa.jpf.inspector.server.expression.expressions.ExpressionStateValueName;
-import gov.nasa.jpf.inspector.server.expression.expressions.ExpressionStateValueOuterClass;
-import gov.nasa.jpf.inspector.server.expression.expressions.ExpressionStateValueStatic;
-import gov.nasa.jpf.inspector.server.expression.expressions.ExpressionStateValueSuper;
-import gov.nasa.jpf.inspector.server.expression.expressions.ExpressionStateValueThis;
 import gov.nasa.jpf.inspector.server.jpf.JPFInspector;
 import gov.nasa.jpf.inspector.server.programstate.relop.RelationOperator;
 import gov.nasa.jpf.inspector.server.programstate.relop.RelationOperatorFactory;
 import gov.nasa.jpf.inspector.utils.expressions.ClassName;
+import gov.nasa.jpf.inspector.utils.expressions.Expressions;
 import gov.nasa.jpf.inspector.utils.expressions.FieldName;
 import gov.nasa.jpf.inspector.utils.expressions.MethodName;
 import gov.nasa.jpf.inspector.utils.parser.GenericErrorRuntimeException;
@@ -85,6 +47,14 @@ public class ExpressionFactory {
     this.relopFactory = new RelationOperatorFactory();
   }
 
+  public ExpressionBreakpointCustomHitCondition getCustomHitCondition(String name, Expressions expressions) {
+    return new ExpressionBreakpointCustomHitCondition(inspector, name, expressions);
+            /*
+            TODO throw error if custom class cannot be instantiated
+    throw new GenericErrorRuntimeException(
+            new JPFInspectorGenericErrorException("Custom hit conditions are not yet implemented."));
+            */
+  }
   public ExpressionBreakpointPosition getExpBreakpointPosition (String fileName, Integer lineNum) {
     if (lineNum == null) {
       return null;

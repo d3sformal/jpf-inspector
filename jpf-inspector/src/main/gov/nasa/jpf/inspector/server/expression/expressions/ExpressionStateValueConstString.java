@@ -113,9 +113,9 @@ public class ExpressionStateValueConstString extends ExpressionStateValueConst {
   public StateNodeInterface getResultExpression (JPFInspector inspector, InspectorState state) throws JPFInspectorException {
 
     // Create representation for the string in the JPF state.
-    VM vm = state.getJVM();
+    VM vm = state.getVM();
     Heap heap = vm.getHeap();
-    int ref = heap.newString(value, state.getJVM().getCurrentThread()).getObjectRef();
+    int ref = heap.newString(value, state.getVM().getCurrentThread()).getObjectRef();
     ElementInfo ei = heap.get(ref);
 
     return new StateReadableConstValue(inspector, 1, MigrationUtilities.getResolvedClassInfo("java.lang.String"), ei);

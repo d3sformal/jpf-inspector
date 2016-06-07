@@ -56,7 +56,7 @@ public class ExpressionParser implements ExpressionParserInterface {
 
     final ExpressionGrammarParser parser = getParser(expr);
     try {
-      return parser.cmdStateExpression(expFactory).expr; // TODO change here
+      return parser.cmdStateExpression(expFactory).expr;
 
     } catch (RecognitionRuntimeException e) {
       throw new JPFInspectorParsingErrorException("Invalid input - " + e.getMessage(), expr, e.getRecognitionException());
@@ -125,7 +125,7 @@ public class ExpressionParser implements ExpressionParserInterface {
 
     final ExpressionGrammarParser parser = getParser(expr);
     try {
-      return parser.cmdStateAssignment(expFactory).expr; // TODO modification here
+      return parser.cmdStateAssignment(expFactory).expr;
 
     } catch (RecognitionRuntimeException e) {
       throw new JPFInspectorParsingErrorException("Invalid input - " + e.getMessage(), expr, e.getRecognitionException());

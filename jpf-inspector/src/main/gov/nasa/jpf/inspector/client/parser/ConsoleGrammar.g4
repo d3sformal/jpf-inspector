@@ -232,7 +232,7 @@ enableOrDisable returns [boolean value]
     ;
 
 cgChoice returns [int choice]
-    :                 { $choice = CmdChoiceSelect.USE_CURENT_CHOICE; }
+    :                 { $choice = CmdChoiceSelect.USE_CURRENT_CHOICE; }
     | WS? intValue    { $choice = $intValue.value; }
     | WS? '*'         { $choice = ChoiceGeneratorsInterface.USE_DEFAULT_CHOICE; }
     ;

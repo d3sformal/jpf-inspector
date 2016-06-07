@@ -20,7 +20,6 @@
 package gov.nasa.jpf.inspector.server.expression.expressions;
 
 import gov.nasa.jpf.inspector.interfaces.InstructionPosition;
-import gov.nasa.jpf.inspector.migration.MigrationUtilities;
 import gov.nasa.jpf.inspector.server.breakpoints.BreakPointModes;
 import gov.nasa.jpf.inspector.server.expression.ExpressionBooleanLeaf;
 import gov.nasa.jpf.inspector.server.expression.InspectorState;
@@ -70,7 +69,7 @@ public class ExpressionBreakpointPosition extends ExpressionBooleanLeaf {
       return false;
     }
 
-    VM vm = state.getJVM();
+    VM vm = state.getVM();
     assert vm != null;
 
     int thisThread = vm.getCurrentThread().getId();
@@ -119,7 +118,7 @@ public class ExpressionBreakpointPosition extends ExpressionBooleanLeaf {
   @Override
   public String getDetails (InspectorState state) {
     if (state != null && evaluateExpression(state)) {
-      return "SuT will now execute \"" + state.getJVM().getInstruction().toString() + "\" at position " + instPos.toString() + ".";
+      return "SuT will now execute \"" + state.getVM().getInstruction().toString() + "\" at position " + instPos.toString() + ".";
     }
     return "";
   }

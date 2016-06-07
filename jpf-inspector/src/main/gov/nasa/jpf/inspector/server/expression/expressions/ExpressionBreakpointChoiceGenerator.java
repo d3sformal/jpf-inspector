@@ -48,7 +48,7 @@ public class ExpressionBreakpointChoiceGenerator extends ExpressionBooleanLeaf {
       return false;
     }
 
-    ChoiceGenerator<?> cg = state.getJVM().getChoiceGenerator();
+    ChoiceGenerator<?> cg = state.getVM().getChoiceGenerator();
     Class<?> choiceType = cg.getChoiceType();
 
     if (bpMode == BreakPointModes.BP_MODE_CHOICE_BOTH) {

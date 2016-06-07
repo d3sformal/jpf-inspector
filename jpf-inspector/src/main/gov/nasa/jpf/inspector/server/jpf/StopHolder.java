@@ -120,7 +120,7 @@ public class StopHolder {
    * Gets current state of the SuT or NULL if execution not stopped.
    */
   public VM getJVM () {
-    return inspState.getJVM();
+    return inspState.getVM();
   }
 
   /**
@@ -171,7 +171,7 @@ public class StopHolder {
   private static String getLocationDetails(InspectorState inspState) {
     StringBuilder sb = new StringBuilder(100);
 
-    VM vm = inspState.getJVM();
+    VM vm = inspState.getVM();
     assert vm != null;
     Instruction instr = MigrationUtilities.getLastInstruction(vm);
     if (instr == null) {

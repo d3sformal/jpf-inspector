@@ -127,7 +127,7 @@ public class StateValueArrayElement extends StateValue {
     default: // reference Array of Object
       int ref = ei.getReferenceElement(index);
       InspectorState inspState = getInspector().getStopHolder().getInspectorState();
-      Heap heap = inspState.getJVM().getHeap();
+      Heap heap = inspState.getVM().getHeap();
       return heap.get(ref);
     }
   }

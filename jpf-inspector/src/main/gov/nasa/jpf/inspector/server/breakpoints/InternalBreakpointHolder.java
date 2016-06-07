@@ -186,7 +186,7 @@ class InternalBreakpointHolder implements Comparable<InternalBreakpointHolder> {
     }
 
 
-    MethodInfo topFrameMethodInfo = state.getJVM().getCurrentThread().getTopFrameMethodInfo();
+    MethodInfo topFrameMethodInfo = state.getVM().getCurrentThread().getTopFrameMethodInfo();
     if (bpShouldExecuteAction && topFrameMethodInfo != null) {
       if (log.isLoggable(Level.FINE)) {
         log.fine("Now checking within class: " + topFrameMethodInfo.getClassName());

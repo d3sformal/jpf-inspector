@@ -103,7 +103,7 @@ public class ExpressionBreakpointInstruction extends ExpressionBooleanLeaf {
   @Override
   public boolean evaluateExpression (InspectorState state) {
     if (state.getListenerMethod() == ListenerMethod.LM_INSTRUCTION_EXECUTED) {
-      VM vm = state.getJVM();
+      VM vm = state.getVM();
       assert vm != null;
       ThreadInfo ti = vm.getCurrentThread();
       if (ti.getId() == threadNum) {
@@ -143,7 +143,7 @@ public class ExpressionBreakpointInstruction extends ExpressionBooleanLeaf {
       throw new JPFInspectorGenericErrorException("Cannot find specified instruction - JPF is not connected to Inspector or execution is not stopped");
     }
 
-    VM vm = inspState.getJVM();
+    VM vm = inspState.getVM();
     assert (vm != null);
 
     assert (methodSpec != null);

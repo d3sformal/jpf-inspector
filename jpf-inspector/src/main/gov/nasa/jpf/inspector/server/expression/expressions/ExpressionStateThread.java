@@ -51,7 +51,7 @@ public class ExpressionStateThread extends ExpressionStateUnaryOperator<Expressi
   public StateNodeInterface getResultExpression (JPFInspector inspector, InspectorState state) throws JPFInspectorException {
     assert state != null;
 
-    VM vm = state.getJVM();
+    VM vm = state.getVM();
     JPFInspectorNoVMConnected.checkVM(vm);
 
     StateThreadInfo sti = new StateThreadInfo(inspector, vm, threadNum);

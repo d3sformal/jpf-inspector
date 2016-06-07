@@ -55,7 +55,7 @@ public class ExpressionBreakpointSpecificClass extends ExpressionBooleanLeaf {
         || (mode == Mode.SC_MODE_EXCEPTION_THROWN && state.getListenerMethod() != ListenerMethod.LM_EXCEPTION_THROWN)) {
       return false;
     }
-    VM vm = state.getJVM();
+    VM vm = state.getVM();
     assert vm != null;
 
     ElementInfo ei = MigrationUtilities.getLastElementInfo(vm);

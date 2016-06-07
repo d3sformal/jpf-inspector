@@ -56,7 +56,7 @@ public class InspectorStateImpl implements InspectorState {
   private InspectorState.ListenerMethod listenerMethod = ListenerMethod.LM_NOT_IN_LIST;
 
   @Override
-  public VM getJVM () {
+  public VM getVM() {
     return vm;
   }
 

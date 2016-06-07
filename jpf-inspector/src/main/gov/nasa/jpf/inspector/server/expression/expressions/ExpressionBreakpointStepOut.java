@@ -81,7 +81,7 @@ public class ExpressionBreakpointStepOut extends ExpressionBooleanLeaf {
           "cannot create given breakpoint, JPF has to be connected and stopped - program state is required to create given breakpoint.");
     }
 
-    VM vm = inspState.getJVM();
+    VM vm = inspState.getVM();
     assert (vm != null);
 
     // Find thread with given ThreadID
@@ -118,7 +118,7 @@ public class ExpressionBreakpointStepOut extends ExpressionBooleanLeaf {
     assert state != null;
 
     if (state.getListenerMethod() == ListenerMethod.LM_INSTRUCTION_EXECUTED) {
-      VM vm = state.getJVM();
+      VM vm = state.getVM();
       assert vm != null;
 
       ThreadInfo ti = MigrationUtilities.getLastThreadInfo(vm);

@@ -205,7 +205,7 @@ public class BackwardBreakpointCreator {
   // }
 
   static private Path getPath (InspectorState insp) {
-    VM vm = insp.getJVM();
+    VM vm = insp.getVM();
     vm.updatePath();
     return vm.getPath();
   }

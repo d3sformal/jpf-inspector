@@ -109,7 +109,7 @@ public abstract class StateValue extends StateNode implements StateReadableValue
     }
 
     InspectorState inspState = getInspector().getStopHolder().getInspectorState();
-    Heap heap = inspState.getJVM().getHeap();
+    Heap heap = inspState.getVM().getHeap();
     return heap.get(ref);
   }
 

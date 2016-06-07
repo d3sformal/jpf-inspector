@@ -55,7 +55,7 @@ public class ExpressionStateHeap extends ExpressionStateUnaryOperator<Expression
   public StateNodeInterface getResultExpression (JPFInspector inspector, InspectorState state) throws JPFInspectorException {
     assert state != null;
 
-    VM vm = state.getJVM();
+    VM vm = state.getVM();
     JPFInspectorNoVMConnected.checkVM(vm);
 
     ExpressionStateValue child = getChild();

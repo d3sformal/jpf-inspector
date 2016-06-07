@@ -49,9 +49,9 @@ public class ExpressionBreakpointStateAdvanced extends ExpressionBooleanLeaf {
     if (state == null) {
       return "";
     }
-    Instruction instr = state.getJVM().getCurrentTransition().getLastStep().getInstruction();
-    return "New transition started (vm.transition=" + state.getJVM().getCurrentTransition() + ", vm.stateID=" + state.getSearch().getStateId()
-        + ", vm.currentThread= " + state.getJVM().getCurrentThread().getId() + " lastInstr=" + instr + ", position=" + instr.getFilePos() + ")";
+    Instruction instr = state.getVM().getCurrentTransition().getLastStep().getInstruction();
+    return "New transition started (vm.transition=" + state.getVM().getCurrentTransition() + ", vm.stateID=" + state.getSearch().getStateId()
+        + ", vm.currentThread= " + state.getVM().getCurrentThread().getId() + " lastInstr=" + instr + ", position=" + instr.getFilePos() + ")";
   }
 
   @Override
