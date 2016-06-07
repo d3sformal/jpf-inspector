@@ -44,6 +44,10 @@ import gov.nasa.jpf.search.Search;
 
 import java.util.Iterator;
 
+/**
+ * Represents the "step_in" and "step_over" hit conditions. These are supposed to be internal and are undocumented.
+ * They are, however, used internally by the single-stepping command.
+ */
 public class ExpressionBreakpointSingleStep extends ExpressionBooleanLeaf {
   private static final boolean DEBUG = false;
   private final JPFInspector inspector;
@@ -74,6 +78,10 @@ public class ExpressionBreakpointSingleStep extends ExpressionBooleanLeaf {
     LT_POSITION_LEAVED_STEP_IN,
   }
 
+  /**
+   * This is apparently called only from the grammar? That's a pretty big piece of code for an undocumented command.
+   * Maybe I'm missing something...
+   */
   public static ExpressionBreakpointSingleStep createBreakpointSingleStep (JPFInspector inspector, StepType stepType) throws JPFInspectorGenericErrorException {
     assert inspector != null;
     StopHolder sh = inspector.getStopHolder();
@@ -87,14 +95,14 @@ public class ExpressionBreakpointSingleStep extends ExpressionBooleanLeaf {
     VM vm = inspState.getJVM();
     assert (vm != null);
 
-    LocationTypes lt = null;
+    LocationTypes lt;
     assert (stepType != null);
     if (stepType == StepType.ST_STEP_IN) {
       lt = LocationTypes.LT_POSITION_LEAVED_STEP_IN;
     } else if (stepType == StepType.ST_LINE) {
       lt = LocationTypes.LT_POSITION_LEAVED_STEP_OVER;
     } else {
-      throw new JPFInspectorGenericErrorException("Step type (" + stepType + ") is not supporte by " + ExpressionBreakpointSingleStep.class.getSimpleName()
+      throw new JPFInspectorGenericErrorException("Step type (" + stepType + ") is not supported by " + ExpressionBreakpointSingleStep.class.getSimpleName()
           + " breakpoint.");
     }
 
@@ -103,11 +111,10 @@ public class ExpressionBreakpointSingleStep extends ExpressionBooleanLeaf {
 
   /**
    * 
-   * @param vm Virtual machine where to obtain current position. Cann't be null.
+   * @param vm Virtual machine where to obtain current position. Can't be null.
    * @param posHandling The way how Instruction position is used.
    */
   public ExpressionBreakpointSingleStep (JPFInspector inspector, VM vm, LocationTypes posHandling) {
-    // InstructionPosition pos, int threadNum, Transition reqTransition,
     assert vm != null;
     assert inspector != null;
 
@@ -116,6 +123,8 @@ public class ExpressionBreakpointSingleStep extends ExpressionBooleanLeaf {
 
     this.instPos = InstructionPositionImpl.getInstructionPosition(MigrationUtilities.getLastInstruction(vm));
     this.threadNum = vm.getCurrentThread().getId();
+
+    // TODO this is now probably wrong since we moved from "after" to "before" execution
     if (MigrationUtilities.getLastInstruction(vm) instanceof InvokeInstruction) {
       // Stack frame for called method is already created - of the of top2 stack frame, which represents the method with invoke instruction
       this.topStackFrame = vm.getCurrentThread().getTopFrame().getPrevious();
@@ -149,7 +158,7 @@ public class ExpressionBreakpointSingleStep extends ExpressionBooleanLeaf {
     if (DEBUG) {
       inspector.getDebugPrintStream().println(this.getClass().getSimpleName() + ".evaluateExpression(...)");
     }
-    if (state.getListenerMethod() != ListenerMethod.LM_INSTRUCTION_EXECUTED) {
+    if (state.getListenerMethod() != ListenerMethod.LM_EXECUTE_INSTRUCTION) {
       return false;
     }
 
@@ -179,7 +188,10 @@ public class ExpressionBreakpointSingleStep extends ExpressionBooleanLeaf {
           "\tlasInstr=" + ExpressionBreakpointPosition.instructionPosition(lastInstr) + "\n\tlastInstrHitPos=" + lastInstrHitPos);
     }
 
-    Instruction prevInstr = ExpressionBreakpointPosition.getInstructionForThread(vm.getSystemState().getTrail(), path, lastThread, 1);
+    Instruction prevInstr = state.getLastExecutedInstruction(lastThread);
+    // Instruction prevInstr = ExpressionBreakpointPosition.getInstructionForThread(vm.getSystemState().getTrail(), path, lastThread, 1);
+
+    // TODO this may now be false:
     if (prevInstr instanceof ReturnInstruction) {
       // Implies that previous instruction in method is invoke (no jump, part of single basic block)
       prevInstr = lastInstr.getPrev();
@@ -232,7 +244,7 @@ public class ExpressionBreakpointSingleStep extends ExpressionBooleanLeaf {
   @Override
   public String getDetails (InspectorState state) {
     if (state != null && evaluateExpression(state)) {
-      return "SuT leaves the position " + instPos.toString();
+      return "SuT leaves the position " + instPos.toString() + ".";
     }
     return "";
   }
