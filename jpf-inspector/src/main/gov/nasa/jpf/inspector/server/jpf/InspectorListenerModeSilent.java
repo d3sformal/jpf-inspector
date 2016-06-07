@@ -185,7 +185,7 @@ public class InspectorListenerModeSilent extends ListenerAdapter {
       reportError();
       return;
     }
-    inspState.instructionExecuted(vm);
+    inspState.instructionExecuted(currentThread.getId(), executedInstruction, vm);
 
     if (bpMgr.checkBreakpoint(inspState, bpID)) {
       // Notify Command manager that backward step is done

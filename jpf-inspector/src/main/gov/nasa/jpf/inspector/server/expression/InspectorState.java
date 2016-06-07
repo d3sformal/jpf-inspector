@@ -31,14 +31,13 @@ import java.util.Map;
 /**
  * Represents state of the SuT and the inspector. Holds all necessary
  * information needed to evaluate expressions {@link ExpressionNodeInterface}.
- * 
  */
 public interface InspectorState {
 
   /**
    * Represents called method on the listener interface
    */
-  public enum ListenerMethod {
+  enum ListenerMethod {
     LM_INSTRUCTION_EXECUTED,
     LM_STATE_ADVANCED,
     LM_STATE_BACKTRACKED,
@@ -51,6 +50,7 @@ public interface InspectorState {
     LM_EXCEPTION_THROWN,
     LM_CHOICE_GENERATOR_ADVANCED,
     LM_THREAD_SCHEDULED,
+    LM_EXECUTE_INSTRUCTION,
     LM_NOT_IN_LIST;
 
     /**
@@ -84,13 +84,15 @@ public interface InspectorState {
 
   // map read only, should not be modified
   // / For all threads gets previously executed instruction
-  public Map<Integer, Instruction> getPreviousSteps ();
+  Map<Integer, Instruction> getPreviousSteps();
 
-  public VM getJVM ();
+  VM getJVM();
+
+  Instruction getLastExecutedInstruction(int thread);
 
   // Used search listener
-  public Search getSearch ();
+  Search getSearch();
 
-  public ListenerMethod getListenerMethod ();
+  ListenerMethod getListenerMethod();
 
 }

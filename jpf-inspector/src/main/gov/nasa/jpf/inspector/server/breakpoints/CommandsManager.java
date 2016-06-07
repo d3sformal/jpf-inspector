@@ -169,9 +169,9 @@ public class CommandsManager implements CommandsInterface {
   if (bbc.getTransitionsToBacktrack() >= allCGs.length) allCGs[0].reset();
     
   // Stop current transition (to prevent invoke more instruction than necessary) - only if this makes sense - instruction/throw/object_created
-   //search.getVM().breakTransition(); // We cannot add new transition
-   //search.requestBacktrack();
-   //search.getVM().ignoreState();
+  //search.getVM().breakTransition(); // We cannot add new transition
+  //search.requestBacktrack();
+  search.getVM().ignoreState();
 
   // Resume execution -> now silent backtrack and "breakpoint hit in single forward step should occur"
   stopHolder.resumeExecution();

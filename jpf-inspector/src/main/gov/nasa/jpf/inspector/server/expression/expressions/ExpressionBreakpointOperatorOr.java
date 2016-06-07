@@ -5,6 +5,9 @@ import gov.nasa.jpf.inspector.server.expression.ExpressionBoolean;
 import gov.nasa.jpf.inspector.server.expression.ExpressionBooleanBinaryOperator;
 import gov.nasa.jpf.inspector.server.expression.InspectorState;
 
+/**
+ * Represents the "or" hit condition.
+ */
 public class ExpressionBreakpointOperatorOr extends ExpressionBooleanBinaryOperator {
 
   public ExpressionBreakpointOperatorOr (ExpressionBoolean left, ExpressionBoolean right) {
@@ -55,7 +58,7 @@ public class ExpressionBreakpointOperatorOr extends ExpressionBooleanBinaryOpera
       return "";
     } catch (JPFInspectorException e) {
       return "";
-    } // if BP Holds
+    }
   }
 
   @Override

@@ -42,18 +42,11 @@ import gov.nasa.jpf.vm.bytecode.ReturnInstruction;
 // TODO the NEW instruction can stand in place of the call instruction (calls the constructor!!)
 // problem is connected with the DirectCalls (cinits) and reexecution of the same instruction !!
 public class ExpressionBreakpointPosition extends ExpressionBooleanLeaf {
-  private static final boolean DEBUG = false;
+  private static final boolean DEBUG = true;
   private final JPFInspector inspector;
 
   final private InstructionPosition instPos;
 
-  /**
-   * 
-   * @param pos
-   *        Position where stop execution. Cann't be null.
-   * TODO oldparam _param posHandling
-   *        The way how Instruction position is used.
-   */
   public ExpressionBreakpointPosition (JPFInspector inspector, InstructionPosition pos) {
     assert pos != null;
     assert inspector != null;
@@ -67,47 +60,55 @@ public class ExpressionBreakpointPosition extends ExpressionBooleanLeaf {
     this.instPos = pos;
   }
 
-  public final InstructionPosition getInstructionPos () {
-    return instPos;
-  }
-
   @Override
   public boolean evaluateExpression (InspectorState state) {
     assert state != null;
     if (DEBUG) {
       inspector.getDebugPrintStream().println(this.getClass().getSimpleName() + ".evaluateExpression(...)");
     }
-    if (state.getListenerMethod() != ListenerMethod.LM_INSTRUCTION_EXECUTED) {
+    if (state.getListenerMethod() != ListenerMethod.LM_EXECUTE_INSTRUCTION) {
       return false;
     }
 
     VM vm = state.getJVM();
     assert vm != null;
 
-    int lastThread = MigrationUtilities.getThreadNumber(vm);
+    int thisThread = vm.getCurrentThread().getId();
 
+    /*
+    // TODO this is NOT recommended by the Javadoc or jpf-core. What to do about it?
     final Path path = vm.getPath();
-    final Instruction lastInstr = MigrationUtilities.getLastInstruction(vm);
+    */
+    final Instruction thisInstruction = vm.getInstruction();
 
-    final boolean lastInstrHitPos = instPos.hitPosition(lastInstr);
-    if (DEBUG) {
-      inspector.getDebugPrintStream().println("\tlasInstr=" + instructionPosition(lastInstr) + "\n\tlastInstrHitPos=" + lastInstrHitPos);
+
+    // This represents whether we are the same file and line, but we still need to ensure that we are the FIRST
+    // instruction on this line. However, a line may contain multiple functions or classes even!, and may contain
+    // even multiple lines! (because file can be given as a wildcard).
+    final boolean lastInstrHitPos = instPos.hitPosition(thisInstruction);
+    if (lastInstrHitPos == false) {
+      return false;
     }
 
-    Instruction prevInstr = getInstructionForThread(vm.getSystemState().getTrail(), path, lastThread, 1);
+    if (DEBUG) {
+      inspector.getDebugPrintStream().println("\tlasInstr=" + instructionPosition(thisInstruction) + "\n\tlastInstrHitPos=" + lastInstrHitPos);
+    }
+
+    Instruction prevInstr = state.getLastExecutedInstruction(thisThread);
+    //Instruction prevInstr = getInstructionForThread(vm.getSystemState().getTrail(), path, thisThread, 1);
     if (DEBUG) {
       inspector.getDebugPrintStream().println("\tprevInstr=" + instructionPosition(prevInstr));
     }
 
-    if (lastInstrHitPos == false) {
-      return false;
-    }
-    prevInstr = getPrevInstructionInSameMethod(prevInstr, lastInstr);
+
+    prevInstr = getPrevInstructionInSameMethod(prevInstr, thisInstruction);
     final boolean prevInstrHitPos = instPos.hitPosition(prevInstr);
     if (DEBUG) {
       inspector.getDebugPrintStream().println("\tprevInstr=" + instructionPosition(prevInstr) + "\n\tprevInstrHitPos=" + prevInstrHitPos);
     }
     return !prevInstrHitPos;
+    // This ensures that we hit only if we are on the source line but the previous instruction
+    // is NOT on the source line.
   }
 
   @Override
@@ -118,7 +119,7 @@ public class ExpressionBreakpointPosition extends ExpressionBooleanLeaf {
   @Override
   public String getDetails (InspectorState state) {
     if (state != null && evaluateExpression(state)) {
-      return "SuT will now enter the position " + instPos.toString();
+      return "SuT will now execute \"" + state.getJVM().getInstruction().toString() + "\" at position " + instPos.toString() + ".";
     }
     return "";
   }
@@ -135,7 +136,6 @@ public class ExpressionBreakpointPosition extends ExpressionBooleanLeaf {
    *        Thread to process. All other threads are ignored.
    * @param instCount
    *        Number of instructions executed by JPF after returned instruction
-   * @return
    */
   static public Instruction getInstructionForThread (Transition tr, Path path, int threadNum, int instCount) {
     assert path != null;
@@ -175,7 +175,7 @@ public class ExpressionBreakpointPosition extends ExpressionBooleanLeaf {
    * 
    *         Note: Method requires that the lastInstruction is executed directly after the prevInstr (in one thread)
    */
-  static public Instruction getPrevInstructionInSameMethod (Instruction prevInstr, Instruction lastInstr) {
+  private static Instruction getPrevInstructionInSameMethod(Instruction prevInstr, Instruction lastInstr) {
     // Handle special cases Calls and JSR
     if (prevInstr instanceof ReturnInstruction) {
       // We should ignore instructions in called method, we focus on previous instruction in current method

@@ -38,9 +38,13 @@ import gov.nasa.jpf.jvm.bytecode.PUTFIELD;
 import gov.nasa.jpf.jvm.bytecode.PUTSTATIC;
 import gov.nasa.jpf.vm.bytecode.ReturnInstruction;
 
+/**
+ * Represents the "instruction_type" hit condition. This hit condition is also used internally for creating breakpoints
+ * for single-stepping.
+ */
 public class ExpressionBreakpointInstructionType extends ExpressionBooleanLeaf {
 
-  final public InstructionType instType;
+  private final InstructionType instType;
 
   public ExpressionBreakpointInstructionType (InstructionType instType) {
     assert instType != null;
@@ -50,7 +54,7 @@ public class ExpressionBreakpointInstructionType extends ExpressionBooleanLeaf {
   @Override
   public boolean evaluateExpression (InspectorState state) {
     assert state != null;
-    if (state.getListenerMethod() != ListenerMethod.LM_INSTRUCTION_EXECUTED) {
+    if (state.getListenerMethod() != ListenerMethod.LM_EXECUTE_INSTRUCTION) {
       return false;
     }
     VM vm = state.getJVM();
@@ -86,10 +90,6 @@ public class ExpressionBreakpointInstructionType extends ExpressionBooleanLeaf {
     return BreakPointModes.BP_MODE_SPECIFIC_INSTRUCTION_TYPE;
   }
 
-  public InstructionType getInstructionType () {
-    return instType;
-  }
-
   @Override
   public String getDetails (InspectorState state) {
     if (state != null && evaluateExpression(state)) {
@@ -102,7 +102,7 @@ public class ExpressionBreakpointInstructionType extends ExpressionBooleanLeaf {
 
   @Override
   public String getNormalizedExpression () {
-    StringBuffer sb = new StringBuffer(30);
+    StringBuilder sb = new StringBuilder(30);
     sb.append("instruction_type=");
     if (instType == InstructionType.IT_ANY) {
       sb.append("any");

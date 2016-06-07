@@ -24,9 +24,8 @@ import gov.nasa.jpf.inspector.interfaces.CommandsInterface.InspectorStates;
 import gov.nasa.jpf.inspector.interfaces.InspectorCallBacks;
 import gov.nasa.jpf.inspector.migration.MigrationUtilities;
 import gov.nasa.jpf.inspector.server.expression.InspectorState;
-import gov.nasa.jpf.vm.VM;
 import gov.nasa.jpf.vm.Instruction;
-import jdk.nashorn.internal.runtime.Debug;
+import gov.nasa.jpf.vm.VM;
 
 /**
  * Handles resuming and stopping JPF execution.
@@ -169,8 +168,8 @@ public class StopHolder {
     notifyAll(); // TODO used to be: notify() only.]
   }
 
-  static public String getLocationDetails (InspectorState inspState) {
-    StringBuffer sb = new StringBuffer(100);
+  private static String getLocationDetails(InspectorState inspState) {
+    StringBuilder sb = new StringBuilder(100);
 
     VM vm = inspState.getJVM();
     assert vm != null;
@@ -186,14 +185,17 @@ public class StopHolder {
         .append(") ");
     }
 
+    String sourceline = "source unavailable";
+    if (instr.getSourceLine() != null) {
+      sourceline = "source: " + instr.getSourceLine().trim();
+    }
     sb.append("will now execute ")
             .append(instr.getMethodInfo().getSourceFileName())
             .append(":")
             .append(instr.getLineNumber())
-            .append(" - ")
+            .append(" (")
             .append(instr.toString())
-            .append(" source: ")
-            .append(instr.getSourceLine());
+            .append("), " + sourceline);
     return sb.toString();
   }
 

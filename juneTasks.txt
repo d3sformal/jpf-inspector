@@ -3,7 +3,6 @@ Until June 20:
 Fix all use cases.
 Fix unit testing.
 
-Look at TODO items.
 
 If extra time is available:
 Fix any problems with ANTLR grammar as they happen.

@@ -12,10 +12,9 @@ import gov.nasa.jpf.vm.*;
 import gov.nasa.jpf.search.Search;
 
 /**
- * Standard listener used in JPF-Inspector when all parts of inspector are notified about incoming events.
- * 
- * @author Alf
- * 
+ * Standard listener used in JPF Inspector when all parts of the Inspector should be notified about incoming events.
+ *
+ * This is contrary to {@link InspectorListenerModeSilent} which is active during backtracking and ignores breakpoints.
  */
 public class InspectorListenerModeNotifications extends ListenerAdapter {
   private static final boolean DEBUG = true;
@@ -28,15 +27,11 @@ public class InspectorListenerModeNotifications extends ListenerAdapter {
 
   private final InspectorStateImpl inspState = new InspectorStateImpl();
 
-  private final boolean searchMultipleError; // continue or not if property is violated
-
   /**
-   * Inspector we serve for.
-   * 
-   * @param searchMultipleError Original value of the "search.multiple_error" property in JPF configuration.
-   * @param inspector
-   * @param dftMgr
+   * Whether continue or not after a property is violated
    */
+  private final boolean searchMultipleError;
+
   public InspectorListenerModeNotifications (JPFInspector inspector, CommandsManager cmdMgr, BreakpointHandler bpMgr, ChoiceGeneratorNotifications cgNotify,
                                              DefaultForwardTraceManager dftMgr, boolean searchMultipleError) {
     this.inspector = inspector;
@@ -106,6 +101,18 @@ public class InspectorListenerModeNotifications extends ListenerAdapter {
   }
 
   @Override
+  public void executeInstruction(VM vm, ThreadInfo currentThread, Instruction instructionToExecute) {
+    if (DEBUG) {
+      inspector.getDebugPrintStream().println(this.getClass().getSimpleName() + ".executeInstructionexecuteInstruction(instructionToExecute=" + instructionToExecute + ")");
+    }
+    inspState.notifyListenerMethodCall(ListenerMethod.LM_EXECUTE_INSTRUCTION, vm);
+    inspState.setCurrentInstructionInformation(currentThread, instructionToExecute);
+    bpMgr.checkBreakpoints(inspState);
+  }
+
+
+
+  @Override
   public void instructionExecuted(VM vm, ThreadInfo currentThread, Instruction nextInstruction, Instruction executedInstruction) {
 
     if (DEBUG) {
@@ -113,7 +120,7 @@ public class InspectorListenerModeNotifications extends ListenerAdapter {
           this.getClass().getSimpleName() + ".instructionExecuted(lastInstr=" + executedInstruction + ", loc=" + executedInstruction.getFileLocation()
               + ")");
     }
-    inspState.instructionExecuted(vm);
+    inspState.instructionExecuted(currentThread.getId(), executedInstruction, vm);
     bpMgr.checkBreakpoints(inspState);
   }
 

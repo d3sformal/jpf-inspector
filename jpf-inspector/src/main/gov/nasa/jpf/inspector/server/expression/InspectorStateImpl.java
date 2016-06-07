@@ -19,8 +19,11 @@
 
 package gov.nasa.jpf.inspector.server.expression;
 
+import gov.nasa.jpf.inspector.server.breakpoints.BreakpointHandler;
+import gov.nasa.jpf.inspector.server.jpf.InspectorListener;
 import gov.nasa.jpf.search.Search;
 import gov.nasa.jpf.vm.Instruction;
+import gov.nasa.jpf.vm.ThreadInfo;
 import gov.nasa.jpf.vm.VM;
 
 import java.util.HashMap;
@@ -46,14 +49,10 @@ public class InspectorStateImpl implements InspectorState {
   private Search search;
 
   /**
-   * The instruction about to be executed.
+   * This field is using by breakpoint hit conditions to see if they should trigger. It contains the last method that
+   * of the {@link InspectorListener} that caused the {@link BreakpointHandler#checkBreakpoints(InspectorState)} method
+   * to be called.
    */
-  private Instruction currentInstruction = null;
-  /**
-   * The thread that will execute the next instruction to be executed.
-   */
-  private int currentThread = 0;
-
   private InspectorState.ListenerMethod listenerMethod = ListenerMethod.LM_NOT_IN_LIST;
 
   @Override
@@ -67,6 +66,14 @@ public class InspectorStateImpl implements InspectorState {
   }
 
   @Override
+  public Instruction getLastExecutedInstruction(int thread) {
+    if (lastExecutedInstructions.containsKey(thread))
+      return lastExecutedInstructions.get(thread);
+    else
+      return null;
+  }
+
+  @Override
   public Search getSearch () {
     return search;
   }
@@ -77,13 +84,11 @@ public class InspectorStateImpl implements InspectorState {
   }
 
   // Has to be called after each executed instruction
-  public void instructionExecuted (VM newJVM) {
+  public void instructionExecuted(int threadId, Instruction executedInstruction, VM newJVM) {
     this.vm = newJVM;
-
-    lastExecutedInstructions.put(currentThread, currentInstruction);
-    currentInstruction = newJVM.getInstruction();
-    currentThread = newJVM.getCurrentThread().getId();
     this.listenerMethod = ListenerMethod.LM_INSTRUCTION_EXECUTED;
+
+    lastExecutedInstructions.put(threadId, executedInstruction);
 
   }
 
@@ -98,4 +103,7 @@ public class InspectorStateImpl implements InspectorState {
     this.vm = jvm;
   }
 
+  public void setCurrentInstructionInformation(ThreadInfo currentThread, Instruction instructionToExecute) {
+    // TODO this is meaningless, and never used
+  }
 }
