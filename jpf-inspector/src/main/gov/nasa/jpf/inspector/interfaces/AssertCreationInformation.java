@@ -28,10 +28,10 @@ public interface AssertCreationInformation extends BreakPointCreationInformation
   /**
    * Gets string which specification of the position where assertion should hit. FileName.java:lineNum
    */
-  public String getPosition ();
+  String getPosition();
 
   /**
    * Gets expression which should not hold to break the expression
    */
-  public String getCondition ();
+  String getCondition();
 }

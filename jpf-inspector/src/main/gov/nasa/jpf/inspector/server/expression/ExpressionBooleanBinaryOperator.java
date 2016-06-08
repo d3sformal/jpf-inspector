@@ -25,6 +25,9 @@ import gov.nasa.jpf.inspector.server.breakpoints.BreakPointModes;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Represents a boolean expression with two operands. Used as a hit condition.
+ */
 public abstract class ExpressionBooleanBinaryOperator extends ExpressionBoolean {
 
   protected List<ExpressionBooleanInterface> children = new ArrayList<>(2);

@@ -60,10 +60,6 @@ public class InspectorStateImpl implements InspectorState {
     return vm;
   }
 
-  @Override
-  public Map<Integer, Instruction> getPreviousSteps () {
-    return lastExecutedInstructions;
-  }
 
   @Override
   public Instruction getLastExecutedInstruction(int thread) {

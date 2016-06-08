@@ -22,16 +22,14 @@ package gov.nasa.jpf.inspector.server.expression;
 import gov.nasa.jpf.inspector.server.jpf.JPFInspector;
 
 /**
- * Mark the expression that is used to retrieve state of the SuT (variables, fields, ...)
+ * Represents a node in the expressions syntax tree, if the node is used to retrieve state of the SuT
+ * (variables, fields, ...)
  * 
- * Expressions are created typically by parser.
+ * Expressions are created typically by the parser.
  * 
- * The {@link ExpressionStateRootNode#getResultExpression(JPFInspector, InspectorState)} can be used to retrieve representation of the current state.
- * 
+ * The {@link ExpressionStateRootNode#getResultExpression(JPFInspector, InspectorState)} can be used to retrieve representation of the current state. *
  * 
  * @author Alfifi
- * 
  */
-public interface ExpressionStateInterface<T> extends ExpressionNodeInterface {
-
+public interface ExpressionStateInterface extends ExpressionNodeInterface {
 }

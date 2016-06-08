@@ -35,15 +35,15 @@ import gov.nasa.jpf.inspector.server.programstate.relop.RelationOperator;
  */
 public class ExpressionBreakpointCompare extends ExpressionBooleanLeaf {
 
-  private final ExpressionStateRootNode<?> leftOp;
-  private final ExpressionStateRootNode<?> rightOp;
+  private final ExpressionStateRootNode leftOp;
+  private final ExpressionStateRootNode rightOp;
 
   private final JPFInspector inspector;
   private final RelationOperator relOper;
 
   private String detail = "";
 
-  public ExpressionBreakpointCompare (ExpressionStateRootNode<?> leftOp, ExpressionStateRootNode<?> rightOp, RelationOperator relOper, JPFInspector inspector) {
+  public ExpressionBreakpointCompare (ExpressionStateRootNode leftOp, ExpressionStateRootNode rightOp, RelationOperator relOper, JPFInspector inspector) {
     super();
     this.leftOp = leftOp;
     this.rightOp = rightOp;

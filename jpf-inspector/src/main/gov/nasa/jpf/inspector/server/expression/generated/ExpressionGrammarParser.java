@@ -6,9 +6,7 @@
     import gov.nasa.jpf.inspector.server.expression.expressions.*;
     import gov.nasa.jpf.inspector.server.programstate.relop.*;
     import gov.nasa.jpf.inspector.server.breakpoints.*;
-    import gov.nasa.jpf.inspector.utils.parser.*;
-    import gov.nasa.jpf.inspector.utils.*;
-    import gov.nasa.jpf.inspector.utils.expressions.*;
+		import gov.nasa.jpf.inspector.utils.expressions.*;
     import gov.nasa.jpf.inspector.interfaces.*;
     import gov.nasa.jpf.inspector.interfaces.CommandsInterface.StepType;
     
@@ -16,11 +14,8 @@
 import org.antlr.v4.runtime.atn.*;
 import org.antlr.v4.runtime.dfa.DFA;
 import org.antlr.v4.runtime.*;
-import org.antlr.v4.runtime.misc.*;
-import org.antlr.v4.runtime.tree.*;
+		import org.antlr.v4.runtime.tree.*;
 import java.util.List;
-import java.util.Iterator;
-import java.util.ArrayList;
 
 @SuppressWarnings({"all", "warnings", "unchecked", "unused", "cast"})
 public class ExpressionGrammarParser extends Parser {
@@ -2835,7 +2830,7 @@ public class ExpressionGrammarParser extends Parser {
 
 	public static class CmdStateExpressionContext extends ParserRuleContext {
 		public ExpressionFactory expFactory;
-		public ExpressionStateRootNode<?> expr;
+		public ExpressionStateRootNode expr;
 		public CmdStateExpression1Context cmdStateExpression1;
 		public CmdStateExpression1Context cmdStateExpression1() {
 			return getRuleContext(CmdStateExpression1Context.class,0);
@@ -2883,7 +2878,7 @@ public class ExpressionGrammarParser extends Parser {
 
 	public static class CmdStateExpression1Context extends ParserRuleContext {
 		public ExpressionFactory expFactory;
-		public ExpressionStateRootNode<?> expr;
+		public ExpressionStateRootNode expr;
 		public CmdStateExpressionThreadContext cmdStateExpressionThread;
 		public CmdStateExpressionHeapContext cmdStateExpressionHeap;
 		public CmdStateConstValueContext cmdStateConstValue;
@@ -2999,7 +2994,7 @@ public class ExpressionGrammarParser extends Parser {
 
 	public static class CmdStateExpression1ValueContext extends ParserRuleContext {
 		public ExpressionFactory expFactory;
-		public ExpressionStateRootNode<?> expr;
+		public ExpressionStateRootNode expr;
 		public CmdStateExpressionThreadValueContext cmdStateExpressionThreadValue;
 		public CmdStateExpressionHeapValueContext cmdStateExpressionHeapValue;
 		public CmdStateConstValueContext cmdStateConstValue;
@@ -5087,7 +5082,7 @@ public class ExpressionGrammarParser extends Parser {
 
 	public static class CmdStateExpressionHeapContext extends ParserRuleContext {
 		public ExpressionFactory expFactory;
-		public ExpressionStateRootNode<ExpressionStateValue> expr;
+		public ExpressionStateRootNode expr;
 		public IntValueContext intValue;
 		public CmdStateExpressionValueContext a;
 		public ClassNameContext className;
@@ -5322,7 +5317,7 @@ public class ExpressionGrammarParser extends Parser {
 
 	public static class CmdStateExpressionHeapValueContext extends ParserRuleContext {
 		public ExpressionFactory expFactory;
-		public ExpressionStateRootNode<ExpressionStateValue> expr;
+		public ExpressionStateRootNode expr;
 		public IntValueContext intValue;
 		public CmdStateExpressionValueContext a;
 		public TerminalNode TOKEN_HASH_HEAP() { return getToken(ExpressionGrammarParser.TOKEN_HASH_HEAP, 0); }
@@ -5429,7 +5424,7 @@ public class ExpressionGrammarParser extends Parser {
 
 	public static class CmdStateConstValueContext extends ParserRuleContext {
 		public ExpressionFactory expFactory;
-		public ExpressionStateRootNode<ExpressionStateValue> expr;
+		public ExpressionStateRootNode expr;
 		public BooleanValueContext booleanValue;
 		public CharValueContext charValue;
 		public IntValueContext intValue;

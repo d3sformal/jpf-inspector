@@ -35,10 +35,10 @@ import gov.nasa.jpf.inspector.server.programstate.StateValue;
  */
 public class ExpressionStateAssignment {
 
-  private final ExpressionStateRootNode<?> lVal;
-  private final ExpressionStateRootNode<?> rVal;
+  private final ExpressionStateRootNode lVal;
+  private final ExpressionStateRootNode rVal;
 
-  public ExpressionStateAssignment (ExpressionStateRootNode<?> lVal, ExpressionStateRootNode<?> rVal) {
+  public ExpressionStateAssignment (ExpressionStateRootNode lVal, ExpressionStateRootNode rVal) {
     super();
     this.lVal = lVal;
     this.rVal = rVal;

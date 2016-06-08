@@ -23,14 +23,18 @@ import gov.nasa.jpf.inspector.exceptions.JPFInspectorException;
 import gov.nasa.jpf.inspector.server.jpf.JPFInspector;
 import gov.nasa.jpf.inspector.server.programstate.StateNodeInterface;
 
-public interface ExpressionStateRootNode<T> extends ExpressionStateInterface<T> {
+/**
+ * An expression that can be the root of the expression tree and thus can be printed to the Inspector console.
+ * For example, "#thread" is an {@link ExpressionStateRootNode}.
+ */
+public interface ExpressionStateRootNode extends ExpressionStateInterface {
 
   /**
-   * Creates represented state expression.
-   * 
-   * @param state Current state of the Inspector and JPF
-   * @return Get program state expression
+   * Evaluates the state expression and returns its value.
+   *
+   * @param inspector The Inspector server.
+   * @param state Current state of the Inspector and JPF.
+   * @return Value of this expression in the next hierarchy.
    */
-  public StateNodeInterface getResultExpression (JPFInspector inspector, InspectorState state) throws JPFInspectorException;
-
+  StateNodeInterface getResultExpression(JPFInspector inspector, InspectorState state) throws JPFInspectorException;
 }

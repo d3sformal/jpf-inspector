@@ -30,7 +30,7 @@ import gov.nasa.jpf.inspector.server.programstate.StateThreadInfo;
 import gov.nasa.jpf.vm.VM;
 
 public class ExpressionStateThread extends ExpressionStateUnaryOperator<ExpressionStateStackFrame> implements
-    ExpressionStateRootNode<ExpressionStateStackFrame> {
+    ExpressionStateRootNode {
 
   private static final String TOKEN_HASH_THREAD = "#thread";
 

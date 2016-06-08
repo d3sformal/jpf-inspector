@@ -46,6 +46,9 @@ public enum BreakPointModes {
   BP_MODE_FIELD_ACCESS, // Both read or write
   BP_MODE_METHOD_INVOKE,
   BP_MODE_STATE_ADVANCED,
+  /**
+   * The breakpoint's mode is not important.
+   */
   BP_MODE_USER_CONDITION,
 
   BP_MODE_INTERNAL_INSTRUCTION,

@@ -24,31 +24,41 @@ import gov.nasa.jpf.inspector.exceptions.JPFInspectorParsingErrorException;
 import gov.nasa.jpf.inspector.server.expression.expressions.ExpressionStateAssignment;
 
 /**
+ * A class implementing this interface encapsulates the ANTLR parser for expressions.
  */
 public interface ExpressionParserInterface {
   /**
-   * @param expr Expression to parse
+   * Parses the given expression as a program state expression.
+   * @param expr Expression to parse.
+   * @return Tree representation of the given expression.
    */
-  public ExpressionStateRootNode<?> getExpressionStateInterface (String expr) throws JPFInspectorParsingErrorException, JPFInspectorGenericErrorException;
+  ExpressionStateRootNode getExpressionStateInterface(String expr) throws
+          JPFInspectorParsingErrorException,
+          JPFInspectorGenericErrorException;
 
   /**
-   * Gets boolean expression which evaluates whether the breakpoint hit or not
+   * Parses the given expression as a breakpoint hit condition.
    * 
-   * @param expr Expression to parse
-   * @return Tree representation of the given expression of null, if the expr contains (syntax) error.
+   * @param expr Expression to parse.
+   * @return Tree representation of the given expression.
    */
-  public ExpressionBooleanInterface getBreakpointExpression (String expr) throws JPFInspectorParsingErrorException, JPFInspectorGenericErrorException;
+  ExpressionBooleanInterface getBreakpointExpression(String expr) throws
+          JPFInspectorParsingErrorException,
+          JPFInspectorGenericErrorException;
 
   /**
-   * 
-   * @param expr Expression to parse
-   * @return Gets parsed expression of the value assignment
+   * Parses the given expression as an assignment for the "set" command.
+   *
+   * @param expr Expression to parse.
+   * @return Tree representation of the given expression.
    */
-  public ExpressionStateAssignment getExpressionAssignment (String expr) throws JPFInspectorParsingErrorException, JPFInspectorGenericErrorException;
+  ExpressionStateAssignment getExpressionAssignment(String expr) throws
+          JPFInspectorParsingErrorException,
+          JPFInspectorGenericErrorException;
 
   /**
-   * @return Gets expression factory used by parser
+   * Gets an expression factory used for parsing.
    */
-  public ExpressionFactory getExpressionFactory ();
+  ExpressionFactory getExpressionFactory();
 
 }

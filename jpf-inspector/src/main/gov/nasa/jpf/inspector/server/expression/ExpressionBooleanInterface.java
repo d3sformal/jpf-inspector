@@ -23,27 +23,31 @@ import gov.nasa.jpf.inspector.exceptions.JPFInspectorException;
 import gov.nasa.jpf.inspector.server.breakpoints.BreakPointModes;
 
 /**
+ * Represents a node in the expressions syntax tree.
+ * Boolean expressions are used as breakpoint hit conditions.
  */
 public interface ExpressionBooleanInterface extends ExpressionNodeInterface {
 
   /**
-   * Evaluate condition and get boolean result.
+   * Evaluates this expression.
    * 
    * Successors - logical operators, compare (any type)
    */
-  public boolean evaluateExpression (InspectorState state) throws JPFInspectorException;
+  boolean evaluateExpression(InspectorState state) throws JPFInspectorException;
 
   /**
-   * @return Gets which BP mode represents the expression.
+   * Returns the breakpoint mode of the expression, if any.
+   * Breakpoint modes are used by some kinds of hit conditions internally.
    */
-  public BreakPointModes getBPMode ();
+  BreakPointModes getBPMode();
 
   /**
-   * Get details related to expression.
-   * Note: This information is printed to user if breakpoint hits. This method can provide supplementary information for users.
+   * Gets details related to the expression.
+   * Note: This information is printed to user if breakpoint hits.
+   * This method can provide supplementary information for users.
    * 
-   * @return Details related to evaluation of the expresison or null.
+   * @return Details related to evaluation of the expresison or null to print no extra information.
    */
-  public String getDetails (InspectorState state);
+  String getDetails(InspectorState state);
 
 }

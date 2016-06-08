@@ -21,7 +21,7 @@ package gov.nasa.jpf.inspector.server.expression;
 
 import java.util.List;
 
-public abstract class ExpressionStateUnaryOperator<T> implements ExpressionStateInterface<T> {
+public abstract class ExpressionStateUnaryOperator<T> implements ExpressionStateInterface {
 
   protected final T child;
 

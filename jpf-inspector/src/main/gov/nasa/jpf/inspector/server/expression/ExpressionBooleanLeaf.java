@@ -19,6 +19,8 @@
 
 package gov.nasa.jpf.inspector.server.expression;
 
+/**
+ * Abstract class for a boolean expression with no children. Used as an atomic expression in hit conditions.
+ */
 public abstract class ExpressionBooleanLeaf extends ExpressionBoolean {
-
 }

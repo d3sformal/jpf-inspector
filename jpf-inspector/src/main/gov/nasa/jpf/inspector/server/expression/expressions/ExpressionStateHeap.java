@@ -35,7 +35,7 @@ import gov.nasa.jpf.vm.VM;
  * @author Alf
  * 
  */
-public class ExpressionStateHeap extends ExpressionStateUnaryOperator<ExpressionStateValue> implements ExpressionStateRootNode<ExpressionStateValue> {
+public class ExpressionStateHeap extends ExpressionStateUnaryOperator<ExpressionStateValue> implements ExpressionStateRootNode {
 
   private final int heapElementIndex;
 

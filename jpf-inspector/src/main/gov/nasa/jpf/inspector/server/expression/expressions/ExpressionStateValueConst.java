@@ -28,7 +28,7 @@ import gov.nasa.jpf.inspector.server.programstate.StateReadableValueInterface;
  * @author Alf
  * 
  */
-public abstract class ExpressionStateValueConst extends ExpressionStateValue implements ExpressionStateRootNode<ExpressionStateValue> {
+public abstract class ExpressionStateValueConst extends ExpressionStateValue implements ExpressionStateRootNode {
 
   // Const values does not have children.
   protected ExpressionStateValueConst () {
@@ -37,7 +37,7 @@ public abstract class ExpressionStateValueConst extends ExpressionStateValue imp
 
   @Override
   public StateReadableValueInterface getResultExpression (StateReadableValueInterface srv) throws JPFInspectorException {
-    throw new JPFInspectorGenericErrorException("unsupported operation (internal error). No accessors on constants are permitted now");
+    throw new JPFInspectorGenericErrorException("Unsupported operation (internal error). No accessors on constants are permitted now");
   }
 
 }

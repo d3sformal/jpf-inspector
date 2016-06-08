@@ -37,6 +37,10 @@ import gov.nasa.jpf.inspector.utils.expressions.MethodName;
 import gov.nasa.jpf.inspector.utils.parser.GenericErrorRuntimeException;
 import gov.nasa.jpf.vm.Instruction;
 
+/**
+ * The factory creates expressions of the initial expression hiearchy by calling constructors and occasionally
+ * manipulating an exception.
+ */
 public class ExpressionFactory {
   private final JPFInspector inspector;
   private final RelationOperatorFactory relopFactory;
@@ -49,11 +53,6 @@ public class ExpressionFactory {
 
   public ExpressionBreakpointCustomHitCondition getCustomHitCondition(String name, Expressions expressions) {
     return new ExpressionBreakpointCustomHitCondition(inspector, name, expressions);
-            /*
-            TODO throw error if custom class cannot be instantiated
-    throw new GenericErrorRuntimeException(
-            new JPFInspectorGenericErrorException("Custom hit conditions are not yet implemented."));
-            */
   }
   public ExpressionBreakpointPosition getExpBreakpointPosition (String fileName, Integer lineNum) {
     if (lineNum == null) {
@@ -210,7 +209,8 @@ public class ExpressionFactory {
     }
   }
 
-  public ExpressionBreakpointInstruction getBreakpointInstruction (int threadId, MethodName methodName, int instructionIndex, int hitCount)
+  public ExpressionBreakpointInstruction getBreakpointInstruction (int threadId, MethodName methodName,
+                                                                   int instructionIndex, int hitCount)
       throws GenericErrorRuntimeException {
     try {
       Instruction inst = ExpressionBreakpointInstruction.findInstruction(inspector, methodName, instructionIndex);
@@ -260,11 +260,14 @@ public class ExpressionFactory {
     return new ExpressionStateValueConstString(value);
   }
 
-  public ExpressionStateAssignment getStateAssignment (ExpressionStateRootNode<?> lValue, ExpressionStateRootNode<?> rValue) {
+  public ExpressionStateAssignment getStateAssignment (ExpressionStateRootNode lValue,
+                                                       ExpressionStateRootNode rValue) {
     return new ExpressionStateAssignment(lValue, rValue);
   }
 
-  public ExpressionBreakpointCompare getBreakpointCompare (ExpressionStateRootNode<?> left, RelationOperator relOper, ExpressionStateRootNode<?> right) {
+  public ExpressionBreakpointCompare getBreakpointCompare (ExpressionStateRootNode left,
+                                                           RelationOperator relOper,
+                                                           ExpressionStateRootNode right) {
     return new ExpressionBreakpointCompare(left, right, relOper, inspector);
   }
 
@@ -272,7 +275,8 @@ public class ExpressionFactory {
     return relopFactory;
   }
 
-  public ExpressionBreakpointAssert getBreakpointAssert (ExpressionBooleanInterface position, ExpressionBooleanInterface condition) {
+  public ExpressionBreakpointAssert getBreakpointAssert (ExpressionBooleanInterface position,
+                                                         ExpressionBooleanInterface condition) {
     return new ExpressionBreakpointAssert(position, condition);
   }
 }

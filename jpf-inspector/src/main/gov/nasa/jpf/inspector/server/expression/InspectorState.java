@@ -17,25 +17,22 @@
 // DOCUMENTATION, IF PROVIDED, WILL CONFORM TO THE SUBJECT SOFTWARE.
 //  
 
-/**
- * 
- */
 package gov.nasa.jpf.inspector.server.expression;
 
-import gov.nasa.jpf.vm.VM;
-import gov.nasa.jpf.vm.Instruction;
 import gov.nasa.jpf.search.Search;
-
-import java.util.Map;
+import gov.nasa.jpf.vm.Instruction;
+import gov.nasa.jpf.vm.VM;
 
 /**
  * Represents state of the SuT and the inspector. Holds all necessary
- * information needed to evaluate expressions {@link ExpressionNodeInterface}.
+ * information needed to evaluate expressions ({@link ExpressionNodeInterface}).
+ *
+ * This is a public-facing interface that is passed to custom breakpoint hit conditions.
  */
 public interface InspectorState {
 
   /**
-   * Represents called method on the listener interface
+   * Represents a method of the Listener interface.
    */
   enum ListenerMethod {
     LM_INSTRUCTION_EXECUTED,
@@ -54,9 +51,11 @@ public interface InspectorState {
     LM_NOT_IN_LIST;
 
     /**
+     * TODO remove this
      * @param lm Method to check. Cannot be null.
      * @return Gets true if method is defined in {@link gov.nasa.jpf.search.SearchListener} interface
      */
+    @SuppressWarnings("unused")
     static public boolean isSearchListenerMethod (ListenerMethod lm) {
       assert (lm != null);
 
@@ -82,17 +81,29 @@ public interface InspectorState {
     }
   }
 
-  // map read only, should not be modified
-  // / For all threads gets previously executed instruction
-  Map<Integer, Instruction> getPreviousSteps();
-
+  /**
+   * Returns the current JPF virtual machine.
+   */
   VM getVM();
 
+  /**
+   * Gets the last instruction that was already executed by the virtual machine on the specified thread.
+   * Specifically, it is NOT the instruction that is about to be executed.
+   * @param thread Index of a thread of the system under test.
+   * @return The last executed instruction of the htread.
+   */
   Instruction getLastExecutedInstruction(int thread);
 
-  // Used search listener
+  /**
+   * Returns the used Search object.
+   */
   Search getSearch();
 
+  /**
+   * Returns the name of the listener method that caused this state to be passed to a hit condition.
+   * Each hit condition should check the return value of this method as one of the first things it does to tell
+   * if it wants to apply.
+   */
   ListenerMethod getListenerMethod();
 
 }

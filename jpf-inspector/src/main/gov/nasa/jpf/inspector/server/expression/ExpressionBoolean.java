@@ -19,10 +19,18 @@
 
 package gov.nasa.jpf.inspector.server.expression;
 
+/**
+ * Abstract base class for boolean expressions in the syntax tree. Boolean expressions are used as
+ * breakpoint hit conditions.
+ */
 public abstract class ExpressionBoolean implements ExpressionBooleanInterface {
 
+  /**
+   * {@inheritDoc}
+   *
+   * In the default implementation, this method returns null which means that no additional information is provided.
+   */
   @Override
-  // Default implementation for those expression that doesn't provide detailed messages. Should be overridden.
   public String getDetails (InspectorState state) {
     return null;
   }

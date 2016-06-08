@@ -24,16 +24,21 @@ import gov.nasa.jpf.inspector.exceptions.JPFInspectorException;
 import gov.nasa.jpf.inspector.server.jpf.JPFInspector;
 
 /**
- * @author Alf
- * 
+ * Represents an evaluated program state expression.
  */
 public interface StateNodeInterface {
 
-  public JPFInspector getInspector ();
+  JPFInspector getInspector();
 
-  public int getReferenceDepth ();
+  int getReferenceDepth();
 
-  public String getStateExpr ();
+  String getStateExpr();
 
-  public ProgramStateEntry getResultExpression (String name, int clientID) throws JPFInspectorException;
+  /**
+   * Evaluates the evaluated expression again, this time resulting in a {@link ProgramStateEntry} which is mostly
+   * just a container of strings.
+   * @param name TODO how does this work?
+   * @param clientID This is always zero, I think. I don't know what it means.
+   */
+  ProgramStateEntry getResultExpression(String name, int clientID) throws JPFInspectorException;
 }

@@ -47,7 +47,7 @@ public class ExpressionParser implements ExpressionParserInterface {
   }
 
   @Override
-  public ExpressionStateRootNode<?> getExpressionStateInterface (String expr) throws JPFInspectorParsingErrorException, JPFInspectorGenericErrorException {
+  public ExpressionStateRootNode getExpressionStateInterface (String expr) throws JPFInspectorParsingErrorException, JPFInspectorGenericErrorException {
     if (expr == null) {
       return null;
     }
@@ -142,9 +142,7 @@ public class ExpressionParser implements ExpressionParserInterface {
     }
   }
 
-  /**
-   * @return Gets expression factory used during parsing
-   */
+
   @Override
   public ExpressionFactory getExpressionFactory () {
     return expFactory;

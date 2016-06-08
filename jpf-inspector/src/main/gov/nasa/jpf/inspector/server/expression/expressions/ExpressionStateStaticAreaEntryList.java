@@ -34,7 +34,7 @@ import gov.nasa.jpf.vm.VM;
  * 
  */
 public class ExpressionStateStaticAreaEntryList extends ExpressionStateUnaryOperator<ExpressionStateValue> implements
-    ExpressionStateRootNode<ExpressionStateValue> {
+    ExpressionStateRootNode {
 
   private final ClassName heapItemsFilter;
 

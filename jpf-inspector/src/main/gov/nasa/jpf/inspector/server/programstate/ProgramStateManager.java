@@ -124,7 +124,7 @@ public class ProgramStateManager implements ProgramStateInterface {
     stopHolder.waitUntilStopped();
 
     // Create a parse tree
-    ExpressionStateRootNode<?> parsedExpr = parser.getExpressionStateInterface(expr);
+    ExpressionStateRootNode parsedExpr = parser.getExpressionStateInterface(expr);
     if (parsedExpr == null) {
       return null;
     }
@@ -156,9 +156,9 @@ public class ProgramStateManager implements ProgramStateInterface {
   @Override
   public void setValue (String lValue, String rValue) throws JPFInspectorException {
 
-    ExpressionStateRootNode<?> lValueExpr = parser.getExpressionStateInterface(lValue);
+    ExpressionStateRootNode lValueExpr = parser.getExpressionStateInterface(lValue);
 
-    ExpressionStateRootNode<?> rValueExpr = parser.getExpressionStateInterface(rValue);
+    ExpressionStateRootNode rValueExpr = parser.getExpressionStateInterface(rValue);
 
     ExpressionStateAssignment parsedExpr = parser.getExpressionFactory().getStateAssignment(lValueExpr, rValueExpr);
 

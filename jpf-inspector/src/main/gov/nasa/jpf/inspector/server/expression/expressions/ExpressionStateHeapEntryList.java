@@ -29,7 +29,7 @@ import gov.nasa.jpf.inspector.server.programstate.StateHeapEntryList;
 import gov.nasa.jpf.inspector.utils.expressions.ClassName;
 import gov.nasa.jpf.vm.VM;
 
-public class ExpressionStateHeapEntryList extends ExpressionStateUnaryOperator<ExpressionStateValue> implements ExpressionStateRootNode<ExpressionStateValue> {
+public class ExpressionStateHeapEntryList extends ExpressionStateUnaryOperator<ExpressionStateValue> implements ExpressionStateRootNode {
 
   public static final String TOKEN_HASH_HEAP = "#heap";
 
