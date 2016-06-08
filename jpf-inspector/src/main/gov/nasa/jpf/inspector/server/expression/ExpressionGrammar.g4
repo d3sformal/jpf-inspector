@@ -256,11 +256,11 @@ cmdStateAssignment [ExpressionFactory expFactory] returns [ExpressionStateAssign
     : lval=cmdStateExpression1[$expFactory] SIGN_EQUALS rval=cmdStateExpression1[$expFactory] { $expr = $expFactory.getStateAssignment($lval.expr, $rval.expr); } EOF 
     ;
     
-cmdStateExpression [ExpressionFactory expFactory] returns [ExpressionStateRootNode<?> expr]
+cmdStateExpression [ExpressionFactory expFactory] returns [ExpressionStateRootNode expr]
     : cmdStateExpression1[$expFactory] { $expr = $cmdStateExpression1.expr; } EOF
     ;
 
-cmdStateExpression1    [ExpressionFactory expFactory] returns [ExpressionStateRootNode<?> expr]
+cmdStateExpression1    [ExpressionFactory expFactory] returns [ExpressionStateRootNode expr]
     : WS? cmdStateExpressionThread[$expFactory]        { $expr = $cmdStateExpressionThread.expr; }
     | WS? cmdStateExpressionHeap[$expFactory]          { $expr = $cmdStateExpressionHeap.expr; }
     | WS? cmdStateConstValue[$expFactory] WS?          { $expr = $cmdStateConstValue.expr; }
@@ -270,7 +270,7 @@ cmdStateExpression1    [ExpressionFactory expFactory] returns [ExpressionStateRo
 // no #thread, #thread[0], #stackFrame[0]
 // but #stackFrame[0].x is permitted
 // The expression has to terminate in the cmdStateExpressionValue* rule
-cmdStateExpression1Value    [ExpressionFactory expFactory] returns [ExpressionStateRootNode<?> expr]
+cmdStateExpression1Value    [ExpressionFactory expFactory] returns [ExpressionStateRootNode expr]
     : WS? cmdStateExpressionThreadValue[$expFactory]        { $expr = $cmdStateExpressionThreadValue.expr; }
     | WS? cmdStateExpressionHeapValue[$expFactory]          { $expr = $cmdStateExpressionHeapValue.expr; }
     | WS? cmdStateConstValue[$expFactory]  WS?               { $expr = $cmdStateConstValue.expr; }
@@ -379,7 +379,7 @@ cmdStateExpressionClass [ExpressionFactory expFactory] returns [ExpressionStateV
     | '.' WS? f=cmdStateExpressionValueStatic[$expFactory]                            { $expr = $f.expr; }
     ;
 
-cmdStateExpressionHeap [ExpressionFactory expFactory] returns [ExpressionStateRootNode<ExpressionStateValue> expr]
+cmdStateExpressionHeap [ExpressionFactory expFactory] returns [ExpressionStateRootNode expr]
     : TOKEN_HASH_HEAP   WS? '[' WS? intValue  WS? ']' WS? a=cmdStateExpressionValue[$expFactory]?
     { $expr = $expFactory.getStateHeap($intValue.value, $a.ctx != null ? $a.expr : null); }
     | TOKEN_HASH_HEAP   WS? '[' WS? className WS? ']' WS? a=cmdStateExpressionValue[$expFactory]?
@@ -388,12 +388,12 @@ cmdStateExpressionHeap [ExpressionFactory expFactory] returns [ExpressionStateRo
        { $expr = $expFactory.getStateStaticArea($className.cn, $a.ctx != null ? $a.expr : null); }
     ;
 
-cmdStateExpressionHeapValue [ExpressionFactory expFactory] returns [ExpressionStateRootNode<ExpressionStateValue> expr]
+cmdStateExpressionHeapValue [ExpressionFactory expFactory] returns [ExpressionStateRootNode expr]
     : TOKEN_HASH_HEAP   WS? '[' WS? intValue  WS? ']' WS? a=cmdStateExpressionValue[$expFactory]?
       { $expr = $expFactory.getStateHeap($intValue.value, $a.ctx != null ? $a.expr : null); }
     ;
  
-cmdStateConstValue [ExpressionFactory expFactory] returns [ExpressionStateRootNode<ExpressionStateValue> expr]
+cmdStateConstValue [ExpressionFactory expFactory] returns [ExpressionStateRootNode expr]
     : booleanValue         { $expr = expFactory.getConstValueBoolean($booleanValue.value); }
     | charValue            { $expr = expFactory.getConstValueChar   ($charValue.value); }
     | intValue             { $expr = expFactory.getConstValueInteger($intValue.value); }

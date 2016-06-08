@@ -19,9 +19,7 @@
 
 package gov.nasa.jpf.inspector.frontends.jpfshell.gui;
 
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.GraphicsEnvironment;
+import java.awt.*;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.KeyEvent;
@@ -34,15 +32,17 @@ import java.io.Writer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import javax.swing.JEditorPane;
-import javax.swing.JScrollPane;
-import javax.swing.JTextPane;
-import javax.swing.ScrollPaneConstants;
+import javax.swing.*;
+import javax.swing.plaf.metal.MetalLookAndFeel;
+import javax.swing.plaf.nimbus.NimbusLookAndFeel;
 import javax.swing.text.DefaultCaret;
 import javax.swing.text.DefaultEditorKit;
 import javax.swing.text.JTextComponent;
 
+import com.sun.java.swing.plaf.motif.MotifLookAndFeel;
+import com.sun.java.swing.plaf.windows.WindowsLookAndFeel;
 import gov.nasa.jpf.inspector.utils.Debugging;
+import gov.nasa.jpf.inspector.utils.InspectorConfiguration;
 import gov.nasa.jpf.shell.ShellManager;
 import jline.ConsoleOperations;
 import jline.ConsoleReader;
@@ -123,9 +123,13 @@ public class SwingTerminal extends Terminal {
     console.addFocusListener(new ConsoleFocusListener());
 
     // Disable the beep on Windows computers
-    // http://stackoverflow.com/a/28638420/1580088
-    console.getActionMap().get(DefaultEditorKit.deletePrevCharAction).setEnabled(false);
-    console.getActionMap().get(DefaultEditorKit.insertBreakAction).setEnabled(false);
+    if (InspectorConfiguration.getInstance().shouldPreventBeeps()) {
+      try {
+        UIManager.setLookAndFeel(new NoBeepMetalLookAndFeel());
+      } catch (UnsupportedLookAndFeelException e) {
+        // Beep not disabled.
+      }
+    }
   }
 
   /**

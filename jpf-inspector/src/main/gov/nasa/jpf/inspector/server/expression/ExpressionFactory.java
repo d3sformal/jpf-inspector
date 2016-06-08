@@ -20,6 +20,7 @@
 package gov.nasa.jpf.inspector.server.expression;
 
 import gov.nasa.jpf.inspector.interfaces.CommandsInterface.StepType;
+import gov.nasa.jpf.inspector.interfaces.CustomHitCondition;
 import gov.nasa.jpf.inspector.interfaces.InstructionPosition;
 import gov.nasa.jpf.inspector.interfaces.InstructionType;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorGenericErrorException;
@@ -30,6 +31,7 @@ import gov.nasa.jpf.inspector.server.expression.expressions.ExpressionBreakpoint
 import gov.nasa.jpf.inspector.server.jpf.JPFInspector;
 import gov.nasa.jpf.inspector.server.programstate.relop.RelationOperator;
 import gov.nasa.jpf.inspector.server.programstate.relop.RelationOperatorFactory;
+import gov.nasa.jpf.inspector.utils.InspectorConfiguration;
 import gov.nasa.jpf.inspector.utils.expressions.ClassName;
 import gov.nasa.jpf.inspector.utils.expressions.Expressions;
 import gov.nasa.jpf.inspector.utils.expressions.FieldName;
@@ -52,7 +54,14 @@ public class ExpressionFactory {
   }
 
   public ExpressionBreakpointCustomHitCondition getCustomHitCondition(String name, Expressions expressions) {
-    return new ExpressionBreakpointCustomHitCondition(inspector, name, expressions);
+    CustomHitCondition hitCondition = InspectorConfiguration.getInstance().instantiateCustomHitCondition(name);
+
+    if (hitCondition == null) {
+      throw new GenericErrorRuntimeException(new JPFInspectorGenericErrorException(
+              "The name '" + name + "' does not correspond to any loaded custom hit condition class."));
+    }
+
+    return new ExpressionBreakpointCustomHitCondition(inspector, name, hitCondition, expressions);
   }
   public ExpressionBreakpointPosition getExpBreakpointPosition (String fileName, Integer lineNum) {
     if (lineNum == null) {

@@ -23,6 +23,10 @@ import gov.nasa.jpf.inspector.exceptions.JPFInspectorException;
 import gov.nasa.jpf.inspector.server.expression.ExpressionStateUnaryOperator;
 import gov.nasa.jpf.inspector.server.programstate.StateReadableValueInterface;
 
+/**
+ * In the expression tree hierarchy, this is a node that has a value, such as an array element or a field,
+ * but not a thread or a stack frame.
+ */
 public abstract class ExpressionStateValue extends ExpressionStateUnaryOperator<ExpressionStateValue> {
 
   public ExpressionStateValue (ExpressionStateValue child) {

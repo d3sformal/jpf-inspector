@@ -1,8 +1,11 @@
 package gov.nasa.jpf.inspector.utils;
 
 import gov.nasa.jpf.Config;
+import gov.nasa.jpf.inspector.interfaces.CustomHitCondition;
 import gov.nasa.jpf.shell.ShellManager;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -16,10 +19,13 @@ import java.util.logging.Logger;
 public final class InspectorConfiguration {
   private static Logger logger = Debugging.getLogger();
   private static InspectorConfiguration instance;
+  private Map<String, Class<? extends CustomHitCondition>> customHitConditions;
   private Config config;
 
   private InspectorConfiguration(Config config) {
     this.config = config;
+
+    // Set ignored classes
     ignoreClassesFeature = config.getBoolean("jpf-inspector.ignore-breakpoints-in-ignored-classes", true);
     ignoredClasses = config.getStringArray("jpf-inspector.ignored-classes", new String[] { "java.*", "javax.*" });
     for(int i = 0; i < ignoredClasses.length; i++) {
@@ -27,7 +33,53 @@ public final class InspectorConfiguration {
       ignoredClasses[i] = ignoredClasses[i].replace("*", ".*");
       ignoredClasses[i] = "^" + ignoredClasses[i];
     }
+
+    // Load custom hit conditions
+    customHitConditions = new HashMap<>();
+    Class<?>[] customHitConditionClasses = config.getClasses("jpf-inspector.custom_hit_conditions");
+    for(Class<?> customClass : customHitConditionClasses) {
+      Object exampleInstance;
+      try {
+        exampleInstance = customClass.newInstance();
+      } catch (InstantiationException e) {
+        logger.warning("Class '" + customClass.getName() + "' cannot be instantiated because of the InstantiationException: " + e.toString() + ". It won't be usable in the Inspector.");
+        continue;
+      } catch (IllegalAccessException e) {
+        logger.warning("Class '" + customClass.getName() + "' cannot be instantiated because of the IllegalAccessException: " + e.toString()+ ". It won't be usable in the Inspector.");
+        continue;
+      }
+      if (!(exampleInstance instanceof CustomHitCondition)) {
+        logger.warning("Class '" + customClass.getName() + "' does not implement the CustomHitCondition interface. It won't be usable in the Inspector.");
+        continue;
+      }
+      CustomHitCondition customHitCondition = (CustomHitCondition) exampleInstance;
+      String name = customHitCondition.getName();
+      customHitConditions.put(name, customHitCondition.getClass());
+    }
   }
+
+  /**
+   * Creates an instance of a custom hit condition that uses the specified name.
+   * @param name Name of the hit condition. For example, if the hit condition is called like this: "hello(2)", the name
+   *             would be "hello".
+   * @return An instance of the hit condition, or null if the hit condition does not exist or could not be instantiated.
+   */
+  public CustomHitCondition instantiateCustomHitCondition(String name) {
+    if (!customHitConditions.containsKey(name)) {
+      return null;
+    }
+    try {
+      CustomHitCondition customHitCondition = customHitConditions.get(name).newInstance();
+      return customHitCondition;
+    } catch (InstantiationException e) {
+      logger.warning("Class '" + customHitConditions.get(name).getName() + "' cannot be instantiated because of the InstantiationException: " + e.toString()+ ". It won't be usable in the Inspector.");
+      return  null;
+    } catch (IllegalAccessException e) {
+      logger.warning("Class '" + customHitConditions.get(name).getName() + "' cannot be instantiated because of the IllegalAccessException: " + e.toString()+ ". It won't be usable in the Inspector.");
+      return  null;
+    }
+  }
+
   public static InspectorConfiguration getInstance() {
     if (instance == null) {
       if (ShellManager.getManager() == null) throw new IllegalStateException("Shell manager but be instantiated first.");
@@ -68,5 +120,12 @@ public final class InspectorConfiguration {
    */
   public boolean shouldRequestFocusOnVerify() {
     return config.getBoolean("jpf-inspector.request-focus-on-verify", true);
+  }
+
+  /**
+   * Indicates whether beeps should be suppressed, on Windows, when executing a command or pressing Backspace.
+   */
+  public boolean shouldPreventBeeps() {
+    return config.getBoolean("jpf-inspector.prevent_beeps", true);
   }
 }

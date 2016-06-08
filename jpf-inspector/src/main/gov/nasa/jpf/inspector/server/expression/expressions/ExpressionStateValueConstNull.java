@@ -47,7 +47,6 @@ public class ExpressionStateValueConstNull extends ExpressionStateValueConst {
     return new StateReadableConstValue(inspector, 1, MigrationUtilities.getResolvedClassInfo("java.lang.Object"), null);
   }
 
-  /* @see gov.nasa.jpf.inspector.server.expression.ExpressionNodeInterface#getNormalizedExpression() */
   @Override
   public String getNormalizedExpression () {
     return TOKEN_NULL;
