@@ -22,3 +22,9 @@ intellij-project-output/
 # Grammar
 jpf-inspector/src/main/gov/nasa/jpf/inspector/client/parser/generated/ConsoleGrammar*
 jpf-inspector/src/main/gov/nasa/jpf/inspector/server/expression/generated/ExpressionGrammar*
+/jpf-inspector/src/main/gov/nasa/jpf/inspector/server/expression/generated/ExpressionGrammarLexer.tokens
+/jpf-inspector/src/main/gov/nasa/jpf/inspector/server/expression/generated/ExpressionGrammarListener.java
+/jpf-inspector/src/main/gov/nasa/jpf/inspector/server/expression/generated/ExpressionGrammarParser.java
+/jpf-inspector/src/main/gov/nasa/jpf/inspector/server/expression/generated/ExpressionGrammar.tokens
+/jpf-inspector/src/main/gov/nasa/jpf/inspector/server/expression/generated/ExpressionGrammarBaseListener.java
+/jpf-inspector/src/main/gov/nasa/jpf/inspector/server/expression/generated/ExpressionGrammarLexer.java
