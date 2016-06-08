@@ -16,4 +16,9 @@ public class OnLineHitCondition implements CustomHitCondition {
     // Hits whenever the next instruction to be executed has the line number 5.
     return state.getVM().getInstruction().getLineNumber() == 5;
   }
+
+  @Override
+  public String getDetails(InspectorState state, Object[] arguments) {
+    return "These are details of the example custom hit condition.";
+  }
 }
