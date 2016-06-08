@@ -20,6 +20,7 @@
 package gov.nasa.jpf.inspector.server.expression;
 
 import gov.nasa.jpf.search.Search;
+import gov.nasa.jpf.vm.ElementInfo;
 import gov.nasa.jpf.vm.Instruction;
 import gov.nasa.jpf.vm.VM;
 
@@ -30,6 +31,12 @@ import gov.nasa.jpf.vm.VM;
  * This is a public-facing interface that is passed to custom breakpoint hit conditions.
  */
 public interface InspectorState {
+
+  /**
+   * Returns the ElementInfo instance that represents the object of the system under test that was most recently created,
+   * released or the exception that was most recently thrown, whichever is the most recent.
+   */
+  ElementInfo getLastCreatedOrReleasedElementInfo();
 
   /**
    * Represents a method of the Listener interface.

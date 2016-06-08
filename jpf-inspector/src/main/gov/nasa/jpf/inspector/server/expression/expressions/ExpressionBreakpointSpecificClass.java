@@ -58,7 +58,7 @@ public class ExpressionBreakpointSpecificClass extends ExpressionBooleanLeaf {
     VM vm = state.getVM();
     assert vm != null;
 
-    ElementInfo ei = MigrationUtilities.getLastElementInfo(vm);
+    ElementInfo ei = state.getLastCreatedOrReleasedElementInfo();
     ClassInfo ci = ei.getClassInfo();
     return cn.isSameClass(ci);
   }

@@ -154,28 +154,26 @@ public class InspectorListenerModeNotifications extends ListenerAdapter {
     if (DEBUG) {
       inspector.getDebugPrintStream().println(this.getClass().getSimpleName() + ".objectCreated()");
     }
-    MigrationUtilities.setLastElementInfo(newObject);
-    inspState.notifyListenerMethodCall(ListenerMethod.LM_OBJECT_CREATED, vm);
+    inspState.notifyListenerElementInfoMethodCall(vm, ListenerMethod.LM_OBJECT_CREATED, newObject);
     bpMgr.checkBreakpoints(inspState);
   }
 
   @Override
   public void objectReleased(VM vm, ThreadInfo currentThread, ElementInfo releasedObject) {
     if (DEBUG) {
-      inspector.getDebugPrintStream().println(this.getClass().getSimpleName() + ".objectCreated()");
+      inspector.getDebugPrintStream().println(this.getClass().getSimpleName() + ".objectReleased()");
     }
-    MigrationUtilities.setLastElementInfo(releasedObject);
-    inspState.notifyListenerMethodCall(ListenerMethod.LM_OBJECT_RELEASED, vm);
+    inspState.notifyListenerElementInfoMethodCall(vm, ListenerMethod.LM_OBJECT_RELEASED, releasedObject);
     bpMgr.checkBreakpoints(inspState);
   }
+
 
   @Override
   public void exceptionThrown(VM vm, ThreadInfo currentThread, ElementInfo thrownException) {
     if (DEBUG) {
-      inspector.getDebugPrintStream().println(this.getClass().getSimpleName() + ".objectCreated()");
+      inspector.getDebugPrintStream().println(this.getClass().getSimpleName() + ".exceptionThrown()");
     }
-    MigrationUtilities.setLastElementInfo(thrownException);
-    inspState.notifyListenerMethodCall(ListenerMethod.LM_EXCEPTION_THROWN, vm);
+    inspState.notifyListenerElementInfoMethodCall(vm, ListenerMethod.LM_EXCEPTION_THROWN, thrownException);
     bpMgr.checkBreakpoints(inspState);
   }
 

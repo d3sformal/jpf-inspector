@@ -31,12 +31,12 @@ public final class MigrationUtilities {
     return vm.getCurrentThread();
   }
 
-  public static int getThreadNumber(VM vm) {
-    return vm.getCurrentThread().getId();
-  }
+
 
   public static ClassInfo getResolvedClassInfo(String className) {
     return ClassLoaderInfo.getCurrentResolvedClassInfo(className); // or "system" resolved?
+
+
   }
 
   /**
@@ -50,27 +50,6 @@ public final class MigrationUtilities {
     ClassInfo[] array = new ClassInfo[loadedClasses.size()];
     array = loadedClasses.toArray(array);
     return array;
-  }
-
-  private static ElementInfo lastElementInfo;
-  /**
-   * Gets the last ElementInfo manipulated via specific functions of the InspectorListener.
-   * @see MigrationUtilities#setLastElementInfo(ElementInfo)
-   */
-  public static ElementInfo getLastElementInfo(VM vm) {
-    return lastElementInfo;
-  }
-
-  /**
-   * Remembers the last manipulated ElementInfo as a global variable.
-   * This replaces functionality that was present in the JVM class in JPF6 but was abandoned during refactoring to JPF8.
-   *
-   * Called from {@link InspectorListenerModeNotifications#objectCreated(VM, ThreadInfo, ElementInfo)}.
-   * Called from {@link InspectorListenerModeNotifications#objectReleased(VM, ThreadInfo, ElementInfo)}.
-   * Called from {@link InspectorListenerModeNotifications#exceptionThrown(VM, ThreadInfo, ElementInfo)}.
-   */
-  public static void setLastElementInfo(ElementInfo lastElementInfo) {
-    MigrationUtilities.lastElementInfo = lastElementInfo;
   }
 
   /**

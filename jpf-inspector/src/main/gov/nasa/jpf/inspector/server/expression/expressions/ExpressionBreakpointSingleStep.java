@@ -166,7 +166,7 @@ public class ExpressionBreakpointSingleStep extends ExpressionBooleanLeaf {
     assert vm != null;
 
     // Check if we are in the same thread
-    int lastThread = MigrationUtilities.getThreadNumber(vm);
+    int lastThread = vm.getCurrentThread().getId();
     if (lastThread != threadNum) {
       return false;
     }

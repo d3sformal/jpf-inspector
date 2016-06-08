@@ -22,6 +22,7 @@ package gov.nasa.jpf.inspector.server.expression;
 import gov.nasa.jpf.inspector.server.breakpoints.BreakpointHandler;
 import gov.nasa.jpf.inspector.server.jpf.InspectorListener;
 import gov.nasa.jpf.search.Search;
+import gov.nasa.jpf.vm.ElementInfo;
 import gov.nasa.jpf.vm.Instruction;
 import gov.nasa.jpf.vm.ThreadInfo;
 import gov.nasa.jpf.vm.VM;
@@ -54,6 +55,17 @@ public class InspectorStateImpl implements InspectorState {
    * to be called.
    */
   private InspectorState.ListenerMethod listenerMethod = ListenerMethod.LM_NOT_IN_LIST;
+  private ElementInfo lastCreatedOrReleasedElementInfo;
+
+  public  void notifyListenerElementInfoMethodCall(VM vm,  ListenerMethod listenerMethod, ElementInfo elementInfo) {
+    lastCreatedOrReleasedElementInfo = elementInfo;
+    this.listenerMethod = listenerMethod;
+    this.vm = vm;
+  }
+  @Override
+  public ElementInfo getLastCreatedOrReleasedElementInfo() {
+    return null;
+  }
 
   @Override
   public VM getVM() {

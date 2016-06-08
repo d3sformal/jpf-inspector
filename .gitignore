@@ -17,7 +17,6 @@ core6/build/
 # IDE-specific
 intellij-project-output/
 .idea/workspace.xml
-*workspace.xml
 /.idea/workspace.xml
 
 # Grammar
