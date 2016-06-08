@@ -36,29 +36,42 @@ import gov.nasa.jpf.vm.ThreadList;
 import java.util.Iterator;
 
 /**
- * The class is used to handle the Step out command.
+ * Represents a hidden breakpoint condition used to implement the "step_out" command.
  * 
- * The breakpoint hits if current thread return into given method on stack.
- * (if provided {@link StackFrame} become the top frame for given thread)
+ * The breakpoint hits if the current thread returns into a given method on stack
+ * (i.e. when the provided {@link StackFrame} becomes the top frame for given thread)
  * 
  * @author Alfifi
  */
 public class ExpressionBreakpointStepOut extends ExpressionBooleanLeaf {
 
+  /**
+   * The active thread at the time the stepping was initiated.
+   */
   final private int threadNum;
-  final private int stackDepth; // Specify to which SF should breakpoint step out (in which it should hit) - counted from the top of the call stack
+  /**
+   * Specify to which SF should breakpoint step out (in which it should hit) - counted from the top of the call stack
+   * This is only used in the expression's getNormalizedExpression which is never called anyway.
+   */
+  final private int stackDepth;
 
   // final private StackFrame sf; // Represents called method (used only for assertions)
 
-  final private int maxBreakingStackDepth; // If stack depth is lower the this value, the breakpoint hits
-
-  /*
-   * @param ti Thread which is considered (all other threads are ignored by this breakpoint)
-   * 
-   * @param stackDepth How many stack frames (from the current call stack) should be exited before the breakpoint hit (on the first such instruction). To leave
-   * just the current methods set to 1.
+  /**
+   * If stack depth is lower than this value, then the breakpoint hits. This value is the stack depth at the time
+   * the stepping is initiated.
    */
-  public ExpressionBreakpointStepOut (ThreadInfo ti, int stackDepth) {
+  final private int maxBreakingStackDepth;
+
+  /**
+   * Creates the hit condition.
+   *
+   * @param ti Thread which is considered (all other threads are ignored by this breakpoint)
+   * @param stackDepth How many stack frames (from the current call stack) should be exited before the breakpoint hit (on the first such instruction).
+   *                   This is always 1.
+   */
+  private ExpressionBreakpointStepOut(ThreadInfo ti, int stackDepth) {
+    assert stackDepth == 1;
     this.threadNum = ti.getId();
     this.stackDepth = stackDepth;
 
@@ -71,6 +84,11 @@ public class ExpressionBreakpointStepOut extends ExpressionBooleanLeaf {
     // this.sf = ti.getCallerStackFrame(stackDepth);
   }
 
+  /**
+   * This is apparently only used from the grammar and using grammar for stepping is completely undocumented,
+   * so why even have this here? Maybe for testing? or something?
+   */
+  @Deprecated
   public static ExpressionBreakpointStepOut getStepOutToCaller (JPFInspector inspector, int threadId, int stackDepth) throws JPFInspectorGenericErrorException {
     assert inspector != null;
     StopHolder sh = inspector.getStopHolder();
@@ -86,13 +104,11 @@ public class ExpressionBreakpointStepOut extends ExpressionBooleanLeaf {
 
     // Find thread with given ThreadID
     KernelState ks = vm.getKernelState();
-    ThreadList tl = ks.getThreadList();
+    ThreadList threadList = ks.getThreadList();
 
     ThreadInfo ti = null;
 
-    Iterator<ThreadInfo> it = tl.iterator();
-    while (it.hasNext()) {
-      ThreadInfo itTi = it.next();
+    for (ThreadInfo itTi : threadList) {
       assert (itTi != null);
 
       if (itTi.getId() == threadId) {
@@ -117,11 +133,11 @@ public class ExpressionBreakpointStepOut extends ExpressionBooleanLeaf {
   public boolean evaluateExpression (InspectorState state) {
     assert state != null;
 
-    if (state.getListenerMethod() == ListenerMethod.LM_INSTRUCTION_EXECUTED) {
+    if (state.getListenerMethod() == ListenerMethod.LM_EXECUTE_INSTRUCTION) {
       VM vm = state.getVM();
       assert vm != null;
 
-      ThreadInfo ti = MigrationUtilities.getLastThreadInfo(vm);
+      ThreadInfo ti = vm.getCurrentThread();
       assert ti != null;
       if (ti.getId() != threadNum) {
         return false;
