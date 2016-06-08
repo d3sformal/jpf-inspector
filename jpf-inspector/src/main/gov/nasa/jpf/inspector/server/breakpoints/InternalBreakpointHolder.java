@@ -126,6 +126,9 @@ class InternalBreakpointHolder implements Comparable<InternalBreakpointHolder> {
     return bpID;
   }
 
+  /**
+   * Returns true if the breakpoint was created by the user, i.e. it is NOT an internal breakpoint used for stepping.
+   */
   public boolean isUserBreakpoint () {
     return userBP;
   }

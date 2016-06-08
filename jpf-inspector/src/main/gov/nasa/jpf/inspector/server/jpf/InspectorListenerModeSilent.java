@@ -21,7 +21,7 @@ import gov.nasa.jpf.search.Search;
  * 
  */
 public class InspectorListenerModeSilent extends ListenerAdapter {
-  private static final boolean DEBUG = true;
+  private static final boolean DEBUG = false;
 
   private final JPFInspector inspector;
   private final CommandsManager cmdMgr;

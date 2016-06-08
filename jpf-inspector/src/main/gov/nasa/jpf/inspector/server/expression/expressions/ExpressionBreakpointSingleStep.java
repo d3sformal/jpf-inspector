@@ -50,17 +50,35 @@ import java.util.Iterator;
  */
 public class ExpressionBreakpointSingleStep extends ExpressionBooleanLeaf {
   private static final boolean DEBUG = false;
+
+  @SuppressWarnings("FieldCanBeLocal") // https://youtrack.jetbrains.com/issue/IDEA-157179
   private final JPFInspector inspector;
 
+  /**
+   * Position of the instruction that is about to be executed at the time
+   * the stepping command is initiated.
+   */
   final private InstructionPosition instPos;
+  /**
+   * Kind of the stepping (step over or step in)
+   */
   final private LocationTypes posHandling;
+  /**
+   * Active thread when the breakpoint was set.
+   */
   final private int threadNum;
   final private StackFrame topStackFrame; // Is used to determine correct return in to the calling method in case of Step-over
   final private Transition reqTransition; // Transition that has to be present in the current Path (or {@link JVM#getCurrentTransition()}. This prevents
                                           // backtracking before Choice when the breakpoint has been created
 
-  final private boolean breakIfNoNextLine; // If set the Breakpoint hits if the JPF backtrack before the transition/step where BP takes place. Can have sence
-                                           // only for some Search classes.
+  /**
+   * If set the Breakpoint hits if the JPF backtrack before the transition/step where BP takes place.
+   * Can have sense only for some Search classes.
+   *
+   * TODO ...and I have no idea what it means
+   * However, it is set to "true" for all proper search classes, apparently.
+   */
+  final private boolean breakIfNoNextLine;
 
   public enum LocationTypes {
     /**
@@ -124,13 +142,18 @@ public class ExpressionBreakpointSingleStep extends ExpressionBooleanLeaf {
     this.instPos = InstructionPositionImpl.getInstructionPosition(MigrationUtilities.getLastInstruction(vm));
     this.threadNum = vm.getCurrentThread().getId();
 
-    // TODO this is now probably wrong since we moved from "after" to "before" execution
+    /*
+    We are removing this, because since we are now acting BEFORE the instruction, we should be fine.
+    Of course, a break can happen at any moment, so this might be a problem nonetheless. More thinking should be done
+    on this.
+
     if (MigrationUtilities.getLastInstruction(vm) instanceof InvokeInstruction) {
       // Stack frame for called method is already created - of the of top2 stack frame, which represents the method with invoke instruction
       this.topStackFrame = vm.getCurrentThread().getTopFrame().getPrevious();
     } else {
       this.topStackFrame = vm.getCurrentThread().getTopFrame();
-    }
+    }*/
+    this.topStackFrame = vm.getCurrentThread().getTopFrame();
     this.reqTransition = vm.getCurrentTransition();
 
     Search search = vm.getJPF().getSearch();
@@ -142,14 +165,6 @@ public class ExpressionBreakpointSingleStep extends ExpressionBooleanLeaf {
               + ", posHandling=" + posHandling + ", threadNum=" + threadNum + ", reqTransition=" + reqTransition + ", posHandling=" + posHandling + ")");
     }
 
-  }
-
-  public final InstructionPosition getInstructionPos () {
-    return instPos;
-  }
-
-  public final LocationTypes getPosHandling () {
-    return posHandling;
   }
 
   @Override
@@ -166,8 +181,8 @@ public class ExpressionBreakpointSingleStep extends ExpressionBooleanLeaf {
     assert vm != null;
 
     // Check if we are in the same thread
-    int lastThread = vm.getCurrentThread().getId();
-    if (lastThread != threadNum) {
+    int currentThreadNumber = vm.getCurrentThread().getId();
+    if (currentThreadNumber != threadNum) {
       return false;
     }
 
@@ -177,26 +192,33 @@ public class ExpressionBreakpointSingleStep extends ExpressionBooleanLeaf {
     }
 
     final Path path = vm.getPath();
-    final Instruction lastInstr = MigrationUtilities.getLastInstruction(vm);
+    final Instruction impendingInstruction = vm.getInstruction();
     // final Step lastStep = vm.getSystemState().getTrail().getLastStep();
     // final Instruction xxx = lastStep.getInstruction();
     // assert lastInstr.equals(xxx);
 
-    final boolean lastInstrHitPos = instPos.hitPosition(lastInstr);
+    // Whether we are at the same line as we were when the stepping started.
+    final boolean lastInstrHitPos = instPos.hitPosition(impendingInstruction);
+
     if (DEBUG) {
       inspector.getDebugPrintStream().println(
-          "\tlasInstr=" + ExpressionBreakpointPosition.instructionPosition(lastInstr) + "\n\tlastInstrHitPos=" + lastInstrHitPos);
+          "\tlasInstr=" + ExpressionBreakpointPosition.instructionPosition(impendingInstruction) + "\n\tlastInstrHitPos=" + lastInstrHitPos);
     }
 
-    Instruction prevInstr = state.getLastExecutedInstruction(lastThread);
+    // The instruction that was just executed right now
+    Instruction prevInstr = state.getLastExecutedInstruction(currentThreadNumber);
     // Instruction prevInstr = ExpressionBreakpointPosition.getInstructionForThread(vm.getSystemState().getTrail(), path, lastThread, 1);
 
     // TODO this may now be false:
+
+    /*
+    TODO this probably does not make sense anymore
     if (prevInstr instanceof ReturnInstruction) {
       // Implies that previous instruction in method is invoke (no jump, part of single basic block)
-      prevInstr = lastInstr.getPrev();
+      prevInstr = impendingInstruction.getPrev();
       assert (prevInstr instanceof InvokeInstruction);
     }
+     */
     if (DEBUG) {
       inspector.getDebugPrintStream().println("\tprevInstr=" + ExpressionBreakpointPosition.instructionPosition(prevInstr));
     }
@@ -206,27 +228,42 @@ public class ExpressionBreakpointSingleStep extends ExpressionBooleanLeaf {
       if (containsStackFrame(currentThread, topStackFrame)) {
         // Stack frame of method which current(last) instruction belongs to
         StackFrame stackFrame = currentThread.getTopFrame();
-        if (lastInstr instanceof InvokeInstruction) {
+        /*
+        see above
+        if (impendingInstruction instanceof InvokeInstruction) {
           // top Stack frame is callee frame, we are interested in caller stack frame
           stackFrame = stackFrame.getPrevious();
         }
+        */
         if (stackFrame.equals(topStackFrame)) {
-          if (lastInstr instanceof ReturnInstruction) {
+          // We are in the same method.
+          /*
+          see above
+          if (impendingInstruction instanceof ReturnInstruction) {
             // Return from call -> check next instruction
             return false;
+          }*/
+
+          //noinspection RedundantIfStatement (I think it's clearer this way.)
+          if (lastInstrHitPos) {
+            return false; // We are still on the same line.
+          } else {
+            return true; // We are no longer on the same line.
           }
-          return !lastInstrHitPos;
         } else {
+          // We have gone deeper into a call and need to wait until we exit.
           return false;
         }
       } else {
+        // We have left the method we were in when the stepping was initiated.
+        // That is one of the trigger conditions of step_over.
         return true;
       }
     } else if (posHandling == LocationTypes.LT_POSITION_LEAVED_STEP_IN) {
       if (lastInstrHitPos == true) {
         return false;
       }
-      if (lastInstr instanceof InvokeInstruction) {
+      if (impendingInstruction instanceof InvokeInstruction) {
         return true;
       }
 
@@ -243,6 +280,9 @@ public class ExpressionBreakpointSingleStep extends ExpressionBooleanLeaf {
 
   @Override
   public String getDetails (InspectorState state) {
+    // This should never be actually called, because this is usually an internal breakpoint
+    // and thus its details won't be displayed to the user.
+
     if (state != null && evaluateExpression(state)) {
       return "SuT leaves the position " + instPos.toString() + ".";
     }

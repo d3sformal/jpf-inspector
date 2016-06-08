@@ -32,7 +32,7 @@ import java.io.Serializable;
  * print command then prints the program state entry as a string. That is the only use of this class.
  */
 public abstract class ProgramStateEntry implements Serializable {
-  protected static final boolean DEBUG = true;
+  protected static final boolean DEBUG = false;
 
   private static final long serialVersionUID = 7537838000235914763L;
 

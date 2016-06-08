@@ -17,7 +17,7 @@ import gov.nasa.jpf.search.Search;
  * This is contrary to {@link InspectorListenerModeSilent} which is active during backtracking and ignores breakpoints.
  */
 public class InspectorListenerModeNotifications extends ListenerAdapter {
-  private static final boolean DEBUG = true;
+  private static final boolean DEBUG = false;
 
   private final JPFInspector inspector;
   private final CommandsManager cmdMgr;

@@ -41,7 +41,7 @@ import gov.nasa.jpf.vm.bytecode.ReturnInstruction;
 // TODO the NEW instruction can stand in place of the call instruction (calls the constructor!!)
 // problem is connected with the DirectCalls (cinits) and reexecution of the same instruction !!
 public class ExpressionBreakpointPosition extends ExpressionBooleanLeaf {
-  private static final boolean DEBUG = true;
+  private static final boolean DEBUG = false;
   private final JPFInspector inspector;
 
   final private InstructionPosition instPos;

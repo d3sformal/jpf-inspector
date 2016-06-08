@@ -137,7 +137,7 @@ public class BreakpointHandler implements BreakPointManagerInterface {
    * Creates or modifies a breakpoint.
    * @param newBP Information about the breakpoint, including its ID, if modifying an existing one.
    * @param hidden True for internal breakpoints, no error reports etc hidden, false for standard BP created by user. Cannot be null.
-   * @param newBPExpression Parsed expression from the newBP create. Is passed separately to be handle internal BP, which are not supported by in expression grammar.
+   * @param newBPExpression Parsed expression from the newBP create. Is passed separately to be handle internal BP, which are not supported in the expression grammar.
    * @param firstHit Whether this breakpoint should be removed when it's first hit. This never happens to user
    *                 breakpoints, only to internal breakpoints.
    */
@@ -153,7 +153,7 @@ public class BreakpointHandler implements BreakPointManagerInterface {
       if (newBP.getBPID() != BreakPointCreationInformation.BP_ID_NOT_DEFINED) {
         ibp = breakpoints.get(newBP.getBPID());
         if (ibp == null) {
-          throw new JPFInspectorGenericErrorException("Breakpoint with ID=" + newBP.getBPID() + " not exists --> cann't be modified");
+          throw new JPFInspectorGenericErrorException("Breakpoint with ID " + newBP.getBPID() + " does not exist and so can't be modified");
         }
       }
       if (ibp == null) {
@@ -208,13 +208,12 @@ public class BreakpointHandler implements BreakPointManagerInterface {
   }
 
   /**
-   *
    * Creates an internal breakpoint and returns information about it. An internal breakpoint is "hidden", not created
-   * and not displayed to the user.
+   * and not displayed to the user. It is used for stepping commands.
    *
    * @param newBP Information about the breakpoint.
    * @param newBPExpression Hit condition for the breakpoint (missing from the information in the previous parameter).
-   * @param singleHit If set then the breakpoint is automatically removed after first hit of any breakpoint
+   * @param singleHit If set then the breakpoint is automatically removed after first hit.
    */
   public BreakPointStatus createInternalBreakpoint (BreakPointCreationInformation newBP, ExpressionBooleanInterface newBPExpression, boolean singleHit) {
     try {

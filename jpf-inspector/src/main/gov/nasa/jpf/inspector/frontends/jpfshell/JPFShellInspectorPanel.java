@@ -59,7 +59,7 @@ public class JPFShellInspectorPanel extends ShellPanel implements VerifyCommandL
 
   private int initialCmdProcessed = 0;
 
-  private static final boolean DEBUG = true;
+  private static final boolean DEBUG = false;
 
   private static final long serialVersionUID = 20110715L;
 
