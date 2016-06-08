@@ -149,7 +149,7 @@ public class CommandsManager implements CommandsInterface {
     }
 
     int bpID = bbc.createBreakpoint(breakpointMgr);
-    // breakpointMgr.createInternalBreakpoint(newBP, bpExpression, true);
+
     // According stepType find
     // a) how much transitions it is required to backtrack
     // b) create breakpoint for specific position in transition (handle repetitive invocations??)
