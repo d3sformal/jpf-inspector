@@ -106,6 +106,7 @@ allKeyWordsWithoutCreateBPandHitCount returns [String text]
     | a=TOKEN_HELLO { $text = $a.text; }
     | a=TOKEN_HELP { $text = $a.text; }
     | a=TOKEN_WAIT { $text = $a.text; }
+    | a=TOKEN_BOTH { $text = $a.text; }
     ;
 
 // Can parse all Client commands as well as text representation of Callbacks - used for Record&Replay approach
@@ -219,6 +220,7 @@ cgType returns [CmdChoiceGeneratorsTracking.CGTypeSpec cgsType]
     : TOKEN_SCHEDULING   { $cgsType = CmdChoiceGeneratorsTracking.CGTypeSpec.CGS_SCHEDULING; }
     | TOKEN_DATA         { $cgsType = CmdChoiceGeneratorsTracking.CGTypeSpec.CGS_DATA; }
     | TOKEN_ALL          { $cgsType = CmdChoiceGeneratorsTracking.CGTypeSpec.CGS_ALL; }
+    | TOKEN_BOTH          { $cgsType = CmdChoiceGeneratorsTracking.CGTypeSpec.CGS_ALL; }
     ;
 
 cgMode returns [ChoiceGeneratorsInterface.CGMode cg_mode] 
@@ -327,6 +329,7 @@ TOKEN_ALL : 'all' ;
 TOKEN_ASK : 'ask';
 TOKEN_ASSERT : 'assert' ;
 TOKEN_ASSERTIONS : 'assertions' ;
+TOKEN_BOTH : 'both';
 TOKEN_BREAK : 'break' ;
 TOKEN_BREAKPOINT : 'breakpoint' | 'bp' ;
 TOKEN_CHOICE_GENERATORS : 'choice_generators' | 'cg' ;

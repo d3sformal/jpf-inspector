@@ -64,13 +64,20 @@ public interface CommandsInterface {
    */
   void start() throws JPFInspectorException;
 
+  /**
+   * Indicates how many instructions should be skipped when stepping.
+   * Full details explaining what each transition step means are in the documentation of Commands.
+   */
   enum StepType {
     ST_TRANSITION_ALL,
     ST_TRANSITION_DATA,
     ST_TRANSITION_SCHED,
+    /**
+     * Step a single instruction.
+     */
     ST_INSTRUCTION,
     /**
-     * Step over.
+     * Step until you are on the next line.
      */
     ST_LINE,
     ST_STEP_IN,

@@ -28,10 +28,17 @@ import gov.nasa.jpf.vm.VM;
 import gov.nasa.jpf.vm.ThreadInfo;
 import gov.nasa.jpf.vm.Transition;
 
+/**
+ * Represents the "thread_scheduled = [in/out/both] : [index]" hit condition that hits when the specified thread is
+ * scheduled in or out.
+ */
 public class ExpressionBreakpointThreadScheduled extends ExpressionBooleanLeaf {
 
   private BreakPointModes bpMode;
-  private final Integer threadNum; // / Null means any thread!!!
+  /**
+   * The index of the thread we are interested in, or "null" for any thread.
+   */
+  private final Integer threadNum;
 
   public ExpressionBreakpointThreadScheduled (BreakPointModes bpMode, Integer threadNum) {
     if ((bpMode == BreakPointModes.BP_MODE_THREAD_SCHEDULED_BOTH) || (bpMode == BreakPointModes.BP_MODE_THREAD_SCHEDULED_IN)
@@ -90,7 +97,7 @@ public class ExpressionBreakpointThreadScheduled extends ExpressionBooleanLeaf {
 
   @Override
   public String getNormalizedExpression () {
-    StringBuffer sb = new StringBuffer(64);
+    StringBuilder sb = new StringBuilder(64);
     sb.append("thread_scheduled");
     sb.append('=');
 

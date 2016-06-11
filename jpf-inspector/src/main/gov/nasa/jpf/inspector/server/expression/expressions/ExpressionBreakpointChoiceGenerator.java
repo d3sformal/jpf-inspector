@@ -26,6 +26,10 @@ import gov.nasa.jpf.inspector.server.expression.InspectorState.ListenerMethod;
 import gov.nasa.jpf.vm.ChoiceGenerator;
 import gov.nasa.jpf.vm.ThreadInfo;
 
+/**
+ * Represents the "cg = [choice generator type]" hit condition that hits when a choice is requested from
+ * a choice generator of the given type.
+ */
 public class ExpressionBreakpointChoiceGenerator extends ExpressionBooleanLeaf {
 
   private BreakPointModes bpMode;
@@ -69,7 +73,7 @@ public class ExpressionBreakpointChoiceGenerator extends ExpressionBooleanLeaf {
 
   @Override
   public String getNormalizedExpression() {
-    StringBuffer sb = new StringBuffer(20);
+    StringBuilder sb = new StringBuilder(20);
     sb.append("choice_generator=");
     if (bpMode == BreakPointModes.BP_MODE_CHOICE_DATA) {
       sb.append("data");

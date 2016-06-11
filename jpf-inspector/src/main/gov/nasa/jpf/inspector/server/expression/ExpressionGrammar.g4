@@ -40,6 +40,7 @@ options {
 
 allKeyWordsIDFLike
     : TOKEN_AND
+    | TOKEN_ALL
     | TOKEN_ANY
     | TOKEN_ARRAY
     | TOKEN_ASSERT
@@ -225,12 +226,14 @@ cmdGarbageCollectionSpec returns [BreakPointModes bpMode]
     : TOKEN_BEGIN { $bpMode  = BreakPointModes.BP_MODE_GC_BEGIN; }
     | TOKEN_END   { $bpMode  = BreakPointModes.BP_MODE_GC_END; }
     | TOKEN_BOTH  { $bpMode  = BreakPointModes.BP_MODE_GC_BOTH; }
+    | TOKEN_ALL       { $bpMode = BreakPointModes.BP_MODE_CHOICE_BOTH; }
     ;
 
 cmdChoiceGeneratorType returns [BreakPointModes bpMode]
     : TOKEN_DATA       { $bpMode = BreakPointModes.BP_MODE_CHOICE_DATA; }
     | TOKEN_SCHEDULING { $bpMode = BreakPointModes.BP_MODE_CHOICE_SCHEDULING; }
     | TOKEN_BOTH       { $bpMode = BreakPointModes.BP_MODE_CHOICE_BOTH; }
+    | TOKEN_ALL       { $bpMode = BreakPointModes.BP_MODE_CHOICE_BOTH; }
     ;
 
 cmdInstructionTypes returns [InstructionType instructionType]
@@ -250,6 +253,7 @@ cmdThreadScheduledDirection returns [BreakPointModes bpMode]
     : TOKEN_IN                { $bpMode = BreakPointModes.BP_MODE_THREAD_SCHEDULED_IN; }
     | TOKEN_OUT               { $bpMode = BreakPointModes.BP_MODE_THREAD_SCHEDULED_OUT; }
     | TOKEN_BOTH              { $bpMode = BreakPointModes.BP_MODE_THREAD_SCHEDULED_BOTH; }
+    | TOKEN_ALL       { $bpMode = BreakPointModes.BP_MODE_CHOICE_BOTH; }
     ;
 
 cmdStateAssignment [ExpressionFactory expFactory] returns [ExpressionStateAssignment expr]
@@ -498,6 +502,7 @@ fileNameText
 
 WS      :   (' '|'\n'|'\r'|'\t')+ ;
 
+TOKEN_ALL                       : 'all';
 TOKEN_AND                       : 'and' ;
 TOKEN_ANY                       : 'any' ;
 TOKEN_ARRAY                     : 'array' ;

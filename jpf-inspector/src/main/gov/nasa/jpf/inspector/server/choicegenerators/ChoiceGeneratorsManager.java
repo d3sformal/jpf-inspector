@@ -135,7 +135,6 @@ public class ChoiceGeneratorsManager implements ChoiceGeneratorsInterface, Choic
       out.println(this.getClass().getSimpleName() + ".notifyChoiceGeneratorAdvance( cg=" + cg + ", inspState=" + inspState + ")");
     }
 
-    // inspector.getDebugPrintStream().println("CG call occured - " + cg.toString() + " ... cg.className=" + cg.getClass().getName() + "#" + cg.hashCode());
     CGTypes cgType = null;
     if (cg instanceof ThreadChoiceGenerator) {
       cgType = CGTypes.CG_TYPE_SCHEDULING;
