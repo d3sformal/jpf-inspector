@@ -398,7 +398,7 @@
   <target name="test" depends="compile"
           description="compile and run tests" if="have_tests">
 
-    <property name="junit.usefile" value="true"/>
+    <property name="junit.usefile" value="false"/>
 
     <junit printsummary="on"
            showoutput="true"
@@ -414,6 +414,7 @@
 
         <pathelement location="build/tests"/>
         <pathelement location="build/classes"/>
+        <pathelement location="build/examples"/>
         <pathelement location="build/annotations"/>
 
       </classpath>
