@@ -3,10 +3,10 @@ package gov.nasa.jpf.inspector.tests.cmd2text;
 import gov.nasa.jpf.inspector.client.ClientCommandInterface;
 import gov.nasa.jpf.inspector.client.parser.CommandParserFactory;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorParsingErrorException;
-import gov.nasa.jpf.inspector.tests.infrastructure.InspectorTest;
 
 import java.io.PrintStream;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 /**
@@ -18,7 +18,7 @@ import org.junit.Test;
  * @author Alf
  * 
  */
-public class NormalizedTextParsingTest extends InspectorTest {
+public class NormalizedTextParsingTest  {
   private static final boolean DEBUG = true;
   private final PrintStream out = System.out;
 
@@ -173,8 +173,9 @@ public class NormalizedTextParsingTest extends InspectorTest {
     }
   }
 
-  public static void main (String[] testMethods) {
-    runTestsOfThisClass(testMethods);
+  private void fail(String s) {
+    Assert.fail(s);
   }
+
 
 }

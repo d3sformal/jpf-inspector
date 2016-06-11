@@ -42,7 +42,7 @@ import java.util.logging.StreamHandler;
  *       {@link gov.nasa.jpf.shell.ShellCommand#execute()}</li>
  *   <li>Notify all Shells when a command is either added, removed or requests
  *       to be updated</li>
- *   <li>Manage {@link gov.nasa.jpf.ShellCommandListener} instances</li> 
+ *   <li>Manage {@link gov.nasa.jpf.shell.ShellCommandListener} instances</li>
  *   <li>Exit the System once all {@link gov.nasa.jpf.shell.Shell} instances are
  *       disposed of</li>
  *   <li>Hold a reference to the single {@link gov.nasa.jpf.Config} object</li> 
@@ -83,6 +83,13 @@ public class ShellManager {
   public static ShellManager createShellManager(Config c){
     setManager(new ShellManager(c));
     return getManager();
+  }
+
+  /**
+   * Returns true if the shell manager was already created; false otherwise.
+   */
+  public static boolean isShellManagerSet() {
+    return manager != null;
   }
 
   /**
@@ -366,13 +373,13 @@ public class ShellManager {
 
   /**
    * This method that should be called to launch/fire/execute a command. It first
-   * calls {@link gov.nasa.jpf.r.ShellCommand#prepare()} to first determine
+   * calls {@link gov.nasa.jpf.shell.ShellCommand#prepare()} to first determine
    * whether to continue and notify the sclisteners. If prepare() is true then
-   * {@link gov.nasa.jpf.r.ShellCommandListener#preCommand(gov.nasa.jpf.r.ShellCommand)}
+   * {@link gov.nasa.jpf.shell.ShellCommandListener#preCommand(ShellCommand)}
    * is executed for all sclisteners to this command. The command is then executed via
-   * {@link gov.nasa.jpf.r.ShellCommand#execute()}. All the sclisteners are then
+   * {@link gov.nasa.jpf.shell.ShellCommand#execute()}. All the sclisteners are then
    * once again notified about the completion of the command through
-   * {@link gov.nasa.jpf.r.ShellCommandListener#postCommand(gov.nasa.jpf.r.ShellCommand)}
+   * {@link gov.nasa.jpf.shell.ShellCommandListener#postCommand(ShellCommand)}
    *
    * @param command the command who's sclisteners and execute method will be fired.
    */

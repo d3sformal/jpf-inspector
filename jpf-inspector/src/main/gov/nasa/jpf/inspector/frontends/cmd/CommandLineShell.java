@@ -10,6 +10,9 @@ import gov.nasa.jpf.shell.ShellCommand;
 import gov.nasa.jpf.shell.ShellManager;
 import gov.nasa.jpf.shell.ShellPanel;
 
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.io.PrintStream;
 import java.util.Scanner;
 
 /**
@@ -24,6 +27,8 @@ import java.util.Scanner;
  *
  */
 public final class CommandLineShell extends Shell {
+  private InputStream inputStream;
+  private PrintStream outputStream;
   @Override
   public void start(String[] args) {
     ShellManager.getManager().setStartingArgs(args);
@@ -33,19 +38,19 @@ public final class CommandLineShell extends Shell {
     boolean safeMode = config.getBoolean("jpf-inspector.safe-mode", true);
     boolean batchModeEchoInput =  batchMode && config.getBoolean("jpf-inspector.batch-mode.echo-input", false);
 
-    Scanner scanner = new Scanner(System.in);
-    JPFInspectorClientInterface inspector = JPFInspectorFacade.getInspectorClient(config.getTarget(), System.out);
+    Scanner scanner = new Scanner(inputStream);
+    JPFInspectorClientInterface inspector = JPFInspectorFacade.getInspectorClient(config.getTarget(), outputStream);
 
     if (!batchMode) {
-      System.out.println("This is the JPF Inspector console for debugging the target \"" + config.getTarget() + "\".");
-      System.out.println("Type \"hello\" to test if the Inspector is working or \"help\" to get a list of commands.");
-      System.out.print(Constants.PROMPT);
+      outputStream.println("This is the JPF Inspector console for debugging the target \"" + config.getTarget() + "\".");
+      outputStream.println("Type \"hello\" to test if the Inspector is working or \"help\" to get a list of commands.");
+      outputStream.print(Constants.PROMPT);
     }
     while (scanner.hasNextLine()) {
       String s = scanner.nextLine();
       String sTrimmed = s.trim();
       if (batchModeEchoInput) {
-        System.out.println(Constants.PROMPT + sTrimmed);
+        outputStream.println(Constants.PROMPT + sTrimmed);
       }
       if (sTrimmed.length() > 0) {
         inspector.executeCommand(s, ExecutionContext.FROM_COMMAND_LINE_TERMINAL);
@@ -57,37 +62,57 @@ public final class CommandLineShell extends Shell {
   }
 
 
+  /**
+   * This is called by the JPF when executing via RunJPF
+   */
   public CommandLineShell(Config config) {
     ShellManager.createShellManager(config);
     if (!ShellManager.getManager().hasShell(this)) {
       ShellManager.getManager().addShell(this);
       // We will handle when to exit the VM in ShellManager
     }
+    this.inputStream = System.in;
+    this.outputStream = System.out;
+  }
+
+  /**
+   * This is called by the tests.
+   *
+   */
+  public CommandLineShell(String appProperties, InputStream inputStream, PrintStream outputStream) {
+    if (ShellManager.isShellManagerSet()) {
+      ShellManager.getManager().reloadAppProperties(appProperties);
+    } else {
+      Config config = new Config(new String[] { appProperties });
+      ShellManager.createShellManager(config);
+      if (!ShellManager.getManager().hasShell(this)) {
+        ShellManager.getManager().addShell(this);
+        // We will handle when to exit the VM in ShellManager
+      }
+    }
+
+    this.inputStream = inputStream;
+    this.outputStream = outputStream;
   }
 
   @Override
   public void installCommand(ShellCommand command) {
-
   }
 
   @Override
   public void uninstallCommand(ShellCommand command) {
-
   }
 
   @Override
   public void updateShellCommand(ShellCommand command) {
-
   }
 
   @Override
   public void updateShellPanel(ShellPanel panel) {
-
   }
 
   @Override
   public void requestFocus(ShellPanel panel) {
-
   }
 
   @Override

@@ -1,4 +1,4 @@
-package gov.nasa.jpf.inspector.tests.infrastructure;
+package gov.nasa.jpf.inspector.tests.legacy.infrastructure;
 
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorException;
 import gov.nasa.jpf.inspector.server.jpf.JPFInspector;

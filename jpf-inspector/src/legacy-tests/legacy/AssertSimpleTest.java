@@ -17,7 +17,7 @@
 // DOCUMENTATION, IF PROVIDED, WILL CONFORM TO THE SUBJECT SOFTWARE.
 //  
 
-package gov.nasa.jpf.inspector.tests;
+package gov.nasa.jpf.inspector.tests.legacy;
 
 import gov.nasa.jpf.inspector.client.commands.CmdAssert;
 import gov.nasa.jpf.inspector.interfaces.AssertCreationInformation;
@@ -27,10 +27,10 @@ import gov.nasa.jpf.inspector.exceptions.JPFInspectorException;
 import gov.nasa.jpf.inspector.server.jpf.JPFInspector;
 import gov.nasa.jpf.inspector.common.pse.ProgramStateEntry;
 import gov.nasa.jpf.inspector.common.pse.PSEVariable;
-import gov.nasa.jpf.inspector.tests.infrastructure.Breakpoint;
-import gov.nasa.jpf.inspector.tests.infrastructure.InspectorTest;
-import gov.nasa.jpf.inspector.tests.infrastructure.InspectorTestCallbacks;
-import gov.nasa.jpf.inspector.tests.infrastructure.InspectorTestDriver;
+import gov.nasa.jpf.inspector.tests.legacy.infrastructure.Breakpoint;
+import gov.nasa.jpf.inspector.tests.legacy.infrastructure.InspectorTest;
+import gov.nasa.jpf.inspector.tests.legacy.infrastructure.InspectorTestCallbacks;
+import gov.nasa.jpf.inspector.tests.legacy.infrastructure.InspectorTestDriver;
 import gov.nasa.jpf.vm.Verify;
 import gov.nasa.jpf.util.TypeRef;
 
@@ -53,8 +53,8 @@ public class AssertSimpleTest extends InspectorTest  {
 
   @Test
   public void test01 () {
-    if (runInspectorTest(new TypeRef("gov.nasa.jpf.inspector.tests.infrastructure.InspectorTestCallbacks"), new TypeRef(
-        "gov.nasa.jpf.inspector.tests.AssertSimpleTest$Test01Driver"))) {
+    if (runInspectorTest(new TypeRef("gov.nasa.jpf.inspector.tests.legacy.infrastructure.InspectorTestCallbacks"), new TypeRef(
+        "gov.nasa.jpf.inspector.tests.legacy.AssertSimpleTest$Test01Driver"))) {
 
       // Tries backward and forward steps through IntegerChoiceGenerator
       int i = Verify.getInt(0, ASSERT_TEST_01_RANDOM_MAX - 1);

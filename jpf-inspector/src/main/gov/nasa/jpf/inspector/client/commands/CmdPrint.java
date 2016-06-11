@@ -70,6 +70,7 @@ public class CmdPrint extends ClientCommand {
       client.recordComment(e.getMessage());
       client.recordComment(e.expressError(ConsoleInformation.MAX_ERROR_LINE_LENGTH));
     } catch (JPFInspectorException e) {
+      // TODO maybe this should be println, rather than print?
       outStream.print(e.getMessage());
       client.recordComment(e.getMessage());
     }

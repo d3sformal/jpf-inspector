@@ -17,7 +17,7 @@
 // DOCUMENTATION, IF PROVIDED, WILL CONFORM TO THE SUBJECT SOFTWARE.
 //  
 
-package gov.nasa.jpf.inspector.tests;
+package gov.nasa.jpf.inspector.tests.legacy;
 
 import gov.nasa.jpf.inspector.client.commands.CmdBreakpointCreate;
 import gov.nasa.jpf.inspector.interfaces.CommandsInterface.InspectorStates;
@@ -28,10 +28,10 @@ import gov.nasa.jpf.inspector.exceptions.JPFInspectorIncompatibleTypesException;
 import gov.nasa.jpf.inspector.server.jpf.JPFInspector;
 import gov.nasa.jpf.inspector.common.pse.ProgramStateEntry;
 import gov.nasa.jpf.inspector.common.pse.PSEVariable;
-import gov.nasa.jpf.inspector.tests.infrastructure.Breakpoint;
-import gov.nasa.jpf.inspector.tests.infrastructure.InspectorTest;
-import gov.nasa.jpf.inspector.tests.infrastructure.InspectorTestCallbacks;
-import gov.nasa.jpf.inspector.tests.infrastructure.InspectorTestDriver;
+import gov.nasa.jpf.inspector.tests.legacy.infrastructure.Breakpoint;
+import gov.nasa.jpf.inspector.tests.legacy.infrastructure.InspectorTest;
+import gov.nasa.jpf.inspector.tests.legacy.infrastructure.InspectorTestCallbacks;
+import gov.nasa.jpf.inspector.tests.legacy.infrastructure.InspectorTestDriver;
 import gov.nasa.jpf.util.TypeRef;
 
 import java.util.Map;
@@ -89,8 +89,8 @@ public class Assignments01Test extends InspectorTest {
 
   @Test
   public void simpleAssignments () {
-    if (runInspectorTest(new TypeRef("gov.nasa.jpf.inspector.tests.infrastructure.InspectorTestCallbacks"), new TypeRef(
-        "gov.nasa.jpf.inspector.tests.Assignments01Test$SimpleAssignmentsDriver"))) {
+    if (runInspectorTest(new TypeRef("gov.nasa.jpf.inspector.tests.legacy.infrastructure.InspectorTestCallbacks"), new TypeRef(
+        "gov.nasa.jpf.inspector.tests.legacy.Assignments01Test$SimpleAssignmentsDriver"))) {
 
       boolean sa_slot_boolean = false;
       char sa_slot_char = 'f';

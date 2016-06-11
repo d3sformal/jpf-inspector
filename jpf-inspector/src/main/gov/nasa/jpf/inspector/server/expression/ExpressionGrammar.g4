@@ -179,7 +179,10 @@ cmdBreakpointsCreateParamsAtomNotTerminateIDF [ExpressionFactory expFactory] ret
     | WS? TOKEN_POSITION             WS? '=' WS? fileName WS? ':' WS? intValue WS?                        { $bp = expFactory.getExpBreakpointPosition($fileName.text, $intValue.value); }
     | WS? TOKEN_PROPERTY_VIOLATED    WS?                                                                  { $bp = expFactory.getBreakpoointPropertyViolated(); }
     | WS? TOKEN_THREAD_SCHEDULED     WS? '=' WS? cmdThreadScheduledDirection WS? (':' WS? intValue WS?)?
-     { $bp = expFactory.getBreakpointThreadScheduled($cmdThreadScheduledDirection.bpMode, ($intValue.value!=null? $intValue.value : null)); }
+     { $bp = expFactory.getBreakpointThreadScheduled(
+              $cmdThreadScheduledDirection.bpMode,
+              ($intValue.ctx !=null? $intValue.value : null)
+              ); }
     | WS? TOKEN_STATE_ADVANCED       WS?                                                                  { $bp = expFactory.getBreakpointStateAdvanced(); }
     | WS? TOKEN_STEP_IN              WS?                                                                  { $bp = expFactory.getBreakpointSingleStep(StepType.ST_STEP_IN); }
     | WS? TOKEN_STEP_OVER            WS?                                                                  { $bp = expFactory.getBreakpointSingleStep(StepType.ST_LINE); }

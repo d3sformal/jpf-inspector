@@ -22,18 +22,18 @@ package gov.nasa.jpf.inspector.tests.parsing;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorParsingErrorException;
 import gov.nasa.jpf.inspector.server.expression.expressions.ExpressionStateValueConstChar;
 import gov.nasa.jpf.inspector.server.expression.expressions.ExpressionStateValueConstString;
-import gov.nasa.jpf.inspector.tests.infrastructure.InspectorTest;
 
 import java.io.PrintStream;
 import java.util.Arrays;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 /**
  * @author Alf
  * 
  */
-public class ParsingTests extends InspectorTest {
+public class ParsingTests {
   private static final boolean DEBUG = true;
   private final PrintStream out = System.out;
 
@@ -118,6 +118,10 @@ public class ParsingTests extends InspectorTest {
         fail("Error while converting  ->" + tsc.getTestInput() + "<- to character. \n" + "Unexpecte exception: " + e.getMessage());
       }
     }
+  }
+
+  private void fail(String s) {
+    Assert.fail(s);
   }
 
   private static class TestSpecCharFail extends TestSpec<String, Integer> {
@@ -311,10 +315,6 @@ public class ParsingTests extends InspectorTest {
         }
       }
     }
-  }
-
-  public static void main (String[] testMethods) {
-    runTestsOfThisClass(testMethods);
   }
 
 }
