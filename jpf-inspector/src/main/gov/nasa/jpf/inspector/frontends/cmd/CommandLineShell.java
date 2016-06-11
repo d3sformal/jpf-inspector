@@ -54,6 +54,11 @@ public final class CommandLineShell extends Shell {
       }
       if (sTrimmed.length() > 0) {
         inspector.executeCommand(s, ExecutionContext.FROM_COMMAND_LINE_TERMINAL);
+        try {
+          Thread.sleep(1000);
+        } catch (InterruptedException e) {
+          e.printStackTrace();
+        }
       }
       if (!batchMode) {
         System.out.print(Constants.PROMPT);

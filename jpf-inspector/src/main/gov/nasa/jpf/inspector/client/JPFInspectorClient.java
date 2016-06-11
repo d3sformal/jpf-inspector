@@ -134,6 +134,7 @@ public class JPFInspectorClient implements JPFInspectorClientInterface {
           boolean batchModeBlocking = batchMode && safeMode && config.getBoolean("jpf-inspector.batch-mode.block-unsafe", true);
           if (batchModeBlocking && !cmd.isSafeToExecuteWhenNotPaused()) {
             while (!inspector.isPaused()) {
+              System.out.println("Yielding.");
               Thread.yield(); // TODO maybe changed these busy waits later.
             }
           }

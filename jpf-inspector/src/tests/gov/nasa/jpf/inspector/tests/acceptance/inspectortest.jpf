@@ -1,1 +1,7 @@
+@using jpf-inspector
+
 jpf-inspector.batch-mode = true
+
+# just for debugging purposes
+#(the testing framework actually ignores the following line)
+shell=.shell.basicshell.BasicShell

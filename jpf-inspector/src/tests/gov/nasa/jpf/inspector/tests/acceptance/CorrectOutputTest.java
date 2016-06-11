@@ -19,8 +19,9 @@ public class CorrectOutputTest {
   @Parameters(name = "{0}")
   public static Iterable<? extends Object> data() {
      return Arrays.asList(
-          getCase("simple", "hello"),
-          getCase("simple", "breakpoint-expressions")
+    //      getCase("simple", "hello"),
+      //    getCase("simple", "breakpoint-expressions"),
+          getCase("legacy", "AssertSimpleTest")
      );
   }
   private CorrectOutputTestCase testCase;
@@ -38,7 +39,7 @@ public class CorrectOutputTest {
     this.testCase = testCase;
   }
 
-  private static final String BASEFOLDER = "src/tests/gov/nasa/jpf/inspector/tests/acceptance/";
+  private static final String BASEFOLDER = "jpf-inspector/src/tests/gov/nasa/jpf/inspector/tests/acceptance/";
 
   @Test
   public void test() throws FileNotFoundException {
@@ -47,7 +48,6 @@ public class CorrectOutputTest {
     String outputFile = BASEFOLDER + testCase.outputFile;
     String[] args = new String[] { applicationPropertyFile };
 
-    Config config = new Config(args);
     InputStream inputStream = new FileInputStream(inputFile);
     ByteArrayOutputStream baos = new ByteArrayOutputStream();
     PrintStream printStream = new PrintStream(baos);

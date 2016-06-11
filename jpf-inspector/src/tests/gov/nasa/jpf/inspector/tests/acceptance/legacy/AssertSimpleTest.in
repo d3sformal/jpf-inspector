@@ -1,0 +1,30 @@
+#assert *AssertSimpleTest.java:9 #stackFrame[0].i < 3
+cr bp it=any
+hello
+run
+sw bp
+print #thread
+
+#wait
+#wait
+#thpc 0
+
+#thpc 0
+#print #stackFrame[1].i
+#run
+#print #stackFrame[1].i
+#run
+#thpc 0
+#print #stackFrame[1].i
+#run
+
+#thpc 0
+#print #stackFrame[1].i
+#run
+
+#thpc 0
+#print #stackFrame[1].i
+#run
+
+#wait
+

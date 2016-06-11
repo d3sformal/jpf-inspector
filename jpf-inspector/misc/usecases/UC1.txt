@@ -75,7 +75,7 @@ thread_pc
 
 bso
  - back step over the current and previous source code line
-	SuT  (Thread=2) executes the oldclassic.java:124 - aload_0 source:     count = event2.count;          // <race> violates event2 monitor encapsulation
+	SuT  (Thread=2) executes the oldclassic.java:124 - aload_0 source:     count = event2.count;          // <race> violates event2 mtionitor encapsulation
 
 thread_pc
  - next instruction for each thread
