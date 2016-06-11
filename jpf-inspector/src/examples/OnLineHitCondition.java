@@ -1,3 +1,5 @@
+import gov.nasa.jpf.inspector.common.pse.PSEVariablePrimitive;
+import gov.nasa.jpf.inspector.common.pse.ProgramStateEntry;
 import gov.nasa.jpf.inspector.interfaces.CustomHitCondition;
 import gov.nasa.jpf.inspector.server.expression.InspectorState;
 
@@ -13,8 +15,12 @@ public class OnLineHitCondition implements CustomHitCondition {
       return false;
     }
 
-    // Hits whenever the next instruction to be executed has the line number 5.
-    return state.getVM().getInstruction().getLineNumber() == 5;
+    Object arg1 = arguments[0];
+    PSEVariablePrimitive programStateEntry = (PSEVariablePrimitive)arg1;
+    Integer integer = (Integer) programStateEntry.getWrappedValue();
+
+    // Hits whenever the next instruction to be executed has the line number at the first parameter.
+    return state.getVM().getInstruction().getLineNumber() == integer;
   }
 
   @Override

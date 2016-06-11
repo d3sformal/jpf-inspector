@@ -12,6 +12,9 @@ import gov.nasa.jpf.inspector.server.jpf.JPFInspector;
 import gov.nasa.jpf.inspector.server.programstate.StateNodeInterface;
 import gov.nasa.jpf.inspector.utils.expressions.Expressions;
 
+/**
+ * Represents a custom hit condition call, such as "custom1('a')".
+ */
 public class ExpressionBreakpointCustomHitCondition extends ExpressionBooleanLeaf {
   private static final boolean DEBUG = true;
   private final JPFInspector inspector;
@@ -31,13 +34,13 @@ public class ExpressionBreakpointCustomHitCondition extends ExpressionBooleanLea
   }
 
   @Override
-  public boolean evaluateExpression (InspectorState state) {
+  public boolean evaluateExpression (InspectorState state) throws JPFInspectorException {
     assert state != null;
     if (DEBUG) {
       inspector.getDebugPrintStream().println(this.getClass().getSimpleName() + ".evaluateExpression(...)");
     }
+    return customHitCondition.isHit(state, evaluateArguments(state));
     // TODO handle exceptions
-    return false;
   }
 
   private ProgramStateEntry[] evaluateArguments(InspectorState state) throws JPFInspectorException {
@@ -58,14 +61,19 @@ public class ExpressionBreakpointCustomHitCondition extends ExpressionBooleanLea
 
   @Override
   public String getDetails (InspectorState state) {
-    if (state != null && evaluateExpression(state)) {
-      try {
-        return customHitCondition.getDetails(state, evaluateArguments(state));
-      } catch (Exception e) {
-        // TODO handle exceptions
-        return null;
+    try {
+      if (state != null && evaluateExpression(state)) {
+        try {
+          return customHitCondition.getDetails(state, evaluateArguments(state));
+        } catch (Exception e) {
+          // TODO handle exceptions
+          return null;
+        }
+      } else {
+        return "";
       }
-    } else {
+    } catch (JPFInspectorException e) {
+      // TODO handle
       return "";
     }
   }

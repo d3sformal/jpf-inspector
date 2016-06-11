@@ -1,10 +1,8 @@
 package gov.nasa.jpf.inspector.migration;
 
-import gov.nasa.jpf.inspector.server.jpf.InspectorListenerModeNotifications;
 import gov.nasa.jpf.vm.*;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 
 /**
  * This class contains static functions that help with the migration of the JPF Inspector codebase
