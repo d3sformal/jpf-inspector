@@ -87,6 +87,7 @@ public class ChoiceGeneratorsManager implements ChoiceGeneratorsInterface, Choic
     VM vm = stopHolder.getJVM();
     JPFInspectorNoVMConnected.checkVM(vm);
 
+    vm.updatePath();
     List<ChoiceGeneratorWrapper> result = new ArrayList<>(vm.getPathLength());
     Path path = vm.getPath();
     for (Transition tr : path) {
@@ -248,7 +249,7 @@ public class ChoiceGeneratorsManager implements ChoiceGeneratorsInterface, Choic
     return mode.ordinal() * CGTypes.values().length + type.ordinal();
   }
 
-  public static ChoiceGeneratorWrapper createCGWrapper (ChoiceGenerator<?> cg) {
+  private static ChoiceGeneratorWrapper createCGWrapper(ChoiceGenerator<?> cg) {
     if (cg == null) {
       return null;
     }

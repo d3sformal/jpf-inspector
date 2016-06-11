@@ -9,14 +9,19 @@ import java.util.List;
 
 /**
  * Interfaces related to choice generators and managing behavior of CG
- * 
  */
 public interface ChoiceGeneratorsInterface {
   /**
    * Represents types of {@link ChoiceGenerator} in JPF.
    */
   enum CGTypes {
+    /**
+     * The choice generator determines which thread will become active.
+     */
     CG_TYPE_SCHEDULING,
+    /**
+     * The choice generator determines values of program state, such as when using the Verify class.
+     */
     CG_TYPE_DATA
   }
 
@@ -82,7 +87,7 @@ public interface ChoiceGeneratorsInterface {
   int NO_DEFAULT_CHOICE = -1;
 
   /**
-   * Constant that marks that for the current value for the CoiceGenerator should by taken from the default forward choice.
+   * Constant that marks that for the current value for the ChoiceGenerator should by taken from the default forward choice.
    * 
    * Can be used in {@link #selectChoice(int) method call.
    */
