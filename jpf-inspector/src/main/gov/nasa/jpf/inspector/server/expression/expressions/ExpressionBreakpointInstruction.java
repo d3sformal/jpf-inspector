@@ -107,7 +107,7 @@ public class ExpressionBreakpointInstruction extends ExpressionBooleanLeaf {
       assert vm != null;
       ThreadInfo ti = vm.getCurrentThread();
       if (ti.getId() == threadNum) {
-        Instruction executedInstr = MigrationUtilities.getLastInstruction(vm);
+        Instruction executedInstr = vm.getInstruction();
         if (instr.equals(executedInstr)) {
           count++;
           return count == hitCount;

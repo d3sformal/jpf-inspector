@@ -22,7 +22,6 @@ package gov.nasa.jpf.inspector.server.expression.expressions;
 import gov.nasa.jpf.inspector.interfaces.CommandsInterface.StepType;
 import gov.nasa.jpf.inspector.interfaces.InstructionPosition;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorGenericErrorException;
-import gov.nasa.jpf.inspector.migration.MigrationUtilities;
 import gov.nasa.jpf.inspector.server.breakpoints.BreakPointModes;
 import gov.nasa.jpf.inspector.server.breakpoints.InstructionPositionImpl;
 import gov.nasa.jpf.inspector.server.expression.ExpressionBooleanLeaf;
@@ -38,7 +37,6 @@ import gov.nasa.jpf.vm.ThreadInfo;
 import gov.nasa.jpf.vm.Transition;
 import gov.nasa.jpf.vm.Instruction;
 import gov.nasa.jpf.vm.bytecode.InvokeInstruction; // TODO change of invoke here
-import gov.nasa.jpf.vm.bytecode.ReturnInstruction;
 import gov.nasa.jpf.search.DFSearch;
 import gov.nasa.jpf.search.Search;
 
@@ -139,7 +137,7 @@ public class ExpressionBreakpointSingleStep extends ExpressionBooleanLeaf {
     this.inspector = inspector;
     this.posHandling = posHandling;
 
-    this.instPos = InstructionPositionImpl.getInstructionPosition(MigrationUtilities.getLastInstruction(vm));
+    this.instPos = InstructionPositionImpl.getInstructionPosition(vm.getInstruction());
     this.threadNum = vm.getCurrentThread().getId();
 
     /*
@@ -309,9 +307,7 @@ public class ExpressionBreakpointSingleStep extends ExpressionBooleanLeaf {
       return true;
     }
 
-    Iterator<Transition> itTransitions = jvm.getPath().iterator();
-    while (itTransitions.hasNext()) {
-      Transition pathTr = itTransitions.next();
+    for (Transition pathTr : jvm.getPath()) {
       if (pathTr.equals(tr)) {
         return true;
       }
@@ -321,9 +317,7 @@ public class ExpressionBreakpointSingleStep extends ExpressionBooleanLeaf {
 
   private static boolean containsStackFrame (ThreadInfo ti, StackFrame sf) {
 
-    Iterator<StackFrame> sfIt = ti.iterator();
-    while (sfIt.hasNext()) {
-      StackFrame threadsSF = sfIt.next();
+    for (StackFrame threadsSF : ti) {
       if (threadsSF.equals(sf)) {
         return true;
       }

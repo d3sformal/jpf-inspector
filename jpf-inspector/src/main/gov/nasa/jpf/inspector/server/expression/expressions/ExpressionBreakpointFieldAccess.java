@@ -19,7 +19,6 @@
 
 package gov.nasa.jpf.inspector.server.expression.expressions;
 
-import gov.nasa.jpf.inspector.migration.MigrationUtilities;
 import gov.nasa.jpf.inspector.server.breakpoints.BreakPointModes;
 import gov.nasa.jpf.inspector.server.expression.ExpressionBooleanLeaf;
 import gov.nasa.jpf.inspector.server.expression.InspectorState;
@@ -33,6 +32,10 @@ import gov.nasa.jpf.vm.Instruction;
 import gov.nasa.jpf.jvm.bytecode.PUTFIELD;
 import gov.nasa.jpf.jvm.bytecode.PUTSTATIC;
 
+/**
+ * Represent the family of field access hit conditions that hit when the field is about to be referenced.
+ * This family contains the hit conditions "field_access", "field_read" and "field_write".
+ */
 public class ExpressionBreakpointFieldAccess extends ExpressionBooleanLeaf {
 
   private BreakPointModes bpMode;
@@ -53,20 +56,16 @@ public class ExpressionBreakpointFieldAccess extends ExpressionBooleanLeaf {
     }
   }
 
-  public FieldName getFieldName() {
-    return fn;
-  }
-
   @Override
   public boolean evaluateExpression(InspectorState state) {
     assert state != null;
 
-    if (state.getListenerMethod() != ListenerMethod.LM_INSTRUCTION_EXECUTED) {
+    if (state.getListenerMethod() != ListenerMethod.LM_EXECUTE_INSTRUCTION) {
       return false;
     }
 
     VM vm = state.getVM();
-    Instruction inst = MigrationUtilities.getLastInstruction(vm);
+    Instruction inst = vm.getInstruction();
 
     if (!(inst instanceof FieldInstruction)) {
       return false;
@@ -91,7 +90,7 @@ public class ExpressionBreakpointFieldAccess extends ExpressionBooleanLeaf {
 
   @Override
   public String getNormalizedExpression() {
-    StringBuffer result = new StringBuffer();
+    StringBuilder result = new StringBuilder();
     if (bpMode == BreakPointModes.BP_MODE_FIELD_ACCESS) {
       result.append("field_access");
     } else if (bpMode == BreakPointModes.BP_MODE_FIELD_ACCESS_READ) {

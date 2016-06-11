@@ -15,14 +15,6 @@ import java.util.Iterator;
 public final class MigrationUtilities {
 
 
-  /**
-   * Returns the instruction that is about to be executed.
-   * @param vm The VM instance.
-   */
-  public static Instruction getLastInstruction(VM vm) {
-    return vm.getInstruction(); // This is sketchy.
-  }
-
   public static ChoiceGenerator<?> getLastChoiceGenerator(VM vm) {
     return vm.getChoiceGenerator();
   }

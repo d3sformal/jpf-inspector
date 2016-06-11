@@ -19,7 +19,6 @@
 
 package gov.nasa.jpf.inspector.server.expression.expressions;
 
-import gov.nasa.jpf.inspector.migration.MigrationUtilities;
 import gov.nasa.jpf.inspector.server.breakpoints.BreakPointModes;
 import gov.nasa.jpf.inspector.server.expression.ExpressionBooleanLeaf;
 import gov.nasa.jpf.inspector.server.expression.InspectorState;
@@ -29,6 +28,9 @@ import gov.nasa.jpf.vm.VM;
 import gov.nasa.jpf.vm.Instruction;
 import gov.nasa.jpf.vm.bytecode.InvokeInstruction;
 
+/**
+ * Represents the "method_invoke = [methodname]" hit condition that hits when a method is about to be invoked.
+ */
 public class ExpressionBreakpointMethodInvoke extends ExpressionBooleanLeaf {
 
   private BreakPointModes bpMode;
@@ -47,27 +49,23 @@ public class ExpressionBreakpointMethodInvoke extends ExpressionBooleanLeaf {
     }
   }
 
-  public MethodName getMethodName() {
-    return mn;
-  }
-
   @Override
   public boolean evaluateExpression(InspectorState state) {
     assert state != null;
 
-    if (state.getListenerMethod() != ListenerMethod.LM_INSTRUCTION_EXECUTED) {
+    if (state.getListenerMethod() != ListenerMethod.LM_EXECUTE_INSTRUCTION) {
       return false;
     }
 
     VM vm = state.getVM();
-    Instruction inst = MigrationUtilities.getLastInstruction(vm);
+    Instruction inst = vm.getInstruction();
 
     if (!(inst instanceof InvokeInstruction)) {
       return false;
     }
 
     InvokeInstruction iiInst = (InvokeInstruction) inst;
-    return bpMode == BreakPointModes.BP_MODE_METHOD_INVOKE && mn.isSameMethod(iiInst.getInvokedMethod());
+    return mn.isSameMethod(iiInst.getInvokedMethod());
 
   }
 
