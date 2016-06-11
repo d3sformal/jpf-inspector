@@ -28,3 +28,7 @@ jpf-inspector/src/main/gov/nasa/jpf/inspector/server/expression/generated/Expres
 /jpf-inspector/src/main/gov/nasa/jpf/inspector/server/expression/generated/ExpressionGrammar.tokens
 /jpf-inspector/src/main/gov/nasa/jpf/inspector/server/expression/generated/ExpressionGrammarBaseListener.java
 /jpf-inspector/src/main/gov/nasa/jpf/inspector/server/expression/generated/ExpressionGrammarLexer.java
+
+# Mercurial
+*/.hg/*
+*workspace.xml*
