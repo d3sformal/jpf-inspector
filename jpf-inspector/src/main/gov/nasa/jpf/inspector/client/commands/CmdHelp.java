@@ -62,6 +62,13 @@ public class CmdHelp extends ClientCommand {
     stepping.add(new CommandHelpInfo("back_step_transition", "bst", "Undoes until a choice point is reached."));
     categories.put("Stepping-related commands", stepping);
 
+    ArrayList<CommandHelpInfo> choiceGenerators = new ArrayList<>();
+    choiceGenerators.add(new CommandHelpInfo("[enable/disable] [data/sched] [ask/print] cg", null, "Sets what notifications about choice generators should be given to the user."));
+    choiceGenerators.add(new CommandHelpInfo("cg select [index]", null, "Selects a choice for the current choice generator."));
+    choiceGenerators.add(new CommandHelpInfo("used choice_generators", "used cg", "Prints all choice generators in the transition path."));
+    categories.put("Choice generators", choiceGenerators);
+
+
     outStream.println("You may use the following commands in this console:\n");
     for(Map.Entry<String, List<CommandHelpInfo>> entry : categories.entrySet()) {
       outStream.println(entry.getKey() + ": ");
