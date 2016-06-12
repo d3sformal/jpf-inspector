@@ -24,7 +24,8 @@ public class CorrectOutputTest {
           getCase("simple", "hello"),
           getCase("simple", "breakpoint-expressions"),
           getCase("legacy", "AssertSimpleTest"),
-          getCase("legacy", "BreakpointTest")
+          getCase("legacy", "BreakpointTest"),
+          getCase("legacy/simpleassignments", "SimpleAssignments")
      );
   }
   private CorrectOutputTestCase testCase;
@@ -42,7 +43,7 @@ public class CorrectOutputTest {
     this.testCase = testCase;
   }
 
-  private static final String BASEFOLDER = "jpf-inspector/src/tests/gov/nasa/jpf/inspector/tests/acceptance/";
+  public static final String BASEFOLDER = "jpf-inspector/src/tests/gov/nasa/jpf/inspector/tests/acceptance/";
 
   @Test
   public void test() throws FileNotFoundException {
