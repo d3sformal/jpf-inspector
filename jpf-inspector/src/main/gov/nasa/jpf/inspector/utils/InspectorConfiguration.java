@@ -26,8 +26,8 @@ public final class InspectorConfiguration {
     this.config = config;
 
     // Set ignored classes
-    ignoreClassesFeature = config.getBoolean("jpf-inspector.ignore-breakpoints-in-ignored-classes", true);
-    ignoredClasses = config.getStringArray("jpf-inspector.ignored-classes", new String[] { "java.*", "javax.*" });
+    ignoreClassesFeature = config.getBoolean("jpf-inspector.ignore_breakpoints_in_ignored_classes", true);
+    ignoredClasses = config.getStringArray("jpf-inspector.ignored_classes", new String[] { "java.*", "javax.*" });
     for(int i = 0; i < ignoredClasses.length; i++) {
       ignoredClasses[i] = ignoredClasses[i].replace(".", "\\.");
       ignoredClasses[i] = ignoredClasses[i].replace("*", ".*");
@@ -112,14 +112,14 @@ public final class InspectorConfiguration {
    * JPF is paused.
    */
   public boolean isSafeModeActive() {
-    return config.getBoolean("jpf-inspector.safe-mode", true);
+    return config.getBoolean("jpf-inspector.safe_mode", true);
   }
 
   /**
    * Indicates whether, after the "run" command is executed, the JPF Inspector console should retain visibility.
    */
   public boolean shouldRequestFocusOnVerify() {
-    return config.getBoolean("jpf-inspector.request-focus-on-verify", true);
+    return config.getBoolean("jpf-inspector.request_focus_on_verify", true);
   }
 
   /**
@@ -127,5 +127,19 @@ public final class InspectorConfiguration {
    */
   public boolean shouldPreventBeeps() {
     return config.getBoolean("jpf-inspector.prevent_beeps", true);
+  }
+
+  public boolean isBatchModeActive() {
+    return config.getBoolean("jpf-inspector.batch_mode", false);
+  }
+
+  public boolean shouldUnsafeCommandsWaitUntilPause() {
+      return isBatchModeActive() &&
+              isSafeModeActive() &&
+              config.getBoolean("jpf-inspector.batch_mode.block_unsafe", true);
+  }
+
+  public boolean shouldEchoInput() {
+    return isBatchModeActive() && config.getBoolean("jpf-inspector.batch_mode.echo_input", false);
   }
 }

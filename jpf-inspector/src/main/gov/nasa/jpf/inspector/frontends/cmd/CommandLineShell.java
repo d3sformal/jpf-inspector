@@ -5,6 +5,7 @@ import gov.nasa.jpf.inspector.JPFInspectorFacade;
 import gov.nasa.jpf.inspector.client.ExecutionContext;
 import gov.nasa.jpf.inspector.client.JPFInspectorClientInterface;
 import gov.nasa.jpf.inspector.common.Constants;
+import gov.nasa.jpf.inspector.utils.InspectorConfiguration;
 import gov.nasa.jpf.shell.Shell;
 import gov.nasa.jpf.shell.ShellCommand;
 import gov.nasa.jpf.shell.ShellManager;
@@ -34,9 +35,8 @@ public final class CommandLineShell extends Shell {
     ShellManager.getManager().setStartingArgs(args);
     Config config = ShellManager.getManager().getConfig();
 
-    boolean batchMode = config.getBoolean("jpf-inspector.batch-mode", false);
-    boolean safeMode = config.getBoolean("jpf-inspector.safe-mode", true);
-    boolean batchModeEchoInput =  batchMode && config.getBoolean("jpf-inspector.batch-mode.echo-input", false);
+    boolean batchMode = InspectorConfiguration.getInstance().isBatchModeActive();
+    boolean batchModeEchoInput =  InspectorConfiguration.getInstance().shouldEchoInput();
 
     Scanner scanner = new Scanner(inputStream);
     JPFInspectorClientInterface inspector = JPFInspectorFacade.getInspectorClient(config.getTarget(), outputStream);
