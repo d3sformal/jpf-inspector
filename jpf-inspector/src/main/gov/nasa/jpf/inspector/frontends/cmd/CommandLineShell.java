@@ -1,18 +1,21 @@
 package gov.nasa.jpf.inspector.frontends.cmd;
 
 import gov.nasa.jpf.Config;
+import gov.nasa.jpf.JPF;
 import gov.nasa.jpf.inspector.JPFInspectorFacade;
 import gov.nasa.jpf.inspector.client.ExecutionContext;
 import gov.nasa.jpf.inspector.client.JPFInspectorClientInterface;
 import gov.nasa.jpf.inspector.common.Constants;
+import gov.nasa.jpf.inspector.exceptions.JPFInspectorGenericErrorException;
 import gov.nasa.jpf.inspector.utils.InspectorConfiguration;
 import gov.nasa.jpf.shell.Shell;
 import gov.nasa.jpf.shell.ShellCommand;
 import gov.nasa.jpf.shell.ShellManager;
 import gov.nasa.jpf.shell.ShellPanel;
+import gov.nasa.jpf.shell.commands.VerifyCommand;
+import gov.nasa.jpf.shell.listeners.VerifyCommandListener;
 
 import java.io.InputStream;
-import java.io.OutputStream;
 import java.io.PrintStream;
 import java.util.Scanner;
 
@@ -27,9 +30,10 @@ import java.util.Scanner;
  * any implementations of JPFShell, we must redo most of the Shell's work from scratch here.
  *
  */
-public final class CommandLineShell extends Shell {
+public final class CommandLineShell extends Shell implements VerifyCommandListener {
   private InputStream inputStream;
   private PrintStream outputStream;
+  private JPFInspectorClientInterface inspector;
   @Override
   public void start(String[] args) {
     ShellManager.getManager().setStartingArgs(args);
@@ -39,7 +43,8 @@ public final class CommandLineShell extends Shell {
     boolean batchModeEchoInput =  InspectorConfiguration.getInstance().shouldEchoInput();
 
     Scanner scanner = new Scanner(inputStream);
-    JPFInspectorClientInterface inspector = JPFInspectorFacade.getInspectorClient(config.getTarget(), outputStream);
+    inspector = JPFInspectorFacade.getInspectorClient(config.getTarget(), outputStream);
+    ShellManager.getManager().addCommandListener(VerifyCommand.class, this);
 
     if (!batchMode) {
       outputStream.println("This is the JPF Inspector console for debugging the target \"" + config.getTarget() + "\".");
@@ -47,19 +52,15 @@ public final class CommandLineShell extends Shell {
       outputStream.print(Constants.PROMPT);
     }
     while (scanner.hasNextLine()) {
-      String s = scanner.nextLine();
-      String sTrimmed = s.trim();
+      String command = scanner.nextLine().trim();
       if (batchModeEchoInput) {
-        outputStream.println(Constants.PROMPT + sTrimmed);
+        outputStream.println(Constants.PROMPT + command);
       }
-      if (sTrimmed.length() > 0) {
-        inspector.executeCommand(s, ExecutionContext.FROM_COMMAND_LINE_TERMINAL);
-        try {
-          Thread.sleep(1000);
-        } catch (InterruptedException e) {
-          e.printStackTrace();
-        }
+
+      if (command.length() > 0) {
+        inspector.executeCommand(command, ExecutionContext.FROM_COMMAND_LINE_TERMINAL);
       }
+
       if (!batchMode) {
         System.out.print(Constants.PROMPT);
       }
@@ -70,6 +71,7 @@ public final class CommandLineShell extends Shell {
   /**
    * This is called by the JPF when executing via RunJPF
    */
+  @SuppressWarnings("unused") // Called from JPF via Reflection
   public CommandLineShell(Config config) {
     ShellManager.createShellManager(config);
     if (!ShellManager.getManager().hasShell(this)) {
@@ -123,5 +125,30 @@ public final class CommandLineShell extends Shell {
   @Override
   public Shell createChildShell() {
     return null;
+  }
+
+  @Override
+  public void afterJPFInit(VerifyCommand command) {
+    JPF jpf = command.getJPF();
+    try {
+      inspector.connect2JPF(jpf);
+    } catch (JPFInspectorGenericErrorException ignored) {
+      // Silently ignore - error is reported in connect2JPF method
+    }
+  }
+
+  @Override
+  public void exceptionDuringVerify(Exception ex) {
+    ex.printStackTrace();
+  }
+
+  @Override
+  public void preCommand(VerifyCommand command) {
+
+  }
+
+  @Override
+  public void postCommand(VerifyCommand command) {
+
   }
 }

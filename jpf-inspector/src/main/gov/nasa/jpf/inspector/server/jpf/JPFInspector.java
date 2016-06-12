@@ -52,7 +52,11 @@ public abstract class JPFInspector implements JPFInspectorBackEndInterface {
   private static final String DEBUG_OUTPUT_FILE = "/tmp/Inspector.log";
 
   private PrintStream debugOutStream;
-
+  /**
+   * Whether JPF was connected to the Inspector since the last time we used the "run" command to send
+   * the Verify command
+   */
+  private boolean jpfHasLaunched = false;
   /**
    * Currently used JPF instance. Is null when no JPF is bound or if currently bound JPF terminates.
    */
@@ -76,6 +80,7 @@ public abstract class JPFInspector implements JPFInspectorBackEndInterface {
   protected JPFInspector (InspectorCallBacks userCallBacks) {
     debugOutStream = System.out; // Fail safe
 
+    //noinspection ConstantConditions
     if ((DEBUG_OUTPUT_FILE != null) && !DEBUG_OUTPUT_FILE.isEmpty()) {
       try {
         debugOutStream = new PrintStream("/tmp/alf/Inspector.log");
@@ -107,6 +112,18 @@ public abstract class JPFInspector implements JPFInspectorBackEndInterface {
       getDebugPrintStream().println("  " + JPFInspector.class.getSimpleName() + ".getCallBack()");
     }
     return callBacks;
+  }
+
+  @Override
+  public synchronized void waitUntilJpfBecomesConnected() {
+    while (!jpfHasLaunched) {
+      try {
+        wait();
+      } catch (InterruptedException ignored) {
+        Thread.currentThread().interrupt();
+      }
+    }
+    jpfHasLaunched = false;
   }
 
   /**
@@ -160,6 +177,10 @@ public abstract class JPFInspector implements JPFInspectorBackEndInterface {
     boolean originalSearchMultipleErrors = jpfCfg.getBoolean("search.multiple_errors");
 
     this.jpf = jpf;
+    this.jpfHasLaunched = true;
+      notifyAll(); // JPF is now connected and the "run" command should be notified.
+                   // This also requires synchronization.
+
     listener = new InspectorListener(this, cmdMgr, breakpointMgr, cgMgr, dftMgr, originalSearchMultipleErrors);
     jpf.addListener(listener);
 
@@ -167,7 +188,7 @@ public abstract class JPFInspector implements JPFInspectorBackEndInterface {
     Search search = jpf.getSearch();
     if (!(search instanceof SearchInspectorExtension)) {
       // There is no way how to swap search objects
-      getCallBack().genericInfo("Unsupported search class (not all features will be available).\nUse 'gov.nasa.jpf.inspector.server.jpf.DFSearchInspector' or have your class implement the 'gov.nasa.jpf.inspector.server.jpf.SearchInspectorExtension' interface.");
+      getCallBack().genericInfo("Unsupported search class ('" + search.getClass().toString() + "', not all features will be available).\nUse 'gov.nasa.jpf.inspector.server.jpf.DFSearchInspector' or have your class implement the 'gov.nasa.jpf.inspector.server.jpf.SearchInspectorExtension' interface.");
     } else {
       final SearchInspectorExtension searchInspector = (SearchInspectorExtension) search;
       searchInspector.setInspector(this);

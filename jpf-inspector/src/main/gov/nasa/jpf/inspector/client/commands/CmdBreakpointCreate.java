@@ -36,7 +36,7 @@ import java.io.PrintStream;
  */
 public class CmdBreakpointCreate extends ClientCommand {
 
-  // TODO (elsewhere): The gramamr for this command is kinda fishy. Test if it's really okay.
+  // TODO (elsewhere): The grammar for this command is kinda fishy. Test if it's really okay.
 
   private final ConsoleBreakpointCreationExpression creationExpression;
   private BreakPointStatus createdBP;

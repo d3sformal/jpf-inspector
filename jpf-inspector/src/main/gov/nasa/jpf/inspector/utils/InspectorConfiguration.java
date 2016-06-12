@@ -2,6 +2,7 @@ package gov.nasa.jpf.inspector.utils;
 
 import gov.nasa.jpf.Config;
 import gov.nasa.jpf.inspector.interfaces.CustomHitCondition;
+import gov.nasa.jpf.inspector.server.breakpoints.InternalBreakpointHolder;
 import gov.nasa.jpf.shell.ShellManager;
 
 import java.util.HashMap;
@@ -141,5 +142,15 @@ public final class InspectorConfiguration {
 
   public boolean shouldEchoInput() {
     return isBatchModeActive() && config.getBoolean("jpf-inspector.batch_mode.echo_input", false);
+  }
+
+
+  /**
+   * Reset the state of the Inspector to a state that is as close as possible to a first launch.
+   * This is useful for unit tests.
+   */
+  public static void staticReset() {
+    InternalBreakpointHolder.bpIDCounter = 1;
+    instance = null;
   }
 }

@@ -36,11 +36,20 @@ import java.util.List;
 public class CmdRun extends ClientCommand {
 
   public enum CmdRunTypes {
+    /**
+     * Execution should be started or resumed.
+     */
     RUN,
+    /**
+     * Execution should be paused.
+     */
     STOP
   }
 
   private final CmdRunTypes type;
+  /**
+   * This will be "run", "break" or "continue", but not "cont".
+   */
   private final String commandName;
 
   public CmdRun (CmdRunTypes type, String commandName) {
@@ -69,6 +78,7 @@ public class CmdRun extends ClientCommand {
             t.printStackTrace(outStream);
           }
         }).start();
+        inspector.waitUntilJpfBecomesConnected();
       } else {
         // JPF is running
         try {

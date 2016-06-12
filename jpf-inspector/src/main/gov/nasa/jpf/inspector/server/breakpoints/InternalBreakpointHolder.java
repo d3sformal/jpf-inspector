@@ -36,16 +36,20 @@ import java.util.logging.Logger;
 
 /**
  * Represents an active breakpoint.
+ * This must be public so that the counter can be reset by {@link InspectorConfiguration#staticReset()}.
  */
-class InternalBreakpointHolder implements Comparable<InternalBreakpointHolder> {
-  private static int bpIDCounter = 1;
+public class InternalBreakpointHolder implements Comparable<InternalBreakpointHolder> {
+  /**
+   * ID of the next breakpoint to be created.
+   * This must be public so that it can be reset by {@link InspectorConfiguration#staticReset()}.
+   */
+  public static int bpIDCounter = 1;
   private static final Object bpIDCounterLock = new Object();
   private static Logger log = Debugging.getLogger();
 
   /**
-   * Generates new Breakpoint IDs
-   * 
-   * @return Get new Breakpoint ID.
+   * Generates a new, yet unused, breakpoint ID.
+   * Breakpoint ID's are generated in order, starting at 1, in ascending order.
    */
   private static int getNextBpID() {
     synchronized (bpIDCounterLock) {

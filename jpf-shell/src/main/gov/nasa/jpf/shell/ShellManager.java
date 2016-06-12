@@ -662,4 +662,13 @@ public class ShellManager {
     return false;
   }
 
+  /**
+   * Removes the existing ShellManager from memory.
+   * Hopefully, this will allow us to act as though we just started, which is useful for unit tests.
+   * Obviously, adding such a change to jpf-shell code might not be appreciated by Shell maintainers but there are
+   * no jpf-shell maintainers now, and anyway it's they who chose to use a static untestable class.
+   */
+  public static void destroy() {
+    manager = null;
+  }
 }

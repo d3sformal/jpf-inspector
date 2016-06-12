@@ -42,4 +42,10 @@ public interface JPFInspectorBackEndInterface extends
 
   InspectorCallBacks getCallBack();
 
+
+  /**
+   * Blocks until JPF is connected with the Inspector. If JPF is already connected to the Inspector,
+   * it returns immediately.
+   */
+  void waitUntilJpfBecomesConnected();
 }

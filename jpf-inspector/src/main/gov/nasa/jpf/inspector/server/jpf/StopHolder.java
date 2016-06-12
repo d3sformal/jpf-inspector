@@ -204,6 +204,7 @@ public class StopHolder {
       callbacks.notifyStateChange(InspectorStates.JPF_TERMINATING, null);
       terminatingClientNotified = true;
       synchronized (this) {
+        stopped = true;
         notifyAll(); // Added to unblock commands waiting for JPF to be stopped or terminated.
       }
     }

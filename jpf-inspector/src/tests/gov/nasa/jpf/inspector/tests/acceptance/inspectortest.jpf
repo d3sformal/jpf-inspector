@@ -1,6 +1,12 @@
 @using jpf-inspector
 
-jpf-inspector.batch-mode = true
+jpf-inspector.batch_mode = true
+
+
+# Because of how jpf-core loads property files, if this folder or a subfolder is in the initial classpath,
+# then this property will be overwritten by jpf-core's default search class. This is why, when running classes
+# from the IDE, one must specify search.class explicitly in the application properties.
+search.class=gov.nasa.jpf.inspector.server.jpf.DFSearchInspector
 
 # just for debugging purposes
 #(the testing framework actually ignores the following line)

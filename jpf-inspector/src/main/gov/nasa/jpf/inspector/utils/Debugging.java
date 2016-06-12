@@ -49,4 +49,12 @@ public class Debugging {
   public static Logger getSwingShellLogger() {
     return getLogger(ShellManager.getManager().getConfig());
   }
+
+  public static void sleep(int milliseconds) {
+    try {
+      Thread.sleep(milliseconds);
+    } catch (InterruptedException ignored) {
+      // Don't care. This is just a debugging method.
+    }
+  }
 }

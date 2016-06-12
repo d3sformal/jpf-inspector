@@ -430,4 +430,9 @@
     </junit>
    
   </target>
+
+  <!--- NEW TARGETS SECTION -->
+  <target name="rebuild" depends="clean, build" description="Cleans the project and then fully rebuilds it.">
+
+  </target>
 </project>

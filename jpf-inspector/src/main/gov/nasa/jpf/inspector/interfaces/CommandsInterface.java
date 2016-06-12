@@ -33,6 +33,7 @@ public interface CommandsInterface {
    */
   void waitUntilStopped();
 
+
   /**
    * TODO this enum is used EVERYWHERE, and should be documented more throughly, also maybe renamed.
    */

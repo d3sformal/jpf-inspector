@@ -3,6 +3,8 @@ package gov.nasa.jpf.inspector.tests.acceptance;
 import gov.nasa.jpf.Config;
 import gov.nasa.jpf.JPFShell;
 import gov.nasa.jpf.inspector.frontends.cmd.CommandLineShell;
+import gov.nasa.jpf.inspector.utils.InspectorConfiguration;
+import gov.nasa.jpf.shell.ShellManager;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
@@ -19,9 +21,9 @@ public class CorrectOutputTest {
   @Parameters(name = "{0}")
   public static Iterable<? extends Object> data() {
      return Arrays.asList(
-    //      getCase("simple", "hello"),
-      //    getCase("simple", "breakpoint-expressions"),
-          getCase("legacy", "AssertSimpleTest")
+          getCase("legacy", "AssertSimpleTest"),
+          getCase("simple", "hello"),
+          getCase("simple", "breakpoint-expressions")
      );
   }
   private CorrectOutputTestCase testCase;
@@ -43,6 +45,7 @@ public class CorrectOutputTest {
 
   @Test
   public void test() throws FileNotFoundException {
+    InspectorConfiguration.staticReset();
     String applicationPropertyFile = BASEFOLDER + testCase.applicationFile;
     String inputFile = BASEFOLDER + testCase.inputFile;
     String outputFile = BASEFOLDER + testCase.outputFile;
@@ -52,13 +55,17 @@ public class CorrectOutputTest {
     ByteArrayOutputStream baos = new ByteArrayOutputStream();
     PrintStream printStream = new PrintStream(baos);
 
+    Config.enableLogging(true);
+
     JPFShell shell = new CommandLineShell(applicationPropertyFile, inputStream, printStream);
+    //ShellManager.getManager().getConfig().printEntries();
     shell.start(args);
 
 
     String actualOutput = new String(baos.toByteArray(), StandardCharsets.UTF_8);
     String expectedOutput = readAllFile(outputFile);
     Judge.judge(actualOutput, expectedOutput);
+    ShellManager.destroy();
   }
 
   private static String readAllFile(String filename) {
