@@ -21,9 +21,10 @@ public class CorrectOutputTest {
   @Parameters(name = "{0}")
   public static Iterable<? extends Object> data() {
      return Arrays.asList(
-          getCase("legacy", "AssertSimpleTest"),
           getCase("simple", "hello"),
-          getCase("simple", "breakpoint-expressions")
+          getCase("simple", "breakpoint-expressions"),
+          getCase("legacy", "AssertSimpleTest"),
+          getCase("legacy", "BreakpointTest")
      );
   }
   private CorrectOutputTestCase testCase;
@@ -55,7 +56,6 @@ public class CorrectOutputTest {
     ByteArrayOutputStream baos = new ByteArrayOutputStream();
     PrintStream printStream = new PrintStream(baos);
 
-    Config.enableLogging(true);
 
     JPFShell shell = new CommandLineShell(applicationPropertyFile, inputStream, printStream);
     //ShellManager.getManager().getConfig().printEntries();

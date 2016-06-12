@@ -34,7 +34,7 @@ import org.junit.Test;
  * 
  */
 public class ParsingTests {
-  private static final boolean DEBUG = true;
+  private static final boolean DEBUG = false;
   private final PrintStream out = System.out;
 
   // *************************************************************************
