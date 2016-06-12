@@ -2,6 +2,7 @@ package gov.nasa.jpf.inspector.tests.acceptance.legacy.simpleassignments;
 
 import java.util.Map;
 
+@SuppressWarnings("ALL")
 public class SimpleAssignments {
   public static void main(String[] args) {
     SimpleAssignments simpleAssignments = new SimpleAssignments();

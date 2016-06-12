@@ -1,4 +1,4 @@
-package gov.nasa.jpf.inspector.tests.cmd2text;
+package gov.nasa.jpf.inspector.tests.parsing;
 
 import gov.nasa.jpf.inspector.client.ClientCommandInterface;
 import gov.nasa.jpf.inspector.client.parser.CommandParserFactory;

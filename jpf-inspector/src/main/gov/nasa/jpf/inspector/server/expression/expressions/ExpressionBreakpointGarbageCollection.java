@@ -24,6 +24,10 @@ import gov.nasa.jpf.inspector.server.expression.ExpressionBooleanLeaf;
 import gov.nasa.jpf.inspector.server.expression.InspectorState;
 import gov.nasa.jpf.inspector.server.expression.InspectorState.ListenerMethod;
 
+/**
+ * Represents the "garbage_collection = [begin/end/both]" hit condition that hits when garbage collection starts
+ * or ends.
+ */
 public class ExpressionBreakpointGarbageCollection extends ExpressionBooleanLeaf {
 
   private BreakPointModes bpMode;
@@ -58,7 +62,7 @@ public class ExpressionBreakpointGarbageCollection extends ExpressionBooleanLeaf
 
   @Override
   public String getNormalizedExpression() {
-    StringBuffer sb = new StringBuffer(20);
+    StringBuilder sb = new StringBuilder(20);
     sb.append("garbage_collection=");
     if (bpMode == BreakPointModes.BP_MODE_GC_BEGIN) {
       sb.append("begin");

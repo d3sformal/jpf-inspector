@@ -53,7 +53,7 @@ public class InstructionPositionImpl implements InstructionPosition {
   }
 
   // In this case we match at the same line as the instruction (not at given instruction)
-  protected InstructionPositionImpl (Instruction instr) {
+  private InstructionPositionImpl(Instruction instr) {
     assert instr != null;
 
     this.fileName = new FileName(getInstructionFileName(instr));
@@ -132,9 +132,10 @@ public class InstructionPositionImpl implements InstructionPosition {
    * @param instr Instruction to process
    * @return File name where instruction takes place.
    */
-  static public String getInstructionFileName (Instruction instr) {
+  private static String getInstructionFileName(Instruction instr) {
+    assert instr != null;
     String result = null;
-    if (instr.getMethodInfo() != null && instr.getMethodInfo() != null) {
+    if (instr.getMethodInfo() != null) {
       result = instr.getMethodInfo().getSourceFileName();
     }
     return result;

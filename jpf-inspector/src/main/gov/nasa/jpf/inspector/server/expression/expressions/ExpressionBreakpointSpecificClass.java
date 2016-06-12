@@ -19,7 +19,6 @@
 
 package gov.nasa.jpf.inspector.server.expression.expressions;
 
-import gov.nasa.jpf.inspector.migration.MigrationUtilities;
 import gov.nasa.jpf.inspector.server.breakpoints.BreakPointModes;
 import gov.nasa.jpf.inspector.server.expression.ExpressionBooleanLeaf;
 import gov.nasa.jpf.inspector.server.expression.InspectorState;
@@ -29,6 +28,10 @@ import gov.nasa.jpf.vm.ClassInfo;
 import gov.nasa.jpf.vm.ElementInfo;
 import gov.nasa.jpf.vm.VM;
 
+/**
+ * Represents hit conditions that hit whenever an object of the specified class is created, released by the garbage
+ * collector, or when an exception of the specified class is thrown.
+ */
 public class ExpressionBreakpointSpecificClass extends ExpressionBooleanLeaf {
   public enum Mode {
     SC_MODE_CREATED,
@@ -78,7 +81,7 @@ public class ExpressionBreakpointSpecificClass extends ExpressionBooleanLeaf {
 
   @Override
   public String getNormalizedExpression() {
-    StringBuffer sb = new StringBuffer(64);
+    StringBuilder sb = new StringBuilder(64);
 
     if (mode == Mode.SC_MODE_CREATED) {
       sb.append("object_created");

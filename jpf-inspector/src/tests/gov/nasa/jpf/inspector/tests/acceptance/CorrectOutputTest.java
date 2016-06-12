@@ -25,7 +25,8 @@ public class CorrectOutputTest {
           getCase("simple", "breakpoint-expressions"),
           getCase("legacy", "AssertSimpleTest"),
           getCase("legacy", "BreakpointTest"),
-          getCase("legacy/simpleassignments", "SimpleAssignments")
+          getCase("legacy/simpleassignments", "SimpleAssignments"),
+          getCase("features/decimal", "decimal")
      );
   }
   private CorrectOutputTestCase testCase;
@@ -75,8 +76,6 @@ public class CorrectOutputTest {
     try {
       byte[] bytes = Files.readAllBytes(f.toPath());
       return new String(bytes,"UTF-8");
-    } catch (FileNotFoundException e) {
-      e.printStackTrace();
     } catch (IOException e) {
       e.printStackTrace();
     }

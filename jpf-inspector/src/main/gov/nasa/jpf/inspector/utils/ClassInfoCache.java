@@ -67,7 +67,7 @@ public class ClassInfoCache {
   public final ClassInfo ci_String;
 
   /**
-   * Replaces the call <code>ClassInfo.getResolvedClassInfo("arg")</code> that was in this file in the previous version of JPF.
+   * Replaces the call {@code ClassInfo.getResolvedClassInfo("arg")} that was in this file in the previous version of JPF.
    * @param type The argument that was there previously.
    * @return I suppose that a representation of the given system type.
    */
