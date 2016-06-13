@@ -41,7 +41,7 @@ public class MethodInstructionBacktracker {
     Transition lastTr = path.getLast();
     if (lastTr != null) {
       int currentThread = lastTr.getThreadIndex();
-      stepBacktracker = new StepThreadBacktracker(path, currentThread);
+      stepBacktracker = new StepThreadBacktracker(new TransitionThreadBacktracker(path, currentThread));
     } else {
       stepBacktracker = null;
     }
@@ -194,14 +194,14 @@ public class MethodInstructionBacktracker {
   /**
    * @return Gets result of previous (not last, but one before) {@link #getPreviousStepInCurrentMethod()} call.
    */
-  public Step getPrevReturnedStep () {
+  private Step getPrevReturnedStep() {
     return prevReturnedStep;
   }
 
   /**
    * @return Gets transition in which {@link #getPrevReturnedStep()} step takes place.
    */
-  public Transition getPrevReturnedStepTransition () {
+  private Transition getPrevReturnedStepTransition() {
     return prevReturnedStepTransition;
   }
 

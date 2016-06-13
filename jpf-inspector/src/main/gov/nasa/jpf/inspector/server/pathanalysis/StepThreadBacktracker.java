@@ -1,12 +1,12 @@
 package gov.nasa.jpf.inspector.server.pathanalysis;
 
-import gov.nasa.jpf.vm.Path;
+import gov.nasa.jpf.vm.Instruction;
 import gov.nasa.jpf.vm.Step;
 import gov.nasa.jpf.vm.Transition;
-import gov.nasa.jpf.vm.Instruction;
 
 /**
- * Backward step iterator for given thread. Seamlessly hides transition boundaries and repetition of instruction at transition boundaries. (Top/Bottom halves)
+ * Backward step iterator for given thread.
+ * Seamlessly hides transition boundaries and repetition of instructions at transition boundaries. (Top/Bottom halves)
  * 
  * @see <a href="http://babelfish.arc.nasa.gov/trac/jpf/wiki/devel/choicegenerator">JPF Devel/ChoiceGenerators</a>
  * @author Alf
@@ -16,34 +16,50 @@ class StepThreadBacktracker {
   private static final int GET_PREVIOUS_STEP_NOT_CALLED = -1;
   private final TransitionThreadBacktracker ttb;
 
-  private Step[] currentTransitionSteps = null; // Steps of the currently processed transition
-  private int currentTransitionStepIndex = -1; // Step to processed. Steps after this index are processed, steps before waits for processing.
+  /**
+   * Steps of the currently processed transition
+   */
+  private Step[] currentTransitionSteps = null;
+  /**
+   * Step to processed. Steps after this index are processed, steps before waits for processing.
+   */
+  private int currentTransitionStepIndex = GET_PREVIOUS_STEP_NOT_CALLED;
 
-  private int prevReturnedStepIndex = GET_PREVIOUS_STEP_NOT_CALLED; // Index of the step (in PrevTransition) returned by previous (not last but one before the
-                                                                    // last) {@link
-  // #getPreviousStep()}
-  private Transition prevReturnedTransition = null; // Transition used to obtain previous (not last but one before the last) step returned by {@link
-                                                    // #getPreviousStep()}
-  private int prevReturnedTransition2Backrack = 0; // Number of transition to backtrack to obtain {@link #prevReturnedTransition}.
+  /**
+   * Index of the step (in PrevTransition) returned by previous (not last but one before the last
+   * {@link #getPreviousStep()}.
+   */
+  private int prevReturnedStepIndex = GET_PREVIOUS_STEP_NOT_CALLED;
 
-  public StepThreadBacktracker (Path path, int threadId) {
-    super();
-    this.ttb = new TransitionThreadBacktracker(path, threadId);
-  }
+  /**
+   * Transition used to obtain previous (not last but one before the last) step returned by {@link #getPreviousStep()}.
+   */
+  private Transition prevReturnedTransition = null;
+  /**
+   * Number of transition to backtrack to obtain {@link #prevReturnedTransition}.
+   */
+  private int prevReturnedTransition2Backrack = 0;
 
+  /**
+   * Initializes a new {@link StepThreadBacktracker} that only uses transitions given by the specified {@link TransitionThreadBacktracker}.
+   *
+   * @param ttb The {@link TransitionThreadBacktracker} that supplies transitions.
+   */
   public StepThreadBacktracker (TransitionThreadBacktracker ttb) {
-    super();
     this.ttb = ttb;
   }
 
   /**
-   * @return Gets step with previous instruction/step executed in given thread or null if no such exists (previous call gets the first instruction/step executed
-   * by given thread)
+   *
+   *
+   * Previous documentation: Gets step with previous instruction/step executed in given thread or null if
+   * no such exists (previous call gets the first instruction/step executed by given thread)
+   *
+   * @return Null if no previous step exists.
    */
   public Step getPreviousStep () {
     prevReturnedStepIndex = currentTransitionStepIndex;
     prevReturnedTransition = ttb.getCurrentTransition();
-    ;
     prevReturnedTransition2Backrack = ttb.getBacksteppedTransitions();
 
     if (currentTransitionStepIndex <= 0) {
@@ -57,8 +73,11 @@ class StepThreadBacktracker {
     return currentTransitionSteps[currentTransitionStepIndex];
   }
 
+
   private void getNewTransition () {
-    assert (currentTransitionStepIndex == 0 || currentTransitionStepIndex == GET_PREVIOUS_STEP_NOT_CALLED); // Otherwise no reason to call this method
+    assert (currentTransitionStepIndex == 0 ||
+            currentTransitionStepIndex == GET_PREVIOUS_STEP_NOT_CALLED); // Otherwise no reason to call this method
+
     Step prevStep = null;
     Transition prevTransition = ttb.getCurrentTransition(); // will be prevTransition
     if (prevTransition != null) {
@@ -90,13 +109,12 @@ class StepThreadBacktracker {
   }
 
   /**
-   * Convert transition into array of steps. (To have fast random access to transition Steps)
+   * Converts a transition into an array of steps (in order to have fast random access to transition Steps).
    * 
-   * @param tr
-   * Transition to process
-   * @return Array with steps which occur in transition
+   * @param tr Transition to process
+   * @return Array with steps which occur in the transition.
    */
-  static public Step[] transition2StepArray (Transition tr) {
+  private static Step[] transition2StepArray(Transition tr) {
     assert (tr != null);
     int stepsCnt = tr.getStepCount();
     Step[] steps = new Step[stepsCnt];
@@ -137,7 +155,7 @@ class StepThreadBacktracker {
   /**
    * @return Gets result of previous (not last, but one before) {@link #getPreviousStep()} call.
    */
-  public Step getReturnedPrevStep () {
+  private Step getReturnedPrevStep() {
     if (prevReturnedTransition == null) {
       return null;
     }
@@ -149,7 +167,7 @@ class StepThreadBacktracker {
    * 
    * @return Gets transition of previous step.
    */
-  public Transition getPrevReturnedTransition () {
+  private Transition getPrevReturnedTransition() {
     return prevReturnedTransition;
   }
 
@@ -172,5 +190,4 @@ class StepThreadBacktracker {
 
     return new BackwardBreakpointCreator(prevReturnedTransition, prevStep, prevReturnedTransition2Backrack);
   }
-
 }

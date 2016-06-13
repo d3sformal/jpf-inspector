@@ -1,10 +1,12 @@
 package gov.nasa.jpf.inspector.server.pathanalysis;
 
 import gov.nasa.jpf.inspector.client.commands.CmdBreakpointCreate;
+import gov.nasa.jpf.inspector.exceptions.JPFInspectorGenericErrorException;
 import gov.nasa.jpf.inspector.interfaces.BreakpointState;
 import gov.nasa.jpf.inspector.interfaces.BreakPointStatus;
 import gov.nasa.jpf.inspector.interfaces.InstructionPosition;
 import gov.nasa.jpf.inspector.server.breakpoints.BreakpointHandler;
+import gov.nasa.jpf.inspector.server.breakpoints.CommandsManager;
 import gov.nasa.jpf.inspector.server.breakpoints.InstructionPositionImpl;
 import gov.nasa.jpf.inspector.server.expression.ExpressionBoolean;
 import gov.nasa.jpf.inspector.server.expression.InspectorState;
@@ -14,66 +16,84 @@ import gov.nasa.jpf.vm.Path;
 import gov.nasa.jpf.vm.Step;
 import gov.nasa.jpf.vm.Transition;
 
+/**
+ * An instance of this class is created when a backwards-stepping command is executed. It creates a single breakpoint,
+ * determines the number of transitions that must be backtracked, passes the number to the silent InspectorListener
+ * and then leaves scope to be garbaged collected.
+ */
 public class BackwardBreakpointCreator {
 
-  private final ExpressionBoolean backwardBreakpoint;
-  private final int transition2backtrack;
+  private final ExpressionBoolean breakpointHitCondition;
+  private final int numberOfTransitionsToBacktrack;
 
-  BackwardBreakpointCreator (Transition transition, Step step, int transition2backtrack) {
+  /**
+   * Initializes a new instance of the {@link BackwardBreakpointCreator}.
+   * This constructor is protected and not private because it's called from the Backtracker classes as well.
+   *
+   * @param transition The current transition. This is only used to get the current thread index. Maybe should be refactored.
+   * @param step Step that we should backtrack to. This step contains the instruction that we want to put a breakpoint on.
+   * @param numberOfTransitionsToBacktrack Number of transitions to backtrack.
+   */
+  protected BackwardBreakpointCreator(Transition transition, Step step, int numberOfTransitionsToBacktrack) {
     int backwardBreakpointBound = MethodInstructionBacktracker.getInstrCountInTransition(transition, step);
 
-    this.backwardBreakpoint = new ExpressionBreakpointInstruction(transition.getThreadIndex(), step.getInstruction(), backwardBreakpointBound);
-    this.transition2backtrack = transition2backtrack;
+    this.breakpointHitCondition = new ExpressionBreakpointInstruction(transition.getThreadIndex(),
+                                                                      step.getInstruction(),
+                                                                      backwardBreakpointBound);
+    this.numberOfTransitionsToBacktrack = numberOfTransitionsToBacktrack;
 
   }
 
   /**
-   * Create new internal breakpoint for represented backward step.
+   * Creates a new internal breakpoint for the represented backward step.
+   *
+   * This is called immediately after the {@link BackwardBreakpointCreator} is initialized from the {@link CommandsManager}.
    * 
-   * @param breakpointMgr Manager where to create new Breakpoint
-   * @return BreakpointID of created BP
+   * @param breakpointMgr Holder of breakpoints.
+   * @return Breakpoint ID of the created breakpoint.
    */
-  public int createBreakpoint (BreakpointHandler breakpointMgr) {
+  public int createBreakpoint (BreakpointHandler breakpointMgr) throws JPFInspectorGenericErrorException {
     // TODO Create inspector.server class copy ... don't use inspector.client package version !!
     CmdBreakpointCreate.ConsoleBreakpointCreationExpression newBP = new CmdBreakpointCreate.ConsoleBreakpointCreationExpression();
     newBP.setBounds(1, 1);
     newBP.setState(BreakpointState.BP_STATE_ENABLED);
 
-    BreakPointStatus bps = breakpointMgr.createInternalBreakpoint(newBP, backwardBreakpoint, true);
+    BreakPointStatus bps = breakpointMgr.createInternalBreakpoint(newBP, breakpointHitCondition, true);
     if (bps == null) {
-      return BreakPointStatus.BP_ID_NOT_DEFINED;
+      throw new JPFInspectorGenericErrorException("Internal breakpoint could not be created.");
     }
     return bps.getBPID();
   }
 
   /**
-   * @return Gets breakpoint which breaks where requested backward step should stop.
+   * Gets the hit condition which breaks where requested backward step should stop.
    */
-  public ExpressionBoolean getBackwardBreakpoint () {
-    return backwardBreakpoint;
+  public ExpressionBoolean getBreakpointHitCondition() {
+    return breakpointHitCondition;
   }
 
   /**
-   * @return Get how many transitions has to be backtrackted to be able to start forward processing and apply the breakpoint
+   * Gets how many transitions have to be backtracked to be able to start forward processing and apply the breakpoint.
    */
   public int getTransitionsToBacktrack () {
-    return transition2backtrack;
+    return numberOfTransitionsToBacktrack;
   }
 
   public static BackwardBreakpointCreator getBackwardStepInstruction (InspectorState insp) {
     Path path = getPath(insp);
-    Transition lastTr = path.getLast();
-    if (lastTr == null) {
+    Transition currentTransition = path.getLast();
+    if (currentTransition == null) {
       // Called to early
       return null;
     }
-    int currentThread = lastTr.getThreadIndex();
+    int currentThread = currentTransition.getThreadIndex();
 
     TransitionThreadBacktracker ttb = new TransitionThreadBacktracker(path, currentThread);
     StepThreadBacktracker stb = new StepThreadBacktracker(ttb);
 
     stb.getPreviousStep(); // Last instruction;
     Step targetStep = stb.getPreviousStep();
+
     if (targetStep == null) {
       return null; // No previous instruction
     }
@@ -166,44 +186,9 @@ public class BackwardBreakpointCreator {
     return mib.createBackwardBreakpointFromCurrentStep();
   }
 
-  // public static BackwardBreakpointCreator getBackwardStepOut(InspectorState insp) {
-  // CheckCallInstruction checkCall = new CheckCallInstruction();
-  //
-  // Path path = getPath(insp);
-  //
-  // MethodInstructionBacktracker mib = new MethodInstructionBacktracker(path);
-  //
-  // int lineChangeCnt = 0; // How many different lines we meet
-  //
-  // InstructionPosition ip = null;
-  //
-  // Step st = mib.getPreviousStepInCurrentMethod();
-  // if (st == null) {
-  // return null; // No such place exists
-  // }
-  // ip = InstructionPositionImpl.getInstructionPosition(st.getInstruction());
-  //
-  // while (true) {
-  // st = mib.getPreviousStepInCurrentMethod();
-  //
-  // if (st == null) {
-  // return mib.createBackwardBreakpointFromPreviousReturnedStep(); // First possible place we can go
-  // }
-  //
-  // if (!ip.hitPosition(st.getInstruction())) {
-  // lineChangeCnt++;
-  // if (lineChangeCnt > 1) {
-  // return mib.createBackwardBreakpointFromPreviousReturnedStep();
-  // }
-  // ip = InstructionPositionImpl.getInstructionPosition(st.getInstruction());
-  // }
-  //
-  // if (checkCall.isCallInstruction(st.getInstruction())) {
-  // return mib.createBackwardBreakpointFromCurrentStep();
-  // }
-  // }
-  // }
-
+  /**
+   * Gets the current JPF transition path <b>including</b> the current transition.
+   */
   static private Path getPath (InspectorState insp) {
     VM vm = insp.getVM();
     vm.updatePath();

@@ -121,9 +121,9 @@ public class JPFClientCallbackHandler implements InspectorCallBacks {
     if (bp instanceof AssertStatus) {
       AssertStatus as = (AssertStatus) bp;
 
-      String message = "Assertion violated.";
+      String message = "Assertion violated:";
       if (bp.getState() == BreakpointState.BP_STATE_LOGGING) {
-        message = "Logging assertion violated";
+        message = "Logging assertion violated:";
       }
       out.println("INFO: " + message + " [assert " + as.getNormalizedPosition() + " " + as.getNormalizedCondition() + "]");
 
@@ -191,12 +191,11 @@ public class JPFClientCallbackHandler implements InspectorCallBacks {
 
   @Override
   public void specifyChoiceToUse (int maxChoiceIndex) {
-    String userText = "Execution is halted. Specify which choice to use (0-" + (maxChoiceIndex) + ")";
+    String userText = "Execution is halted. Specify which choice to use (0-" + (maxChoiceIndex) + "):";
     if (showHintCgSelect) {
       showHintCgSelect = false;
       userText += "\n\tHint: Use the command 'cg select CHOICE_INDEX'.";
       // TODO create command which will print list of possible choices
-      // userText += "\n\tHint: Use 'cg select CHOICE_INDEX' command\n";
     }
     out.println(userText);
     prevCB = CB_METHODS.CB_CG_CHOICE_TO_USE;
@@ -212,7 +211,7 @@ public class JPFClientCallbackHandler implements InspectorCallBacks {
     }
     sb.append(" - ");
     sb.append(cgName);
-    sb.append(" (");
+    sb.append(" (0x");
     sb.append(Integer.toHexString(cgId));
     sb.append(") : ");
   }

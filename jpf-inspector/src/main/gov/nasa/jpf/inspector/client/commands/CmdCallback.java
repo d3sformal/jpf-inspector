@@ -11,6 +11,10 @@ import gov.nasa.jpf.inspector.interfaces.JPFInspectorBackEndInterface;
 
 import java.io.PrintStream;
 
+/**
+ * Represents a hidden callback command that suspends execution of commands until a callback of the specified
+ * kind is received from the server. This only works in record execution mode.
+ */
 public class CmdCallback extends ClientCommand {
 
   private final CB_METHODS cbType;
@@ -101,7 +105,7 @@ public class CmdCallback extends ClientCommand {
     return true;
   }
 
-  public static String inspectorState2String (InspectorStates state) {
+  private static String inspectorState2String(InspectorStates state) {
     assert (state != null);
 
     switch (state) {

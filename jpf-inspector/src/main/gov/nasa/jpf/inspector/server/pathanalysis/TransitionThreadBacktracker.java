@@ -6,34 +6,60 @@ import gov.nasa.jpf.vm.Transition;
 import java.util.Iterator;
 
 /**
- * Creates single thread backward (transition) trace from {@link Path} by hiding transitions from different threads.
- * 
- * @author Alf
- * 
+ * An interator that gives transitions starting at the current transition and then backtracking to the past, and the
+ * iterator ignores transitions executed by threads other than the one we are interested in.
  */
 class TransitionThreadBacktracker {
 
+  /**
+   * Iterates over transitions in the current path, from the latest to the root transition.
+   * The first transition from this iterator is the transition that was current when the backtracker
+   * was initialized.
+   */
   private final Iterator<Transition> reversePathIterator;
 
-  private final int threadId; // Interesting thread
+  /**
+   * The thread we are interested in.
+   */
+  private final int threadId;
 
+  /**
+   * Number of transitions we backtracked through.
+   * "0" means we haven't begun yet.
+   * "1" means we backtracked through the topmost transition only.
+   */
   private int backsteppedTransitions = 0;
-  private Transition currentTransition = null;;
+  /**
+   * The transition that the backtracker currently examines. At start, this is null.
+   * After the first getPreviousTransition call, it will be the current transition. Then,
+   * it will be the previous one etc.
+   */
+  private Transition currentTransition = null;
 
-  private Transition prevReturnedTransition = null; // Previous (not last, but one before the last) result of {@link #getPreviousTransition()} call.
-  private int prevReturnedBacksteppedTransitions = 0; // Number of transition to backtrack to obtain {@link #prevReturnedTransition}.
+  /**
+   * revious (not last, but one before the last) result of {@link #getPreviousTransition()} call.
+   */
+  private Transition prevReturnedTransition = null;
+  /**
+   * Number of transition to backtrack to obtain {@link #prevReturnedTransition}.
+   */
+  private int prevReturnedBacksteppedTransitions = 0;
 
+  /**
+   * Initializes the backtracker.
+   * @param path The current JPF transition path.
+   * @param threadId The thread we are interested in.
+   */
   public TransitionThreadBacktracker(Path path, int threadId) {
-    super();
     assert (path != null);
 
     this.threadId = threadId;
-
     reversePathIterator = path.descendingIterator();
   }
 
   /**
-   * Get previous transition in given thread. Can be used iteratively to go back in program trace.
+   * Gets the previous transition in given thread. Can be used iteratively to go back in program trace.
+   * When this method is first called, it returns the current transition.
    * 
    * @return Get previous transition in given thread or null if no such transition exists.
    */
@@ -42,6 +68,7 @@ class TransitionThreadBacktracker {
     prevReturnedBacksteppedTransitions = backsteppedTransitions;
     prevReturnedTransition = currentTransition;
 
+    // Iterate until we find a transition executed by the thread we are interested in.
     while (reversePathIterator.hasNext()) {
 
       // Update current state
@@ -57,36 +84,22 @@ class TransitionThreadBacktracker {
   }
 
   /**
-   * Gets result of the last {@link #getPreviousTransition()} call.
+   * Gets result of the last {@link #getPreviousTransition()} call, or null if no such call was yet made.
    * 
-   * @return Gets current transition.
+   * @return Current transition of the backtracker.
    */
   public Transition getCurrentTransition() {
     return currentTransition;
   }
 
   /**
-   * @return Gets number of transitions (including the skipped transition in different threads) which were "backstepped" by calls of
-   *         {@link #getPreviousTransition()}
+   * Number of transitions we backtracked through.
+   * "0" means we haven't begun yet.
+   * "1" means we backtracked through the topmost transition only.
+   *
+   * This includes transitions executed by threads other than the one we are interested in.
    */
   public int getBacksteppedTransitions() {
     return backsteppedTransitions;
   }
-
-  /**
-   * Gets previous (not last, but one before) result of {@link #getPreviousTransition()} call.
-   * 
-   * @return Gets previous transition.
-   */
-  public Transition getPrevReturnedTransition() {
-    return prevReturnedTransition;
-  }
-
-  /**
-   * @return Gets number of transitions (including the skipped transition in different threads) which were "backstepped" to obtain {@link #getPrevReturnedTransition()}
-   */
-  public int getPrevReturnedBackSteppedTransitions() {
-    return prevReturnedBacksteppedTransitions;
-  }
-
 }

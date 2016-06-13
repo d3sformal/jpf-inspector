@@ -34,9 +34,15 @@ public class CallbacksSender extends Thread {
   protected PrintStream out;
 
   private volatile boolean terminating;
-  private volatile boolean notifyEnable; // Flag if true the enabe waits (for notification) until the running "Callbacks thread" first blocks
+  /**
+   * Flag if true the enabe waits (for notification) until the running "Callbacks thread" first blocks
+   */
+  private volatile boolean notifyEnable;
   private final InspectorCallBacks callbacks;
-  private StopHolder stopHolder; // Cyclic dependency - set immediately after stopHolder is created
+  /**
+   * Cyclic dependency - set immediately after stopHolder is created
+   */
+  private StopHolder stopHolder;
 
   private final List<CallbackCommand> cmdCBQueue;
 
@@ -45,6 +51,9 @@ public class CallbacksSender extends Thread {
     if (DEBUG) {
       inspector.getDebugPrintStream().println(CallbacksSender.class.getSimpleName() + "." + CallbacksSender.class.getSimpleName() + "(...)");
     }
+
+    // Needed for testing and direct API calls. Otherwise, when we are using a shell (graphical or console),
+    // we will terminate via a System.exit(0) call so it doesn't really matter in those cases.
     setDaemon(true);
 
     terminating = false;
@@ -55,6 +64,11 @@ public class CallbacksSender extends Thread {
     this.out = inspector.getDebugPrintStream();
   }
 
+  /**
+   * While it is true that we should not rely on "finalize" methods, when performing automated tests,
+   * we may want to terminate the threads of previous Inspector instances. Probably it would be better
+   * to implement a custom method and call it at end of program rather than rely on finalization.
+   */
   @Override
   protected void finalize () throws Throwable {
     terminate();
@@ -75,6 +89,7 @@ public class CallbacksSender extends Thread {
       try {
         cmdCBQueue.wait();
       } catch (InterruptedException e) {
+        Thread.currentThread().interrupt();
       }
     }
   }
@@ -90,6 +105,7 @@ public class CallbacksSender extends Thread {
       try {
         cmdCBQueue.wait();
       } catch (InterruptedException e) {
+        Thread.currentThread().interrupt();
       }
     }
     if (DEBUG) {
@@ -117,6 +133,7 @@ public class CallbacksSender extends Thread {
             }
             cmdCBQueue.wait();
           } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
           }
         }
       }
@@ -149,9 +166,7 @@ public class CallbacksSender extends Thread {
   }
 
   /**
-   * Queue new Classback to be executed
-   * 
-   * @param cmdCB
+   * Queue new callback to be executed.
    */
   private void planNewCallback (CallbackCommand cmdCB) {
     if (DEBUG) {

@@ -22,10 +22,12 @@ package gov.nasa.jpf.inspector.interfaces;
 import gov.nasa.jpf.vm.ChoiceGenerator;
 
 /**
- * Call backs to the client part. Used to notify client about interesting events.
+ * TODO This is implemented by both client and server classes?? Something strange is going on.
+ *
+ * This handles callbacks to the client. Used to notify client about interesting events.
  * Client has to implement this interface and provide them to the server.
  * 
- * Note: Only JPF thread is permitted to sent callbacks (except {@link #genericInfo(String) method which can be called by any thread})
+ * Note: Only JPF thread is permitted to sent callbacks (except {@link #genericInfo(String)} which can be called by any thread)
  */
 public interface InspectorCallBacks {
 
@@ -50,13 +52,12 @@ public interface InspectorCallBacks {
   /**
    * Channel used for sending various messages for the user.
    * 
-   * 
    * @param msg Message to print.
    */
   void genericInfo(String msg);
 
   /**
-   * Called when breakpoint is hitted.
+   * Called when breakpoint is hit.
    * 
    * @param bp Breakpoint that is reached.
    */

@@ -50,6 +50,9 @@ public class DiningPhil {
   static final int N = 6;
 
   public static void main(String[] args) {
+
+    int n = Verify.getInt(10,200);
+
     Verify.beginAtomic();
     Fork[] forks = new Fork[N];
     for (int i = 0; i < N; i++) {

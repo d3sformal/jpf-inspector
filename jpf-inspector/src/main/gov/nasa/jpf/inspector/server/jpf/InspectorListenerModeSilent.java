@@ -21,7 +21,7 @@ import gov.nasa.jpf.search.Search;
  * 
  */
 public class InspectorListenerModeSilent extends ListenerAdapter {
-  private static final boolean DEBUG = false;
+  private static final boolean DEBUG = true;
 
   private final JPFInspector inspector;
   private final CommandsManager cmdMgr;
@@ -41,15 +41,10 @@ public class InspectorListenerModeSilent extends ListenerAdapter {
     IS_BACKTRACKING,
     IS_STATE_PROCESSED,
     IS_FORWARD_STEPS
-  };
+  }
 
   private InternalState state = InternalState.IS_TRANSITION_END;
 
-  /**
-   * Inspector we serve for.
-   * 
-   * @param inspector
-   */
   public InspectorListenerModeSilent (JPFInspector inspector, CommandsManager cmdMgr, BreakpointHandler bpMgr, int backwardStepsCnt, int bpID,
                                       DefaultForwardTraceManager dftMgf, StopHolder stopHolder) {
     assert backwardStepsCnt > 0;
@@ -198,9 +193,9 @@ public class InspectorListenerModeSilent extends ListenerAdapter {
   @Override
   public void choiceGeneratorRegistered(VM vm, ChoiceGenerator<?> nextCG, ThreadInfo currentThread, Instruction executedInstruction) {
     if (DEBUG) {
-      ChoiceGenerator<?> cg = nextCG;
       inspector.getDebugPrintStream().println(
-              this.getClass().getSimpleName() + ".choiceGeneratorRegistered - cg=" + cg + " processedChoices=" + cg.getProcessedNumberOfChoices());
+              this.getClass().getSimpleName() + ".choiceGeneratorRegistered - cg=" + nextCG + " processedChoices=" + nextCG
+                      .getProcessedNumberOfChoices());
     }
   }
 
@@ -208,9 +203,8 @@ public class InspectorListenerModeSilent extends ListenerAdapter {
   @Override
   public void choiceGeneratorSet(VM vm, ChoiceGenerator<?> newCG) {
     if (DEBUG) {
-      ChoiceGenerator<?> cg = newCG;
       inspector.getDebugPrintStream().println(
-              this.getClass().getSimpleName() + ".choiceGeneratorSet - cg=" + cg + " processedChoices=" + cg.getProcessedNumberOfChoices());
+              this.getClass().getSimpleName() + ".choiceGeneratorSet - cg=" + newCG + " processedChoices=" + newCG.getProcessedNumberOfChoices());
     }
   }
 
@@ -218,9 +212,9 @@ public class InspectorListenerModeSilent extends ListenerAdapter {
   @Override
   public void choiceGeneratorAdvanced(VM vm, ChoiceGenerator<?> currentCG) {
     if (DEBUG) {
-      ChoiceGenerator<?> cg = currentCG;
       inspector.getDebugPrintStream().println(
-              this.getClass().getSimpleName() + ".choiceGeneratorAdvanced - cg=" + cg + " processedChoices=" + cg.getProcessedNumberOfChoices());
+              this.getClass().getSimpleName() + ".choiceGeneratorAdvanced - cg=" + currentCG + " processedChoices=" + currentCG
+                      .getProcessedNumberOfChoices());
     }
   }
 
@@ -228,14 +222,13 @@ public class InspectorListenerModeSilent extends ListenerAdapter {
   @Override
   public void choiceGeneratorProcessed(VM vm, ChoiceGenerator<?> processedCG) {
     if (DEBUG) {
-      ChoiceGenerator<?> cg = processedCG;
-      //ChoiceGenerator<?> cg = MigrationUtilities.getLastChoiceGenerator(vm);
       inspector.getDebugPrintStream().println(
-              this.getClass().getSimpleName() + ".choiceGeneratorProcessed - cg=" + cg + " processedChoices=" + cg.getProcessedNumberOfChoices());
+              this.getClass().getSimpleName() + ".choiceGeneratorProcessed - cg=" + processedCG + " processedChoices=" + processedCG
+                      .getProcessedNumberOfChoices());
     }
   }
 
-  protected void reportError () {
+  private void reportError() {
     cmdMgr.notifyBackwardStepCompleted(false);
     dftMgf.destroyTrace(true);
   }
