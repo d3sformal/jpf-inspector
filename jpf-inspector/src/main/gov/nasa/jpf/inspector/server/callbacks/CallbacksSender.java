@@ -1,6 +1,6 @@
 package gov.nasa.jpf.inspector.server.callbacks;
 
-import gov.nasa.jpf.inspector.interfaces.BreakPointStatus;
+import gov.nasa.jpf.inspector.interfaces.BreakpointStatus;
 import gov.nasa.jpf.inspector.interfaces.ChoiceGeneratorsInterface.CGTypes;
 import gov.nasa.jpf.inspector.interfaces.CommandsInterface.InspectorStates;
 import gov.nasa.jpf.inspector.interfaces.InspectorCallBacks;
@@ -214,7 +214,7 @@ public class CallbacksSender extends Thread {
     }
 
     @Override
-    public void notifyBreakpointHit (BreakPointStatus bp) {
+    public void notifyBreakpointHit (BreakpointStatus bp) {
       CallbackCommandBreakpointHit cb = new CallbackCommandBreakpointHit(bp);
       planNewCallback(cb);
     }

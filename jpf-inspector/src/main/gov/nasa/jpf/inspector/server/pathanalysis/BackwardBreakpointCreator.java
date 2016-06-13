@@ -3,7 +3,7 @@ package gov.nasa.jpf.inspector.server.pathanalysis;
 import gov.nasa.jpf.inspector.client.commands.CmdBreakpointCreate;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorGenericErrorException;
 import gov.nasa.jpf.inspector.interfaces.BreakpointState;
-import gov.nasa.jpf.inspector.interfaces.BreakPointStatus;
+import gov.nasa.jpf.inspector.interfaces.BreakpointStatus;
 import gov.nasa.jpf.inspector.interfaces.InstructionPosition;
 import gov.nasa.jpf.inspector.server.breakpoints.BreakpointHandler;
 import gov.nasa.jpf.inspector.server.breakpoints.CommandsManager;
@@ -58,7 +58,7 @@ public class BackwardBreakpointCreator {
     newBP.setBounds(1, 1);
     newBP.setState(BreakpointState.BP_STATE_ENABLED);
 
-    BreakPointStatus bps = breakpointMgr.createInternalBreakpoint(newBP, breakpointHitCondition, true);
+    BreakpointStatus bps = breakpointMgr.createInternalBreakpoint(newBP, breakpointHitCondition, true);
     if (bps == null) {
       throw new JPFInspectorGenericErrorException("Internal breakpoint could not be created.");
     }

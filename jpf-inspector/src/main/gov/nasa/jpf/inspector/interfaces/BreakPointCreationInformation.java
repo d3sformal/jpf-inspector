@@ -59,7 +59,7 @@ public interface BreakPointCreationInformation extends Serializable {
 
   /**
    * Specify lower bound for breakpoint's hitCounter.
-   * The breakpoint will only if the {@link BreakPointStatus#getHitCounter()} will be equal or higher then specified number.
+   * The breakpoint will only if the {@link BreakpointStatus#getHitCounter()} will be equal or higher then specified number.
    * <br>Note: The Upper bound condition must hold too to hit the breakpoint
    * 
    * @return Lower bound of hitCounter to hit the breakpoint.
@@ -68,7 +68,7 @@ public interface BreakPointCreationInformation extends Serializable {
 
   /**
    * Specify upper bound for breakpoint's hitCounter.
-   * The breakpoint will only if the {@link BreakPointStatus#getHitCounter()} will be equal or lower then specified number.
+   * The breakpoint will only if the {@link BreakpointStatus#getHitCounter()} will be equal or lower then specified number.
    * <br>Note: The lower bound condition must hold too to hit the breakpoint
    * 
    * @return Upper bound of hitCounter to hit the breakpoint.

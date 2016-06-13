@@ -20,9 +20,9 @@
 package gov.nasa.jpf.inspector.server.breakpoints;
 
 import gov.nasa.jpf.inspector.interfaces.BreakpointState;
-import gov.nasa.jpf.inspector.interfaces.BreakPointStatus;
+import gov.nasa.jpf.inspector.interfaces.BreakpointStatus;
 
-public class BreakPointStatusImpl implements BreakPointStatus {
+public class BreakPointStatusImpl implements BreakpointStatus {
 
   private static final long serialVersionUID = 5739124503398446657L;
 

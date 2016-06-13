@@ -61,7 +61,7 @@ public interface InspectorCallBacks {
    * 
    * @param bp Breakpoint that is reached.
    */
-  void notifyBreakpointHit(BreakPointStatus bp);
+  void notifyBreakpointHit(BreakpointStatus bp);
 
   /**
    * Notification from the server that ChoiceGenerator is asked for new value. {@link ChoiceGenerator#advance()} is called.

@@ -22,7 +22,7 @@ package gov.nasa.jpf.inspector.client.commands;
 import gov.nasa.jpf.inspector.client.ClientCommand;
 import gov.nasa.jpf.inspector.client.JPFInspectorClient;
 import gov.nasa.jpf.inspector.interfaces.BreakPointCreationInformation;
-import gov.nasa.jpf.inspector.interfaces.BreakPointStatus;
+import gov.nasa.jpf.inspector.interfaces.BreakpointStatus;
 import gov.nasa.jpf.inspector.interfaces.JPFInspectorBackEndInterface;
 
 import java.io.PrintStream;
@@ -35,8 +35,8 @@ public class CmdBreakpointShow extends ClientCommand {
 
   @Override
   public void execute(JPFInspectorClient client, JPFInspectorBackEndInterface inspector, PrintStream outStream) {
-    List<BreakPointStatus> bps = inspector.getBreakPoints();
-    for (BreakPointStatus bp : bps) {
+    List<BreakpointStatus> bps = inspector.getBreakPoints();
+    for (BreakpointStatus bp : bps) {
       outStream.println(breakpointToString(bp));
     }
     if (bps.size() == 0) {
@@ -55,7 +55,7 @@ public class CmdBreakpointShow extends ClientCommand {
    * @param bp Information about a breakpoint.
    * @return String representation of the brekapoint status.
    */
-  static public String breakpointToString (BreakPointStatus bp) {
+  static public String breakpointToString (BreakpointStatus bp) {
     StringBuilder bpText = new StringBuilder(80);
     bpText.append(bp.getBPID());
     bpText.append(" : ");

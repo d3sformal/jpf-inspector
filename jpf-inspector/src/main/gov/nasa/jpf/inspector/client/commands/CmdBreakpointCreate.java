@@ -24,7 +24,7 @@ import gov.nasa.jpf.inspector.client.JPFInspectorClient;
 import gov.nasa.jpf.inspector.common.ConsoleInformation;
 import gov.nasa.jpf.inspector.interfaces.BreakPointCreationInformation;
 import gov.nasa.jpf.inspector.interfaces.BreakpointState;
-import gov.nasa.jpf.inspector.interfaces.BreakPointStatus;
+import gov.nasa.jpf.inspector.interfaces.BreakpointStatus;
 import gov.nasa.jpf.inspector.interfaces.JPFInspectorBackEndInterface;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorGenericErrorException;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorParsingErrorException;
@@ -39,7 +39,7 @@ public class CmdBreakpointCreate extends ClientCommand {
   // TODO (elsewhere): The grammar for this command is kinda fishy. Test if it's really okay.
 
   private final ConsoleBreakpointCreationExpression creationExpression;
-  private BreakPointStatus createdBP;
+  private BreakpointStatus createdBP;
 
   public CmdBreakpointCreate (ConsoleBreakpointCreationExpression creationExpression) {
     this.creationExpression = creationExpression;

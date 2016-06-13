@@ -22,7 +22,7 @@ package gov.nasa.jpf.inspector.client;
 import gov.nasa.jpf.inspector.client.commands.CmdBreakpointShow;
 import gov.nasa.jpf.inspector.interfaces.AssertStatus;
 import gov.nasa.jpf.inspector.interfaces.BreakpointState;
-import gov.nasa.jpf.inspector.interfaces.BreakPointStatus;
+import gov.nasa.jpf.inspector.interfaces.BreakpointStatus;
 import gov.nasa.jpf.inspector.interfaces.ChoiceGeneratorsInterface;
 import gov.nasa.jpf.inspector.interfaces.ChoiceGeneratorsInterface.CGTypes;
 import gov.nasa.jpf.inspector.interfaces.CommandsInterface.InspectorStates;
@@ -115,7 +115,7 @@ public class JPFClientCallbackHandler implements InspectorCallBacks {
   }
 
   @Override
-  public void notifyBreakpointHit (BreakPointStatus bp) {
+  public void notifyBreakpointHit (BreakpointStatus bp) {
     assert bp != null;
 
     if (bp instanceof AssertStatus) {

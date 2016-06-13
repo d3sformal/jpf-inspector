@@ -3,7 +3,7 @@ package gov.nasa.jpf.inspector.client;
 import gov.nasa.jpf.inspector.client.CallbackExecutionDecorator.WORKING_MODE;
 import gov.nasa.jpf.inspector.client.commands.CmdBreakpointCreate;
 import gov.nasa.jpf.inspector.client.commands.CmdCallback;
-import gov.nasa.jpf.inspector.interfaces.BreakPointStatus;
+import gov.nasa.jpf.inspector.interfaces.BreakpointStatus;
 import gov.nasa.jpf.inspector.interfaces.JPFInspectorBackEndInterface;
 
 import java.io.*;
@@ -68,8 +68,8 @@ public class CommandRecorder {
   @SuppressWarnings("unused")
   private void dumpBackendState (JPFInspectorBackEndInterface inspector) {
     // Dumping existing breakpoints
-    List<BreakPointStatus> bps = inspector.getBreakPoints();
-    for (BreakPointStatus bp : bps) {
+    List<BreakpointStatus> bps = inspector.getBreakPoints();
+    for (BreakpointStatus bp : bps) {
       String bpStrCommand = CmdBreakpointCreate.ConsoleBreakpointCreationExpression.getNormalizedExpressionPrefix(bp) + ' ' + bp.getNormalizedBreakpointExpression();
       addComment(bpStrCommand);
     }

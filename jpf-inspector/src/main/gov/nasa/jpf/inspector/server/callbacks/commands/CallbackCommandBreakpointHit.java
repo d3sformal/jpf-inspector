@@ -1,14 +1,14 @@
 package gov.nasa.jpf.inspector.server.callbacks.commands;
 
-import gov.nasa.jpf.inspector.interfaces.BreakPointStatus;
+import gov.nasa.jpf.inspector.interfaces.BreakpointStatus;
 import gov.nasa.jpf.inspector.interfaces.InspectorCallBacks;
 import gov.nasa.jpf.inspector.server.callbacks.CallbackCommand;
 
 public class CallbackCommandBreakpointHit implements CallbackCommand {
 
-  private final BreakPointStatus bp;
+  private final BreakpointStatus bp;
 
-  public CallbackCommandBreakpointHit (BreakPointStatus bp) {
+  public CallbackCommandBreakpointHit (BreakpointStatus bp) {
     super();
     this.bp = bp;
   }

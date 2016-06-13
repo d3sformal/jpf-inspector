@@ -23,7 +23,7 @@ package gov.nasa.jpf.inspector.interfaces;
  * @author Alf
  * 
  */
-public interface AssertStatus extends AssertCreationInformation, BreakPointStatus {
+public interface AssertStatus extends AssertCreationInformation, BreakpointStatus {
 
   /**
    * Gets fileName in normalized format.

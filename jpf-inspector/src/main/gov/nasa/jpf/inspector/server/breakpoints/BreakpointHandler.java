@@ -24,7 +24,7 @@ import gov.nasa.jpf.inspector.interfaces.AssertCreationInformation;
 import gov.nasa.jpf.inspector.interfaces.AssertStatus;
 import gov.nasa.jpf.inspector.interfaces.BreakPointCreationInformation;
 import gov.nasa.jpf.inspector.interfaces.BreakPointManagerInterface;
-import gov.nasa.jpf.inspector.interfaces.BreakPointStatus;
+import gov.nasa.jpf.inspector.interfaces.BreakpointStatus;
 import gov.nasa.jpf.inspector.interfaces.InspectorCallBacks;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorGenericErrorException;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorParsingErrorException;
@@ -95,8 +95,8 @@ public class BreakpointHandler implements BreakPointManagerInterface {
    * Gets list with currently existing Breakpoints created by user.
    */
   @Override
-  public List<BreakPointStatus> getBreakPoints () {
-    List<BreakPointStatus> result = new ArrayList<>(breakpoints.size());
+  public List<BreakpointStatus> getBreakPoints () {
+    List<BreakpointStatus> result = new ArrayList<>(breakpoints.size());
     synchronized (breakpoints) {
       for (InternalBreakpointHolder bph : breakpoints.values()) {
         if (bph.isUserBreakpoint()) {
@@ -114,7 +114,7 @@ public class BreakpointHandler implements BreakPointManagerInterface {
    * @return Get informations about state of the created/modified breakpoint or null if error takes place.
    */
   @Override
-  public BreakPointStatus createBreakPoint (BreakPointCreationInformation newBP) throws JPFInspectorParsingErrorException, JPFInspectorGenericErrorException {
+  public BreakpointStatus createBreakPoint (BreakPointCreationInformation newBP) throws JPFInspectorParsingErrorException, JPFInspectorGenericErrorException {
 
     ExpressionBooleanInterface newBPExpression = expParser.getBreakpointExpression(newBP.getBPExpression());
 
@@ -141,7 +141,7 @@ public class BreakpointHandler implements BreakPointManagerInterface {
    * @param firstHit Whether this breakpoint should be removed when it's first hit. This never happens to user
    *                 breakpoints, only to internal breakpoints.
    */
-  private BreakPointStatus createBreakPointImpl(BreakPointCreationInformation newBP,
+  private BreakpointStatus createBreakPointImpl(BreakPointCreationInformation newBP,
                                                 ExpressionBooleanInterface newBPExpression,
                                                 boolean hidden,
                                                 boolean firstHit) throws JPFInspectorGenericErrorException {
@@ -215,7 +215,7 @@ public class BreakpointHandler implements BreakPointManagerInterface {
    * @param newBPExpression Hit condition for the breakpoint (missing from the information in the previous parameter).
    * @param singleHit If set then the breakpoint is automatically removed after first hit.
    */
-  public BreakPointStatus createInternalBreakpoint (BreakPointCreationInformation newBP, ExpressionBooleanInterface newBPExpression, boolean singleHit) {
+  public BreakpointStatus createInternalBreakpoint (BreakPointCreationInformation newBP, ExpressionBooleanInterface newBPExpression, boolean singleHit) {
     try {
       return createBreakPointImpl(newBP, newBPExpression, true, singleHit);
     } catch (JPFInspectorGenericErrorException e) {

@@ -21,7 +21,7 @@ package gov.nasa.jpf.inspector.server.breakpoints;
 
 import gov.nasa.jpf.inspector.interfaces.BreakPointCreationInformation;
 import gov.nasa.jpf.inspector.interfaces.BreakpointState;
-import gov.nasa.jpf.inspector.interfaces.BreakPointStatus;
+import gov.nasa.jpf.inspector.interfaces.BreakpointStatus;
 import gov.nasa.jpf.inspector.interfaces.InspectorCallBacks;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorException;
 import gov.nasa.jpf.inspector.server.breakpoints.BreakpointHandler.BreakPointPartialMemento;
@@ -145,7 +145,7 @@ public class InternalBreakpointHolder implements Comparable<InternalBreakpointHo
     return false;
   }
 
-  public BreakPointStatus getBreakpointStatus (InspectorState state) {
+  public BreakpointStatus getBreakpointStatus (InspectorState state) {
 
     String details = null;
     String bpExpressionNormalized = null;

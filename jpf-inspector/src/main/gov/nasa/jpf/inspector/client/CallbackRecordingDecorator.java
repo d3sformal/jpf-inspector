@@ -1,7 +1,7 @@
 package gov.nasa.jpf.inspector.client;
 
 import gov.nasa.jpf.inspector.client.commands.CmdCallback;
-import gov.nasa.jpf.inspector.interfaces.BreakPointStatus;
+import gov.nasa.jpf.inspector.interfaces.BreakpointStatus;
 import gov.nasa.jpf.inspector.interfaces.ChoiceGeneratorsInterface.CGTypes;
 import gov.nasa.jpf.inspector.interfaces.CommandsInterface.InspectorStates;
 import gov.nasa.jpf.inspector.interfaces.InspectorCallBacks;
@@ -48,7 +48,7 @@ public class CallbackRecordingDecorator implements InspectorCallBacks {
   }
 
   @Override
-  public void notifyBreakpointHit (BreakPointStatus bp) {
+  public void notifyBreakpointHit (BreakpointStatus bp) {
     CmdCallback cmdCB = new CmdCallback(CB_METHODS.CB_BREAKPOINT_HIT);
     cmdRecorder.recordCallback(cmdCB);
 
