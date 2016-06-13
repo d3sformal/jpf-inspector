@@ -41,10 +41,10 @@ public class ExpressionStateValueSuper extends ExpressionStateValue {
    * )
    */
   @Override
-  public StateReadableValueInterface getResultExpression (StateReadableValueInterface srv) throws JPFInspectorException {
-    assert (srv != null);
+  public StateReadableValueInterface getResultExpression (StateReadableValueInterface parent) throws JPFInspectorException {
+    assert (parent != null);
 
-    StateReadableValueInterface srvi = srv.createSuper();
+    StateReadableValueInterface srvi = parent.createSuper();
 
     ExpressionStateValue child = getChild();
     if (child == null) {

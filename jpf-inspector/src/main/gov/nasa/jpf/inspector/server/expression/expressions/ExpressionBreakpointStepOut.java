@@ -88,7 +88,6 @@ public class ExpressionBreakpointStepOut extends ExpressionBooleanLeaf {
    * This is apparently only used from the grammar and using grammar for stepping is completely undocumented,
    * so why even have this here? Maybe for testing? or something?
    */
-  @Deprecated
   public static ExpressionBreakpointStepOut getStepOutToCaller (JPFInspector inspector, int threadId, int stackDepth) throws JPFInspectorGenericErrorException {
     assert inspector != null;
     StopHolder sh = inspector.getStopHolder();

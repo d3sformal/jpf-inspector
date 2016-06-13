@@ -42,9 +42,9 @@ public class ExpressionStateValueArrayIndex extends ExpressionStateValue {
    * StateReadableValueInterface)
    */
   @Override
-  public StateReadableValueInterface getResultExpression (StateReadableValueInterface srvi) throws JPFInspectorException {
+  public StateReadableValueInterface getResultExpression (StateReadableValueInterface parent) throws JPFInspectorException {
 
-    StateValueArrayElement svae = StateValueArrayElement.createArrayElement(srvi, elementIndex, 1);
+    StateValueArrayElement svae = StateValueArrayElement.createArrayElement(parent, elementIndex, 1);
 
     ExpressionStateValue child = getChild();
     if (child == null) {

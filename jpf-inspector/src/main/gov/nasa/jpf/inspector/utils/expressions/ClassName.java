@@ -31,8 +31,7 @@ import java.util.regex.Pattern;
  */
 public class ClassName {
   private final String className;
-  
-  private final String classNameProcessed; // Prepare className for regexp match ( '.' is converted into "\.")
+
   private final Pattern classNamePattern;
   
   private final Map<String, Boolean> classNamesMatches; /// For each tested loaded class name in JPF holds whether matches given pattern or not.
@@ -41,7 +40,7 @@ public class ClassName {
     assert className != null;
 
     this.className = className;
-    this.classNameProcessed = ClassName.convertName2RegExp(className);
+    String classNameProcessed = ClassName.convertName2RegExp(className);
     classNamePattern = Pattern.compile(classNameProcessed);
     
     classNamesMatches = new HashMap<>();

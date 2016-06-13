@@ -21,23 +21,24 @@ package gov.nasa.jpf.inspector.server.expression.expressions;
 
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorException;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorNoVMConnected;
+import gov.nasa.jpf.inspector.server.expression.ExpressionStateInterface;
 import gov.nasa.jpf.inspector.server.expression.ExpressionStateRootNode;
-import gov.nasa.jpf.inspector.server.expression.ExpressionStateUnaryOperator;
 import gov.nasa.jpf.inspector.server.expression.InspectorState;
 import gov.nasa.jpf.inspector.server.jpf.JPFInspector;
 import gov.nasa.jpf.inspector.server.programstate.StateHeapEntryList;
 import gov.nasa.jpf.inspector.utils.expressions.ClassName;
 import gov.nasa.jpf.vm.VM;
 
-public class ExpressionStateHeapEntryList extends ExpressionStateUnaryOperator<ExpressionStateValue> implements ExpressionStateRootNode {
+/**
+ * Represents a heap entry list returned by the expression "#heap[*]" or "#heap[class-name-filter]".
+ */
+public class ExpressionStateHeapEntryList implements ExpressionStateRootNode, ExpressionStateInterface {
 
   public static final String TOKEN_HASH_HEAP = "#heap";
 
   private final ClassName heapItemsFilter;
 
-  public ExpressionStateHeapEntryList (ExpressionStateValue child, ClassName heapItemsFilter) {
-    super(child);
-
+  public ExpressionStateHeapEntryList (ClassName heapItemsFilter) {
     assert heapItemsFilter != null;
 
     this.heapItemsFilter = heapItemsFilter;
@@ -54,15 +55,9 @@ public class ExpressionStateHeapEntryList extends ExpressionStateUnaryOperator<E
     return shel;
   }
 
-
-
-  /* @see gov.nasa.jpf.inspector.server.expression.ExpressionNodeInterface#getNormalizedExpression() */
   @Override
   public String getNormalizedExpression () {
-    // TOKEN_HASH_HEAP : '#heap' ;
-    // TOKEN_HASH_HEAP WS? '[' WS? className WS? ']' WS? a=cmdStateExpressionValue[$expFactory]? { $expr = $expFactory.getStateHeap($className.cn, $a.expr); }
-
-    return TOKEN_HASH_HEAP + '[' + heapItemsFilter.getClassName() + ']' + (child != null ? child.getNormalizedExpression() : "");
+    return TOKEN_HASH_HEAP + '[' + heapItemsFilter.getClassName() + ']';
   }
 
 }

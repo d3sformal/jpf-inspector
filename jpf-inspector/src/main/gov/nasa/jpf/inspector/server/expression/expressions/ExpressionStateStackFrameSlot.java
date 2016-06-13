@@ -61,7 +61,7 @@ public class ExpressionStateStackFrameSlot extends ExpressionStateValue {
    * )
    */
   @Override
-  public StateReadableValueInterface getResultExpression (StateReadableValueInterface srv) throws JPFInspectorException {
+  public StateReadableValueInterface getResultExpression (StateReadableValueInterface parent) throws JPFInspectorException {
     // Not supported operation ... state only StackFrame have slots
     throw new JPFInspectorNotStackException();
   }

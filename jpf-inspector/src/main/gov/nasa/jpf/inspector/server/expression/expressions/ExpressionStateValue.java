@@ -29,10 +29,9 @@ import gov.nasa.jpf.inspector.server.programstate.StateReadableValueInterface;
  */
 public abstract class ExpressionStateValue extends ExpressionStateUnaryOperator<ExpressionStateValue> {
 
-  public ExpressionStateValue (ExpressionStateValue child) {
+  protected ExpressionStateValue (ExpressionStateValue child) {
     super(child);
   }
 
-  public abstract StateReadableValueInterface getResultExpression (StateReadableValueInterface srv) throws JPFInspectorException;
-
+  public abstract StateReadableValueInterface getResultExpression (StateReadableValueInterface parent) throws JPFInspectorException;
 }

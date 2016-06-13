@@ -36,7 +36,7 @@ public abstract class ExpressionStateValueConst extends ExpressionStateValue imp
   }
 
   @Override
-  public StateReadableValueInterface getResultExpression (StateReadableValueInterface srv) throws JPFInspectorException {
+  public StateReadableValueInterface getResultExpression (StateReadableValueInterface parent) throws JPFInspectorException {
     throw new JPFInspectorGenericErrorException("Unsupported operation (internal error). No accessors on constants are permitted now");
   }
 

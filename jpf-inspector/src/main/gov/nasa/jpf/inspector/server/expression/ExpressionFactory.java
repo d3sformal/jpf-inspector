@@ -178,8 +178,8 @@ public class ExpressionFactory {
     return new ExpressionStateHeap(child, elementIndex);
   }
 
-  public ExpressionStateHeapEntryList getStateHeap (ClassName cn, ExpressionStateValue child) {
-    return new ExpressionStateHeapEntryList(child, cn);
+  public ExpressionStateHeapEntryList getStateHeap (ClassName cn) {
+    return new ExpressionStateHeapEntryList(cn);
   }
 
   public ExpressionBreakpointOperatorAnd getBreakpointOperatorAnd (ExpressionBoolean left, ExpressionBoolean right) {

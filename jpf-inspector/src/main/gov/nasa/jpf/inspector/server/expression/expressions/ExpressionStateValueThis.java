@@ -44,10 +44,10 @@ public class ExpressionStateValueThis extends ExpressionStateValue {
    * )
    */
   @Override
-  public StateReadableValueInterface getResultExpression (StateReadableValueInterface srv) throws JPFInspectorException {
-    assert (srv != null);
+  public StateReadableValueInterface getResultExpression (StateReadableValueInterface parent) throws JPFInspectorException {
+    assert (parent != null);
 
-    StateReadableValueInterface srvi = srv.createThisValue();
+    StateReadableValueInterface srvi = parent.createThisValue();
 
     ExpressionStateValue child = getChild();
     if (child == null) {

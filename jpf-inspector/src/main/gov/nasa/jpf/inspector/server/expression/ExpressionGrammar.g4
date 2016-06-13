@@ -389,8 +389,8 @@ cmdStateExpressionClass [ExpressionFactory expFactory] returns [ExpressionStateV
 cmdStateExpressionHeap [ExpressionFactory expFactory] returns [ExpressionStateRootNode expr]
     : TOKEN_HASH_HEAP   WS? '[' WS? intValue  WS? ']' WS? a=cmdStateExpressionValue[$expFactory]?
     { $expr = $expFactory.getStateHeap($intValue.value, $a.ctx != null ? $a.expr : null); }
-    | TOKEN_HASH_HEAP   WS? '[' WS? className WS? ']' WS? a=cmdStateExpressionValue[$expFactory]?
-    { $expr = $expFactory.getStateHeap($className.cn,   $a.ctx != null ? $a.expr : null); }
+    | TOKEN_HASH_HEAP   WS? '[' WS? className WS? ']' WS?
+    { $expr = $expFactory.getStateHeap($className.cn); }
     | TOKEN_HASH_STATIC WS? '[' WS? className WS? ']' WS? a=cmdStateExpressionValue[$expFactory]?
        { $expr = $expFactory.getStateStaticArea($className.cn, $a.ctx != null ? $a.expr : null); }
     ;

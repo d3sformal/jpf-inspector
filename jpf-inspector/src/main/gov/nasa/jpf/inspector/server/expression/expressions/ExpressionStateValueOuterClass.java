@@ -31,21 +31,14 @@ public class ExpressionStateValueOuterClass extends ExpressionStateValue {
 
   private static final String TOKEN_HASH_OUTER_CLASS = "#outerClass";
 
-  /**
-   * @param child
-   */
   public ExpressionStateValueOuterClass (ExpressionStateValue child) {
     super(child);
   }
 
-  /*
-   * @see gov.nasa.jpf.inspector.server.expression.expressions.ExpressionStateValue#getResultExpression(gov.nasa.jpf.inspector.server.programstate.
-   * StateReadableValueInterface)
-   */
   @Override
-  public StateReadableValueInterface getResultExpression (StateReadableValueInterface srv) throws JPFInspectorException {
+  public StateReadableValueInterface getResultExpression (StateReadableValueInterface parent) throws JPFInspectorException {
 
-    StateReadableValueInterface srvi = StateValueElementInfoField.createOuterClass(srv);
+    StateReadableValueInterface srvi = StateValueElementInfoField.createOuterClass(parent);
 
     ExpressionStateValue child = getChild();
     if (child == null) {
@@ -55,12 +48,8 @@ public class ExpressionStateValueOuterClass extends ExpressionStateValue {
     }
   }
 
-  /* @see gov.nasa.jpf.inspector.server.expression.ExpressionNodeInterface#getNormalizedExpression() */
   @Override
   public String getNormalizedExpression () {
-    // TOKEN_HASH_OUTER_CLASS : '#outerClass' ;
-    // TOKEN_HASH_OUTER_CLASS WS? a=cmdStateExpressionValue[$expFactory]?
-
     return '.' + TOKEN_HASH_OUTER_CLASS + (child != null ? child.getNormalizedExpression() : "");
   }
 

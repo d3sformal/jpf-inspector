@@ -53,15 +53,15 @@ public class ExpressionStateValueName extends ExpressionStateValue {
 
   // Note TOKEN_NAN, TOKEN_INFINITY, TOKEN_NEGATIVE_INFINITY1 and TOKEN_POSITIVE_INFINITY1 are parsed as idfField_name and ("special semantic hack") resolves
   // this
-  public static final String TOKEN_IDF_NAN = "NaN"; // Has to be equal to TOKEN_NAN
+  private static final String TOKEN_IDF_NAN = "NaN"; // Has to be equal to TOKEN_NAN
 
-  public static final String TOKEN_IDF_INFINITY = "Infinity"; // Has to be equal to TOKEN_INFINITY
+  private static final String TOKEN_IDF_INFINITY = "Infinity"; // Has to be equal to TOKEN_INFINITY
 
-  public static final String TOKEN_IDF_NEGATIVE_INFINITY1_FULL = "negative_infinity"; // Has to be equal to TOKEN_NEGATIVE_INFINITY1
-  public static final String TOKEN_IDF_NEGATIVE_INFINITY1_SHORT = "neg_inf"; // Has to be equal to TOKEN_NEGATIVE_INFINITY1
+  private static final String TOKEN_IDF_NEGATIVE_INFINITY1_FULL = "negative_infinity"; // Has to be equal to TOKEN_NEGATIVE_INFINITY1
+  private static final String TOKEN_IDF_NEGATIVE_INFINITY1_SHORT = "neg_inf"; // Has to be equal to TOKEN_NEGATIVE_INFINITY1
 
-  public static final String TOKEN_IDF_POSITIVE_INFINITY1_FULL = "positive_infinity"; // Has to be equal to TOKEN_POSITIVE_INFINITY1
-  public static final String TOKEN_IDF_POSITIVE_INFINITY1_SHORT = "pos_inf"; // Has to be equal to TOKEN_POSITIVE_INFINITY1
+  private static final String TOKEN_IDF_POSITIVE_INFINITY1_FULL = "positive_infinity"; // Has to be equal to TOKEN_POSITIVE_INFINITY1
+  private static final String TOKEN_IDF_POSITIVE_INFINITY1_SHORT = "pos_inf"; // Has to be equal to TOKEN_POSITIVE_INFINITY1
 
   public ExpressionStateValueName (ExpressionStateValue child, String varName) {
     super(child);
@@ -77,33 +77,34 @@ public class ExpressionStateValueName extends ExpressionStateValue {
    * )
    */
   @Override
-  public StateReadableValueInterface getResultExpression (StateReadableValueInterface srvi) throws JPFInspectorException {
-    assert (srvi != null);
+  public StateReadableValueInterface getResultExpression (StateReadableValueInterface parent) throws JPFInspectorException {
+    assert (parent != null);
 
     StateReadableValueInterface namedValue = null;
 
-    if (StateValue.hasNamedEntry(srvi, varName)) {
+    if (StateValue.hasNamedEntry(parent, varName)) {
 
-      ClassInfo ci = srvi.getClassInfo();
+      ClassInfo ci = parent.getClassInfo();
       FieldInfo fi = StateValueElementInfoField.fieldNameJavaBasedLookup(ci, varName);
 
+      assert fi != null;
       if (fi.isStatic()) {
-        namedValue = StateValueElementInfoField.createStaticNamedField(srvi, varName);
+        namedValue = StateValueElementInfoField.createStaticNamedField(parent, varName);
       } else {
-        namedValue = StateValueElementInfoField.createInstanceNamedField(srvi, varName);
+        namedValue = StateValueElementInfoField.createInstanceNamedField(parent, varName);
       }
     } else {
       // Try if not a predecessor class name (package is ignored)
-      ClassInfo ci = StateElementInfo.isPredecessorTypeName(srvi.getClassInfo(), varName);
+      ClassInfo ci = StateElementInfo.isPredecessorTypeName(parent.getClassInfo(), varName);
 
       if (ci != null) {
-        namedValue = srvi.createPredecessorClass(ci);
+        namedValue = parent.createPredecessorClass(ci);
       }
     }
 
     if (namedValue == null) {
       // Double hacks.
-      namedValue = tryApplyDoubleHacks(srvi);
+      namedValue = tryApplyDoubleHacks(parent);
     }
 
     if (namedValue == null) {
@@ -125,14 +126,17 @@ public class ExpressionStateValueName extends ExpressionStateValue {
   private StateReadableValueInterface tryApplyDoubleHacks (StateNodeInterface sni) {
     // Double hacks.
     if (TOKEN_IDF_NAN.equals(varName)) {
-      return new StateReadableConstValue(sni.getInspector(), 1, MigrationUtilities.getResolvedClassInfo("double"), Double.valueOf(Double.NaN));
+      return new StateReadableConstValue(sni.getInspector(), 1, MigrationUtilities.getResolvedClassInfo("double"),
+                                         Double.NaN);
     }
 
     if (TOKEN_IDF_NEGATIVE_INFINITY1_FULL.equals(varName) || TOKEN_IDF_NEGATIVE_INFINITY1_SHORT.equals(varName)) {
-      return new StateReadableConstValue(sni.getInspector(), 1, MigrationUtilities.getResolvedClassInfo("double"), Double.valueOf(Double.POSITIVE_INFINITY));
+      return new StateReadableConstValue(sni.getInspector(), 1, MigrationUtilities.getResolvedClassInfo("double"),
+                                         Double.POSITIVE_INFINITY);
     }
     if (TOKEN_IDF_INFINITY.equals(varName) || TOKEN_IDF_POSITIVE_INFINITY1_FULL.equals(varName) || TOKEN_IDF_POSITIVE_INFINITY1_SHORT.equals(varName)) {
-      return new StateReadableConstValue(sni.getInspector(), 1, MigrationUtilities.getResolvedClassInfo("double"), Double.valueOf(Double.POSITIVE_INFINITY));
+      return new StateReadableConstValue(sni.getInspector(), 1, MigrationUtilities.getResolvedClassInfo("double"),
+                                         Double.POSITIVE_INFINITY);
     }
 
     return null;

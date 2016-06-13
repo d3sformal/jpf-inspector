@@ -44,10 +44,10 @@ public class ExpressionStateValueFieldIndex extends ExpressionStateValue {
    * StateReadableValueInterface)
    */
   @Override
-  public StateReadableValueInterface getResultExpression (StateReadableValueInterface srv) throws JPFInspectorException {
-    assert srv != null;
+  public StateReadableValueInterface getResultExpression (StateReadableValueInterface parent) throws JPFInspectorException {
+    assert parent != null;
 
-    StateValueElementInfoField sveif = StateValueElementInfoField.createFieldFromIndex(srv, fieldIndex, 1);
+    StateValueElementInfoField sveif = StateValueElementInfoField.createFieldFromIndex(parent, fieldIndex, 1);
 
     ExpressionStateValue child = getChild();
     if (child == null) {

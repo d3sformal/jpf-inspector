@@ -30,10 +30,7 @@ import gov.nasa.jpf.inspector.server.programstate.StateNodeInterface;
 import gov.nasa.jpf.vm.VM;
 
 /**
- * Represents expression #heap[int]
- * 
- * @author Alf
- * 
+ * Represents expression #heap[int] that returns a Java object on the heap.
  */
 public class ExpressionStateHeap extends ExpressionStateUnaryOperator<ExpressionStateValue> implements ExpressionStateRootNode {
 
@@ -55,16 +52,16 @@ public class ExpressionStateHeap extends ExpressionStateUnaryOperator<Expression
     ExpressionStateValue child = getChild();
     int referenceDepth = child != null ? 0 : 1;
 
-    StateElementInfo svei = StateElementInfo.createElementInfoRepresentation(inspector, vm.getHeap(), heapElementIndex, referenceDepth);
+    StateElementInfo self =
+            StateElementInfo.createElementInfoRepresentation(inspector, vm.getHeap(), heapElementIndex, referenceDepth);
 
     if (child == null) {
-      return svei;
+      return self;
     } else {
-      return child.getResultExpression(svei);
+      return child.getResultExpression(self);
     }
   }
 
-  /* @see gov.nasa.jpf.inspector.server.expression.ExpressionNodeInterface#getNormalizedExpression() */
   @Override
   public String getNormalizedExpression () {
     return ExpressionStateHeapEntryList.TOKEN_HASH_HEAP + '[' + heapElementIndex + ']' + (child != null ? child.getNormalizedExpression() : "");

@@ -49,13 +49,13 @@ public class ExpressionStateValueStatic extends ExpressionStateValue {
    * StateReadableValueInterface)
    */
   @Override
-  public StateReadableValueInterface getResultExpression (StateReadableValueInterface srvi) throws JPFInspectorException {
+  public StateReadableValueInterface getResultExpression (StateReadableValueInterface parent) throws JPFInspectorException {
 
     StateReadableValueInterface result;
     if (staticFieldIndex != null) {
-      result = StateValueElementInfoField.createStaticFieldFromIndex(srvi, staticFieldIndex, 1);
+      result = StateValueElementInfoField.createStaticFieldFromIndex(parent, staticFieldIndex, 1);
     } else {
-      result = StateElementInfo.createStaticClass(srvi, srvi.getClassInfo());
+      result = StateElementInfo.createStaticClass(parent, parent.getClassInfo());
     }
 
     ExpressionStateValue child = getChild();
