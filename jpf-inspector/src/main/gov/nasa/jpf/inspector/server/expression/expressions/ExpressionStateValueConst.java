@@ -25,19 +25,19 @@ import gov.nasa.jpf.inspector.server.expression.ExpressionStateRootNode;
 import gov.nasa.jpf.inspector.server.programstate.StateReadableValueInterface;
 
 /**
- * @author Alf
- * 
+ * Base class for all constant expressions of the first hierarchy.
  */
 public abstract class ExpressionStateValueConst extends ExpressionStateValue implements ExpressionStateRootNode {
 
-  // Const values does not have children.
+  // Const values do not have any members.
   protected ExpressionStateValueConst () {
     super(null);
   }
 
   @Override
-  public StateReadableValueInterface getResultExpression (StateReadableValueInterface parent) throws JPFInspectorException {
-    throw new JPFInspectorGenericErrorException("Unsupported operation (internal error). No accessors on constants are permitted now");
+  public final StateReadableValueInterface getResultExpression (StateReadableValueInterface parent) throws JPFInspectorException {
+    throw new JPFInspectorGenericErrorException(
+            "The primary getResultExpression method must not be called on constants.");
   }
 
 }

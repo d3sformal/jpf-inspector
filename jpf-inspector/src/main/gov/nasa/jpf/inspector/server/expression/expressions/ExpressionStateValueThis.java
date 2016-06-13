@@ -51,12 +51,17 @@ public class ExpressionStateValueThis extends ExpressionStateValue {
     }
   }
 
-  public StateNodeInterface getResultExpression (StateStackFrame ssf) throws JPFInspectorException {
+  public StateNodeInterface getResultExpression (StateStackFrame parentMethod) throws JPFInspectorException {
+    // We should get the instance of the class that runs the method associated with the stack frame in
+    // the parameter.
 
-    // "This" is stored in slot 0, however it is guaranteed only when method is called (not during method execution)
+    // I don't get this:
+    //
+    // "This" is stored in slot 0, however it is guaranteed only when method is called
+    // (not during method execution)
     // There is not a better solution if "this" should be an assignable value :-(
     // otherwise StateElementInfo from the sf.getThis() can be created
-    StateValueStackSlot svss = StateValueStackSlot.createThisSlotValue(ssf);
+    StateValueStackSlot svss = StateValueStackSlot.createThisSlotValue(parentMethod);
 
     ExpressionStateValue child = getChild();
     if (child == null) {
@@ -66,7 +71,6 @@ public class ExpressionStateValueThis extends ExpressionStateValue {
     }
   }
 
-  /* @see gov.nasa.jpf.inspector.server.expression.ExpressionNodeInterface#getNormalizedExpression() */
   @Override
   public String getNormalizedExpression () {
     // TOKEN_HASH_THIS : '#this' ;

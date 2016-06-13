@@ -62,13 +62,13 @@ public class ExpressionStateValueStatic extends ExpressionStateValue {
     }
   }
 
-  public StateNodeInterface getResultExpression (StateStackFrame ssf) throws JPFInspectorException {
+  public StateNodeInterface getResultExpression (StateStackFrame stackFrame) throws JPFInspectorException {
     StateReadableValueInterface result;
     if (staticFieldIndex != null) {
-      StateElementInfo staticEi = StateElementInfo.createStaticClass(ssf, ssf.getClassInfo());
+      StateElementInfo staticEi = StateElementInfo.createStaticClass(stackFrame, stackFrame.getClassInfo());
       result = StateValueElementInfoField.createStaticFieldFromIndex(staticEi, staticFieldIndex, 1);
     } else {
-      result = StateElementInfo.createStaticClass(ssf, ssf.getClassInfo());
+      result = StateElementInfo.createStaticClass(stackFrame, stackFrame.getClassInfo());
     }
 
     ExpressionStateValue child = getChild();
@@ -79,7 +79,6 @@ public class ExpressionStateValueStatic extends ExpressionStateValue {
     }
   }
 
-  /* @see gov.nasa.jpf.inspector.server.expression.ExpressionNodeInterface#getNormalizedExpression() */
   @Override
   public String getNormalizedExpression () {
     // TOKEN_HASH_STATIC : '#static' ;

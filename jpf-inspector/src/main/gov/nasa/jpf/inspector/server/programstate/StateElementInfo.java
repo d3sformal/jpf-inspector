@@ -61,7 +61,9 @@ public class StateElementInfo extends StateNode implements StateReadableValueInt
 
   public static StateElementInfo createStaticClass (StateNodeInterface sni, ClassInfo ci) {
     assert (ci != null);
-    return new StateElementInfo(sni, 1, ci.getStaticElementInfo(), ci, sni.getStateExpr() + '.' + StateValue.getSimpleName(ci));
+    // I'm not sure this works....
+    return new StateElementInfo(sni, 1, ci.getStaticElementInfo(), ci,
+                                sni.getStateExpr() + '.' + StateValue.getSimpleName(ci));
   }
 
   // Does not modify state expression
