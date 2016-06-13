@@ -44,10 +44,6 @@ public class ExpressionStateValueStatic extends ExpressionStateValue {
     this.staticFieldIndex = staticFieldIndex;
   }
 
-  /*
-   * @see gov.nasa.jpf.inspector.server.expression.expressions.ExpressionStateValue#getResultExpression(gov.nasa.jpf.inspector.server.programstate.
-   * StateReadableValueInterface)
-   */
   @Override
   public StateReadableValueInterface getResultExpression (StateReadableValueInterface parent) throws JPFInspectorException {
 

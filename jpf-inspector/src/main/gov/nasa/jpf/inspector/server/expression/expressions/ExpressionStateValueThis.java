@@ -37,12 +37,6 @@ public class ExpressionStateValueThis extends ExpressionStateValue {
     super(child);
   }
 
-  /*
-   * @see
-   * gov.nasa.jpf.inspector.server.expression.expressions.ExpressionStateValue#getResultExpression(gov.nasa.jpf.inspector.server.programstate.
-   * StateReadableValueInterface
-   * )
-   */
   @Override
   public StateReadableValueInterface getResultExpression (StateReadableValueInterface parent) throws JPFInspectorException {
     assert (parent != null);

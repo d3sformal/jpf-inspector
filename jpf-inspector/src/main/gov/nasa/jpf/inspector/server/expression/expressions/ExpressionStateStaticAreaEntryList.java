@@ -20,7 +20,9 @@
 package gov.nasa.jpf.inspector.server.expression.expressions;
 
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorException;
+import gov.nasa.jpf.inspector.exceptions.JPFInspectorGenericErrorException;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorNoVMConnected;
+import gov.nasa.jpf.inspector.server.expression.ExpressionStateInterface;
 import gov.nasa.jpf.inspector.server.expression.ExpressionStateRootNode;
 import gov.nasa.jpf.inspector.server.expression.ExpressionStateUnaryOperator;
 import gov.nasa.jpf.inspector.server.expression.InspectorState;
@@ -33,13 +35,11 @@ import gov.nasa.jpf.vm.VM;
  * @author Alf
  * 
  */
-public class ExpressionStateStaticAreaEntryList extends ExpressionStateUnaryOperator<ExpressionStateValue> implements
-    ExpressionStateRootNode {
+public class ExpressionStateStaticAreaEntryList implements ExpressionStateRootNode, ExpressionStateInterface {
 
   private final ClassName heapItemsFilter;
 
-  public ExpressionStateStaticAreaEntryList (ExpressionStateValue child, ClassName heapItemsFilter) {
-    super(child);
+  public ExpressionStateStaticAreaEntryList (ClassName heapItemsFilter) {
 
     assert heapItemsFilter != null;
 
@@ -52,22 +52,16 @@ public class ExpressionStateStaticAreaEntryList extends ExpressionStateUnaryOper
     VM vm = state.getVM();
     JPFInspectorNoVMConnected.checkVM(vm);
 
-    assert (heapItemsFilter != null);
     // It is necessary to create interator over static are entries (like in the Heap)
-    throw new RuntimeException("Not implemented now");
+    throw new JPFInspectorGenericErrorException("Static area entry discovery is not implemented.");
 
     // StateHeapEntryList shel = new StateHeapEntryList(inspector, heapItemsFilter, vm, 1);
-
     // return shel;
   }
 
-
-
-  /* @see gov.nasa.jpf.inspector.server.expression.ExpressionNodeInterface#getNormalizedExpression() */
   @Override
   public String getNormalizedExpression () {
-    return '.' + ExpressionStateValueStatic.TOKEN_HASH_STATIC + '[' + heapItemsFilter.getClassName() + ']'
-        + (child != null ? child.getNormalizedExpression() : "");
+    return ExpressionStateValueStatic.TOKEN_HASH_STATIC + '[' + heapItemsFilter.getClassName() + ']';
   }
 
 }

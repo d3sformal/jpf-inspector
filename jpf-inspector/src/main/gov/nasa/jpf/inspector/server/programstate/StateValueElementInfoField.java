@@ -76,7 +76,7 @@ public class StateValueElementInfoField extends StateValue {
     return StateValueElementInfoField.createStaticNamedFieldGeneric(srvi, ci, varName);
   }
 
-  protected static StateReadableValueInterface createStaticNamedFieldGeneric (StateNodeInterface sni, ClassInfo ci, String varName)
+  private static StateReadableValueInterface createStaticNamedFieldGeneric(StateNodeInterface sni, ClassInfo ci, String varName)
       throws JPFInspectorInvalidStaticFieldNameException, JPFInspectorNoStaticElementInfoException {
     FieldInfo fi = ci.getStaticField(varName);
 
@@ -161,11 +161,11 @@ public class StateValueElementInfoField extends StateValue {
       }
     }
 
-    assert (false); // Should be have outer class but not Field "this$"num not exists
+    assert false; // Should be have outer class but not Field "this$"num not exists
     throw new JPFInspectorNotInnerClassException(ci);
   }
 
-  protected StateValueElementInfoField (StateNodeInterface sni, int referenceDepth, String stateExpression, ElementInfo ei, FieldInfo fieldInfo) {
+  private StateValueElementInfoField(StateNodeInterface sni, int referenceDepth, String stateExpression, ElementInfo ei, FieldInfo fieldInfo) {
     super(sni, referenceDepth, fieldInfo.getTypeClassInfo(), stateExpression);
 
     assert (ei != null);
@@ -178,7 +178,7 @@ public class StateValueElementInfoField extends StateValue {
    * 
    * @throws JPFInspectorNotSuperClassException
    */
-  protected StateValueElementInfoField (StateValueElementInfoField me, ClassInfo superClassInfo, String stateExpression)
+  private StateValueElementInfoField(StateValueElementInfoField me, ClassInfo superClassInfo, String stateExpression)
       throws JPFInspectorNotSuperClassException {
     super(me, superClassInfo, stateExpression);
 

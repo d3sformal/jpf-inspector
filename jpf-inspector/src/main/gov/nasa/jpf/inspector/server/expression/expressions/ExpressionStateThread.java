@@ -29,6 +29,9 @@ import gov.nasa.jpf.inspector.server.programstate.StateNodeInterface;
 import gov.nasa.jpf.inspector.server.programstate.StateThreadInfo;
 import gov.nasa.jpf.vm.VM;
 
+/**
+ * Represents the "#thread" and "#thread[i]" expressions.
+ */
 public class ExpressionStateThread extends ExpressionStateUnaryOperator<ExpressionStateStackFrame> implements
     ExpressionStateRootNode {
 
@@ -65,7 +68,6 @@ public class ExpressionStateThread extends ExpressionStateUnaryOperator<Expressi
   }
 
 
-  /* @see gov.nasa.jpf.inspector.server.expression.ExpressionNodeInterface#getNormalizedExpression() */
   @Override
   public String getNormalizedExpression () {
     String childExp = "";
@@ -73,7 +75,6 @@ public class ExpressionStateThread extends ExpressionStateUnaryOperator<Expressi
       childExp = child.getNormalizedExpression();
     }
 
-    // TOKEN_HASH_THREAD : '#thread' ;
     if (threadNum == null) {
       return TOKEN_HASH_THREAD + childExp;
     }

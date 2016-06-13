@@ -233,9 +233,10 @@ public class ExpressionFactory {
     }
   }
 
-  public ExpressionStateStaticAreaEntryList getStateStaticArea (ClassName cn, ExpressionStateValue child) {
-    return new ExpressionStateStaticAreaEntryList(child, cn);
+  public ExpressionStateStaticAreaEntryList getStateStaticArea (ClassName cn) {
+    return new ExpressionStateStaticAreaEntryList(cn);
   }
+  // TODO (elsewhere) print #stackSlot[0] causes assertionerror, if stack slot 0 is "this".
 
   public ExpressionStateValueConstBoolean getConstValueBoolean (boolean value) {
     return new ExpressionStateValueConstBoolean(value);

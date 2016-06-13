@@ -32,10 +32,10 @@ public class JPFInspectorNotInstanceException extends JPFInspectorException {
   private static final long serialVersionUID = -8178100800086257124L;
 
   public JPFInspectorNotInstanceException (MethodInfo mi) {
-    super("The keyword '#this' cannot be used here because " + StateValue.getSimpleMethodName(mi) + " is a static method.");
+    super("The keywords '#this', '#outerClass', '#field' and '#super' cannot be used here because " + StateValue.getSimpleMethodName(mi) + " is a static method.");
   }
 
   public JPFInspectorNotInstanceException (ClassInfo ci) {
-    super("The keyword '#this' cannot be used here because " + StateValue.getSimpleName(ci) + " is a primitive type, an array or a static class.");
+    super("The keywords '#this', '#outerClass', '#field' and '#super' cannot be used here because " + StateValue.getSimpleName(ci) + " is a primitive type, an array or a static class.");
   }
 }

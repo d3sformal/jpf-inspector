@@ -81,10 +81,8 @@ public class ExpressionStateStackFrame extends ExpressionStateUnaryOperator<Expr
     }
   }
 
-  /* @see gov.nasa.jpf.inspector.server.expression.ExpressionNodeInterface#getNormalizedExpression() */
   @Override
   public String getNormalizedExpression () {
-    // TOKEN_HASH_STACK_FRAME : '#stackFrame' ;
 
     String childExp = "";
     if (child != null) {
