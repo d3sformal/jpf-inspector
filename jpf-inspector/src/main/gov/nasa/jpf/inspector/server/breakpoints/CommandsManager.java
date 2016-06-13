@@ -172,7 +172,7 @@ public class CommandsManager implements CommandsInterface {
     search.getVM().ignoreState();
 
     if (DEBUG) {
-      Debugging.getSwingShellLogger().warning("Backstep commences, backtrack " + bbc.getTransitionsToBacktrack() + " transitions to breakpoint " + bbc.getBreakpointHitCondition().getNormalizedExpression());
+      Debugging.getSwingShellLogger().warning("Backstep commences, backtrack " + bbc.getTransitionsToBacktrack() + " transitions to breakpoint \"" + bbc.getBreakpointHitCondition().getNormalizedExpression() + "\"");
     }
 
     // Resume execution -> now silent backtrack and "breakpoint hit in single forward step should occur"
@@ -222,16 +222,19 @@ public class CommandsManager implements CommandsInterface {
   /**
    * @param success If true, JPF stopped on backward step breakpoint
    */
-  public void notifyBackwardStepCompleted (boolean success) {
+  public void notifyBackwardStepCompleted (boolean success, String reason) {
 
     InspectorListener listener = inspector.getInspectorListener();
     assert listener != null : "Internal error - if JPF is connected then Listener has to be set";
 
     // Restore original mode
+    if (DEBUG) {
+      inspector.getDebugPrintStream().println("Popping listener.");
+    }
     listener.popMode();
 
     if (!success) {
-      callbacks.genericError("Backward step failed.");
+      callbacks.genericError("Backward step failed (" + reason + ")");
     }
   }
 

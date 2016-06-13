@@ -55,12 +55,6 @@ public class InspectorListener extends ListenerAdapter {
 
   private boolean finished = false; // Holds true if searchFinished was called
 
-  /**
-   * Inspector we serve for.
-   * 
-   * @param inspector
-   * @param dftMgr
-   */
   public InspectorListener (JPFInspector inspector, CommandsManager cmdMgr, BreakpointHandler bpMgr, ChoiceGeneratorNotifications cgNotify,
                             DefaultForwardTraceManager dftMgr, boolean searchMultipleError) {
     this.inspector = inspector;

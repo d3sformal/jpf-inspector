@@ -178,6 +178,9 @@ public class ExpressionBreakpointInstruction extends ExpressionBooleanLeaf {
     sb.append(mi.getName());
     sb.append(':');
     sb.append(instr.getInstructionIndex());
+    sb.append('(');
+    sb.append(instr.toString());
+    sb.append(')');
     sb.append(" hit_count=");
     sb.append(hitCount);
     return sb.toString();

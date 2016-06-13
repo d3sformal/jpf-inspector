@@ -17,7 +17,7 @@ import gov.nasa.jpf.search.Search;
  * This is contrary to {@link InspectorListenerModeSilent} which is active during backtracking and ignores breakpoints.
  */
 public class InspectorListenerModeNotifications extends ListenerAdapter {
-  private static final boolean DEBUG = false;
+  private static final boolean DEBUG = true;
 
   private final JPFInspector inspector;
   private final CommandsManager cmdMgr;
@@ -103,7 +103,7 @@ public class InspectorListenerModeNotifications extends ListenerAdapter {
   @Override
   public void executeInstruction(VM vm, ThreadInfo currentThread, Instruction instructionToExecute) {
     if (DEBUG) {
-      inspector.getDebugPrintStream().println(this.getClass().getSimpleName() + ".executeInstructionexecuteInstruction(instructionToExecute=" + instructionToExecute + ")");
+      inspector.getDebugPrintStream().println(this.getClass().getSimpleName() + ".executeInstruction(" + instructionToExecute + ")");
     }
     inspState.notifyListenerMethodCall(ListenerMethod.LM_EXECUTE_INSTRUCTION, vm);
     inspState.setCurrentInstructionInformation(currentThread, instructionToExecute);
@@ -117,7 +117,7 @@ public class InspectorListenerModeNotifications extends ListenerAdapter {
 
     if (DEBUG) {
       inspector.getDebugPrintStream().println(
-          this.getClass().getSimpleName() + ".instructionExecuted(lastInstr=" + executedInstruction + ", loc=" + executedInstruction.getFileLocation()
+          this.getClass().getSimpleName() + ".instructionExecuted(" + executedInstruction + ", loc=" + executedInstruction.getFileLocation()
               + ")");
     }
     inspState.instructionExecuted(currentThread.getId(), executedInstruction, vm);
