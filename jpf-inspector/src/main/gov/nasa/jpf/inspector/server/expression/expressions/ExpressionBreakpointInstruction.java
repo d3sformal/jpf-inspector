@@ -102,7 +102,7 @@ public class ExpressionBreakpointInstruction extends ExpressionBooleanLeaf {
 
   @Override
   public boolean evaluateExpression (InspectorState state) {
-    if (state.getListenerMethod() == ListenerMethod.LM_INSTRUCTION_EXECUTED) {
+    if (state.getListenerMethod() == ListenerMethod.LM_EXECUTE_INSTRUCTION) {
       VM vm = state.getVM();
       assert vm != null;
       ThreadInfo ti = vm.getCurrentThread();

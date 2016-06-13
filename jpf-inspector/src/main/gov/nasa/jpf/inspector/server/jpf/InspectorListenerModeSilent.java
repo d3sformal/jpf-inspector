@@ -38,27 +38,30 @@ public class InspectorListenerModeSilent extends ListenerAdapter {
   // then backtracked and stateProcessed are called in turns and after last backtrack, instruction executed methods are expected.
   private enum InternalState {
     /**
+     * During the 2016 update, breakpoints start to hit <b>before</b> an instruction is executed, not after. Thus,
+     * there is a +-1 error that we attempt to eliminate via this enum member.
+     */
+    WAIT_FOR_FIRST_INSTRUCTION_EXECUTED,
+    /**
      * We are trying to abort the current transition.
      */
-    IS_TRANSITION_END,
-    IS_BACKTRACKING,
-    IS_STATE_PROCESSED,
-    IS_FORWARD_STEPS
+    TRANSITION_END,
+    BACKTRACKING,
+    STATE_PROCESSED,
+    FORWARD_STEPS
   }
 
 
-  private InternalState state = InternalState.IS_TRANSITION_END;
+  private InternalState state = InternalState.WAIT_FOR_FIRST_INSTRUCTION_EXECUTED;
 
   /**
-   *
-   *
    * The state diagram looks like this:
    * <pre>
-   * Start: IS_TRANSITION_END
-   * IS_TRANSITION_END                       --> IS_BACKTRACKING
-     IS_STATE_PROCESSED || IS_TRANSITION_END --> IS_BACKTRACKING
-     IS_BACKTRACKING    || IS_TRANSITION_END --> IS_STATE_PROCESSED
-     IS_BACKTRACKING    || IS_TRANSITION_END --> IS_FORWARD_STEPS
+   * Start: TRANSITION_END
+   * TRANSITION_END                       --> BACKTRACKING
+     STATE_PROCESSED || TRANSITION_END --> BACKTRACKING
+     BACKTRACKING    || TRANSITION_END --> STATE_PROCESSED
+     BACKTRACKING    || TRANSITION_END --> FORWARD_STEPS
      </pre>
    * @param newState New state of the listener.
    */
@@ -89,11 +92,11 @@ public class InspectorListenerModeSilent extends ListenerAdapter {
     if (DEBUG) {
       inspector.getDebugPrintStream().println(this.getClass().getSimpleName() + ".stateAdvanced()");
     }
-    if (state != InternalState.IS_TRANSITION_END) {
+    if (state != InternalState.TRANSITION_END) {
       reportError("State can only be advanced in the first phase of the backstepping.");
       return;
     }
-    setState(InternalState.IS_BACKTRACKING);
+    setState(InternalState.BACKTRACKING);
     inspState.stateChanged(search, ListenerMethod.LM_STATE_ADVANCED);
     dftMgf.extendTrace(search.getTransition());
     cmdMgr.tryStop(inspState);
@@ -104,12 +107,12 @@ public class InspectorListenerModeSilent extends ListenerAdapter {
     if (DEBUG) {
       inspector.getDebugPrintStream().println(this.getClass().getSimpleName() + ".stateProcessed()");
     }
-    if (state != InternalState.IS_STATE_PROCESSED && // Multiple transition backtracking
-        state != InternalState.IS_TRANSITION_END) { // Initial CB -> state processed
+    if (state != InternalState.STATE_PROCESSED && // Multiple transition backtracking
+        state != InternalState.TRANSITION_END) { // Initial CB -> state processed
       reportError("State cannot be processed while backtracking or in the final phase.");
       return;
     }
-    setState(InternalState.IS_BACKTRACKING);
+    setState(InternalState.BACKTRACKING);
     // dftMgf.extendTrace(search.getTransition());
 
   }
@@ -119,7 +122,7 @@ public class InspectorListenerModeSilent extends ListenerAdapter {
     if (DEBUG) {
       inspector.getDebugPrintStream().println(this.getClass().getSimpleName() + ".stateBacktracked()");
     }
-    if (state != InternalState.IS_BACKTRACKING && state != InternalState.IS_TRANSITION_END) { // Initial CB is backtracked (advance or processed has been called
+    if (state != InternalState.BACKTRACKING && state != InternalState.TRANSITION_END) { // Initial CB is backtracked (advance or processed has been called
                                                                                               // before in forward stepping)
       reportError("State cannot be backtracked while processing or in the final phase.");
       return;
@@ -147,7 +150,7 @@ public class InspectorListenerModeSilent extends ListenerAdapter {
         // Go to parent
         cg = cg.getCascadedParent();
       }
-      setState(InternalState.IS_STATE_PROCESSED);
+      setState(InternalState.STATE_PROCESSED);
       return;
     }
     if (backwardStepsCnt == 0) {
@@ -172,7 +175,7 @@ public class InspectorListenerModeSilent extends ListenerAdapter {
       cg.advance(processedChoices - 1);
       // "Force" forward step
       ss.setForced(true);
-      setState(InternalState.IS_FORWARD_STEPS);
+      setState(InternalState.FORWARD_STEPS);
       return;
     }
 
@@ -181,7 +184,24 @@ public class InspectorListenerModeSilent extends ListenerAdapter {
   }
 
   @Override
+  public void executeInstruction(VM vm, ThreadInfo currentThread, Instruction instructionToExecute) {
+    if (DEBUG) {
+        inspector.getDebugPrintStream().println(
+                this.getClass().getSimpleName() + ".executeInstruction() inst=" + instructionToExecute );
+    }
+    if (state != InternalState.FORWARD_STEPS) {
+      reportError("Moving forwards can only be done in the last phase of the backstepping.");
+      return;
+    }
+    inspState.notifyListenerMethodCall(ListenerMethod.LM_EXECUTE_INSTRUCTION, vm);
+    if (bpMgr.checkBreakpoint(inspState, bpID)) {
+      // Notify Command manager that backward step is done
+      cmdMgr.notifyBackwardStepCompleted(true, "Successfully backstepped.");
+      stopHolder.stopExecution(inspState);
+    }
+  }
 
+  @Override
   public void instructionExecuted(VM vm, ThreadInfo currentThread, Instruction nextInstruction, Instruction executedInstruction) {
     if (DEBUG) {
       if ((executedInstruction.getMethodInfo().getClassInfo() != null) && (executedInstruction.getMethodInfo().getClassInfo().getSourceFileName() != null))
@@ -190,27 +210,27 @@ public class InspectorListenerModeSilent extends ListenerAdapter {
                 this.getClass().getSimpleName() + ".instructionExecuted() inst=" + executedInstruction + ", loc=" + executedInstruction.getFilePos());
       }
     }
+    if (state == InternalState.WAIT_FOR_FIRST_INSTRUCTION_EXECUTED) {
+      setState(InternalState.TRANSITION_END);
+      return;
+    }
 
     // backward step was issued at a transition boundary
     // ignore the first instruction of a new transition
     // we must backtrack over one additional transition
-    if ((state == InternalState.IS_TRANSITION_END) && currentThread.isFirstStepInsn())
+    if ((state == InternalState.TRANSITION_END) && currentThread.isFirstStepInsn())
     {
       backwardStepsCnt++;
       return;
     }
 
-    if (state != InternalState.IS_FORWARD_STEPS) {
+    if (state != InternalState.FORWARD_STEPS) {
       reportError("Moving forwards can only be done in the last phase of the backstepping.");
       return;
     }
     inspState.instructionExecuted(currentThread.getId(), executedInstruction, vm);
 
-    if (bpMgr.checkBreakpoint(inspState, bpID)) {
-      // Notify Command manager that backward step is done
-      cmdMgr.notifyBackwardStepCompleted(true, "Successfully backstepped.");
-      stopHolder.stopExecution(inspState);
-    }
+
   }
 
 
