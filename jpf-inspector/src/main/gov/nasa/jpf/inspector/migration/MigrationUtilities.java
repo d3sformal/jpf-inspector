@@ -17,11 +17,6 @@ public final class MigrationUtilities {
     return vm.getChoiceGenerator();
   }
 
-  public static ThreadInfo getLastThreadInfo(VM vm) {
-    return vm.getCurrentThread();
-  }
-
-
 
   public static ClassInfo getResolvedClassInfo(String className) {
     return ClassLoaderInfo.getCurrentResolvedClassInfo(className); // or "system" resolved?
