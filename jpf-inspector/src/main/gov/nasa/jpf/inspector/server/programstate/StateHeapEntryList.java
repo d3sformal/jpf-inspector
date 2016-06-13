@@ -34,14 +34,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author Alf
- * 
+ * Represents the heap entry list in the second hierarchy.
  */
 public class StateHeapEntryList extends StateNode {
   private final static boolean DEBUG = false;
 
   private final List<StateElementInfo> heapEntries;
 
+
+  /**
+   * Initializes the instance.
+   * @param inspector The server.
+   * @param cn The class name filter.
+   * @param vm The VM.
+   * @param referenceDepth This is always the constant "1".
+   */
   public StateHeapEntryList (JPFInspector inspector, ClassName cn, VM vm, int referenceDepth) {
     super(inspector, referenceDepth);
 
@@ -61,10 +68,10 @@ public class StateHeapEntryList extends StateNode {
   }
 
   /**
-   * Picks all objects of given type from the heap.
+   * Returns all objects of the given type on the heap.
    * 
    * @param heap Representation of the heap in JPF
-   * @param filter Class to search for in the heap.
+   * @param filter Classes to search for in the heap.
    * @return Representation of picked up heap objects.
    */
   private List<StateElementInfo> filterHeapEntries (Heap heap, ClassName filter) {

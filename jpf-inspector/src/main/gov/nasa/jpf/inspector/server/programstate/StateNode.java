@@ -24,8 +24,7 @@ import gov.nasa.jpf.inspector.exceptions.JPFInspectorException;
 import gov.nasa.jpf.inspector.server.jpf.JPFInspector;
 
 /**
- * @author Alf
- * 
+ * A node of the intermediate representation of an expression (hierarchy 2). Hierarchy 2 class names start with "State".
  */
 abstract public class StateNode implements StateNodeInterface {
 

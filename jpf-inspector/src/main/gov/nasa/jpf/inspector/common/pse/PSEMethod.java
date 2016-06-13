@@ -88,6 +88,7 @@ public class PSEMethod extends ProgramStateEntry {
       if (DEBUG) {
         System.out.println(this.getClass().getSimpleName() + ".loadReferences() - lazy reference load");
       }
+
       // Create a copy of this PSE with filled references
       ProgramStateEntry pse = getInspector().evaluateStateExpression(getStateExpr());
       assert (pse instanceof PSEMethod);

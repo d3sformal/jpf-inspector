@@ -123,16 +123,16 @@ public class ProgramStateManager implements ProgramStateInterface {
   public ProgramStateEntry evaluateStateExpression (String expr) throws JPFInspectorException {
     stopHolder.waitUntilStopped();
 
-    // Create a parse tree
+    // Create a parse tree (hierarchy 1)
     ExpressionStateRootNode parsedExpr = parser.getExpressionStateInterface(expr);
     if (parsedExpr == null) {
       return null;
     }
 
-    // Create "representation of parse tree according current state"
+    // Create "representation of parse tree according current state" (hierarchy 2)
     StateNodeInterface sni = parsedExpr.getResultExpression(inspector, stopHolder.getInspectorState());
 
-    // Create client representation of the state
+    // Create client representation of the state (hiearchy 3)
     return sni.getResultExpression("", 0);
   }
 
