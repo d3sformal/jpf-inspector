@@ -45,12 +45,6 @@ public class ExpressionStateHeap extends ExpressionStateUnaryOperator<Expression
     this.heapElementIndex = heapElementIndex;
   }
 
-
-
-  /*
-   * @see gov.nasa.jpf.inspector.server.expression.ExpressionStateRootNode#getResultExpression(gov.nasa.jpf.inspector.server.jpf.JPFInspector,
-   * gov.nasa.jpf.inspector.server.expression.InspectorState)
-   */
   @Override
   public StateNodeInterface getResultExpression (JPFInspector inspector, InspectorState state) throws JPFInspectorException {
     assert state != null;

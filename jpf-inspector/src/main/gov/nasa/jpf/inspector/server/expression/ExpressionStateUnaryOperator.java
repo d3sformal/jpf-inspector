@@ -19,13 +19,13 @@
 
 package gov.nasa.jpf.inspector.server.expression;
 
-import java.util.List;
-
+/**
+ * Base class for program state expressions that have a member access as a child expression.
+ * @param <T>
+ */
 public abstract class ExpressionStateUnaryOperator<T> implements ExpressionStateInterface {
 
   protected final T child;
-
-  private List<T> childList = null;
 
   protected ExpressionStateUnaryOperator (T child) {
     this.child = child;
