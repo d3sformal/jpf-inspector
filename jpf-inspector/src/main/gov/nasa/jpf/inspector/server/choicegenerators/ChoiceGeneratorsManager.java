@@ -24,7 +24,6 @@ import gov.nasa.jpf.inspector.interfaces.InspectorCallBacks;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorException;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorGenericErrorException;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorNoVMConnected;
-import gov.nasa.jpf.inspector.migration.MigrationUtilities;
 import gov.nasa.jpf.inspector.server.breakpoints.CommandsManager;
 import gov.nasa.jpf.inspector.server.breakpoints.DefaultForwardTraceManager;
 import gov.nasa.jpf.inspector.server.expression.InspectorState;
@@ -44,10 +43,12 @@ import java.util.List;
  */
 public class ChoiceGeneratorsManager implements ChoiceGeneratorsInterface, ChoiceGeneratorNotifications {
   private final static boolean DEBUG = false;
+  @SuppressWarnings("FieldCanBeLocal") // IDEA bug
   private final PrintStream out;
 
   private final CommandsManager cmdMgr;
   private final StopHolder stopHolder;
+  @SuppressWarnings("FieldCanBeLocal") // IDEA bug
   private final JPFInspector inspector;
   private final InspectorCallBacks callBacks;
   private final DefaultForwardTraceManager forwardTrace;
@@ -135,7 +136,7 @@ public class ChoiceGeneratorsManager implements ChoiceGeneratorsInterface, Choic
       out.println(this.getClass().getSimpleName() + ".notifyChoiceGeneratorAdvance( cg=" + cg + ", inspState=" + inspState + ")");
     }
 
-    CGTypes cgType = null;
+    CGTypes cgType;
     if (cg instanceof ThreadChoiceGenerator) {
       cgType = CGTypes.CG_TYPE_SCHEDULING;
     } else {
@@ -203,7 +204,7 @@ public class ChoiceGeneratorsManager implements ChoiceGeneratorsInterface, Choic
       throw new JPFInspectorGenericErrorException("JPF has not been stopped by CG.Advanced call");
     }
 
-    ChoiceGenerator<?> cg = MigrationUtilities.getLastChoiceGenerator(vm);
+    ChoiceGenerator<?> cg = vm.getChoiceGenerator();
 
     if (cg == null) {
       return;

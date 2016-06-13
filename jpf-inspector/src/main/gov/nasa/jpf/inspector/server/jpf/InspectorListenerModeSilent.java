@@ -12,13 +12,10 @@ import gov.nasa.jpf.vm.*;
 import gov.nasa.jpf.search.Search;
 
 /**
- * InspectorListener mode which is enabled during backward steps processing. Notification only to the specified {@link CommandsInterface} are sent
- * 
- * @author Alf
+ * InspectorListener mode which is enabled during backward steps processing. Notification only to the specified {@link CommandsInterface} are sent.
  *
- * Sooth:
- * In this class, vm.getLastInstruction() calls and similar ones were replaced by arguments from the newer methods.
- * 
+ * This listener starts being active at the point a backwards step is initiated and stops being active at the point
+ * when the breakpoint created by the backwards step is hit.
  */
 public class InspectorListenerModeSilent extends ListenerAdapter {
   private static final boolean DEBUG = true;

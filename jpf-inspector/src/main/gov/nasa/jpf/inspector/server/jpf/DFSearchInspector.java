@@ -24,12 +24,18 @@ import gov.nasa.jpf.vm.VM;
 import gov.nasa.jpf.search.DFSearch;
 
 /**
- * The default search instance to be used
+ * The DFSearchInspector is a subclass of DFSearch and has the same functionality, except that it also
+ * implements the {@link SearchInspectorExtension} interface which is neccessary in order for the Search class
+ * to work with the Inspector.
+ *
+ * This is the default search class when using the Inspector.
+ *
+ * You may use this class as a reference implementation for your own search classes if you don't want to use
+ * the {@link SearchWrapper} search class which handles interfacing with the Inspector for you.
  */
 public class DFSearchInspector extends DFSearch implements SearchInspectorExtension {
   private JPFInspector inspector = null;
 
-  // Copied DFSSearch with necessary modifications
   public DFSearchInspector (Config config, VM vm) {
     super(config, vm);
   }

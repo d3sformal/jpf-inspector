@@ -13,11 +13,6 @@ import java.util.ArrayList;
 public final class MigrationUtilities {
 
 
-  public static ChoiceGenerator<?> getLastChoiceGenerator(VM vm) {
-    return vm.getChoiceGenerator();
-  }
-
-
   public static ClassInfo getResolvedClassInfo(String className) {
     return ClassLoaderInfo.getCurrentResolvedClassInfo(className); // or "system" resolved?
 
