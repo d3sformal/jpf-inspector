@@ -71,7 +71,7 @@ public class StateThreadInfo extends StateNode {
   }
 
   @Override
-  public PSEThread getResultExpression (String name, int clientID) throws JPFInspectorException {
+  public PSEThread toHierarchy3(String name, int clientID) throws JPFInspectorException {
 
     int threadNum = ti.getId();
     State state = ti.getState();
@@ -89,7 +89,7 @@ public class StateThreadInfo extends StateNode {
       refCallStack = new PSEMethod[ti.getStackDepth()];
       for (int i = 0; i < ti.getStackDepth(); i++) {
         StateStackFrame ssf = new StateStackFrame(this, i, referenceDepth - 1);
-        refCallStack[i] = ssf.getResultExpression(name, clientID);
+        refCallStack[i] = ssf.toHierarchy3(name, clientID);
       }
     }
 

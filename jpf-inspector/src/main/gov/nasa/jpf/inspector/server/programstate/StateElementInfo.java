@@ -54,7 +54,7 @@ public class StateElementInfo extends StateNode implements StateReadableValueInt
     return createElementInfoRepresentation(stateHeapEntryList, ei, 1);
   }
 
-  public static StateElementInfo createElementInfoRepresentation (StateHeapEntryList stateHeapEntryList, ElementInfo ei, int referenceDepth) {
+  private static StateElementInfo createElementInfoRepresentation(StateHeapEntryList stateHeapEntryList, ElementInfo ei, int referenceDepth) {
     assert (ei != null);
     return new StateElementInfo(stateHeapEntryList, referenceDepth, ei, ei.getClassInfo(), PSEVariable.EXPRESSION_VARIABLE_HEAP + '[' + ei.getObjectRef() + ']');
   }
@@ -84,14 +84,14 @@ public class StateElementInfo extends StateNode implements StateReadableValueInt
 
   }
 
-  protected StateElementInfo (JPFInspector inspector, int referenceDepth, ElementInfo ei, ClassInfo ci, String stateExpr) {
+  private StateElementInfo(JPFInspector inspector, int referenceDepth, ElementInfo ei, ClassInfo ci, String stateExpr) {
     super(inspector, referenceDepth);
     setStateExpr(stateExpr);
     this.ei = ei;
     this.ci = ci;
   }
 
-  protected StateElementInfo (StateNodeInterface sni, int referenceDepth, ElementInfo ei, ClassInfo ci, String stateExpr) {
+  private StateElementInfo(StateNodeInterface sni, int referenceDepth, ElementInfo ei, ClassInfo ci, String stateExpr) {
     super(sni, referenceDepth);
     setStateExpr(stateExpr);
     this.ei = ei;
@@ -106,7 +106,7 @@ public class StateElementInfo extends StateNode implements StateReadableValueInt
 
   /* @see gov.nasa.jpf.inspector.server.programstate.StateNode#getResultExpression() */
   @Override
-  public PSEVariable getResultExpression (String name, int clientID) throws JPFInspectorException {
+  public PSEVariable toHierarchy3(String name, int clientID) throws JPFInspectorException {
     final String varName = getStateExpr();
     final String definedIn = getStateExpr();
 

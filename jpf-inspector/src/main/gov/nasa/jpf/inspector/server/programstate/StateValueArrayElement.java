@@ -41,9 +41,9 @@ import gov.nasa.jpf.vm.Heap;
 public class StateValueArrayElement extends StateValue {
 
   protected final int index; // Index of the represented element in the array
-  protected final ElementInfo ei; // Representation of the array
+  private final ElementInfo ei; // Representation of the array
 
-  protected final ClassInfo arrayCi; // ClassInfo of the whole array (not the array entry)
+  private final ClassInfo arrayCi; // ClassInfo of the whole array (not the array entry)
 
   public static StateValueArrayElement createArrayElement (StateReadableValueInterface srvi, int elementIndex, int referenceDepth) throws JPFInspectorException {
     assert (srvi != null);
@@ -74,8 +74,8 @@ public class StateValueArrayElement extends StateValue {
         arrayCi);
   }
 
-  protected StateValueArrayElement (StateNodeInterface sni, int referenceDepth, ClassInfo ci, String stateExpression, int index, ElementInfo ei,
-      ClassInfo arrayCi) {
+  private StateValueArrayElement(StateNodeInterface sni, int referenceDepth, ClassInfo ci, String stateExpression, int index, ElementInfo ei,
+                                 ClassInfo arrayCi) {
     super(sni, referenceDepth, ci, stateExpression);
 
     this.index = index;
@@ -88,7 +88,7 @@ public class StateValueArrayElement extends StateValue {
    * 
    * @throws JPFInspectorNotSuperClassException
    */
-  protected StateValueArrayElement (StateValueArrayElement me, ClassInfo superClassInfo, String stateExpression) throws JPFInspectorNotSuperClassException {
+  private StateValueArrayElement(StateValueArrayElement me, ClassInfo superClassInfo, String stateExpression) throws JPFInspectorNotSuperClassException {
     super(me, superClassInfo, stateExpression);
 
     this.ei = me.ei;
@@ -109,7 +109,7 @@ public class StateValueArrayElement extends StateValue {
 
     switch (sig.charAt(0)) {
     case 'Z':
-      return Boolean.valueOf(ei.getBooleanElement(index));
+      return ei.getBooleanElement(index);
     case 'B':
       return ei.getByteElement(index);
     case 'C':
@@ -134,7 +134,7 @@ public class StateValueArrayElement extends StateValue {
 
   /* @see gov.nasa.jpf.inspector.server.programstate.StateNode#getResultExpression(java.lang.String, int) */
   @Override
-  public PSEVariable getResultExpression (String name, int clientID) throws JPFInspectorException {
+  public PSEVariable toHierarchy3(String name, int clientID) throws JPFInspectorException {
     final String varName = "[" + index + "]";
     final String definedIn = StateValue.getSimpleName(arrayCi);
 

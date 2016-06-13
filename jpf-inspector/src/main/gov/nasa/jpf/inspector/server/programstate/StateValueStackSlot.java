@@ -96,15 +96,8 @@ public class StateValueStackSlot extends StateValue {
     return StateValueStackSlot.createSlotFromIndex(ssf, slotIndex, ssf.getReferenceDepth() - 1);
   }
 
-  /**
-   * @param ssf
-   * @param slotIndex
-   * @param referenceDepth
-   * @param stateExpression
-   * 
-   * @throws JPFInspectorInvalidSlotIndexException
-   */
-  static protected StateValueStackSlot createSVSSInstance (StateStackFrame ssf, int referenceDepth, String stateExpression, int slotIndex)
+
+  private static StateValueStackSlot createSVSSInstance(StateStackFrame ssf, int referenceDepth, String stateExpression, int slotIndex)
       throws JPFInspectorInvalidSlotIndexException {
     assert (ssf != null);
 
@@ -123,7 +116,7 @@ public class StateValueStackSlot extends StateValue {
       lvi = new LocalVarInfo("???-RawView-no Name or Type provided", "I", "I", 0, sf.getMethodInfo().getLastInsn().getPosition(), slotIndex);
 
     }
-    assert (lvi != null);
+    assert lvi != null;
 
     // Obtain real type of the field
     String className = Types.getTypeName(lvi.getSignature());
@@ -140,7 +133,7 @@ public class StateValueStackSlot extends StateValue {
 
   }
 
-  protected StateValueStackSlot (StateStackFrame ssf, int referenceDepth, String stateExpression, ClassInfo ci, int slotIndex, LocalVarInfo lvi) {
+  private StateValueStackSlot(StateStackFrame ssf, int referenceDepth, String stateExpression, ClassInfo ci, int slotIndex, LocalVarInfo lvi) {
     super(ssf, referenceDepth, ci, stateExpression);
 
     this.sf = ssf.getStackFrame();
@@ -152,7 +145,7 @@ public class StateValueStackSlot extends StateValue {
   /**
    * Creates different(restricted) view on the represented value.
    */
-  protected StateValueStackSlot (StateValueStackSlot me, ClassInfo superClassInfo, String stateExpression) throws JPFInspectorNotSuperClassException {
+  private StateValueStackSlot(StateValueStackSlot me, ClassInfo superClassInfo, String stateExpression) throws JPFInspectorNotSuperClassException {
     super(me, superClassInfo, stateExpression);
 
     this.sf = me.sf;
@@ -168,7 +161,7 @@ public class StateValueStackSlot extends StateValue {
 
   /* @see gov.nasa.jpf.inspector.server.programstate.StateNode#getResultExpression(java.lang.String, int) */
   @Override
-  public PSEVariable getResultExpression (String name, int clientID) throws JPFInspectorException {
+  public PSEVariable toHierarchy3(String name, int clientID) throws JPFInspectorException {
     final MethodInfo mi = sf.getMethodInfo();
     assert (mi != null);
     final ClassInfo ciMethod = mi.getClassInfo(); // ClassInfo where the executed method is defined

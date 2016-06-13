@@ -207,7 +207,7 @@ public class StateValueElementInfoField extends StateValue {
 
   /* @see gov.nasa.jpf.inspector.server.programstate.StateNode#getResultExpression(java.lang.String, int) */
   @Override
-  public PSEVariable getResultExpression (String name, int clientID) throws JPFInspectorException {
+  public PSEVariable toHierarchy3(String name, int clientID) throws JPFInspectorException {
     final String varName = fieldInfo.getName();
     final String definedIn = StateValue.getSimpleName(fieldInfo.getClassInfo());
 

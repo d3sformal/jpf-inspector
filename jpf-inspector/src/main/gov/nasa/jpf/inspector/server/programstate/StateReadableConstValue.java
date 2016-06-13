@@ -38,15 +38,10 @@ public class StateReadableConstValue extends StateNode implements StateReadableV
   private final ClassInfo type;
   private final Object represendedConstValue; // Wrapped value in case if the base type or ElementInfo in case of reference
 
-  /**
-   * @param inspector
-   * @param referenceDepth
-   */
-  public <T extends Object> StateReadableConstValue (JPFInspector inspector, int referenceDepth, ClassInfo constType, T wrappedConstV) {
+  public <T> StateReadableConstValue (JPFInspector inspector, int referenceDepth, ClassInfo constType, T wrappedConstV) {
     super(inspector, referenceDepth);
 
-    // TODO
-    setStateExpr("constant");
+    setStateExpr("!ERROR - Constants cannot be loaded lazily!");
 
     represendedConstValue = wrappedConstV;
     type = constType;
@@ -55,7 +50,6 @@ public class StateReadableConstValue extends StateNode implements StateReadableV
 
   /**
    * Creates different(restricted) view on the represented value.
-   * e
    * 
    * @throws JPFInspectorNotSuperClassException
    */
@@ -74,25 +68,21 @@ public class StateReadableConstValue extends StateNode implements StateReadableV
 
   }
 
-  /* @see gov.nasa.jpf.inspector.server.programstate.StateReadableValueInterface#getClassInfo() */
   @Override
   public ClassInfo getClassInfo () {
     return type;
   }
 
-  /* @see gov.nasa.jpf.inspector.server.programstate.StateReadableValueInterface#getValue() */
   @Override
   public Object getValue () {
     return represendedConstValue;
   }
 
-  /* @see gov.nasa.jpf.inspector.server.programstate.StateReadableValueInterface#isReference() */
   @Override
   public boolean isReference () {
     return !type.isPrimitive();
   }
 
-  /* @see gov.nasa.jpf.inspector.server.programstate.StateReadableValueInterface#getReferenceValue() */
   @Override
   public ElementInfo getReferenceValue () {
     if (isReference()) {
@@ -103,7 +93,6 @@ public class StateReadableConstValue extends StateNode implements StateReadableV
     return null;
   }
 
-  /* @see gov.nasa.jpf.inspector.server.programstate.StateReadableValueInterface#createSuper() */
   @Override
   public StateReadableValueInterface createSuper () throws JPFInspectorException {
     ClassInfo superClassInfo = type.getSuperClass();
@@ -113,13 +102,11 @@ public class StateReadableConstValue extends StateNode implements StateReadableV
     return new StateReadableConstValue(this, superClassInfo, getStateExpr() + '.' + PSEVariable.EXPRESSION_SUPER);
   }
 
-  /* @see gov.nasa.jpf.inspector.server.programstate.StateReadableValueInterface#createPredecessorClass(gov.nasa.jpf.jvm.ClassInfo) */
   @Override
   public StateReadableValueInterface createPredecessorClass (ClassInfo ci) throws JPFInspectorNotSuperClassException {
     return new StateReadableConstValue(this, ci, getStateExpr() + '.' + StateValue.getSimpleName(ci));
   }
 
-  /* @see gov.nasa.jpf.inspector.server.programstate.StateReadableValueInterface#createThisValue() */
   @Override
   public StateReadableValueInterface createThisValue () throws JPFInspectorException {
     if (type.isArray() || type.isPrimitive()) {
@@ -129,9 +116,8 @@ public class StateReadableConstValue extends StateNode implements StateReadableV
     return new StateReadableConstValue(this, type, getStateExpr() + "." + PSEVariable.EXPRESSION_VARIABLE_THIS);
   }
 
-  /* @see gov.nasa.jpf.inspector.server.programstate.StateNode#getResultExpression(java.lang.String, int) */
   @Override
-  public ProgramStateEntry getResultExpression (String name, int clientID) throws JPFInspectorException {
+  public ProgramStateEntry toHierarchy3(String name, int clientID) throws JPFInspectorException {
     return StateValue.createPSEVariable(this, name, clientID, "user constant", 0, "");
   }
 

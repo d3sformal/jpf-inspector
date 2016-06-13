@@ -48,7 +48,7 @@ public class ExpressionBreakpointCustomHitCondition extends ExpressionBooleanLea
     for (int i = 0; i < parameters.size(); i++) {
       ExpressionStateRootNode arg = parameters.get(i);
       StateNodeInterface resultExpression = arg.getResultExpression(inspector, state);
-      ProgramStateEntry programStateEntry = resultExpression.getResultExpression("", 0);
+      ProgramStateEntry programStateEntry = resultExpression.toHierarchy3("", 0);
       entries[i] = programStateEntry;
     }
     return entries;

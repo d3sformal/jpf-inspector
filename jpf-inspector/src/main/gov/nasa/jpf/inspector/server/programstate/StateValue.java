@@ -552,7 +552,19 @@ public abstract class StateValue extends StateNode implements StateReadableValue
     return false;
   }
 
-  public static PSEVariable createPSEVariable (StateReadableValueInterface srvi, String name, int clientID, String varName, int index, String definedIn)
+  /**
+   * Creates a hierarchy-3 representation of a value.
+   *
+   * @param srvi A hierarchy-2 representation of the value.
+   * @param name Ignored.
+   * @param clientID Ignored.
+   * @param varName Name of the variable that contains the value.
+   * @param index Index (stack slot, array index, field index or heap index).
+   * @param definedIn The class this field was defined in, if field, if any.
+   * @return The hierarchy-3 representation.
+   */
+  public static PSEVariable createPSEVariable (StateReadableValueInterface srvi, String name,
+                                               int clientID, String varName, int index, String definedIn)
       throws JPFInspectorException {
     assert (srvi != null);
 
@@ -584,7 +596,7 @@ public abstract class StateValue extends StateNode implements StateReadableValue
           refArrayItems = new PSEVariable[arrayLen];
           for (int i = 0; i < arrayLen; i++) {
             StateValueArrayElement svae = StateValueArrayElement.createArrayElement(srvi, i, referenceDepth - 1);
-            refArrayItems[i] = svae.getResultExpression(name, clientID);
+            refArrayItems[i] = svae.toHierarchy3(name, clientID);
           }
         }
       }
@@ -604,7 +616,7 @@ public abstract class StateValue extends StateNode implements StateReadableValue
 
           for (int i = 0; i < ci.getNumberOfInstanceFields(); i++) {
             StateValueElementInfoField svae = StateValueElementInfoField.createFieldFromIndex(srvi, i, referenceDepth - 1);
-            refFields[i] = svae.getResultExpression(name, clientID);
+            refFields[i] = svae.toHierarchy3(name, clientID);
           }
         } else {
           refFields = new PSEVariable[0];
@@ -613,7 +625,7 @@ public abstract class StateValue extends StateNode implements StateReadableValue
         refStaticFields = new PSEVariable[staticFields];
         for (int i = 0; i < staticFields; i++) {
           StateValueElementInfoField svae = StateValueElementInfoField.createStaticFieldFromIndex(srvi, i, referenceDepth - 1);
-          refStaticFields[i] = svae.getResultExpression(name, clientID);
+          refStaticFields[i] = svae.toHierarchy3(name, clientID);
         }
       }
 

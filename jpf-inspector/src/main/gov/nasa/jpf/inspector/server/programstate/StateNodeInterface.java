@@ -37,8 +37,13 @@ public interface StateNodeInterface {
   /**
    * Evaluates the evaluated expression again, this time resulting in a {@link ProgramStateEntry} which is mostly
    * just a container of strings.
-   * @param name TODO how does this work?
+   *
+   * The name "toHierarchy3" is temporary (I promise). Previously, this method was called "getResultExpression" which
+   * was confusing because the method that transformed Expression classes (hierarchy 1) to state expressions (hierarchy 2)
+   * was also called "getResultExpression".
+   *
+   * @param name TODO how does this work? does it even have any meaning?
    * @param clientID This is always zero, I think. I don't know what it means.
    */
-  ProgramStateEntry getResultExpression(String name, int clientID) throws JPFInspectorException;
+  ProgramStateEntry toHierarchy3(String name, int clientID) throws JPFInspectorException;
 }
