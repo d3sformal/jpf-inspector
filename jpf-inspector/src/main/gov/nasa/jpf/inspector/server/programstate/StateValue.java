@@ -49,7 +49,7 @@ import java.util.Arrays;
  */
 public abstract class StateValue extends StateNode implements StateReadableValueInterface {
 
-  static ClassInfoCache ciCache;
+  private static ClassInfoCache ciCache;
 
   protected final ClassInfo ci;
 
@@ -193,7 +193,7 @@ public abstract class StateValue extends StateNode implements StateReadableValue
       // Check if assigned type is the same/compatible
       if (ciCache.ci_byte.equals(newValCI)) {
         assert (wrappedValue instanceof Byte);
-        newVal = Long.valueOf(((Byte) wrappedValue).longValue());
+        newVal = ((Byte) wrappedValue).longValue();
       }
 
       if (ciCache.ci_Byte.equals(newValCI)) {
@@ -203,12 +203,12 @@ public abstract class StateValue extends StateNode implements StateReadableValue
         assert (wrappedValue instanceof ElementInfo);
         ElementInfo eiNewVal = (ElementInfo) wrappedValue;
         byte newByteVal = eiNewVal.getByteField(ciCache.fi_val_Byte);
-        newVal = Long.valueOf(newByteVal);
+        newVal = (long) newByteVal;
       }
 
       if (ciCache.ci_short.equals(newValCI)) {
         assert (wrappedValue instanceof Short);
-        newVal = Long.valueOf(((Short) wrappedValue).longValue());
+        newVal = ((Short) wrappedValue).longValue();
       }
 
       if (ciCache.ci_Short.equals(newValCI)) {
@@ -218,12 +218,12 @@ public abstract class StateValue extends StateNode implements StateReadableValue
         assert (wrappedValue instanceof ElementInfo);
         ElementInfo eiNewVal = (ElementInfo) wrappedValue;
         short newShortVal = eiNewVal.getShortField(ciCache.fi_val_Short);
-        newVal = Long.valueOf(newShortVal);
+        newVal = (long) newShortVal;
       }
 
       if (ciCache.ci_int.equals(newValCI)) {
         assert (wrappedValue instanceof Integer);
-        newVal = Long.valueOf(((Integer) wrappedValue).longValue());
+        newVal = ((Integer) wrappedValue).longValue();
       }
 
       if (ciCache.ci_Int.equals(newValCI)) {
@@ -233,7 +233,7 @@ public abstract class StateValue extends StateNode implements StateReadableValue
         assert (wrappedValue instanceof ElementInfo);
         ElementInfo eiNewVal = (ElementInfo) wrappedValue;
         int newIntVal = eiNewVal.getIntField(ciCache.fi_val_Int);
-        newVal = Long.valueOf(newIntVal);
+        newVal = (long) newIntVal;
       }
 
       if (ciCache.ci_long.equals(newValCI)) {
@@ -348,7 +348,7 @@ public abstract class StateValue extends StateNode implements StateReadableValue
         assert (wrappedValue instanceof ElementInfo);
         ElementInfo eiNewVal = (ElementInfo) wrappedValue;
         float val = eiNewVal.getFloatField(ciCache.fi_val_Float);
-        newVal = Double.valueOf(val);
+        newVal = (double) val;
       }
 
       if (newVal != null) {
@@ -471,7 +471,7 @@ public abstract class StateValue extends StateNode implements StateReadableValue
     return fullName;
   }
 
-  static public String elementInfo2String (ElementInfo ei) {
+  private static String elementInfo2String(ElementInfo ei) {
     if (ei == null) {
       return "null";
     }
@@ -482,6 +482,7 @@ public abstract class StateValue extends StateNode implements StateReadableValue
       // Update configuration- "vm.fields_factory.class
 
       ClassInfo elemClassInfo = ei.getClassInfo().getComponentClassInfo();
+      assert  elemClassInfo != null;
       String elemSignature = elemClassInfo.getSignature();
 
       if ("Z".equals(elemSignature)) {
@@ -501,7 +502,7 @@ public abstract class StateValue extends StateNode implements StateReadableValue
       } else if ("D".equals(elemSignature)) {
         return Arrays.toString(ei.asDoubleArray());
       }
-      if ((elemSignature != null && elemSignature.startsWith("L")) || (elemClassInfo != null && elemClassInfo.isArray())) {
+      if (elemSignature != null && elemSignature.startsWith("L") || elemClassInfo.isArray()) {
         int[] refArr = ei.asReferenceArray();
         StringBuilder sb = new StringBuilder();
         sb.append('[');
@@ -561,7 +562,7 @@ public abstract class StateValue extends StateNode implements StateReadableValue
 
     if (ci.isPrimitive()) {
       Object wrappedValue = srvi.getValue();
-      return new PSEVariablePrimitive(name, clientID, srvi, varName, varTypeName, wrappedValue.toString(), false, definedIn, index, wrappedValue);
+      return new PSEVariablePrimitive(clientID, srvi, varName, varTypeName, wrappedValue.toString(), false, definedIn, index, wrappedValue);
     }
 
     final ElementInfo ei = srvi.getReferenceValue();
@@ -616,7 +617,7 @@ public abstract class StateValue extends StateNode implements StateReadableValue
         }
       }
 
-      return new PSEVariableObject(name, clientID, srvi, varName, varTypeName, varValue, false, definedIn, index, refFields, refStaticFields);
+      return new PSEVariableObject(clientID, srvi, varName, varTypeName, varValue, false, definedIn, index, refFields, refStaticFields);
     }
   }
 

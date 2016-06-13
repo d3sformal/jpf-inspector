@@ -39,7 +39,7 @@ import gov.nasa.jpf.vm.Instruction;
  */
 public class StateStackFrame extends StateNode {
 
-  protected final StackFrame sf;
+  private final StackFrame sf;
   protected final MethodInfo mi;
 
   public StateStackFrame (StateThreadInfo sti, Integer stackFrameNum) throws JPFInspectorException {
@@ -108,7 +108,7 @@ public class StateStackFrame extends StateNode {
       }
     }
 
-    return new PSEMethod(name, clientID, this, instw, refLocals, refThis);
+    return new PSEMethod(clientID, this, instw, refLocals, refThis);
   }
 
   /**
@@ -118,7 +118,7 @@ public class StateStackFrame extends StateNode {
    * @param stackFrameDepth How depth (top is 0) is required stack frame
    * @return Requested expression
    */
-  public static String createStateExpression (StateThreadInfo sti, int stackFrameDepth) {
+  private static String createStateExpression(StateThreadInfo sti, int stackFrameDepth) {
     assert (sti != null);
     return sti.getStateExpr() + '.' + PSEMethod.EXPRESSION_METHOD_KEY_WORD + '[' + stackFrameDepth + ']';
   }

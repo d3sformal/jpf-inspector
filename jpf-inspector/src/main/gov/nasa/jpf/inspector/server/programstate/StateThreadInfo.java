@@ -45,7 +45,7 @@ public class StateThreadInfo extends StateNode {
 
   public StateThreadInfo (JPFInspector inspector, VM vm, Integer threadNum, int referenceDepth) throws JPFInspectorException {
     super(inspector, referenceDepth);
-    ThreadInfo ti = null;
+    ThreadInfo ti;
     assert (vm != null);
 
     if (threadNum == null) {
@@ -93,7 +93,7 @@ public class StateThreadInfo extends StateNode {
       }
     }
 
-    return new PSEThread(name, clientID, this, threadNum, state, threadName, threadTypeName, priority, isDaemon, refCallStack);
+    return new PSEThread(clientID, this, threadNum, state, threadName, threadTypeName, priority, isDaemon, refCallStack);
   }
 
   public ThreadInfo getThreadInfo () {
@@ -106,7 +106,7 @@ public class StateThreadInfo extends StateNode {
    * @param ti ThreadInfo
    * @return State expression which can be parsed by {@link ExpressionParserInterface#getExpressionStateInterface(String)}.
    */
-  public static String createStateExpression (ThreadInfo ti) {
+  private static String createStateExpression(ThreadInfo ti) {
     assert (ti != null);
     return PSEThread.EXPRESSION_THREAD_KEY_WORD + '[' + ti.getId() + ']';
   }

@@ -4,6 +4,8 @@ package sooth;
 public class ExpressionTest {
   static ExpressionTest mainTest;
 
+  int field = 5;
+
   public static void main(String[] args) {
     int five = 5;
 

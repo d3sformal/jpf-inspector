@@ -108,6 +108,9 @@ public class CmdPrint extends ClientCommand {
       return sb;
     }
 
+    /**
+     * Prints the short-form of a value.
+     */
     private void printVariableBasic (PSEVariable var) {
       sb.append('\t');
       sb.append(var.getIndex());

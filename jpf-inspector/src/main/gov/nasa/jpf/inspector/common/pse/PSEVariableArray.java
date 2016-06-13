@@ -40,24 +40,12 @@ public class PSEVariableArray extends PSEVariable {
    */
   public PSEVariableArray (String name, int clientID, StateNodeInterface sni, String varName, String varTypeName, String varValue, boolean isStatic,
       String definedIn, int index, int len, PSEVariable[] refArrayItems) {
-    super(name, clientID, sni, varName, varTypeName, varValue, isStatic, definedIn, index);
+    super(clientID, sni, varName, varTypeName, varValue, isStatic, definedIn, index);
 
     this.referencesCreated = true;
 
     this.len = len;
     this.refArrayItems = refArrayItems;
-  }
-
-  /**
-   * Creates basic representation of the array without references to array entries
-   */
-  public PSEVariableArray (String name, int clientID, StateNodeInterface sni, String varName, String varTypeName, boolean isStatic, String definedIn, int index) {
-    super(name, clientID, sni, varName, varTypeName, "null", isStatic, definedIn, index);
-
-    this.referencesCreated = false;
-
-    this.len = 0;
-    this.refArrayItems = null;
   }
 
   public int getLen () {
@@ -72,7 +60,7 @@ public class PSEVariableArray extends PSEVariable {
   /**
    * Lazy load of references
    */
-  protected void loadReferences () throws JPFInspectorException {
+  private void loadReferences() throws JPFInspectorException {
     if (!referencesCreated) {
       if (DEBUG) {
         System.out.println(this.getClass().getSimpleName() + ".loadReferences() - lazy reference load");
@@ -90,7 +78,6 @@ public class PSEVariableArray extends PSEVariable {
     }
   }
 
-  /* @see gov.nasa.jpf.inspector.server.programstate.ProgramStateEntry#visit(gov.nasa.jpf.inspector.server.programstate.client.PSEVisitor) */
   @Override
   public <T> T visit (PSEVisitor<T> visitor) throws JPFInspectorException {
     return visitor.visitPSEVariableArray(this);

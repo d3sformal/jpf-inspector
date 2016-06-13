@@ -19,23 +19,24 @@
 
 package gov.nasa.jpf.inspector.common.pse;
 
+import gov.nasa.jpf.inspector.client.commands.CmdPrint;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorException;
 
 /**
- * @author Alf
- * 
+ * This visitor is implemented only by a visitor in the {@link CmdPrint} class and it is used to print program
+ * state entries to the console.
  */
 public interface PSEVisitor<T> {
 
-  public T visitPSEHeapEntryList (PSEHeapEntryList entry) throws JPFInspectorException;
+  T visitPSEHeapEntryList(PSEHeapEntryList entry) throws JPFInspectorException;
 
-  public T visitPSEMethod (PSEMethod entry) throws JPFInspectorException;;
+  T visitPSEMethod(PSEMethod entry) throws JPFInspectorException;
 
-  public T visitPSEThread (PSEThread entry) throws JPFInspectorException;;
+  T visitPSEThread(PSEThread entry) throws JPFInspectorException;
 
-  public T visitPSEVariableArray (PSEVariableArray entry) throws JPFInspectorException;
+  T visitPSEVariableArray(PSEVariableArray entry) throws JPFInspectorException;
 
-  public T visitPSEVariableObject (PSEVariableObject entry) throws JPFInspectorException;
+  T visitPSEVariableObject(PSEVariableObject entry) throws JPFInspectorException;
 
-  public T visitPSEVariablePrimitive (PSEVariablePrimitive entry) throws JPFInspectorException;
+  T visitPSEVariablePrimitive(PSEVariablePrimitive entry) throws JPFInspectorException;
 }

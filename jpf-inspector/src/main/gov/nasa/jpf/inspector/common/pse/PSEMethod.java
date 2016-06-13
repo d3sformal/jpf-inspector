@@ -20,12 +20,17 @@
 package gov.nasa.jpf.inspector.common.pse;
 
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorException;
+import gov.nasa.jpf.inspector.server.expression.expressions.ExpressionStateStackFrame;
 import gov.nasa.jpf.inspector.server.programstate.StateNode;
+import gov.nasa.jpf.inspector.server.programstate.StateStackFrame;
 import gov.nasa.jpf.inspector.utils.InstructionWrapper;
 import gov.nasa.jpf.vm.StackFrame;
 
 /**
- * Method on the stack (equivalent of the {@link StackFrame})
+ * Method on the stack (equivalent of the {@link StackFrame}).
+ * Linked classes:
+ * - {@link StateStackFrame}
+ * - {@link ExpressionStateStackFrame})
  */
 public class PSEMethod extends ProgramStateEntry {
 
@@ -40,11 +45,11 @@ public class PSEMethod extends ProgramStateEntry {
   private PSEVariable[] refLocals;
   private final PSEVariableObject refThis;
 
-  public PSEMethod (String name, int clientID, StateNode sn, InstructionWrapper inst, PSEVariable[] refLocals, PSEVariableObject refThis) {
-    super(name, clientID, sn);
+  public PSEMethod(int clientID, StateNode sn, InstructionWrapper inst,
+                   PSEVariable[] refLocals, PSEVariableObject refThis) {
+    super(clientID, sn);
 
     this.inst = inst;
-
     this.referencesCreated = refLocals != null;
     this.refLocals = refLocals;
     this.refThis = refThis;
@@ -78,7 +83,7 @@ public class PSEMethod extends ProgramStateEntry {
   /**
    * Lazy load of references
    */
-  protected void loadReferences () throws JPFInspectorException {
+  private void loadReferences() throws JPFInspectorException {
     if (!referencesCreated) {
       if (DEBUG) {
         System.out.println(this.getClass().getSimpleName() + ".loadReferences() - lazy reference load");
@@ -94,7 +99,6 @@ public class PSEMethod extends ProgramStateEntry {
     }
   }
 
-  /* @see gov.nasa.jpf.inspector.server.programstate.ProgramStateEntry#visit(gov.nasa.jpf.inspector.server.programstate.client.PSEVisitor) */
   @Override
   public <T> T visit (PSEVisitor<T> visitor) throws JPFInspectorException {
     return visitor.visitPSEMethod(this);

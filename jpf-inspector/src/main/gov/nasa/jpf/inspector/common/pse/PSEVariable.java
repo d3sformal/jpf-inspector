@@ -19,12 +19,12 @@
 
 package gov.nasa.jpf.inspector.common.pse;
 
-import gov.nasa.jpf.inspector.common.pse.ProgramStateEntry;
 import gov.nasa.jpf.inspector.server.programstate.StateNodeInterface;
 
 /**
- * Common predecessor for all "value" representing types
- * Represents variable. Either primitive type (can be local variable, field), heap instance (this, field) or "Class" (this for static method)
+ * Common abstract predecessor for all types representing a value.
+ * Represents a variable. Either primitive type (can be local variable, field), heap instance (this, field) or "Class"
+ * (this for static methods)
  */
 public abstract class PSEVariable extends ProgramStateEntry {
 
@@ -40,19 +40,20 @@ public abstract class PSEVariable extends ProgramStateEntry {
 
   public static final String EXPRESSION_SUPER = "#super";
 
+
   private final String varName; // Name of represented variable
   private final String varTypeName; // Type of represented variable
   private final String varValue; // Text representation of the value of the variable
 
   private final boolean isStatic; // true if represents static field
-  private final String definedIn; // ClassName (or ClassName.methodName) where the represented variable is defined (in case of field or localVariable) null
-                                  // otherwise
+  private final String definedIn; // ClassName (or ClassName.methodName) where the represented variable is defined (in case of field or localVariable) null otherwise
 
   private final int index;
 
-  protected PSEVariable (String name, int clientID, StateNodeInterface sni, String varName, String varTypeName, String varValue, boolean isStatic,
-      String definedIn, int index) {
-    super(name, clientID, sni);
+  protected PSEVariable(int clientID, StateNodeInterface sni,
+                        String varName, String varTypeName, String varValue, boolean isStatic,
+                        String definedIn, int index) {
+    super(clientID, sni);
 
     this.varName = varName;
     this.varValue = varValue;
@@ -69,39 +70,42 @@ public abstract class PSEVariable extends ProgramStateEntry {
   }
 
   /**
-   * @return Gets name of represented variable, field or parameter. Can get null if name is not known (no debug information or stack slot)
+   * Gets the name of the represented variable, field or parameter. Returns null if the name is not known
+   * (no debug information or stack slot, for example).
    */
   public String getVarName () {
     return varName;
   }
 
   /**
-   * @return Gets type of represented entry.
+   * Gets the Java type of the represented object.
    */
   public String getVarTypeName () {
     return varTypeName;
   }
 
   /**
-   * @return Gets value of variable in textual form (meaning full only for primitive types and strings)
+   * Gets the short-form value of the variable in text form.
+   * See the "Commands" -> "print" -> "Output interpretation" for details.
    */
   public String getVarValue () {
     return varValue;
   }
 
+  /**
+   * Indicates whether this entry is a static field.
+   */
   public boolean isStatic () {
     return isStatic;
   }
 
-  public String varDefined () {
-    return definedIn;
-  }
-
   /**
-   * Gets index (stack slot index in the stack, field index in ElementInfo, array index of the element, heap index if represents whole ElementIfno) where the
-   * variable is defined
-   * 
-   * @return
+   * Gets the index of this entry in its parent entry.
+   * This might be:
+   *  - stack slot index
+   *  - field index
+   *  - array index
+   *  - heap index
    */
   public int getIndex () {
     return index;

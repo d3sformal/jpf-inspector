@@ -19,6 +19,7 @@
 
 package gov.nasa.jpf.inspector.common.pse;
 
+import gov.nasa.jpf.inspector.client.commands.CmdPrint;
 import gov.nasa.jpf.inspector.interfaces.JPFInspectorBackEndInterface;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorException;
 import gov.nasa.jpf.inspector.server.programstate.StateNodeInterface;
@@ -30,22 +31,26 @@ import java.io.Serializable;
  *
  * A program state entry is created by the server in response to the "print" command and sent back. The
  * print command then prints the program state entry as a string. That is the only use of this class.
+ *
+ * This class is exposed as public API to custom hit conditions, therefore all of its methods (and the methods
+ * of its subclasses) should be well-documented.
  */
 public abstract class ProgramStateEntry implements Serializable {
   protected static final boolean DEBUG = false;
 
   private static final long serialVersionUID = 7537838000235914763L;
 
-  final private String name;
   final private int clientID;
-  final private JPFInspectorBackEndInterface inspector; // Inspector interface which can be used for lazy retrieval of referenced items
+  /**
+   * Inspector interface which can be used for lazy retrieval of referenced items.
+   * Although, we should probably indicate which items are retrieved lazily.
+   */
+  final private JPFInspectorBackEndInterface inspector;
   final private String stateExpr;
 
-  protected ProgramStateEntry (String name, int clientID, StateNodeInterface sni) {
-    assert name != null;
+  protected ProgramStateEntry(int clientID, StateNodeInterface sni) {
     assert sni != null;
 
-    this.name = name;
     this.clientID = clientID;
     this.inspector = sni.getInspector();
     this.stateExpr = sni.getStateExpr();
@@ -54,24 +59,30 @@ public abstract class ProgramStateEntry implements Serializable {
     assert stateExpr != null;
   }
 
-  public String getName () {
-    return name;
-  }
 
+  /**
+   * Returns the constant "0". I don't know why this exists.
+   */
   public int getClientID () {
     return clientID;
   }
 
+  /**
+   * Returns the Inspector server.
+   */
   protected JPFInspectorBackEndInterface getInspector () {
     return inspector;
   }
 
   /**
-   * Expression that can be used to obtain given entry
+   * Returns the expression that can be used to obtain given entry if used with the "print" command.
    */
   public String getStateExpr () {
     return stateExpr;
   }
 
-  abstract public <T> T visit (PSEVisitor<T> visitor) throws JPFInspectorException;
+  /**
+   * See {@link PSEVisitor} and {@link CmdPrint.ValuePrinter}.
+   */
+  public abstract <T> T visit (PSEVisitor<T> visitor) throws JPFInspectorException;
 }

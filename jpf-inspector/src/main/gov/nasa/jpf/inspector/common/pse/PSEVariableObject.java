@@ -23,7 +23,7 @@ import gov.nasa.jpf.inspector.exceptions.JPFInspectorException;
 import gov.nasa.jpf.inspector.server.programstate.StateNodeInterface;
 
 /**
- * Represents Object (a heap element different from array)
+ * Represents a non-array, non-primitive Java object.
  */
 public class PSEVariableObject extends PSEVariable {
 
@@ -36,9 +36,10 @@ public class PSEVariableObject extends PSEVariable {
 
   // refThis == null ... static or no references are created
   // refFields == null ... no references are created (if class does not contain field any field, empty array should by set)
-  public PSEVariableObject (String name, int clientID, StateNodeInterface sni, String varName, String varTypeName, String varValue, boolean isStatic,
-      String definedIn, int index, PSEVariable[] refFields, PSEVariable[] refStaticFields) {
-    super(name, clientID, sni, varName, varTypeName, varValue, isStatic, definedIn, index);
+  public PSEVariableObject(int clientID, StateNodeInterface sni, String varName,
+                           String varTypeName, String varValue, boolean isStatic,
+                           String definedIn, int index, PSEVariable[] refFields, PSEVariable[] refStaticFields) {
+    super(clientID, sni, varName, varTypeName, varValue, isStatic, definedIn, index);
 
     this.referencesCreated = refFields != null;
     this.refFields = refFields;
@@ -58,7 +59,7 @@ public class PSEVariableObject extends PSEVariable {
   /**
    * Lazy load of references
    */
-  protected void loadReferences () throws JPFInspectorException {
+  private void loadReferences() throws JPFInspectorException {
     if (!referencesCreated) {
       if (DEBUG) {
         System.out.println(this.getClass().getSimpleName() + ".loadReferences() - lazy reference load");
@@ -77,7 +78,6 @@ public class PSEVariableObject extends PSEVariable {
     }
   }
 
-  /* @see gov.nasa.jpf.inspector.server.programstate.ProgramStateEntry#visit(gov.nasa.jpf.inspector.server.programstate.client.PSEVisitor) */
   @Override
   public <T> T visit (PSEVisitor<T> visitor) throws JPFInspectorException {
     return visitor.visitPSEVariableObject(this);

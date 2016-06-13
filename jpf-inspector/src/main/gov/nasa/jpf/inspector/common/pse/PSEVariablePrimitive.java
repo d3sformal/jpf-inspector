@@ -25,18 +25,18 @@ import gov.nasa.jpf.inspector.server.programstate.StateNodeInterface;
 import java.io.Serializable;
 
 /**
- * @author Alf
- * 
+ * Represents a Java primitive.
  */
 public class PSEVariablePrimitive extends PSEVariable {
 
   private static final long serialVersionUID = 6680525792762309903L;
 
-  protected final Serializable wrappedValue;
+  private final Serializable wrappedValue;
 
-  public PSEVariablePrimitive (String name, int clientID, StateNodeInterface sni, String varName, String varTypeName, String varValue, boolean isStatic,
-      String definedIn, int index, Object wrappedValue) {
-    super(name, clientID, sni, varName, varTypeName, varValue, isStatic, definedIn, index);
+  public PSEVariablePrimitive(int clientID, StateNodeInterface sni, String varName,
+                              String varTypeName, String varValue, boolean isStatic,
+                              String definedIn, int index, Object wrappedValue) {
+    super(clientID, sni, varName, varTypeName, varValue, isStatic, definedIn, index);
 
     checkPrimitiveType(wrappedValue);
     this.wrappedValue = (Serializable) wrappedValue;
@@ -52,19 +52,17 @@ public class PSEVariablePrimitive extends PSEVariable {
     assert ((wrappedValue instanceof Boolean) || (wrappedValue instanceof Character) || (wrappedValue instanceof Byte) || (wrappedValue instanceof Short)
         || (wrappedValue instanceof Integer) || (wrappedValue instanceof Long) || (wrappedValue instanceof Float) || (wrappedValue instanceof Double));
 
-    assert (wrappedValue instanceof Serializable);
+    assert wrappedValue instanceof Serializable;
 
   }
 
   /**
-   * 
-   * @return Gets wrapped value info
+   * Gets the Java primitive value, for example, an {@link Integer} or a {@link Boolean}.
    */
   public Object getWrappedValue () {
     return wrappedValue;
   }
 
-  /* @see gov.nasa.jpf.inspector.server.programstate.ProgramStateEntry#visit(gov.nasa.jpf.inspector.server.programstate.client.PSEVisitor) */
   @Override
   public <T> T visit (PSEVisitor<T> visitor) throws JPFInspectorException {
     return visitor.visitPSEVariablePrimitive(this);

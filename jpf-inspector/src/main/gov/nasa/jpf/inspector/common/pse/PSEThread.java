@@ -20,12 +20,19 @@
 package gov.nasa.jpf.inspector.common.pse;
 
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorException;
+import gov.nasa.jpf.inspector.server.expression.expressions.ExpressionStateThread;
 import gov.nasa.jpf.inspector.server.programstate.StateNode;
+import gov.nasa.jpf.inspector.server.programstate.StateThreadInfo;
 import gov.nasa.jpf.vm.ThreadInfo;
 import gov.nasa.jpf.vm.ThreadInfo.State;
 
 /**
- * Represents thread and its state
+ * Represents a thread.
+ *
+ * Linked classes:
+ *
+ * - {@link StateThreadInfo}
+ * - {@link ExpressionStateThread}
  */
 public class PSEThread extends ProgramStateEntry {
 
@@ -47,9 +54,9 @@ public class PSEThread extends ProgramStateEntry {
 
   private boolean referenceCreated;
 
-  public PSEThread (String name, int clientID, StateNode sn, int threadNum, State state, String threadName, String threadTypeName, int priority,
-      boolean isDaemon, PSEMethod[] refCallStack) {
-    super(name, clientID, sn);
+  public PSEThread(int clientID, StateNode sn, int threadNum, State state, String threadName,
+                   String threadTypeName, int priority, boolean isDaemon, PSEMethod[] refCallStack) {
+    super(clientID, sn);
 
     referenceCreated = refCallStack != null;
 
@@ -97,7 +104,7 @@ public class PSEThread extends ProgramStateEntry {
   /**
    * Lazy load of references
    */
-  protected void loadReferences () throws JPFInspectorException {
+  private void loadReferences() throws JPFInspectorException {
     if (!referenceCreated) {
       if (DEBUG) {
         System.out.println(this.getClass().getSimpleName() + ".loadReferences() - lazy reference load");
@@ -113,7 +120,6 @@ public class PSEThread extends ProgramStateEntry {
     }
   }
 
-  /* @see gov.nasa.jpf.inspector.server.programstate.ProgramStateEntry#visit(gov.nasa.jpf.inspector.server.programstate.client.PSEVisitor) */
   @Override
   public <T> T visit (PSEVisitor<T> visitor) throws JPFInspectorException {
     return visitor.visitPSEThread(this);
