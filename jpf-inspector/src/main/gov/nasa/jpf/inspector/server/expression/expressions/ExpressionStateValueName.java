@@ -70,12 +70,6 @@ public class ExpressionStateValueName extends ExpressionStateValue {
     this.varName = varName;
   }
 
-  /*
-   * @see
-   * gov.nasa.jpf.inspector.server.expression.expressions.ExpressionStateValue#getResultExpression(gov.nasa.jpf.inspector.server.programstate.
-   * StateReadableValueInterface
-   * )
-   */
   @Override
   public StateReadableValueInterface getResultExpression (StateReadableValueInterface parent) throws JPFInspectorException {
     assert (parent != null);
@@ -229,7 +223,6 @@ public class ExpressionStateValueName extends ExpressionStateValue {
     }
   }
 
-  /* @see gov.nasa.jpf.inspector.server.expression.ExpressionNodeInterface#getNormalizedExpression() */
   @Override
   public String getNormalizedExpression () {
     return '.' + varName + (child != null ? child.getNormalizedExpression() : "");

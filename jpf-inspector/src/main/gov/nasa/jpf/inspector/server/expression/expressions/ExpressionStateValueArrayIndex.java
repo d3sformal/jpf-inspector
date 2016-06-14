@@ -37,10 +37,6 @@ public class ExpressionStateValueArrayIndex extends ExpressionStateValue {
     this.elementIndex = elementIndex;
   }
 
-  /*
-   * @see gov.nasa.jpf.inspector.server.expression.expressions.ExpressionStateValue#getResultExpression(gov.nasa.jpf.inspector.server.programstate.
-   * StateReadableValueInterface)
-   */
   @Override
   public StateReadableValueInterface getResultExpression (StateReadableValueInterface parent) throws JPFInspectorException {
 
@@ -54,7 +50,6 @@ public class ExpressionStateValueArrayIndex extends ExpressionStateValue {
     }
   }
 
-  /* @see gov.nasa.jpf.inspector.server.expression.ExpressionNodeInterface#getNormalizedExpression() */
   @Override
   public String getNormalizedExpression () {
     return '[' + elementIndex + ']' + child.getNormalizedExpression();

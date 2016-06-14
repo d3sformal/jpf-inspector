@@ -32,18 +32,24 @@ import gov.nasa.jpf.vm.ThreadInfo.State;
 import gov.nasa.jpf.vm.ThreadList;
 
 /**
- * @author Alf
- * 
+ * Represents a thread. Information about it is kept as a {@link ThreadInfo} object.
  */
-public class StateThreadInfo extends StateNode {
+public final class StateThreadInfo extends StateNode {
 
-  protected final ThreadInfo ti;
+  private final ThreadInfo ti;
 
+  /**
+   * Initializes a new instance with reference depth 2.
+   */
   public StateThreadInfo (JPFInspector inspector, VM vm, Integer threadNum) throws JPFInspectorException {
     this(inspector, vm, threadNum, 2);
   }
 
-  public StateThreadInfo (JPFInspector inspector, VM vm, Integer threadNum, int referenceDepth) throws JPFInspectorException {
+  /**
+   * Initializes a new instance.
+   * @param referenceDepth Always the constant "2".
+   */
+  private StateThreadInfo (JPFInspector inspector, VM vm, Integer threadNum, int referenceDepth) throws JPFInspectorException {
     super(inspector, referenceDepth);
     ThreadInfo ti;
     assert (vm != null);
@@ -53,7 +59,6 @@ public class StateThreadInfo extends StateNode {
       if (ti == null) {
         throw new JPFInspectorNoThread();
       }
-
     } else {
       ThreadList tl = vm.getKernelState().getThreadList();
       ti = tl.getThreadInfoForId(threadNum);

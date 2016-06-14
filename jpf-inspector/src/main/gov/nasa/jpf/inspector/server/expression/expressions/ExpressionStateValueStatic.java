@@ -25,12 +25,10 @@ import gov.nasa.jpf.inspector.server.programstate.StateNodeInterface;
 import gov.nasa.jpf.inspector.server.programstate.StateReadableValueInterface;
 import gov.nasa.jpf.inspector.server.programstate.StateStackFrame;
 import gov.nasa.jpf.inspector.server.programstate.StateValueElementInfoField;
+import gov.nasa.jpf.vm.ClassInfo;
 
 /**
- * Represents #static and #static[index]
- * 
- * @author Alf
- * 
+ * Represents #static and #static[index] expressions using just the integer index.
  */
 public class ExpressionStateValueStatic extends ExpressionStateValue {
 
@@ -62,13 +60,15 @@ public class ExpressionStateValueStatic extends ExpressionStateValue {
     }
   }
 
-  public StateNodeInterface getResultExpression (StateStackFrame stackFrame) throws JPFInspectorException {
+  public StateNodeInterface getExpressionFromStackFrame(StateStackFrame stackFrame) throws JPFInspectorException {
     StateReadableValueInterface result;
+    ClassInfo associatedClass = stackFrame.getClassInfo();
+
     if (staticFieldIndex != null) {
-      StateElementInfo staticEi = StateElementInfo.createStaticClass(stackFrame, stackFrame.getClassInfo());
+      StateElementInfo staticEi = StateElementInfo.createStaticClass(stackFrame, associatedClass);
       result = StateValueElementInfoField.createStaticFieldFromIndex(staticEi, staticFieldIndex, 1);
     } else {
-      result = StateElementInfo.createStaticClass(stackFrame, stackFrame.getClassInfo());
+      result = StateElementInfo.createStaticClass(stackFrame, associatedClass);
     }
 
     ExpressionStateValue child = getChild();
@@ -81,9 +81,6 @@ public class ExpressionStateValueStatic extends ExpressionStateValue {
 
   @Override
   public String getNormalizedExpression () {
-    // TOKEN_HASH_STATIC : '#static' ;
-    // TOKEN_HASH_STATIC WS? '[' WS? intValue WS? ']' WS? a=cmdStateExpressionValue[$expFactory]?
-    // TOKEN_HASH_STATIC WS? a=cmdStateExpressionClass[$expFactory]?
     if (staticFieldIndex != null) {
       return '.' + TOKEN_HASH_STATIC + '[' + staticFieldIndex + ']' + (child != null ? child.getNormalizedExpression() : "");
     }

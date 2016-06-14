@@ -40,25 +40,25 @@ public interface StateReadableValueInterface extends StateNodeInterface {
   /**
    * @return Get type information about represented value
    */
-  public ClassInfo getClassInfo ();
+  ClassInfo getClassInfo();
 
   /**
    * @return Gets representation of the readable value.
    *         For primitive types gets wrapped version of the primitive type.
-   *         For objects (references and arrays) gets ElementInfo
+   *         For objects (references and arrays) gets ElementInfo.
    */
-  public Object getValue ();
+  Object getValue();
 
   /**
-   * 
-   * @return Gets true if represented value is object or array
+   * Indicates whether the represented object is a reference or an array and thus is represented by an {@link ElementInfo}.
    */
-  public boolean isReference ();
+  boolean isReference();
 
   /**
-   * @return If isReference gets representation of referenced value. Gets null if not reference or null reference.
+   * If {@link #isReference()}  would return true, this returns the representation of referenced value.
+   * Returns null otherwise or if the reference value itself is null.
    */
-  public ElementInfo getReferenceValue ();
+  ElementInfo getReferenceValue();
 
   /**
    * Limits accessible fields only to from the given ClassInfo.
@@ -66,9 +66,9 @@ public interface StateReadableValueInterface extends StateNodeInterface {
    * 
    * @return Gets value which represents only a subset of fields.
    */
-  public StateReadableValueInterface createSuper () throws JPFInspectorException;
+  StateReadableValueInterface createSuper() throws JPFInspectorException;
 
-  public StateReadableValueInterface createPredecessorClass (ClassInfo ci) throws JPFInspectorNotSuperClassException;
+  StateReadableValueInterface createPredecessorClass(ClassInfo ci) throws JPFInspectorNotSuperClassException;
 
   /**
    * Gets value that represents this instance. It means returns same "Value", but with different stateExpression. If not an instance (static,primitive type,
@@ -77,6 +77,6 @@ public interface StateReadableValueInterface extends StateNodeInterface {
    * @return Gets value that represents this instance.
    * @throws JPFInspectorException If not an instance (static,primitive type, array)
    */
-  public StateReadableValueInterface createThisValue () throws JPFInspectorException;
+  StateReadableValueInterface createThisValue() throws JPFInspectorException;
 
 }

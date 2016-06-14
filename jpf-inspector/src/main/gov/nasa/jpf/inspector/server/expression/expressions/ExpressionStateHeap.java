@@ -27,6 +27,7 @@ import gov.nasa.jpf.inspector.server.expression.InspectorState;
 import gov.nasa.jpf.inspector.server.jpf.JPFInspector;
 import gov.nasa.jpf.inspector.server.programstate.StateElementInfo;
 import gov.nasa.jpf.inspector.server.programstate.StateNodeInterface;
+import gov.nasa.jpf.inspector.server.programstate.StateReadableValueInterface;
 import gov.nasa.jpf.vm.VM;
 
 /**
@@ -43,7 +44,7 @@ public class ExpressionStateHeap extends ExpressionStateUnaryOperator<Expression
   }
 
   @Override
-  public StateNodeInterface getResultExpression (JPFInspector inspector, InspectorState state) throws JPFInspectorException {
+  public StateReadableValueInterface getResultExpression (JPFInspector inspector, InspectorState state) throws JPFInspectorException {
     assert state != null;
 
     VM vm = state.getVM();
@@ -64,6 +65,7 @@ public class ExpressionStateHeap extends ExpressionStateUnaryOperator<Expression
 
   @Override
   public String getNormalizedExpression () {
-    return ExpressionStateHeapEntryList.TOKEN_HASH_HEAP + '[' + heapElementIndex + ']' + (child != null ? child.getNormalizedExpression() : "");
+    return ExpressionStateHeapEntryList.TOKEN_HASH_HEAP + '[' + heapElementIndex + ']' +
+            (child != null ? child.getNormalizedExpression() : "");
   }
 }

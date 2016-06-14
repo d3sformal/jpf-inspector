@@ -92,20 +92,28 @@ public class StateValueElementInfoField extends StateValue {
     return new StateValueElementInfoField(sni, 1, sni.getStateExpr() + '.' + varName, sei, fi);
   }
 
-  public static StateValueElementInfoField createStaticFieldFromIndex (StateReadableValueInterface srvi, int fieldIndex, int referenceDepth)
+  public static StateValueElementInfoField createStaticFieldFromIndex (StateReadableValueInterface srvi,
+                                                                       int fieldIndex,
+                                                                       int referenceDepth)
       throws JPFInspectorException {
+
     ClassInfo ci = srvi.getClassInfo();
 
     if (fieldIndex < 0 || fieldIndex >= ci.getNumberOfStaticFields()) {
       throw new JPFInspectorInvalidStaticFieldIndexException(fieldIndex, ci);
     }
+
     FieldInfo fi = ci.getStaticField(fieldIndex);
     assert (fi != null);
 
     StaticElementInfo sei = ci.getStaticElementInfo();
     assert (sei != null);
 
-    return new StateValueElementInfoField(srvi, referenceDepth, srvi.getStateExpr() + '.' + PSEVariable.EXPRESSION_STATIC + '[' + fieldIndex + ']', sei, fi);
+    return new StateValueElementInfoField(srvi,
+                                          referenceDepth,
+                                          srvi.getStateExpr() + '.' + PSEVariable.EXPRESSION_STATIC + '[' + fieldIndex + ']',
+                                          sei,
+                                          fi);
   }
 
   public static StateValueElementInfoField createFieldFromIndex (StateReadableValueInterface srvi, int fieldIndex, int referenceDepth)
@@ -152,7 +160,6 @@ public class StateValueElementInfoField extends StateValue {
       throw new JPFInspectorNotInnerClassException(ci);
     }
     // Implementation based on {@link DynamicElementInfo#getEnclosingElementInfo()}
-
     for (FieldInfo fi : ci.getDeclaredInstanceFields()) {
       // Note name can be compiler dependent
       // after the '$' is number representing depth of nesting

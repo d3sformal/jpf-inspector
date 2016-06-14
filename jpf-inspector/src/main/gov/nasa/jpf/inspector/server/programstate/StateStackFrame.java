@@ -34,12 +34,14 @@ import gov.nasa.jpf.vm.ThreadInfo;
 import gov.nasa.jpf.vm.Instruction;
 
 /**
- * @author Alf
- * 
+ * Represent a stack frame using a {@link StackFrame} object.
  */
 public class StateStackFrame extends StateNode {
 
   private final StackFrame sf;
+  /**
+   * The method associated with the stack frame.
+   */
   protected final MethodInfo mi;
 
   public StateStackFrame (StateThreadInfo sti, Integer stackFrameNum) throws JPFInspectorException {
@@ -142,14 +144,14 @@ public class StateStackFrame extends StateNode {
   }
 
   /**
-   * @return The of stack frame represents static method.
+   * Returns true if the method associated with this stack frame is static; false otherwise.
    */
   public boolean isStaticMethod () {
     return mi.isStatic();
   }
 
   /**
-   * @return ClassInfo of called method.
+   * Returns the class of the method associated with this stack frame.
    */
   public ClassInfo getClassInfo () {
     return mi.getClassInfo();

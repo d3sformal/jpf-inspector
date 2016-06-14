@@ -25,7 +25,10 @@ import gov.nasa.jpf.inspector.server.programstate.StateNodeInterface;
 import gov.nasa.jpf.inspector.server.programstate.StateStackFrame;
 import gov.nasa.jpf.inspector.server.programstate.StateThreadInfo;
 
-public class ExpressionStateStackFrame extends ExpressionStateUnaryOperator<ExpressionStateValue> {
+/**
+ * Represents the ".#stackFrame[integer]" expression.
+ */
+public final class ExpressionStateStackFrame extends ExpressionStateUnaryOperator<ExpressionStateValue> {
 
   private static final String TOKEN_HASH_STACK_FRAME = "#stackFrame";
 
@@ -48,33 +51,33 @@ public class ExpressionStateStackFrame extends ExpressionStateUnaryOperator<Expr
     this((ExpressionStateValue) child, stackFrame);
   }
 
-  protected ExpressionStateStackFrame (ExpressionStateValue child, Integer stackFrame) {
+  private ExpressionStateStackFrame (ExpressionStateValue child, Integer stackFrame) {
     super(child);
 
     this.stackFrameNum = stackFrame;
   }
 
-  public StateNodeInterface getResultExpression (StateThreadInfo sti) throws JPFInspectorException {
-    assert sti != null;
+  public StateNodeInterface getResultExpression (StateThreadInfo thread) throws JPFInspectorException {
+    assert thread != null;
 
-    StateStackFrame ssf = new StateStackFrame(sti, stackFrameNum);
+    StateStackFrame thisStackFrame = new StateStackFrame(thread, stackFrameNum);
 
     ExpressionStateValue child = getChild();
     if (child == null) {
-      return ssf;
+      return thisStackFrame;
     } else {
       if (child instanceof ExpressionStateStackFrameSlot) {
         ExpressionStateStackFrameSlot childSfs = (ExpressionStateStackFrameSlot) child;
-        return childSfs.getResultExpression(ssf);
+        return childSfs.getExpressionFromStackFrame(thisStackFrame);
       } else if (child instanceof ExpressionStateValueThis) {
         ExpressionStateValueThis childThis = (ExpressionStateValueThis) child;
-        return childThis.getResultExpression(ssf);
+        return childThis.getResultExpression(thisStackFrame);
       } else if (child instanceof ExpressionStateValueName) {
         ExpressionStateValueName childName = (ExpressionStateValueName) child;
-        return childName.getResultExpression(ssf);
+        return childName.getResultExpression(thisStackFrame);
       } else if (child instanceof ExpressionStateValueStatic) {
         ExpressionStateValueStatic childStatic = (ExpressionStateValueStatic) child;
-        return childStatic.getResultExpression(ssf);
+        return childStatic.getExpressionFromStackFrame(thisStackFrame);
       } else {
         throw new RuntimeException("Invalid child type");
       }

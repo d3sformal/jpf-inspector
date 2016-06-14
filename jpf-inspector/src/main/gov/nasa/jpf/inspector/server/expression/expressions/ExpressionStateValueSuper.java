@@ -34,12 +34,6 @@ public class ExpressionStateValueSuper extends ExpressionStateValue {
     super(child);
   }
 
-  /*
-   * @see
-   * gov.nasa.jpf.inspector.server.expression.expressions.ExpressionStateValue#getResultExpression(gov.nasa.jpf.inspector.server.programstate.
-   * StateReadableValueInterface
-   * )
-   */
   @Override
   public StateReadableValueInterface getResultExpression (StateReadableValueInterface parent) throws JPFInspectorException {
     assert (parent != null);
@@ -54,12 +48,8 @@ public class ExpressionStateValueSuper extends ExpressionStateValue {
     }
   }
 
-  /* @see gov.nasa.jpf.inspector.server.expression.ExpressionNodeInterface#getNormalizedExpression() */
   @Override
   public String getNormalizedExpression () {
-    // TOKEN_HASH_SUPER : '#super' ;
-    // TOKEN_HASH_SUPER WS? a=cmdStateExpressionValue[$expFactory]? { $expr = $expFactory.getStateValueSuper($a.expr); }
-
     return '.' + TOKEN_HASH_SUPER + (child != null ? child.getNormalizedExpression() : "");
   }
 }

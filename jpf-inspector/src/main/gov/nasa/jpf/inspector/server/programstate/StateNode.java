@@ -39,7 +39,6 @@ abstract public class StateNode implements StateNodeInterface {
   private final JPFInspector inspector;
 
   protected StateNode (JPFInspector inspector, int referenceDepth) {
-    super();
     assert (referenceDepth >= 0);
 
     this.inspector = inspector;

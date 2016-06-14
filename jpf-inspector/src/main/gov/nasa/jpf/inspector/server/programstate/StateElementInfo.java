@@ -59,11 +59,21 @@ public class StateElementInfo extends StateNode implements StateReadableValueInt
     return new StateElementInfo(stateHeapEntryList, referenceDepth, ei, ei.getClassInfo(), PSEVariable.EXPRESSION_VARIABLE_HEAP + '[' + ei.getObjectRef() + ']');
   }
 
+  /**
+   * Returns a {@link StateElementInfo} that represents static properties of a class.
+   *
+   * @param sni This might be either a StackFrame or a value.
+   * @param ci We want to get static information about this class.
+   */
   public static StateElementInfo createStaticClass (StateNodeInterface sni, ClassInfo ci) {
     assert (ci != null);
     // I'm not sure this works....
-    return new StateElementInfo(sni, 1, ci.getStaticElementInfo(), ci,
+    return new StateElementInfo(sni,
+                                1,
+                                ci.getStaticElementInfo(),
+                                ci,
                                 sni.getStateExpr() + '.' + StateValue.getSimpleName(ci));
+    // I wonder.. shouldn't there be '#static' instead of 'StateValue.getSimpleName(ci)'?
   }
 
   // Does not modify state expression
@@ -93,6 +103,14 @@ public class StateElementInfo extends StateNode implements StateReadableValueInt
     this.ci = ci;
   }
 
+  /**
+   * Creates a new hierarchy-2 representation of a value.
+   * @param sni This is only used to get an instance of the {@link JPFInspector}.
+   * @param referenceDepth I'm still not clear as to why this is useful.
+   * @param ei The object we need to represent.
+   * @param ci The class of the object -- although this might be a restriction or also something else, I'm not clear on that yet.
+   * @param stateExpr An expression that, if evaluated, should result in the object we are currently creating.
+   */
   private StateElementInfo(StateNodeInterface sni, int referenceDepth, ElementInfo ei, ClassInfo ci, String stateExpr) {
     super(sni, referenceDepth);
     setStateExpr(stateExpr);
@@ -100,13 +118,11 @@ public class StateElementInfo extends StateNode implements StateReadableValueInt
     this.ci = ci;
   }
 
-  /* @see gov.nasa.jpf.inspector.server.programstate.StateReadableValueInterface#getClassInfo() */
   @Override
   public ClassInfo getClassInfo () {
     return ci;
   }
 
-  /* @see gov.nasa.jpf.inspector.server.programstate.StateNode#getResultExpression() */
   @Override
   public PSEVariable toHierarchy3(String name, int clientID) throws JPFInspectorException {
     final String varName = getStateExpr();
@@ -115,19 +131,19 @@ public class StateElementInfo extends StateNode implements StateReadableValueInt
     return StateValue.createPSEVariable(this, name, clientID, varName, ei.getObjectRef(), definedIn);
   }
 
-  /* @see gov.nasa.jpf.inspector.server.programstate.StateReadableValueInterface#getValue() */
   @Override
   public Object getValue () {
     return ei;
   }
 
-  /* @see gov.nasa.jpf.inspector.server.programstate.StateReadableValueInterface#isReference() */
   @Override
   public boolean isReference () {
     return true;
   }
 
-  /* @see gov.nasa.jpf.inspector.server.programstate.StateReadableValueInterface#getReferenceValue() */
+  /**
+   * Returns the {@link ElementInfo} object or null if it is null.
+   */
   @Override
   public ElementInfo getReferenceValue () {
     return ei;
@@ -154,7 +170,6 @@ public class StateElementInfo extends StateNode implements StateReadableValueInt
     return null;
   }
 
-  /* @see gov.nasa.jpf.inspector.server.programstate.StateReadableValueInterface#createSuper() */
   @Override
   public StateReadableValueInterface createSuper () throws JPFInspectorNoSuperClassException {
     ClassInfo superClassInfo = ci.getSuperClass();
@@ -165,7 +180,6 @@ public class StateElementInfo extends StateNode implements StateReadableValueInt
     return new StateElementInfo(this, getReferenceDepth(), ei, superClassInfo, getStateExpr() + '.' + PSEVariable.EXPRESSION_SUPER);
   }
 
-  /* @see gov.nasa.jpf.inspector.server.programstate.StateReadableValueInterface#createPredecessorClass(gov.nasa.jpf.jvm.ClassInfo) */
   @Override
   public StateReadableValueInterface createPredecessorClass (ClassInfo ci) throws JPFInspectorNotSuperClassException {
     if (!StateValue.isPredecessor(ci, this.ci)) {
@@ -174,7 +188,6 @@ public class StateElementInfo extends StateNode implements StateReadableValueInt
     return new StateElementInfo(this, getReferenceDepth(), ei, ci, getStateExpr() + '.' + StateValue.getSimpleName(ci));
   }
 
-  /* @see gov.nasa.jpf.inspector.server.programstate.StateReadableValueInterface#createThisValue() */
   @Override
   public StateReadableValueInterface createThisValue () throws JPFInspectorException {
     if (StateValue.isStaticElementInfo(ei)) {

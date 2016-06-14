@@ -26,8 +26,7 @@ import gov.nasa.jpf.inspector.server.programstate.StateStackFrame;
 import gov.nasa.jpf.inspector.server.programstate.StateValueStackSlot;
 
 /**
- * @author Alf
- * 
+ * Represents the ".#stackSlot[index]" expression as an integer index.
  */
 public class ExpressionStateStackFrameSlot extends ExpressionStateValue {
 
@@ -41,7 +40,7 @@ public class ExpressionStateStackFrameSlot extends ExpressionStateValue {
     this.slotIndex = slotIndex;
   }
 
-  public StateReadableValueInterface getResultExpression (StateStackFrame ssf) throws JPFInspectorException {
+  public StateReadableValueInterface getExpressionFromStackFrame(StateStackFrame ssf) throws JPFInspectorException {
     assert (ssf != null);
 
     StateValueStackSlot svss = StateValueStackSlot.createSlotFromIndex(ssf, slotIndex);
@@ -54,22 +53,17 @@ public class ExpressionStateStackFrameSlot extends ExpressionStateValue {
 
   }
 
-  /*
-   * @see
-   * gov.nasa.jpf.inspector.server.expression.expressions.ExpressionStateValue#getResultExpression(gov.nasa.jpf.inspector.server.programstate.
-   * StateReadableValueInterface
-   * )
-   */
-  @Override
-  public StateReadableValueInterface getResultExpression (StateReadableValueInterface parent) throws JPFInspectorException {
+
+  public StateReadableValueInterface getResultExpression(StateReadableValueInterface parent) throws JPFInspectorException {
     // Not supported operation ... state only StackFrame have slots
+    // The grammar itself prevents a stack-slot-expression from following anything but a stack-frame, therefore
+    // code should be unable to call this method.
+    assert false;
     throw new JPFInspectorNotStackException();
   }
 
-  /* @see gov.nasa.jpf.inspector.server.expression.ExpressionNodeInterface#getNormalizedExpression() */
   @Override
   public String getNormalizedExpression () {
-    // TOKEN_HASH_STACK_SLOT : '#stackSlot' ;
     return '.' + TOKEN_HASH_STACK_SLOT + '[' + slotIndex + ']' + (child != null ? child.getNormalizedExpression() : "");
   }
 }

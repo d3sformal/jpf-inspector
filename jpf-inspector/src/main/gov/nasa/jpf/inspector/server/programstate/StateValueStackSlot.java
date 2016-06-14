@@ -27,16 +27,11 @@ import gov.nasa.jpf.inspector.exceptions.JPFInspectorNotInstanceException;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorNotSuperClassException;
 import gov.nasa.jpf.inspector.migration.MigrationUtilities;
 import gov.nasa.jpf.inspector.common.pse.PSEVariable;
-import gov.nasa.jpf.vm.ClassInfo;
-import gov.nasa.jpf.vm.ElementInfo;
-import gov.nasa.jpf.vm.LocalVarInfo;
-import gov.nasa.jpf.vm.MethodInfo;
-import gov.nasa.jpf.vm.StackFrame;
-import gov.nasa.jpf.vm.Types;
+import gov.nasa.jpf.vm.*;
 
 /**
- * @author Alf
- * 
+ * Contains information about a stack slot using the {@link StackFrame}, the index, the {@link LocalVarInfo}
+ * and the {@link ClassInfo} of the variable's type.
  */
 public class StateValueStackSlot extends StateValue {
   public static final boolean DEBUG = false;
@@ -124,7 +119,12 @@ public class StateValueStackSlot extends StateValue {
       ssf.getInspector().getDebugPrintStream().println(StateValueStackSlot.class.getSimpleName() + ".createSVSSInstance - className=" + className);
     }
     // Can throw NoClassInfoException -> in such a case it is internal error
-    ClassInfo ciReal = MigrationUtilities.getResolvedClassInfo_StateValueStackSlot(className);
+    // An alternative here is to use getSystemResolvedClassInfo which uses the system class loader rather than the
+    // thread's current class loader. I don't know the difference between the two so we'll use the current one for now,
+    // and see what develops.
+    // The original pre-migration source line was:
+    // ClassInfo ciReal = ClassInfo.getResolvedClassInfo(className);
+    ClassInfo ciReal = ClassLoaderInfo.getCurrentResolvedClassInfo(className);
 
     assert (ciReal != null);
     assert (StateValue.isPredecessor(ciReal, ciReal));

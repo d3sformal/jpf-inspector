@@ -39,10 +39,6 @@ public class ExpressionStateValueFieldIndex extends ExpressionStateValue {
     this.fieldIndex = fieldIndex;
   }
 
-  /*
-   * @see gov.nasa.jpf.inspector.server.expression.expressions.ExpressionStateValue#getResultExpression(gov.nasa.jpf.inspector.server.programstate.
-   * StateReadableValueInterface)
-   */
   @Override
   public StateReadableValueInterface getResultExpression (StateReadableValueInterface parent) throws JPFInspectorException {
     assert parent != null;
@@ -57,13 +53,9 @@ public class ExpressionStateValueFieldIndex extends ExpressionStateValue {
     }
   }
 
-  /* @see gov.nasa.jpf.inspector.server.expression.ExpressionNodeInterface#getNormalizedExpression() */
   @Override
   public String getNormalizedExpression () {
-    // TOKEN_HASH_FIELD : '#field' ;
-    // TOKEN_HASH_FIELD WS? '[' WS? intValue WS? ']' WS? a=cmdStateExpressionValue[$expFactory]?
-
-    return '.' + TOKEN_HASH_FIELD + '[' + fieldIndex + ']' + (child != null ? child.toString() : "");
+     return '.' + TOKEN_HASH_FIELD + '[' + fieldIndex + ']' + (child != null ? child.toString() : "");
   }
 
 }

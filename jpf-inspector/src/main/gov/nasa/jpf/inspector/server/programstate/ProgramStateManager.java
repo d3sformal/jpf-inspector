@@ -79,7 +79,7 @@ public class ProgramStateManager implements ProgramStateInterface {
       result = new HashMap<>(tl.length());
 
       for (ThreadInfo ti : tl) {
-        StateThreadInfo sti = new StateThreadInfo(inspector, vm, ti.getId(), 2);
+        StateThreadInfo sti = new StateThreadInfo(inspector, vm, ti.getId());
         result.put(ti.getId(), sti.toHierarchy3("", 0));
       }
     }
