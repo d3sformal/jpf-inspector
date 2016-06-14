@@ -87,16 +87,15 @@ public final class CommandLineShell extends Shell implements VerifyCommandListen
    *
    */
   public CommandLineShell(String appProperties, InputStream inputStream, PrintStream outputStream) {
-    if (ShellManager.isShellManagerSet()) {
-      ShellManager.getManager().reloadAppProperties(appProperties);
-    } else {
-      Config config = new Config(new String[] { appProperties });
-      ShellManager.createShellManager(config);
-      if (!ShellManager.getManager().hasShell(this)) {
-        ShellManager.getManager().addShell(this);
-        // We will handle when to exit the VM in ShellManager
-      }
+    assert !ShellManager.isShellManagerSet();
+
+    Config config = new Config(new String[]{appProperties});
+    ShellManager.createShellManager(config);
+    if (!ShellManager.getManager().hasShell(this)) {
+      ShellManager.getManager().addShell(this);
+      // We will handle when to exit the VM in ShellManager
     }
+
 
     this.inputStream = inputStream;
     this.outputStream = outputStream;

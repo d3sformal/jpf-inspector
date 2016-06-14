@@ -1,0 +1,11 @@
+create breakpoint it=any
+sw bp
+run
+wait
+# All of these commands should print an error message:
+print #static[*]
+print #static[*].member
+print #heap[*].member
+del bp 1
+run
+wait

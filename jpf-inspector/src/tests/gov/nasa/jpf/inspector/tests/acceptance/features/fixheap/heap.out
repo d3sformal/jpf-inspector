@@ -1,5 +1,12 @@
+1 :  state=BP_STATE_ENABLED hits=0 hitsTotal=0 instruction_type=any
 INFO: JPF created and connected, SuT is started
 INFO: Breakpoint hit: [1 :  state=BP_STATE_ENABLED hits=3157 hitsTotal=3157 instruction_type=any]
 	SuT (Thread=0) executes the gov/nasa/jpf/inspector/tests/acceptance/sut/Singlepath.java:0 - invokestatic gov.nasa.jpf.inspector.tests.acceptance.sut.Singlepath.main([Ljava/lang/String;)V
-	346 : #heap[346] (sun.misc.Unsafe) = sun.misc.Unsafe@346
+ERR: Static area entry discovery is not implemented.
+ERR: Parse error: mismatched input '.' expecting <EOF>
+#static[*].member
+          ^
+ERR: Parse error: mismatched input '.' expecting <EOF>
+#heap[*].member
+        ^
 Breakpoint with ID 1 successfully deleted.
