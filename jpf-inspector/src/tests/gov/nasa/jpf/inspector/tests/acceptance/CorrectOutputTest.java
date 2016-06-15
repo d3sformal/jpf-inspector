@@ -30,12 +30,14 @@ public class CorrectOutputTest extends CorrectOutputAbstractTest {
           getCase("features/extensibility", "alias"),
           getCase("features/extensibility", "custom"),
           getCase("features/extensibility", "then"),
+          getCase("bugfix", "printnull"),
           getCase("legacy", "AssertSimpleTest"),
           getCase("legacy", "BreakpointTest"),
           getCase("legacy/simpleassignments", "SimpleAssignments"),
           getCase("features/fixheap", "heap"),
           getCase("features/decimal", "decimal")
      );
+    // TODO (elsewhere): custom commands and aliases should expanded to their normalized form rather than stay contracted
   }
   private CorrectOutputTestCase testCase;
 

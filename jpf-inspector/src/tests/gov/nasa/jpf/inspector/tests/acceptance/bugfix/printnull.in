@@ -1,0 +1,5 @@
+commence
+print null
+del bp 1
+run
+wait
