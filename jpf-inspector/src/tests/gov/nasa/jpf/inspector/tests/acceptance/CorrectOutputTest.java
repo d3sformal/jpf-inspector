@@ -16,6 +16,9 @@ import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 
+/**
+ * Main class that runs tests. Will be refactored later.
+ */
 @RunWith(Parameterized.class)
 public class CorrectOutputTest extends CorrectOutputAbstractTest {
 
@@ -24,6 +27,9 @@ public class CorrectOutputTest extends CorrectOutputAbstractTest {
      return Arrays.asList(
           getCase("simple", "hello"),
           getCase("simple", "breakpoint-expressions"),
+          getCase("features/extensibility", "alias"),
+          getCase("features/extensibility", "custom"),
+          getCase("features/extensibility", "then"),
           getCase("legacy", "AssertSimpleTest"),
           getCase("legacy", "BreakpointTest"),
           getCase("legacy/simpleassignments", "SimpleAssignments"),

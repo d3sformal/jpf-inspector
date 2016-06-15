@@ -1,0 +1,9 @@
+target = gov.nasa.jpf.inspector.tests.acceptance.sut.Singlepath
+
+jpf-inspector.batch_mode.echo_input = false
+
+jpf-inspector.alias.testAlias = hello
+jpf-inspector.custom_commands=gov.nasa.jpf.inspector.tests.acceptance.features.extensibility.CustomPrintCommand
+
+
+@include ../../inspectortest.jpf
