@@ -2,13 +2,14 @@ package gov.nasa.jpf.inspector.client.commands;
 
 import gov.nasa.jpf.inspector.client.ClientCommand;
 import gov.nasa.jpf.inspector.client.JPFInspectorClient;
+import gov.nasa.jpf.inspector.common.AntlrParseException;
+import gov.nasa.jpf.inspector.interfaces.CustomCommand;
 import gov.nasa.jpf.inspector.interfaces.JPFInspectorBackEndInterface;
+import gov.nasa.jpf.inspector.utils.CommandAlias;
+import gov.nasa.jpf.inspector.utils.InspectorConfiguration;
 
 import java.io.PrintStream;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Represents the "help" command that prints available commands.
@@ -16,7 +17,9 @@ import java.util.Map;
 public class CmdHelp extends ClientCommand {
   @Override
   public void execute(JPFInspectorClient client, JPFInspectorBackEndInterface inspector, PrintStream outStream) {
-    Map<String, List<CommandHelpInfo>> categories = new HashMap<>();
+    LinkedHashMap<String, List<CommandHelpInfo>> categories = new LinkedHashMap<>();
+    // Linked hash map, because we want to preserve our order of categories
+  // TODO (elsewhere): Check the correct number of arguments, if any, when executing aliases and print an error if a wrong number of arguments is given
 
     ArrayList<CommandHelpInfo> informationalCommands = new ArrayList<>();
     informationalCommands.add(new CommandHelpInfo("hello", null, "Prints a simple hello message."));
@@ -67,6 +70,19 @@ public class CmdHelp extends ClientCommand {
     choiceGenerators.add(new CommandHelpInfo("cg select [index]", null, "Selects a choice for the current choice generator."));
     choiceGenerators.add(new CommandHelpInfo("used choice_generators", "used cg", "Prints all choice generators in the transition path."));
     categories.put("Choice generators", choiceGenerators);
+
+    ArrayList<CommandHelpInfo> aliases = new ArrayList<>();
+    for(CommandAlias alias : InspectorConfiguration.getInstance().getAliases()) {
+      aliases.add(new CommandHelpInfo(alias.getKey(), null, alias.getValue())); // TODO add argument count info
+    }
+    categories.put("Aliases", aliases);
+
+    ArrayList<CommandHelpInfo> customCommands = new ArrayList<>();
+    for (Map.Entry<String, CustomCommand> entry : InspectorConfiguration.getInstance().getCustomCommands()) {
+      customCommands.add(new CommandHelpInfo(entry.getKey(), null, entry.getValue().getHelpText()));
+    }
+
+    categories.put("Custom commands", customCommands);
 
 
     outStream.println("You may use the following commands in this console:\n");

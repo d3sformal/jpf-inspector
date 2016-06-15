@@ -24,7 +24,9 @@ public class CustomCmdTotalHitcount implements CustomCommand {
   public String[] getNames() {
     return new String[] {
       "hitcount",
-      "hc",
+      // "hc",
+      // Note that using "hc" here would not permit us to use "hc" as a command because "hc" is a keyword of JPF Inspector
+      // (may be used instead of hit_count in the "create breakpoint" command).
       "total_hit_count",
       "thc"
     };

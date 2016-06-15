@@ -72,15 +72,8 @@ public class JPFInspectorClient implements JPFInspectorClientInterface {
     // Prepare the input
 
     // Trim left white space
-    int i = 0;
-    int maxLen = cmdStr.length();
-    while ((i < maxLen) && isWhiteSpace(cmdStr.charAt(i))) {
-      i++;
-    }
-    if (i == maxLen) {
-      return null; // Empty line (only white chars)
-    }
-    cmdStr = cmdStr.substring(i);
+    cmdStr = trimLeftWhitspace(cmdStr);
+    if (cmdStr == null) return null;
 
     // Ignore comments
     if (cmdStr.charAt(0) == '#') {
@@ -109,6 +102,19 @@ public class JPFInspectorClient implements JPFInspectorClientInterface {
       recordComment(e.expressError(JPFInspectorParsingErrorException.DEFAULT_LINE_LENGTH));
     }
     return cmd;
+  }
+
+  public static String trimLeftWhitspace(String cmdStr) {
+    int i = 0;
+    int maxLen = cmdStr.length();
+    while ((i < maxLen) && isWhiteSpace(cmdStr.charAt(i))) {
+      i++;
+    }
+    if (i == maxLen) {
+      return null;
+    }
+    cmdStr = cmdStr.substring(i);
+    return cmdStr;
   }
 
   private void executeCommand(ClientCommandInterface cmd, ExecutionContext context) {

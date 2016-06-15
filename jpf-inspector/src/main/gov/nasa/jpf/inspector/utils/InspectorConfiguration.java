@@ -6,9 +6,9 @@ import gov.nasa.jpf.inspector.interfaces.CustomHitCondition;
 import gov.nasa.jpf.inspector.server.breakpoints.InternalBreakpointHolder;
 import gov.nasa.jpf.shell.ShellManager;
 
-import java.text.MessageFormat;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -201,5 +201,36 @@ public final class InspectorConfiguration {
   public static void staticReset() {
     InternalBreakpointHolder.bpIDCounter = 1;
     instance = null;
+  }
+
+  public CustomCommand getCustomCommandIfAny(String commandName) {
+    if (customCommands.containsKey(commandName)) {
+      CustomCommand exampleCommand = customCommands.get(commandName);
+      Class<? extends CustomCommand> commandClass = exampleCommand.getClass();
+      try {
+        CustomCommand newInstance = commandClass.newInstance();
+        return newInstance;
+      } catch (InstantiationException | IllegalAccessException e) {
+        logger.warning("Class '" + commandClass.getName() + "' could be instantiated because of the exception: " + e.toString()+ ". This should never actually happen because such a class instantiable at program start.");
+        assert false : "We failed to instantiate a class that we've already instantiated before.";
+        return  null;
+      }
+    }
+    return null;
+  }
+
+  public CommandAlias getAliasIfAny(String commandName) {
+    if (aliases.containsKey(commandName)) {
+      return aliases.get(commandName);
+    }
+    else {
+      return null;
+    }
+  }
+  public Set<Map.Entry<String, CustomCommand>> getCustomCommands() {
+    return customCommands.entrySet();
+  }
+  public Iterable<? extends CommandAlias> getAliases() {
+    return aliases.values();
   }
 }
