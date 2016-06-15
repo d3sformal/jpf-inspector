@@ -61,6 +61,7 @@ public class PSEVariableArray extends PSEVariable {
    * Lazy load of references
    */
   private void loadReferences() throws JPFInspectorException {
+    assert referencesCreated;
     if (!referencesCreated) {
       if (DEBUG) {
         System.out.println(this.getClass().getSimpleName() + ".loadReferences() - lazy reference load");

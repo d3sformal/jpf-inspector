@@ -36,7 +36,7 @@ import java.io.Serializable;
  * of its subclasses) should be well-documented.
  */
 public abstract class ProgramStateEntry implements Serializable {
-  protected static final boolean DEBUG = false;
+  protected static final boolean DEBUG = true;
 
   private static final long serialVersionUID = 7537838000235914763L;
 
@@ -82,7 +82,7 @@ public abstract class ProgramStateEntry implements Serializable {
   }
 
   /**
-   * See {@link PSEVisitor} and {@link CmdPrint.ValuePrinter}.
+   * See {@link PSEVisitor} and {@link ValuePrinter}.
    */
   public abstract <T> T visit (PSEVisitor<T> visitor) throws JPFInspectorException;
 }

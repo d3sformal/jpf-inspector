@@ -95,8 +95,10 @@ public class StateValueStackSlot extends StateValue {
   }
 
 
-  private static StateValueStackSlot createSVSSInstance(StateStackFrame ssf, int referenceDepth, String stateExpression, int slotIndex)
+  private static StateValueStackSlot createSVSSInstance(StateStackFrame ssf, int referenceDepth,
+                                                        String stateExpression, int slotIndex)
       throws JPFInspectorInvalidSlotIndexException {
+
     assert (ssf != null);
 
     StackFrame sf = ssf.getStackFrame();
@@ -156,13 +158,11 @@ public class StateValueStackSlot extends StateValue {
     this.lvi = me.lvi;
   }
 
-  /* @see gov.nasa.jpf.inspector.server.programstate.StateReadableValueInterface#getReferenceValue() */
   @Override
   public ElementInfo getReferenceValue () {
     return getReferenceValueImpl(sf.getSlot(index));
   }
 
-  /* @see gov.nasa.jpf.inspector.server.programstate.StateNode#getResultExpression(java.lang.String, int) */
   @Override
   public PSEVariable toHierarchy3(String name, int clientID) throws JPFInspectorException {
     final MethodInfo mi = sf.getMethodInfo();
@@ -175,13 +175,11 @@ public class StateValueStackSlot extends StateValue {
     return StateValue.createPSEVariable(this, name, clientID, varName, index, definedIn);
   }
 
-  /* @see gov.nasa.jpf.inspector.server.programstate.StateReadableValueInterface#getValue() */
   @Override
   public Object getValue () {
     return sf.getLocalValueObject(lvi);
   }
 
-  /* @see gov.nasa.jpf.inspector.server.programstate.StateReadableValueInterface#createSuper() */
   @Override
   public StateReadableValueInterface createSuper () throws JPFInspectorException {
     ClassInfo superClassInfo = ci.getSuperClass();

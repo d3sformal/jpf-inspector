@@ -70,10 +70,6 @@ public class StateStackFrame extends StateNode {
     setStateExpr(createStateExpression(sti, stackFrameIdx));
   }
 
-  /*
-   * @see gov.nasa.jpf.inspector.server.programstate.StateNode#getResultExpression(gov.nasa.jpf.inspector.server.jpf.JPFInspector,
-   * gov.nasa.jpf.inspector.server.expression.InspectorState)
-   */
   @Override
   public PSEMethod toHierarchy3(String name, int clientID) throws JPFInspectorException {
 

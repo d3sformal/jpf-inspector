@@ -563,6 +563,7 @@ public abstract class StateValue extends StateNode implements StateReadableValue
   public static PSEVariable createPSEVariable (StateReadableValueInterface srvi, String name,
                                                int clientID, String varName, int index, String definedIn)
       throws JPFInspectorException {
+
     assert (srvi != null);
 
     ClassInfo ci = srvi.getClassInfo();
@@ -599,8 +600,7 @@ public abstract class StateValue extends StateNode implements StateReadableValue
       }
       return new PSEVariableArray(name, clientID, srvi, varName, varTypeName, varValue, false, definedIn, index, arrayLen, refArrayItems);
     } // End of array
-
-    { // Object
+    else { // Object
       final int fields = ci.getNumberOfInstanceFields();
       final int staticFields = ci.getNumberOfStaticFields();
       PSEVariable[] refFields = null;
@@ -612,7 +612,8 @@ public abstract class StateValue extends StateNode implements StateReadableValue
           refFields = new PSEVariable[fields];
 
           for (int i = 0; i < ci.getNumberOfInstanceFields(); i++) {
-            StateValueElementInfoField svae = StateValueElementInfoField.createFieldFromIndex(srvi, i, referenceDepth - 1);
+            StateValueElementInfoField svae = StateValueElementInfoField.createFieldFromIndex(srvi, i,
+                                                                                              referenceDepth - 1);
             refFields[i] = svae.toHierarchy3(name, clientID);
           }
         } else {
@@ -621,12 +622,15 @@ public abstract class StateValue extends StateNode implements StateReadableValue
         // Create static fields
         refStaticFields = new PSEVariable[staticFields];
         for (int i = 0; i < staticFields; i++) {
-          StateValueElementInfoField svae = StateValueElementInfoField.createStaticFieldFromIndex(srvi, i, referenceDepth - 1);
+          StateValueElementInfoField svae = StateValueElementInfoField.createStaticFieldFromIndex(srvi, i,
+                                                                                                  referenceDepth - 1);
           refStaticFields[i] = svae.toHierarchy3(name, clientID);
         }
       }
 
-      return new PSEVariableObject(clientID, srvi, varName, varTypeName, varValue, false, definedIn, index, refFields, refStaticFields);
+      return new PSEVariableObject(clientID, srvi, varName, varTypeName, varValue,
+                                   false, definedIn, index, refFields,
+                                   refStaticFields);
     }
   }
 

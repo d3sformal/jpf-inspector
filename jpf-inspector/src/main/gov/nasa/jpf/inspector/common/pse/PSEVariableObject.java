@@ -69,7 +69,7 @@ public class PSEVariableObject extends PSEVariable {
       assert (pse instanceof PSEVariableObject);
       PSEVariableObject myCopy = (PSEVariableObject) pse;
 
-      assert (myCopy.referencesCreated == true);
+      assert (myCopy.referencesCreated == true) : "References not created from \"" + getStateExpr() + "\"" ;
 
       this.refFields = myCopy.refFields;
       this.refStaticFields = myCopy.refStaticFields;
