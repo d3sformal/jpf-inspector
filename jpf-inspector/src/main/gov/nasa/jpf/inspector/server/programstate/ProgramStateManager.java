@@ -144,7 +144,6 @@ public class ProgramStateManager implements ProgramStateInterface {
     return vm;
   }
 
-  /* @see gov.nasa.jpf.inspector.interfaces.ProgramStateInterface#setValue(java.lang.String) */
   @Override
   public void setValue (String expr) throws JPFInspectorException {
     // Create a parse tree
@@ -152,24 +151,10 @@ public class ProgramStateManager implements ProgramStateInterface {
     setValueInternal(parsedExpr);
   }
 
-  /* @see gov.nasa.jpf.inspector.interfaces.ProgramStateInterface#setValue(java.lang.String, java.lang.String) */
-  @Override
-  public void setValue (String lValue, String rValue) throws JPFInspectorException {
-
-    ExpressionStateRootNode lValueExpr = parser.getExpressionStateInterface(lValue);
-
-    ExpressionStateRootNode rValueExpr = parser.getExpressionStateInterface(rValue);
-
-    ExpressionStateAssignment parsedExpr = parser.getExpressionFactory().getStateAssignment(lValueExpr, rValueExpr);
-
-    setValueInternal(parsedExpr);
-  }
-
   /**
-   * Executes the assignment
+   * Executes the assignment. Throws an exception if the assignment fails.
    * 
    * @param esa Parsed representation of the assignment statement
-   * @throws JPFInspectorException
    */
   private void setValueInternal (ExpressionStateAssignment esa) throws JPFInspectorException {
     stopHolder.waitUntilStopped();
@@ -177,7 +162,6 @@ public class ProgramStateManager implements ProgramStateInterface {
     assert (esa != null);
 
     StateReadableValueInterface rVal = esa.getRValue(inspector, stopHolder.getInspectorState());
-
     StateValue lVal = esa.getLValue(inspector, stopHolder.getInspectorState());
 
     lVal.assignValue(rVal);

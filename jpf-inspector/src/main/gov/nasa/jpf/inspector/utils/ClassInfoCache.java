@@ -138,7 +138,7 @@ public class ClassInfoCache {
   }
 
   /**
-   * @return Gets true if cache is valid(holds proper instances of ClassInfos) for given instance of JVM.
+   * @return Gets true if cache is valid (holds proper instances of ClassInfos) for given instance of JVM.
    */
   public boolean cacheValid (VM vm) {
     return vm == this.vm;

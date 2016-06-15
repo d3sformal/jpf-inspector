@@ -122,6 +122,8 @@ clientCommands1 returns [ClientCommand value]
     | TOKEN_CONTINUE         WS? { $value = new CmdRun(CmdRunTypes.RUN, "continue"); }
     | TOKEN_BREAK            WS? { $value = new CmdRun(CmdRunTypes.STOP, "break"); }
     | TOKEN_QUIT             WS? { $value = new CmdQuit(); }
+    | left=clientCommands1 WS? SIGN_AMPERSAND_AMPERSAND WS? right=clientCommands1 WS?
+     { $value = new CmdThen($left.value, $right.value); }
     | cmdBreakpoints         WS? { $value = $cmdBreakpoints.value; }
     | cmdSingleSteps         WS? { $value = $cmdSingleSteps.value; }
     | cmdProgramState        WS? { $value = $cmdProgramState.value; }
@@ -129,8 +131,14 @@ clientCommands1 returns [ClientCommand value]
     | cmdRecord              WS? { $value = $cmdRecord.value; }
     | cmdAssertions          WS? { $value = $cmdAssertions.value; }
     | cmdInformational       WS? { $value = $cmdInformational.value; }
+    | cmdCustom              WS? { $value = $cmdCustom.value; }
     ;
- 
+
+cmdCustom returns [ClientCommand value]
+  : name=IDF { $value = new CmdCustomCommand($name.text, ""); }
+  | name=IDF WS arguments=allText { $value = new CmdCustomCommand($name.text, $arguments.text); }
+  ;
+
 cmdBreakpoints returns [ClientCommand value]
     : TOKEN_SHOW   WS? TOKEN_BREAKPOINT             { $value = new CmdBreakpointShow(); }
     | TOKEN_DELETE WS? TOKEN_BREAKPOINT WS? INT     { $value = new CmdBreakpointDelete($INT.text); }
@@ -393,6 +401,7 @@ TOKEN_QUIT : 'quit' | 'exit';
 // End of keywords.
 
 
+SIGN_AMPERSAND_AMPERSAND : '&&';
 SIGN_EQUAL : '=' ;
 SIGN_DOLLAR : '$' ;
 SIGN_DOT : '.' ;

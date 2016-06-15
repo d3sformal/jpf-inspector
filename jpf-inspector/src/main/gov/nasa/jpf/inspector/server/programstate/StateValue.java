@@ -44,13 +44,15 @@ import gov.nasa.jpf.vm.Types;
 import java.util.Arrays;
 
 /**
- * @author Alf
- * 
+ * Represents a hierarchy-2 l-value, i.e. it is a value (and not a thread, heap entry list or a stack frame), and it
+ * is assignable (i.e. it is not a constant).
  */
 public abstract class StateValue extends StateNode implements StateReadableValueInterface {
-
   private static ClassInfoCache ciCache;
 
+  /**
+   * The Java type of this value.
+   */
   protected final ClassInfo ci;
 
   protected StateValue (StateNodeInterface sni, int referenceDepth, ClassInfo ci, String stateExpression) {
@@ -86,19 +88,16 @@ public abstract class StateValue extends StateNode implements StateReadableValue
     }
   }
 
-  /* @see gov.nasa.jpf.inspector.server.programstate.StateReadableValueInterface#getClassInfo() */
   @Override
   public ClassInfo getClassInfo () {
     return ci;
   }
 
-  /* @see gov.nasa.jpf.inspector.server.programstate.StateReadableValueInterface#isReference() */
   @Override
   public boolean isReference () {
     return !ci.isPrimitive(); // All other types (arrays, objects) are stored on the heap
   }
 
-  /* @see gov.nasa.jpf.inspector.server.programstate.StateReadableValueInterface#getReferenceValue() */
   public ElementInfo getReferenceValueImpl (int ref) {
     if (isReference() == false) {
       return null;
@@ -118,9 +117,8 @@ public abstract class StateValue extends StateNode implements StateReadableValue
   // *************************************************************************
 
   /**
-   * Assigns new value to represented entry.
-   * 
-   * @param valueToAssign New value which should be assigned. Cannot be null.
+   * Assigns a new value to the entry represented by this instance.
+   * @param valueToAssign New value which should be assigned to this instance. Cannot be null.
    */
   public void assignValue (StateReadableValueInterface valueToAssign) throws JPFInspectorException {
 
@@ -185,7 +183,6 @@ public abstract class StateValue extends StateNode implements StateReadableValue
     }
 
     // Process integer values (dynamic type overcasting long->byte, ...)
-
     if (ciCache.ci_byte.equals(ci) || ciCache.ci_short.equals(ci) || ciCache.ci_int.equals(ci) || ciCache.ci_long.equals(ci)) {
 
       Long newVal = null;

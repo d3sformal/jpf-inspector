@@ -1,10 +1,12 @@
 package gov.nasa.jpf.inspector.utils;
 
 import gov.nasa.jpf.Config;
+import gov.nasa.jpf.inspector.interfaces.CustomCommand;
 import gov.nasa.jpf.inspector.interfaces.CustomHitCondition;
 import gov.nasa.jpf.inspector.server.breakpoints.InternalBreakpointHolder;
 import gov.nasa.jpf.shell.ShellManager;
 
+import java.text.MessageFormat;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
@@ -21,6 +23,8 @@ public final class InspectorConfiguration {
   private static Logger logger = Debugging.getLogger();
   private static InspectorConfiguration instance;
   private Map<String, Class<? extends CustomHitCondition>> customHitConditions;
+  private Map<String, CustomCommand> customCommands;
+  private Map<String, CommandAlias> aliases;
   private Config config;
 
   private InspectorConfiguration(Config config) {
@@ -35,18 +39,30 @@ public final class InspectorConfiguration {
       ignoredClasses[i] = "^" + ignoredClasses[i];
     }
 
-    // Load custom hit conditions
+    loadCustomHitConditions(config);
+
+    loadCustomCommands(config);
+
+    loadAliases(config);
+  }
+
+  private void loadAliases(Config config) {
+    aliases = new HashMap<>();
+    String[] aliasKeys = config.getKeysStartingWith("jpf-inspector.alias.");
+    for (String key : aliasKeys) {
+      String alias = key.substring("jpf-inspector.alias.".length()).trim();
+      String value = config.getString(key);
+      CommandAlias commandAlias = new CommandAlias(alias, value, 0); // TODO arguments
+      aliases.put(alias, commandAlias);
+    }
+  }
+
+  private void loadCustomHitConditions(Config config) {
     customHitConditions = new HashMap<>();
     Class<?>[] customHitConditionClasses = config.getClasses("jpf-inspector.custom_hit_conditions");
     for(Class<?> customClass : customHitConditionClasses) {
-      Object exampleInstance;
-      try {
-        exampleInstance = customClass.newInstance();
-      } catch (InstantiationException e) {
-        logger.warning("Class '" + customClass.getName() + "' cannot be instantiated because of the InstantiationException: " + e.toString() + ". It won't be usable in the Inspector.");
-        continue;
-      } catch (IllegalAccessException e) {
-        logger.warning("Class '" + customClass.getName() + "' cannot be instantiated because of the IllegalAccessException: " + e.toString()+ ". It won't be usable in the Inspector.");
+      Object exampleInstance = instantiateClass(customClass);
+      if (exampleInstance == null) {
         continue;
       }
       if (!(exampleInstance instanceof CustomHitCondition)) {
@@ -57,6 +73,39 @@ public final class InspectorConfiguration {
       String name = customHitCondition.getName();
       customHitConditions.put(name, customHitCondition.getClass());
     }
+  }
+
+  private void loadCustomCommands(Config config) {
+    customCommands = new HashMap<>();
+    Class<?>[] customCommandClasses = config.getClasses("jpf-inspector.custom_commands");
+    for(Class<?> customClass : customCommandClasses) {
+      Object exampleInstance = instantiateClass(customClass);
+      if (exampleInstance == null) {
+        continue;
+      }
+      if (!(exampleInstance instanceof CustomCommand)) {
+        logger.warning("Class '" + customClass.getName() + "' does not implement the CustomCommand interface. It won't be usable in the Inspector.");
+        continue;
+      }
+      CustomCommand customCommand = (CustomCommand) exampleInstance;
+      for (String name : customCommand.getNames()) {
+        customCommands.put(name, customCommand);
+      }
+    }
+  }
+
+  private Object instantiateClass(Class<?> classToInstantiate) {
+    Object instance;
+    try {
+      instance = classToInstantiate.newInstance();
+    } catch (InstantiationException e) {
+      logger.warning("Class '" + classToInstantiate.getName() + "' cannot be instantiated because of the InstantiationException: " + e.toString() + ". It won't be usable in the Inspector.");
+      return null;
+    } catch (IllegalAccessException e) {
+      logger.warning("Class '" + classToInstantiate.getName() + "' cannot be instantiated because of the IllegalAccessException: " + e.toString()+ ". It won't be usable in the Inspector.");
+      return null;
+    }
+    return instance;
   }
 
   /**

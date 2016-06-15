@@ -32,6 +32,9 @@ import gov.nasa.jpf.vm.*;
 /**
  * Contains information about a stack slot using the {@link StackFrame}, the index, the {@link LocalVarInfo}
  * and the {@link ClassInfo} of the variable's type.
+ *
+ * Even when the user asks for a local variable or parameter by name, it is converted here to a stack slot index
+ * and represented as this class in the second hierarchy.
  */
 public class StateValueStackSlot extends StateValue {
   public static final boolean DEBUG = false;

@@ -30,8 +30,8 @@ import gov.nasa.jpf.inspector.server.programstate.StateReadableValueInterface;
 import gov.nasa.jpf.inspector.server.programstate.StateValue;
 
 /**
- * @author Alf
- * 
+ * Represents the "lvalue = rvalue" expression that is used as the argument to the command "set".
+ * Maintains the <i>lvalue</i> and the <i>rvalue</i> as hierarchy-1 expressions.
  */
 public class ExpressionStateAssignment {
 
@@ -39,16 +39,16 @@ public class ExpressionStateAssignment {
   private final ExpressionStateRootNode rVal;
 
   public ExpressionStateAssignment (ExpressionStateRootNode lVal, ExpressionStateRootNode rVal) {
-    super();
     this.lVal = lVal;
     this.rVal = rVal;
   }
 
   /**
-   * 
-   * @return Gets runtime representation of the value to be assigned
+   * @return Gets runtime representation of the new value.
    */
-  public StateReadableValueInterface getRValue (JPFInspector inspector, InspectorState state) throws JPFInspectorException {
+  public StateReadableValueInterface getRValue (JPFInspector inspector, InspectorState state)
+          throws JPFInspectorException {
+
     StateNodeInterface sni = rVal.getResultExpression(inspector, state);
     assert (sni != null);
 
@@ -59,8 +59,8 @@ public class ExpressionStateAssignment {
   }
 
   /**
-   * @return Gets runtime representation of the position where the value should be assigned
-   * @throws Exception if stored expression cannot be assigned
+   * @return Gets runtime representation of the position where the value should be assigned.
+   * @throws JPFInspectorException If the expression is not an l-value.
    */
   public StateValue getLValue (JPFInspector inspector, InspectorState state) throws JPFInspectorException {
     StateNodeInterface sni = lVal.getResultExpression(inspector, state);

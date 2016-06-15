@@ -27,11 +27,12 @@ import gov.nasa.jpf.inspector.common.pse.PSEThread;
 import java.util.Map;
 
 /**
- * Is intended for inspection of state of the SuT.
+ * This interface is part of the server's contract to the client. It contains methods used by commands that read
+ * and manipulate the program state of the system under test.
+ *
+ * Stateless (all important information is always provided by the client).
  * 
- * Stateless (all important information always provides client)
- * 
- * - there will be 3 views - threads+stack, heap, variables
+ * There will be 3 views - threads+stack, heap, variables.
  */
 public interface ProgramStateInterface {
 
@@ -41,7 +42,7 @@ public interface ProgramStateInterface {
    * @param threadNum The thread we select. Or all thread if null.
    * @throws JPFInspectorGenericErrorException
    */
-  public Map<Integer, PSEThread> getThreads (Integer threadNum) throws JPFInspectorException;
+  Map<Integer, PSEThread> getThreads(Integer threadNum) throws JPFInspectorException;
 
   /**
    * Gets selected/all threads and their PC.
@@ -49,7 +50,7 @@ public interface ProgramStateInterface {
    * @param threadNum The thread we select. Or all thread if null.
    * @throws JPFInspectorGenericErrorException
    */
-  public Map<Integer, InstructionPosition> getThreadsPC (Integer threadNum) throws JPFInspectorException;
+  Map<Integer, InstructionPosition> getThreadsPC(Integer threadNum) throws JPFInspectorException;
 
   /**
    * Evaluates given expression and gets final representation (thread/method/variable) value
@@ -58,24 +59,13 @@ public interface ProgramStateInterface {
    * @return Representation of requested program state
    * @throws JPFInspectorGenericErrorException
    */
-  public ProgramStateEntry evaluateStateExpression (String expr) throws JPFInspectorException;
+  ProgramStateEntry evaluateStateExpression(String expr) throws JPFInspectorException;
 
   /**
-   * Sets value of the variable. If setting is not successful throws exception.
+   * Changes the value of a variable or a field.
    * 
-   * @param expr String with expression in the following form "lvalue state expression = rvalue state expression"
-   * @throws JPFInspectorException
+   * @param expr String with an expression in the following form "lvalue-state-expression = rvalue-state-expression"
+   * @throws JPFInspectorException If it fails to change the value.
    */
-  public void setValue (String expr) throws JPFInspectorException;
-
-  /**
-   * Sets value of the variable. If setting is not successful throws exception.
-   * 
-   * @param lValue String with state expression (as can used in {@link #evaluateStateExpression(String)} which represents value of variable (not a constant, a
-   *        stack frame, etc.)
-   * @param rValue String with state expression (as can used in {@link #evaluateStateExpression(String)} which represents value of the "same"/assignable type
-   *        lValue.
-   * @throws JPFInspectorException
-   */
-  public void setValue (String lValue, String rValue) throws JPFInspectorException;
+  void setValue(String expr) throws JPFInspectorException;
 }

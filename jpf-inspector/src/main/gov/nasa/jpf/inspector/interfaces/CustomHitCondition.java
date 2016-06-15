@@ -4,8 +4,8 @@ import gov.nasa.jpf.inspector.server.expression.InspectorState;
 
 /**
  * Implement this interface to create a custom hit condition that you can use with JPF Inspector.
- * See the wiki page "Custom Hit Conditions" for documentation on how to use this class, or see the example
- * "OnLineHitCondition" for an example implementation.
+ * See the wiki page "Custom Hit Conditions" for documentation on how to use this interface, or see the example
+ * "extensibility.OnLineHitCondition" for an example implementation.
  *
  * Remember that a class that implements {@link CustomHitCondition} must also have a parameterless constructor.
  */

@@ -40,9 +40,11 @@ public class StateReadableConstValue extends StateNode implements StateReadableV
 
   public <T> StateReadableConstValue (JPFInspector inspector, int referenceDepth, ClassInfo constType, T wrappedConstV) {
     super(inspector, referenceDepth);
-
-    setStateExpr("!ERROR - Constants cannot be loaded lazily!");
-
+    if (wrappedConstV == null) {
+      setStateExpr("null");
+    } else {
+      setStateExpr("!ERROR - Constants cannot be loaded lazily!");
+    }
     represendedConstValue = wrappedConstV;
     type = constType;
 

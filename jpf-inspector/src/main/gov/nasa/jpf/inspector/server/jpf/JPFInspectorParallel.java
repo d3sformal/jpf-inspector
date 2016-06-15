@@ -132,10 +132,4 @@ public class JPFInspectorParallel extends JPFInspector {
   public void setValue (String expr) throws JPFInspectorException {
     stateMgr.setValue(expr);
   }
-
-  @Override
-  public void setValue (String lValue, String rValue) throws JPFInspectorException {
-    stateMgr.setValue(lValue, rValue);
-  }
-
 }
