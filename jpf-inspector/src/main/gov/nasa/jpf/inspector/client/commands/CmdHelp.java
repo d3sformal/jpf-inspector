@@ -2,14 +2,16 @@ package gov.nasa.jpf.inspector.client.commands;
 
 import gov.nasa.jpf.inspector.client.ClientCommand;
 import gov.nasa.jpf.inspector.client.JPFInspectorClient;
-import gov.nasa.jpf.inspector.common.AntlrParseException;
 import gov.nasa.jpf.inspector.interfaces.CustomCommand;
 import gov.nasa.jpf.inspector.interfaces.JPFInspectorBackEndInterface;
 import gov.nasa.jpf.inspector.utils.CommandAlias;
 import gov.nasa.jpf.inspector.utils.InspectorConfiguration;
 
 import java.io.PrintStream;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Represents the "help" command that prints available commands.
@@ -73,7 +75,19 @@ public class CmdHelp extends ClientCommand {
 
     ArrayList<CommandHelpInfo> aliases = new ArrayList<>();
     for(CommandAlias alias : InspectorConfiguration.getInstance().getAliases()) {
-      aliases.add(new CommandHelpInfo(alias.getKey(), null, alias.getValue())); // TODO add argument count info
+      String aliasLeftPart = alias.getKey().trim();
+      String aliasRightPart = alias.getValue().trim();
+      for (int i = 0; i < alias.getNumberOfRequiredParameters(); i++) {
+        aliasLeftPart += " [arg" + i + "]";
+      }
+      for (int i = 0; i < alias.getNumberOfRequiredParameters(); i++) {
+        aliasRightPart = aliasRightPart.replace("{" + i + "}", "[arg" + i + "]");
+      }
+      if (alias.getNumberOfRequiredParameters() == 0 && alias.usesFullArgumentLine()) {
+        aliasLeftPart += " [argument]";
+        aliasRightPart = aliasRightPart.replace(CommandAlias.FULL_ARGUMENT_PATTERN, "[argument]");
+      }
+      aliases.add(new CommandHelpInfo(aliasLeftPart, null, aliasRightPart));
     }
     categories.put("Aliases", aliases);
 
@@ -81,7 +95,6 @@ public class CmdHelp extends ClientCommand {
     for (Map.Entry<String, CustomCommand> entry : InspectorConfiguration.getInstance().getCustomCommands()) {
       customCommands.add(new CommandHelpInfo(entry.getKey(), null, entry.getValue().getHelpText()));
     }
-
     categories.put("Custom commands", customCommands);
 
 

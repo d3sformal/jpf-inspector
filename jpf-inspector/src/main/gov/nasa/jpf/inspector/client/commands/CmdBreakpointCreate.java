@@ -36,8 +36,6 @@ import java.io.PrintStream;
  */
 public class CmdBreakpointCreate extends ClientCommand {
 
-  // TODO (elsewhere): The grammar for this command is kinda fishy. Test if it's really okay.
-
   private final ConsoleBreakpointCreationExpression creationExpression;
   private BreakpointStatus createdBP;
 
@@ -87,9 +85,6 @@ public class CmdBreakpointCreate extends ClientCommand {
 
     private Integer lowerBound = null;
     private Integer upperBound = null;
-
-    public ConsoleBreakpointCreationExpression() {
-    }
 
     @Override
     public int getBPID () {
@@ -213,7 +208,6 @@ public class CmdBreakpointCreate extends ClientCommand {
       if (upperBound != null && !upperBound.equals(BreakPointCreationInformation.DEFAULT_UPPER_BOUND)) {
         if (hc_printed == false) {
           sb.append(" hit_count");
-          hc_printed = true;
         }
         sb.append("<=");
         sb.append(upperBound);

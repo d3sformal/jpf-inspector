@@ -142,7 +142,8 @@ cmdCustom returns [ClientCommand value]
 cmdBreakpoints returns [ClientCommand value]
     : TOKEN_SHOW   WS? TOKEN_BREAKPOINT             { $value = new CmdBreakpointShow(); }
     | TOKEN_DELETE WS? TOKEN_BREAKPOINT WS? INT     { $value = new CmdBreakpointDelete($INT.text); }
-    | TOKEN_CREATE WS? TOKEN_BREAKPOINT             { ConsoleBreakpointCreationExpression  bpCreate = new ConsoleBreakpointCreationExpression(); } ( WS? cmdCreateBP[bpCreate])* WS bpExpression { bpCreate.setBPExpression($bpExpression.expr); $value = new CmdBreakpointCreate(bpCreate); }
+    | TOKEN_CREATE WS? TOKEN_BREAKPOINT
+    { ConsoleBreakpointCreationExpression  bpCreate = new ConsoleBreakpointCreationExpression(); } ( WS? cmdCreateBP[bpCreate])* WS bpExpression { bpCreate.setBPExpression($bpExpression.expr); $value = new CmdBreakpointCreate(bpCreate); }
     ;
 
 cmdCreateBP [ConsoleBreakpointCreationExpression bpCreate]

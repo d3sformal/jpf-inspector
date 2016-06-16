@@ -52,7 +52,7 @@ public final class InspectorConfiguration {
     for (String key : aliasKeys) {
       String alias = key.substring("jpf-inspector.alias.".length()).trim();
       String value = config.getString(key);
-      CommandAlias commandAlias = new CommandAlias(alias, value, 0); // TODO arguments
+      CommandAlias commandAlias = new CommandAlias(alias, value);
       aliases.put(alias, commandAlias);
     }
   }
