@@ -36,10 +36,10 @@ public class PSEVariableObject extends PSEVariable {
 
   // refThis == null ... static or no references are created
   // refFields == null ... no references are created (if class does not contain field any field, empty array should by set)
-  public PSEVariableObject(int clientID, StateNodeInterface sni, String varName,
+  public PSEVariableObject(StateNodeInterface sni, String varName,
                            String varTypeName, String varValue, boolean isStatic,
                            String definedIn, int index, PSEVariable[] refFields, PSEVariable[] refStaticFields) {
-    super(clientID, sni, varName, varTypeName, varValue, isStatic, definedIn, index);
+    super(sni, varName, varTypeName, varValue, isStatic, definedIn, index);
 
     this.referencesCreated = refFields != null;
     this.refFields = refFields;

@@ -50,10 +50,10 @@ public abstract class PSEVariable extends ProgramStateEntry {
 
   private final int index;
 
-  protected PSEVariable(int clientID, StateNodeInterface sni,
+  protected PSEVariable(StateNodeInterface sni,
                         String varName, String varTypeName, String varValue, boolean isStatic,
                         String definedIn, int index) {
-    super(clientID, sni);
+    super(sni);
 
     this.varName = varName;
     this.varValue = varValue;
@@ -111,4 +111,10 @@ public abstract class PSEVariable extends ProgramStateEntry {
     return index;
   }
 
+  /**
+   * Gets the name of the class this variable was defined in, if any.
+   */
+  public String getDefinedIn() {
+    return definedIn;
+  }
 }

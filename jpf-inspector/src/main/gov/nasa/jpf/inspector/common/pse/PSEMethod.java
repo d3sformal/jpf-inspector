@@ -41,13 +41,14 @@ public class PSEMethod extends ProgramStateEntry {
   private final InstructionWrapper inst; // Represents the call instruction
 
   private boolean referencesCreated;
+
   // Note: Parameter names are stored in the MethodInfo (in class files)
   private PSEVariable[] refLocals;
   private final PSEVariableObject refThis;
 
-  public PSEMethod(int clientID, StateNode sn, InstructionWrapper inst,
+  public PSEMethod(StateNode sn, InstructionWrapper inst,
                    PSEVariable[] refLocals, PSEVariableObject refThis) {
-    super(clientID, sn);
+    super(sn);
 
     this.inst = inst;
     this.referencesCreated = refLocals != null;

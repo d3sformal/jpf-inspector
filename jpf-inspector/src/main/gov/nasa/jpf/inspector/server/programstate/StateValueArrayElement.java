@@ -35,15 +35,23 @@ import gov.nasa.jpf.vm.Fields;
 import gov.nasa.jpf.vm.Heap;
 
 /**
- * @author Alf
- * 
+ * Represents an element of an array in the second hierarchy.
  */
 public class StateValueArrayElement extends StateValue {
 
-  protected final int index; // Index of the represented element in the array
-  private final ElementInfo ei; // Representation of the array
+  /**
+   * Index of the represented element in the array
+   */
+  protected final int index;
+  /**
+   * Representation of the array
+   */
+  private final ElementInfo ei;
 
-  private final ClassInfo arrayCi; // ClassInfo of the whole array (not the array entry)
+  /**
+   * ClassInfo of the whole array (not the array entry)
+   */
+  private final ClassInfo arrayCi;
 
   public static StateValueArrayElement createArrayElement (StateReadableValueInterface srvi, int elementIndex, int referenceDepth) throws JPFInspectorException {
     assert (srvi != null);
@@ -134,11 +142,11 @@ public class StateValueArrayElement extends StateValue {
 
   /* @see gov.nasa.jpf.inspector.server.programstate.StateNode#getResultExpression(java.lang.String, int) */
   @Override
-  public PSEVariable toHierarchy3(String name, int clientID) throws JPFInspectorException {
+  public PSEVariable toHierarchy3() throws JPFInspectorException {
     final String varName = "[" + index + "]";
     final String definedIn = StateValue.getSimpleName(arrayCi);
 
-    return StateValue.createPSEVariable(this, name, clientID, varName, index, definedIn);
+    return StateValue.createPSEVariable(this, varName, index, definedIn);
   }
 
   /* @see gov.nasa.jpf.inspector.server.programstate.StateReadableValueInterface#createSuper() */

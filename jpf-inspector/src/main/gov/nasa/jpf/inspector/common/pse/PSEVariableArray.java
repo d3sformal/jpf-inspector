@@ -38,9 +38,9 @@ public class PSEVariableArray extends PSEVariable {
   /**
    * Creates full representation of the array with references to array entries
    */
-  public PSEVariableArray (String name, int clientID, StateNodeInterface sni, String varName, String varTypeName, String varValue, boolean isStatic,
-      String definedIn, int index, int len, PSEVariable[] refArrayItems) {
-    super(clientID, sni, varName, varTypeName, varValue, isStatic, definedIn, index);
+  public PSEVariableArray(StateNodeInterface sni, String varName, String varTypeName, String varValue, boolean isStatic,
+                          String definedIn, int index, int len, PSEVariable[] refArrayItems) {
+    super(sni, varName, varTypeName, varValue, isStatic, definedIn, index);
 
     this.referencesCreated = true;
 

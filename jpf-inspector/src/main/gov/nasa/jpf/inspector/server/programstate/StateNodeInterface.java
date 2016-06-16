@@ -28,10 +28,16 @@ import gov.nasa.jpf.inspector.server.jpf.JPFInspector;
  */
 public interface StateNodeInterface {
 
+  /**
+   * Gets the Inspector server.
+   */
   JPFInspector getInspector();
 
   int getReferenceDepth();
 
+  /**
+   * Returns an expression that, if evaluated at in the same program state, would result in an equal {@link ProgramStateEntry}.
+   */
   String getStateExpr();
 
   /**
@@ -41,9 +47,6 @@ public interface StateNodeInterface {
    * The name "toHierarchy3" is temporary (I promise). Previously, this method was called "getResultExpression" which
    * was confusing because the method that transformed Expression classes (hierarchy 1) to state expressions (hierarchy 2)
    * was also called "getResultExpression".
-   *
-   * @param name TODO how does this work? does it even have any meaning?
-   * @param clientID This is always zero, I think. I don't know what it means.
    */
-  ProgramStateEntry toHierarchy3(String name, int clientID) throws JPFInspectorException;
+  ProgramStateEntry toHierarchy3() throws JPFInspectorException;
 }

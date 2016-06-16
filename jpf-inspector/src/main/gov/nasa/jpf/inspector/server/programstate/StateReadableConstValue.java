@@ -119,8 +119,8 @@ public class StateReadableConstValue extends StateNode implements StateReadableV
   }
 
   @Override
-  public ProgramStateEntry toHierarchy3(String name, int clientID) throws JPFInspectorException {
-    return StateValue.createPSEVariable(this, name, clientID, "user constant", 0, "");
+  public ProgramStateEntry toHierarchy3() throws JPFInspectorException {
+    return StateValue.createPSEVariable(this, "user constant", 0, "");
   }
 
 }

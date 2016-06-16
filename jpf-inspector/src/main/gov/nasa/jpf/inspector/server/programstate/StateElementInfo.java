@@ -124,11 +124,11 @@ public class StateElementInfo extends StateNode implements StateReadableValueInt
   }
 
   @Override
-  public PSEVariable toHierarchy3(String name, int clientID) throws JPFInspectorException {
+  public PSEVariable toHierarchy3() throws JPFInspectorException {
     final String varName = getStateExpr();
     final String definedIn = getStateExpr();
 
-    return StateValue.createPSEVariable(this, name, clientID, varName, ei.getObjectRef(), definedIn);
+    return StateValue.createPSEVariable(this, varName, ei.getObjectRef(), definedIn);
   }
 
   @Override

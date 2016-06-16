@@ -39,7 +39,7 @@ public class PSEHeapEntryList extends ProgramStateEntry {
   private final List<PSEVariable> heapEntryList;
 
   public PSEHeapEntryList (StateNode sn, List<PSEVariable> heapEntryList) {
-    super(0, sn);
+    super(sn);
 
     assert (heapEntryList != null);
 
@@ -47,13 +47,12 @@ public class PSEHeapEntryList extends ProgramStateEntry {
   }
 
   /**
-   * Gts unmodifiable list with representation of filtered (by class name) heap entries.
+   * Gets the unmodifiable list with representation of filtered (by class name) heap entries.
    */
   public List<PSEVariable> getHeapList () {
     return heapEntryList;
   }
 
-  /* @see gov.nasa.jpf.inspector.server.programstate.ProgramStateEntry#visit(gov.nasa.jpf.inspector.server.programstate.client.PSEVisitor) */
   @Override
   public <T> T visit (PSEVisitor<T> visitor) throws JPFInspectorException {
     return visitor.visitPSEHeapEntryList(this);

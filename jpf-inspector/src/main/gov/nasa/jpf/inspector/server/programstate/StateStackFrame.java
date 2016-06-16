@@ -71,7 +71,7 @@ public class StateStackFrame extends StateNode {
   }
 
   @Override
-  public PSEMethod toHierarchy3(String name, int clientID) throws JPFInspectorException {
+  public PSEMethod toHierarchy3() throws JPFInspectorException {
 
     Instruction inst = sf.getPC();
     InstructionWrapper instw = ChoiceGeneratorsManager.createInstructionWrapper(inst);
@@ -83,7 +83,7 @@ public class StateStackFrame extends StateNode {
       if (mi.isStatic() == false) {
         try {
           StateValueStackSlot svss = StateValueStackSlot.createHiddenThisSlotValue(this);
-          PSEVariable refThisGeneric = svss.toHierarchy3(name, clientID);
+          PSEVariable refThisGeneric = svss.toHierarchy3();
 
           // can return also PSEVariablePrimitive ...
           // in case that there is no type information for the the fields (or the this field)
@@ -102,11 +102,11 @@ public class StateStackFrame extends StateNode {
       refLocals = new PSEVariable[stackSlots];
       for (int i = 0; i < stackSlots; i++) {
         StateValueStackSlot svss = StateValueStackSlot.createSlotFromIndex(this, i, getReferenceDepth() - 1);
-        refLocals[i] = svss.toHierarchy3(name, clientID);
+        refLocals[i] = svss.toHierarchy3();
       }
     }
 
-    return new PSEMethod(clientID, this, instw, refLocals, refThis);
+    return new PSEMethod(this, instw, refLocals, refThis);
   }
 
   /**

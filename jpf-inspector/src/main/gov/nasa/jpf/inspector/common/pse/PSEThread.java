@@ -54,9 +54,9 @@ public class PSEThread extends ProgramStateEntry {
 
   private boolean referenceCreated;
 
-  public PSEThread(int clientID, StateNode sn, int threadNum, State state, String threadName,
+  public PSEThread(StateNode sn, int threadNum, State state, String threadName,
                    String threadTypeName, int priority, boolean isDaemon, PSEMethod[] refCallStack) {
-    super(clientID, sn);
+    super(sn);
 
     referenceCreated = refCallStack != null;
 

@@ -72,7 +72,7 @@ public class ProgramStateManager implements ProgramStateInterface {
     if (threadNum != null) {
       result = new HashMap<>(1);
       StateThreadInfo sti = new StateThreadInfo(inspector, vm, threadNum);
-      result.put(threadNum, sti.toHierarchy3("", 0));
+      result.put(threadNum, sti.toHierarchy3());
 
     } else {
       ThreadList tl = vm.getThreadList();
@@ -80,7 +80,7 @@ public class ProgramStateManager implements ProgramStateInterface {
 
       for (ThreadInfo ti : tl) {
         StateThreadInfo sti = new StateThreadInfo(inspector, vm, ti.getId());
-        result.put(ti.getId(), sti.toHierarchy3("", 0));
+        result.put(ti.getId(), sti.toHierarchy3());
       }
     }
 
@@ -133,7 +133,7 @@ public class ProgramStateManager implements ProgramStateInterface {
     StateNodeInterface sni = parsedExpr.getResultExpression(inspector, stopHolder.getInspectorState());
 
     // Create client representation of the state (hiearchy 3)
-    return sni.toHierarchy3("", 0);
+    return sni.toHierarchy3();
   }
 
   private VM getJVM () throws JPFInspectorGenericErrorException {

@@ -33,10 +33,10 @@ public class PSEVariablePrimitive extends PSEVariable {
 
   private final Serializable wrappedValue;
 
-  public PSEVariablePrimitive(int clientID, StateNodeInterface sni, String varName,
+  public PSEVariablePrimitive(StateNodeInterface sni, String varName,
                               String varTypeName, String varValue, boolean isStatic,
                               String definedIn, int index, Object wrappedValue) {
-    super(clientID, sni, varName, varTypeName, varValue, isStatic, definedIn, index);
+    super(sni, varName, varTypeName, varValue, isStatic, definedIn, index);
 
     checkPrimitiveType(wrappedValue);
     this.wrappedValue = (Serializable) wrappedValue;

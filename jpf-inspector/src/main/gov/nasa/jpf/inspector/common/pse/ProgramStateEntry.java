@@ -19,9 +19,8 @@
 
 package gov.nasa.jpf.inspector.common.pse;
 
-import gov.nasa.jpf.inspector.client.commands.CmdPrint;
-import gov.nasa.jpf.inspector.interfaces.JPFInspectorBackEndInterface;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorException;
+import gov.nasa.jpf.inspector.interfaces.JPFInspectorBackEndInterface;
 import gov.nasa.jpf.inspector.server.programstate.StateNodeInterface;
 
 import java.io.Serializable;
@@ -40,7 +39,6 @@ public abstract class ProgramStateEntry implements Serializable {
 
   private static final long serialVersionUID = 7537838000235914763L;
 
-  final private int clientID;
   /**
    * Inspector interface which can be used for lazy retrieval of referenced items.
    * Although, we should probably indicate which items are retrieved lazily.
@@ -48,10 +46,9 @@ public abstract class ProgramStateEntry implements Serializable {
   final private JPFInspectorBackEndInterface inspector;
   final private String stateExpr;
 
-  protected ProgramStateEntry(int clientID, StateNodeInterface sni) {
+  protected ProgramStateEntry(StateNodeInterface sni) {
     assert sni != null;
 
-    this.clientID = clientID;
     this.inspector = sni.getInspector();
     this.stateExpr = sni.getStateExpr();
 
@@ -59,13 +56,6 @@ public abstract class ProgramStateEntry implements Serializable {
     assert stateExpr != null;
   }
 
-
-  /**
-   * Returns the constant "0". I don't know why this exists.
-   */
-  public int getClientID () {
-    return clientID;
-  }
 
   /**
    * Returns the Inspector server.

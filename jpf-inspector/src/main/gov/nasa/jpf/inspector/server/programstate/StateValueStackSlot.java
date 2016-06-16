@@ -25,7 +25,6 @@ import gov.nasa.jpf.inspector.exceptions.JPFInspectorInvalidSlotIndexException;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorNoSuperClassException;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorNotInstanceException;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorNotSuperClassException;
-import gov.nasa.jpf.inspector.migration.MigrationUtilities;
 import gov.nasa.jpf.inspector.common.pse.PSEVariable;
 import gov.nasa.jpf.vm.*;
 
@@ -164,7 +163,7 @@ public class StateValueStackSlot extends StateValue {
   }
 
   @Override
-  public PSEVariable toHierarchy3(String name, int clientID) throws JPFInspectorException {
+  public PSEVariable toHierarchy3() throws JPFInspectorException {
     final MethodInfo mi = sf.getMethodInfo();
     assert (mi != null);
     final ClassInfo ciMethod = mi.getClassInfo(); // ClassInfo where the executed method is defined
@@ -172,7 +171,7 @@ public class StateValueStackSlot extends StateValue {
     final String varName = lvi.getName();
     final String definedIn = (ciMethod != null ? ciMethod.getSimpleName() + "." + mi.getName() : "[???]" + mi.getName());
 
-    return StateValue.createPSEVariable(this, name, clientID, varName, index, definedIn);
+    return StateValue.createPSEVariable(this, varName, index, definedIn);
   }
 
   @Override

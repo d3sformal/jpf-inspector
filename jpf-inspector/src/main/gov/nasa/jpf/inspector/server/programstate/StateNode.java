@@ -79,6 +79,6 @@ abstract public class StateNode implements StateNodeInterface {
   }
 
   @Override
-  abstract public ProgramStateEntry toHierarchy3(String name, int clientID) throws JPFInspectorException;
+  abstract public ProgramStateEntry toHierarchy3() throws JPFInspectorException;
 
 }

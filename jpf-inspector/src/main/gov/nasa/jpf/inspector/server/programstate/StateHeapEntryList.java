@@ -58,11 +58,11 @@ public class StateHeapEntryList extends StateNode {
   }
 
   @Override
-  public ProgramStateEntry toHierarchy3(String name, int clientID) throws JPFInspectorException {
+  public ProgramStateEntry toHierarchy3() throws JPFInspectorException {
 
     List<PSEVariable> heapEntryList = new ArrayList<>(heapEntries.size());
     for (StateElementInfo sei : heapEntries) {
-      heapEntryList.add(sei.toHierarchy3(name, clientID));
+      heapEntryList.add(sei.toHierarchy3());
     }
     return new PSEHeapEntryList(this, heapEntryList);
   }
