@@ -1,9 +1,10 @@
 package gov.nasa.jpf.inspector.server.pathanalysis;
 
-import gov.nasa.jpf.inspector.client.commands.CmdBreakpointCreate;
+import gov.nasa.jpf.inspector.common.BreakpointCreationExpression;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorGenericErrorException;
 import gov.nasa.jpf.inspector.interfaces.BreakpointState;
 import gov.nasa.jpf.inspector.interfaces.BreakpointStatus;
+import gov.nasa.jpf.inspector.interfaces.CommandsInterface;
 import gov.nasa.jpf.inspector.interfaces.InstructionPosition;
 import gov.nasa.jpf.inspector.server.breakpoints.BreakpointHandler;
 import gov.nasa.jpf.inspector.server.breakpoints.CommandsManager;
@@ -20,6 +21,8 @@ import gov.nasa.jpf.vm.Transition;
  * An instance of this class is created when a backwards-stepping command is executed. It creates a single breakpoint,
  * determines the number of transitions that must be backtracked, passes the number to the silent InspectorListener
  * and then leaves scope to be garbaged collected.
+ *
+ * All of this happens inside the {@link CommandsManager#backwardStep(CommandsInterface.StepType)} method.
  */
 public class BackwardBreakpointCreator {
 
@@ -53,8 +56,7 @@ public class BackwardBreakpointCreator {
    * @return Breakpoint ID of the created breakpoint.
    */
   public int createBreakpoint (BreakpointHandler breakpointMgr) throws JPFInspectorGenericErrorException {
-    // TODO Create inspector.server class copy ... don't use inspector.client package version !!
-    CmdBreakpointCreate.ConsoleBreakpointCreationExpression newBP = new CmdBreakpointCreate.ConsoleBreakpointCreationExpression();
+    BreakpointCreationExpression newBP = new BreakpointCreationExpression();
     newBP.setBounds(1, 1);
     newBP.setState(BreakpointState.BP_STATE_ENABLED);
 

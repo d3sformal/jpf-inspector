@@ -19,7 +19,7 @@
 
 package gov.nasa.jpf.inspector.server.breakpoints;
 
-import gov.nasa.jpf.inspector.client.commands.CmdBreakpointCreate;
+import gov.nasa.jpf.inspector.common.BreakpointCreationExpression;
 import gov.nasa.jpf.inspector.interfaces.BreakpointState;
 import gov.nasa.jpf.inspector.interfaces.CommandsInterface;
 import gov.nasa.jpf.inspector.interfaces.InspectorCallBacks;
@@ -125,6 +125,7 @@ public class CommandsManager implements CommandsInterface {
     // a) how much transitions it is required to backtrack
     // b) create breakpoint for specific position in transition (handle repetitive invocations??)
 
+    // Instantiate the creator and discover the instruction to backtrack to
     InspectorState inspState = stopHolder.getInspectorState();
     BackwardBreakpointCreator bbc;
     if (type == StepType.ST_TRANSITION_DATA) {
@@ -147,6 +148,8 @@ public class CommandsManager implements CommandsInterface {
     if (bbc == null) {
       throw new JPFInspectorGenericErrorException("Backwards step not possible.");
     }
+
+    // Create the breakpoint on that specific instruction
     int bpID = bbc.createBreakpoint(breakpointMgr);
 
     // Enable silent mode in JPF Listener
@@ -178,8 +181,15 @@ public class CommandsManager implements CommandsInterface {
     stopHolder.resumeExecution();
 
   /*
-   * Rest is done in the listenerSilentMode Receives silent backtrack notifications Updates default trace Restores CG to same choice as before Start forward
-   * execution In the this.notifyBackwardStep() Enable normal mode in JPF Listener
+   * I don't get what this means. It's probably the steps that happen, in order, in the silent mode:
+   *
+   * Rest is done in the listenerSilentMode
+   * Receives silent backtrack notifications
+   * Updates default trace
+   * Restores CG to same choice as before
+   * Start forward execution
+   * In the this.notifyBackwardStep()
+   * Enable normal mode in JPF Listener
    */
   }
 
@@ -187,8 +197,7 @@ public class CommandsManager implements CommandsInterface {
   public void forwardStep (StepType type) throws JPFInspectorGenericErrorException {
     initialStopTest(true, "cannot execute forward step");
 
-    // TODO Create inspector.server class copy ... don't use inspector.client package version !!
-    CmdBreakpointCreate.ConsoleBreakpointCreationExpression newBP = new CmdBreakpointCreate.ConsoleBreakpointCreationExpression();
+    BreakpointCreationExpression newBP = new BreakpointCreationExpression();
     newBP.setBounds(null, null, "<=", 1);
     newBP.setState(BreakpointState.BP_STATE_ENABLED);
 
