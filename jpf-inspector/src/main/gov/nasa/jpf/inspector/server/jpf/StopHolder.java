@@ -164,7 +164,10 @@ public class StopHolder {
 
 
     this.stopped = false;
-    notifyAll(); // TODO used to be: notify() only.]
+    notifyAll();
+    // This used to be notify() only. However, we are only using a small, constant number of threads,
+    // notify() always risks acting as notifyAll() anyway because of spurious wakeups, and the performance gains are minimal.
+    // Also, I don't fully understand it and don't want to debug multithreading right now, and it may work better with notifyAll.
   }
 
   private static String getLocationDetails(InspectorState inspState) {

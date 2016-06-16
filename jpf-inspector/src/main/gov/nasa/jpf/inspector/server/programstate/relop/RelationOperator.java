@@ -32,7 +32,8 @@ public interface RelationOperator {
   /**
    * Compares the two operands and returns the result.
    *
-   * TODO what does this mean: Does not comparing "<=" on references or reference with double.
+   * There was this note in the documentation which I do not understand:
+   *  "Does not comparing "<=" on references or reference with double."
    * 
    * @param left The left operand.
    * @param right The right operand.

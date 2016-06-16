@@ -42,6 +42,18 @@ public interface InspectorState {
    * Represents a method of the Listener interface.
    */
   enum ListenerMethod {
+    /*
+     These methods
+       LM_STATE_ADVANCED
+       LM_STATE_BACKTRACKED
+       LM_SEARCH_CONSTRAINT_HIT
+       LM_CHOICE_GENERATOR_ADVANCED
+       LM_PROPERTY_VIOLATED
+     are defined in the {@link gov.nasa.jpf.search.SearchListener} interface.
+
+     I'm not sure whether it matters and if so, how, but the information was in this file so I'm keeping it
+     because of Chesterton's fence and all that.
+     */
     LM_INSTRUCTION_EXECUTED,
     LM_STATE_ADVANCED,
     LM_STATE_BACKTRACKED,
@@ -55,37 +67,7 @@ public interface InspectorState {
     LM_CHOICE_GENERATOR_ADVANCED,
     LM_THREAD_SCHEDULED,
     LM_EXECUTE_INSTRUCTION,
-    LM_NOT_IN_LIST;
-
-    /**
-     * TODO remove this
-     * @param lm Method to check. Cannot be null.
-     * @return Gets true if method is defined in {@link gov.nasa.jpf.search.SearchListener} interface
-     */
-    @SuppressWarnings("unused")
-    static public boolean isSearchListenerMethod (ListenerMethod lm) {
-      assert (lm != null);
-
-      switch (lm) {
-      case LM_STATE_ADVANCED:
-      case LM_STATE_BACKTRACKED:
-      case LM_SEARCH_CONSTRAINT_HIT:
-      case LM_CHOICE_GENERATOR_ADVANCED:
-      case LM_PROPERTY_VIOLATED:
-        return true;
-      case LM_INSTRUCTION_EXECUTED:
-      case LM_GC_BEGIN:
-      case LM_GC_END:
-      case LM_OBJECT_CREATED:
-      case LM_OBJECT_RELEASED:
-      case LM_EXCEPTION_THROWN:
-      case LM_THREAD_SCHEDULED:
-      case LM_NOT_IN_LIST:
-        return false;
-      default:
-        throw new RuntimeException("Unknown enum entry " + lm);
-      }
-    }
+    LM_NOT_IN_LIST
   }
 
   /**
