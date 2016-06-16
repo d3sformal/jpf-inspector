@@ -137,10 +137,10 @@ public static void $clinit (MJIEnv env, int clsObjRef)
  `void` return type, arguments include an array of a primitive type:
 
 ~~~~~~~~ {.java}
-  public native void write (byte[] buf, int off, int len);
+  public native void write (byte[] buf, int off, int length);
 -->
   public static void write___3BII__V(MJIEnv env, int objref,
-                                     int bufRef, int off, int len)
+                                     int bufRef, int off, int length)
 ~~~~~~~~
 
 

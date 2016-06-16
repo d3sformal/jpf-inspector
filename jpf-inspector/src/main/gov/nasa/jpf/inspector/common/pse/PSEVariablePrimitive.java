@@ -20,7 +20,6 @@
 package gov.nasa.jpf.inspector.common.pse;
 
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorException;
-import gov.nasa.jpf.inspector.server.programstate.StateNodeInterface;
 
 import java.io.Serializable;
 
@@ -33,10 +32,10 @@ public class PSEVariablePrimitive extends PSEVariable {
 
   private final Serializable wrappedValue;
 
-  public PSEVariablePrimitive(StateNodeInterface sni, String varName,
+  public PSEVariablePrimitive(String varName,
                               String varTypeName, String varValue, boolean isStatic,
                               String definedIn, int index, Object wrappedValue) {
-    super(sni, varName, varTypeName, varValue, isStatic, definedIn, index);
+    super(varName, varTypeName, varValue, isStatic, definedIn, index);
 
     checkPrimitiveType(wrappedValue);
     this.wrappedValue = (Serializable) wrappedValue;

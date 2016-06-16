@@ -36,20 +36,20 @@ import gov.nasa.jpf.vm.Instruction;
 /**
  * Represent a stack frame using a {@link StackFrame} object.
  */
-public class StateStackFrame extends StateNode {
+public final class StateStackFrame extends StateNode {
 
+  /**
+   * The JPF representation of this StackFrame.
+   */
   private final StackFrame sf;
+
   /**
    * The method associated with the stack frame.
    */
   protected final MethodInfo mi;
 
   public StateStackFrame (StateThreadInfo sti, Integer stackFrameNum) throws JPFInspectorException {
-    this(sti, stackFrameNum, 1);
-  }
-
-  public StateStackFrame (StateThreadInfo sti, Integer stackFrameNum, int referenceDepth) throws JPFInspectorException {
-    super(sti, referenceDepth);
+    super(sti, 1);
 
     ThreadInfo ti = sti.getThreadInfo();
 
@@ -76,37 +76,36 @@ public class StateStackFrame extends StateNode {
     Instruction inst = sf.getPC();
     InstructionWrapper instw = ChoiceGeneratorsManager.createInstructionWrapper(inst);
 
-    PSEVariable refLocals[] = null;
+    PSEVariable refLocals[];
     PSEVariableObject refThis = null;
-    if (referenceDepth > 0) {
 
-      if (mi.isStatic() == false) {
-        try {
-          StateValueStackSlot svss = StateValueStackSlot.createHiddenThisSlotValue(this);
-          PSEVariable refThisGeneric = svss.toHierarchy3();
+    if (mi.isStatic() == false) {
+      try {
+        // TODO there is some commented code here... check that it's really okay
+        StateValueStackSlot svss = StateValueStackSlot.createHiddenThisSlotValue(this);
+        PSEVariable refThisGeneric = svss.toHierarchy3();
 
-          // can return also PSEVariablePrimitive ...
-          // in case that there is no type information for the the fields (or the this field)
-          // assert (refThisGeneric instanceof PSEVariableObject);
-          if (refThisGeneric != null && refThisGeneric instanceof PSEVariableObject) {
-            refThis = (PSEVariableObject) refThisGeneric;
-          }
-        } catch (JPFInspectorException e) {
-          // The JPFInspectorInvalidSlotIndexException is thrown if stopped in native method such as join.
-
-          // getInspector().getDebugPrintStream().println(e);
-          // e.printStackTrace(getInspector().getDebugPrintStream());
+        // can return also PSEVariablePrimitive ...
+        // in case that there is no type information for the the fields (or the this field)
+        // assert (refThisGeneric instanceof PSEVariableObject);
+        if (refThisGeneric != null && refThisGeneric instanceof PSEVariableObject) {
+          refThis = (PSEVariableObject) refThisGeneric;
         }
-      }
-      int stackSlots = sf.getTopPos() + 1; // Only valid slots
-      refLocals = new PSEVariable[stackSlots];
-      for (int i = 0; i < stackSlots; i++) {
-        StateValueStackSlot svss = StateValueStackSlot.createSlotFromIndex(this, i, getReferenceDepth() - 1);
-        refLocals[i] = svss.toHierarchy3();
+      } catch (JPFInspectorException e) {
+        // The JPFInspectorInvalidSlotIndexException is thrown if stopped in native method such as join.
+
+        // getInspector().getDebugPrintStream().println(e);
+        // e.printStackTrace(getInspector().getDebugPrintStream());
       }
     }
+    int stackSlots = sf.getTopPos() + 1; // Only valid slots
+    refLocals = new PSEVariable[stackSlots];
+    for (int i = 0; i < stackSlots; i++) {
+      StateValueStackSlot svss = StateValueStackSlot.createSlotFromIndex(this, i, 0);
+      refLocals[i] = svss.toHierarchy3();
+    }
 
-    return new PSEMethod(this, instw, refLocals, refThis);
+    return new PSEMethod(instw, refLocals, refThis);
   }
 
   /**

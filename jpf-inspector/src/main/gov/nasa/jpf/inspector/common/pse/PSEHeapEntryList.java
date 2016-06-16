@@ -22,7 +22,6 @@ package gov.nasa.jpf.inspector.common.pse;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorException;
 import gov.nasa.jpf.inspector.server.expression.expressions.ExpressionStateHeapEntryList;
 import gov.nasa.jpf.inspector.server.programstate.StateHeapEntryList;
-import gov.nasa.jpf.inspector.server.programstate.StateNode;
 
 import java.util.List;
 
@@ -38,8 +37,7 @@ public class PSEHeapEntryList extends ProgramStateEntry {
 
   private final List<PSEVariable> heapEntryList;
 
-  public PSEHeapEntryList (StateNode sn, List<PSEVariable> heapEntryList) {
-    super(sn);
+  public PSEHeapEntryList(List<PSEVariable> heapEntryList) {
 
     assert (heapEntryList != null);
 

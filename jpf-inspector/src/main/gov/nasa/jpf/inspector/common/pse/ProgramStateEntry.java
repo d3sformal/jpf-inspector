@@ -35,41 +35,8 @@ import java.io.Serializable;
  * of its subclasses) should be well-documented.
  */
 public abstract class ProgramStateEntry implements Serializable {
-  protected static final boolean DEBUG = true;
 
   private static final long serialVersionUID = 7537838000235914763L;
-
-  /**
-   * Inspector interface which can be used for lazy retrieval of referenced items.
-   * Although, we should probably indicate which items are retrieved lazily.
-   */
-  final private JPFInspectorBackEndInterface inspector;
-  final private String stateExpr;
-
-  protected ProgramStateEntry(StateNodeInterface sni) {
-    assert sni != null;
-
-    this.inspector = sni.getInspector();
-    this.stateExpr = sni.getStateExpr();
-
-    assert inspector != null;
-    assert stateExpr != null;
-  }
-
-
-  /**
-   * Returns the Inspector server.
-   */
-  protected JPFInspectorBackEndInterface getInspector () {
-    return inspector;
-  }
-
-  /**
-   * Returns the expression that can be used to obtain given entry if used with the "print" command.
-   */
-  public String getStateExpr () {
-    return stateExpr;
-  }
 
   /**
    * See {@link PSEVisitor} and {@link ValuePrinter}.

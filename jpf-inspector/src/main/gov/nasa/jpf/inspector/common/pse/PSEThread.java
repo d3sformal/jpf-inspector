@@ -21,7 +21,6 @@ package gov.nasa.jpf.inspector.common.pse;
 
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorException;
 import gov.nasa.jpf.inspector.server.expression.expressions.ExpressionStateThread;
-import gov.nasa.jpf.inspector.server.programstate.StateNode;
 import gov.nasa.jpf.inspector.server.programstate.StateThreadInfo;
 import gov.nasa.jpf.vm.ThreadInfo;
 import gov.nasa.jpf.vm.ThreadInfo.State;
@@ -62,9 +61,8 @@ public final class PSEThread extends ProgramStateEntry {
 
   private PSEMethod[] refCallStack; // Stack with called method in the represented thread
 
-  public PSEThread(StateNode sn, int threadNum, State state, String threadName,
+  public PSEThread(int threadNum, State state, String threadName,
                    String threadTypeName, int priority, boolean isDaemon, PSEMethod[] refCallStack) {
-    super(sn);
 
     this.threadNum = threadNum;
     this.state = state;

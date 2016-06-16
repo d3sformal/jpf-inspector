@@ -20,7 +20,6 @@
 package gov.nasa.jpf.inspector.common.pse;
 
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorException;
-import gov.nasa.jpf.inspector.server.programstate.StateNodeInterface;
 
 /**
  * Represents a non-array, non-primitive Java object.
@@ -29,53 +28,33 @@ public class PSEVariableObject extends PSEVariable {
 
   private static final long serialVersionUID = 5368791941110343439L;
 
-  private boolean referencesCreated;
+  /**
+   * Sorted by field index (ensured by creator)
+   *
+   * Note: Previously, this comment said "sorted by field/slot index" but I don't understand how "slots" could come
+   * in play here so I removed it.
+   */
+  private PSEVariable[] refFields;
+  /**
+   * Sorted by field index (static element fields)
+   */
+  private PSEVariable[] refStaticFields;
 
-  private PSEVariable[] refFields; // Sorted by field/slot index (ensured by creator)
-  private PSEVariable[] refStaticFields; // Sorted by field/slot index static element fields
-
-  // refThis == null ... static or no references are created
-  // refFields == null ... no references are created (if class does not contain field any field, empty array should by set)
-  public PSEVariableObject(StateNodeInterface sni, String varName,
+  public PSEVariableObject(String varName,
                            String varTypeName, String varValue, boolean isStatic,
                            String definedIn, int index, PSEVariable[] refFields, PSEVariable[] refStaticFields) {
-    super(sni, varName, varTypeName, varValue, isStatic, definedIn, index);
+    super(varName, varTypeName, varValue, isStatic, definedIn, index);
 
-    this.referencesCreated = refFields != null;
     this.refFields = refFields;
     this.refStaticFields = refStaticFields;
   }
 
   public PSEVariable[] getFields () throws JPFInspectorException {
-    loadReferences();
     return refFields;
   }
 
   public PSEVariable[] getStaticFields () throws JPFInspectorException {
-    loadReferences();
     return refStaticFields;
-  }
-
-  /**
-   * Lazy load of references
-   */
-  private void loadReferences() throws JPFInspectorException {
-    if (!referencesCreated) {
-      if (DEBUG) {
-        System.out.println(this.getClass().getSimpleName() + ".loadReferences() - lazy reference load");
-      }
-      // Create a copy of this PSE with filled references
-      ProgramStateEntry pse = getInspector().evaluateStateExpression(getStateExpr());
-      assert (pse instanceof PSEVariableObject);
-      PSEVariableObject myCopy = (PSEVariableObject) pse;
-
-      assert (myCopy.referencesCreated == true) : "References not created from \"" + getStateExpr() + "\"" ;
-
-      this.refFields = myCopy.refFields;
-      this.refStaticFields = myCopy.refStaticFields;
-
-      referencesCreated = true;
-    }
   }
 
   @Override

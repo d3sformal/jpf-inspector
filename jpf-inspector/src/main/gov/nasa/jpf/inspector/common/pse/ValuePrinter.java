@@ -135,7 +135,7 @@ public class ValuePrinter implements PSEVisitor<StringBuilder> {
       sb.append(varValue);
     }
     sb.append(", length=");
-    sb.append(var.getLen());
+    sb.append(var.getLength());
     sb.append('\n');
 
     PSEVariable[] elements = var.getArrayItems();

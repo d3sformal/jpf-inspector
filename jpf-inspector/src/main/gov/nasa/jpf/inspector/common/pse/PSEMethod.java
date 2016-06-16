@@ -21,7 +21,6 @@ package gov.nasa.jpf.inspector.common.pse;
 
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorException;
 import gov.nasa.jpf.inspector.server.expression.expressions.ExpressionStateStackFrame;
-import gov.nasa.jpf.inspector.server.programstate.StateNode;
 import gov.nasa.jpf.inspector.server.programstate.StateStackFrame;
 import gov.nasa.jpf.inspector.utils.InstructionWrapper;
 import gov.nasa.jpf.vm.StackFrame;
@@ -40,18 +39,15 @@ public class PSEMethod extends ProgramStateEntry {
 
   private final InstructionWrapper inst; // Represents the call instruction
 
-  private boolean referencesCreated;
-
   // Note: Parameter names are stored in the MethodInfo (in class files)
   private PSEVariable[] refLocals;
   private final PSEVariableObject refThis;
 
-  public PSEMethod(StateNode sn, InstructionWrapper inst,
+  public PSEMethod(InstructionWrapper inst,
                    PSEVariable[] refLocals, PSEVariableObject refThis) {
-    super(sn);
+    assert refLocals != null;
 
     this.inst = inst;
-    this.referencesCreated = refLocals != null;
     this.refLocals = refLocals;
     this.refThis = refThis;
   }
@@ -64,8 +60,6 @@ public class PSEMethod extends ProgramStateEntry {
    * @return Gets representation of the instance (class in static case) on which current method operates
    */
   public PSEVariableObject getThis () throws JPFInspectorException {
-    loadReferences();
-
     return refThis;
   }
 
@@ -77,28 +71,7 @@ public class PSEMethod extends ProgramStateEntry {
    * @return Gets list with represents values stored on the method stack.
    */
   public PSEVariable[] getLocals () throws JPFInspectorException {
-    loadReferences();
     return refLocals;
-  }
-
-  /**
-   * Lazy load of references
-   */
-  private void loadReferences() throws JPFInspectorException {
-    if (!referencesCreated) {
-      if (DEBUG) {
-        System.out.println(this.getClass().getSimpleName() + ".loadReferences() - lazy reference load");
-      }
-
-      // Create a copy of this PSE with filled references
-      ProgramStateEntry pse = getInspector().evaluateStateExpression(getStateExpr());
-      assert (pse instanceof PSEMethod);
-      PSEMethod myCopy = (PSEMethod) pse;
-
-      refLocals = myCopy.getLocals();
-
-      referencesCreated = true;
-    }
   }
 
   @Override

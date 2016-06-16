@@ -19,8 +19,6 @@
 
 package gov.nasa.jpf.inspector.common.pse;
 
-import gov.nasa.jpf.inspector.server.programstate.StateNodeInterface;
-
 /**
  * Common abstract predecessor for all types representing a value.
  * Represents a variable. Either primitive type (can be local variable, field), heap instance (this, field) or "Class"
@@ -50,10 +48,8 @@ public abstract class PSEVariable extends ProgramStateEntry {
 
   private final int index;
 
-  protected PSEVariable(StateNodeInterface sni,
-                        String varName, String varTypeName, String varValue, boolean isStatic,
+  protected PSEVariable(String varName, String varTypeName, String varValue, boolean isStatic,
                         String definedIn, int index) {
-    super(sni);
 
     this.varName = varName;
     this.varValue = varValue;
@@ -61,12 +57,6 @@ public abstract class PSEVariable extends ProgramStateEntry {
     this.isStatic = isStatic;
     this.definedIn = definedIn;
     this.index = index;
-    // if (sei.isReference()) {
-    // this.varValue = PSEVariable.elementInfo2String(sei.getReferenceValue());
-    // } else {
-    // this.varValue = sei.getValue().toString();
-    // }
-
   }
 
   /**

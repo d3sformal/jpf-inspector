@@ -64,7 +64,7 @@ public class StateHeapEntryList extends StateNode {
     for (StateElementInfo sei : heapEntries) {
       heapEntryList.add(sei.toHierarchy3());
     }
-    return new PSEHeapEntryList(this, heapEntryList);
+    return new PSEHeapEntryList(heapEntryList);
   }
 
   /**

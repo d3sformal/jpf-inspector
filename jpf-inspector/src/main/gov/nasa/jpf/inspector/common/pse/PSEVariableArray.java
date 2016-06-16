@@ -20,7 +20,6 @@
 package gov.nasa.jpf.inspector.common.pse;
 
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorException;
-import gov.nasa.jpf.inspector.server.programstate.StateNodeInterface;
 
 /**
  * @author Alf
@@ -30,53 +29,33 @@ public class PSEVariableArray extends PSEVariable {
 
   private static final long serialVersionUID = -7445210497451473309L;
 
-  private final int len; // Length of the represented array
-  private PSEVariable[] refArrayItems; // Content of the array
-
-  private boolean referencesCreated;
+  /**
+   * Length of the represented array
+   */
+  private final int length;
+  /**
+   * Content of the array
+   */
+  private PSEVariable[] refArrayItems;
 
   /**
    * Creates full representation of the array with references to array entries
    */
-  public PSEVariableArray(StateNodeInterface sni, String varName, String varTypeName, String varValue, boolean isStatic,
-                          String definedIn, int index, int len, PSEVariable[] refArrayItems) {
-    super(sni, varName, varTypeName, varValue, isStatic, definedIn, index);
+  public PSEVariableArray(String varName, String varTypeName,
+                          String varValue, boolean isStatic,
+                          String definedIn, int index, int length, PSEVariable[] refArrayItems) {
+    super(varName, varTypeName, varValue, isStatic, definedIn, index);
 
-    this.referencesCreated = true;
-
-    this.len = len;
+    this.length = length;
     this.refArrayItems = refArrayItems;
   }
 
-  public int getLen () {
-    return len;
+  public int getLength() {
+    return length;
   }
 
   public PSEVariable[] getArrayItems () throws JPFInspectorException {
-    loadReferences();
     return refArrayItems;
-  }
-
-  /**
-   * Lazy load of references
-   */
-  private void loadReferences() throws JPFInspectorException {
-    assert referencesCreated;
-    if (!referencesCreated) {
-      if (DEBUG) {
-        System.out.println(this.getClass().getSimpleName() + ".loadReferences() - lazy reference load");
-      }
-      // Create a copy of this PSE with filled references
-      ProgramStateEntry pse = getInspector().evaluateStateExpression(getStateExpr());
-      assert (pse instanceof PSEVariableArray);
-      PSEVariableArray myCopy = (PSEVariableArray) pse;
-
-      assert (myCopy.referencesCreated == true);
-
-      this.refArrayItems = myCopy.refArrayItems;
-
-      referencesCreated = true;
-    }
   }
 
   @Override

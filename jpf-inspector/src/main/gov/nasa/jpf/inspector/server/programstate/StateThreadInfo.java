@@ -42,15 +42,7 @@ public final class StateThreadInfo extends StateNode {
    * Initializes a new instance with reference depth 2.
    */
   public StateThreadInfo (JPFInspector inspector, VM vm, Integer threadNum) throws JPFInspectorException {
-    this(inspector, vm, threadNum, 2);
-  }
-
-  /**
-   * Initializes a new instance.
-   * @param referenceDepth Always the constant "2".
-   */
-  private StateThreadInfo (JPFInspector inspector, VM vm, Integer threadNum, int referenceDepth) throws JPFInspectorException {
-    super(inspector, referenceDepth);
+    super(inspector, 2);
     ThreadInfo ti;
     assert (vm != null);
 
@@ -72,7 +64,6 @@ public final class StateThreadInfo extends StateNode {
 
     this.ti = ti;
     setStateExpr(StateThreadInfo.createStateExpression(ti));
-
   }
 
   @Override
@@ -89,16 +80,15 @@ public final class StateThreadInfo extends StateNode {
     boolean isDaemon = ti.isDaemon();
     int priority = ti.getPriority();
 
-    PSEMethod[] refCallStack = null;
-    assert referenceDepth == 2;
+    PSEMethod[] refCallStack;
 
     refCallStack = new PSEMethod[ti.getStackDepth()];
     for (int i = 0; i < ti.getStackDepth(); i++) {
-      StateStackFrame ssf = new StateStackFrame(this, i, referenceDepth - 1);
+      StateStackFrame ssf = new StateStackFrame(this, i);
       refCallStack[i] = ssf.toHierarchy3();
     }
 
-    return new PSEThread(this, threadNum, state, threadName, threadTypeName, priority, isDaemon, refCallStack);
+    return new PSEThread(threadNum, state, threadName, threadTypeName, priority, isDaemon, refCallStack);
   }
 
   public ThreadInfo getThreadInfo () {

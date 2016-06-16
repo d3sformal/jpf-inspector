@@ -20,26 +20,11 @@
 package gov.nasa.jpf.inspector.server.programstate;
 
 import gov.nasa.jpf.JPFException;
-import gov.nasa.jpf.inspector.exceptions.JPFInspectorException;
-import gov.nasa.jpf.inspector.exceptions.JPFInspectorAssignmentOutOfRangeException;
-import gov.nasa.jpf.inspector.exceptions.JPFInspectorIncompatibleTypesException;
-import gov.nasa.jpf.inspector.exceptions.JPFInspectorNotSuperClassException;
-import gov.nasa.jpf.inspector.exceptions.JPFInspectorNullValueException;
+import gov.nasa.jpf.inspector.common.pse.*;
+import gov.nasa.jpf.inspector.exceptions.*;
 import gov.nasa.jpf.inspector.server.expression.InspectorState;
-import gov.nasa.jpf.inspector.common.pse.PSEVariable;
-import gov.nasa.jpf.inspector.common.pse.PSEVariableArray;
-import gov.nasa.jpf.inspector.common.pse.PSEVariableObject;
-import gov.nasa.jpf.inspector.common.pse.PSEVariablePrimitive;
 import gov.nasa.jpf.inspector.utils.ClassInfoCache;
-import gov.nasa.jpf.vm.ClassInfo;
-import gov.nasa.jpf.vm.DynamicElementInfo;
-import gov.nasa.jpf.vm.ElementInfo;
-import gov.nasa.jpf.vm.Heap;
-import gov.nasa.jpf.vm.VM;
-import gov.nasa.jpf.vm.MJIEnv;
-import gov.nasa.jpf.vm.MethodInfo;
-import gov.nasa.jpf.vm.StaticElementInfo;
-import gov.nasa.jpf.vm.Types;
+import gov.nasa.jpf.vm.*;
 
 import java.util.Arrays;
 
@@ -570,7 +555,7 @@ public abstract class StateValue extends StateNode implements StateReadableValue
 
     if (ci.isPrimitive()) {
       Object wrappedValue = srvi.getValue();
-      return new PSEVariablePrimitive(srvi, varName, varTypeName, wrappedValue.toString(), false, definedIn, index, wrappedValue);
+      return new PSEVariablePrimitive(varName, varTypeName, wrappedValue.toString(), false, definedIn, index, wrappedValue);
     }
 
     final ElementInfo ei = srvi.getReferenceValue();
@@ -581,30 +566,32 @@ public abstract class StateValue extends StateNode implements StateReadableValue
 
     if (ci.isArray()) {
 
-      int arrayLen = 0;
-      PSEVariable[] refArrayItems = null;
 
       if (ei != null) {
         // ei == null -> means null reference
-        arrayLen = ei.arrayLength();
 
         if (referenceDepth > 0) {
+          int arrayLen;
+          PSEVariable[] refArrayItems;
+          arrayLen = ei.arrayLength();
           refArrayItems = new PSEVariable[arrayLen];
           for (int i = 0; i < arrayLen; i++) {
             StateValueArrayElement svae = StateValueArrayElement.createArrayElement(srvi, i, referenceDepth - 1);
             refArrayItems[i] = svae.toHierarchy3();
           }
+          return new PSEVariableArray(varName, varTypeName, varValue, false, definedIn, index, arrayLen, refArrayItems);
         }
       }
-      return new PSEVariableArray(srvi, varName, varTypeName, varValue, false, definedIn, index, arrayLen, refArrayItems);
+      // TODO what if it is null?
+      return new PSEVariableShortForm(varName, varTypeName, varValue, false, definedIn, index);
     } // End of array
     else { // Object
       final int fields = ci.getNumberOfInstanceFields();
       final int staticFields = ci.getNumberOfStaticFields();
-      PSEVariable[] refFields = null;
-      PSEVariable[] refStaticFields = null;
       if (referenceDepth > 0 && ei != null) {
         // Not null and values of all fields are required
+        PSEVariable[] refFields;
+        PSEVariable[] refStaticFields;
 
         if (isStatic == false) {
           refFields = new PSEVariable[fields];
@@ -624,11 +611,13 @@ public abstract class StateValue extends StateNode implements StateReadableValue
                                                                                                   referenceDepth - 1);
           refStaticFields[i] = svae.toHierarchy3();
         }
+        return new PSEVariableObject(varName, varTypeName, varValue,
+                                     false, definedIn, index, refFields,
+                                     refStaticFields);
+      } else {
+        // TODO it may be a problem if we print a "null" object in long form... we should make a test for that
+        return new PSEVariableShortForm(varName, varTypeName, varValue, false, definedIn, index);
       }
-
-      return new PSEVariableObject(srvi, varName, varTypeName, varValue,
-                                   false, definedIn, index, refFields,
-                                   refStaticFields);
     }
   }
 

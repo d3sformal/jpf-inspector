@@ -64,11 +64,11 @@ public final class InstructionWrapper implements Serializable {
     return instructionName;
   }
 
-  public String getClassName () {
+  private String getClassName () {
     return className;
   }
 
-  public String getMethodName () {
+  private String getMethodName() {
     return methodName;
   }
 
@@ -90,9 +90,6 @@ public final class InstructionWrapper implements Serializable {
 
   /**
    * Appends representation of the InstructionWrapper to given string buffer.
-   * 
-   * @param instw
-   * @param sb
    */
   public static void toStringBuffer (InstructionWrapper instw, StringBuilder sb) {
     sb.append(instw.getClassName());
@@ -105,6 +102,7 @@ public final class InstructionWrapper implements Serializable {
     sb.append(")");
     String srcLine = instw.getSouceCodeLine();
     if (srcLine != null) {
+      srcLine = srcLine.trim();
       if (srcLine.length() > MAX_LEN) {
         srcLine = srcLine.substring(0, MAX_LEN - 3) + "...";
       }
