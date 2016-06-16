@@ -132,18 +132,6 @@ public class JPFInspectorClient implements JPFInspectorClientInterface {
         // Record.
         cmd.recordCommand(recorder);
 
-        // In batch mode, block until safe.
-        if (context == ExecutionContext.FROM_COMMAND_LINE_TERMINAL)
-        {
-          boolean batchModeBlocking = InspectorConfiguration.getInstance().shouldUnsafeCommandsWaitUntilPause();
-          if (batchModeBlocking && !cmd.isSafeToExecuteWhenNotPaused()) {
-            while (!inspector.isPaused()) {
-              System.out.println("Yielding.");
-              Thread.yield(); // TODO maybe changed these busy waits later.
-            }
-          }
-        }
-
         // Execute.
         if (isSafe(cmd)) {
           cmd.execute(this, inspector, outputStream);

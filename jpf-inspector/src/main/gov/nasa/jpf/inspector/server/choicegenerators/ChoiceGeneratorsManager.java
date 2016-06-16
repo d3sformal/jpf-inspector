@@ -213,17 +213,15 @@ public class ChoiceGeneratorsManager implements ChoiceGeneratorsInterface, Choic
     int dftChoice = forwardTrace.getDefaultChoice(cg); // Default forward trace choice
     if (selectedChoice == ChoiceGeneratorsInterface.USE_DEFAULT_CHOICE) {
       if (dftChoice == ChoiceGeneratorsInterface.NO_DEFAULT_CHOICE) {
-        throw new JPFInspectorGenericErrorException("no forward trace to follow");
+        throw new JPFInspectorGenericErrorException("No forward trace to follow.");
       }
       selectedChoice = dftChoice;
     }
 
     int totalChoices = cg.getTotalNumberOfChoices();
 
-    // TODO Removed =
     if (selectedChoice < 0 || selectedChoice >= totalChoices) {
-      // if (selectedChoice < 0 || selectedChoice > totalChoices) {
-      throw new JPFInspectorGenericErrorException("invalid index of the choices ( " + selectedChoice + ").");
+      throw new JPFInspectorGenericErrorException("The index '" + selectedChoice + "' is not a valid choice.");
     } else {
       if (selectedChoice != dftChoice) {
         // Choice different path then default forward one -> destroy DFT is exists

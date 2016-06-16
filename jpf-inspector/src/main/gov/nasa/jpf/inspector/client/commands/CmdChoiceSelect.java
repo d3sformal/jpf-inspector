@@ -2,6 +2,7 @@ package gov.nasa.jpf.inspector.client.commands;
 
 import gov.nasa.jpf.inspector.client.ClientCommand;
 import gov.nasa.jpf.inspector.client.JPFInspectorClient;
+import gov.nasa.jpf.inspector.exceptions.JPFInspectorGenericErrorException;
 import gov.nasa.jpf.inspector.interfaces.ChoiceGeneratorsInterface;
 import gov.nasa.jpf.inspector.interfaces.JPFInspectorBackEndInterface;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorException;
@@ -29,7 +30,8 @@ public class CmdChoiceSelect extends ClientCommand {
   public void execute(JPFInspectorClient client, JPFInspectorBackEndInterface inspector, PrintStream outStream) {
     try {
       if (choice == USE_CURRENT_CHOICE) {
-        inspector.start(); // Continue until next CG
+        throw new JPFInspectorGenericErrorException("You must specify a choice.");
+        // inspector.start(); // Continue until next CG
       }
       inspector.selectChoice(choice);
     } catch (JPFInspectorException e) {
