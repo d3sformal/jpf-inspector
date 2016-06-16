@@ -1,0 +1,5 @@
+New assertion successfully created with ID 2.
+1 :  state=BP_STATE_ENABLED hits=0 hitsTotal=0 position=*:20
+2 :  state=BP_STATE_ENABLED hits=0 hitsTotal=0 assert ( *:20 ) ( (50 < 80) )
+3 :  state=BP_STATE_ENABLED hits=0 hitsTotal=0 ( garbage_collection=begin ) and ( (20 < 40) )
+4 :  state=BP_STATE_ENABLED hits=0 hitsTotal=0 ( garbage_collection=begin ) and ( ( (20 < 40) ) and ( instruction_type=any ) )

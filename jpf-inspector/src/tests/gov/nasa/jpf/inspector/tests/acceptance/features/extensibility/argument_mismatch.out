@@ -1,0 +1,6 @@
+ERR: You have provided 3 arguments which is more than what the alias 'hi' requires (0). This may not be what you intended.
+The alias should expand to this: 'hello'.
+ERR: You have provided 4 arguments which is more than what the alias 'arg1' requires (1). This may not be what you intended.
+The alias should expand to this: 'create breakpoint pos=*:{0}'.
+ERR: The alias 'less_than' requires 3 arguments but only 1 were provided.
+The alias should expand to this: 'assert *:{0} {1} < {2}'.

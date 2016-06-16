@@ -1,0 +1,16 @@
+# No cycles:
+hi
+hi2
+# Cycles:
+cycle
+cycle2
+cycle3
+cycle4
+# With "&&":
+# No cycles:
+hi && hi
+# Two cycles:
+cycle && cycle
+# One ok, one cycle
+hi2 && cycle3
+cycle2 && hi

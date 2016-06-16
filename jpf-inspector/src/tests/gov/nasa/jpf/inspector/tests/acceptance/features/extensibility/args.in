@@ -1,0 +1,5 @@
+arg1 20
+less_than 20 50 80
+garbage_breakpoint 20 < 40
+garbage_breakpoint 20 < 40 and instruction_type = any
+show breakpoint

@@ -3,7 +3,19 @@ target = gov.nasa.jpf.inspector.tests.acceptance.sut.Singlepath
 jpf-inspector.batch_mode.echo_input = false
 
 jpf-inspector.alias.testAlias = hello
+jpf-inspector.alias.hi  =    hello
+jpf-inspector.alias.hi2  =    hi
+jpf-inspector.alias.cycle = cycle2
+jpf-inspector.alias.cycle2 = cycle3
+jpf-inspector.alias.cycle3 = cycle4
+jpf-inspector.alias.cycle4 = cycle2
+jpf-inspector.alias.arg1 = create breakpoint pos=*:{0}
+jpf-inspector.alias.less_than = assert *:{0} {1} < {2}
+jpf-inspector.alias.garbage_breakpoint = create bp (gc = begin) and ({*})
+jpf-inspector.alias.badbreak = create breakpoint ThisIsNotAValidHitCondition
+jpf-inspector.alias.badbreak2 = create show breakpoint in this command "show" is not correct
 jpf-inspector.custom_commands=gov.nasa.jpf.inspector.tests.acceptance.features.extensibility.CustomPrintCommand
+
 
 
 @include ../../inspectortest.jpf
