@@ -35,6 +35,7 @@ public class CorrectOutputTest extends CorrectOutputAbstractTest {
           getCase("features/extensibility", "argument_mismatch"),
           getCase("features/extensibility", "invalid_alias"),
           getCase("features/ignorejava", "ignore"),
+          getCase("hitcondition", "complex-breakpoint"),
           getCase("bugfix", "printnull"),
           getCase("legacy", "AssertSimpleTest"),
           getCase("legacy", "BreakpointTest"),

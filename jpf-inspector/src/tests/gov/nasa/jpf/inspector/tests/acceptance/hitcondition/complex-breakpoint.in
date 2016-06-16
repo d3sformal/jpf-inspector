@@ -1,0 +1,6 @@
+cr bp it=any and (a == 5)
+run
+wait
+del bp 1
+run
+wait
