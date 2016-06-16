@@ -127,7 +127,6 @@ public class CommandRecorder {
       String line;
       while ((line = in.readLine()) != null) {
         client.executeCommandOrCallback(line);
-        // TODO log errors + break on error prevent multiplication in multiple records
       }
 
       in.close();

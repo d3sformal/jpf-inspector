@@ -21,7 +21,6 @@ public class CmdHelp extends ClientCommand {
   public void execute(JPFInspectorClient client, JPFInspectorBackEndInterface inspector, PrintStream outStream) {
     LinkedHashMap<String, List<CommandHelpInfo>> categories = new LinkedHashMap<>();
     // Linked hash map, because we want to preserve our order of categories
-  // TODO (elsewhere): Check the correct number of arguments, if any, when executing aliases and print an error if a wrong number of arguments is given
 
     ArrayList<CommandHelpInfo> informationalCommands = new ArrayList<>();
     informationalCommands.add(new CommandHelpInfo("hello", null, "Prints a simple hello message."));

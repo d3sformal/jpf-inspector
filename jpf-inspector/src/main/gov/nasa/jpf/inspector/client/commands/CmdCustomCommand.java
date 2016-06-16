@@ -12,6 +12,7 @@ import gov.nasa.jpf.inspector.utils.CommandAlias;
 import gov.nasa.jpf.inspector.utils.InspectorConfiguration;
 
 import java.io.PrintStream;
+import java.util.HashSet;
 
 /**
  * Represents a custom, user-defined command, or an alias.
@@ -21,26 +22,45 @@ import java.io.PrintStream;
  */
 public class CmdCustomCommand extends ClientCommand {
 
+  /// COMMON
+
   private final String commandName;
   private final String arguments;
+
+  /// CUSTOM COMMAND
+
+  /**
+   * If custom command, then this is the instantiated {@link CustomCommand}.
+   */
   private final CustomCommand customCommand;
+
+  /// ALIAS
+
+  /**
+   *
+   */
   private final CommandAlias alias;
   private ClientCommandInterface aliasedCommand;
   private boolean isFailedCommand;
   private String errorMessage;
+  /**
+   * If alias, then this is the expanded value.
+   */
+  private String expandedCommand;
+
+  /// METHODS
 
   // TODO (elsewhere): after I understand loadReferences lazily, see why "print #stackSlot[0]" fails (in ExpressionTest.java, both before and after calling the instance method)
 
-  // TODO solve cyclic dependency
   public CmdCustomCommand(String commandName, String arguments) {
-    this.commandName = commandName;
+    this.commandName = commandName.trim();
     this.arguments = arguments;
     alias = InspectorConfiguration.getInstance().getAliasIfAny(commandName);
     customCommand = InspectorConfiguration.getInstance().getCustomCommandIfAny(commandName);
     if (alias != null) {
       CommandParserInterface parser = CommandParserFactory.getClientCommandParser();
-      String realCommand = alias.getValue();
-      realCommand = JPFInspectorClient.trimLeftWhitspace(realCommand);
+      expandedCommand = alias.getValue();
+      expandedCommand = JPFInspectorClient.trimLeftWhitspace(expandedCommand);
       String[] argumentsArray = arguments.trim().split("\\W+");
       int numberOfArguments = argumentsArray.length;
       if (arguments.trim().length() == 0) {
@@ -63,17 +83,53 @@ public class CmdCustomCommand extends ClientCommand {
                 alias.getValue() + "'.";
         return;
       }
-      assert  realCommand != null;
-      realCommand = replaceMacroStyle(realCommand, alias.getNumberOfRequiredParameters(), arguments, argumentsArray);
+      assert  expandedCommand != null;
+      expandedCommand = replaceMacroStyle(expandedCommand, alias.getNumberOfRequiredParameters(), arguments, argumentsArray);
+      if (!checkCyclicDependency(commandName)) {
+        isFailedCommand = true;
+        errorMessage = "ERR: The alias '" + commandName + "' contains itself in its own value (perhaps after several expansions). This is a cyclic dependency which cannot be resolved. The alias cannot be used.";
+        return;
+      }
       try {
-        aliasedCommand = parser.parseCommand(realCommand);
+        aliasedCommand = parser.parseCommand(expandedCommand);
       } catch (JPFInspectorParsingErrorException e) {
         isFailedCommand = true;
         errorMessage =
                 "ERR: The alias '" + commandName + "' was expanded but its expansion could not be parsed.\n" +
-                "The expansion was: '" + realCommand + "'.\n" +
+                "The expansion was: '" + expandedCommand + "'.\n" +
                 "Error: " + e.getMessage() + ".\n";
+      } finally {
+        clearCyclicDependencyIfRoot();
       }
+    }
+  }
+
+
+  private static HashSet<String> aliasesWalkedThrough;
+  private boolean isThisTheRootAlias;
+
+  /**
+   * If this is the first alias used when determining cyclic dependencies, sets the {@link #isThisTheRootAlias} value.
+   * Otherwise checks whether we are already in a cyclic dependency and if not, registers us.
+   *
+   * @param myName Name of this alias.
+   * @return True if no cyclic dependency was yet detected.
+   */
+  private boolean checkCyclicDependency(String myName) {
+    if (aliasesWalkedThrough == null) {
+      isThisTheRootAlias = true;
+      aliasesWalkedThrough = new HashSet<>();
+    }
+    if (aliasesWalkedThrough.contains(myName)) {
+      return false;
+    } else {
+      aliasesWalkedThrough.add(myName);
+      return true;
+    }
+  }
+  private void clearCyclicDependencyIfRoot() {
+    if (isThisTheRootAlias) {
+      aliasesWalkedThrough = null;
     }
   }
 
@@ -105,7 +161,13 @@ public class CmdCustomCommand extends ClientCommand {
 
   @Override
   public String getNormalizedCommand() {
-    return commandName + " " + arguments;
+    if (aliasedCommand != null) {
+      return aliasedCommand.getNormalizedCommand();
+    } else if (arguments.trim().isEmpty()) {
+      return commandName;
+    } else {
+      return commandName + " " + arguments;
+    }
   }
 
   @Override
