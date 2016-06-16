@@ -105,6 +105,7 @@ public class StateElementInfo extends StateNode implements StateReadableValueInt
 
   /**
    * Creates a new hierarchy-2 representation of a value.
+   *
    * @param sni This is only used to get an instance of the {@link JPFInspector}.
    * @param referenceDepth I'm still not clear as to why this is useful.
    * @param ei The object we need to represent.

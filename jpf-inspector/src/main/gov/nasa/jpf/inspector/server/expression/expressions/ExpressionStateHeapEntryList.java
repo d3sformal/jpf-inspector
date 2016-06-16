@@ -50,7 +50,7 @@ public class ExpressionStateHeapEntryList implements ExpressionStateRootNode, Ex
     VM vm = state.getVM();
     JPFInspectorNoVMConnected.checkVM(vm);
 
-    StateHeapEntryList shel = new StateHeapEntryList(inspector, heapItemsFilter, vm, 1);
+    StateHeapEntryList shel = new StateHeapEntryList(inspector, heapItemsFilter, vm);
 
     return shel;
   }

@@ -47,10 +47,9 @@ public class StateHeapEntryList extends StateNode {
    * @param inspector The server.
    * @param cn The class name filter.
    * @param vm The VM.
-   * @param referenceDepth This is always the constant "1".
    */
-  public StateHeapEntryList (JPFInspector inspector, ClassName cn, VM vm, int referenceDepth) {
-    super(inspector, referenceDepth);
+  public StateHeapEntryList(JPFInspector inspector, ClassName cn, VM vm) {
+    super(inspector, 1);
 
     setStateExpr(PSEVariable.EXPRESSION_VARIABLE_HEAP + '[' + cn.getClassName() + ']');
 
@@ -59,7 +58,6 @@ public class StateHeapEntryList extends StateNode {
 
   @Override
   public ProgramStateEntry toHierarchy3() throws JPFInspectorException {
-
     List<PSEVariable> heapEntryList = new ArrayList<>(heapEntries.size());
     for (StateElementInfo sei : heapEntries) {
       heapEntryList.add(sei.toHierarchy3());
