@@ -6,3 +6,10 @@ Fix unit testing.
 
 If extra time is available:
 Fix any problems with ANTLR grammar as they happen.
+
+
+
+Later:
+TODO DOCUMENTATION update table of contents in Commands
+TODO DOCUMENTATION add "then" command to Documentation and help
+TODO add hit condition "not" for negation

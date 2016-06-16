@@ -178,6 +178,16 @@ public class InternalBreakpointHolder implements Comparable<InternalBreakpointHo
       }
     }
 
+    MethodInfo topFrameMethodInfo = state.getVM().getCurrentThread().getTopFrameMethodInfo();
+    if (bpHitted && topFrameMethodInfo != null) {
+      if (log.isLoggable(Level.FINE)) {
+        log.fine("Now checking within class: " + topFrameMethodInfo.getClassName());
+      }
+      if (InspectorConfiguration.getInstance().isClassIgnored(topFrameMethodInfo.getClassName())) {
+        bpHitted = false;
+      }
+    }
+
     if (bpHitted) {
       bpHitCounter++;
       bpHitCounterTotal++;
@@ -193,15 +203,7 @@ public class InternalBreakpointHolder implements Comparable<InternalBreakpointHo
     }
 
 
-    MethodInfo topFrameMethodInfo = state.getVM().getCurrentThread().getTopFrameMethodInfo();
-    if (bpShouldExecuteAction && topFrameMethodInfo != null) {
-      if (log.isLoggable(Level.FINE)) {
-        log.fine("Now checking within class: " + topFrameMethodInfo.getClassName());
-      }
-      if (InspectorConfiguration.getInstance().isClassIgnored(topFrameMethodInfo.getClassName())) {
-        bpShouldExecuteAction = false;
-      }
-    }
+
     if (bpShouldExecuteAction && isUserBreakpoint()) {
       if (bpState == BreakpointState.BP_STATE_DISABLED) {
         // No action expected

@@ -143,6 +143,12 @@ public final class InspectorConfiguration {
   private boolean ignoreClassesFeature;
   private String[] ignoredClasses;
 
+  /**
+   * Returns true if breakpoints that happen while the topmost stack frame is of a method in the given class should be ignored.
+   * This is set in the Inspector's configuration files.
+   *
+   * @param className Full qualified name of a Java class.
+   */
   public boolean isClassIgnored(String className) {
     if (!ignoreClassesFeature) return false; // If false, then we ignore nothing.
 
