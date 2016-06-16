@@ -90,12 +90,12 @@ public final class StateThreadInfo extends StateNode {
     int priority = ti.getPriority();
 
     PSEMethod[] refCallStack = null;
-    if (referenceDepth > 0) {
-      refCallStack = new PSEMethod[ti.getStackDepth()];
-      for (int i = 0; i < ti.getStackDepth(); i++) {
-        StateStackFrame ssf = new StateStackFrame(this, i, referenceDepth - 1);
-        refCallStack[i] = ssf.toHierarchy3();
-      }
+    assert referenceDepth == 2;
+
+    refCallStack = new PSEMethod[ti.getStackDepth()];
+    for (int i = 0; i < ti.getStackDepth(); i++) {
+      StateStackFrame ssf = new StateStackFrame(this, i, referenceDepth - 1);
+      refCallStack[i] = ssf.toHierarchy3();
     }
 
     return new PSEThread(this, threadNum, state, threadName, threadTypeName, priority, isDaemon, refCallStack);

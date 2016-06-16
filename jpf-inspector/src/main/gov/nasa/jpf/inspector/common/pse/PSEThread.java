@@ -34,17 +34,27 @@ import gov.nasa.jpf.vm.ThreadInfo.State;
  * - {@link StateThreadInfo}
  * - {@link ExpressionStateThread}
  */
-public class PSEThread extends ProgramStateEntry {
+public final class PSEThread extends ProgramStateEntry {
 
   private static final long serialVersionUID = 6527461109192602939L;
 
-  public static final String EXPRESSION_THREAD_KEY_WORD = "#thread"; // Representation of the thread in program state expression
-
-  private final int threadNum; // Number of the represented thread
-  private final ThreadInfo.State state; // State of represented thread - Blocked, Running, ....
-  private final String threadName; // Name of represented thread
-
-  private final String threadTypeName; // Type of represented thread
+  public static final String EXPRESSION_THREAD_KEY_WORD = "#thread";
+  /**
+   * Index of the represented thread
+   */
+  private final int threadNum;
+  /**
+   * State of represented thread - Blocked, Running, ....
+   */
+  private final ThreadInfo.State state;
+  /**
+   * Name of represented thread, taken directly from {@link ThreadInfo#getName()}
+   */
+  private final String threadName;
+  /**
+   * Name of the class of the represented thread
+   */
+  private final String threadTypeName;
 
   // As used in standard Java
   private final int priority;
@@ -52,13 +62,9 @@ public class PSEThread extends ProgramStateEntry {
 
   private PSEMethod[] refCallStack; // Stack with called method in the represented thread
 
-  private boolean referenceCreated;
-
   public PSEThread(StateNode sn, int threadNum, State state, String threadName,
                    String threadTypeName, int priority, boolean isDaemon, PSEMethod[] refCallStack) {
     super(sn);
-
-    referenceCreated = refCallStack != null;
 
     this.threadNum = threadNum;
     this.state = state;
@@ -69,11 +75,7 @@ public class PSEThread extends ProgramStateEntry {
     this.refCallStack = refCallStack;
   }
 
-  /**
-   * @return Gets list of called methods
-   */
-  public PSEMethod[] getCallStack () throws JPFInspectorException {
-    loadReferences();
+  public PSEMethod[] getCallStack () {
     return refCallStack;
   }
 
@@ -81,48 +83,28 @@ public class PSEThread extends ProgramStateEntry {
     return threadNum;
   }
 
-  public final ThreadInfo.State getState () {
+  public ThreadInfo.State getState () {
     return state;
   }
 
-  public final String getThreadName () {
+  public String getThreadName () {
     return threadName;
   }
 
-  public final String getThreadTypeName () {
+  public String getThreadTypeName () {
     return threadTypeName;
   }
 
-  public final int getPriority () {
+  public int getPriority () {
     return priority;
   }
 
-  public final boolean isDaemon () {
+  public boolean isDaemon () {
     return isDaemon;
-  }
-
-  /**
-   * Lazy load of references
-   */
-  private void loadReferences() throws JPFInspectorException {
-    if (!referenceCreated) {
-      if (DEBUG) {
-        System.out.println(this.getClass().getSimpleName() + ".loadReferences() - lazy reference load");
-      }
-      // Create a copy of this PSE with filled references
-      ProgramStateEntry pse = getInspector().evaluateStateExpression(getStateExpr());
-      assert (pse instanceof PSEThread);
-      PSEThread myCopy = (PSEThread) pse;
-
-      refCallStack = myCopy.getCallStack();
-
-      referenceCreated = true;
-    }
   }
 
   @Override
   public <T> T visit (PSEVisitor<T> visitor) throws JPFInspectorException {
-    return visitor.visitPSEThread(this);
-  }
+    return visitor.visitPSEThread(this);  }
 
 }

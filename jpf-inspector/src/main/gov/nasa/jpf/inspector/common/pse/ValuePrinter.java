@@ -161,7 +161,6 @@ public class ValuePrinter implements PSEVisitor<StringBuilder> {
     }
     sb.append('\n');
 
-    // TODO (elsewhere) hits that happen while in javax.* and java.* classes should not count in the hit count counter
     // TODO (elsewhere) using the "&&" command, safe mode shouldn't be so overly strict (the command "commence && wait && print null" should be permitted.
 
 
