@@ -20,7 +20,12 @@
 package gov.nasa.jpf.inspector.interfaces;
 
 
+import gov.nasa.jpf.JPF;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorException;
+import gov.nasa.jpf.inspector.server.expression.InspectorState;
+import gov.nasa.jpf.inspector.server.jpf.JPFInspector;
+import gov.nasa.jpf.inspector.server.jpf.StopHolder;
+import gov.nasa.jpf.search.Search;
 
 /**
  * The server must implement this interface and the client uses it to start or stop execution and to do stepping.
@@ -35,18 +40,29 @@ public interface CommandsInterface {
 
 
   /**
-   * TODO this enum is used EVERYWHERE, and should be documented more throughly, also maybe renamed.
+   * This enumeration is used by callback handling classes.
+   *
+   * Note that the server itself doesn't keep track of its state. Thus, these are not "states" as much as they are
+   * message that the Inspector's state changed. This enum is used just to inform the client.
    */
   enum InspectorStates {
+    /**
+     * JPF becomes started at the completion of the method {@link JPFInspector#bindWithJPF(JPF)}.
+     */
     JPF_STARTED,
     /**
-     * JPF has started and is actively running in its thread.
+     * JPF becomes running whenever it resumes execution after leaving the method {@link StopHolder#stopExecution(InspectorState)}.
+     * Notably, the state JPF is in between its start and the first time it is stopped is JPF_STARTED, not JPF_RUNNING.
      */
     JPF_RUNNING,
     /**
-     * JPF has started but is currently blocked by a wait() call inside the StopHolder.
+     * JPF becomes stopped immediately befpre the wait() call inside the method {@link StopHolder#stopExecution(InspectorState)}.
      */
     JPF_STOPPED,
+    /**
+     * JPF becomes terminating when the method {@link StopHolder#notifyClientTerminating()} is run. This method is
+     * called when JPF wants to terminate or when the Search object does.
+     */
     JPF_TERMINATING
   }
 

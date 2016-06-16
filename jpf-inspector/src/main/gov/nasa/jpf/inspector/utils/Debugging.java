@@ -34,11 +34,8 @@ public class Debugging {
     return logger;
   }
 
-  /**
-   * TODO account for shell execution as well
-   */
   public static Logger getLogger() {
-      return ShellManager.getLogger(); // TODO fix this to use config
+      return getLogger(ShellManager.getManager().getConfig());
   }
 
   /**

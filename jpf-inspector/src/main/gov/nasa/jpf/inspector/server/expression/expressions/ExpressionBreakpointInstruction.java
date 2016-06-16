@@ -167,7 +167,7 @@ public class ExpressionBreakpointInstruction extends ExpressionBooleanLeaf {
 
   @Override
   public String getNormalizedExpression () {
-    StringBuilder sb = new StringBuilder(); // "instruction// TODO Auto-generated method stub
+    StringBuilder sb = new StringBuilder();
     sb.append("specific_instruction");
     sb.append(" thread=");
     sb.append(threadNum);

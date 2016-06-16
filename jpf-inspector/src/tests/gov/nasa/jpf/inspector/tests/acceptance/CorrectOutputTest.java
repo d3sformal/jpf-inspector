@@ -41,7 +41,6 @@ public class CorrectOutputTest extends CorrectOutputAbstractTest {
           getCase("features/fixheap", "heap"),
           getCase("features/decimal", "decimal")
      );
-    // TODO (elsewhere): custom commands and aliases should expanded to their normalized form rather than stay contracted
   }
   private CorrectOutputTestCase testCase;
 
