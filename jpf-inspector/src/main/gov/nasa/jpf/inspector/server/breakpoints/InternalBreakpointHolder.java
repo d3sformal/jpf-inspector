@@ -45,7 +45,7 @@ public class InternalBreakpointHolder implements Comparable<InternalBreakpointHo
    */
   public static int bpIDCounter = 1;
   private static final Object bpIDCounterLock = new Object();
-  private static Logger log = Debugging.getLogger();
+  private static Logger log = Debugging.getSimpleLogger();
 
   /**
    * Generates a new, yet unused, breakpoint ID.

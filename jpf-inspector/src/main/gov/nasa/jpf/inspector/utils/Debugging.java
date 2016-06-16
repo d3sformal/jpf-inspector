@@ -54,4 +54,8 @@ public class Debugging {
       // Don't care. This is just a debugging method.
     }
   }
+
+  public static Logger getSimpleLogger() {
+    return JPF.getLogger("inspector");
+  }
 }

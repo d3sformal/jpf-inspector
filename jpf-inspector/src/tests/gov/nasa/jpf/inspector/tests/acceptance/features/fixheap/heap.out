@@ -1,6 +1,6 @@
 1 :  state=BP_STATE_ENABLED hits=0 hitsTotal=0 instruction_type=any
 INFO: JPF created and connected, SuT is started
-INFO: Breakpoint hit: [1 :  state=BP_STATE_ENABLED hits=3157 hitsTotal=3157 instruction_type=any]
+INFO: Breakpoint hit: [1 :  state=BP_STATE_ENABLED hits=1 hitsTotal=1 instruction_type=any]
 	SuT (Thread=0) executes the gov/nasa/jpf/inspector/tests/acceptance/sut/Singlepath.java:0 - invokestatic gov.nasa.jpf.inspector.tests.acceptance.sut.Singlepath.main([Ljava/lang/String;)V
 ERR: Static area entry discovery is not implemented.
 ERR: Parse error: mismatched input '.' expecting <EOF>

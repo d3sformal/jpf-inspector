@@ -20,7 +20,7 @@ import java.util.logging.Logger;
  * and the server and then that's pretty much the same thing as static access, and would be more messy.
  */
 public final class InspectorConfiguration {
-  private static Logger logger = Debugging.getLogger();
+  private Logger logger;
   private static InspectorConfiguration instance;
   private Map<String, Class<? extends CustomHitCondition>> customHitConditions;
   private Map<String, CustomCommand> customCommands;
@@ -29,6 +29,7 @@ public final class InspectorConfiguration {
 
   private InspectorConfiguration(Config config) {
     this.config = config;
+    this.logger = Debugging.getLogger(config);
 
     // Set ignored classes
     ignoreClassesFeature = config.getBoolean("jpf-inspector.ignore_breakpoints_in_ignored_classes", true);
