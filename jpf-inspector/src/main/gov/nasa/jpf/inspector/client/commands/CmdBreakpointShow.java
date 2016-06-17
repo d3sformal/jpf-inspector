@@ -39,7 +39,7 @@ public class CmdBreakpointShow extends ClientCommand {
     for (BreakpointStatus bp : bps) {
       outStream.println(breakpointToString(bp));
     }
-    if (bps.size() == 0) {
+    if (bps.isEmpty()) {
       outStream.println("No breakpoints.");
     }
   }
@@ -55,7 +55,7 @@ public class CmdBreakpointShow extends ClientCommand {
    * @param bp Information about a breakpoint.
    * @return String representation of the brekapoint status.
    */
-  static public String breakpointToString (BreakpointStatus bp) {
+  public static String breakpointToString (BreakpointStatus bp) {
     StringBuilder bpText = new StringBuilder(80);
     bpText.append(bp.getBPID());
     bpText.append(" : ");

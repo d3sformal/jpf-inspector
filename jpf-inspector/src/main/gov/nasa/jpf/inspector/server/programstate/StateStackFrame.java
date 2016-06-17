@@ -49,7 +49,7 @@ public final class StateStackFrame extends StateNode {
   protected final MethodInfo mi;
 
   public StateStackFrame (StateThreadInfo sti, Integer stackFrameNum) throws JPFInspectorException {
-    super(sti, 1);
+    super(sti.getInspector());
 
     ThreadInfo ti = sti.getThreadInfo();
 
@@ -76,7 +76,7 @@ public final class StateStackFrame extends StateNode {
     Instruction inst = sf.getPC();
     InstructionWrapper instw = ChoiceGeneratorsManager.createInstructionWrapper(inst);
 
-    PSEVariable refLocals[];
+    PSEVariable[] refLocals;
     PSEVariableObject refThis = null;
 
     if (mi.isStatic() == false) {
@@ -101,7 +101,7 @@ public final class StateStackFrame extends StateNode {
     int stackSlots = sf.getTopPos() + 1; // Only valid slots
     refLocals = new PSEVariable[stackSlots];
     for (int i = 0; i < stackSlots; i++) {
-      StateValueStackSlot svss = StateValueStackSlot.createSlotFromIndex(this, i, 0);
+      StateValueStackSlot svss = StateValueStackSlot.createSlotFromIndex(this, i);
       refLocals[i] = svss.toHierarchy3();
     }
 

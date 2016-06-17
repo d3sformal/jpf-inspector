@@ -20,11 +20,8 @@
 package gov.nasa.jpf.inspector.server.expression.expressions;
 
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorException;
-import gov.nasa.jpf.inspector.server.programstate.StateElementInfo;
-import gov.nasa.jpf.inspector.server.programstate.StateNodeInterface;
-import gov.nasa.jpf.inspector.server.programstate.StateReadableValueInterface;
-import gov.nasa.jpf.inspector.server.programstate.StateStackFrame;
-import gov.nasa.jpf.inspector.server.programstate.StateValueElementInfoField;
+import gov.nasa.jpf.inspector.server.programstate.*;
+import gov.nasa.jpf.inspector.server.programstate.StateReadableValue;
 import gov.nasa.jpf.vm.ClassInfo;
 
 /**
@@ -43,9 +40,9 @@ public class ExpressionStateValueStatic extends ExpressionStateValue {
   }
 
   @Override
-  public StateReadableValueInterface toHierarchy2(StateReadableValueInterface parent) throws JPFInspectorException {
+  public StateReadableValue toHierarchy2(StateReadableValue parent) throws JPFInspectorException {
 
-    StateReadableValueInterface result;
+    StateReadableValue result;
     if (staticFieldIndex != null) {
       result = StateValueElementInfoField.createStaticFieldFromIndex(parent, staticFieldIndex);
     } else {
@@ -61,7 +58,7 @@ public class ExpressionStateValueStatic extends ExpressionStateValue {
   }
 
   public StateNodeInterface getExpressionFromStackFrame(StateStackFrame stackFrame) throws JPFInspectorException {
-    StateReadableValueInterface result;
+    StateReadableValue result;
     ClassInfo associatedClass = stackFrame.getClassInfo();
 
     if (staticFieldIndex != null) {
@@ -82,10 +79,10 @@ public class ExpressionStateValueStatic extends ExpressionStateValue {
   @Override
   public String getNormalizedExpression () {
     if (staticFieldIndex != null) {
-      return '.' + TOKEN_HASH_STATIC + '[' + staticFieldIndex + ']' + (child != null ? child.getNormalizedExpression() : "");
+      return '.' + TOKEN_HASH_STATIC + '[' + staticFieldIndex + ']' + (getChild() != null ? getChild().getNormalizedExpression() : "");
     }
 
-    return '.' + TOKEN_HASH_STATIC + (child != null ? child.getNormalizedExpression() : "");
+    return '.' + TOKEN_HASH_STATIC + (getChild() != null ? getChild().getNormalizedExpression() : "");
   }
 
 }

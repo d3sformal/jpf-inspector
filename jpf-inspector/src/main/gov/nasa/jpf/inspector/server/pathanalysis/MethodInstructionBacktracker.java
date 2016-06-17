@@ -165,7 +165,7 @@ public class MethodInstructionBacktracker {
    * @param st Step to found
    * @return Get how many steps with instruction, which equals to instruction in step "st", are in the transition before step "st"
    */
-  static public int getInstrCountInTransition (Transition tr, Step st) {
+  public static int getInstrCountInTransition (Transition tr, Step st) {
     assert (tr != null);
     assert (st != null);
 

@@ -56,17 +56,17 @@ public class ExpressionBreakpointSingleStep extends ExpressionBooleanLeaf {
    * Position of the instruction that is about to be executed at the time
    * the stepping command is initiated.
    */
-  final private InstructionPosition instPos;
+  private final InstructionPosition instPos;
   /**
    * Kind of the stepping (step over or step in)
    */
-  final private LocationTypes posHandling;
+  private final LocationTypes posHandling;
   /**
    * Active thread when the breakpoint was set.
    */
-  final private int threadNum;
-  final private StackFrame topStackFrame; // Is used to determine correct return in to the calling method in case of Step-over
-  final private Transition reqTransition; // Transition that has to be present in the current Path (or {@link JVM#getCurrentTransition()}. This prevents
+  private final int threadNum;
+  private final StackFrame topStackFrame; // Is used to determine correct return in to the calling method in case of Step-over
+  private final Transition reqTransition; // Transition that has to be present in the current Path (or {@link JVM#getCurrentTransition()}. This prevents
                                           // backtracking before Choice when the breakpoint has been created
 
   /**
@@ -76,7 +76,7 @@ public class ExpressionBreakpointSingleStep extends ExpressionBooleanLeaf {
    * TODO ...and I have no idea what it means
    * However, it is set to "true" for all proper search classes, apparently.
    */
-  final private boolean breakIfNoNextLine;
+  private final boolean breakIfNoNextLine;
 
   public enum LocationTypes {
     /**

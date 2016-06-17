@@ -37,7 +37,7 @@ import gov.nasa.jpf.vm.Heap;
 /**
  * Represents an element of an array in the second hierarchy.
  */
-public class StateValueArrayElement extends StateValue {
+public class StateValueArrayElement extends StateWritableValue {
 
   /**
    * Index of the represented element in the array
@@ -53,10 +53,11 @@ public class StateValueArrayElement extends StateValue {
    */
   private final ClassInfo arrayCi;
 
-  public static StateValueArrayElement createArrayElement (StateReadableValueInterface srvi, int elementIndex) throws JPFInspectorException {
-     return createArrayElement(srvi, elementIndex, 1);
+  public static StateValueArrayElement createArrayElement (StateReadableValue srvi, int elementIndex) throws JPFInspectorException {
+     return createArrayElement(srvi, elementIndex, true);
   }
-  public static StateValueArrayElement createArrayElement (StateReadableValueInterface srvi, int elementIndex, int referenceDepth) throws JPFInspectorException {
+  public static StateValueArrayElement createArrayElement (StateReadableValue srvi, int elementIndex,
+                                                           boolean expandMembers) throws JPFInspectorException {
     assert (srvi != null);
 
     ClassInfo arrayCi = srvi.getClassInfo();
@@ -81,13 +82,13 @@ public class StateValueArrayElement extends StateValue {
       throw new JPFInspectorArrayIndexOutOutRangeException(elementIndex, arrayLen, arrayCi);
     }
 
-    return new StateValueArrayElement(srvi, referenceDepth, arrayCi.getComponentClassInfo(), srvi.getStateExpr() + '[' + elementIndex + ']', elementIndex, ei,
+    return new StateValueArrayElement(srvi, expandMembers, arrayCi.getComponentClassInfo(), srvi.getStateExpr() + '[' + elementIndex + ']', elementIndex, ei,
         arrayCi);
   }
 
-  private StateValueArrayElement(StateNodeInterface sni, int referenceDepth, ClassInfo ci, String stateExpression, int index, ElementInfo ei,
+  private StateValueArrayElement(StateNodeInterface sni, boolean expandMembers, ClassInfo ci, String stateExpression, int index, ElementInfo ei,
                                  ClassInfo arrayCi) {
-    super(sni, referenceDepth, ci, stateExpression);
+    super(sni, expandMembers, ci, stateExpression);
 
     this.index = index;
     this.ei = ei;
@@ -107,13 +108,11 @@ public class StateValueArrayElement extends StateValue {
     this.arrayCi = me.arrayCi;
   }
 
-  /* @see gov.nasa.jpf.inspector.server.programstate.StateReadableValueInterface#getReferenceValue() */
   @Override
   public ElementInfo getReferenceValue () {
     return getReferenceValueImpl(ei.getReferenceElement(index));
   }
 
-  /* @see gov.nasa.jpf.inspector.server.programstate.StateReadableValueInterface#getValue() */
   @Override
   public Object getValue () {
     String sig = ci.getSignature();
@@ -147,12 +146,12 @@ public class StateValueArrayElement extends StateValue {
   @Override
   public PSEVariable toHierarchy3() throws JPFInspectorException {
     final String varName = "[" + index + "]";
-    final String definedIn = StateValue.getSimpleName(arrayCi);
+    final String definedIn = StateWritableValue.getSimpleName(arrayCi);
 
-    return StateValue.createPSEVariable(this, varName, index, definedIn);
+    return StateReadableValue.createPSEVariable(this, varName, index, definedIn);
   }
 
-  /* @see gov.nasa.jpf.inspector.server.programstate.StateReadableValueInterface#createSuper() */
+  /* @see gov.nasa.jpf.inspector.server.programstate.StateReadableValue#createSuper() */
   @Override
   public StateValueArrayElement createSuper () throws JPFInspectorException {
     ClassInfo superClassInfo = ci.getSuperClass();
@@ -162,15 +161,15 @@ public class StateValueArrayElement extends StateValue {
     return new StateValueArrayElement(this, superClassInfo, getStateExpr() + '.' + PSEVariable.EXPRESSION_SUPER);
   }
 
-  /* @see gov.nasa.jpf.inspector.server.programstate.StateReadableValueInterface#createPredecessorClass(gov.nasa.jpf.jvm.ClassInfo) */
+  /* @see gov.nasa.jpf.inspector.server.programstate.StateReadableValue#createPredecessorClass(gov.nasa.jpf.jvm.ClassInfo) */
   @Override
   public StateValueArrayElement createPredecessorClass (ClassInfo ci) throws JPFInspectorNotSuperClassException {
-    return new StateValueArrayElement(this, ci, getStateExpr() + '.' + StateValue.getSimpleName(ci));
+    return new StateValueArrayElement(this, ci, getStateExpr() + '.' + StateWritableValue.getSimpleName(ci));
   }
 
-  /* @see gov.nasa.jpf.inspector.server.programstate.StateReadableValueInterface#createThisValue() */
+  /* @see gov.nasa.jpf.inspector.server.programstate.StateReadableValue#createThisValue() */
   @Override
-  public StateReadableValueInterface createThisValue () throws JPFInspectorException {
+  public StateReadableValue createThisValue () throws JPFInspectorException {
     if (ci.isArray() || ci.isPrimitive()) {
       throw new JPFInspectorNotInstanceException(ci);
     }
@@ -182,55 +181,55 @@ public class StateValueArrayElement extends StateValue {
   // ** Modify represented value infrastructure
   // *************************************************************************
 
-  /* @see gov.nasa.jpf.inspector.server.programstate.StateValue#assignValueBoolean(boolean) */
+  /* @see gov.nasa.jpf.inspector.server.programstate.StateWritableValue#assignValueBoolean(boolean) */
   @Override
   protected void assignValueBoolean (boolean newVal) {
     ei.setBooleanElement(index, newVal);
   }
 
-  /* @see gov.nasa.jpf.inspector.server.programstate.StateValue#assignValueChar(char) */
+  /* @see gov.nasa.jpf.inspector.server.programstate.StateWritableValue#assignValueChar(char) */
   @Override
   protected void assignValueChar (char newVal) {
     ei.setCharElement(index, newVal);
   }
 
-  /* @see gov.nasa.jpf.inspector.server.programstate.StateValue#assignValueByte(byte) */
+  /* @see gov.nasa.jpf.inspector.server.programstate.StateWritableValue#assignValueByte(byte) */
   @Override
   protected void assignValueByte (byte newVal) {
     ei.setByteElement(index, newVal);
   }
 
-  /* @see gov.nasa.jpf.inspector.server.programstate.StateValue#assignValueShort(short) */
+  /* @see gov.nasa.jpf.inspector.server.programstate.StateWritableValue#assignValueShort(short) */
   @Override
   protected void assignValueShort (short newVal) {
     ei.setShortElement(index, newVal);
   }
 
-  /* @see gov.nasa.jpf.inspector.server.programstate.StateValue#assignValueInt(int) */
+  /* @see gov.nasa.jpf.inspector.server.programstate.StateWritableValue#assignValueInt(int) */
   @Override
   protected void assignValueInt (int newVal) {
     ei.setIntElement(index, newVal);
   }
 
-  /* @see gov.nasa.jpf.inspector.server.programstate.StateValue#assignValueLong(long) */
+  /* @see gov.nasa.jpf.inspector.server.programstate.StateWritableValue#assignValueLong(long) */
   @Override
   protected void assignValueLong (long newVal) {
     ei.setLongElement(index, newVal);
   }
 
-  /* @see gov.nasa.jpf.inspector.server.programstate.StateValue#assignValueFloat(float) */
+  /* @see gov.nasa.jpf.inspector.server.programstate.StateWritableValue#assignValueFloat(float) */
   @Override
   protected void assignValueFloat (float newVal) {
     ei.setFloatElement(index, newVal);
   }
 
-  /* @see gov.nasa.jpf.inspector.server.programstate.StateValue#assignValueDouble(double) */
+  /* @see gov.nasa.jpf.inspector.server.programstate.StateWritableValue#assignValueDouble(double) */
   @Override
   protected void assignValueDouble (double newVal) {
     ei.setDoubleElement(index, newVal);
   }
 
-  /* @see gov.nasa.jpf.inspector.server.programstate.StateValue#assignValueRef(int) */
+  /* @see gov.nasa.jpf.inspector.server.programstate.StateWritableValue#assignValueRef(int) */
   @Override
   protected void assignValueRef (int newValRef) {
     ei.setReferenceElement(index, newValRef);

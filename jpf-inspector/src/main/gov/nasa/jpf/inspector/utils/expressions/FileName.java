@@ -45,7 +45,7 @@ public class FileName {
     fileNameMatches = new HashMap<>();
   }
 
-  final public String getFileName() {
+  public final String getFileName() {
     return fileName;
   }
 

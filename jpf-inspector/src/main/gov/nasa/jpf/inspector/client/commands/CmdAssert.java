@@ -83,7 +83,7 @@ public class CmdAssert extends ClientCommand {
     }
   }
 
-  static public class ConsoleAssertionCreationExpression extends BreakpointCreationExpression implements AssertCreationInformation {
+  public static class ConsoleAssertionCreationExpression extends BreakpointCreationExpression implements AssertCreationInformation {
 
     private static final long serialVersionUID = -7840321111358650898L;
 

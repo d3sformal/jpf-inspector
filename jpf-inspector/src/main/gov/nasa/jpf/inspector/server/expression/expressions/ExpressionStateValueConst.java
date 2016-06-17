@@ -22,7 +22,7 @@ package gov.nasa.jpf.inspector.server.expression.expressions;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorException;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorGenericErrorException;
 import gov.nasa.jpf.inspector.server.expression.ExpressionStateRootNode;
-import gov.nasa.jpf.inspector.server.programstate.StateReadableValueInterface;
+import gov.nasa.jpf.inspector.server.programstate.StateReadableValue;
 
 /**
  * Base class for all constant expressions of the first hierarchy.
@@ -35,7 +35,7 @@ public abstract class ExpressionStateValueConst extends ExpressionStateValue imp
   }
 
   @Override
-  public final StateReadableValueInterface toHierarchy2(StateReadableValueInterface parent) throws JPFInspectorException {
+  public final StateReadableValue toHierarchy2(StateReadableValue parent) throws JPFInspectorException {
     assert false;
     throw new JPFInspectorGenericErrorException(
             "The toHierarchy2() method must not be called on constants because they have no parents.");

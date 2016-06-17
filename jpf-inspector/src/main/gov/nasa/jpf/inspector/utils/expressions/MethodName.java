@@ -38,15 +38,15 @@ public class MethodName {
     this.className = className;
   }
   
-  final public String getMethodName() {
+  public final String getMethodName() {
     return methodName;
   }
   
-  final public String getClassName() {
+  public final String getClassName() {
     return className.getClassName();
   }
   
-  final public ClassName getClassNameClass() {
+  public final ClassName getClassNameClass() {
     return className;
   }
 

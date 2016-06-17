@@ -42,7 +42,7 @@ public final class StateThreadInfo extends StateNode {
    * Initializes a new instance with reference depth 2.
    */
   public StateThreadInfo (JPFInspector inspector, VM vm, Integer threadNum) throws JPFInspectorException {
-    super(inspector, 2);
+    super(inspector);
     ThreadInfo ti;
     assert (vm != null);
 

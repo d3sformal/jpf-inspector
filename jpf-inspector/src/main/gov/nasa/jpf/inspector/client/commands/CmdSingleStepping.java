@@ -37,12 +37,12 @@ public class CmdSingleStepping extends ClientCommand {
   /**
    * Whether this is a forward or backward step.
    */
-  final private boolean forward;
-  final private StepType stepType;
+  private final boolean forward;
+  private final StepType stepType;
   /**
    * Number of times to execute this command.
    */
-  final private int stepCount;
+  private final int stepCount;
 
   public static CmdSingleStepping createCmdSingleSteppingTransition (boolean forward, CGTypeSpec type, Integer repeatCnt) {
     // Set default value

@@ -92,8 +92,8 @@ public final class ExpressionStateStackFrame extends ExpressionStateUnaryOperato
   public String getNormalizedExpression () {
 
     String childExp = "";
-    if (child != null) {
-      childExp = child.getNormalizedExpression();
+    if (getChild() != null) {
+      childExp = getChild().getNormalizedExpression();
     }
 
     if (stackFrameNum == null) {

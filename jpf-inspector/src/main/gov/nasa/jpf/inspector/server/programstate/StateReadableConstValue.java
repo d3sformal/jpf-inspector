@@ -32,7 +32,7 @@ import gov.nasa.jpf.vm.ElementInfo;
 /**
  * Represents a literal in a hierarchy-1 expression.
  */
-public class StateReadableConstValue extends StateNode implements StateReadableValueInterface {
+public class StateReadableConstValue extends StateReadableValue {
 
   /**
    * Type of the literal (Integer, Boolean, ...)
@@ -52,7 +52,7 @@ public class StateReadableConstValue extends StateNode implements StateReadableV
    * @param <T> Type of the literal (as Java type).
    */
   public <T> StateReadableConstValue(JPFInspector inspector, ClassInfo constType, T wrappedConstV) {
-    super(inspector, 1);
+    super(inspector, true);
 
     if (wrappedConstV == null) {
       setStateExpr("null");
@@ -72,7 +72,7 @@ public class StateReadableConstValue extends StateNode implements StateReadableV
   private StateReadableConstValue(StateReadableConstValue me,
                                   ClassInfo superClassInfo,
                                   String stateExpression) throws JPFInspectorNotSuperClassException {
-    super(me, me.getReferenceDepth());
+    super(me.getInspector(), true);
 
     setStateExpr(stateExpression);
 
@@ -81,7 +81,7 @@ public class StateReadableConstValue extends StateNode implements StateReadableV
 
     assert (this.type != null);
 
-    if (!StateValue.isPredecessor(this.type, me.getClassInfo())) {
+    if (!StateWritableValue.isPredecessor(this.type, me.getClassInfo())) {
       throw new JPFInspectorNotSuperClassException(this.type, me.getClassInfo());
     }
 
@@ -113,7 +113,7 @@ public class StateReadableConstValue extends StateNode implements StateReadableV
   }
 
   @Override
-  public StateReadableValueInterface createSuper () throws JPFInspectorException {
+  public StateReadableValue createSuper () throws JPFInspectorException {
     ClassInfo superClassInfo = type.getSuperClass();
     if (superClassInfo == null) {
       throw new JPFInspectorNoSuperClassException(type);
@@ -122,12 +122,12 @@ public class StateReadableConstValue extends StateNode implements StateReadableV
   }
 
   @Override
-  public StateReadableValueInterface createPredecessorClass (ClassInfo ci) throws JPFInspectorNotSuperClassException {
-    return new StateReadableConstValue(this, ci, getStateExpr() + '.' + StateValue.getSimpleName(ci));
+  public StateReadableValue createPredecessorClass (ClassInfo ci) throws JPFInspectorNotSuperClassException {
+    return new StateReadableConstValue(this, ci, getStateExpr() + '.' + StateWritableValue.getSimpleName(ci));
   }
 
   @Override
-  public StateReadableValueInterface createThisValue () throws JPFInspectorException {
+  public StateReadableValue createThisValue () throws JPFInspectorException {
     if (type.isArray() || type.isPrimitive()) {
       throw new JPFInspectorNotInstanceException(type);
     }
@@ -136,8 +136,17 @@ public class StateReadableConstValue extends StateNode implements StateReadableV
   }
 
   @Override
+  public boolean shouldExpandMembers() {
+    // For primitives, this does not matter.
+    // For the null literal, this does not matter either.
+    // However, strings are printed out as object, including their instance and static fields (they do have some),
+    //   and so, to avoid exception, members must be expanded.
+    return true;
+  }
+
+  @Override
   public ProgramStateEntry toHierarchy3() throws JPFInspectorException {
-    return StateValue.createPSEVariable(this, "user constant", 0, "");
+    return StateReadableValue.createPSEVariable(this, "user constant", 0, "");
   }
 
 }

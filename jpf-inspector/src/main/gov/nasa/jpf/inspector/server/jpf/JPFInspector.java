@@ -216,7 +216,7 @@ public abstract class JPFInspector implements JPFInspectorBackEndInterface {
   /**
    * @return Get currently used {@link InspectorListener} or null if no JPF is connected/associated to Inspector.
    */
-  final public InspectorListener getInspectorListener () {
+  public final InspectorListener getInspectorListener () {
     return listener;
   }
 

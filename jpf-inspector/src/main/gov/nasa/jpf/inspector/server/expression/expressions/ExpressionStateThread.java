@@ -71,8 +71,8 @@ public class ExpressionStateThread extends ExpressionStateUnaryOperator<Expressi
   @Override
   public String getNormalizedExpression () {
     String childExp = "";
-    if (child != null) {
-      childExp = child.getNormalizedExpression();
+    if (getChild() != null) {
+      childExp = getChild().getNormalizedExpression();
     }
 
     if (threadNum == null) {

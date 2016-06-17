@@ -19,7 +19,7 @@
 
 package gov.nasa.jpf.inspector.exceptions;
 
-import gov.nasa.jpf.inspector.server.programstate.StateValue;
+import gov.nasa.jpf.inspector.server.programstate.StateWritableValue;
 import gov.nasa.jpf.vm.ClassInfo;
 
 /**
@@ -34,7 +34,7 @@ public class JPFInspectorNoStaticElementInfoException extends JPFInspectorExcept
    * @param ci Class Info without static element info
    */
   public JPFInspectorNoStaticElementInfoException (ClassInfo ci) {
-    super("The class \"" + StateValue.getSimpleName(ci) + "\" does not have a static representation.");
+    super("The class \"" + StateWritableValue.getSimpleName(ci) + "\" does not have a static representation.");
 
     assert (ci.getStaticElementInfo() == null);
   }

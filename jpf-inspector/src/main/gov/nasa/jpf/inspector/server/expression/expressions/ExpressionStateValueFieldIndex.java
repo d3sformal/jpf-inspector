@@ -20,7 +20,7 @@
 package gov.nasa.jpf.inspector.server.expression.expressions;
 
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorException;
-import gov.nasa.jpf.inspector.server.programstate.StateReadableValueInterface;
+import gov.nasa.jpf.inspector.server.programstate.StateReadableValue;
 import gov.nasa.jpf.inspector.server.programstate.StateValueElementInfoField;
 
 /**
@@ -40,7 +40,7 @@ public class ExpressionStateValueFieldIndex extends ExpressionStateValue {
   }
 
   @Override
-  public StateReadableValueInterface toHierarchy2(StateReadableValueInterface parent) throws JPFInspectorException {
+  public StateReadableValue toHierarchy2(StateReadableValue parent) throws JPFInspectorException {
     assert parent != null;
 
     StateValueElementInfoField sveif = StateValueElementInfoField.createFieldFromIndex(parent, fieldIndex);
@@ -55,7 +55,7 @@ public class ExpressionStateValueFieldIndex extends ExpressionStateValue {
 
   @Override
   public String getNormalizedExpression () {
-     return '.' + TOKEN_HASH_FIELD + '[' + fieldIndex + ']' + (child != null ? child.toString() : "");
+     return '.' + TOKEN_HASH_FIELD + '[' + fieldIndex + ']' + (getChild() != null ? getChild().toString() : "");
   }
 
 }

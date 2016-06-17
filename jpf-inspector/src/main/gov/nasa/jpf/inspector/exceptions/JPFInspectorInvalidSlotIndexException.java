@@ -19,7 +19,7 @@
 
 package gov.nasa.jpf.inspector.exceptions;
 
-import gov.nasa.jpf.inspector.server.programstate.StateValue;
+import gov.nasa.jpf.inspector.server.programstate.StateWritableValue;
 import gov.nasa.jpf.vm.MethodInfo;
 
 /**
@@ -31,7 +31,7 @@ public class JPFInspectorInvalidSlotIndexException extends JPFInspectorException
   private static final long serialVersionUID = 1492748869545243159L;
 
   public JPFInspectorInvalidSlotIndexException (int slotIndex, MethodInfo mi, int maxSlotIndex) {
-    super("Stack slot index " + slotIndex + " is out of range. Method " + StateValue.getSimpleMethodName(mi) + " supports up to " + maxSlotIndex + ".");
+    super("Stack slot index " + slotIndex + " is out of range. Method " + StateWritableValue.getSimpleMethodName(mi) + " supports up to " + maxSlotIndex + ".");
   }
 
 }

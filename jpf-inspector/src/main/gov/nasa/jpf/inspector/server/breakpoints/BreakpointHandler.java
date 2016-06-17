@@ -59,14 +59,14 @@ public class BreakpointHandler implements BreakPointManagerInterface {
    *
    * This object also acts as the mutex monitor for synchronizing access between the command thread and the JPF thread.
    */
-  final protected Map<Integer, InternalBreakpointHolder> breakpoints;
+  protected final Map<Integer, InternalBreakpointHolder> breakpoints;
 
-  final private Stack<BreakPointsMemento> bpMementos;
+  private final Stack<BreakPointsMemento> bpMementos;
 
   protected final JPFInspector inspector;
   private final InspectorCallBacks callBacks;
   private final StopHolder stopHolder;
-  final private ExpressionParserInterface expParser; // / Used to parse Breakpoint expression from clients
+  private final ExpressionParserInterface expParser; // / Used to parse Breakpoint expression from clients
   private BreakPointsMemento transitionStartMemento; // / Memeto which holds states of breakpoints at the start of the transition
 
   public BreakpointHandler(JPFInspector inspector, InspectorCallBacks callBacks, StopHolder stopHolder) {

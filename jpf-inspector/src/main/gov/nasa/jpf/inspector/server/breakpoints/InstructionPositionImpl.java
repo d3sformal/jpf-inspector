@@ -158,7 +158,7 @@ public class InstructionPositionImpl implements InstructionPosition {
    * @param instr Position specification
    * @return position that represents the location (file and line) of given instruction
    */
-  static public InstructionPosition getInstructionPosition (Instruction instr) {
+  public static InstructionPosition getInstructionPosition (Instruction instr) {
     return new InstructionPositionImpl(instr);
   }
 

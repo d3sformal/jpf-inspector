@@ -20,7 +20,7 @@
 package gov.nasa.jpf.inspector.server.programstate.relop;
 
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorIncompatibleTypesException;
-import gov.nasa.jpf.inspector.server.programstate.StateReadableValueInterface;
+import gov.nasa.jpf.inspector.server.programstate.StateReadableValue;
 
 /**
  * An operator, such as "==" or "!=".
@@ -41,8 +41,8 @@ public interface RelationOperator {
    * @throws JPFInspectorIncompatibleTypesException If the two operands cannot be compared.
    */
   boolean compare(
-          StateReadableValueInterface left,
-          StateReadableValueInterface right)
+          StateReadableValue left,
+          StateReadableValue right)
           throws JPFInspectorIncompatibleTypesException;
 
   /**

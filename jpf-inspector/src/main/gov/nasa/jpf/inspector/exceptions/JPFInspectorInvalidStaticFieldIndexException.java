@@ -19,7 +19,7 @@
 
 package gov.nasa.jpf.inspector.exceptions;
 
-import gov.nasa.jpf.inspector.server.programstate.StateValue;
+import gov.nasa.jpf.inspector.server.programstate.StateWritableValue;
 import gov.nasa.jpf.vm.ClassInfo;
 
 /**
@@ -31,7 +31,7 @@ public class JPFInspectorInvalidStaticFieldIndexException extends JPFInspectorEx
   private static final long serialVersionUID = -1862875986676694215L;
 
   public JPFInspectorInvalidStaticFieldIndexException (int fieldIndex, ClassInfo ci) {
-    super("Static field index " + fieldIndex + " is out of bounds. The class \"" + StateValue.getSimpleName(ci) + "\" has only " + ci.getNumberOfStaticFields()
+    super("Static field index " + fieldIndex + " is out of bounds. The class \"" + StateWritableValue.getSimpleName(ci) + "\" has only " + ci.getNumberOfStaticFields()
         + " static fields.");
   }
 }

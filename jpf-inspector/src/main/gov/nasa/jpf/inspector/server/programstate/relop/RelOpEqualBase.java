@@ -20,7 +20,7 @@
 package gov.nasa.jpf.inspector.server.programstate.relop;
 
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorIncompatibleTypesException;
-import gov.nasa.jpf.inspector.server.programstate.StateReadableValueInterface;
+import gov.nasa.jpf.inspector.server.programstate.StateReadableValue;
 import gov.nasa.jpf.vm.ClassInfo;
 import gov.nasa.jpf.vm.ElementInfo;
 
@@ -33,7 +33,7 @@ import gov.nasa.jpf.vm.ElementInfo;
 abstract class RelOpEqualBase extends RelOpComparableBase {
 
   @Override
-  public boolean compare (StateReadableValueInterface left, StateReadableValueInterface right) throws JPFInspectorIncompatibleTypesException {
+  public boolean compare (StateReadableValue left, StateReadableValue right) throws JPFInspectorIncompatibleTypesException {
 
     // Common type checking
     assert (left != null);
@@ -121,29 +121,12 @@ abstract class RelOpEqualBase extends RelOpComparableBase {
 
   public abstract boolean compare (boolean left, boolean right);
 
-  // Compare references
   public abstract boolean compare (ElementInfo left, ElementInfo right);
 
-  @Override
-  public abstract boolean compare (char left, char right);
-
-  @Override
-  public abstract boolean compare (String left, String right);
-
-  @Override
-  public abstract boolean compare (double left, double right);
-
-  @Override
-  public abstract boolean compare (long left, long right);
-
-  @Override
-  public abstract String getNormalizedText ();
-
   /**
-   * @param value
    * @return Get null, if value does not represent bool value, otherwise gets operand value converted to Boolean.
    */
-  protected static Boolean tryConvertToBoolean (StateReadableValueInterface value) {
+  private static Boolean tryConvertToBoolean(StateReadableValue value) {
 
     ClassInfo valueCi = value.getClassInfo();
     if (ciCache.ci_boolean.equals(valueCi) || ciCache.ci_Boolean.equals(valueCi)) {

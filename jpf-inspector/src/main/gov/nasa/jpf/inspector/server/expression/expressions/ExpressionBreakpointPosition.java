@@ -44,7 +44,7 @@ public class ExpressionBreakpointPosition extends ExpressionBooleanLeaf {
   private static final boolean DEBUG = false;
   private final JPFInspector inspector;
 
-  final private InstructionPosition instPos;
+  private final InstructionPosition instPos;
 
   public ExpressionBreakpointPosition (JPFInspector inspector, InstructionPosition pos) {
     assert pos != null;
@@ -136,7 +136,7 @@ public class ExpressionBreakpointPosition extends ExpressionBooleanLeaf {
    * @param instCount
    *        Number of instructions executed by JPF after returned instruction
    */
-  static public Instruction getInstructionForThread (Transition tr, Path path, int threadNum, int instCount) {
+  public static Instruction getInstructionForThread (Transition tr, Path path, int threadNum, int instCount) {
     assert path != null;
     assert instCount >= 0;
 
@@ -191,7 +191,7 @@ public class ExpressionBreakpointPosition extends ExpressionBooleanLeaf {
     return prevInstr;
   }
 
-  static public String instructionPosition (Instruction inst) {
+  public static String instructionPosition (Instruction inst) {
     if (inst == null) {
       return "(null)";
     }

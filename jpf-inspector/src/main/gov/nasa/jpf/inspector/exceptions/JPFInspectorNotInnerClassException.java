@@ -19,7 +19,7 @@
 
 package gov.nasa.jpf.inspector.exceptions;
 
-import gov.nasa.jpf.inspector.server.programstate.StateValue;
+import gov.nasa.jpf.inspector.server.programstate.StateWritableValue;
 import gov.nasa.jpf.vm.ClassInfo;
 
 /**
@@ -31,6 +31,6 @@ public class JPFInspectorNotInnerClassException extends JPFInspectorException {
   private static final long serialVersionUID = -569592958049144555L;
 
   public JPFInspectorNotInnerClassException (ClassInfo ci) {
-    super("The class \"" + StateValue.getSimpleName(ci) + "\" is not an inner class.");
+    super("The class \"" + StateWritableValue.getSimpleName(ci) + "\" is not an inner class.");
   }
 }

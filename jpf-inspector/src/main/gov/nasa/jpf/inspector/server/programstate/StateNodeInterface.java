@@ -33,8 +33,6 @@ public interface StateNodeInterface {
    */
   JPFInspector getInspector();
 
-  int getReferenceDepth();
-
   /**
    * Returns an expression that, if evaluated at in the same program state, would result in an equal {@link ProgramStateEntry}.
    */

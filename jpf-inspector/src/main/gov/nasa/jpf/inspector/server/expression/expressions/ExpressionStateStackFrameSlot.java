@@ -21,7 +21,7 @@ package gov.nasa.jpf.inspector.server.expression.expressions;
 
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorException;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorNotStackException;
-import gov.nasa.jpf.inspector.server.programstate.StateReadableValueInterface;
+import gov.nasa.jpf.inspector.server.programstate.StateReadableValue;
 import gov.nasa.jpf.inspector.server.programstate.StateStackFrame;
 import gov.nasa.jpf.inspector.server.programstate.StateValueStackSlot;
 
@@ -40,22 +40,22 @@ public class ExpressionStateStackFrameSlot extends ExpressionStateValue {
     this.slotIndex = slotIndex;
   }
 
-  public StateReadableValueInterface getExpressionFromStackFrame(StateStackFrame ssf) throws JPFInspectorException {
+  public StateReadableValue getExpressionFromStackFrame(StateStackFrame ssf) throws JPFInspectorException {
     assert (ssf != null);
 
     StateValueStackSlot svss = StateValueStackSlot.createSlotFromIndex(ssf, slotIndex);
 
-    if (child == null) {
+    if (getChild() == null) {
       return svss;
     } else {
-      return child.toHierarchy2(svss);
+      return getChild().toHierarchy2(svss);
     }
 
   }
 
 
   @Override
-  public StateReadableValueInterface toHierarchy2(StateReadableValueInterface parent) throws JPFInspectorException {
+  public StateReadableValue toHierarchy2(StateReadableValue parent) throws JPFInspectorException {
     // Not supported operation ... state only StackFrame have slots
     // The grammar itself prevents a stack-slot-expression from following anything but a stack-frame, therefore
     // code should be unable to call this method.
@@ -65,6 +65,6 @@ public class ExpressionStateStackFrameSlot extends ExpressionStateValue {
 
   @Override
   public String getNormalizedExpression () {
-    return '.' + TOKEN_HASH_STACK_SLOT + '[' + slotIndex + ']' + (child != null ? child.getNormalizedExpression() : "");
+    return '.' + TOKEN_HASH_STACK_SLOT + '[' + slotIndex + ']' + (getChild() != null ? getChild().getNormalizedExpression() : "");
   }
 }

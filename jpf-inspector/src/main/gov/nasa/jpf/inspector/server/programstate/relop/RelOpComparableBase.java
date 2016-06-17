@@ -21,7 +21,7 @@ package gov.nasa.jpf.inspector.server.programstate.relop;
 
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorIncompatibleTypesException;
 import gov.nasa.jpf.inspector.server.jpf.JPFInspector;
-import gov.nasa.jpf.inspector.server.programstate.StateReadableValueInterface;
+import gov.nasa.jpf.inspector.server.programstate.StateReadableValue;
 import gov.nasa.jpf.inspector.utils.ClassInfoCache;
 import gov.nasa.jpf.vm.ClassInfo;
 import gov.nasa.jpf.vm.VM;
@@ -48,7 +48,7 @@ abstract class RelOpComparableBase implements RelationOperator {
   }
 
   @Override
-  public boolean compare (StateReadableValueInterface left, StateReadableValueInterface right) throws JPFInspectorIncompatibleTypesException {
+  public boolean compare (StateReadableValue left, StateReadableValue right) throws JPFInspectorIncompatibleTypesException {
 
     // Common type checking
     assert (left != null);
@@ -144,7 +144,7 @@ abstract class RelOpComparableBase implements RelationOperator {
    * @param value
    * @return Get null, if value does not represent floating point number, otherwise gets operand value converted to double.
    */
-  protected static Double tryConvertToDouble (StateReadableValueInterface value) {
+  protected static Double tryConvertToDouble (StateReadableValue value) {
 
     ClassInfo valueCi = value.getClassInfo();
     if (ciCache.ci_float.equals(valueCi) || ciCache.ci_Float.equals(valueCi)) {
@@ -170,7 +170,7 @@ abstract class RelOpComparableBase implements RelationOperator {
    * @param value
    * @return Get null, if value does not represent integer type (byte, short, int, long), otherwise gets operand value converted to long.
    */
-  protected static Long tryConvertToLong (StateReadableValueInterface value) {
+  protected static Long tryConvertToLong (StateReadableValue value) {
 
     ClassInfo valueCi = value.getClassInfo();
 
@@ -212,7 +212,7 @@ abstract class RelOpComparableBase implements RelationOperator {
    * @param value
    * @return Get null, if value does not represent String value, otherwise gets operand value converted to String.
    */
-  protected static String tryConvertToString (StateReadableValueInterface value) {
+  protected static String tryConvertToString (StateReadableValue value) {
 
     ClassInfo valueCi = value.getClassInfo();
     if (ciCache.ci_String.equals(valueCi)) {
@@ -229,7 +229,7 @@ abstract class RelOpComparableBase implements RelationOperator {
    * @param value
    * @return Get null, if value does not represent character value, otherwise gets operand value converted to Character.
    */
-  protected static Character tryConvertToChar (StateReadableValueInterface value) {
+  protected static Character tryConvertToChar (StateReadableValue value) {
 
     ClassInfo valueCi = value.getClassInfo();
     if (ciCache.ci_char.equals(valueCi) || ciCache.ci_Char.equals(valueCi)) {

@@ -19,7 +19,7 @@
 
 package gov.nasa.jpf.inspector.exceptions;
 
-import gov.nasa.jpf.inspector.server.programstate.StateValue;
+import gov.nasa.jpf.inspector.server.programstate.StateWritableValue;
 import gov.nasa.jpf.vm.ClassInfo;
 import gov.nasa.jpf.vm.MethodInfo;
 
@@ -32,10 +32,12 @@ public class JPFInspectorNotInstanceException extends JPFInspectorException {
   private static final long serialVersionUID = -8178100800086257124L;
 
   public JPFInspectorNotInstanceException (MethodInfo mi) {
-    super("The keywords '#this', '#outerClass', '#field' and '#super' cannot be used here because " + StateValue.getSimpleMethodName(mi) + " is a static method. Try '.#static.#field' instead.");
+    super("The keywords '#this', '#outerClass', '#field' and '#super' cannot be used here because " + StateWritableValue
+            .getSimpleMethodName(mi) + " is a static method. Try '.#static.#field' instead.");
   }
 
   public JPFInspectorNotInstanceException (ClassInfo ci) {
-    super("The keywords '#this', '#outerClass', '#field' and '#super' cannot be used here because " + StateValue.getSimpleName(ci) + " is a primitive type, an array or a static class.");
+    super("The keywords '#this', '#outerClass', '#field' and '#super' cannot be used here because " + StateWritableValue
+            .getSimpleName(ci) + " is a primitive type, an array or a static class.");
   }
 }

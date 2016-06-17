@@ -20,7 +20,7 @@
 package gov.nasa.jpf.inspector.server.expression.expressions;
 
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorException;
-import gov.nasa.jpf.inspector.server.programstate.StateReadableValueInterface;
+import gov.nasa.jpf.inspector.server.programstate.StateReadableValue;
 
 /**
  * @author Alf
@@ -35,10 +35,10 @@ public class ExpressionStateValueSuper extends ExpressionStateValue {
   }
 
   @Override
-  public StateReadableValueInterface toHierarchy2(StateReadableValueInterface parent) throws JPFInspectorException {
+  public StateReadableValue toHierarchy2(StateReadableValue parent) throws JPFInspectorException {
     assert (parent != null);
 
-    StateReadableValueInterface srvi = parent.createSuper();
+    StateReadableValue srvi = parent.createSuper();
 
     ExpressionStateValue child = getChild();
     if (child == null) {
@@ -50,6 +50,6 @@ public class ExpressionStateValueSuper extends ExpressionStateValue {
 
   @Override
   public String getNormalizedExpression () {
-    return '.' + TOKEN_HASH_SUPER + (child != null ? child.getNormalizedExpression() : "");
+    return '.' + TOKEN_HASH_SUPER + (getChild() != null ? getChild().getNormalizedExpression() : "");
   }
 }

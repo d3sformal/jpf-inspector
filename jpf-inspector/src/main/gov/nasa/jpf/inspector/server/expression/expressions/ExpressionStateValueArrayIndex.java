@@ -20,7 +20,7 @@
 package gov.nasa.jpf.inspector.server.expression.expressions;
 
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorException;
-import gov.nasa.jpf.inspector.server.programstate.StateReadableValueInterface;
+import gov.nasa.jpf.inspector.server.programstate.StateReadableValue;
 import gov.nasa.jpf.inspector.server.programstate.StateValueArrayElement;
 
 /**
@@ -38,7 +38,7 @@ public class ExpressionStateValueArrayIndex extends ExpressionStateValue {
   }
 
   @Override
-  public StateReadableValueInterface toHierarchy2(StateReadableValueInterface parent) throws JPFInspectorException {
+  public StateReadableValue toHierarchy2(StateReadableValue parent) throws JPFInspectorException {
 
     StateValueArrayElement svae = StateValueArrayElement.createArrayElement(parent, elementIndex);
 
@@ -52,7 +52,7 @@ public class ExpressionStateValueArrayIndex extends ExpressionStateValue {
 
   @Override
   public String getNormalizedExpression () {
-    return '[' + elementIndex + ']' + child.getNormalizedExpression();
+    return '[' + elementIndex + ']' + getChild().getNormalizedExpression();
   }
 
 }

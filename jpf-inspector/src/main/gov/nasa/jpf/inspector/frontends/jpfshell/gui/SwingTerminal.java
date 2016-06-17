@@ -164,6 +164,7 @@ public class SwingTerminal extends Terminal {
     outSimplePrintStream = new PrintStream(new JLineSimpleOutputStream(interpreter, console));
   }
 
+  @SuppressWarnings("FinalizeDeclaration")
   @Override
   protected void finalize () throws Throwable {
     super.finalize();
@@ -268,14 +269,14 @@ public class SwingTerminal extends Terminal {
 
   @Override
   public int readCharacter (InputStream in) throws IOException {
-    int ch = 0;
+    int character = 0;
 
     for (int i = 0; i < 4; i++) {
-      int b = in.read();
-      ch |= (b & 0xFF) << (8 * i);
+      int inByte = in.read();
+      character |= (inByte &  0xFF) << (8 * i);
     }
 
-    return ch;
+    return character;
   }
 
   private static boolean fontExists (String fontFamilyName) {
@@ -497,7 +498,7 @@ public class SwingTerminal extends Terminal {
     }
   }
 
-  static public class JLineSimpleOutputStream extends OutputStream {
+  public static class JLineSimpleOutputStream extends OutputStream {
     private static Logger log = Debugging.getLogger(ShellManager.getManager().getConfig());
 
     private final TextComponentFeeder interpreter;
@@ -508,13 +509,13 @@ public class SwingTerminal extends Terminal {
       if (log.isLoggable(Level.FINE)) {
         log.fine(this.getClass().getSimpleName() + "write(b=" + ((char) b) + ")");
       }
-      char c[] = new char[1];
+      char[] c = new char[1];
       c[0] = (char) b;
       interpreter.addTextAtTheVeryEnd(new String(c), console);
     }
 
     @Override
-    public void write (byte b[], int off, int len) throws IOException {
+    public void write (byte[] b, int off, int len) throws IOException {
       String str = new String(b, off, len);
       if (log.isLoggable(Level.FINE)) {
         log.fine(this.getClass().getSimpleName() + "write( str=" + str + ")");
@@ -533,7 +534,7 @@ public class SwingTerminal extends Terminal {
    * @author Alf
    * 
    */
-  static public class JLineUserTextOutputStream extends OutputStream {
+  public static class JLineUserTextOutputStream extends OutputStream {
     private static Logger log = Debugging.getLogger(ShellManager.getManager().getConfig());
 
     private final TextComponentFeeder interpreter;
@@ -549,13 +550,13 @@ public class SwingTerminal extends Terminal {
       if (log.isLoggable(Level.FINE)) {
         log.fine(this.getClass().getSimpleName() + "write(b=" + ((char) b) + ")");
       }
-      char c[] = new char[1];
+      char[] c = new char[1];
       c[0] = (char) b;
       interpreter.addUserText(new String(c), console);
     }
 
     @Override
-    public void write (byte b[], int off, int len) throws IOException {
+    public void write (byte[] b, int off, int len) throws IOException {
       String str = new String(b, off, len);
       if (log.isLoggable(Level.FINE)) {
         log.fine(this.getClass().getSimpleName() + "write( str=" + str + ")");

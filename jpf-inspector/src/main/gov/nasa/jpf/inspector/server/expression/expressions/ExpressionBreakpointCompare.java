@@ -26,7 +26,7 @@ import gov.nasa.jpf.inspector.server.expression.ExpressionStateRootNode;
 import gov.nasa.jpf.inspector.server.expression.InspectorState;
 import gov.nasa.jpf.inspector.server.jpf.JPFInspector;
 import gov.nasa.jpf.inspector.server.programstate.StateNodeInterface;
-import gov.nasa.jpf.inspector.server.programstate.StateReadableValueInterface;
+import gov.nasa.jpf.inspector.server.programstate.StateReadableValue;
 import gov.nasa.jpf.inspector.server.programstate.relop.RelationOperator;
 
 /**
@@ -59,17 +59,17 @@ public class ExpressionBreakpointCompare extends ExpressionBooleanLeaf {
       StateNodeInterface sniLeft = leftOp.getResultExpression(inspector, state);
       StateNodeInterface sniRight = rightOp.getResultExpression(inspector, state);
 
-      if (!(sniLeft instanceof StateReadableValueInterface)) {
+      if (!(sniLeft instanceof StateReadableValue)) {
         detail = "left operand does not represent a value";
         return false;
       }
 
-      if (!(sniRight instanceof StateReadableValueInterface)) {
+      if (!(sniRight instanceof StateReadableValue)) {
         detail = "right operand does not represent a value";
         return false;
       }
 
-      return relOper.compare((StateReadableValueInterface) sniLeft, (StateReadableValueInterface) sniRight);
+      return relOper.compare((StateReadableValue) sniLeft, (StateReadableValue) sniRight);
       // return expectedResult ^ (sniLeft.equals(sniRight));
 
     } catch (JPFInspectorException e) {

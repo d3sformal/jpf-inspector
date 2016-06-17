@@ -26,7 +26,7 @@ import gov.nasa.jpf.inspector.server.jpf.JPFInspector;
  * A node of the intermediate representation of an expression (hierarchy 2).
  * Hierarchy 2 class names start with "State".
  */
-abstract public class StateNode implements StateNodeInterface {
+public abstract class StateNode implements StateNodeInterface {
 
   /**
    * An expression that, if evaluated in the same program state,
@@ -34,39 +34,20 @@ abstract public class StateNode implements StateNodeInterface {
    */
   private String stateExpr;
 
-  private final int referenceDepth;
-
   /**
    * The Inspector server.
    */
   private final JPFInspector inspector;
 
-  protected StateNode (JPFInspector inspector, int referenceDepth) {
-    assert (referenceDepth >= 0);
+  protected StateNode (JPFInspector inspector) {
+    assert inspector != null;
 
     this.inspector = inspector;
-    this.referenceDepth = referenceDepth;
-  }
-
-  protected StateNode (StateNodeInterface sn, int referenceDepth) {
-    assert (sn != null);
-
-    if (referenceDepth < 0) {
-      referenceDepth = 0;
-    }
-
-    this.inspector = sn.getInspector();
-    this.referenceDepth = referenceDepth;
   }
 
   @Override
   public JPFInspector getInspector () {
     return inspector;
-  }
-
-  @Override
-  public int getReferenceDepth () {
-    return referenceDepth;
   }
 
   /**

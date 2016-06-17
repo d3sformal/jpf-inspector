@@ -22,6 +22,7 @@
  * 
  * @author Alf
  */
+@SuppressWarnings("ALL")
 public class Print02 {
 
   public static void main (String[] args) {
@@ -34,7 +35,7 @@ public class Print02 {
   }
 }
 
-@SuppressWarnings("unused")
+@SuppressWarnings("ALL")
 class Predecessor1 {
 
   int pred1_i1 = 101;
@@ -43,9 +44,9 @@ class Predecessor1 {
   protected int pred1_i4 = 104;
 
   static int pred1_i11 = 111;
-  static public int pred1_i12 = 112;
-  static private int pred1_i13 = 113;
-  static protected int pred1_i14 = 114;
+  public static int pred1_i12 = 112;
+  private static int pred1_i13 = 113;
+  protected static int pred1_i14 = 114;
 
   public int a = 1;
 
@@ -84,7 +85,7 @@ class Predecessor1 {
 
 }
 
-@SuppressWarnings("unused")
+@SuppressWarnings("ALL")
 class Predecessor2 extends Predecessor1 {
 
   public int a = 2;
@@ -95,9 +96,9 @@ class Predecessor2 extends Predecessor1 {
   protected int pred2_i4 = 204;
 
   static int pred2_i11 = 211;
-  static public int pred2_i12 = 212;
-  static private int pred2_i13 = 213;
-  static protected int pred2_i14 = 214;
+  public static int pred2_i12 = 212;
+  private static int pred2_i13 = 213;
+  protected static int pred2_i14 = 214;
 
   class InnerPred2 extends InnerPred1 {
     public int a = 1002;
@@ -130,7 +131,7 @@ class Predecessor2 extends Predecessor1 {
 
 }
 
-@SuppressWarnings("unused")
+@SuppressWarnings("ALL")
 class Predecessor3 extends Predecessor2 {
   public int a = 3;
 
@@ -140,9 +141,9 @@ class Predecessor3 extends Predecessor2 {
   protected int pred3_i4 = 304;
 
   static int pred3_i11 = 311;
-  static public int pred3_i12 = 312;
-  static private int pred3_i13 = 313;
-  static protected int pred3_i14 = 314;
+  public static int pred3_i12 = 312;
+  private static int pred3_i13 = 313;
+  protected static int pred3_i14 = 314;
 
   public class InnerPred3 extends InnerPred2 {
     public int a = 1003;

@@ -29,20 +29,17 @@ import gov.nasa.jpf.inspector.common.pse.PSEVariable;
 import gov.nasa.jpf.vm.*;
 
 /**
- * Contains information about a stack slot using the {@link StackFrame}, the index, the {@link LocalVarInfo}
- * and the {@link ClassInfo} of the variable's type.
+ * Contains information about a stack slot using the {@link StackFrame}, the index and the {@link LocalVarInfo}.
  *
  * Even when the user asks for a local variable or parameter by name, it is converted here to a stack slot index
  * and represented as this class in the second hierarchy.
  */
-public class StateValueStackSlot extends StateValue {
+public class StateValueStackSlot extends StateWritableValue {
   public static final boolean DEBUG = false;
-
   public static final int INVALID_SLOT_INDEX = -1;
 
   private final StackFrame sf;
   private final int index;
-
   private final LocalVarInfo lvi;
 
   public static StateValueStackSlot createNamedSlotValue (StateStackFrame ssf, String varName) throws JPFInspectorException {
@@ -51,7 +48,7 @@ public class StateValueStackSlot extends StateValue {
       throw new JPFInspectorInvalidNameException(varName);
     }
 
-    return StateValueStackSlot.createSVSSInstance(ssf, 1, ssf.getStateExpr() + '.' + varName, slotIndex);
+    return StateValueStackSlot.createSVSSInstance(ssf, ssf.getStateExpr() + '.' + varName, slotIndex);
 
   }
 
@@ -65,7 +62,7 @@ public class StateValueStackSlot extends StateValue {
       throw new JPFInspectorNotInstanceException(mi);
     }
 
-    return StateValueStackSlot.createSVSSInstance(ssf, 1, ssf.getStateExpr(), 0);
+    return StateValueStackSlot.createSVSSInstance(ssf, ssf.getStateExpr(), 0);
   }
 
   /**
@@ -81,21 +78,22 @@ public class StateValueStackSlot extends StateValue {
       throw new JPFInspectorNotInstanceException(mi);
     }
 
-    return StateValueStackSlot.createSVSSInstance(ssf, 1, ssf.getStateExpr() + '.' + PSEVariable.EXPRESSION_VARIABLE_THIS, 0);
+    return StateValueStackSlot.createSVSSInstance(ssf, ssf.getStateExpr() + '.' + PSEVariable.EXPRESSION_VARIABLE_THIS, 0);
   }
 
-  public static StateValueStackSlot createSlotFromIndex (StateStackFrame ssf, int slotIndex, int referenceDepth) throws JPFInspectorException {
-    return StateValueStackSlot.createSVSSInstance(ssf, referenceDepth, ssf.getStateExpr() + '.' + PSEVariable.EXPRESSION_VARIABLE_LOCAL_VAR + '[' + slotIndex
-        + ']', slotIndex);
-  }
+
 
   public static StateValueStackSlot createSlotFromIndex (StateStackFrame ssf, int slotIndex) throws JPFInspectorException {
-    return StateValueStackSlot.createSlotFromIndex(ssf, slotIndex, ssf.getReferenceDepth());
+    return StateValueStackSlot.createSVSSInstance(ssf,
+                                                  ssf.getStateExpr() + '.' + PSEVariable.EXPRESSION_VARIABLE_LOCAL_VAR + '[' + slotIndex
+            + ']',
+                                                  slotIndex);
   }
 
 
-  private static StateValueStackSlot createSVSSInstance(StateStackFrame ssf, int referenceDepth,
-                                                        String stateExpression, int slotIndex)
+  private static StateValueStackSlot createSVSSInstance(StateStackFrame ssf,
+                                                        String stateExpression,
+                                                        int slotIndex)
       throws JPFInspectorInvalidSlotIndexException {
 
     assert (ssf != null);
@@ -131,14 +129,18 @@ public class StateValueStackSlot extends StateValue {
     ClassInfo ciReal = ClassLoaderInfo.getCurrentResolvedClassInfo(className);
 
     assert (ciReal != null);
-    assert (StateValue.isPredecessor(ciReal, ciReal));
+    assert (StateWritableValue.isPredecessor(ciReal, ciReal));
 
-    return new StateValueStackSlot(ssf, referenceDepth, stateExpression, ciReal, slotIndex, lvi);
+    return new StateValueStackSlot(ssf, stateExpression, ciReal, slotIndex, lvi);
 
   }
 
-  private StateValueStackSlot(StateStackFrame ssf, int referenceDepth, String stateExpression, ClassInfo ci, int slotIndex, LocalVarInfo lvi) {
-    super(ssf, referenceDepth, ci, stateExpression);
+  private StateValueStackSlot(StateStackFrame ssf,
+                              String stateExpression,
+                              ClassInfo ci,
+                              int slotIndex,
+                              LocalVarInfo lvi) {
+    super(ssf, true, ci, stateExpression);
 
     this.sf = ssf.getStackFrame();
     this.index = slotIndex;
@@ -171,7 +173,7 @@ public class StateValueStackSlot extends StateValue {
     final String varName = lvi.getName();
     final String definedIn = (ciMethod != null ? ciMethod.getSimpleName() + "." + mi.getName() : "[???]" + mi.getName());
 
-    return StateValue.createPSEVariable(this, varName, index, definedIn);
+    return StateReadableValue.createPSEVariable(this, varName, index, definedIn);
   }
 
   @Override
@@ -180,7 +182,7 @@ public class StateValueStackSlot extends StateValue {
   }
 
   @Override
-  public StateReadableValueInterface createSuper () throws JPFInspectorException {
+  public StateReadableValue createSuper () throws JPFInspectorException {
     ClassInfo superClassInfo = ci.getSuperClass();
     if (superClassInfo == null) {
       throw new JPFInspectorNoSuperClassException(ci);
@@ -188,15 +190,13 @@ public class StateValueStackSlot extends StateValue {
     return new StateValueStackSlot(this, superClassInfo, getStateExpr() + '.' + PSEVariable.EXPRESSION_SUPER);
   }
 
-  /* @see gov.nasa.jpf.inspector.server.programstate.StateReadableValueInterface#createPredecessorClass(gov.nasa.jpf.jvm.ClassInfo) */
   @Override
-  public StateReadableValueInterface createPredecessorClass (ClassInfo ci) throws JPFInspectorNotSuperClassException {
-    return new StateValueStackSlot(this, ci, getStateExpr() + '.' + StateValue.getSimpleName(ci));
+  public StateReadableValue createPredecessorClass (ClassInfo ci) throws JPFInspectorNotSuperClassException {
+    return new StateValueStackSlot(this, ci, getStateExpr() + '.' + StateWritableValue.getSimpleName(ci));
   }
 
-  /* @see gov.nasa.jpf.inspector.server.programstate.StateReadableValueInterface#createThisValue() */
   @Override
-  public StateReadableValueInterface createThisValue () throws JPFInspectorException {
+  public StateReadableValue createThisValue () throws JPFInspectorException {
     if (ci.isArray() || ci.isPrimitive()) {
       throw new JPFInspectorNotInstanceException(ci);
     }
@@ -208,57 +208,48 @@ public class StateValueStackSlot extends StateValue {
   // ** Modify represented value infrastructure
   // *************************************************************************
 
-  /* @see gov.nasa.jpf.inspector.server.programstate.StateValue#assignValueBoolean(boolean) */
   @Override
   protected void assignValueBoolean (boolean newVal) {
     sf.setLocalVariable(index, (newVal ? 1 : 0), false);
   }
 
-  /* @see gov.nasa.jpf.inspector.server.programstate.StateValue#assignValueChar(char) */
   @Override
   protected void assignValueChar (char newVal) {
     sf.setLocalVariable(index, newVal, false);
 
   }
 
-  /* @see gov.nasa.jpf.inspector.server.programstate.StateValue#assignValueByte(byte) */
   @Override
   protected void assignValueByte (byte newVal) {
     sf.setLocalVariable(index, newVal, false);
 
   }
 
-  /* @see gov.nasa.jpf.inspector.server.programstate.StateValue#assignValueShort(short) */
   @Override
   protected void assignValueShort (short newVal) {
     sf.setLocalVariable(index, newVal, false);
   }
 
-  /* @see gov.nasa.jpf.inspector.server.programstate.StateValue#assignValueInt(int) */
   @Override
   protected void assignValueInt (int newVal) {
     sf.setLocalVariable(index, newVal, false);
   }
 
-  /* @see gov.nasa.jpf.inspector.server.programstate.StateValue#assignValueLong(long) */
   @Override
   protected void assignValueLong (long newVal) {
     sf.setLongLocalVariable(index, newVal);
   }
 
-  /* @see gov.nasa.jpf.inspector.server.programstate.StateValue#assignValueFloat(float) */
   @Override
   protected void assignValueFloat (float newVal) {
     sf.setLocalVariable(index, Types.floatToInt(newVal), false);
   }
 
-  /* @see gov.nasa.jpf.inspector.server.programstate.StateValue#assignValueDouble(double) */
   @Override
   protected void assignValueDouble (double newVal) {
     sf.setLongLocalVariable(index, Types.doubleToLong(newVal));
   }
 
-  /* @see gov.nasa.jpf.inspector.server.programstate.StateValue#assignValueRef(int) */
   @Override
   protected void assignValueRef (int newValRef) {
     sf.setLocalVariable(index, newValRef, true);

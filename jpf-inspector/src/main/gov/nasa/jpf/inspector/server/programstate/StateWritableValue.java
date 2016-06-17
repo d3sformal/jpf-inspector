@@ -20,19 +20,16 @@
 package gov.nasa.jpf.inspector.server.programstate;
 
 import gov.nasa.jpf.JPFException;
-import gov.nasa.jpf.inspector.common.pse.*;
 import gov.nasa.jpf.inspector.exceptions.*;
 import gov.nasa.jpf.inspector.server.expression.InspectorState;
 import gov.nasa.jpf.inspector.utils.ClassInfoCache;
 import gov.nasa.jpf.vm.*;
 
-import java.util.Arrays;
-
 /**
  * Represents a hierarchy-2 l-value, i.e. it is a value (and not a thread, heap entry list or a stack frame), and it
  * is assignable (i.e. it is not a constant).
  */
-public abstract class StateValue extends StateNode implements StateReadableValueInterface {
+public abstract class StateWritableValue extends StateReadableValue {
   private static ClassInfoCache ciCache;
 
   /**
@@ -40,8 +37,8 @@ public abstract class StateValue extends StateNode implements StateReadableValue
    */
   protected final ClassInfo ci;
 
-  protected StateValue (StateNodeInterface sni, int referenceDepth, ClassInfo ci, String stateExpression) {
-    super(sni, referenceDepth);
+  protected StateWritableValue(StateNodeInterface sni, boolean expandMembers, ClassInfo ci, String stateExpression) {
+    super(sni.getInspector(), expandMembers);
 
     setStateExpr(stateExpression);
 
@@ -61,14 +58,14 @@ public abstract class StateValue extends StateNode implements StateReadableValue
    * 
    * @throws JPFInspectorNotSuperClassException
    */
-  protected StateValue (StateValue me, ClassInfo superClassInfo, String stateExpression) throws JPFInspectorNotSuperClassException {
-    super(me, me.getReferenceDepth());
+  protected StateWritableValue(StateWritableValue me, ClassInfo superClassInfo, String stateExpression) throws JPFInspectorNotSuperClassException {
+    super(me.getInspector(), me.shouldExpandMembers());
     setStateExpr(stateExpression);
 
     this.ci = superClassInfo;
 
     assert (this.ci != null);
-    if (!StateValue.isPredecessor(this.ci, me.ci)) {
+    if (!StateWritableValue.isPredecessor(this.ci, me.ci)) {
       throw new JPFInspectorNotSuperClassException(superClassInfo, me.ci);
     }
   }
@@ -105,7 +102,7 @@ public abstract class StateValue extends StateNode implements StateReadableValue
    * Assigns a new value to the entry represented by this instance.
    * @param valueToAssign New value which should be assigned to this instance. Cannot be null.
    */
-  public void assignValue (StateReadableValueInterface valueToAssign) throws JPFInspectorException {
+  public void assignValue (StateReadableValue valueToAssign) throws JPFInspectorException {
 
     assert (valueToAssign != null);
 
@@ -396,7 +393,7 @@ public abstract class StateValue extends StateNode implements StateReadableValue
    * @param typeNameSignature Name of the type in the JVM internal format - "I", "[Lx/Y;" etc.
    * @return Human readable form of the type name.
    */
-  static public String demangleTypeName (String typeNameSignature) {
+  public static String demangleTypeName (String typeNameSignature) {
     if (typeNameSignature == null) {
       return null;
     }
@@ -412,7 +409,7 @@ public abstract class StateValue extends StateNode implements StateReadableValue
     }
   }
 
-  static public String getSimpleMethodName (MethodInfo mi) {
+  public static String getSimpleMethodName (MethodInfo mi) {
     if (mi == null) {
       return "???";
     }
@@ -426,21 +423,21 @@ public abstract class StateValue extends StateNode implements StateReadableValue
     return getSimpleName(ci) + "." + mi.getName();
   }
 
-  static public String getFullClassName (ClassInfo ci) {
+  public static String getFullClassName (ClassInfo ci) {
     if (ci == null) {
       return "???";
     }
     return demangleTypeName(ci.getSignature());
   }
 
-  static public String getSimpleName (ClassInfo ci) {
+  public static String getSimpleName (ClassInfo ci) {
     if (ci == null) {
       return "???";
     }
     return getSimpleName(ci.getSignature());
   }
 
-  static public String getSimpleName (String typeNameSignature) {
+  public static String getSimpleName (String typeNameSignature) {
     String fullName = demangleTypeName(typeNameSignature);
 
     int lastDot = fullName.lastIndexOf('.');
@@ -453,73 +450,6 @@ public abstract class StateValue extends StateNode implements StateReadableValue
     return fullName;
   }
 
-  private static String elementInfo2String(ElementInfo ei) {
-    if (ei == null) {
-      return "null";
-    }
-
-    if (ei.isArray()) {
-      // Note: Bad code practice - alternative way,
-      // Create Decorating factory, decorators with used defined toSting() methods
-      // Update configuration- "vm.fields_factory.class
-
-      ClassInfo elemClassInfo = ei.getClassInfo().getComponentClassInfo();
-      assert  elemClassInfo != null;
-      String elemSignature = elemClassInfo.getSignature();
-
-      if ("Z".equals(elemSignature)) {
-        return Arrays.toString(ei.asBooleanArray());
-      } else if ("B".equals(elemSignature)) {
-        return Arrays.toString(ei.asByteArray());
-      } else if ("C".equals(elemSignature)) {
-        return Arrays.toString(ei.asCharArray());
-      } else if ("S".equals(elemSignature)) {
-        return Arrays.toString(ei.asShortArray());
-      } else if ("I".equals(elemSignature)) {
-        return Arrays.toString(ei.asIntArray());
-      } else if ("J".equals(elemSignature)) {
-        return Arrays.toString(ei.asLongArray());
-      } else if ("F".equals(elemSignature)) {
-        return Arrays.toString(ei.asFloatArray());
-      } else if ("D".equals(elemSignature)) {
-        return Arrays.toString(ei.asDoubleArray());
-      }
-      if (elemSignature != null && elemSignature.startsWith("L") || elemClassInfo.isArray()) {
-        int[] refArr = ei.asReferenceArray();
-        StringBuilder sb = new StringBuilder();
-        sb.append('[');
-        for (int i = 0; i < refArr.length; i++) {
-          if (i > 0) {
-            sb.append(", ");
-          }
-          if (refArr[i] == MJIEnv.NULL) {
-            sb.append("null");
-          } else {
-            // value stored in array at index i
-            ElementInfo eiArr = VM.getVM().getHeap().get(refArr[i]);
-            assert (eiArr != null);
-
-            sb.append(elementInfo2String(eiArr));
-          }
-        }
-        sb.append(']');
-        return sb.toString();
-      } else {
-        throw new RuntimeException("Invalid signature " + elemSignature);
-      }
-    }
-    if (ClassInfo.isStringClassInfo(ei.getClassInfo()) && (ei instanceof DynamicElementInfo)) {
-      DynamicElementInfo dei = (DynamicElementInfo) ei;
-      return '\"' + dei.asString() + '\"';
-    }
-
-    // Normally, we would have ElementInfo.toString here. However, we want to display the heap index
-    // as a decimal value, not hexadecimal.
-    //     return ((ci != null ? ci.getName() : "ElementInfo") + '@' + Integer.toHexString(objRef));
-    String className =  (ei.getClassInfo()!= null ? ei.getClassInfo().getName() : "ElementInfo");
-    String heapIndex = Integer.toString(ei.getObjectRef(), 10);
-    return className + "@" + heapIndex;
-  }
 
   /**
    * @return Gets true is testedCi type is predecessor (superType) is the representedValue type.
@@ -535,111 +465,9 @@ public abstract class StateValue extends StateNode implements StateReadableValue
   }
 
   /**
-   * Creates a hierarchy-3 representation of a value.
-   *
-   * @param value A hierarchy-2 representation of the value.
-   * @param varName Name of the variable that contains the value.
-   * @param index Index (stack slot, array index, field index or heap index), if any. If not, then zero.
-   * @param definedIn The class this field was defined in, if field, if any. If not, then it's the empty string.
-   * @return The hierarchy-3 representation.
-   */
-  public static PSEVariable createPSEVariable(StateReadableValueInterface value,
-                                              String varName,
-                                              int index,
-                                              String definedIn)
-      throws JPFInspectorException {
-
-    assert (value != null);
-    assert (definedIn != null) : "Use the empty string rather than null.";
-    assert (varName != null) : "Use an arbirtrary string (such as ???) rather than null.";
-
-    ClassInfo ci = value.getClassInfo();
-
-    String varTypeName = StateValue.demangleTypeName(ci.getSignature());
-
-    // Primitive
-    if (ci.isPrimitive()) {
-      Object wrappedValue = value.getValue();
-      return new PSEVariablePrimitive(varName, varTypeName, wrappedValue.toString(), false,
-                                      definedIn, index, wrappedValue);
-    }
-
-    final ElementInfo ei = value.getReferenceValue(); // may be null
-    final String varValue = StateValue.elementInfo2String(ei); // short-form description of the value
-    final int referenceDepth = value.getReferenceDepth();
-
-    final boolean isStatic = isStaticElementInfo(ei);
-
-    if (ci.isArray()) {
-      // It's an array.
-
-      if (ei == null) {
-        // It's a null value.
-        return new PSEVariableObject(varName, varTypeName, varValue, false, definedIn, index, new PSEVariable[0], new PSEVariable[0]);
-      } else if (referenceDepth > 0) {
-        int arrayLen;
-        PSEVariable[] refArrayItems;
-        arrayLen = ei.arrayLength();
-        refArrayItems = new PSEVariable[arrayLen];
-        for (int i = 0; i < arrayLen; i++) {
-          StateValueArrayElement svae = StateValueArrayElement.createArrayElement(value, i, referenceDepth - 1);
-          refArrayItems[i] = svae.toHierarchy3();
-        }
-        return new PSEVariableArray(varName, varTypeName, varValue, false, definedIn, index, arrayLen, refArrayItems);
-      } else {
-        return new PSEVariableShortForm(varName, varTypeName, varValue, false, definedIn, index);
-
-      }
-    } else {
-      // It's a reference object.
-
-      final int fields = ci.getNumberOfInstanceFields();
-      final int staticFields = ci.getNumberOfStaticFields();
-
-      if (ei == null) {
-        // It's a null value.
-        return new PSEVariableObject(varName, varTypeName, "null",
-                                     false, definedIn, index, new PSEVariable[0],
-                                     new PSEVariable[0]);
-      }
-      else if (referenceDepth > 0) {
-        // Not null and values of all fields are required
-        PSEVariable[] refFields;
-        PSEVariable[] refStaticFields;
-
-        if (isStatic == false) {
-          refFields = new PSEVariable[fields];
-
-          for (int i = 0; i < ci.getNumberOfInstanceFields(); i++) {
-            StateValueElementInfoField svae = StateValueElementInfoField.createFieldFromIndex(value,
-                                                                                              i,
-                                                                                              referenceDepth - 1);
-            refFields[i] = svae.toHierarchy3();
-          }
-        } else {
-          refFields = new PSEVariable[0];
-        }
-        // Create static fields
-        refStaticFields = new PSEVariable[staticFields];
-        for (int i = 0; i < staticFields; i++) {
-          StateValueElementInfoField svae = StateValueElementInfoField.createStaticFieldFromIndex(value,
-                                                                                                  i,
-                                                                                                  referenceDepth - 1);
-          refStaticFields[i] = svae.toHierarchy3();
-        }
-        return new PSEVariableObject(varName, varTypeName, varValue,
-                                     false, definedIn, index, refFields,
-                                     refStaticFields);
-      } else {
-        return new PSEVariableShortForm(varName, varTypeName, varValue, false, definedIn, index);
-      }
-    }
-  }
-
-  /**
    * @return Gets true if represented value has entry with given name.
    */
-  public static boolean hasNamedEntry (StateReadableValueInterface srvi, String varName) {
+  public static boolean hasNamedEntry (StateReadableValue srvi, String varName) {
     assert (srvi != null);
     assert (varName != null);
 

@@ -19,7 +19,7 @@
 
 package gov.nasa.jpf.inspector.exceptions;
 
-import gov.nasa.jpf.inspector.server.programstate.StateValue;
+import gov.nasa.jpf.inspector.server.programstate.StateWritableValue;
 import gov.nasa.jpf.vm.ClassInfo;
 
 /**
@@ -31,6 +31,6 @@ public class JPFInspectorNotArrayException extends JPFInspectorException {
   private static final long serialVersionUID = -8797241683724627609L;
 
   public JPFInspectorNotArrayException (ClassInfo ci) {
-    super("\"" + StateValue.getSimpleName(ci) + "\" is not an array.");
+    super("\"" + StateWritableValue.getSimpleName(ci) + "\" is not an array.");
   }
 }

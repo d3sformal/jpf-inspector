@@ -19,7 +19,7 @@
 
 package gov.nasa.jpf.inspector.exceptions;
 
-import gov.nasa.jpf.inspector.server.programstate.StateValue;
+import gov.nasa.jpf.inspector.server.programstate.StateWritableValue;
 import gov.nasa.jpf.inspector.server.programstate.relop.RelationOperator;
 import gov.nasa.jpf.vm.ClassInfo;
 
@@ -33,14 +33,14 @@ public class JPFInspectorIncompatibleTypesException extends JPFInspectorExceptio
 
   // Incompatible types when assigning
   public JPFInspectorIncompatibleTypesException (ClassInfo ci, ClassInfo newValCI) {
-    super("Cannot assign new value. A value of type \"" + StateValue.demangleTypeName(newValCI.getSignature()) + "\" cannot be assigned to a variable of type \""
-        + StateValue.demangleTypeName(ci.getSignature()) + "\".");
+    super("Cannot assign new value. A value of type \"" + StateWritableValue.demangleTypeName(newValCI.getSignature()) + "\" cannot be assigned to a variable of type \""
+        + StateWritableValue.demangleTypeName(ci.getSignature()) + "\".");
   }
 
   // Incompatible type when comparing
   public JPFInspectorIncompatibleTypesException (RelationOperator relOper, ClassInfo ci, ClassInfo newValCI) {
-    super("Cannot compare values of given types - incompatible types. \"" + StateValue.demangleTypeName(ci.getSignature()) + "\" " + relOper.getNormalizedText()
-        + " \"" + StateValue.demangleTypeName(newValCI.getSignature()) + "\"");
+    super("Cannot compare values of given types - incompatible types. \"" + StateWritableValue.demangleTypeName(ci.getSignature()) + "\" " + relOper.getNormalizedText()
+        + " \"" + StateWritableValue.demangleTypeName(newValCI.getSignature()) + "\"");
   }
 
 }

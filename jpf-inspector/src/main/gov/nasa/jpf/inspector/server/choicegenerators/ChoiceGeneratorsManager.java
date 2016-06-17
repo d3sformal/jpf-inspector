@@ -29,7 +29,7 @@ import gov.nasa.jpf.inspector.server.breakpoints.DefaultForwardTraceManager;
 import gov.nasa.jpf.inspector.server.expression.InspectorState;
 import gov.nasa.jpf.inspector.server.jpf.JPFInspector;
 import gov.nasa.jpf.inspector.server.jpf.StopHolder;
-import gov.nasa.jpf.inspector.server.programstate.StateValue;
+import gov.nasa.jpf.inspector.server.programstate.StateWritableValue;
 import gov.nasa.jpf.inspector.utils.ChoiceGeneratorWrapper;
 import gov.nasa.jpf.inspector.utils.InstructionWrapper;
 import gov.nasa.jpf.vm.*;
@@ -42,7 +42,7 @@ import java.util.List;
  * Manages choice generators and used choices.
  */
 public class ChoiceGeneratorsManager implements ChoiceGeneratorsInterface, ChoiceGeneratorNotifications {
-  private final static boolean DEBUG = false;
+  private static final boolean DEBUG = false;
   @SuppressWarnings("FieldCanBeLocal") // IDEA bug
   private final PrintStream out;
 
@@ -267,7 +267,7 @@ public class ChoiceGeneratorsManager implements ChoiceGeneratorsInterface, Choic
     MethodInfo mi = inst.getMethodInfo();
     ClassInfo ci = mi.getClassInfo();
 
-    return new InstructionWrapper(inst.toString(), StateValue.getFullClassName(ci), mi.getName(), inst.getPosition(), mi.getSourceFileName(), inst
+    return new InstructionWrapper(inst.toString(), StateWritableValue.getFullClassName(ci), mi.getName(), inst.getPosition(), mi.getSourceFileName(), inst
         .getLineNumber(), inst.getSourceLine());
   }
 }

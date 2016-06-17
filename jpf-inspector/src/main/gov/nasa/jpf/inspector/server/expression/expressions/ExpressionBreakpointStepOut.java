@@ -48,12 +48,12 @@ public class ExpressionBreakpointStepOut extends ExpressionBooleanLeaf {
   /**
    * The active thread at the time the stepping was initiated.
    */
-  final private int threadNum;
+  private final int threadNum;
   /**
    * Specify to which SF should breakpoint step out (in which it should hit) - counted from the top of the call stack
    * This is only used in the expression's getNormalizedExpression which is never called anyway.
    */
-  final private int stackDepth;
+  private final int stackDepth;
 
   // final private StackFrame sf; // Represents called method (used only for assertions)
 
@@ -61,7 +61,7 @@ public class ExpressionBreakpointStepOut extends ExpressionBooleanLeaf {
    * If stack depth is lower than this value, then the breakpoint hits. This value is the stack depth at the time
    * the stepping is initiated.
    */
-  final private int maxBreakingStackDepth;
+  private final int maxBreakingStackDepth;
 
   /**
    * Creates the hit condition.

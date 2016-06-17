@@ -19,7 +19,7 @@
 
 package gov.nasa.jpf.inspector.exceptions;
 
-import gov.nasa.jpf.inspector.server.programstate.StateValue;
+import gov.nasa.jpf.inspector.server.programstate.StateWritableValue;
 import gov.nasa.jpf.vm.ClassInfo;
 
 /**
@@ -31,7 +31,7 @@ public class JPFInspectorInvalidFieldIndexException extends JPFInspectorExceptio
   private static final long serialVersionUID = -5693739959557847503L;
 
   public JPFInspectorInvalidFieldIndexException (int fieldIndex, ClassInfo ci) {
-    super("Invalid field index (" + fieldIndex + "). \"" + StateValue.getSimpleName(ci) + "\" has only " + ci.getNumberOfInstanceFields() + " fields.");
+    super("Invalid field index (" + fieldIndex + "). \"" + StateWritableValue.getSimpleName(ci) + "\" has only " + ci.getNumberOfInstanceFields() + " fields.");
   }
 
 }

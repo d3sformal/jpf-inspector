@@ -161,8 +161,8 @@ public class ProgramStateManager implements ProgramStateInterface {
 
     assert (esa != null);
 
-    StateReadableValueInterface rVal = esa.getRValue(inspector, stopHolder.getInspectorState());
-    StateValue lVal = esa.getLValue(inspector, stopHolder.getInspectorState());
+    StateReadableValue rVal = esa.getRValue(inspector, stopHolder.getInspectorState());
+    StateWritableValue lVal = esa.getLValue(inspector, stopHolder.getInspectorState());
 
     lVal.assignValue(rVal);
   }

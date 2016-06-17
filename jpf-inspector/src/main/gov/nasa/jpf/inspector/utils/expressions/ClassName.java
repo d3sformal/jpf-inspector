@@ -46,7 +46,7 @@ public class ClassName {
     classNamesMatches = new HashMap<>();
   }
   
-  final public String getClassName() {
+  public final String getClassName() {
     return className;
   }
 
@@ -86,7 +86,7 @@ public class ClassName {
    * @param name Name to convert
    * @return regular expresison pattern
    */
-  static public String convertName2RegExp(String name) {
+  public static String convertName2RegExp(String name) {
     
     // Conversions ... we permit only * in regexp
     //      '\' -> "\\"
@@ -132,7 +132,7 @@ public class ClassName {
    * <br>Test whether original name contains "*".
    * 
    */
-  static public boolean singleEntryName(String name) {
+  public static boolean singleEntryName(String name) {
     return ( ! name.contains("*") );
   }
 }

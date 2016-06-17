@@ -41,12 +41,12 @@ import gov.nasa.jpf.vm.StaticElementInfo;
  * @author Alf
  * 
  */
-public class StateValueElementInfoField extends StateValue {
+public class StateValueElementInfoField extends StateWritableValue {
 
   private final ElementInfo ei;
   private final FieldInfo fieldInfo;
 
-  public static StateValueElementInfoField createInstanceNamedField (StateReadableValueInterface srvi, String varName) throws JPFInspectorException {
+  public static StateValueElementInfoField createInstanceNamedField (StateReadableValue srvi, String varName) throws JPFInspectorException {
 
     ClassInfo ci = srvi.getClassInfo();
     FieldInfo fi = ci.getInstanceField(varName);
@@ -61,22 +61,22 @@ public class StateValueElementInfoField extends StateValue {
       throw new JPFInspectorNullValueException(varName, srvi.getClassInfo());
     }
 
-    return new StateValueElementInfoField(srvi, 1, srvi.getStateExpr() + '.' + varName, ei, fi);
+    return new StateValueElementInfoField(srvi, true, srvi.getStateExpr() + '.' + varName, ei, fi);
   }
 
-  public static StateReadableValueInterface createStaticNamedField (StateStackFrame ssf, String varName) throws JPFInspectorException {
+  public static StateReadableValue createStaticNamedField (StateStackFrame ssf, String varName) throws JPFInspectorException {
 
     ClassInfo ci = ssf.getClassInfo();
     return StateValueElementInfoField.createStaticNamedFieldGeneric(ssf, ci, varName);
   }
 
-  public static StateReadableValueInterface createStaticNamedField (StateReadableValueInterface srvi, String varName) throws JPFInspectorException {
+  public static StateReadableValue createStaticNamedField (StateReadableValue srvi, String varName) throws JPFInspectorException {
 
     ClassInfo ci = srvi.getClassInfo();
     return StateValueElementInfoField.createStaticNamedFieldGeneric(srvi, ci, varName);
   }
 
-  private static StateReadableValueInterface createStaticNamedFieldGeneric(StateNodeInterface sni, ClassInfo ci, String varName)
+  private static StateReadableValue createStaticNamedFieldGeneric(StateNodeInterface sni, ClassInfo ci, String varName)
       throws JPFInspectorInvalidStaticFieldNameException, JPFInspectorNoStaticElementInfoException {
     FieldInfo fi = ci.getStaticField(varName);
 
@@ -89,18 +89,18 @@ public class StateValueElementInfoField extends StateValue {
       throw new JPFInspectorNoStaticElementInfoException(ci);
     }
 
-    return new StateValueElementInfoField(sni, 1, sni.getStateExpr() + '.' + varName, sei, fi);
+    return new StateValueElementInfoField(sni, true, sni.getStateExpr() + '.' + varName, sei, fi);
   }
-  public static StateValueElementInfoField createStaticFieldFromIndex (StateReadableValueInterface srvi,
+  public static StateValueElementInfoField createStaticFieldFromIndex (StateReadableValue srvi,
                                                                        int fieldIndex
                                                                        )throws JPFInspectorException
   {
-    return createStaticFieldFromIndex(srvi, fieldIndex, 1);
+    return createStaticFieldFromIndex(srvi, fieldIndex, true);
 
   }
-  public static StateValueElementInfoField createStaticFieldFromIndex (StateReadableValueInterface srvi,
+  public static StateValueElementInfoField createStaticFieldFromIndex (StateReadableValue srvi,
                                                                        int fieldIndex,
-                                                                       int referenceDepth)
+                                                                       boolean expandMembers)
       throws JPFInspectorException {
 
     ClassInfo ci = srvi.getClassInfo();
@@ -116,20 +116,20 @@ public class StateValueElementInfoField extends StateValue {
     assert (sei != null);
 
     return new StateValueElementInfoField(srvi,
-                                          referenceDepth,
+                                          expandMembers,
                                           srvi.getStateExpr() + '.' + PSEVariable.EXPRESSION_STATIC + '[' + fieldIndex + ']',
                                           sei,
                                           fi);
   }
-  public static StateValueElementInfoField createFieldFromIndex (StateReadableValueInterface srvi,
+  public static StateValueElementInfoField createFieldFromIndex (StateReadableValue srvi,
                                                                  int fieldIndex
                                                                  )
           throws JPFInspectorException {
-    return createFieldFromIndex(srvi, fieldIndex, 1);
+    return createFieldFromIndex(srvi, fieldIndex, true);
   }
-  public static StateValueElementInfoField createFieldFromIndex (StateReadableValueInterface srvi,
+  public static StateValueElementInfoField createFieldFromIndex (StateReadableValue srvi,
                                                                  int fieldIndex,
-                                                                 int referenceDepth)
+                                                                 boolean expandMembers)
       throws JPFInspectorException {
 
     ClassInfo ci = srvi.getClassInfo();
@@ -147,14 +147,14 @@ public class StateValueElementInfoField extends StateValue {
       throw new JPFInspectorNullValueException(PSEVariable.EXPRESSION_VARIABLE_FIELD + '[' + fieldIndex + "] (" + fi.getName() + ')', srvi.getClassInfo());
     }
 
-    return new StateValueElementInfoField(srvi, referenceDepth, srvi.getStateExpr() + '.' + PSEVariable.EXPRESSION_VARIABLE_FIELD + '[' + fieldIndex + ']', ei,
+    return new StateValueElementInfoField(srvi, expandMembers, srvi.getStateExpr() + '.' + PSEVariable.EXPRESSION_VARIABLE_FIELD + '[' + fieldIndex + ']', ei,
         fi);
   }
 
   /**
    * @return Creates representation of the outer class (or throw exception if no enclosing class exists)
    */
-  public static StateReadableValueInterface createOuterClass (StateReadableValueInterface srvi) throws JPFInspectorException {
+  public static StateReadableValue createOuterClass (StateReadableValue srvi) throws JPFInspectorException {
     assert (srvi != null);
 
     ClassInfo ci = srvi.getClassInfo();
@@ -165,7 +165,7 @@ public class StateValueElementInfoField extends StateValue {
 
     String newStateExpr = srvi.getStateExpr() + "." + PSEVariable.EXPRESSION_OUTER_CLASS;
     ElementInfo ei = srvi.getReferenceValue();
-    if (StateValue.isStaticElementInfo(ei)) {
+    if (StateWritableValue.isStaticElementInfo(ei)) {
       return StateElementInfo.createStaticOuterClass(srvi);
     }
     // Outer class can exists
@@ -177,7 +177,7 @@ public class StateValueElementInfoField extends StateValue {
       // Note name can be compiler dependent
       // after the '$' is number representing depth of nesting
       if (fi.getName().startsWith("this$")) {
-        return new StateValueElementInfoField(srvi, srvi.getReferenceDepth(), newStateExpr, ei, fi);
+        return new StateValueElementInfoField(srvi, srvi.shouldExpandMembers(), newStateExpr, ei, fi);
       }
     }
 
@@ -185,8 +185,8 @@ public class StateValueElementInfoField extends StateValue {
     throw new JPFInspectorNotInnerClassException(ci);
   }
 
-  private StateValueElementInfoField(StateNodeInterface sni, int referenceDepth, String stateExpression, ElementInfo ei, FieldInfo fieldInfo) {
-    super(sni, referenceDepth, fieldInfo.getTypeClassInfo(), stateExpression);
+  private StateValueElementInfoField(StateNodeInterface sni, boolean expandMembers, String stateExpression, ElementInfo ei, FieldInfo fieldInfo) {
+    super(sni, expandMembers, fieldInfo.getTypeClassInfo(), stateExpression);
 
     assert (ei != null);
     this.ei = ei;
@@ -206,7 +206,7 @@ public class StateValueElementInfoField extends StateValue {
     this.fieldInfo = me.fieldInfo;
   }
 
-  /* @see gov.nasa.jpf.inspector.server.programstate.StateReadableValueInterface#getReferenceValue() */
+  /* @see gov.nasa.jpf.inspector.server.programstate.StateReadableValue#getReferenceValue() */
   @Override
   public ElementInfo getReferenceValue () {
     if (fieldInfo.isReference()) {
@@ -217,7 +217,7 @@ public class StateValueElementInfoField extends StateValue {
     return null;
   }
 
-  /* @see gov.nasa.jpf.inspector.server.programstate.StateReadableValueInterface#getValue() */
+  /* @see gov.nasa.jpf.inspector.server.programstate.StateReadableValue#getValue() */
   @Override
   public Object getValue () {
     final Fields fields = ei.getFields();
@@ -229,9 +229,9 @@ public class StateValueElementInfoField extends StateValue {
   @Override
   public PSEVariable toHierarchy3() throws JPFInspectorException {
     final String varName = fieldInfo.getName();
-    final String definedIn = StateValue.getSimpleName(fieldInfo.getClassInfo());
+    final String definedIn = StateWritableValue.getSimpleName(fieldInfo.getClassInfo());
 
-    return StateValue.createPSEVariable(this, varName, fieldInfo.getFieldIndex(), definedIn);
+    return StateReadableValue.createPSEVariable(this, varName, fieldInfo.getFieldIndex(), definedIn);
   }
 
   /**
@@ -259,7 +259,7 @@ public class StateValueElementInfoField extends StateValue {
     return null;
   }
 
-  /* @see gov.nasa.jpf.inspector.server.programstate.StateReadableValueInterface#createSuper() */
+  /* @see gov.nasa.jpf.inspector.server.programstate.StateReadableValue#createSuper() */
   @Override
   public StateValueElementInfoField createSuper () throws JPFInspectorException {
     ClassInfo superClassInfo = ci.getSuperClass();
@@ -269,13 +269,13 @@ public class StateValueElementInfoField extends StateValue {
     return new StateValueElementInfoField(this, superClassInfo, getStateExpr() + '.' + PSEVariable.EXPRESSION_SUPER);
   }
 
-  /* @see gov.nasa.jpf.inspector.server.programstate.StateReadableValueInterface#createPredecessorClass(gov.nasa.jpf.jvm.ClassInfo) */
+  /* @see gov.nasa.jpf.inspector.server.programstate.StateReadableValue#createPredecessorClass(gov.nasa.jpf.jvm.ClassInfo) */
   @Override
   public StateValueElementInfoField createPredecessorClass (ClassInfo ci) throws JPFInspectorNotSuperClassException {
-    return new StateValueElementInfoField(this, ci, getStateExpr() + '.' + StateValue.getSimpleName(ci));
+    return new StateValueElementInfoField(this, ci, getStateExpr() + '.' + StateWritableValue.getSimpleName(ci));
   }
 
-  /* @see gov.nasa.jpf.inspector.server.programstate.StateReadableValueInterface#createThisValue() */
+  /* @see gov.nasa.jpf.inspector.server.programstate.StateReadableValue#createThisValue() */
   @Override
   public StateValueElementInfoField createThisValue () throws JPFInspectorException {
     if (ci.isArray() || ci.isPrimitive()) {
@@ -289,57 +289,57 @@ public class StateValueElementInfoField extends StateValue {
   // ** Modify represented value infrastructure
   // *************************************************************************
 
-  /* @see gov.nasa.jpf.inspector.server.programstate.StateValue#assignValueBoolean(boolean) */
+  /* @see gov.nasa.jpf.inspector.server.programstate.StateWritableValue#assignValueBoolean(boolean) */
   @Override
   protected void assignValueBoolean (boolean newVal) {
     ei.setBooleanField(fieldInfo, newVal);
   }
 
-  /* @see gov.nasa.jpf.inspector.server.programstate.StateValue#assignValueChar(char) */
+  /* @see gov.nasa.jpf.inspector.server.programstate.StateWritableValue#assignValueChar(char) */
   @Override
   protected void assignValueChar (char newVal) {
     ei.setCharField(fieldInfo, newVal);
 
   }
 
-  /* @see gov.nasa.jpf.inspector.server.programstate.StateValue#assignValueByte(byte) */
+  /* @see gov.nasa.jpf.inspector.server.programstate.StateWritableValue#assignValueByte(byte) */
   @Override
   protected void assignValueByte (byte newVal) {
     ei.setByteField(fieldInfo, newVal);
 
   }
 
-  /* @see gov.nasa.jpf.inspector.server.programstate.StateValue#assignValueShort(short) */
+  /* @see gov.nasa.jpf.inspector.server.programstate.StateWritableValue#assignValueShort(short) */
   @Override
   protected void assignValueShort (short newVal) {
     ei.setShortField(fieldInfo, newVal);
   }
 
-  /* @see gov.nasa.jpf.inspector.server.programstate.StateValue#assignValueInt(int) */
+  /* @see gov.nasa.jpf.inspector.server.programstate.StateWritableValue#assignValueInt(int) */
   @Override
   protected void assignValueInt (int newVal) {
     ei.setIntField(fieldInfo, newVal);
   }
 
-  /* @see gov.nasa.jpf.inspector.server.programstate.StateValue#assignValueLong(long) */
+  /* @see gov.nasa.jpf.inspector.server.programstate.StateWritableValue#assignValueLong(long) */
   @Override
   protected void assignValueLong (long newVal) {
     ei.setLongField(fieldInfo, newVal);
   }
 
-  /* @see gov.nasa.jpf.inspector.server.programstate.StateValue#assignValueFloat(float) */
+  /* @see gov.nasa.jpf.inspector.server.programstate.StateWritableValue#assignValueFloat(float) */
   @Override
   protected void assignValueFloat (float newVal) {
     ei.setFloatField(fieldInfo, newVal);
   }
 
-  /* @see gov.nasa.jpf.inspector.server.programstate.StateValue#assignValueDouble(double) */
+  /* @see gov.nasa.jpf.inspector.server.programstate.StateWritableValue#assignValueDouble(double) */
   @Override
   protected void assignValueDouble (double newVal) {
     ei.setDoubleField(fieldInfo, newVal);
   }
 
-  /* @see gov.nasa.jpf.inspector.server.programstate.StateValue#assignValueRef(int) */
+  /* @see gov.nasa.jpf.inspector.server.programstate.StateWritableValue#assignValueRef(int) */
   @Override
   protected void assignValueRef (int newValRef) {
     ei.setReferenceField(fieldInfo, newValRef);

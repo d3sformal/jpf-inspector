@@ -191,7 +191,7 @@ public class BackwardBreakpointCreator {
   /**
    * Gets the current JPF transition path <b>including</b> the current transition.
    */
-  static private Path getPath (InspectorState insp) {
+  private static Path getPath (InspectorState insp) {
     VM vm = insp.getVM();
     vm.updatePath();
     return vm.getPath();

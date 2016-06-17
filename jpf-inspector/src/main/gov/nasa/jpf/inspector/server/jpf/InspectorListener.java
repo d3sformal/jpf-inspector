@@ -47,7 +47,7 @@ import java.util.Stack;
  * This listener is added automatically on JPF Inspector startup, without using configuration. It is essential.
  */
 public class InspectorListener extends ListenerAdapter {
-  final private JPFInspector inspector;
+  private final JPFInspector inspector;
   private ListenerAdapter mode;
 
   // Stack with disabled modes

@@ -21,7 +21,7 @@ package gov.nasa.jpf.inspector.server.expression.expressions;
 
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorException;
 import gov.nasa.jpf.inspector.server.expression.ExpressionStateUnaryOperator;
-import gov.nasa.jpf.inspector.server.programstate.StateReadableValueInterface;
+import gov.nasa.jpf.inspector.server.programstate.StateReadableValue;
 
 /**
  * In the expression tree hierarchy, this is a node that has a value, such as an array element or a field,
@@ -44,6 +44,6 @@ public abstract class ExpressionStateValue extends ExpressionStateUnaryOperator<
    * @param parent The expression that this expression is a member of.  Must not be null.
    * @return The hierarchy-2 expression.
    */
-  public abstract StateReadableValueInterface toHierarchy2(StateReadableValueInterface parent)
+  public abstract StateReadableValue toHierarchy2(StateReadableValue parent)
           throws JPFInspectorException;
 }

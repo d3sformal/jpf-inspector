@@ -37,7 +37,7 @@ import java.util.List;
  * Represents the heap entry list in the second hierarchy.
  */
 public class StateHeapEntryList extends StateNode {
-  private final static boolean DEBUG = false;
+  private static final boolean DEBUG = false;
 
   private final List<StateElementInfo> heapEntries;
 
@@ -49,7 +49,7 @@ public class StateHeapEntryList extends StateNode {
    * @param vm The VM.
    */
   public StateHeapEntryList(JPFInspector inspector, ClassName cn, VM vm) {
-    super(inspector, 1);
+    super(inspector);
 
     setStateExpr(PSEVariable.EXPRESSION_VARIABLE_HEAP + '[' + cn.getClassName() + ']');
 

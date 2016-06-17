@@ -26,8 +26,8 @@ import gov.nasa.jpf.inspector.server.expression.ExpressionStateRootNode;
 import gov.nasa.jpf.inspector.server.expression.InspectorState;
 import gov.nasa.jpf.inspector.server.jpf.JPFInspector;
 import gov.nasa.jpf.inspector.server.programstate.StateNodeInterface;
-import gov.nasa.jpf.inspector.server.programstate.StateReadableValueInterface;
-import gov.nasa.jpf.inspector.server.programstate.StateValue;
+import gov.nasa.jpf.inspector.server.programstate.StateReadableValue;
+import gov.nasa.jpf.inspector.server.programstate.StateWritableValue;
 
 /**
  * Represents the "lvalue = rvalue" expression that is used as the argument to the command "set".
@@ -46,29 +46,29 @@ public class ExpressionStateAssignment {
   /**
    * @return Gets runtime representation of the new value.
    */
-  public StateReadableValueInterface getRValue (JPFInspector inspector, InspectorState state)
+  public StateReadableValue getRValue (JPFInspector inspector, InspectorState state)
           throws JPFInspectorException {
 
     StateNodeInterface sni = rVal.getResultExpression(inspector, state);
     assert (sni != null);
 
-    if (!(sni instanceof StateReadableValueInterface)) {
+    if (!(sni instanceof StateReadableValue)) {
       throw new JPFInspectorNotValueException(sni.getStateExpr());
     }
-    return (StateReadableValueInterface) sni;
+    return (StateReadableValue) sni;
   }
 
   /**
    * @return Gets runtime representation of the position where the value should be assigned.
    * @throws JPFInspectorException If the expression is not an l-value.
    */
-  public StateValue getLValue (JPFInspector inspector, InspectorState state) throws JPFInspectorException {
+  public StateWritableValue getLValue (JPFInspector inspector, InspectorState state) throws JPFInspectorException {
     StateNodeInterface sni = lVal.getResultExpression(inspector, state);
     assert (sni != null);
 
-    if (!(sni instanceof StateValue)) {
+    if (!(sni instanceof StateWritableValue)) {
       throw new JPFInspectorNotLValueException(sni.getStateExpr());
     }
-    return (StateValue) sni;
+    return (StateWritableValue) sni;
   }
 }

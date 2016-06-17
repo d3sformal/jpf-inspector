@@ -22,14 +22,8 @@ package gov.nasa.jpf.inspector.server.expression.expressions;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorException;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorInvalidNameException;
 import gov.nasa.jpf.inspector.migration.MigrationUtilities;
-import gov.nasa.jpf.inspector.server.programstate.StateElementInfo;
-import gov.nasa.jpf.inspector.server.programstate.StateNodeInterface;
-import gov.nasa.jpf.inspector.server.programstate.StateReadableConstValue;
-import gov.nasa.jpf.inspector.server.programstate.StateReadableValueInterface;
-import gov.nasa.jpf.inspector.server.programstate.StateStackFrame;
-import gov.nasa.jpf.inspector.server.programstate.StateValue;
-import gov.nasa.jpf.inspector.server.programstate.StateValueElementInfoField;
-import gov.nasa.jpf.inspector.server.programstate.StateValueStackSlot;
+import gov.nasa.jpf.inspector.server.programstate.*;
+import gov.nasa.jpf.inspector.server.programstate.StateReadableValue;
 import gov.nasa.jpf.vm.ClassInfo;
 import gov.nasa.jpf.vm.FieldInfo;
 import gov.nasa.jpf.vm.StaticElementInfo;
@@ -93,12 +87,12 @@ public class ExpressionStateValueName extends ExpressionStateValue {
   }
 
   @Override
-  public StateReadableValueInterface toHierarchy2(StateReadableValueInterface parent) throws JPFInspectorException {
+  public StateReadableValue toHierarchy2(StateReadableValue parent) throws JPFInspectorException {
     assert (parent != null);
 
-    StateReadableValueInterface namedValue = null;
+    StateReadableValue namedValue = null;
 
-    if (StateValue.hasNamedEntry(parent, varName)) {
+    if (StateWritableValue.hasNamedEntry(parent, varName)) {
 
       ClassInfo ci = parent.getClassInfo();
       FieldInfo fi = StateValueElementInfoField.fieldNameJavaBasedLookup(ci, varName);
@@ -139,7 +133,7 @@ public class ExpressionStateValueName extends ExpressionStateValue {
   /**
    * Returns null if none of the double hacks can be applied, otherwise returns a representation of a double constant.
    */
-  private StateReadableValueInterface tryApplyDoubleHacks (StateNodeInterface sni) {
+  private StateReadableValue tryApplyDoubleHacks (StateNodeInterface sni) {
     // Double hacks.
     if (TOKEN_IDF_NAN.equals(varName)) {
       return new StateReadableConstValue(sni.getInspector(), MigrationUtilities.getResolvedClassInfo("double"),
@@ -161,7 +155,7 @@ public class ExpressionStateValueName extends ExpressionStateValue {
   public StateNodeInterface getExpressionFromStackFrame(StateStackFrame parent) throws JPFInspectorException {
     assert (parent != null);
 
-    StateReadableValueInterface resultingValue = null;
+    StateReadableValue resultingValue = null;
 
     // Local variable or parameter
     if (parent.namedSlotIndex(varName) != StateValueStackSlot.INVALID_SLOT_INDEX) {
@@ -245,6 +239,6 @@ public class ExpressionStateValueName extends ExpressionStateValue {
 
   @Override
   public String getNormalizedExpression () {
-    return '.' + varName + (child != null ? child.getNormalizedExpression() : "");
+    return '.' + varName + (getChild() != null ? getChild().getNormalizedExpression() : "");
   }
 }

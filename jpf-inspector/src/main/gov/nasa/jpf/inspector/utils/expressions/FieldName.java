@@ -37,15 +37,15 @@ public class FieldName {
     this.className = className;
   }
   
-  final public String getFieldName() {
+  public final String getFieldName() {
     return fieldName;
   }
   
-  final public String getClassName() {
+  public final String getClassName() {
     return className.getClassName();
   }
   
-  final public ClassName getClassNameClass() {
+  public final ClassName getClassNameClass() {
     return className;
   }
   

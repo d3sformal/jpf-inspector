@@ -19,7 +19,7 @@
 
 package gov.nasa.jpf.inspector.exceptions;
 
-import gov.nasa.jpf.inspector.server.programstate.StateValue;
+import gov.nasa.jpf.inspector.server.programstate.StateWritableValue;
 import gov.nasa.jpf.vm.ClassInfo;
 
 /**
@@ -31,7 +31,7 @@ public class JPFInspectorNoSuperClassException extends JPFInspectorException {
   private static final long serialVersionUID = -7845838121196830746L;
 
   public JPFInspectorNoSuperClassException (ClassInfo ci) {
-    super("The class \"" + StateValue.getSimpleName(ci) + "\" does not have a super class.");
+    super("The class \"" + StateWritableValue.getSimpleName(ci) + "\" does not have a super class.");
   }
 
 }

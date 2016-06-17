@@ -33,7 +33,7 @@ public class DefaultForwardTraceManager {
    * 
    * Note: Probably not works for CG<T> where T does not override default equals method (CG<Invocations>)
    */
-  static private class CGStateMemento {
+  private static class CGStateMemento {
     private final String id; // CG ID
     private final Instruction ins; // Instruction CG is related to
     private final int threadID;
