@@ -94,7 +94,6 @@ public class ExpressionStateValueConstLong extends ExpressionStateValueConst {
   private final long value;
 
   public ExpressionStateValueConstLong (long value) {
-    super();
     this.value = value;
   }
 
@@ -104,7 +103,7 @@ public class ExpressionStateValueConstLong extends ExpressionStateValueConst {
    */
   @Override
   public StateNodeInterface getResultExpression (JPFInspector inspector, InspectorState state) throws JPFInspectorException {
-    return new StateReadableConstValue(inspector, 1, MigrationUtilities.getResolvedClassInfo("long"), Long.valueOf(value));
+    return new StateReadableConstValue(inspector, MigrationUtilities.getResolvedClassInfo("long"), Long.valueOf(value));
   }
 
   /* @see gov.nasa.jpf.inspector.server.expression.ExpressionNodeInterface#getNormalizedExpression() */

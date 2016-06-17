@@ -38,7 +38,7 @@ public class ExpressionStateValueThis extends ExpressionStateValue {
   }
 
   @Override
-  public StateReadableValueInterface getResultExpression (StateReadableValueInterface parent) throws JPFInspectorException {
+  public StateReadableValueInterface toHierarchy2(StateReadableValueInterface parent) throws JPFInspectorException {
     assert (parent != null);
 
     StateReadableValueInterface srvi = parent.createThisValue();
@@ -47,11 +47,11 @@ public class ExpressionStateValueThis extends ExpressionStateValue {
     if (child == null) {
       return srvi;
     } else {
-      return child.getResultExpression(srvi);
+      return child.toHierarchy2(srvi);
     }
   }
 
-  public StateNodeInterface getResultExpression (StateStackFrame parentMethod) throws JPFInspectorException {
+  public StateNodeInterface getExpressionFromStackFrame(StateStackFrame parentMethod) throws JPFInspectorException {
     // We should get the instance of the class that runs the method associated with the stack frame in
     // the parameter.
 
@@ -67,7 +67,7 @@ public class ExpressionStateValueThis extends ExpressionStateValue {
     if (child == null) {
       return svss;
     } else {
-      return child.getResultExpression(svss);
+      return child.toHierarchy2(svss);
     }
   }
 

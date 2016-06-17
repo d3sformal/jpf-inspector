@@ -8,7 +8,6 @@ public class CallbackCommandSpecifyChoiceToUse implements CallbackCommand {
   private final int maxChoiceIndex;
 
   public CallbackCommandSpecifyChoiceToUse (int maxChoiceIndex) {
-    super();
     this.maxChoiceIndex = maxChoiceIndex;
   }
 

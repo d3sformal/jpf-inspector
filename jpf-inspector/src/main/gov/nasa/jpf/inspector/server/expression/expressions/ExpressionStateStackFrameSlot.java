@@ -48,13 +48,14 @@ public class ExpressionStateStackFrameSlot extends ExpressionStateValue {
     if (child == null) {
       return svss;
     } else {
-      return child.getResultExpression(svss);
+      return child.toHierarchy2(svss);
     }
 
   }
 
 
-  public StateReadableValueInterface getResultExpression(StateReadableValueInterface parent) throws JPFInspectorException {
+  @Override
+  public StateReadableValueInterface toHierarchy2(StateReadableValueInterface parent) throws JPFInspectorException {
     // Not supported operation ... state only StackFrame have slots
     // The grammar itself prevents a stack-slot-expression from following anything but a stack-frame, therefore
     // code should be unable to call this method.

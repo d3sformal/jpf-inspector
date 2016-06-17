@@ -43,7 +43,6 @@ public final class ChoiceGeneratorWrapper implements Serializable {
   private final InstructionWrapper inst;
 
   public ChoiceGeneratorWrapper (CGTypes cgType, String cgString, int threadNum, InstructionWrapper inst, String id) {
-    super();
     this.cgType = cgType;
     this.cgString = cgString;
     this.threadNum = threadNum;

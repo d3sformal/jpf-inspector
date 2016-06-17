@@ -37,20 +37,14 @@ public class ExpressionStateValueConstBoolean extends ExpressionStateValueConst 
   private final boolean value;
 
   public ExpressionStateValueConstBoolean (boolean value) {
-    super();
     this.value = value;
   }
 
-  /*
-   * @see gov.nasa.jpf.inspector.server.expression.ExpressionStateRootNode#getResultExpression(gov.nasa.jpf.inspector.server.jpf.JPFInspector,
-   * gov.nasa.jpf.inspector.server.expression.InspectorState)
-   */
   @Override
   public StateReadableConstValue getResultExpression (JPFInspector inspector, InspectorState state) throws JPFInspectorException {
-    return new StateReadableConstValue(inspector, 1, MigrationUtilities.getResolvedClassInfo("boolean"), Boolean.valueOf(value));
+    return new StateReadableConstValue(inspector, MigrationUtilities.getResolvedClassInfo("boolean"), value);
   }
 
-  /* @see gov.nasa.jpf.inspector.server.expression.ExpressionNodeInterface#getNormalizedExpression() */
   @Override
   public String getNormalizedExpression () {
     return value ? TOKEN_TRUE : TOKEN_FALSE;

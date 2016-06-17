@@ -71,7 +71,7 @@ public class ExpressionStateValueName extends ExpressionStateValue {
   }
 
   @Override
-  public StateReadableValueInterface getResultExpression (StateReadableValueInterface parent) throws JPFInspectorException {
+  public StateReadableValueInterface toHierarchy2(StateReadableValueInterface parent) throws JPFInspectorException {
     assert (parent != null);
 
     StateReadableValueInterface namedValue = null;
@@ -109,7 +109,7 @@ public class ExpressionStateValueName extends ExpressionStateValue {
     if (child == null) {
       return namedValue;
     } else {
-      return child.getResultExpression(namedValue);
+      return child.toHierarchy2(namedValue);
     }
 
   }
@@ -120,23 +120,23 @@ public class ExpressionStateValueName extends ExpressionStateValue {
   private StateReadableValueInterface tryApplyDoubleHacks (StateNodeInterface sni) {
     // Double hacks.
     if (TOKEN_IDF_NAN.equals(varName)) {
-      return new StateReadableConstValue(sni.getInspector(), 1, MigrationUtilities.getResolvedClassInfo("double"),
+      return new StateReadableConstValue(sni.getInspector(), MigrationUtilities.getResolvedClassInfo("double"),
                                          Double.NaN);
     }
 
     if (TOKEN_IDF_NEGATIVE_INFINITY1_FULL.equals(varName) || TOKEN_IDF_NEGATIVE_INFINITY1_SHORT.equals(varName)) {
-      return new StateReadableConstValue(sni.getInspector(), 1, MigrationUtilities.getResolvedClassInfo("double"),
+      return new StateReadableConstValue(sni.getInspector(), MigrationUtilities.getResolvedClassInfo("double"),
                                          Double.POSITIVE_INFINITY);
     }
     if (TOKEN_IDF_INFINITY.equals(varName) || TOKEN_IDF_POSITIVE_INFINITY1_FULL.equals(varName) || TOKEN_IDF_POSITIVE_INFINITY1_SHORT.equals(varName)) {
-      return new StateReadableConstValue(sni.getInspector(), 1, MigrationUtilities.getResolvedClassInfo("double"),
+      return new StateReadableConstValue(sni.getInspector(), MigrationUtilities.getResolvedClassInfo("double"),
                                          Double.POSITIVE_INFINITY);
     }
 
     return null;
   }
 
-  public StateNodeInterface getResultExpression (StateStackFrame ssf) throws JPFInspectorException {
+  public StateNodeInterface getExpressionFromStackFrame(StateStackFrame ssf) throws JPFInspectorException {
     assert (ssf != null);
 
     StateReadableValueInterface srvi = null;
@@ -219,7 +219,7 @@ public class ExpressionStateValueName extends ExpressionStateValue {
     if (child == null) {
       return srvi;
     } else {
-      return child.getResultExpression(srvi);
+      return child.toHierarchy2(srvi);
     }
   }
 

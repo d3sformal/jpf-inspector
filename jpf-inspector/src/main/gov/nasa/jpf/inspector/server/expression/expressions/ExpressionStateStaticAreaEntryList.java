@@ -22,9 +22,7 @@ package gov.nasa.jpf.inspector.server.expression.expressions;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorException;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorGenericErrorException;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorNoVMConnected;
-import gov.nasa.jpf.inspector.server.expression.ExpressionStateInterface;
 import gov.nasa.jpf.inspector.server.expression.ExpressionStateRootNode;
-import gov.nasa.jpf.inspector.server.expression.ExpressionStateUnaryOperator;
 import gov.nasa.jpf.inspector.server.expression.InspectorState;
 import gov.nasa.jpf.inspector.server.jpf.JPFInspector;
 import gov.nasa.jpf.inspector.server.programstate.StateHeapEntryList;
@@ -35,7 +33,7 @@ import gov.nasa.jpf.vm.VM;
  * @author Alf
  * 
  */
-public class ExpressionStateStaticAreaEntryList implements ExpressionStateRootNode, ExpressionStateInterface {
+public class ExpressionStateStaticAreaEntryList implements ExpressionStateRootNode {
 
   private final ClassName heapItemsFilter;
 

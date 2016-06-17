@@ -34,7 +34,6 @@ public class JPFInspectorRuntimeParsingException extends RuntimeException {
   private final JPFInspectorParsingErrorException pee;
 
   public JPFInspectorRuntimeParsingException (JPFInspectorParsingErrorException pee) {
-    super();
     this.pee = pee;
   }
 

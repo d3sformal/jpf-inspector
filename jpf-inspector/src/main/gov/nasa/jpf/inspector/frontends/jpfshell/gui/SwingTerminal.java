@@ -523,7 +523,6 @@ public class SwingTerminal extends Terminal {
     }
 
     public JLineSimpleOutputStream(TextComponentFeeder interpreter, JTextComponent console) {
-      super();
       this.console = console;
       this.interpreter = interpreter;
     }
@@ -541,7 +540,6 @@ public class SwingTerminal extends Terminal {
     private final JTextComponent console;
 
     public JLineUserTextOutputStream (TextComponentFeeder interpreter, JTextComponent console) {
-      super();
       this.console = console;
       this.interpreter = interpreter;
     }

@@ -97,7 +97,6 @@ public class ExpressionStateValueConstChar extends ExpressionStateValueConst {
     public Set<Character> bannedUnescapedCharacters; // List of chars which could not be used without escaping in plain text (for chars - ', for strings - ")
 
     public CharParsingState (String str, char bannedUnsescapedChar) {
-      super();
       this.strArr = str.toCharArray();
       this.pos = 0;
       this.bannedUnescapedCharacters = new HashSet<>();
@@ -223,7 +222,6 @@ public class ExpressionStateValueConstChar extends ExpressionStateValueConst {
    * chars greater than 1024.
    * 
    * @param c Character to convert.
-   * @return
    */
   public static String unparseChar (char c) {
     // 1 step - escaping characters
@@ -274,7 +272,6 @@ public class ExpressionStateValueConstChar extends ExpressionStateValueConst {
    * @param c Represented character
    */
   public ExpressionStateValueConstChar (char c) {
-    super();
     this.c = c;
   }
 
@@ -284,7 +281,7 @@ public class ExpressionStateValueConstChar extends ExpressionStateValueConst {
    */
   @Override
   public StateNodeInterface getResultExpression (JPFInspector inspector, InspectorState state) throws JPFInspectorException {
-    return new StateReadableConstValue(inspector, 1, MigrationUtilities.getResolvedClassInfo("char"), Character.valueOf(c));
+    return new StateReadableConstValue(inspector, MigrationUtilities.getResolvedClassInfo("char"), c);
   }
 
   /* @see gov.nasa.jpf.inspector.server.expression.ExpressionNodeInterface#getNormalizedExpression() */

@@ -123,7 +123,6 @@ public class ExpressionStateValueConstInteger extends ExpressionStateValueConst 
   private final int value;
 
   public ExpressionStateValueConstInteger (int value) {
-    super();
     this.value = value;
   }
 
@@ -133,7 +132,7 @@ public class ExpressionStateValueConstInteger extends ExpressionStateValueConst 
    */
   @Override
   public StateNodeInterface getResultExpression (JPFInspector inspector, InspectorState state) throws JPFInspectorException {
-    return new StateReadableConstValue(inspector, 1, MigrationUtilities.getResolvedClassInfo("int"), Integer.valueOf(value));
+    return new StateReadableConstValue(inspector, MigrationUtilities.getResolvedClassInfo("int"), Integer.valueOf(value));
   }
 
   /* @see gov.nasa.jpf.inspector.server.expression.ExpressionNodeInterface#getNormalizedExpression() */

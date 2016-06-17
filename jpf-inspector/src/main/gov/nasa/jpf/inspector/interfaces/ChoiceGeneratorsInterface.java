@@ -51,7 +51,6 @@ public interface ChoiceGeneratorsInterface {
     private final boolean enabled;
 
     public CGNotificationSpecification (CGTypes type, CGMode mode, boolean enabled) {
-      super();
       this.type = type;
       this.mode = mode;
       this.enabled = enabled;

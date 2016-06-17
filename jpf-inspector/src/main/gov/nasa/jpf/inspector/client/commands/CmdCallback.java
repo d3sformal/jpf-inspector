@@ -24,7 +24,6 @@ public class CmdCallback extends ClientCommand {
   private final InspectorStates state;
 
   public CmdCallback (CB_METHODS cbType) {
-    super();
     this.cbType = cbType;
     this.state = null;
   }

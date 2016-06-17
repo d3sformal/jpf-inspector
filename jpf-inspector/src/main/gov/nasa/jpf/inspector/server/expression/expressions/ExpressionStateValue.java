@@ -29,9 +29,21 @@ import gov.nasa.jpf.inspector.server.programstate.StateReadableValueInterface;
  */
 public abstract class ExpressionStateValue extends ExpressionStateUnaryOperator<ExpressionStateValue> {
 
+  /**
+   * Initializes a new instance of this class.
+   *
+   * @param child A member access expression attached to this expression. May be null to signify that this is the final expression in the acces chain.
+   */
   protected ExpressionStateValue (ExpressionStateValue child) {
     super(child);
   }
 
-  public abstract StateReadableValueInterface getResultExpression (StateReadableValueInterface parent) throws JPFInspectorException;
+  /**
+   * Returns the hierarchy-2 expression equivalent of this expression.
+   *
+   * @param parent The expression that this expression is a member of.  Must not be null.
+   * @return The hierarchy-2 expression.
+   */
+  public abstract StateReadableValueInterface toHierarchy2(StateReadableValueInterface parent)
+          throws JPFInspectorException;
 }

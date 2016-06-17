@@ -18,7 +18,6 @@ public class CallbackRecordingDecorator implements InspectorCallBacks {
   private final CommandRecorder cmdRecorder;
 
   public CallbackRecordingDecorator (InspectorCallBacks cb, CommandRecorder recorder) {
-    super();
     this.cb = cb;
     this.cmdRecorder = recorder;
   }

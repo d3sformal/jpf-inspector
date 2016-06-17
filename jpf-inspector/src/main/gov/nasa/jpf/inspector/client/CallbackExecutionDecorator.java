@@ -87,7 +87,6 @@ public class CallbackExecutionDecorator implements InspectorCallBacks {
    * @param outStream Debug output stream
    */
   public CallbackExecutionDecorator (Object syncObj, InspectorCallBacks cb, PrintStream outStream) {
-    super();
     this.syncObj = syncObj;
     this.cb = cb;
     this.mode = WORKING_MODE.WM_USER_COMMANDS;

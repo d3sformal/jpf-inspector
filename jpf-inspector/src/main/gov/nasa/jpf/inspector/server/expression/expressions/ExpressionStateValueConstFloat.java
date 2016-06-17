@@ -35,7 +35,6 @@ public class ExpressionStateValueConstFloat extends ExpressionStateValueConst {
   private final float value;
 
   public ExpressionStateValueConstFloat (float value) {
-    super();
     this.value = value;
   }
 
@@ -45,7 +44,7 @@ public class ExpressionStateValueConstFloat extends ExpressionStateValueConst {
    */
   @Override
   public StateNodeInterface getResultExpression (JPFInspector inspector, InspectorState state) throws JPFInspectorException {
-    return new StateReadableConstValue(inspector, 1, MigrationUtilities.getResolvedClassInfo("float"), Float.valueOf(value));
+    return new StateReadableConstValue(inspector, MigrationUtilities.getResolvedClassInfo("float"), Float.valueOf(value));
   }
 
   /* @see gov.nasa.jpf.inspector.server.expression.ExpressionNodeInterface#getNormalizedExpression() */

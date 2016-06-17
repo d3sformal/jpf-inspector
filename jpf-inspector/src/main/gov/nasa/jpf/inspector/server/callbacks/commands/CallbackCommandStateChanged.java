@@ -11,7 +11,6 @@ public class CallbackCommandStateChanged implements CallbackCommand {
   
    
   public CallbackCommandStateChanged(InspectorStates state, String details) {
-    super();
     this.state = state;
     this.details = details;
   }

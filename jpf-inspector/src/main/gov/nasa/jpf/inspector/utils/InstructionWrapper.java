@@ -50,7 +50,6 @@ public final class InstructionWrapper implements Serializable {
 
   public InstructionWrapper (String instructionName, String className, String methodName, int instructionPosition, String fileName, int currLine,
       String currLineSource) {
-    super();
     this.instructionName = instructionName;
     this.className = className;
     this.methodName = methodName;

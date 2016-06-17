@@ -44,7 +44,6 @@ public class ExpressionBreakpointCompare extends ExpressionBooleanLeaf {
   private String detail = "";
 
   public ExpressionBreakpointCompare (ExpressionStateRootNode leftOp, ExpressionStateRootNode rightOp, RelationOperator relOper, JPFInspector inspector) {
-    super();
     this.leftOp = leftOp;
     this.rightOp = rightOp;
     this.relOper = relOper;

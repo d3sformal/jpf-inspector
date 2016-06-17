@@ -13,7 +13,6 @@ public class CallbackCommandUsedChoice implements CallbackCommand {
   private final String usedChoice;
 
   public CallbackCommandUsedChoice (CGTypes cgType, String cgName, int cgId, int usedChoiceIndex, String usedChoice) {
-    super();
     this.cgType = cgType;
     this.cgName = cgName;
     this.cgId = cgId;

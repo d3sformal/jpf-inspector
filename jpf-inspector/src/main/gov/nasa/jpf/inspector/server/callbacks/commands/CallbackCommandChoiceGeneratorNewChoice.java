@@ -14,7 +14,6 @@ public class CallbackCommandChoiceGeneratorNewChoice implements CallbackCommand 
   private final int defaultChoice;
 
   public CallbackCommandChoiceGeneratorNewChoice (CGTypes cgType, String cgName, int cgId, String[] choices, int nextChoice, int defaultChoice) {
-    super();
     this.cgType = cgType;
     this.cgName = cgName;
     this.cgId = cgId;

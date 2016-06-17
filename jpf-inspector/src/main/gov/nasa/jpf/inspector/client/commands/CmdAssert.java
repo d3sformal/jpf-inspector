@@ -91,7 +91,6 @@ public class CmdAssert extends ClientCommand {
     private final String expression;
 
     public ConsoleAssertionCreationExpression(String position, String expression) {
-      super();
       this.position = position;
       this.expression = expression;
     }

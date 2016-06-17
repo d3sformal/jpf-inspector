@@ -8,7 +8,6 @@ public class CallbackCommandGenericError implements CallbackCommand {
   private final String msg;
 
   public CallbackCommandGenericError (String msg) {
-    super();
     this.msg = msg;
   }
 

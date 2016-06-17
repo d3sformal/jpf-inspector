@@ -26,7 +26,6 @@ import gov.nasa.jpf.inspector.server.expression.ExpressionStateUnaryOperator;
 import gov.nasa.jpf.inspector.server.expression.InspectorState;
 import gov.nasa.jpf.inspector.server.jpf.JPFInspector;
 import gov.nasa.jpf.inspector.server.programstate.StateElementInfo;
-import gov.nasa.jpf.inspector.server.programstate.StateNodeInterface;
 import gov.nasa.jpf.inspector.server.programstate.StateReadableValueInterface;
 import gov.nasa.jpf.vm.VM;
 
@@ -51,15 +50,14 @@ public class ExpressionStateHeap extends ExpressionStateUnaryOperator<Expression
     JPFInspectorNoVMConnected.checkVM(vm);
 
     ExpressionStateValue child = getChild();
-    int referenceDepth = child != null ? 0 : 1;
 
     StateElementInfo self =
-            StateElementInfo.createElementInfoRepresentation(inspector, vm.getHeap(), heapElementIndex, referenceDepth);
+            StateElementInfo.createFromHeapIndex(inspector, vm.getHeap(), heapElementIndex);
 
     if (child == null) {
       return self;
     } else {
-      return child.getResultExpression(self);
+      return child.toHierarchy2(self);
     }
   }
 

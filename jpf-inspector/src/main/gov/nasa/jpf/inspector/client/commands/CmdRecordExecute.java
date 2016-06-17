@@ -35,7 +35,6 @@ public class CmdRecordExecute extends ClientCommand {
   private final String filename;
 
   public CmdRecordExecute (String filename) {
-    super();
     this.filename = filename;
   }
 

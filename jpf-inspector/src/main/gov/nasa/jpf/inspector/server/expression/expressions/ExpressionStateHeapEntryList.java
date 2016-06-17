@@ -21,7 +21,6 @@ package gov.nasa.jpf.inspector.server.expression.expressions;
 
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorException;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorNoVMConnected;
-import gov.nasa.jpf.inspector.server.expression.ExpressionStateInterface;
 import gov.nasa.jpf.inspector.server.expression.ExpressionStateRootNode;
 import gov.nasa.jpf.inspector.server.expression.InspectorState;
 import gov.nasa.jpf.inspector.server.jpf.JPFInspector;
@@ -32,7 +31,7 @@ import gov.nasa.jpf.vm.VM;
 /**
  * Represents a heap entry list returned by the expression "#heap[*]" or "#heap[class-name-filter]".
  */
-public class ExpressionStateHeapEntryList implements ExpressionStateRootNode, ExpressionStateInterface {
+public class ExpressionStateHeapEntryList implements ExpressionStateRootNode {
 
   public static final String TOKEN_HASH_HEAP = "#heap";
 

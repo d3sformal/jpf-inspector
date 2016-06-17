@@ -35,7 +35,7 @@ public class ExpressionStateValueSuper extends ExpressionStateValue {
   }
 
   @Override
-  public StateReadableValueInterface getResultExpression (StateReadableValueInterface parent) throws JPFInspectorException {
+  public StateReadableValueInterface toHierarchy2(StateReadableValueInterface parent) throws JPFInspectorException {
     assert (parent != null);
 
     StateReadableValueInterface srvi = parent.createSuper();
@@ -44,7 +44,7 @@ public class ExpressionStateValueSuper extends ExpressionStateValue {
     if (child == null) {
       return srvi;
     } else {
-      return child.getResultExpression(srvi);
+      return child.toHierarchy2(srvi);
     }
   }
 

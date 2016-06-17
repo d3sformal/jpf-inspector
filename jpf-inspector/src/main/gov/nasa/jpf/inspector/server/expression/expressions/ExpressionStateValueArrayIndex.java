@@ -38,15 +38,15 @@ public class ExpressionStateValueArrayIndex extends ExpressionStateValue {
   }
 
   @Override
-  public StateReadableValueInterface getResultExpression (StateReadableValueInterface parent) throws JPFInspectorException {
+  public StateReadableValueInterface toHierarchy2(StateReadableValueInterface parent) throws JPFInspectorException {
 
-    StateValueArrayElement svae = StateValueArrayElement.createArrayElement(parent, elementIndex, 1);
+    StateValueArrayElement svae = StateValueArrayElement.createArrayElement(parent, elementIndex);
 
     ExpressionStateValue child = getChild();
     if (child == null) {
       return svae;
     } else {
-      return child.getResultExpression(svae);
+      return child.toHierarchy2(svae);
     }
   }
 

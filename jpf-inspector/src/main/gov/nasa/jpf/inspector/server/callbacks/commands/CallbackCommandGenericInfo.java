@@ -8,7 +8,6 @@ public class CallbackCommandGenericInfo implements CallbackCommand {
   private final String msg;
 
   public CallbackCommandGenericInfo (String msg) {
-    super();
     this.msg = msg;
   }
 

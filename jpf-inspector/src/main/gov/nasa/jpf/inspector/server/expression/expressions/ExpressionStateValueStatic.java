@@ -43,7 +43,7 @@ public class ExpressionStateValueStatic extends ExpressionStateValue {
   }
 
   @Override
-  public StateReadableValueInterface getResultExpression (StateReadableValueInterface parent) throws JPFInspectorException {
+  public StateReadableValueInterface toHierarchy2(StateReadableValueInterface parent) throws JPFInspectorException {
 
     StateReadableValueInterface result;
     if (staticFieldIndex != null) {
@@ -56,7 +56,7 @@ public class ExpressionStateValueStatic extends ExpressionStateValue {
     if (child == null) {
       return result;
     } else {
-      return child.getResultExpression(result);
+      return child.toHierarchy2(result);
     }
   }
 
@@ -75,7 +75,7 @@ public class ExpressionStateValueStatic extends ExpressionStateValue {
     if (child == null) {
       return result;
     } else {
-      return child.getResultExpression(result);
+      return child.toHierarchy2(result);
     }
   }
 

@@ -53,6 +53,9 @@ public class StateValueArrayElement extends StateValue {
    */
   private final ClassInfo arrayCi;
 
+  public static StateValueArrayElement createArrayElement (StateReadableValueInterface srvi, int elementIndex) throws JPFInspectorException {
+     return createArrayElement(srvi, elementIndex, 1);
+  }
   public static StateValueArrayElement createArrayElement (StateReadableValueInterface srvi, int elementIndex, int referenceDepth) throws JPFInspectorException {
     assert (srvi != null);
 

@@ -9,7 +9,6 @@ public class CallbackCommandBreakpointHit implements CallbackCommand {
   private final BreakpointStatus bp;
 
   public CallbackCommandBreakpointHit (BreakpointStatus bp) {
-    super();
     this.bp = bp;
   }
 

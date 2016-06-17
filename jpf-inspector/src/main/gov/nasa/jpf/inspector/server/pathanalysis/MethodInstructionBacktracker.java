@@ -33,7 +33,6 @@ public class MethodInstructionBacktracker {
    * @param path Path to analyze. Cannot be null.
    */
   public MethodInstructionBacktracker (Path path) {
-    super();
     if (path == null) {
       throw new IllegalArgumentException("Path cannot be null");
     }

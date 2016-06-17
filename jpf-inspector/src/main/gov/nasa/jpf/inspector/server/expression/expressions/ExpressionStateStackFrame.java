@@ -66,20 +66,24 @@ public final class ExpressionStateStackFrame extends ExpressionStateUnaryOperato
     if (child == null) {
       return thisStackFrame;
     } else {
+      // #stackSlot
       if (child instanceof ExpressionStateStackFrameSlot) {
         ExpressionStateStackFrameSlot childSfs = (ExpressionStateStackFrameSlot) child;
         return childSfs.getExpressionFromStackFrame(thisStackFrame);
+      // #this (also comes from #super, #outerClass etc...)
       } else if (child instanceof ExpressionStateValueThis) {
         ExpressionStateValueThis childThis = (ExpressionStateValueThis) child;
-        return childThis.getResultExpression(thisStackFrame);
+        return childThis.getExpressionFromStackFrame(thisStackFrame);
+      // a name
       } else if (child instanceof ExpressionStateValueName) {
         ExpressionStateValueName childName = (ExpressionStateValueName) child;
-        return childName.getResultExpression(thisStackFrame);
+        return childName.getExpressionFromStackFrame(thisStackFrame);
+      // #static
       } else if (child instanceof ExpressionStateValueStatic) {
         ExpressionStateValueStatic childStatic = (ExpressionStateValueStatic) child;
         return childStatic.getExpressionFromStackFrame(thisStackFrame);
       } else {
-        throw new RuntimeException("Invalid child type");
+        throw new RuntimeException("Invalid child type.");
       }
     }
   }

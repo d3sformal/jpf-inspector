@@ -36,7 +36,7 @@ public class ExpressionStateValueOuterClass extends ExpressionStateValue {
   }
 
   @Override
-  public StateReadableValueInterface getResultExpression (StateReadableValueInterface parent) throws JPFInspectorException {
+  public StateReadableValueInterface toHierarchy2(StateReadableValueInterface parent) throws JPFInspectorException {
 
     StateReadableValueInterface srvi = StateValueElementInfoField.createOuterClass(parent);
 
@@ -44,7 +44,7 @@ public class ExpressionStateValueOuterClass extends ExpressionStateValue {
     if (child == null) {
       return srvi;
     } else {
-      return child.getResultExpression(srvi);
+      return child.toHierarchy2(srvi);
     }
   }
 

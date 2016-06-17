@@ -30,40 +30,57 @@ import gov.nasa.jpf.vm.ClassInfo;
 import gov.nasa.jpf.vm.ElementInfo;
 
 /**
- * @author Alf
- * 
+ * Represents a literal in a hierarchy-1 expression.
  */
 public class StateReadableConstValue extends StateNode implements StateReadableValueInterface {
 
+  /**
+   * Type of the literal (Integer, Boolean, ...)
+   */
   private final ClassInfo type;
-  private final Object represendedConstValue; // Wrapped value in case if the base type or ElementInfo in case of reference
+  /**
+   * Wrapped value in case if the base type or ElementInfo in case of reference (i.e. "null" or a string)
+   */
+  private final Object represendedConstValue;
 
-  public <T> StateReadableConstValue (JPFInspector inspector, int referenceDepth, ClassInfo constType, T wrappedConstV) {
-    super(inspector, referenceDepth);
+  /**
+   * Creates a new hierarchy-2 representation of a literal.
+   *
+   * @param inspector The Inspector server.
+   * @param constType Type of the literal (Integer, Boolean, ...)
+   * @param wrappedConstV Value of the literal (an Integer, a Boolean, ...). If it's null, it's null. If it's a string, then this is an {@link ElementInfo} object of type String.
+   * @param <T> Type of the literal (as Java type).
+   */
+  public <T> StateReadableConstValue(JPFInspector inspector, ClassInfo constType, T wrappedConstV) {
+    super(inspector, 1);
+
     if (wrappedConstV == null) {
       setStateExpr("null");
     } else {
-      setStateExpr("!ERROR - Constants cannot be loaded lazily!");
+      setStateExpr(wrappedConstV.toString());
     }
+
     represendedConstValue = wrappedConstV;
     type = constType;
-
   }
 
   /**
-   * Creates different(restricted) view on the represented value.
-   * 
-   * @throws JPFInspectorNotSuperClassException
+   * Creates a different (restricted) view on the represented value.
+   * @param me The literal that should be restricted.
+   * @param superClassInfo The class that it should be restricted to.
    */
-  protected StateReadableConstValue (StateReadableConstValue me, ClassInfo supperClassInfo, String stateExpression) throws JPFInspectorNotSuperClassException {
+  private StateReadableConstValue(StateReadableConstValue me,
+                                  ClassInfo superClassInfo,
+                                  String stateExpression) throws JPFInspectorNotSuperClassException {
     super(me, me.getReferenceDepth());
 
     setStateExpr(stateExpression);
 
-    this.type = supperClassInfo;
+    this.type = superClassInfo;
     this.represendedConstValue = me.getValue();
 
     assert (this.type != null);
+
     if (!StateValue.isPredecessor(this.type, me.getClassInfo())) {
       throw new JPFInspectorNotSuperClassException(this.type, me.getClassInfo());
     }

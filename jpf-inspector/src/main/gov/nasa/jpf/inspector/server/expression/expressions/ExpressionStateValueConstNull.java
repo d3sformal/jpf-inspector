@@ -34,17 +34,9 @@ public class ExpressionStateValueConstNull extends ExpressionStateValueConst {
 
   private static final String TOKEN_NULL = "null";
 
-  public ExpressionStateValueConstNull () {
-    super();
-  }
-
-  /*
-   * @see gov.nasa.jpf.inspector.server.expression.ExpressionStateRootNode#getResultExpression(gov.nasa.jpf.inspector.server.jpf.JPFInspector,
-   * gov.nasa.jpf.inspector.server.expression.InspectorState)
-   */
   @Override
   public StateNodeInterface getResultExpression (JPFInspector inspector, InspectorState state) throws JPFInspectorException {
-    return new StateReadableConstValue(inspector, 1, MigrationUtilities.getResolvedClassInfo("java.lang.Object"), null);
+    return new StateReadableConstValue(inspector, MigrationUtilities.getResolvedClassInfo("java.lang.Object"), null);
   }
 
   @Override

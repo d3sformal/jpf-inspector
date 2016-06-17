@@ -35,9 +35,10 @@ public abstract class ExpressionStateValueConst extends ExpressionStateValue imp
   }
 
   @Override
-  public final StateReadableValueInterface getResultExpression (StateReadableValueInterface parent) throws JPFInspectorException {
+  public final StateReadableValueInterface toHierarchy2(StateReadableValueInterface parent) throws JPFInspectorException {
+    assert false;
     throw new JPFInspectorGenericErrorException(
-            "The primary getResultExpression method must not be called on constants.");
+            "The toHierarchy2() method must not be called on constants because they have no parents.");
   }
 
 }

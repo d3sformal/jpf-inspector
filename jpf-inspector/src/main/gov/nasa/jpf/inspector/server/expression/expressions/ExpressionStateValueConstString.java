@@ -36,6 +36,38 @@ import gov.nasa.jpf.vm.VM;
  * Represents a string literal.
  */
 public class ExpressionStateValueConstString extends ExpressionStateValueConst {
+  /**
+   * Constructs a string literal from a string.
+   * @param value Represented string
+   */
+  public ExpressionStateValueConstString (String value) {
+    this.value = value;
+  }
+
+  @Override
+  public StateNodeInterface getResultExpression (JPFInspector inspector, InspectorState state) throws JPFInspectorException {
+
+    // Create representation for the string in the JPF state.
+    VM vm = state.getVM();
+    Heap heap = vm.getHeap();
+    ElementInfo ei = heap.newString(value, state.getVM().getCurrentThread());
+
+    return new StateReadableConstValue(inspector, MigrationUtilities.getResolvedClassInfo("java.lang.String"), ei);
+  }
+
+  @Override
+  public String getNormalizedExpression () {
+    StringBuilder sb = new StringBuilder(10 + value.length());
+    sb.append('\"');
+    for (int i = 0; i < value.length(); i++) {
+      sb.append(ExpressionStateValueConstChar.unparseChar(value.charAt(i)));
+    }
+    sb.append('\"');
+
+    return sb.toString();
+  }
+
+  /// STATIC METHODS
 
   public static String convertToStringWrapped (String str) throws JPFInspectorRuntimeParsingException {
     try {
@@ -44,7 +76,6 @@ public class ExpressionStateValueConstString extends ExpressionStateValueConst {
       throw new JPFInspectorRuntimeParsingException(e);
     }
   }
-
   /**
    * Converts string when characters can be represented in various forms (like in standard Java source file).
    * (like "___\u1234___" or "___\n___\032___")
@@ -100,37 +131,6 @@ public class ExpressionStateValueConstString extends ExpressionStateValueConst {
 
   private final String value; // Represented value
 
-  /**
-   * Constructs a string literal from a string.
-   * @param value Represented string
-   */
-  public ExpressionStateValueConstString (String value) {
-    super();
-    this.value = value;
-  }
 
-  @Override
-  public StateNodeInterface getResultExpression (JPFInspector inspector, InspectorState state) throws JPFInspectorException {
-
-    // Create representation for the string in the JPF state.
-    VM vm = state.getVM();
-    Heap heap = vm.getHeap();
-    int ref = heap.newString(value, state.getVM().getCurrentThread()).getObjectRef();
-    ElementInfo ei = heap.get(ref);
-
-    return new StateReadableConstValue(inspector, 1, MigrationUtilities.getResolvedClassInfo("java.lang.String"), ei);
-  }
-
-  @Override
-  public String getNormalizedExpression () {
-    StringBuilder sb = new StringBuilder(10 + value.length());
-    sb.append('\"');
-    for (int i = 0; i < value.length(); i++) {
-      sb.append(ExpressionStateValueConstChar.unparseChar(value.charAt(i)));
-    }
-    sb.append('\"');
-
-    return sb.toString();
-  }
 
 }

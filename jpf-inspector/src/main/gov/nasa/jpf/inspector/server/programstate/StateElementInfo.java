@@ -37,24 +37,41 @@ import gov.nasa.jpf.vm.Heap;
  */
 public class StateElementInfo extends StateNode implements StateReadableValueInterface {
 
+  /**
+   * JPF view of the represented object.
+   */
   private final ElementInfo ei;
-  private final ClassInfo ci; // Has to be supper type of the ei type (restrict visible fields) (or visible type of array elements)
+  /**
+   * Has to be supper type of the ei type (restrict visible fields) (or visible type of array elements)
+   */
+  private final ClassInfo ci;
 
-  public static StateElementInfo createElementInfoRepresentation (JPFInspector inspector, Heap heap, int heapElementIndex, int referenceDepth)
+  public static StateElementInfo createFromHeapIndex(JPFInspector inspector,
+                                                     Heap heap,
+                                                     int heapElementIndex
+                                                     )
       throws JPFInspectorException {
+
     ElementInfo ei = heap.get(heapElementIndex);
 
     if (ei == null) {
       throw new JPFInspectorInvalidHeapReferenceException(heapElementIndex);
     }
-    return new StateElementInfo(inspector, referenceDepth, ei, ei.getClassInfo(), PSEVariable.EXPRESSION_VARIABLE_HEAP + '[' + ei.getObjectRef() + ']');
+    return new StateElementInfo(inspector,
+                                1,
+                                ei,
+                                ei.getClassInfo(),
+                                PSEVariable.EXPRESSION_VARIABLE_HEAP + '[' + ei.getObjectRef() + ']');
   }
 
-  public static StateElementInfo createElementInfoRepresentation (StateHeapEntryList stateHeapEntryList, ElementInfo ei) {
+  public static StateElementInfo createElementInfoRepresentation (StateHeapEntryList stateHeapEntryList,
+                                                                  ElementInfo ei) {
     return createElementInfoRepresentation(stateHeapEntryList, ei, 1);
   }
 
-  private static StateElementInfo createElementInfoRepresentation(StateHeapEntryList stateHeapEntryList, ElementInfo ei, int referenceDepth) {
+  private static StateElementInfo createElementInfoRepresentation(StateHeapEntryList stateHeapEntryList,
+                                                                  ElementInfo ei,
+                                                                  int referenceDepth) {
     assert (ei != null);
     return new StateElementInfo(stateHeapEntryList, referenceDepth, ei, ei.getClassInfo(), PSEVariable.EXPRESSION_VARIABLE_HEAP + '[' + ei.getObjectRef() + ']');
   }
@@ -96,6 +113,15 @@ public class StateElementInfo extends StateNode implements StateReadableValueInt
 
   }
 
+  /**
+   * Creates a new hierarchy-2 representation of an object.
+   *
+   * @param inspector The JPF Inspector server.
+   * @param referenceDepth This will be erased oon.
+   * @param ei The object we need to represent.
+   * @param ci The class of the object -- although this might be a restriction or also something else, I'm not clear on that yet.
+   * @param stateExpr An expression that, if evaluated, should result in the object we are currently creating.
+   */
   private StateElementInfo(JPFInspector inspector, int referenceDepth, ElementInfo ei, ClassInfo ci, String stateExpr) {
     super(inspector, referenceDepth);
     setStateExpr(stateExpr);

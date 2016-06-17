@@ -39,20 +39,14 @@ public class ExpressionStateValueConstDouble extends ExpressionStateValueConst {
   private final double value;
 
   public ExpressionStateValueConstDouble (double value) {
-    super();
     this.value = value;
   }
 
-  /*
-   * @see gov.nasa.jpf.inspector.server.expression.ExpressionStateRootNode#getResultExpression(gov.nasa.jpf.inspector.server.jpf.JPFInspector,
-   * gov.nasa.jpf.inspector.server.expression.InspectorState)
-   */
   @Override
   public StateNodeInterface getResultExpression (JPFInspector inspector, InspectorState state) throws JPFInspectorException {
-    return new StateReadableConstValue(inspector, 1, MigrationUtilities.getResolvedClassInfo("double"), Double.valueOf(value));
+    return new StateReadableConstValue(inspector, MigrationUtilities.getResolvedClassInfo("double"), value);
   }
 
-  /* @see gov.nasa.jpf.inspector.server.expression.ExpressionNodeInterface#getNormalizedExpression() */
   @Override
   public String getNormalizedExpression () {
     if (value == Double.POSITIVE_INFINITY) {

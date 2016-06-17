@@ -20,7 +20,6 @@ public class ValuePrinter implements PSEVisitor<StringBuilder> {
   private final StringBuilder sb;
 
   public ValuePrinter() {
-    super();
 
     this.sb = new StringBuilder();
   }
