@@ -37,6 +37,7 @@ public class CorrectOutputTest extends CorrectOutputAbstractTest {
           getCase("features/ignorejava", "ignore"),
           getCase("hitcondition", "complex-breakpoint"),
           getCase("bugfix", "printnull"),
+          getCase("bugfix", "b"),
           getCase("legacy", "AssertSimpleTest"),
           getCase("legacy", "BreakpointTest"),
           getCase("legacy/simpleassignments", "SimpleAssignments"),

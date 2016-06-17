@@ -44,6 +44,7 @@ allKeyWordsIDFLike
     | TOKEN_ANY
     | TOKEN_ARRAY
     | TOKEN_ASSERT
+    | TOKEN_B
     | TOKEN_BEGIN
     | TOKEN_BOTH
     | TOKEN_CHOICE_GENERATOR 
