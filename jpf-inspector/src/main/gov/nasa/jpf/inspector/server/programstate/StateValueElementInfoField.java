@@ -91,7 +91,13 @@ public class StateValueElementInfoField extends StateValue {
 
     return new StateValueElementInfoField(sni, 1, sni.getStateExpr() + '.' + varName, sei, fi);
   }
+  public static StateValueElementInfoField createStaticFieldFromIndex (StateReadableValueInterface srvi,
+                                                                       int fieldIndex
+                                                                       )throws JPFInspectorException
+  {
+    return createStaticFieldFromIndex(srvi, fieldIndex, 1);
 
+  }
   public static StateValueElementInfoField createStaticFieldFromIndex (StateReadableValueInterface srvi,
                                                                        int fieldIndex,
                                                                        int referenceDepth)
@@ -115,8 +121,15 @@ public class StateValueElementInfoField extends StateValue {
                                           sei,
                                           fi);
   }
-
-  public static StateValueElementInfoField createFieldFromIndex (StateReadableValueInterface srvi, int fieldIndex, int referenceDepth)
+  public static StateValueElementInfoField createFieldFromIndex (StateReadableValueInterface srvi,
+                                                                 int fieldIndex
+                                                                 )
+          throws JPFInspectorException {
+    return createFieldFromIndex(srvi, fieldIndex, 1);
+  }
+  public static StateValueElementInfoField createFieldFromIndex (StateReadableValueInterface srvi,
+                                                                 int fieldIndex,
+                                                                 int referenceDepth)
       throws JPFInspectorException {
 
     ClassInfo ci = srvi.getClassInfo();

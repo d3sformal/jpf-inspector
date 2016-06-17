@@ -43,7 +43,7 @@ public class ExpressionStateValueFieldIndex extends ExpressionStateValue {
   public StateReadableValueInterface toHierarchy2(StateReadableValueInterface parent) throws JPFInspectorException {
     assert parent != null;
 
-    StateValueElementInfoField sveif = StateValueElementInfoField.createFieldFromIndex(parent, fieldIndex, 1);
+    StateValueElementInfoField sveif = StateValueElementInfoField.createFieldFromIndex(parent, fieldIndex);
 
     ExpressionStateValue child = getChild();
     if (child == null) {

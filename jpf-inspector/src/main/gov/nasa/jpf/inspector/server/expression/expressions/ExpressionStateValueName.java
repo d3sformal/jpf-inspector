@@ -35,6 +35,8 @@ import gov.nasa.jpf.vm.FieldInfo;
 import gov.nasa.jpf.vm.StaticElementInfo;
 
 /**
+ * Represents a simple member access expression.
+ *
  * Name resolution order: (After Stack frame)
  * 1) slot name (local variable or parameter) - if state frame is provided
  * 2) field name (declared in this class or static) / declared in predecessor, ... (if not a static method)
@@ -49,19 +51,39 @@ import gov.nasa.jpf.vm.StaticElementInfo;
  */
 public class ExpressionStateValueName extends ExpressionStateValue {
 
+  /**
+   * Name of the member.
+   */
   private final String varName;
 
-  // Note TOKEN_NAN, TOKEN_INFINITY, TOKEN_NEGATIVE_INFINITY1 and TOKEN_POSITIVE_INFINITY1 are parsed as idfField_name and ("special semantic hack") resolves
-  // this
-  private static final String TOKEN_IDF_NAN = "NaN"; // Has to be equal to TOKEN_NAN
+  // Note TOKEN_NAN, TOKEN_INFINITY, TOKEN_NEGATIVE_INFINITY1 and TOKEN_POSITIVE_INFINITY1 are parsed
+  // as idfField_name and ("special semantic hack") resolves this
 
-  private static final String TOKEN_IDF_INFINITY = "Infinity"; // Has to be equal to TOKEN_INFINITY
+  /**
+   * Has to be equal to TOKEN_NAN
+   */
+  private static final String TOKEN_IDF_NAN = "NaN";
+  /**
+   * Has to be equal to TOKEN_INFINITY
+   */
+  private static final String TOKEN_IDF_INFINITY = "Infinity";
 
-  private static final String TOKEN_IDF_NEGATIVE_INFINITY1_FULL = "negative_infinity"; // Has to be equal to TOKEN_NEGATIVE_INFINITY1
-  private static final String TOKEN_IDF_NEGATIVE_INFINITY1_SHORT = "neg_inf"; // Has to be equal to TOKEN_NEGATIVE_INFINITY1
-
-  private static final String TOKEN_IDF_POSITIVE_INFINITY1_FULL = "positive_infinity"; // Has to be equal to TOKEN_POSITIVE_INFINITY1
-  private static final String TOKEN_IDF_POSITIVE_INFINITY1_SHORT = "pos_inf"; // Has to be equal to TOKEN_POSITIVE_INFINITY1
+  /**
+   * Has to be equal to TOKEN_NEGATIVE_INFINITY1
+   */
+  private static final String TOKEN_IDF_NEGATIVE_INFINITY1_FULL = "negative_infinity";
+  /**
+   * Has to be equal to TOKEN_NEGATIVE_INFINITY1
+   */
+  private static final String TOKEN_IDF_NEGATIVE_INFINITY1_SHORT = "neg_inf";
+  /**
+   * as to be equal to TOKEN_POSITIVE_INFINITY1
+   */
+  private static final String TOKEN_IDF_POSITIVE_INFINITY1_FULL = "positive_infinity";
+  /**
+   * Has to be equal to TOKEN_POSITIVE_INFINITY1
+   */
+  private static final String TOKEN_IDF_POSITIVE_INFINITY1_SHORT = "pos_inf";
 
   public ExpressionStateValueName (ExpressionStateValue child, String varName) {
     super(child);
@@ -115,7 +137,7 @@ public class ExpressionStateValueName extends ExpressionStateValue {
   }
 
   /**
-   * @return Return null if non of double hacks can be applied, otherwise returns a representation of a double constant.
+   * Returns null if none of the double hacks can be applied, otherwise returns a representation of a double constant.
    */
   private StateReadableValueInterface tryApplyDoubleHacks (StateNodeInterface sni) {
     // Double hacks.
@@ -136,52 +158,51 @@ public class ExpressionStateValueName extends ExpressionStateValue {
     return null;
   }
 
-  public StateNodeInterface getExpressionFromStackFrame(StateStackFrame ssf) throws JPFInspectorException {
-    assert (ssf != null);
+  public StateNodeInterface getExpressionFromStackFrame(StateStackFrame parent) throws JPFInspectorException {
+    assert (parent != null);
 
-    StateReadableValueInterface srvi = null;
+    StateReadableValueInterface resultingValue = null;
 
     // Local variable or parameter
-    if (ssf.namedSlotIndex(varName) != StateValueStackSlot.INVALID_SLOT_INDEX) {
-      srvi = StateValueStackSlot.createNamedSlotValue(ssf, varName);
+    if (parent.namedSlotIndex(varName) != StateValueStackSlot.INVALID_SLOT_INDEX) {
+      resultingValue = StateValueStackSlot.createNamedSlotValue(parent, varName);
     }
 
-    ClassInfo ci = ssf.getClassInfo();
-    // For some synthetic bytecode instructions can be ClassInfo null
+    ClassInfo ci = parent.getClassInfo();
+    // For some synthetic bytecode instructions ClassInfo can be  null
     // ci == null should not occur for standard user loaded bytecode
     if (ci != null) {
-
       // Field or static field
-      if (srvi == null) {
-        if (ssf.isStaticMethod()) {
+      if (resultingValue == null) {
+        if (parent.isStaticMethod()) {
           FieldInfo fi = ci.getStaticField(varName);
           if (fi != null) {
-            srvi = StateValueElementInfoField.createStaticNamedField(ssf, varName);
+            resultingValue = StateValueElementInfoField.createStaticNamedField(parent, varName);
           }
         } else {
           FieldInfo fi = StateValueElementInfoField.fieldNameJavaBasedLookup(ci, varName);
           if (fi != null) {
             // Correct not a static
-            StateValueStackSlot svsf = StateValueStackSlot.createHiddenThisSlotValue(ssf);
+            StateValueStackSlot svsf = StateValueStackSlot.createHiddenThisSlotValue(parent);
             if (fi.isStatic()) {
-              srvi = StateValueElementInfoField.createStaticNamedField(svsf, varName);
+              resultingValue = StateValueElementInfoField.createStaticNamedField(svsf, varName);
             } else {
-              srvi = StateValueElementInfoField.createInstanceNamedField(svsf, varName);
+              resultingValue = StateValueElementInfoField.createInstanceNamedField(svsf, varName);
             }
           }
         }
       }
 
       // Predecessor class Name
-      if (srvi == null) {
+      if (resultingValue == null) {
         ClassInfo ciPred = StateElementInfo.isPredecessorTypeName(ci, varName);
 
         if (ciPred != null) {
-          if (ssf.isStaticMethod()) {
-            srvi = StateElementInfo.createStaticClass(ssf, ciPred);
+          if (parent.isStaticMethod()) {
+            resultingValue = StateElementInfo.createStaticClass(parent, ciPred);
           } else {
-            StateValueStackSlot svsf = StateValueStackSlot.createHiddenThisSlotValue(ssf);
-            srvi = svsf.createPredecessorClass(ciPred);
+            StateValueStackSlot svsf = StateValueStackSlot.createHiddenThisSlotValue(parent);
+            resultingValue = svsf.createPredecessorClass(ciPred);
           }
         } else {
           // Not a predecessor class (any other class)
@@ -189,7 +210,7 @@ public class ExpressionStateValueName extends ExpressionStateValue {
 
           if (sei != null) {
             // Class with given name exists
-            srvi = StateElementInfo.createStaticClass(ssf, sei.getClassInfo());
+            resultingValue = StateElementInfo.createStaticClass(parent, sei.getClassInfo());
           }
           /*
           Code before migration:
@@ -205,21 +226,20 @@ public class ExpressionStateValueName extends ExpressionStateValue {
       }
     }
 
-    if (srvi == null) {
+    if (resultingValue == null) {
       // Double hacks.
-      srvi = tryApplyDoubleHacks(ssf);
+      resultingValue = tryApplyDoubleHacks(parent);
     }
 
-    if (srvi == null) {
+    if (resultingValue == null) {
       throw new JPFInspectorInvalidNameException(varName);
     }
 
-    // Childs
     ExpressionStateValue child = getChild();
     if (child == null) {
-      return srvi;
+      return resultingValue;
     } else {
-      return child.toHierarchy2(srvi);
+      return child.toHierarchy2(resultingValue);
     }
   }
 

@@ -47,7 +47,7 @@ public class ExpressionStateValueStatic extends ExpressionStateValue {
 
     StateReadableValueInterface result;
     if (staticFieldIndex != null) {
-      result = StateValueElementInfoField.createStaticFieldFromIndex(parent, staticFieldIndex, 1);
+      result = StateValueElementInfoField.createStaticFieldFromIndex(parent, staticFieldIndex);
     } else {
       result = StateElementInfo.createStaticClass(parent, parent.getClassInfo());
     }
@@ -66,7 +66,7 @@ public class ExpressionStateValueStatic extends ExpressionStateValue {
 
     if (staticFieldIndex != null) {
       StateElementInfo staticEi = StateElementInfo.createStaticClass(stackFrame, associatedClass);
-      result = StateValueElementInfoField.createStaticFieldFromIndex(staticEi, staticFieldIndex, 1);
+      result = StateValueElementInfoField.createStaticFieldFromIndex(staticEi, staticFieldIndex);
     } else {
       result = StateElementInfo.createStaticClass(stackFrame, associatedClass);
     }
