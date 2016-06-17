@@ -15,6 +15,9 @@ public class ExpressionTest {
 
     int ten = five + five; // break here
   }
+
+  static int[] arrayOfIntegers;
+
   public void mk() {
     int local = 8;
     int ten = local + 6; // break here

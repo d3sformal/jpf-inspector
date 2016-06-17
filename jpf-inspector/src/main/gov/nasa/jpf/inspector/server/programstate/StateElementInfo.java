@@ -32,8 +32,7 @@ import gov.nasa.jpf.vm.ElementInfo;
 import gov.nasa.jpf.vm.Heap;
 
 /**
- * @author Alf
- * 
+ * Represents a reference object.
  */
 public class StateElementInfo extends StateNode implements StateReadableValueInterface {
 
@@ -91,12 +90,6 @@ public class StateElementInfo extends StateNode implements StateReadableValueInt
                                 ci,
                                 sni.getStateExpr() + '.' + StateValue.getSimpleName(ci));
     // I wonder.. shouldn't there be '#static' instead of 'StateValue.getSimpleName(ci)'?
-  }
-
-  // Does not modify state expression
-  public static StateElementInfo createStaticClassHidden (StateNodeInterface sni, ClassInfo ci) {
-    assert (ci != null);
-    return new StateElementInfo(sni, 1, ci.getStaticElementInfo(), ci, sni.getStateExpr());
   }
 
   public static StateElementInfo createStaticOuterClass (StateReadableValueInterface srvi) throws JPFInspectorException {

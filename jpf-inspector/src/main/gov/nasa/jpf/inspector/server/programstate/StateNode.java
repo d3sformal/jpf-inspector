@@ -20,22 +20,25 @@
 package gov.nasa.jpf.inspector.server.programstate;
 
 import gov.nasa.jpf.inspector.common.pse.ProgramStateEntry;
-import gov.nasa.jpf.inspector.exceptions.JPFInspectorException;
 import gov.nasa.jpf.inspector.server.jpf.JPFInspector;
 
 /**
- * A node of the intermediate representation of an expression (hierarchy 2). Hierarchy 2 class names start with "State".
+ * A node of the intermediate representation of an expression (hierarchy 2).
+ * Hierarchy 2 class names start with "State".
  */
 abstract public class StateNode implements StateNodeInterface {
 
+  /**
+   * An expression that, if evaluated in the same program state,
+   * would result in an equal {@link ProgramStateEntry}.
+   */
   private String stateExpr;
 
-  /**
-   * Depth of the (created) ProgramStateEntries (how many references are obtained while PSE is reacted and how many is
-   * obtained at runtime
-   */
-  protected final int referenceDepth;
+  private final int referenceDepth;
 
+  /**
+   * The Inspector server.
+   */
   private final JPFInspector inspector;
 
   protected StateNode (JPFInspector inspector, int referenceDepth) {
@@ -66,9 +69,12 @@ abstract public class StateNode implements StateNodeInterface {
     return referenceDepth;
   }
 
+  /**
+   * Sets the expression that, if evaluated using print, would give rise to this.
+   */
   protected void setStateExpr (String stateExpr) {
     assert (stateExpr != null); // Illegal state expression
-    assert (this.stateExpr == null); // State expr is stes for the first time;
+    assert (this.stateExpr == null); // State expression must be set only once.
     this.stateExpr = stateExpr;
   }
 
@@ -77,8 +83,4 @@ abstract public class StateNode implements StateNodeInterface {
     assert (stateExpr != null); // State expression has to be set exactly from the constructor
     return stateExpr;
   }
-
-  @Override
-  abstract public ProgramStateEntry toHierarchy3() throws JPFInspectorException;
-
 }

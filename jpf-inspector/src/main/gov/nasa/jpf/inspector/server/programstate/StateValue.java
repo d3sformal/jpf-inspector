@@ -537,58 +537,72 @@ public abstract class StateValue extends StateNode implements StateReadableValue
   /**
    * Creates a hierarchy-3 representation of a value.
    *
-   * @param srvi A hierarchy-2 representation of the value.
+   * @param value A hierarchy-2 representation of the value.
    * @param varName Name of the variable that contains the value.
-   * @param index Index (stack slot, array index, field index or heap index).
-   * @param definedIn The class this field was defined in, if field, if any.
+   * @param index Index (stack slot, array index, field index or heap index), if any. If not, then zero.
+   * @param definedIn The class this field was defined in, if field, if any. If not, then it's the empty string.
    * @return The hierarchy-3 representation.
    */
-  public static PSEVariable createPSEVariable(StateReadableValueInterface srvi,
-                                              String varName, int index, String definedIn)
+  public static PSEVariable createPSEVariable(StateReadableValueInterface value,
+                                              String varName,
+                                              int index,
+                                              String definedIn)
       throws JPFInspectorException {
 
-    assert (srvi != null);
+    assert (value != null);
+    assert (definedIn != null) : "Use the empty string rather than null.";
+    assert (varName != null) : "Use an arbirtrary string (such as ???) rather than null.";
 
-    ClassInfo ci = srvi.getClassInfo();
+    ClassInfo ci = value.getClassInfo();
 
     String varTypeName = StateValue.demangleTypeName(ci.getSignature());
 
+    // Primitive
     if (ci.isPrimitive()) {
-      Object wrappedValue = srvi.getValue();
-      return new PSEVariablePrimitive(varName, varTypeName, wrappedValue.toString(), false, definedIn, index, wrappedValue);
+      Object wrappedValue = value.getValue();
+      return new PSEVariablePrimitive(varName, varTypeName, wrappedValue.toString(), false,
+                                      definedIn, index, wrappedValue);
     }
 
-    final ElementInfo ei = srvi.getReferenceValue();
-    final String varValue = StateValue.elementInfo2String(ei);
-    final int referenceDepth = srvi.getReferenceDepth();
+    final ElementInfo ei = value.getReferenceValue(); // may be null
+    final String varValue = StateValue.elementInfo2String(ei); // short-form description of the value
+    final int referenceDepth = value.getReferenceDepth();
 
     final boolean isStatic = isStaticElementInfo(ei);
 
     if (ci.isArray()) {
+      // It's an array.
 
-
-      if (ei != null) {
-        // ei == null -> means null reference
-
-        if (referenceDepth > 0) {
-          int arrayLen;
-          PSEVariable[] refArrayItems;
-          arrayLen = ei.arrayLength();
-          refArrayItems = new PSEVariable[arrayLen];
-          for (int i = 0; i < arrayLen; i++) {
-            StateValueArrayElement svae = StateValueArrayElement.createArrayElement(srvi, i, referenceDepth - 1);
-            refArrayItems[i] = svae.toHierarchy3();
-          }
-          return new PSEVariableArray(varName, varTypeName, varValue, false, definedIn, index, arrayLen, refArrayItems);
+      if (ei == null) {
+        // It's a null value.
+        return new PSEVariableObject(varName, varTypeName, varValue, false, definedIn, index, new PSEVariable[0], new PSEVariable[0]);
+      } else if (referenceDepth > 0) {
+        int arrayLen;
+        PSEVariable[] refArrayItems;
+        arrayLen = ei.arrayLength();
+        refArrayItems = new PSEVariable[arrayLen];
+        for (int i = 0; i < arrayLen; i++) {
+          StateValueArrayElement svae = StateValueArrayElement.createArrayElement(value, i, referenceDepth - 1);
+          refArrayItems[i] = svae.toHierarchy3();
         }
+        return new PSEVariableArray(varName, varTypeName, varValue, false, definedIn, index, arrayLen, refArrayItems);
+      } else {
+        return new PSEVariableShortForm(varName, varTypeName, varValue, false, definedIn, index);
+
       }
-      // TODO what if it is null?
-      return new PSEVariableShortForm(varName, varTypeName, varValue, false, definedIn, index);
-    } // End of array
-    else { // Object
+    } else {
+      // It's a reference object.
+
       final int fields = ci.getNumberOfInstanceFields();
       final int staticFields = ci.getNumberOfStaticFields();
-      if (referenceDepth > 0 && ei != null) {
+
+      if (ei == null) {
+        // It's a null value.
+        return new PSEVariableObject(varName, varTypeName, "null",
+                                     false, definedIn, index, new PSEVariable[0],
+                                     new PSEVariable[0]);
+      }
+      else if (referenceDepth > 0) {
         // Not null and values of all fields are required
         PSEVariable[] refFields;
         PSEVariable[] refStaticFields;
@@ -597,7 +611,8 @@ public abstract class StateValue extends StateNode implements StateReadableValue
           refFields = new PSEVariable[fields];
 
           for (int i = 0; i < ci.getNumberOfInstanceFields(); i++) {
-            StateValueElementInfoField svae = StateValueElementInfoField.createFieldFromIndex(srvi, i,
+            StateValueElementInfoField svae = StateValueElementInfoField.createFieldFromIndex(value,
+                                                                                              i,
                                                                                               referenceDepth - 1);
             refFields[i] = svae.toHierarchy3();
           }
@@ -607,7 +622,8 @@ public abstract class StateValue extends StateNode implements StateReadableValue
         // Create static fields
         refStaticFields = new PSEVariable[staticFields];
         for (int i = 0; i < staticFields; i++) {
-          StateValueElementInfoField svae = StateValueElementInfoField.createStaticFieldFromIndex(srvi, i,
+          StateValueElementInfoField svae = StateValueElementInfoField.createStaticFieldFromIndex(value,
+                                                                                                  i,
                                                                                                   referenceDepth - 1);
           refStaticFields[i] = svae.toHierarchy3();
         }
@@ -615,7 +631,6 @@ public abstract class StateValue extends StateNode implements StateReadableValue
                                      false, definedIn, index, refFields,
                                      refStaticFields);
       } else {
-        // TODO it may be a problem if we print a "null" object in long form... we should make a test for that
         return new PSEVariableShortForm(varName, varTypeName, varValue, false, definedIn, index);
       }
     }

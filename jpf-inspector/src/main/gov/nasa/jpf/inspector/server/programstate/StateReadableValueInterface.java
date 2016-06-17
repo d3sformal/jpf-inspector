@@ -38,7 +38,7 @@ import gov.nasa.jpf.vm.ElementInfo;
 public interface StateReadableValueInterface extends StateNodeInterface {
 
   /**
-   * @return Get type information about represented value
+   * Gets type information about represented value.
    */
   ClassInfo getClassInfo();
 
@@ -67,6 +67,7 @@ public interface StateReadableValueInterface extends StateNodeInterface {
    * @return Gets value which represents only a subset of fields.
    */
   StateReadableValueInterface createSuper() throws JPFInspectorException;
+
 
   StateReadableValueInterface createPredecessorClass(ClassInfo ci) throws JPFInspectorNotSuperClassException;
 

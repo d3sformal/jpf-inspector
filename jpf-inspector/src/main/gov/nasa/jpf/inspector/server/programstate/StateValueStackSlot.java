@@ -90,7 +90,7 @@ public class StateValueStackSlot extends StateValue {
   }
 
   public static StateValueStackSlot createSlotFromIndex (StateStackFrame ssf, int slotIndex) throws JPFInspectorException {
-    return StateValueStackSlot.createSlotFromIndex(ssf, slotIndex, ssf.getReferenceDepth() - 1);
+    return StateValueStackSlot.createSlotFromIndex(ssf, slotIndex, ssf.getReferenceDepth());
   }
 
 
