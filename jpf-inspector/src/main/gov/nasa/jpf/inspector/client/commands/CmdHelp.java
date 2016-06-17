@@ -19,9 +19,89 @@ import java.util.Map;
 public class CmdHelp extends ClientCommand {
   @Override
   public void execute(JPFInspectorClient client, JPFInspectorBackEndInterface inspector, PrintStream outStream) {
+    printCommands(outStream);
+    printHitConditions(outStream);
+  }
+
+  private void printHitConditions(PrintStream outStream) {
+    outStream.println();
+    outStream.println("You may use the following hit conditions: ");
+    outStream.println("garbage_collection = begin/end/both\n" +
+                              "choice_generator = data/sched/both\n" +
+                              "instruction_type = any/invoke/return/field_access/field_read/field_write/condition/lock/array\n" +
+                              "position = filename:linenumber\n" +
+                              "property_violated\n" +
+                              "thread_scheduled = in/out/both : threadnumber\n" +
+                              "field_access = classname:fieldname\n" +
+                              "field_read = classname:fieldname\n" +
+                              "field_write = classname:fieldname\n" +
+                              "method_invoke = classname:methodname\n" +
+                              "object_created = classname\n" +
+                              "object_released = classname\n" +
+                              "exception_thrown = classname\n" +
+                              "expression operator expression\n" +
+                              "( hitcondition )\n" +
+                              "hitcondition and hitcondition\n" +
+                              "hitcondition or hitcondition\n" +
+                              "custom_hit_condition ( arguments )");
+  }
+
+  private void printCommands(PrintStream outStream) {
     LinkedHashMap<String, List<CommandHelpInfo>> categories = new LinkedHashMap<>();
     // Linked hash map, because we want to preserve our order of categories
 
+    addBuiltInCommands(categories);
+
+    addAliases(categories);
+
+    addCustomCommands(categories);
+
+
+    outStream.println("You may use the following commands in this console:\n");
+    for(Map.Entry<String, List<CommandHelpInfo>> entry : categories.entrySet()) {
+      outStream.println(entry.getKey() + ": ");
+      int maxCommandLength = 0;
+      for(CommandHelpInfo info : entry.getValue()) {
+        if (info.syntax.length() > maxCommandLength) {
+          maxCommandLength = info.syntax.length();
+        }
+      }
+      for(CommandHelpInfo info : entry.getValue()) {
+        outStream.println(pad(info.syntax, maxCommandLength + 3) + (info.abbreviation != null ? ("[" + info.abbreviation + "] ") : "") + info.shortDescription);
+      }
+      outStream.println();
+    }
+  }
+
+  private void addCustomCommands(LinkedHashMap<String, List<CommandHelpInfo>> categories) {
+    ArrayList<CommandHelpInfo> customCommands = new ArrayList<>();
+    for (Map.Entry<String, CustomCommand> entry : InspectorConfiguration.getInstance().getCustomCommands()) {
+      customCommands.add(new CommandHelpInfo(entry.getKey(), null, entry.getValue().getHelpText()));
+    }
+    categories.put("Custom commands", customCommands);
+  }
+
+  private void addAliases(LinkedHashMap<String, List<CommandHelpInfo>> categories) {
+    ArrayList<CommandHelpInfo> aliases = new ArrayList<>();
+    for(CommandAlias alias : InspectorConfiguration.getInstance().getAliases()) {
+      String aliasLeftPart = alias.getKey().trim();
+      String aliasRightPart = alias.getValue().trim();
+      for (int i = 0; i < alias.getNumberOfRequiredParameters(); i++) {
+        aliasLeftPart += " [arg" + i + "]";
+      }
+      for (int i = 0; i < alias.getNumberOfRequiredParameters(); i++) {
+        aliasRightPart = aliasRightPart.replace("{" + i + "}", "[arg" + i + "]");
+      }
+      if (alias.getNumberOfRequiredParameters() == 0 && alias.usesFullArgumentLine()) {
+        aliasLeftPart += " [argument]";
+        aliasRightPart = aliasRightPart.replace(CommandAlias.FULL_ARGUMENT_PATTERN, "[argument]");
+      }
+      aliases.add(new CommandHelpInfo(aliasLeftPart, null, aliasRightPart));
+    }
+    categories.put("Aliases", aliases);
+  }
+
+  private void addBuiltInCommands(LinkedHashMap<String, List<CommandHelpInfo>> categories) {
     ArrayList<CommandHelpInfo> informationalCommands = new ArrayList<>();
     informationalCommands.add(new CommandHelpInfo("hello", null, "Prints a simple hello message."));
     informationalCommands.add(new CommandHelpInfo("help", null, "Prints this message."));
@@ -71,46 +151,6 @@ public class CmdHelp extends ClientCommand {
     choiceGenerators.add(new CommandHelpInfo("cg select [index]", null, "Selects a choice for the current choice generator."));
     choiceGenerators.add(new CommandHelpInfo("used choice_generators", "used cg", "Prints all choice generators in the transition path."));
     categories.put("Choice generators", choiceGenerators);
-
-    ArrayList<CommandHelpInfo> aliases = new ArrayList<>();
-    for(CommandAlias alias : InspectorConfiguration.getInstance().getAliases()) {
-      String aliasLeftPart = alias.getKey().trim();
-      String aliasRightPart = alias.getValue().trim();
-      for (int i = 0; i < alias.getNumberOfRequiredParameters(); i++) {
-        aliasLeftPart += " [arg" + i + "]";
-      }
-      for (int i = 0; i < alias.getNumberOfRequiredParameters(); i++) {
-        aliasRightPart = aliasRightPart.replace("{" + i + "}", "[arg" + i + "]");
-      }
-      if (alias.getNumberOfRequiredParameters() == 0 && alias.usesFullArgumentLine()) {
-        aliasLeftPart += " [argument]";
-        aliasRightPart = aliasRightPart.replace(CommandAlias.FULL_ARGUMENT_PATTERN, "[argument]");
-      }
-      aliases.add(new CommandHelpInfo(aliasLeftPart, null, aliasRightPart));
-    }
-    categories.put("Aliases", aliases);
-
-    ArrayList<CommandHelpInfo> customCommands = new ArrayList<>();
-    for (Map.Entry<String, CustomCommand> entry : InspectorConfiguration.getInstance().getCustomCommands()) {
-      customCommands.add(new CommandHelpInfo(entry.getKey(), null, entry.getValue().getHelpText()));
-    }
-    categories.put("Custom commands", customCommands);
-
-
-    outStream.println("You may use the following commands in this console:\n");
-    for(Map.Entry<String, List<CommandHelpInfo>> entry : categories.entrySet()) {
-      outStream.println(entry.getKey() + ": ");
-      int maxCommandLength = 0;
-      for(CommandHelpInfo info : entry.getValue()) {
-        if (info.syntax.length() > maxCommandLength) {
-          maxCommandLength = info.syntax.length();
-        }
-      }
-      for(CommandHelpInfo info : entry.getValue()) {
-        outStream.println(pad(info.syntax, maxCommandLength + 3) + (info.abbreviation != null ? ("[" + info.abbreviation + "] ") : "") + info.shortDescription);
-      }
-      outStream.println();
-    }
   }
 
   private String pad(String syntax, int length) {

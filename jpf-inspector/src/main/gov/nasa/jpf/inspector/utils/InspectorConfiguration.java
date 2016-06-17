@@ -190,12 +190,6 @@ public final class InspectorConfiguration {
     return config.getBoolean("jpf-inspector.batch_mode", false);
   }
 
-  public boolean shouldUnsafeCommandsWaitUntilPause() {
-      return isBatchModeActive() &&
-              isSafeModeActive() &&
-              config.getBoolean("jpf-inspector.batch_mode.block_unsafe", true);
-  }
-
   public boolean shouldEchoInput() {
     return isBatchModeActive() && config.getBoolean("jpf-inspector.batch_mode.echo_input", false);
   }

@@ -433,6 +433,10 @@
 
   <!--- NEW TARGETS SECTION -->
   <target name="rebuild" depends="clean, build" description="Cleans the project and then fully rebuilds it.">
-
+  </target>
+  <target name="doxygen" description="Generates Doxygen javadocs at Petr's personal computer.">
+    <exec executable="doxygen" dir="../documentation">
+      <arg value="inspector-doxyfile"></arg>
+    </exec>
   </target>
 </project>

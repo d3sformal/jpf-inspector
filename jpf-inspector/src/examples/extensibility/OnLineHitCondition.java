@@ -44,6 +44,7 @@ public class OnLineHitCondition implements CustomHitCondition {
 
   @Override
   public String getDetails(InspectorState state, Object[] arguments) {
+
     return "These are details of the example custom hit condition.";
   }
 }

@@ -28,8 +28,18 @@ import gov.nasa.jpf.vm.VM;
  * Caches ClassInfos of primitive types and wrappers.
  * 
  * Note: Each instance of JVM have new ClassInfos for these types.
- * 
- * @author Alf
+ *
+ *
+ * As a historical note, previously, in JPF6, all instace of the call
+ *
+ * ClassLoaderInfo.getSystemResolvedClassInfo("type")
+ *
+ * were instead:
+ *
+ * ClassInfo.getResolvedClassInfo("arg")
+ *
+ * We are confident that the replacement is correct, though. If you feel the same way, then I guess you may remove
+ * this comment.
  */
 public class ClassInfoCache {
   private final VM vm; // VM to which cached values are related to.
@@ -66,30 +76,19 @@ public class ClassInfoCache {
 
   public final ClassInfo ci_String;
 
-  /**
-   * Replaces the call {@code ClassInfo.getResolvedClassInfo("arg")} that was in this file in the previous version of JPF.
-   * @param type The argument that was there previously.
-   * @return I suppose that a representation of the given system type.
-   */
-  private static ClassInfo upgradedGetResolvedClassInfo(String type) {
-    // Vetted by the mentor and should work.
-    // TODO If no errors manifest by end of June, inline this.
-    return ClassLoaderInfo.getSystemResolvedClassInfo(type);
-  }
-
   public ClassInfoCache (VM vm) {
     assert (vm != null);
 
     this.vm = vm;
 
-    ci_boolean = upgradedGetResolvedClassInfo("boolean");
-    ci_byte = upgradedGetResolvedClassInfo("byte");
-    ci_char = upgradedGetResolvedClassInfo("char");
-    ci_short = upgradedGetResolvedClassInfo("short");
-    ci_int = upgradedGetResolvedClassInfo("int");
-    ci_long = upgradedGetResolvedClassInfo("long");
-    ci_float = upgradedGetResolvedClassInfo("float");
-    ci_double = upgradedGetResolvedClassInfo("double");
+    ci_boolean = ClassLoaderInfo.getSystemResolvedClassInfo("boolean");
+    ci_byte = ClassLoaderInfo.getSystemResolvedClassInfo("byte");
+    ci_char = ClassLoaderInfo.getSystemResolvedClassInfo("char");
+    ci_short = ClassLoaderInfo.getSystemResolvedClassInfo("short");
+    ci_int = ClassLoaderInfo.getSystemResolvedClassInfo("int");
+    ci_long = ClassLoaderInfo.getSystemResolvedClassInfo("long");
+    ci_float = ClassLoaderInfo.getSystemResolvedClassInfo("float");
+    ci_double = ClassLoaderInfo.getSystemResolvedClassInfo("double");
 
     assert (ci_boolean != null);
     assert (ci_byte != null);
@@ -100,14 +99,14 @@ public class ClassInfoCache {
     assert (ci_float != null);
     assert (ci_double != null);
 
-    ci_Boolean = upgradedGetResolvedClassInfo("java.lang.Boolean");
-    ci_Byte = upgradedGetResolvedClassInfo("java.lang.Byte");
-    ci_Char = upgradedGetResolvedClassInfo("java.lang.Character");
-    ci_Short = upgradedGetResolvedClassInfo("java.lang.Short");
-    ci_Int = upgradedGetResolvedClassInfo("java.lang.Integer");
-    ci_Long = upgradedGetResolvedClassInfo("java.lang.Long");
-    ci_Float = upgradedGetResolvedClassInfo("java.lang.Float");
-    ci_Double = upgradedGetResolvedClassInfo("java.lang.Double");
+    ci_Boolean = ClassLoaderInfo.getSystemResolvedClassInfo("java.lang.Boolean");
+    ci_Byte = ClassLoaderInfo.getSystemResolvedClassInfo("java.lang.Byte");
+    ci_Char = ClassLoaderInfo.getSystemResolvedClassInfo("java.lang.Character");
+    ci_Short = ClassLoaderInfo.getSystemResolvedClassInfo("java.lang.Short");
+    ci_Int = ClassLoaderInfo.getSystemResolvedClassInfo("java.lang.Integer");
+    ci_Long = ClassLoaderInfo.getSystemResolvedClassInfo("java.lang.Long");
+    ci_Float = ClassLoaderInfo.getSystemResolvedClassInfo("java.lang.Float");
+    ci_Double = ClassLoaderInfo.getSystemResolvedClassInfo("java.lang.Double");
 
     assert (ci_Boolean != null);
     assert (ci_Byte != null);
@@ -127,7 +126,7 @@ public class ClassInfoCache {
     fi_val_Float = ci_Float.getInstanceField("value");
     fi_val_Double = ci_Double.getInstanceField("value");
 
-    ci_String = upgradedGetResolvedClassInfo("java.lang.String");
+    ci_String = ClassLoaderInfo.getSystemResolvedClassInfo("java.lang.String");
 
     assert (ci_String != null);
   }

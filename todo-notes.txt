@@ -5,7 +5,7 @@ zaridit opravu chyb a malych nedostatku
 	- po kazde zmene provest rucne vsechny use cases a vsechny automaticke unit testy (pres Ant)
 
 
-main todo list
+main list of items
 ==============
 implementovat prikaz "bst" a potom dukladne otestovat na UC4
 	- staci nejspis jen vyrobit odpovidajici metodu tridy BackwardBreakpointCreator ktera vrati novou instanci a urcit tam skok zpet o jednu transition
