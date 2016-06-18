@@ -21,7 +21,7 @@ package gov.nasa.jpf.inspector.server.jpf;
 
 import gov.nasa.jpf.Config;
 import gov.nasa.jpf.JPF;
-import gov.nasa.jpf.inspector.interfaces.InspectorCallBacks;
+import gov.nasa.jpf.inspector.interfaces.InspectorCallbacks;
 import gov.nasa.jpf.inspector.interfaces.JPFInspectorBackEndInterface;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorGenericErrorException;
 import gov.nasa.jpf.inspector.server.breakpoints.BreakpointHandler;
@@ -62,7 +62,7 @@ public abstract class JPFInspector implements JPFInspectorBackEndInterface {
    */
   private JPF jpf = null;
 
-  protected final InspectorCallBacks callBacks;
+  protected final InspectorCallbacks callBacks;
   protected final CallbacksSender callBacksSender;
   protected final StopHolder stopHolder;
   protected final CommandsManager cmdMgr;
@@ -77,7 +77,7 @@ public abstract class JPFInspector implements JPFInspectorBackEndInterface {
    * 
    * @param userCallBacks Interface where callback events should take place. Cann't be null.
    */
-  protected JPFInspector (InspectorCallBacks userCallBacks) {
+  protected JPFInspector (InspectorCallbacks userCallBacks) {
     debugOutStream = System.out; // Fail safe
 
     //noinspection ConstantConditions
@@ -107,7 +107,7 @@ public abstract class JPFInspector implements JPFInspectorBackEndInterface {
   }
 
   @Override
-  public InspectorCallBacks getCallBack () {
+  public InspectorCallbacks getCallBack () {
     if (DEBUG) {
       getDebugPrintStream().println("  " + JPFInspector.class.getSimpleName() + ".getCallBack()");
     }

@@ -3,7 +3,7 @@ package gov.nasa.jpf.inspector.server.callbacks;
 import gov.nasa.jpf.inspector.interfaces.BreakpointStatus;
 import gov.nasa.jpf.inspector.interfaces.ChoiceGeneratorsInterface.CGTypes;
 import gov.nasa.jpf.inspector.interfaces.CommandsInterface.InspectorStates;
-import gov.nasa.jpf.inspector.interfaces.InspectorCallBacks;
+import gov.nasa.jpf.inspector.interfaces.InspectorCallbacks;
 import gov.nasa.jpf.inspector.server.callbacks.commands.CallbackCommandBreakpointHit;
 import gov.nasa.jpf.inspector.server.callbacks.commands.CallbackCommandChoiceGeneratorNewChoice;
 import gov.nasa.jpf.inspector.server.callbacks.commands.CallbackCommandGenericError;
@@ -38,7 +38,7 @@ public class CallbacksSender extends Thread {
    * Flag if true the enabe waits (for notification) until the running "Callbacks thread" first blocks
    */
   private volatile boolean notifyEnable;
-  private final InspectorCallBacks callbacks;
+  private final InspectorCallbacks callbacks;
   /**
    * Cyclic dependency - set immediately after stopHolder is created
    */
@@ -46,7 +46,7 @@ public class CallbacksSender extends Thread {
 
   private final List<CallbackCommand> cmdCBQueue;
 
-  public CallbacksSender (JPFInspector inspector, InspectorCallBacks callbacks) {
+  public CallbacksSender (JPFInspector inspector, InspectorCallbacks callbacks) {
     super(CallbacksSender.class.getSimpleName());
     if (DEBUG) {
       inspector.getDebugPrintStream().println(CallbacksSender.class.getSimpleName() + "." + CallbacksSender.class.getSimpleName() + "(...)");
@@ -69,6 +69,7 @@ public class CallbacksSender extends Thread {
    * we may want to terminate the threads of previous Inspector instances. Probably it would be better
    * to implement a custom method and call it at end of program rather than rely on finalization.
    */
+  @SuppressWarnings("FinalizeDeclaration")
   @Override
   protected void finalize () throws Throwable {
     terminate();
@@ -189,11 +190,11 @@ public class CallbacksSender extends Thread {
     }
   }
 
-  public InspectorCallBacks getCallbackSerializer () {
+  public InspectorCallbacks getCallbackSerializer () {
     return new CallbacksSerializer();
   }
 
-  private class CallbacksSerializer implements InspectorCallBacks {
+  private class CallbacksSerializer implements InspectorCallbacks {
 
     @Override
     public void notifyStateChange (InspectorStates newState, String details) {

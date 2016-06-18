@@ -5,7 +5,7 @@ import gov.nasa.jpf.inspector.client.ClientCommand;
 import gov.nasa.jpf.inspector.client.CommandRecorder;
 import gov.nasa.jpf.inspector.client.JPFInspectorClient;
 import gov.nasa.jpf.inspector.interfaces.CommandsInterface.InspectorStates;
-import gov.nasa.jpf.inspector.interfaces.InspectorCallBacks;
+import gov.nasa.jpf.inspector.interfaces.InspectorCallbacks;
 import gov.nasa.jpf.inspector.interfaces.CallbackKind;
 import gov.nasa.jpf.inspector.interfaces.JPFInspectorBackEndInterface;
 
@@ -31,7 +31,7 @@ public class CmdCallback extends ClientCommand {
   }
 
   /**
-   * Represents {@link InspectorCallBacks#notifyStateChange(InspectorStates, String)} with give state.
+   * Represents {@link InspectorCallbacks#notifyStateChange(InspectorStates, String)} with give state.
    * 
    * @param state State used in State changed notifications
    */

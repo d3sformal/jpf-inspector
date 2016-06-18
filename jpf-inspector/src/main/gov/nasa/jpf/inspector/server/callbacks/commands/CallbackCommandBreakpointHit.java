@@ -1,7 +1,7 @@
 package gov.nasa.jpf.inspector.server.callbacks.commands;
 
 import gov.nasa.jpf.inspector.interfaces.BreakpointStatus;
-import gov.nasa.jpf.inspector.interfaces.InspectorCallBacks;
+import gov.nasa.jpf.inspector.interfaces.InspectorCallbacks;
 import gov.nasa.jpf.inspector.server.callbacks.CallbackCommand;
 
 public class CallbackCommandBreakpointHit implements CallbackCommand {
@@ -13,7 +13,7 @@ public class CallbackCommandBreakpointHit implements CallbackCommand {
   }
 
   @Override
-  public void sendCallback (InspectorCallBacks callbacks) {
+  public void sendCallback (InspectorCallbacks callbacks) {
     callbacks.notifyBreakpointHit(bp);
   }
 

@@ -21,7 +21,7 @@ package gov.nasa.jpf.inspector;
 
 import gov.nasa.jpf.inspector.client.JPFInspectorClient;
 import gov.nasa.jpf.inspector.client.JPFInspectorClientInterface;
-import gov.nasa.jpf.inspector.interfaces.InspectorCallBacks;
+import gov.nasa.jpf.inspector.interfaces.InspectorCallbacks;
 import gov.nasa.jpf.inspector.interfaces.JPFInspectorBackEndInterface;
 import gov.nasa.jpf.inspector.server.jpf.JPFInspectorParallel;
 
@@ -42,7 +42,7 @@ public final class JPFInspectorFacade {
    * @param callBacks Where error and other notification should be reported.
    * @return New instance of the server part of the JPFInspector.
    */
-  public static JPFInspectorBackEndInterface getInspectorBackend (InspectorCallBacks callBacks) {
+  public static JPFInspectorBackEndInterface getInspectorBackend (InspectorCallbacks callBacks) {
     return new JPFInspectorParallel(callBacks);
   }
 

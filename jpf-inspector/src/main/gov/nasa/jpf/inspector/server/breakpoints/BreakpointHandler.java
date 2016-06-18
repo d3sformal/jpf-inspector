@@ -25,7 +25,7 @@ import gov.nasa.jpf.inspector.interfaces.AssertStatus;
 import gov.nasa.jpf.inspector.interfaces.BreakpointCreationInformation;
 import gov.nasa.jpf.inspector.interfaces.BreakPointManagerInterface;
 import gov.nasa.jpf.inspector.interfaces.BreakpointStatus;
-import gov.nasa.jpf.inspector.interfaces.InspectorCallBacks;
+import gov.nasa.jpf.inspector.interfaces.InspectorCallbacks;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorGenericErrorException;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorParsingErrorException;
 import gov.nasa.jpf.inspector.server.expression.ExpressionBooleanInterface;
@@ -64,12 +64,12 @@ public class BreakpointHandler implements BreakPointManagerInterface {
   private final Stack<BreakPointsMemento> bpMementos;
 
   protected final JPFInspector inspector;
-  private final InspectorCallBacks callBacks;
+  private final InspectorCallbacks callBacks;
   private final StopHolder stopHolder;
   private final ExpressionParserInterface expParser; // / Used to parse Breakpoint expression from clients
   private BreakPointsMemento transitionStartMemento; // / Memeto which holds states of breakpoints at the start of the transition
 
-  public BreakpointHandler(JPFInspector inspector, InspectorCallBacks callBacks, StopHolder stopHolder) {
+  public BreakpointHandler(JPFInspector inspector, InspectorCallbacks callBacks, StopHolder stopHolder) {
     this.breakpoints = new TreeMap<>();
 
     this.bpMementos = new Stack<>();

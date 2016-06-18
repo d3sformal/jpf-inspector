@@ -24,7 +24,7 @@ import gov.nasa.jpf.inspector.interfaces.BreakpointStatus;
 import gov.nasa.jpf.inspector.interfaces.CallbackKind;
 import gov.nasa.jpf.inspector.interfaces.ChoiceGeneratorsInterface.CGTypes;
 import gov.nasa.jpf.inspector.interfaces.CommandsInterface.InspectorStates;
-import gov.nasa.jpf.inspector.interfaces.InspectorCallBacks;
+import gov.nasa.jpf.inspector.interfaces.InspectorCallbacks;
 
 import java.io.PrintStream;
 
@@ -42,7 +42,7 @@ import java.io.PrintStream;
  * @author Alf
  * 
  */
-public class CallbackExecutionDecorator implements InspectorCallBacks {
+public class CallbackExecutionDecorator implements InspectorCallbacks {
 
   protected static final boolean DEBUG = false;
   protected final PrintStream out;
@@ -69,7 +69,7 @@ public class CallbackExecutionDecorator implements InspectorCallBacks {
   // *************************************************************************
 
   private final Object syncObj; // Object on which access to Callbacks are synchronized and threads are blocked
-  private final InspectorCallBacks cb; // Where forward callbacks
+  private final InspectorCallbacks cb; // Where forward callbacks
 
   protected WORKING_MODE mode;
 
@@ -86,7 +86,7 @@ public class CallbackExecutionDecorator implements InspectorCallBacks {
    * @param cb Where to send/forward callbacks
    * @param outStream Debug output stream
    */
-  public CallbackExecutionDecorator (Object syncObj, InspectorCallBacks cb, PrintStream outStream) {
+  public CallbackExecutionDecorator (Object syncObj, InspectorCallbacks cb, PrintStream outStream) {
     this.syncObj = syncObj;
     this.cb = cb;
     this.mode = WORKING_MODE.WM_USER_COMMANDS;

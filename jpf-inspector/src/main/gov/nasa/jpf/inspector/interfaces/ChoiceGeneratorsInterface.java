@@ -81,7 +81,7 @@ public interface ChoiceGeneratorsInterface {
   /**
    * Constant that marks that there is no forward default choice from previous backward steps.
    * 
-   * Can be used in {@link InspectorCallBacks#notifyChoiceGeneratorNewChoice(CGTypes, String, int, String[], int, int)} as value of defaultChoice parameter.
+   * Can be used in {@link InspectorCallbacks#notifyChoiceGeneratorNewChoice(CGTypes, String, int, String[], int, int)} as value of defaultChoice parameter.
    */
   int NO_DEFAULT_CHOICE = -1;
 
@@ -111,7 +111,7 @@ public interface ChoiceGeneratorsInterface {
   /**
    * Specifies which choice should the current {@link ChoiceGenerator} use.
    * 
-   * <br>Useful only immediately after {@link InspectorCallBacks#notifyChoiceGeneratorNewChoice(CGTypes, String, int, String[], int, int)} is called.
+   * <br>Useful only immediately after {@link InspectorCallbacks#notifyChoiceGeneratorNewChoice(CGTypes, String, int, String[], int, int)} is called.
    * 
    * @param selectedChoice Choice which the {@link ChoiceGenerator} will return.
    *        Value {@link #USE_DEFAULT_CHOICE} can be specify to uses value from previous execution.

@@ -21,7 +21,7 @@ package gov.nasa.jpf.inspector.server.jpf;
 
 import gov.nasa.jpf.ListenerAdapter;
 import gov.nasa.jpf.inspector.interfaces.CommandsInterface.InspectorStates;
-import gov.nasa.jpf.inspector.interfaces.InspectorCallBacks;
+import gov.nasa.jpf.inspector.interfaces.InspectorCallbacks;
 import gov.nasa.jpf.inspector.server.expression.InspectorState;
 import gov.nasa.jpf.vm.Instruction;
 import gov.nasa.jpf.vm.VM;
@@ -44,7 +44,7 @@ public class StopHolder {
    * Inspector server.
    */
   private final JPFInspector inspector;
-  private final InspectorCallBacks callbacks;
+  private final InspectorCallbacks callbacks;
 
   /**
    * Guarded by class instance lock.
@@ -54,7 +54,7 @@ public class StopHolder {
   private boolean stopped = false;
   private boolean condTerminateAfterResume = false;
 
-  public StopHolder (JPFInspector inspector, InspectorCallBacks callbacks) {
+  public StopHolder (JPFInspector inspector, InspectorCallbacks callbacks) {
     this.inspector = inspector;
     this.callbacks = callbacks;
   }

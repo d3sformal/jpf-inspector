@@ -20,7 +20,7 @@
 package gov.nasa.jpf.inspector.server.choicegenerators;
 
 import gov.nasa.jpf.inspector.interfaces.ChoiceGeneratorsInterface;
-import gov.nasa.jpf.inspector.interfaces.InspectorCallBacks;
+import gov.nasa.jpf.inspector.interfaces.InspectorCallbacks;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorException;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorGenericErrorException;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorNoVMConnected;
@@ -50,14 +50,14 @@ public class ChoiceGeneratorsManager implements ChoiceGeneratorsInterface, Choic
   private final StopHolder stopHolder;
   @SuppressWarnings("FieldCanBeLocal") // IDEA bug
   private final JPFInspector inspector;
-  private final InspectorCallBacks callBacks;
+  private final InspectorCallbacks callBacks;
   private final DefaultForwardTraceManager forwardTrace;
   private Boolean waitForChoice = false; // / Flag which specifies whether the JPF is stopped due to prompt with CG (to client)
 
   private final CGNotificationSpecification[] cgNotifications;
 
-  public ChoiceGeneratorsManager (JPFInspector inspector, InspectorCallBacks callBacks, CommandsManager cmdMgr, StopHolder stopHolder,
-      DefaultForwardTraceManager forwardTrace) {
+  public ChoiceGeneratorsManager (JPFInspector inspector, InspectorCallbacks callBacks, CommandsManager cmdMgr, StopHolder stopHolder,
+                                  DefaultForwardTraceManager forwardTrace) {
     // Internal tests
 
     this.inspector = inspector;

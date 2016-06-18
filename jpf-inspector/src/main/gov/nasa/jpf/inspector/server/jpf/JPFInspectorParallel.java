@@ -38,7 +38,7 @@ import java.util.Map;
  */
 public class JPFInspectorParallel extends JPFInspector {
 
-  public JPFInspectorParallel (InspectorCallBacks callBack) {
+  public JPFInspectorParallel (InspectorCallbacks callBack) {
     super(callBack);
   }
 

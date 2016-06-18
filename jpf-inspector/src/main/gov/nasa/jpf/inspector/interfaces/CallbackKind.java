@@ -1,7 +1,7 @@
 package gov.nasa.jpf.inspector.interfaces;
 
 /**
- * Represents a method of the {@link InspectorCallBacks} interface.
+ * Represents a method of the {@link InspectorCallbacks} interface.
  */
 public enum CallbackKind {
   CB_ANY,

@@ -31,7 +31,7 @@ import java.io.PrintStream;
  *
  * This class is created by the client.
  */
-public class JPFClientCallbackHandler implements InspectorCallBacks {
+public class JPFClientCallbackHandler implements InspectorCallbacks {
   /**
    * Console where server notifications should be printed out.
    */

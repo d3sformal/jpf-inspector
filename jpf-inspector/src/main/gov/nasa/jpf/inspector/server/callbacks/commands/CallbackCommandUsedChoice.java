@@ -1,7 +1,7 @@
 package gov.nasa.jpf.inspector.server.callbacks.commands;
 
 import gov.nasa.jpf.inspector.interfaces.ChoiceGeneratorsInterface.CGTypes;
-import gov.nasa.jpf.inspector.interfaces.InspectorCallBacks;
+import gov.nasa.jpf.inspector.interfaces.InspectorCallbacks;
 import gov.nasa.jpf.inspector.server.callbacks.CallbackCommand;
 
 public class CallbackCommandUsedChoice implements CallbackCommand {
@@ -21,7 +21,7 @@ public class CallbackCommandUsedChoice implements CallbackCommand {
   }
 
   @Override
-  public void sendCallback (InspectorCallBacks callbacks) {
+  public void sendCallback (InspectorCallbacks callbacks) {
     callbacks.notifyUsedChoice(cgType, cgName, cgId, usedChoiceIndex, usedChoice);
   }
 

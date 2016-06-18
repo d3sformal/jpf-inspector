@@ -1,6 +1,6 @@
 package gov.nasa.jpf.inspector.server.callbacks;
 
-import gov.nasa.jpf.inspector.interfaces.InspectorCallBacks;
+import gov.nasa.jpf.inspector.interfaces.InspectorCallbacks;
 
 public interface CallbackCommand {
   /**
@@ -8,7 +8,7 @@ public interface CallbackCommand {
    * 
    * @param callbacks Interface where sent the callback.
    */
-  public void sendCallback(InspectorCallBacks callbacks);
+  public void sendCallback(InspectorCallbacks callbacks);
   
   /**
    *  if false callback should be sent as soon as all previous callbacks are processed 

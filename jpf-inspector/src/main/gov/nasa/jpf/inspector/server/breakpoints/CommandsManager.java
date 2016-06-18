@@ -22,7 +22,7 @@ package gov.nasa.jpf.inspector.server.breakpoints;
 import gov.nasa.jpf.inspector.common.BreakpointCreationExpression;
 import gov.nasa.jpf.inspector.interfaces.BreakpointState;
 import gov.nasa.jpf.inspector.interfaces.CommandsInterface;
-import gov.nasa.jpf.inspector.interfaces.InspectorCallBacks;
+import gov.nasa.jpf.inspector.interfaces.InspectorCallbacks;
 import gov.nasa.jpf.inspector.interfaces.InstructionType;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorGenericErrorException;
 import gov.nasa.jpf.inspector.server.expression.ExpressionBoolean;
@@ -61,11 +61,11 @@ public class CommandsManager implements CommandsInterface {
 
   private final JPFInspector inspector;
   private final StopHolder stopHolder;
-  private final InspectorCallBacks callbacks;
+  private final InspectorCallbacks callbacks;
   private final DefaultForwardTraceManager dftMgr;
   private final BreakpointHandler breakpointMgr;
 
-  public CommandsManager (JPFInspector inspector, StopHolder stopHolder, BreakpointHandler breakpointMgr, InspectorCallBacks callbacks,
+  public CommandsManager (JPFInspector inspector, StopHolder stopHolder, BreakpointHandler breakpointMgr, InspectorCallbacks callbacks,
                           DefaultForwardTraceManager dftMgr) {
     this.inspector = inspector;
     this.stopHolder = stopHolder;

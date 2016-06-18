@@ -5,7 +5,7 @@ import gov.nasa.jpf.inspector.interfaces.BreakpointStatus;
 import gov.nasa.jpf.inspector.interfaces.CallbackKind;
 import gov.nasa.jpf.inspector.interfaces.ChoiceGeneratorsInterface.CGTypes;
 import gov.nasa.jpf.inspector.interfaces.CommandsInterface.InspectorStates;
-import gov.nasa.jpf.inspector.interfaces.InspectorCallBacks;
+import gov.nasa.jpf.inspector.interfaces.InspectorCallbacks;
 
 /**
  * Monitors and records callbacks into list of executed commands.
@@ -13,12 +13,12 @@ import gov.nasa.jpf.inspector.interfaces.InspectorCallBacks;
  * 
  * @author Alf *
  */
-public class CallbackRecordingDecorator implements InspectorCallBacks {
+public class CallbackRecordingDecorator implements InspectorCallbacks {
 
-  private final InspectorCallBacks cb;
+  private final InspectorCallbacks cb;
   private final CommandRecorder cmdRecorder;
 
-  public CallbackRecordingDecorator (InspectorCallBacks cb, CommandRecorder recorder) {
+  public CallbackRecordingDecorator (InspectorCallbacks cb, CommandRecorder recorder) {
     this.cb = cb;
     this.cmdRecorder = recorder;
   }

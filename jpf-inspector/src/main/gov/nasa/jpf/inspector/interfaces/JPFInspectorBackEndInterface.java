@@ -40,7 +40,7 @@ public interface JPFInspectorBackEndInterface extends
    */
   void bindWithJPF(JPF jpf) throws JPFInspectorGenericErrorException;
 
-  InspectorCallBacks getCallBack();
+  InspectorCallbacks getCallBack();
 
 
   /**

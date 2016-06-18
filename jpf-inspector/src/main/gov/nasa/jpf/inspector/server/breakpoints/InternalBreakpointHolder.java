@@ -22,7 +22,7 @@ package gov.nasa.jpf.inspector.server.breakpoints;
 import gov.nasa.jpf.inspector.interfaces.BreakpointCreationInformation;
 import gov.nasa.jpf.inspector.interfaces.BreakpointState;
 import gov.nasa.jpf.inspector.interfaces.BreakpointStatus;
-import gov.nasa.jpf.inspector.interfaces.InspectorCallBacks;
+import gov.nasa.jpf.inspector.interfaces.InspectorCallbacks;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorException;
 import gov.nasa.jpf.inspector.server.breakpoints.BreakpointHandler.BreakPointPartialMemento;
 import gov.nasa.jpf.inspector.server.expression.ExpressionBooleanInterface;
@@ -57,7 +57,7 @@ public class InternalBreakpointHolder implements Comparable<InternalBreakpointHo
     }
   }
 
-  private final InspectorCallBacks callbacks;
+  private final InspectorCallbacks callbacks;
 
   protected final int bpID; // ID of the breakpoint
   private final boolean userBP; // / Mark whether the breakpoint is visible to user or it's BP for the internal purposes of the checker
@@ -84,7 +84,7 @@ public class InternalBreakpointHolder implements Comparable<InternalBreakpointHo
    * @param userBP This breakpoint is created by the client inspector side (should by reported to user)
    * @param sigleHitBP This breakpoint should be removed if the first breakpoint hits (this or some other BP)
    */
-  public InternalBreakpointHolder (int newID, InspectorCallBacks callbacks, boolean userBP, boolean sigleHitBP) {
+  public InternalBreakpointHolder (int newID, InspectorCallbacks callbacks, boolean userBP, boolean sigleHitBP) {
     if (newID == BreakpointCreationInformation.BP_ID_NOT_DEFINED) {
       newID = getNextBpID();
     } else {

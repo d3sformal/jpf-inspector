@@ -20,7 +20,7 @@
 package gov.nasa.jpf.inspector.server.breakpoints;
 
 import gov.nasa.jpf.inspector.interfaces.BreakpointCreationInformation;
-import gov.nasa.jpf.inspector.interfaces.InspectorCallBacks;
+import gov.nasa.jpf.inspector.interfaces.InspectorCallbacks;
 import gov.nasa.jpf.inspector.server.expression.InspectorState;
 import gov.nasa.jpf.inspector.server.expression.expressions.ExpressionBreakpointAssert;
 
@@ -33,7 +33,7 @@ public class InternalAssertHolder extends InternalBreakpointHolder {
   private final String position;
   private final String condition;
 
-  public InternalAssertHolder (int newID, InspectorCallBacks callbacks, boolean userBP, boolean sigleHitBP, String position, String condition) {
+  public InternalAssertHolder (int newID, InspectorCallbacks callbacks, boolean userBP, boolean sigleHitBP, String position, String condition) {
     super(newID, callbacks, userBP, sigleHitBP);
     this.position = position;
     this.condition = condition;
