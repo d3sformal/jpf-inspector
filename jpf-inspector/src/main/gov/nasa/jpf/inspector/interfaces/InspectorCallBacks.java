@@ -31,7 +31,8 @@ import gov.nasa.jpf.vm.ChoiceGenerator;
  * TODO this is strange, examine it:
  * (except {@link #genericInfo(String)} which can be called by any thread)
  */
-public interface InspectorCallBacks {
+public interface InspectorCallbacks {
+
 
   /**
    * Called when state of the inspector is modified - paused, resumed, property
