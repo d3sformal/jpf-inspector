@@ -110,8 +110,16 @@ public class JPFInspectorClient implements JPFInspectorClientInterface {
     if (cmd == null) {
       return;
     }
-    // To serialize recording of executed commands and commands related to command execution
-    synchronized (recorder) {
+
+    // Previously, the following try-catch block was enclosed in a "synchronized (recorder)" block.
+    // However, any utility of this block was dubious for the following reasons:
+    //  1. The JPF thread and commands don't usually run at the same time because safe mode prevents it.
+    //  2. The only important command that doesn't obey this rule is "break" and you don't usually want
+    //     to reexecute records with "break" because they wouldn't be deterministic anyway.
+    //  3. Now that we permit custom commands, commands may take arbitrarily long and the synchronized block
+    //     was susceptible to cause deadlocks.
+    // If the removal of this block causes problems, it may be reinstated.
+
       try {
         // In Swing, we must echo the prompt.
         if (!cmd.isHiddenCommand() && (context == ExecutionContext.FROM_SWING_TERMINAL)) {
@@ -132,7 +140,7 @@ public class JPFInspectorClient implements JPFInspectorClientInterface {
         recordComment("ERR: Generic error while processing a command:");
         recordComment(e.getMessage());
       }
-    }
+
   }
 
   /**

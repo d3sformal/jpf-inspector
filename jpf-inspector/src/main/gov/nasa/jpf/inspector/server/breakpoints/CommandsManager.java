@@ -86,7 +86,9 @@ public class CommandsManager implements CommandsInterface {
 
   @Override
   public void waitUntilStopped() {
-    if (inspector.getJPF() == null) return;
+    if (inspector.getJPF() == null) {
+      return;
+    }
     inspector.getStopHolder().waitUntilStopped();
   }
 
@@ -165,8 +167,10 @@ public class CommandsManager implements CommandsInterface {
     assert search != null : "Internal error - not specified search";
 
     // reset the root CG if we might backtrack to it
-    ChoiceGenerator[] allCGs = search.getVM().getSystemState().getChoiceGenerators();
-    if (bbc.getTransitionsToBacktrack() >= allCGs.length) allCGs[0].reset();
+    ChoiceGenerator<?>[] allCGs = search.getVM().getSystemState().getChoiceGenerators();
+    if (bbc.getTransitionsToBacktrack() >= allCGs.length) {
+      allCGs[0].reset();
+    }
 
     // Stop current transition (to prevent invoke more instruction than necessary) - only if this makes sense - instruction/throw/object_created
     //search.getVM().breakTransition(); // We cannot add new transition

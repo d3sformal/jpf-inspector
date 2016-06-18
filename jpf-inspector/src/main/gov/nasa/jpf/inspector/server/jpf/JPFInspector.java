@@ -22,6 +22,7 @@ package gov.nasa.jpf.inspector.server.jpf;
 import gov.nasa.jpf.Config;
 import gov.nasa.jpf.JPF;
 import gov.nasa.jpf.inspector.interfaces.InspectorCallbacks;
+import gov.nasa.jpf.inspector.interfaces.InspectorStatusChange;
 import gov.nasa.jpf.inspector.interfaces.JPFInspectorBackEndInterface;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorGenericErrorException;
 import gov.nasa.jpf.inspector.server.breakpoints.BreakpointHandler;
@@ -198,7 +199,7 @@ public abstract class JPFInspector implements JPFInspectorBackEndInterface {
     cmdMgr.newJPF();
     stopHolder.newJPF();
     breakpointMgr.newJPF();
-    callBacks.notifyStateChange(InspectorStates.JPF_STARTED, null); // It has to be here because some code is excecuted BEFORE search started is called!!
+    callBacks.notifyStateChange(InspectorStatusChange.JPF_STARTED, null); // It has to be here because some code is excecuted BEFORE search started is called!!
   }
 
   public synchronized void notifyJPFFinished () {

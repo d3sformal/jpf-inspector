@@ -33,31 +33,27 @@ import gov.nasa.jpf.vm.ChoiceGenerator;
  */
 public interface InspectorCallbacks {
 
-
   /**
-   * Called when state of the inspector is modified - paused, resumed, property
-   * violated
+   * The server calls this when the Inspector's running status (running/stopped) changes.
+   * @param newState What status the Inspector switched to
+   * @param details Information that should be printed to the console
    */
-  void notifyStateChange(CommandsInterface.InspectorStates newState, String details);
+  void notifyStateChange(InspectorStatusChange newState, String details);
 
   /**
-   * Inspector detected unrecoverable error that should be reported to user.
-   * 
+   * The server calls this whenever an error should be reported to the console.
    * @param msg Message to print.
    */
   void genericError(String msg);
 
   /**
-   * Channel used for sending various messages for the user.
-   * 
+   * The server calls this whenever a non-error message should be printed to the user.
    * @param msg Message to print.
    */
   void genericInfo(String msg);
-
   /**
-   * Called when breakpoint is hit.
-   * 
-   * @param bp Breakpoint that is reached.
+   * The server calls this whenever a breakpoint is hit.
+   * @param bp Information about the hit breakpoint.
    */
   void notifyBreakpointHit(BreakpointStatus bp);
 
@@ -71,7 +67,8 @@ public interface InspectorCallbacks {
    * @param nextChoice Index of selected choice. (Choice which will be selected after the {@link ChoiceGenerator#advance()} call
    * @param defaultChoice Value of default choice, if any. ({@link ChoiceGeneratorsInterface#NO_DEFAULT_CHOICE} is used if no default choice exists)
    */
-  void notifyChoiceGeneratorNewChoice(ChoiceGeneratorsInterface.CGTypes cgType, String cgName, int cgId, String[] choices, int nextChoice,
+  void notifyChoiceGeneratorNewChoice(ChoiceGeneratorsInterface.CGTypes cgType,
+                                      String cgName, int cgId, String[] choices, int nextChoice,
                                       int defaultChoice);
 
   /**

@@ -4,7 +4,7 @@ import gov.nasa.jpf.inspector.client.CallbackExecutionDecorator;
 import gov.nasa.jpf.inspector.client.ClientCommand;
 import gov.nasa.jpf.inspector.client.CommandRecorder;
 import gov.nasa.jpf.inspector.client.JPFInspectorClient;
-import gov.nasa.jpf.inspector.interfaces.CommandsInterface.InspectorStates;
+import gov.nasa.jpf.inspector.interfaces.InspectorStatusChange;
 import gov.nasa.jpf.inspector.interfaces.InspectorCallbacks;
 import gov.nasa.jpf.inspector.interfaces.CallbackKind;
 import gov.nasa.jpf.inspector.interfaces.JPFInspectorBackEndInterface;
@@ -23,7 +23,7 @@ public class CmdCallback extends ClientCommand {
    * Important only for CB_STATE_CHANGE. This field indicates which state we expect the server to switch to.
    * If this is null, it means that we don't care which state the server switches to, only that it changes states.
    */
-  private final InspectorStates state;
+  private final InspectorStatusChange state;
 
   public CmdCallback (CallbackKind cbType) {
     this.cbType = cbType;
@@ -31,11 +31,11 @@ public class CmdCallback extends ClientCommand {
   }
 
   /**
-   * Represents {@link InspectorCallbacks#notifyStateChange(InspectorStates, String)} with give state.
+   * Represents {@link InspectorCallbacks#notifyStateChange(InspectorStatusChange, String)} with give state.
    * 
    * @param state State used in State changed notifications
    */
-  public CmdCallback (InspectorStates state) {
+  public CmdCallback (InspectorStatusChange state) {
     this.cbType = CallbackKind.CB_STATE_CHANGE;
     this.state = state;
   }
@@ -106,7 +106,7 @@ public class CmdCallback extends ClientCommand {
     return true;
   }
 
-  private static String inspectorState2String(InspectorStates state) {
+  private static String inspectorState2String(InspectorStatusChange state) {
     assert (state != null);
 
     switch (state) {

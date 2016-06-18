@@ -4,18 +4,23 @@ import gov.nasa.jpf.inspector.client.commands.CmdCallback;
 import gov.nasa.jpf.inspector.interfaces.BreakpointStatus;
 import gov.nasa.jpf.inspector.interfaces.CallbackKind;
 import gov.nasa.jpf.inspector.interfaces.ChoiceGeneratorsInterface.CGTypes;
-import gov.nasa.jpf.inspector.interfaces.CommandsInterface.InspectorStates;
+import gov.nasa.jpf.inspector.interfaces.InspectorStatusChange;
 import gov.nasa.jpf.inspector.interfaces.InspectorCallbacks;
 
 /**
  * Monitors and records callbacks into list of executed commands.
  * These recorded callbacks are "hidden commands" that are not displayed to the user.
- * 
- * @author Alf *
+ *
+ * All methods of this class are synchronized on the lock of the {@link CommandRecorder} passed into this class.
+ * Thus, all server methods that send a callback require the recorder's lock.
  */
 public class CallbackRecordingDecorator implements InspectorCallbacks {
 
+  /**
+   * The wrapped callbacks handler.
+   */
   private final InspectorCallbacks cb;
+
   private final CommandRecorder cmdRecorder;
 
   public CallbackRecordingDecorator (InspectorCallbacks cb, CommandRecorder recorder) {
@@ -24,7 +29,7 @@ public class CallbackRecordingDecorator implements InspectorCallbacks {
   }
 
   @Override
-  public void notifyStateChange (InspectorStates newState, String details) {
+  public void notifyStateChange (InspectorStatusChange newState, String details) {
     CmdCallback cmdCB = new CmdCallback(newState);
     cmdRecorder.recordCallback(cmdCB);
 
@@ -78,5 +83,4 @@ public class CallbackRecordingDecorator implements InspectorCallbacks {
 
     cb.notifyUsedChoice(cgType, cgName, cgId, usedChoiceIndex, usedChoice);
   }
-
 }

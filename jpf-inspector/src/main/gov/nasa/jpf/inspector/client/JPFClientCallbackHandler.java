@@ -22,7 +22,7 @@ package gov.nasa.jpf.inspector.client;
 import gov.nasa.jpf.inspector.client.commands.CmdBreakpointShow;
 import gov.nasa.jpf.inspector.interfaces.*;
 import gov.nasa.jpf.inspector.interfaces.ChoiceGeneratorsInterface.CGTypes;
-import gov.nasa.jpf.inspector.interfaces.CommandsInterface.InspectorStates;
+import gov.nasa.jpf.inspector.interfaces.InspectorStatusChange;
 
 import java.io.PrintStream;
 
@@ -37,9 +37,16 @@ public class JPFClientCallbackHandler implements InspectorCallbacks {
    */
   private final PrintStream out;
   /**
-   * Previous callback issued by the server
+   * Previous callback issued by the server. Each method of this class is required
+   * to set a new value to this field.
    */
-  private CallbackKind prevCB;
+  private CallbackKind lastCallback;
+  /**
+   * Indicates whether the user should be given the syntax of the "cg select" command when a choice generator
+   * requests user interaction. This begins true and is set to false after the first time this hint is given.
+   * This could maybe be refactored into a more global tutorial system.
+   */
+  private boolean showHintCgSelect = true;
 
   /**
    * Initializes a new instance of this class. This class should never be used directly, but should be instead
@@ -53,14 +60,14 @@ public class JPFClientCallbackHandler implements InspectorCallbacks {
   @Override
   public void genericError (String msg) {
     out.println("ERR: " + msg);
-    prevCB = CallbackKind.CB_GENERIC_ERROR;
+    lastCallback = CallbackKind.CB_GENERIC_ERROR;
   }
 
   @Override
   public void genericInfo (String msg) {
     out.println("INFO: " + msg);
 
-    // Previously, this line was commented out. The prevCB field is used to distinguish whether information
+    // Previously, this line was commented out. The lastCallback field is used to distinguish whether information
     // about state change should be printed out. This may therefore cause some state changes to be printed
     // or, conversely, to be omitted. I don't know what's better so I'll just leave this in for now and
     // see if something breaks.
@@ -68,57 +75,61 @@ public class JPFClientCallbackHandler implements InspectorCallbacks {
     // On second thought, let's leave it commented out. Weird things are happening and until we fully understand
     // the code, we shouldn't be making uneasy changes.
 
-    // prevCB = CB_METHODS.CB_GENERIC_INFO;
+    // lastCallback = CB_METHODS.CB_GENERIC_INFO;
   }
 
-  private static boolean checkIfShowStateChangeNofitication (CallbackKind prevCB, InspectorStates newState) {
+  private static boolean shouldStateChangeNotificationBeShown(CallbackKind prevCB,
+                                                              InspectorStatusChange newState) {
     if (prevCB == null) {
-      return true; // First CB
+      return true;
+      // First state change is always shown to the user.
+      // In practice, this should always be JPF_STARTING, because the lastCallback field is reset upon termination.
     }
 
-    if (InspectorStates.JPF_TERMINATING.equals(newState) || InspectorStates.JPF_STARTED.equals(newState)) {
+    if (InspectorStatusChange.JPF_TERMINATING.equals(newState) || InspectorStatusChange.JPF_STARTED.equals(newState)) {
       return true; // Always show JPF started and terminating
     }
 
     if (CallbackKind.CB_BREAKPOINT_HIT.equals(prevCB) || CallbackKind.CB_CG_CHOICE_TO_USE.equals(prevCB)) {
       return false; // Don't show stop notification after breakpoint hit
+      // Normally, when a breakpoint is hit, it first issues the "breakpoint hit" callback and then follows
+      // by issuing "state change". Because the first one already displays information, we don't need to show
+      // a state change as well.
     }
 
     //noinspection RedundantIfStatement
-    if (InspectorStates.JPF_RUNNING.equals(newState) && CallbackKind.CB_STATE_CHANGE.equals(prevCB)) {
+    if (InspectorStatusChange.JPF_RUNNING.equals(newState) && CallbackKind.CB_STATE_CHANGE.equals(prevCB)) {
       // Suppose previous SB was JPF Stopped ad next command started JPF execution (run, (back_)step_over, )
       // --> hide obvious JPF started notification
       return false;
     }
 
-    return true; // Fail safe
+    return true;
   }
 
   @Override
-  public void notifyStateChange (InspectorStates newState, String details) {
-    // Check if notification can be hidden
-    if (checkIfShowStateChangeNofitication(prevCB, newState)) {
+  public void notifyStateChange (InspectorStatusChange newState, String details) {
 
-      if (newState == InspectorStates.JPF_STARTED) {
+    if (shouldStateChangeNotificationBeShown(lastCallback, newState)) {
+      if (newState == InspectorStatusChange.JPF_STARTED) {
         out.println("INFO: JPF created and connected, SuT is started");
-      } else if (newState == InspectorStates.JPF_RUNNING) {
+      } else if (newState == InspectorStatusChange.JPF_RUNNING) {
         out.println("INFO: SuT is running");
-      } else if (newState == InspectorStates.JPF_STOPPED) {
+      } else if (newState == InspectorStatusChange.JPF_STOPPED) {
         out.println("INFO: SuT is stopped");
         if (details != null && !details.trim().isEmpty()) {
           out.println("\t" + details);
         }
-      } else if (newState == InspectorStates.JPF_TERMINATING) {
+      } else if (newState == InspectorStatusChange.JPF_TERMINATING) {
         out.println("INFO: JPF Terminating");
       } else {
-        throw new RuntimeException("Unknown " + InspectorStates.class.getName() + " enum entry " + newState);
+        throw new RuntimeException("Unknown " + InspectorStatusChange.class.getName() + " enum entry " + newState);
       }
     }
-    prevCB = CallbackKind.CB_STATE_CHANGE;
-    if (newState == InspectorStates.JPF_TERMINATING) {
-      prevCB = null;
+    lastCallback = CallbackKind.CB_STATE_CHANGE;
+    if (newState == InspectorStatusChange.JPF_TERMINATING) {
+      lastCallback = null;
     }
-
   }
 
   @Override
@@ -146,7 +157,7 @@ public class JPFClientCallbackHandler implements InspectorCallbacks {
         out.println("\t" + details);
       }
     }
-    prevCB = CallbackKind.CB_BREAKPOINT_HIT;
+    lastCallback = CallbackKind.CB_BREAKPOINT_HIT;
   }
 
   @Override
@@ -176,7 +187,7 @@ public class JPFClientCallbackHandler implements InspectorCallbacks {
       result.append('\n');
     }
     out.print(result.toString());
-    prevCB = CallbackKind.CB_CG_NEW_CHOICE;
+    lastCallback = CallbackKind.CB_CG_NEW_CHOICE;
   }
 
   @Override
@@ -191,10 +202,9 @@ public class JPFClientCallbackHandler implements InspectorCallbacks {
     result.append(usedChoice);
     result.append('\n');
     out.print(result.toString());
-    prevCB = CallbackKind.CB_CG_USED_CHOICE;
+    lastCallback = CallbackKind.CB_CG_USED_CHOICE;
   }
 
-  private boolean showHintCgSelect = true;
 
   @Override
   public void specifyChoiceToUse (int maxChoiceIndex) {
@@ -205,7 +215,7 @@ public class JPFClientCallbackHandler implements InspectorCallbacks {
       // TODO create command which will print list of possible choices
     }
     out.println(userText);
-    prevCB = CallbackKind.CB_CG_CHOICE_TO_USE;
+    lastCallback = CallbackKind.CB_CG_CHOICE_TO_USE;
   }
 
   private static void generateCGHeader (StringBuilder sb, ChoiceGeneratorsInterface.CGTypes cgType, String cgName, int cgId) {

@@ -39,7 +39,7 @@ public final class JPFInspectorFacade {
   /**
    * Creates an instance of the JPFInspector back-end (server part).
    * 
-   * @param callBacks Where error and other notification should be reported.
+   * @param callBacks The client's callback handler where the server should print its output.
    * @return New instance of the server part of the JPFInspector.
    */
   public static JPFInspectorBackEndInterface getInspectorBackend (InspectorCallbacks callBacks) {

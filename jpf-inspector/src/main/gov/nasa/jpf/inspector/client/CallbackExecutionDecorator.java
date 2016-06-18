@@ -23,7 +23,7 @@ import gov.nasa.jpf.inspector.client.commands.CmdCallback;
 import gov.nasa.jpf.inspector.interfaces.BreakpointStatus;
 import gov.nasa.jpf.inspector.interfaces.CallbackKind;
 import gov.nasa.jpf.inspector.interfaces.ChoiceGeneratorsInterface.CGTypes;
-import gov.nasa.jpf.inspector.interfaces.CommandsInterface.InspectorStates;
+import gov.nasa.jpf.inspector.interfaces.InspectorStatusChange;
 import gov.nasa.jpf.inspector.interfaces.InspectorCallbacks;
 
 import java.io.PrintStream;
@@ -75,7 +75,7 @@ public class CallbackExecutionDecorator implements InspectorCallbacks {
 
   protected CallbackKind method = null; // If not null -> Command thread waits for specified CallBack
 
-  private InspectorStates cbStateChange_expectedState = null;
+  private InspectorStatusChange cbStateChange_expectedState = null;
 
   private boolean isCBwaiting;
   protected boolean error;
@@ -203,7 +203,7 @@ public class CallbackExecutionDecorator implements InspectorCallbacks {
   // **************************************************************************
 
   @Override
-  public void notifyStateChange (InspectorStates newState, String details) {
+  public void notifyStateChange (InspectorStatusChange newState, String details) {
     if (DEBUG) {
       out.println(this.getClass().getSimpleName() + ".notifyStateChange( newState=" + newState + ", details=" + details + ")");
     }
@@ -231,7 +231,7 @@ public class CallbackExecutionDecorator implements InspectorCallbacks {
 
   }
 
-  public void nextCB_StateChange (InspectorStates expectedState) {
+  public void nextCB_StateChange (InspectorStatusChange expectedState) {
     if (DEBUG) {
       out.println(this.getClass().getSimpleName() + ".nextCB_StateChange(expectedState=" + expectedState + ")");
     }
@@ -246,9 +246,9 @@ public class CallbackExecutionDecorator implements InspectorCallbacks {
     }
   }
 
-  /***************************************************************************/
-  /***************************************************************************/
-  /***************************************************************************/
+  /* **************************************************************************/
+  /* **************************************************************************/
+  /* **************************************************************************/
 
   @Override
   public void genericError (String msg) {
@@ -271,9 +271,9 @@ public class CallbackExecutionDecorator implements InspectorCallbacks {
     waitForCB(CallbackKind.CB_GENERIC_ERROR);
   }
 
-  /***************************************************************************/
-  /***************************************************************************/
-  /***************************************************************************/
+  /* **************************************************************************/
+  /* **************************************************************************/
+  /* **************************************************************************/
 
   @Override
   public void genericInfo (String msg) {
@@ -301,9 +301,9 @@ public class CallbackExecutionDecorator implements InspectorCallbacks {
     // Nothing to do (Generic infos are ignored)
   }
 
-  /***************************************************************************/
-  /***************************************************************************/
-  /***************************************************************************/
+  /* **************************************************************************/
+  /* **************************************************************************/
+  /* **************************************************************************/
   @Override
   public void notifyBreakpointHit (BreakpointStatus bp) {
     if (DEBUG) {
@@ -329,9 +329,9 @@ public class CallbackExecutionDecorator implements InspectorCallbacks {
     waitForCB(CallbackKind.CB_BREAKPOINT_HIT);
   }
 
-  /***************************************************************************/
-  /***************************************************************************/
-  /***************************************************************************/
+  /* **************************************************************************/
+  /* **************************************************************************/
+  /* **************************************************************************/
 
   @Override
   public void notifyChoiceGeneratorNewChoice (CGTypes cgType, String cgName, int cgId, String[] choices, int nextChoice, int defaultChoice) {
@@ -359,9 +359,9 @@ public class CallbackExecutionDecorator implements InspectorCallbacks {
     waitForCB(CallbackKind.CB_CG_NEW_CHOICE);
   }
 
-  /***************************************************************************/
-  /***************************************************************************/
-  /***************************************************************************/
+  /* **************************************************************************/
+  /* **************************************************************************/
+  /* **************************************************************************/
 
   @Override
   public void specifyChoiceToUse (int maxChoiceIndex) {
@@ -388,9 +388,9 @@ public class CallbackExecutionDecorator implements InspectorCallbacks {
     waitForCB(CallbackKind.CB_CG_CHOICE_TO_USE);
   }
 
-  /***************************************************************************/
-  /***************************************************************************/
-  /***************************************************************************/
+  /* **************************************************************************/
+  /* **************************************************************************/
+  /* **************************************************************************/
 
   @Override
   public void notifyUsedChoice (CGTypes cgType, String cgName, int cgId, int usedChoiceIndex, String usedChoice) {

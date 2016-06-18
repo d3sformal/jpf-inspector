@@ -2,7 +2,7 @@ package gov.nasa.jpf.inspector.server.callbacks;
 
 import gov.nasa.jpf.inspector.interfaces.BreakpointStatus;
 import gov.nasa.jpf.inspector.interfaces.ChoiceGeneratorsInterface.CGTypes;
-import gov.nasa.jpf.inspector.interfaces.CommandsInterface.InspectorStates;
+import gov.nasa.jpf.inspector.interfaces.InspectorStatusChange;
 import gov.nasa.jpf.inspector.interfaces.InspectorCallbacks;
 import gov.nasa.jpf.inspector.server.callbacks.commands.CallbackCommandBreakpointHit;
 import gov.nasa.jpf.inspector.server.callbacks.commands.CallbackCommandChoiceGeneratorNewChoice;
@@ -197,7 +197,7 @@ public class CallbacksSender extends Thread {
   private class CallbacksSerializer implements InspectorCallbacks {
 
     @Override
-    public void notifyStateChange (InspectorStates newState, String details) {
+    public void notifyStateChange (InspectorStatusChange newState, String details) {
       CallbackCommandStateChanged cb = new CallbackCommandStateChanged(newState, details);
       planNewCallback(cb);
     }

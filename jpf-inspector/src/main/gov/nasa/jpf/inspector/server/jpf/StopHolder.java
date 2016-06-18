@@ -20,7 +20,7 @@
 package gov.nasa.jpf.inspector.server.jpf;
 
 import gov.nasa.jpf.ListenerAdapter;
-import gov.nasa.jpf.inspector.interfaces.CommandsInterface.InspectorStates;
+import gov.nasa.jpf.inspector.interfaces.InspectorStatusChange;
 import gov.nasa.jpf.inspector.interfaces.InspectorCallbacks;
 import gov.nasa.jpf.inspector.server.expression.InspectorState;
 import gov.nasa.jpf.vm.Instruction;
@@ -79,7 +79,7 @@ public class StopHolder {
           this.inspState = inspState;
           stopped = true;
 
-          callbacks.notifyStateChange(InspectorStates.JPF_STOPPED, getLocationDetails(inspState));
+          callbacks.notifyStateChange(InspectorStatusChange.JPF_STOPPED, getLocationDetails(inspState));
 
           notifyAll(); // Notify all threads waiting for JPF to be stopped (they are woken up after the wait)
           wait();
@@ -102,7 +102,7 @@ public class StopHolder {
     if (terminate) {
       notifyClientTerminating();
     } else {
-      callbacks.notifyStateChange(InspectorStates.JPF_RUNNING, getLocationDetails(inspState));
+      callbacks.notifyStateChange(InspectorStatusChange.JPF_RUNNING, getLocationDetails(inspState));
     }
   }
 
@@ -204,7 +204,7 @@ public class StopHolder {
 
   public void notifyClientTerminating () {
     if (!terminatingClientNotified) {
-      callbacks.notifyStateChange(InspectorStates.JPF_TERMINATING, null);
+      callbacks.notifyStateChange(InspectorStatusChange.JPF_TERMINATING, null);
       terminatingClientNotified = true;
       synchronized (this) {
         stopped = true;
