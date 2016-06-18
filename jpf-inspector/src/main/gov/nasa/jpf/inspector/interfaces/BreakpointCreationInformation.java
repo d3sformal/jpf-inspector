@@ -26,8 +26,6 @@ import java.io.Serializable;
  */
 public interface BreakpointCreationInformation extends Serializable {
 
-
-
   Integer DEFAULT_LOWER_BOUND = 0; // Default value of the lower bound of the hit counter
   Integer DEFAULT_UPPER_BOUND = Integer.MAX_VALUE;
 
