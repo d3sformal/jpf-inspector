@@ -24,7 +24,7 @@ options {
 package gov.nasa.jpf.inspector.client.parser.generated;
 import gov.nasa.jpf.inspector.interfaces.*;
 import gov.nasa.jpf.inspector.interfaces.CommandsInterface.InspectorStates;
-import gov.nasa.jpf.inspector.interfaces.InspectorCallBacks.CB_METHODS;
+import gov.nasa.jpf.inspector.interfaces.CallbackKind;
 import gov.nasa.jpf.inspector.client.*;
 import gov.nasa.jpf.inspector.client.commands.*;
 import gov.nasa.jpf.inspector.client.commands.CmdRun.CmdRunTypes;
@@ -249,14 +249,14 @@ cgChoice returns [int choice]
     ;
 
 cmdCallback returns [ClientCommand value]
-    : TOKEN_CB_STATE_CHANGE                                                { $value = new CmdCallback(CB_METHODS.CB_STATE_CHANGE); }
+    : TOKEN_CB_STATE_CHANGE                                                { $value = new CmdCallback(CallbackKind.CB_STATE_CHANGE); }
     | TOKEN_CB_STATE_CHANGE WS? TOKEN_STATE WS? '=' WS? inspectorState     { $value = new CmdCallback($inspectorState.state); }
-    | TOKEN_CB_GENERIC_ERROR                                               { $value = new CmdCallback(CB_METHODS.CB_GENERIC_ERROR); }
-    | TOKEN_CB_GENERIC_INFO                                                 { $value = new CmdCallback(CB_METHODS.CB_GENERIC_INFO); }
-    | TOKEN_CB_BREAKPOINT_HIT                                              { $value = new CmdCallback(CB_METHODS.CB_BREAKPOINT_HIT); }
-    | TOKEN_CB_CG_NEW_CHOICE                                               { $value = new CmdCallback(CB_METHODS.CB_CG_NEW_CHOICE); }
-    | TOKEN_CB_CG_CHOICE_TO_USE                                            { $value = new CmdCallback(CB_METHODS.CB_CG_CHOICE_TO_USE); }
-    | TOKEN_CB_CG_USED_CHOICE                                              { $value = new CmdCallback(CB_METHODS.CB_CG_USED_CHOICE); }
+    | TOKEN_CB_GENERIC_ERROR                                               { $value = new CmdCallback(CallbackKind.CB_GENERIC_ERROR); }
+    | TOKEN_CB_GENERIC_INFO                                                 { $value = new CmdCallback(CallbackKind.CB_GENERIC_INFO); }
+    | TOKEN_CB_BREAKPOINT_HIT                                              { $value = new CmdCallback(CallbackKind.CB_BREAKPOINT_HIT); }
+    | TOKEN_CB_CG_NEW_CHOICE                                               { $value = new CmdCallback(CallbackKind.CB_CG_NEW_CHOICE); }
+    | TOKEN_CB_CG_CHOICE_TO_USE                                            { $value = new CmdCallback(CallbackKind.CB_CG_CHOICE_TO_USE); }
+    | TOKEN_CB_CG_USED_CHOICE                                              { $value = new CmdCallback(CallbackKind.CB_CG_USED_CHOICE); }
     ;
 
 inspectorState returns [InspectorStates state]

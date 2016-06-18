@@ -1,7 +1,7 @@
 package gov.nasa.jpf.inspector.server.jpf;
 
 import gov.nasa.jpf.ListenerAdapter;
-import gov.nasa.jpf.inspector.interfaces.BreakPointCreationInformation;
+import gov.nasa.jpf.inspector.interfaces.BreakpointCreationInformation;
 import gov.nasa.jpf.inspector.interfaces.CommandsInterface;
 import gov.nasa.jpf.inspector.server.breakpoints.BreakpointHandler;
 import gov.nasa.jpf.inspector.server.breakpoints.CommandsManager;
@@ -72,7 +72,7 @@ public class InspectorListenerModeSilent extends ListenerAdapter {
   public InspectorListenerModeSilent (JPFInspector inspector, CommandsManager cmdMgr, BreakpointHandler bpMgr, int backwardStepsCnt, int bpID,
                                       DefaultForwardTraceManager dftMgf, StopHolder stopHolder) {
     assert backwardStepsCnt > 0;
-    assert bpID != BreakPointCreationInformation.BP_ID_NOT_DEFINED;
+    assert bpID != BreakpointCreationInformation.BP_ID_NOT_DEFINED;
 
     this.cmdMgr = cmdMgr;
     this.bpMgr = bpMgr;

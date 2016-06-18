@@ -1,6 +1,6 @@
 package gov.nasa.jpf.inspector.common;
 
-import gov.nasa.jpf.inspector.interfaces.BreakPointCreationInformation;
+import gov.nasa.jpf.inspector.interfaces.BreakpointCreationInformation;
 import gov.nasa.jpf.inspector.interfaces.BreakpointState;
 
 /**
@@ -8,7 +8,7 @@ import gov.nasa.jpf.inspector.interfaces.BreakpointState;
  * This class is instantiated in the ANTLR console grammar: take care when refactoring.
  * This class is also instantiated by some classes in the server package.
  */
-public class BreakpointCreationExpression implements BreakPointCreationInformation {
+public class BreakpointCreationExpression implements BreakpointCreationInformation {
 
   private static final long serialVersionUID = -2742213729061140415L;
 
@@ -23,7 +23,7 @@ public class BreakpointCreationExpression implements BreakPointCreationInformati
 
   @Override
   public int getBPID () {
-    return BreakPointCreationInformation.BP_ID_NOT_DEFINED;
+    return BreakpointCreationInformation.BP_ID_NOT_DEFINED;
   }
 
   @Override
@@ -111,7 +111,7 @@ public class BreakpointCreationExpression implements BreakPointCreationInformati
   /**
    * @return Gets normalized version of create breakpoint command, but without breakpoint expression (the part which is directly sent to server)
    */
-  public static String getNormalizedExpressionPrefix (BreakPointCreationInformation bpc) {
+  public static String getNormalizedExpressionPrefix (BreakpointCreationInformation bpc) {
     assert (bpc != null);
 
     StringBuilder sb = new StringBuilder(256);
@@ -133,14 +133,14 @@ public class BreakpointCreationExpression implements BreakPointCreationInformati
     Integer lowerBound = bpc.bpHitCountLowerBound();
     Integer upperBound = bpc.bpHitCountUpperBound();
     boolean hc_printed = false;
-    if (lowerBound != null && !lowerBound.equals(BreakPointCreationInformation.DEFAULT_LOWER_BOUND)) {
+    if (lowerBound != null && !lowerBound.equals(BreakpointCreationInformation.DEFAULT_LOWER_BOUND)) {
       sb.append(' ');
       sb.append(lowerBound);
       sb.append("<=hit_count");
       hc_printed = true;
     }
 
-    if (upperBound != null && !upperBound.equals(BreakPointCreationInformation.DEFAULT_UPPER_BOUND)) {
+    if (upperBound != null && !upperBound.equals(BreakpointCreationInformation.DEFAULT_UPPER_BOUND)) {
       if (hc_printed == false) {
         sb.append(" hit_count");
       }

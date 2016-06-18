@@ -19,7 +19,7 @@
 
 package gov.nasa.jpf.inspector.server.breakpoints;
 
-import gov.nasa.jpf.inspector.interfaces.BreakPointCreationInformation;
+import gov.nasa.jpf.inspector.interfaces.BreakpointCreationInformation;
 import gov.nasa.jpf.inspector.interfaces.InspectorCallBacks;
 import gov.nasa.jpf.inspector.server.expression.InspectorState;
 import gov.nasa.jpf.inspector.server.expression.expressions.ExpressionBreakpointAssert;
@@ -44,7 +44,7 @@ public class InternalAssertHolder extends InternalBreakpointHolder {
     return true;
   }
 
-  public void modifyBPSettings (BreakPointCreationInformation newSettings, ExpressionBreakpointAssert bpExpAsser) {
+  public void modifyBPSettings (BreakpointCreationInformation newSettings, ExpressionBreakpointAssert bpExpAsser) {
     super.modifyBPSettings(newSettings, bpExpAsser);
   }
 

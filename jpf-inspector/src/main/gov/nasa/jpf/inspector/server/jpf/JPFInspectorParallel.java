@@ -63,7 +63,7 @@ public class JPFInspectorParallel extends JPFInspector {
   }
 
   @Override
-  public BreakpointStatus createBreakPoint (BreakPointCreationInformation newBP) throws JPFInspectorParsingErrorException, JPFInspectorGenericErrorException {
+  public BreakpointStatus createBreakPoint (BreakpointCreationInformation newBP) throws JPFInspectorParsingErrorException, JPFInspectorGenericErrorException {
     return breakpointMgr.createBreakPoint(newBP);
   }
 
