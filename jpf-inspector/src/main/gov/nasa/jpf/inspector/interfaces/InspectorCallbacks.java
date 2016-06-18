@@ -33,6 +33,7 @@ import gov.nasa.jpf.vm.ChoiceGenerator;
  */
 public interface InspectorCallbacks {
 
+
   /**
    * Called when state of the inspector is modified - paused, resumed, property
    * violated
