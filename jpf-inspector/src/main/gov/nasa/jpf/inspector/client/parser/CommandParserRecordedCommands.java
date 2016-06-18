@@ -34,7 +34,7 @@ import gov.nasa.jpf.inspector.utils.parser.RecognitionRuntimeException;
  * @author Alf
  * 
  */
-public class CommandParserRecordedCommands extends CommandParser {
+public class CommandParserRecordedCommands implements CommandParserInterface {
 
   /**
    * Parses commands from user or textual representation of callbacks.
@@ -56,7 +56,7 @@ public class CommandParserRecordedCommands extends CommandParser {
     }
 
     try {
-      ConsoleGrammarParser parser = getParser(cmd);
+      ConsoleGrammarParser parser = CommandParserFactory.getParser(cmd);
       return parser.clientCommandWithCB().value;
     } catch (RecognitionRuntimeException e) {
       throw new JPFInspectorParsingErrorException("Invalid input" + (e.getMessage() != null ? " - " + e.getMessage() : ""), cmd, e.getRecognitionException());

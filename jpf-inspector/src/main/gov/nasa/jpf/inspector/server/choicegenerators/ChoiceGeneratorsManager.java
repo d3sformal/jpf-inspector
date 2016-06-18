@@ -111,12 +111,12 @@ public class ChoiceGeneratorsManager implements ChoiceGeneratorsInterface, Choic
     for (CGTypes type : CGTypes.values()) {
       CGNotificationSpecification spec1 = spec;
       if (spec1.getNotificationType() == null) {
-        spec1 = new CGNotificationSpecification(type, spec1.getNotificationMode(), spec1.nofiticationEnabled());
+        spec1 = new CGNotificationSpecification(type, spec1.getNotificationMode(), spec1.isNotificationEnabled());
       }
       for (CGMode mode : CGMode.values()) {
         CGNotificationSpecification spec2 = spec1;
         if (spec2.getNotificationMode() == null) {
-          spec2 = new CGNotificationSpecification(type, mode, spec2.nofiticationEnabled());
+          spec2 = new CGNotificationSpecification(type, mode, spec2.isNotificationEnabled());
         }
         if (type.equals(spec2.getNotificationType()) && mode.equals(spec2.getNotificationMode())) {
           cgNotifications[getIndexCGNotificationSpecification(spec2)] = spec2;
@@ -154,8 +154,8 @@ public class ChoiceGeneratorsManager implements ChoiceGeneratorsInterface, Choic
     }
 
     // Check whether send notification to client
-    boolean printChoice = cgNotifications[getIndexCGNotificationSpecification(cgType, CGMode.CG_MODE_PRINT)].nofiticationEnabled();
-    boolean askChoice = cgNotifications[getIndexCGNotificationSpecification(cgType, CGMode.CG_MODE_ASK)].nofiticationEnabled();
+    boolean printChoice = cgNotifications[getIndexCGNotificationSpecification(cgType, CGMode.CG_MODE_PRINT)].isNotificationEnabled();
+    boolean askChoice = cgNotifications[getIndexCGNotificationSpecification(cgType, CGMode.CG_MODE_ASK)].isNotificationEnabled();
     if (printChoice == false && askChoice == false) {
       return; // No notification are selected
     }
@@ -215,6 +215,7 @@ public class ChoiceGeneratorsManager implements ChoiceGeneratorsInterface, Choic
       if (dftChoice == ChoiceGeneratorsInterface.NO_DEFAULT_CHOICE) {
         throw new JPFInspectorGenericErrorException("No forward trace to follow.");
       }
+      //noinspection AssignmentToMethodParameter
       selectedChoice = dftChoice;
     }
 

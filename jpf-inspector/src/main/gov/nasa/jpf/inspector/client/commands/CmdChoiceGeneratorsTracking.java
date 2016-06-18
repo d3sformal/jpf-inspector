@@ -15,8 +15,22 @@ import java.io.PrintStream;
  */
 public class CmdChoiceGeneratorsTracking extends ClientCommand {
 
+  /**
+   * Specifies the kind of the choice generator.
+   */
   public enum CGTypeSpec {
-    CGS_SCHEDULING, CGS_DATA, CGS_ALL
+    /**
+     * Applicable to scheduling choice generators that schedule threads.
+     */
+    CGS_SCHEDULING,
+    /**
+     * Applicable to data choice generators, usually inside Verify methods.
+     */
+    CGS_DATA,
+    /**
+     * Applicable to all choice generators.
+     */
+    CGS_ALL
   }
 
   private final CGTypeSpec cgsType;
@@ -59,7 +73,7 @@ public class CmdChoiceGeneratorsTracking extends ClientCommand {
     assert spec != null;
 
     StringBuilder sb = new StringBuilder();
-    sb.append(choiceGeneratorTrackingMode2NormalizedString(spec.nofiticationEnabled()));
+    sb.append(choiceGeneratorTrackingMode2NormalizedString(spec.isNotificationEnabled()));
     CGMode cgMode = spec.getNotificationMode();
     if (cgMode != null) {
       sb.append(' ');

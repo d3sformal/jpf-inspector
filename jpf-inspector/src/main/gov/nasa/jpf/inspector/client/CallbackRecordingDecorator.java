@@ -2,6 +2,7 @@ package gov.nasa.jpf.inspector.client;
 
 import gov.nasa.jpf.inspector.client.commands.CmdCallback;
 import gov.nasa.jpf.inspector.interfaces.BreakpointStatus;
+import gov.nasa.jpf.inspector.interfaces.CallbackKind;
 import gov.nasa.jpf.inspector.interfaces.ChoiceGeneratorsInterface.CGTypes;
 import gov.nasa.jpf.inspector.interfaces.CommandsInterface.InspectorStates;
 import gov.nasa.jpf.inspector.interfaces.InspectorCallBacks;
@@ -32,7 +33,7 @@ public class CallbackRecordingDecorator implements InspectorCallBacks {
 
   @Override
   public void genericError (String msg) {
-    CmdCallback cmdCB = new CmdCallback(CB_METHODS.CB_GENERIC_ERROR);
+    CmdCallback cmdCB = new CmdCallback(CallbackKind.CB_GENERIC_ERROR);
     cmdRecorder.recordCallback(cmdCB);
 
     cb.genericError(msg);
@@ -40,7 +41,7 @@ public class CallbackRecordingDecorator implements InspectorCallBacks {
 
   @Override
   public void genericInfo (String msg) {
-    CmdCallback cmdCB = new CmdCallback(CB_METHODS.CB_GENERIC_INFO);
+    CmdCallback cmdCB = new CmdCallback(CallbackKind.CB_GENERIC_INFO);
     cmdRecorder.recordCallback(cmdCB);
 
     cb.genericInfo(msg);
@@ -48,7 +49,7 @@ public class CallbackRecordingDecorator implements InspectorCallBacks {
 
   @Override
   public void notifyBreakpointHit (BreakpointStatus bp) {
-    CmdCallback cmdCB = new CmdCallback(CB_METHODS.CB_BREAKPOINT_HIT);
+    CmdCallback cmdCB = new CmdCallback(CallbackKind.CB_BREAKPOINT_HIT);
     cmdRecorder.recordCallback(cmdCB);
 
     cb.notifyBreakpointHit(bp);
@@ -56,7 +57,7 @@ public class CallbackRecordingDecorator implements InspectorCallBacks {
 
   @Override
   public void notifyChoiceGeneratorNewChoice (CGTypes cgType, String cgName, int cgId, String[] choices, int nextChoice, int defaultChoice) {
-    CmdCallback cmdCB = new CmdCallback(CB_METHODS.CB_CG_NEW_CHOICE);
+    CmdCallback cmdCB = new CmdCallback(CallbackKind.CB_CG_NEW_CHOICE);
     cmdRecorder.recordCallback(cmdCB);
 
     cb.notifyChoiceGeneratorNewChoice(cgType, cgName, cgId, choices, nextChoice, defaultChoice);
@@ -64,7 +65,7 @@ public class CallbackRecordingDecorator implements InspectorCallBacks {
 
   @Override
   public void specifyChoiceToUse (int maxChoiceIndex) {
-    CmdCallback cmdCB = new CmdCallback(CB_METHODS.CB_CG_CHOICE_TO_USE);
+    CmdCallback cmdCB = new CmdCallback(CallbackKind.CB_CG_CHOICE_TO_USE);
     cmdRecorder.recordCallback(cmdCB);
 
     cb.specifyChoiceToUse(maxChoiceIndex);
@@ -72,7 +73,7 @@ public class CallbackRecordingDecorator implements InspectorCallBacks {
 
   @Override
   public void notifyUsedChoice (CGTypes cgType, String cgName, int cgId, int usedChoiceIndex, String usedChoice) {
-    CmdCallback cmdCB = new CmdCallback(CB_METHODS.CB_CG_USED_CHOICE);
+    CmdCallback cmdCB = new CmdCallback(CallbackKind.CB_CG_USED_CHOICE);
     cmdRecorder.recordCallback(cmdCB);
 
     cb.notifyUsedChoice(cgType, cgName, cgId, usedChoiceIndex, usedChoice);

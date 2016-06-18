@@ -68,7 +68,7 @@ public class CommandRecorder {
   @SuppressWarnings("unused")
   private void dumpBackendState (JPFInspectorBackEndInterface inspector) {
     // Dumping existing breakpoints
-    List<BreakpointStatus> bps = inspector.getBreakPoints();
+    List<BreakpointStatus> bps = inspector.getBreakpoints();
     for (BreakpointStatus bp : bps) {
       String bpStrCommand = BreakpointCreationExpression.getNormalizedExpressionPrefix(bp) + ' ' + bp.getNormalizedBreakpointExpression();
       addComment(bpStrCommand);
@@ -124,9 +124,10 @@ public class CommandRecorder {
 
       CallbackExecutionDecorator cb = client.getDecoratedCallbacks();
       WORKING_MODE oldWorkMode = cb.setNewMode(WORKING_MODE.WM_EXECUTION_RECORD);
-      String line;
-      while ((line = in.readLine()) != null) {
+      String line = in.readLine();
+      while (line != null) {
         client.executeCommandOrCallback(line);
+        line = in.readLine();
       }
 
       in.close();
@@ -170,7 +171,7 @@ public class CommandRecorder {
     }
 
     // Remove trailing '\n'
-    while ((comment.length() > 0) && (comment.charAt(comment.length() - 1) == '\n')) {
+    while ((!comment.isEmpty()) && (comment.charAt(comment.length() - 1) == '\n')) {
       comment = comment.substring(0, comment.length() - 1);
     }
 

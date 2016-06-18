@@ -35,7 +35,7 @@ public class CmdBreakpointShow extends ClientCommand {
 
   @Override
   public void execute(JPFInspectorClient client, JPFInspectorBackEndInterface inspector, PrintStream outStream) {
-    List<BreakpointStatus> bps = inspector.getBreakPoints();
+    List<BreakpointStatus> bps = inspector.getBreakpoints();
     for (BreakpointStatus bp : bps) {
       outStream.println(breakpointToString(bp));
     }

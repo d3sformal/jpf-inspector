@@ -34,5 +34,4 @@ public interface CommandParserInterface {
    * @return Representation of the parsed command.
    */
   ClientCommandInterface parseCommand(String cmd) throws JPFInspectorParsingErrorException;
-
 }

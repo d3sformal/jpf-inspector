@@ -19,6 +19,12 @@
 
 package gov.nasa.jpf.inspector.client.parser;
 
+import gov.nasa.jpf.inspector.client.parser.generated.ConsoleGrammarLexer;
+import gov.nasa.jpf.inspector.client.parser.generated.ConsoleGrammarParser;
+import gov.nasa.jpf.inspector.common.ThrowingErrorListener;
+import org.antlr.v4.runtime.ANTLRInputStream;
+import org.antlr.v4.runtime.CommonTokenStream;
+
 /**
  * This class is used to create an ANTLR parser for client commands.
  */
@@ -36,5 +42,21 @@ public final class CommandParserFactory {
    */
   public static CommandParserInterface getRecordCommandParser () {
     return new CommandParserRecordedCommands();
+  }
+
+  /**
+   * Package-private method that creates an ANTLR parser from a command string to be parsed.
+   * @param expr Command as a string (that should be parsed).
+   * @return The ANTLR parser.
+   */
+  static ConsoleGrammarParser getParser(String expr)  {
+    org.antlr.v4.runtime.Lexer lexer = new ConsoleGrammarLexer(new ANTLRInputStream(expr));
+    lexer.removeErrorListeners();
+    lexer.addErrorListener(ThrowingErrorListener.getInstance());
+    CommonTokenStream tokens = new CommonTokenStream(lexer);
+    ConsoleGrammarParser parser = new ConsoleGrammarParser(tokens);
+    parser.removeErrorListeners();
+    parser.addErrorListener(ThrowingErrorListener.getInstance());
+    return parser;
   }
 }

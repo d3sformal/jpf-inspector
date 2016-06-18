@@ -21,6 +21,7 @@ package gov.nasa.jpf.inspector.client;
 
 import gov.nasa.jpf.inspector.client.commands.CmdCallback;
 import gov.nasa.jpf.inspector.interfaces.BreakpointStatus;
+import gov.nasa.jpf.inspector.interfaces.CallbackKind;
 import gov.nasa.jpf.inspector.interfaces.ChoiceGeneratorsInterface.CGTypes;
 import gov.nasa.jpf.inspector.interfaces.CommandsInterface.InspectorStates;
 import gov.nasa.jpf.inspector.interfaces.InspectorCallBacks;
@@ -67,18 +68,17 @@ public class CallbackExecutionDecorator implements InspectorCallBacks {
   // Protected entries
   // *************************************************************************
 
-  protected final Object syncObj; // Object on which access to Callbacks are synchronized and threads are blocked
-  protected final InspectorCallBacks cb; // Where forward callbacks
+  private final Object syncObj; // Object on which access to Callbacks are synchronized and threads are blocked
+  private final InspectorCallBacks cb; // Where forward callbacks
 
   protected WORKING_MODE mode;
 
-  protected CB_METHODS method = null; // If not null -> Command thread waits for specified CallBack
+  protected CallbackKind method = null; // If not null -> Command thread waits for specified CallBack
 
-  protected InspectorStates cbStateChange_expectedState = null;
+  private InspectorStates cbStateChange_expectedState = null;
 
-  protected boolean isCBwaiting;
+  private boolean isCBwaiting;
   protected boolean error;
-  protected String errorMsg;
 
   /**
    * 
@@ -94,22 +94,10 @@ public class CallbackExecutionDecorator implements InspectorCallBacks {
 
     this.isCBwaiting = false;
     this.error = false;
-    this.errorMsg = null;
-  }
-
-  /**
-   * @return Gets object used for synchronization.
-   */
-  public Object getSynchronizationObj () {
-    return syncObj;
   }
 
   public boolean getError () {
     return error;
-  }
-
-  public String getErrorMsg () {
-    return errorMsg;
   }
 
   /**
@@ -132,7 +120,6 @@ public class CallbackExecutionDecorator implements InspectorCallBacks {
         if (oldMode == WORKING_MODE.WM_USER_COMMANDS && newMode == WORKING_MODE.WM_EXECUTION_RECORD) {
           // Start new replay of execution record -> clear errors
           error = false;
-          errorMsg = null;
         }
       }
       return oldMode;
@@ -145,7 +132,7 @@ public class CallbackExecutionDecorator implements InspectorCallBacks {
 
   // Block CB thread until Command thread specifies which CB is expected
   // Null means pass any possible callback
-  protected void waitUntilCBIsSpecified (CB_METHODS calledCallback) {
+  private void waitUntilCBIsSpecified(CallbackKind calledCallback) {
     synchronized (syncObj) {
       if (mode == WORKING_MODE.WM_EXECUTION_RECORD) {
 
@@ -161,10 +148,9 @@ public class CallbackExecutionDecorator implements InspectorCallBacks {
 
         if (method != null && mode == WORKING_MODE.WM_EXECUTION_RECORD) {
           // Null means any callback is possible
-          if (!(CB_METHODS.CB_ANY.equals(calledCallback) || method.equals(calledCallback))) {
+          if (!(CallbackKind.CB_ANY.equals(calledCallback) || method.equals(calledCallback))) {
             // Set error state
             error = true;
-            errorMsg = "Unexpected callback. Current callback: " + calledCallback + ", expected callback: " + method + ".";
           }
         }
       }
@@ -172,7 +158,7 @@ public class CallbackExecutionDecorator implements InspectorCallBacks {
   }
 
   // Blocks Command thread until first callback is executed
-  protected void waitForCB (CB_METHODS wait4method) {
+  private void waitForCB(CallbackKind wait4method) {
     synchronized (syncObj) {
       if (mode == WORKING_MODE.WM_EXECUTION_RECORD) {
 
@@ -204,7 +190,7 @@ public class CallbackExecutionDecorator implements InspectorCallBacks {
   }
 
   // Called by CB thread to wake up blocked Command thread
-  protected void unblockCmdThread () {
+  private void unblockCmdThread() {
     synchronized (syncObj) {
       assert (isCBwaiting == false);
       method = null;
@@ -227,11 +213,10 @@ public class CallbackExecutionDecorator implements InspectorCallBacks {
       }
 
       if (mode == WORKING_MODE.WM_EXECUTION_RECORD) {
-        waitUntilCBIsSpecified(CB_METHODS.CB_STATE_CHANGE);
+        waitUntilCBIsSpecified(CallbackKind.CB_STATE_CHANGE);
 
         if (cbStateChange_expectedState != null && !newState.equals(cbStateChange_expectedState)) {
           error = true;
-          errorMsg = "Unexpected new state in notifyStateChange callback - actual newState: " + newState + ", expected newState: " + cbStateChange_expectedState + ".";
         }
       }
 
@@ -253,7 +238,7 @@ public class CallbackExecutionDecorator implements InspectorCallBacks {
 
     synchronized (syncObj) {
       cbStateChange_expectedState = expectedState;
-      waitForCB(CB_METHODS.CB_STATE_CHANGE);
+      waitForCB(CallbackKind.CB_STATE_CHANGE);
     }
 
     if (DEBUG) {
@@ -276,14 +261,14 @@ public class CallbackExecutionDecorator implements InspectorCallBacks {
         out.println(this.getClass().getSimpleName() + ".genericError - in sync section");
       }
 
-      waitUntilCBIsSpecified(CB_METHODS.CB_STATE_CHANGE);
+      waitUntilCBIsSpecified(CallbackKind.CB_STATE_CHANGE);
       cb.genericError(msg);
       unblockCmdThread();
     }
   }
 
   public void nextCB_genericError () {
-    waitForCB(CB_METHODS.CB_GENERIC_ERROR);
+    waitForCB(CallbackKind.CB_GENERIC_ERROR);
   }
 
   /***************************************************************************/
@@ -301,7 +286,7 @@ public class CallbackExecutionDecorator implements InspectorCallBacks {
         out.println(this.getClass().getSimpleName() + ".genericInfo - in sync section");
       }
 
-      waitUntilCBIsSpecified(CB_METHODS.CB_ANY);
+      waitUntilCBIsSpecified(CallbackKind.CB_ANY);
       // Not command thread is blocked -> locks are unlocked -> we can call callbacks
       cb.genericInfo(msg);
       // Do not wake up, CMD thread, wait for proper callback
@@ -330,7 +315,7 @@ public class CallbackExecutionDecorator implements InspectorCallBacks {
         out.println(this.getClass().getSimpleName() + ".notifyBreakpointHit - in synch section");
       }
 
-      waitUntilCBIsSpecified(CB_METHODS.CB_BREAKPOINT_HIT);
+      waitUntilCBIsSpecified(CallbackKind.CB_BREAKPOINT_HIT);
       cb.notifyBreakpointHit(bp);
       unblockCmdThread();
     }
@@ -341,7 +326,7 @@ public class CallbackExecutionDecorator implements InspectorCallBacks {
   }
 
   public void nextCB_BreakpointHit () {
-    waitForCB(CB_METHODS.CB_BREAKPOINT_HIT);
+    waitForCB(CallbackKind.CB_BREAKPOINT_HIT);
   }
 
   /***************************************************************************/
@@ -359,7 +344,7 @@ public class CallbackExecutionDecorator implements InspectorCallBacks {
         out.println(this.getClass().getSimpleName() + ".notifyChoiceGeneratorNewChoice(...) - in sync section");
       }
 
-      waitUntilCBIsSpecified(CB_METHODS.CB_CG_NEW_CHOICE);
+      waitUntilCBIsSpecified(CallbackKind.CB_CG_NEW_CHOICE);
       cb.notifyChoiceGeneratorNewChoice(cgType, cgName, cgId, choices, nextChoice, defaultChoice);
       unblockCmdThread();
     }
@@ -371,7 +356,7 @@ public class CallbackExecutionDecorator implements InspectorCallBacks {
   }
 
   public void nextCB_ChoiceGeneratorNewChoice () {
-    waitForCB(CB_METHODS.CB_CG_NEW_CHOICE);
+    waitForCB(CallbackKind.CB_CG_NEW_CHOICE);
   }
 
   /***************************************************************************/
@@ -388,7 +373,7 @@ public class CallbackExecutionDecorator implements InspectorCallBacks {
       if (DEBUG) {
         out.println(this.getClass().getSimpleName() + ".specifyChoiceToUse - in sync section");
       }
-      waitUntilCBIsSpecified(CB_METHODS.CB_CG_CHOICE_TO_USE);
+      waitUntilCBIsSpecified(CallbackKind.CB_CG_CHOICE_TO_USE);
       cb.specifyChoiceToUse(maxChoiceIndex);
       unblockCmdThread();
     }
@@ -400,7 +385,7 @@ public class CallbackExecutionDecorator implements InspectorCallBacks {
   }
 
   public void nextCB_specifyChoiceToUse () {
-    waitForCB(CB_METHODS.CB_CG_CHOICE_TO_USE);
+    waitForCB(CallbackKind.CB_CG_CHOICE_TO_USE);
   }
 
   /***************************************************************************/
@@ -417,7 +402,7 @@ public class CallbackExecutionDecorator implements InspectorCallBacks {
       if (DEBUG) {
         out.println(this.getClass().getSimpleName() + ".notifyUsedChoice(...) - in sync section");
       }
-      waitUntilCBIsSpecified(CB_METHODS.CB_CG_USED_CHOICE);
+      waitUntilCBIsSpecified(CallbackKind.CB_CG_USED_CHOICE);
       cb.notifyUsedChoice(cgType, cgName, cgId, usedChoiceIndex, usedChoice);
       unblockCmdThread();
     }
@@ -428,7 +413,7 @@ public class CallbackExecutionDecorator implements InspectorCallBacks {
   }
 
   public void nextCB_UsedChoice () {
-    waitForCB(CB_METHODS.CB_CG_USED_CHOICE);
+    waitForCB(CallbackKind.CB_CG_USED_CHOICE);
   }
 
 }

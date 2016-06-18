@@ -78,8 +78,8 @@ public class JPFInspectorParallel extends JPFInspector {
   }
 
   @Override
-  public List<BreakpointStatus> getBreakPoints () {
-    return breakpointMgr.getBreakPoints();
+  public List<BreakpointStatus> getBreakpoints() {
+    return breakpointMgr.getBreakpoints();
   }
 
   @Override

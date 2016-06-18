@@ -1,22 +1,17 @@
 package gov.nasa.jpf.inspector.client;
 
-import gov.nasa.jpf.Config;
 import gov.nasa.jpf.JPF;
 import gov.nasa.jpf.JPF.Status;
 import gov.nasa.jpf.inspector.JPFInspectorFacade;
 import gov.nasa.jpf.inspector.client.parser.CommandParserFactory;
 import gov.nasa.jpf.inspector.client.parser.CommandParserInterface;
 import gov.nasa.jpf.inspector.common.ConsoleInformation;
-import gov.nasa.jpf.inspector.interfaces.InspectorCallBacks;
-import gov.nasa.jpf.inspector.interfaces.JPFInspectorBackEndInterface;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorGenericErrorException;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorParsingErrorException;
-import gov.nasa.jpf.inspector.utils.Debugging;
+import gov.nasa.jpf.inspector.interfaces.JPFInspectorBackEndInterface;
 import gov.nasa.jpf.inspector.utils.InspectorConfiguration;
-import gov.nasa.jpf.shell.ShellManager;
 
 import java.io.PrintStream;
-import java.util.logging.Logger;
 
 /**
  * Represents the JPF Inspector client.
@@ -24,35 +19,27 @@ import java.util.logging.Logger;
  * This is the only implementatino of {@link JPFInspectorClientInterface}.
  */
 public class JPFInspectorClient implements JPFInspectorClientInterface {
-  private static Logger log = Debugging.getLogger();
   private final PrintStream outputStream;
   private final JPFInspectorBackEndInterface inspector;
   private final CallbackExecutionDecorator cbExecutionDecorator;
-  private final Config config;
 
   private final CommandRecorder recorder;
 
   public JPFInspectorClient (String target, PrintStream outStream) {
-    this(target, outStream, new JPFClientCallbackHandler(outStream));
-  }
 
-  public JPFInspectorClient (String target, PrintStream outStream, InspectorCallBacks callbacks) {
-    config = ShellManager.getManager().getConfig();
     if (outStream == null) {
-      throw new IllegalArgumentException("Output stream not specified (null)");
+      throw new IllegalArgumentException("Output stream not specified (null).");
     }
 
-    if (callbacks == null) {
-      throw new IllegalArgumentException("Callbacks not specified (null)");
-    }
+    this.recorder = new CommandRecorder(target, outStream);
+
+    // Create the fully decorated callbacks handler.
+    JPFClientCallbackHandler callbacks = new JPFClientCallbackHandler(outStream);
+    CallbackRecordingDecorator cbRecDecorator = new CallbackRecordingDecorator(callbacks, recorder);
+    this.cbExecutionDecorator = new CallbackExecutionDecorator(recorder, cbRecDecorator, System.out);
 
     this.outputStream = outStream;
-    recorder = new CommandRecorder(target, outStream);
-
-    // Decorate the callbacks
-    CallbackRecordingDecorator cbRecDecorator = new CallbackRecordingDecorator(callbacks, recorder);
-    cbExecutionDecorator = new CallbackExecutionDecorator(recorder, cbRecDecorator, System.out);
-    inspector = JPFInspectorFacade.getInspectorBackend(cbExecutionDecorator);
+    this.inspector = JPFInspectorFacade.getInspectorBackend(cbExecutionDecorator);
   }
 
   @Override
@@ -65,15 +52,17 @@ public class JPFInspectorClient implements JPFInspectorClientInterface {
   public void executeCommandOrCallback (String cmdStr) {
     CommandParserInterface parser = CommandParserFactory.getRecordCommandParser();
     ClientCommandInterface cmd = parseCommand(cmdStr, parser, ExecutionContext.FROM_SWING_TERMINAL);
-    executeCommand(cmd, ExecutionContext.FROM_SWING_TERMINAL); // TODO maybe do not hardcode
+    executeCommand(cmd, ExecutionContext.FROM_SWING_TERMINAL);
+    // TODO possible refactoring: ExecutionContext can be an InspectorClient field, it is set only once anyway.
   }
 
   private ClientCommandInterface parseCommand(String cmdStr, CommandParserInterface parser, ExecutionContext context) {
-    // Prepare the input
 
     // Trim left white space
     cmdStr = trimLeftWhitspace(cmdStr);
-    if (cmdStr == null) return null;
+    if (cmdStr == null) {
+      return null;
+    }
 
     // Ignore comments
     if (cmdStr.charAt(0) == '#') {
@@ -170,6 +159,8 @@ public class JPFInspectorClient implements JPFInspectorClientInterface {
 
   @Override
   public void connect2JPF (JPF jpf) throws JPFInspectorGenericErrorException {
+    // Recording cannot be used in the method, so far, because it would cause a deadlock with the "recorder" sync object.
+
     if (jpf == null) {
       throw new IllegalArgumentException("JPF parameter cannot be null.");
     }
@@ -178,15 +169,10 @@ public class JPFInspectorClient implements JPFInspectorClientInterface {
       throw new IllegalArgumentException("Invalid JPF state. JPF is running or terminated model checking.");
     }
 
-    // TODO - Record current state of JPF (breakpoints and CG notifications)
-
     try {
       inspector.bindWithJPF(jpf);
     } catch (JPFInspectorGenericErrorException e) {
       outputStream.println(e.getMessage());
-
-      recordComment("Error while connecting to JPF:");
-      recordComment(e.getMessage());
 
       throw e;
     }

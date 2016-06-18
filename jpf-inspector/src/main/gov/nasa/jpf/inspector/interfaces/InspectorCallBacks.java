@@ -25,16 +25,13 @@ import gov.nasa.jpf.vm.ChoiceGenerator;
  * TODO This is implemented by both client and server classes?? Something strange is going on.
  *
  * This handles callbacks to the client. Used to notify client about interesting events.
- * Client has to implement this interface and provide them to the server.
+ * Client has to implement this interface and provide these methods to the server.
  * 
- * Note: Only JPF thread is permitted to sent callbacks (except {@link #genericInfo(String)} which can be called by any thread)
+ * Note: Only the JPF thread is permitted to sent callbacks.
+ * TODO this is strange, examine it:
+ * (except {@link #genericInfo(String)} which can be called by any thread)
  */
 public interface InspectorCallBacks {
-
-  // List of possible CB types
-  enum CB_METHODS {
-    CB_ANY, CB_STATE_CHANGE, CB_GENERIC_ERROR, CB_GENERIC_INFO, CB_BREAKPOINT_HIT, CB_CG_NEW_CHOICE, CB_CG_CHOICE_TO_USE, CB_CG_USED_CHOICE
-  }
 
   /**
    * Called when state of the inspector is modified - paused, resumed, property

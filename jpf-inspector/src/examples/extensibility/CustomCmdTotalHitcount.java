@@ -44,7 +44,7 @@ public class CustomCmdTotalHitcount implements CustomCommand {
 
   @Override
   public void execute(String arguments, JPFInspectorClient client, JPFInspectorBackEndInterface server, PrintStream outStream) {
-    List<BreakpointStatus> breakpoints = server.getBreakPoints();
+    List<BreakpointStatus> breakpoints = server.getBreakpoints();
     int sum = 0;
     for (BreakpointStatus breakpoint : breakpoints) {
       sum += breakpoint.getHitCounterTotal();

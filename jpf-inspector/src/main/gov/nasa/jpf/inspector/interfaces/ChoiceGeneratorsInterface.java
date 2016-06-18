@@ -73,7 +73,7 @@ public interface ChoiceGeneratorsInterface {
     /**
      * @return Specifies if notification is enabled or disabled.
      */
-    public boolean nofiticationEnabled () {
+    public boolean isNotificationEnabled() {
       return enabled;
     }
   }

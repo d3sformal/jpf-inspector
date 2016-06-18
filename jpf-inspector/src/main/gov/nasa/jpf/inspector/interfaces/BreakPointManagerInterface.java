@@ -32,7 +32,7 @@ public interface BreakPointManagerInterface {
   /**
    * @return Gets list with currently existing Breakpoints. Never gets null, if no breakpoint exists, then empty list is returned.
    */
-  List<BreakpointStatus> getBreakPoints();
+  List<BreakpointStatus> getBreakpoints();
 
   /**
    * Creates new (if breakpoint ID is set {@link BreakPointCreationInformation#BP_ID_NOT_DEFINED} or modifies an existing breakpoint.

@@ -95,7 +95,7 @@ public class BreakpointHandler implements BreakPointManagerInterface {
    * Gets list with currently existing Breakpoints created by user.
    */
   @Override
-  public List<BreakpointStatus> getBreakPoints () {
+  public List<BreakpointStatus> getBreakpoints() {
     List<BreakpointStatus> result = new ArrayList<>(breakpoints.size());
     synchronized (breakpoints) {
       for (InternalBreakpointHolder bph : breakpoints.values()) {
@@ -281,10 +281,14 @@ public class BreakpointHandler implements BreakPointManagerInterface {
     return bpHit;
   }
 
+  /**
+   * Remove all breakpoints whose {@link InternalBreakpointHolder#isSingleHitBP()} method returns true.
+   * Synchronized by "breakpoints".
+   */
   private void removeSingleHitBreakpoints () {
-    // Remove singleHit BP
     synchronized (breakpoints) {
-      for (Iterator<Integer> it = breakpoints.keySet().iterator(); it.hasNext();) {
+      Iterator<Integer> it = breakpoints.keySet().iterator() ;
+      while (it.hasNext()) {
         InternalBreakpointHolder bp = breakpoints.get(it.next());
         if (bp.isSingleHitBP()) {
           it.remove();
@@ -319,7 +323,9 @@ public class BreakpointHandler implements BreakPointManagerInterface {
     }
     // Restore state of Breakpoints (hit counters
     transitionStartMemento = bpMementos.pop();
-    if (transitionStartMemento != null) transitionStartMemento.restoreState();
+    if (transitionStartMemento != null) {
+      transitionStartMemento.restoreState();
+    }
   }
 
   /**
@@ -333,6 +339,7 @@ public class BreakpointHandler implements BreakPointManagerInterface {
    * 
    */
   private class BreakPointsMemento {
+    // TODO confusing name here
     private final Map<Integer, BreakPointPartialMemento> bpMementos = new HashMap<>();
 
     /**

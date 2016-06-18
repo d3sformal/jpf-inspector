@@ -20,13 +20,9 @@
 package gov.nasa.jpf.inspector.client;
 
 import gov.nasa.jpf.inspector.client.commands.CmdBreakpointShow;
-import gov.nasa.jpf.inspector.interfaces.AssertStatus;
-import gov.nasa.jpf.inspector.interfaces.BreakpointState;
-import gov.nasa.jpf.inspector.interfaces.BreakpointStatus;
-import gov.nasa.jpf.inspector.interfaces.ChoiceGeneratorsInterface;
+import gov.nasa.jpf.inspector.interfaces.*;
 import gov.nasa.jpf.inspector.interfaces.ChoiceGeneratorsInterface.CGTypes;
 import gov.nasa.jpf.inspector.interfaces.CommandsInterface.InspectorStates;
-import gov.nasa.jpf.inspector.interfaces.InspectorCallBacks;
 
 import java.io.PrintStream;
 
@@ -36,9 +32,20 @@ import java.io.PrintStream;
  * This class is created by the client.
  */
 public class JPFClientCallbackHandler implements InspectorCallBacks {
-  private final PrintStream out; // Console where print server notifications
-  private CB_METHODS prevCB; // Previous callback
+  /**
+   * Console where server notifications should be printed out.
+   */
+  private final PrintStream out;
+  /**
+   * Previous callback issued by the server
+   */
+  private CallbackKind prevCB;
 
+  /**
+   * Initializes a new instance of this class. This class should never be used directly, but should be instead
+   * decorated in {@link CallbackRecordingDecorator}.
+   * @param out Where server notifications should be printed out.
+   */
   public JPFClientCallbackHandler (PrintStream out) {
     this.out = out;
   }
@@ -46,7 +53,7 @@ public class JPFClientCallbackHandler implements InspectorCallBacks {
   @Override
   public void genericError (String msg) {
     out.println("ERR: " + msg);
-    prevCB = CB_METHODS.CB_GENERIC_ERROR;
+    prevCB = CallbackKind.CB_GENERIC_ERROR;
   }
 
   @Override
@@ -64,7 +71,7 @@ public class JPFClientCallbackHandler implements InspectorCallBacks {
     // prevCB = CB_METHODS.CB_GENERIC_INFO;
   }
 
-  private static boolean checkIfShowStateChangeNofitication (CB_METHODS prevCB, InspectorStates newState) {
+  private static boolean checkIfShowStateChangeNofitication (CallbackKind prevCB, InspectorStates newState) {
     if (prevCB == null) {
       return true; // First CB
     }
@@ -73,12 +80,12 @@ public class JPFClientCallbackHandler implements InspectorCallBacks {
       return true; // Always show JPF started and terminating
     }
 
-    if (CB_METHODS.CB_BREAKPOINT_HIT.equals(prevCB) || CB_METHODS.CB_CG_CHOICE_TO_USE.equals(prevCB)) {
+    if (CallbackKind.CB_BREAKPOINT_HIT.equals(prevCB) || CallbackKind.CB_CG_CHOICE_TO_USE.equals(prevCB)) {
       return false; // Don't show stop notification after breakpoint hit
     }
 
     //noinspection RedundantIfStatement
-    if (InspectorStates.JPF_RUNNING.equals(newState) && CB_METHODS.CB_STATE_CHANGE.equals(prevCB)) {
+    if (InspectorStates.JPF_RUNNING.equals(newState) && CallbackKind.CB_STATE_CHANGE.equals(prevCB)) {
       // Suppose previous SB was JPF Stopped ad next command started JPF execution (run, (back_)step_over, )
       // --> hide obvious JPF started notification
       return false;
@@ -107,7 +114,7 @@ public class JPFClientCallbackHandler implements InspectorCallBacks {
         throw new RuntimeException("Unknown " + InspectorStates.class.getName() + " enum entry " + newState);
       }
     }
-    prevCB = CB_METHODS.CB_STATE_CHANGE;
+    prevCB = CallbackKind.CB_STATE_CHANGE;
     if (newState == InspectorStates.JPF_TERMINATING) {
       prevCB = null;
     }
@@ -139,7 +146,7 @@ public class JPFClientCallbackHandler implements InspectorCallBacks {
         out.println("\t" + details);
       }
     }
-    prevCB = CB_METHODS.CB_BREAKPOINT_HIT;
+    prevCB = CallbackKind.CB_BREAKPOINT_HIT;
   }
 
   @Override
@@ -169,7 +176,7 @@ public class JPFClientCallbackHandler implements InspectorCallBacks {
       result.append('\n');
     }
     out.print(result.toString());
-    prevCB = CB_METHODS.CB_CG_NEW_CHOICE;
+    prevCB = CallbackKind.CB_CG_NEW_CHOICE;
   }
 
   @Override
@@ -184,7 +191,7 @@ public class JPFClientCallbackHandler implements InspectorCallBacks {
     result.append(usedChoice);
     result.append('\n');
     out.print(result.toString());
-    prevCB = CB_METHODS.CB_CG_USED_CHOICE;
+    prevCB = CallbackKind.CB_CG_USED_CHOICE;
   }
 
   private boolean showHintCgSelect = true;
@@ -198,7 +205,7 @@ public class JPFClientCallbackHandler implements InspectorCallBacks {
       // TODO create command which will print list of possible choices
     }
     out.println(userText);
-    prevCB = CB_METHODS.CB_CG_CHOICE_TO_USE;
+    prevCB = CallbackKind.CB_CG_CHOICE_TO_USE;
   }
 
   private static void generateCGHeader (StringBuilder sb, ChoiceGeneratorsInterface.CGTypes cgType, String cgName, int cgId) {

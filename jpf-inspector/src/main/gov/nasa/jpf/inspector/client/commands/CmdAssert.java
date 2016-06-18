@@ -48,7 +48,7 @@ public class CmdAssert extends ClientCommand {
 
   @Override
   public void execute(JPFInspectorClient client, JPFInspectorBackEndInterface inspector, PrintStream outStream) {
-    createdAssert = null;
+
     try {
 
       createdAssert = inspector.createAssert(new ConsoleAssertionCreationExpression(position, assertExpression));
@@ -83,7 +83,10 @@ public class CmdAssert extends ClientCommand {
     }
   }
 
-  public static class ConsoleAssertionCreationExpression extends BreakpointCreationExpression implements AssertCreationInformation {
+  /**
+   * Represents the arguments for the command "assert".
+   */
+  private static class ConsoleAssertionCreationExpression extends BreakpointCreationExpression implements AssertCreationInformation {
 
     private static final long serialVersionUID = -7840321111358650898L;
 
