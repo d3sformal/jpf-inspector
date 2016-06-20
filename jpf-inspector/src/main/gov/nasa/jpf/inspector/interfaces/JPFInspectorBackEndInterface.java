@@ -21,6 +21,7 @@ package gov.nasa.jpf.inspector.interfaces;
 
 import gov.nasa.jpf.JPF;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorGenericErrorException;
+import gov.nasa.jpf.inspector.server.callbacks.InspectorServerCallbacks;
 
 /**
  * Interface provided by JPFInspector back-end ("server") part. Low level interface.
@@ -44,7 +45,7 @@ public interface JPFInspectorBackEndInterface extends
    * Gets the server-side serializer of callbacks. When this serializer's methods are called, new callbacks are sent
    * to the client.
    */
-  InspectorCallbacks getServerCallbacks();
+  InspectorServerCallbacks getServerCallbacks();
 
 
   /**

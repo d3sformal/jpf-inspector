@@ -10,3 +10,4 @@ ERR: Parse error: mismatched input '.' expecting <EOF>
 #heap[*].member
         ^
 Breakpoint with ID 1 successfully deleted.
+INFO: JPF Terminating

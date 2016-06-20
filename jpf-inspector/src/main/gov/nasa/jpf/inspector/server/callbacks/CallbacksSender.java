@@ -111,9 +111,9 @@ public class CallbacksSender extends Thread {
     synchronized (callbackQueue) {
       terminating = true;
       callbackQueue.clear();
-      callbackQueue.notifyAll(); // Wake up "Callback thread"
+      callbackQueue.notifyAll(); // Wake up the callback thread.
       try {
-        callbackQueue.wait();
+        callbackQueue.wait(); // Wait for the callback thread to terminate.
       } catch (InterruptedException e) {
         Thread.currentThread().interrupt();
       }
@@ -143,34 +143,37 @@ public class CallbacksSender extends Thread {
               callbackQueue.notifyAll(); // Wakes up {@link #enableSender(StopHolder)} method when block in wait();
               notifyEnable = false;
             }
-            callbackQueue.wait();
+            callbackQueue.wait(); // Wait for a callback to arrive.
           } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
           }
         }
       }
 
-      if (!callbackQueue.isEmpty()) {
-        CallbackCommand cmdCB = callbackQueue.remove(0);
-        if (DEBUG) {
-          out.println(this.getClass().getSimpleName() + ".run() - CB to process cmdCB=" + cmdCB);
-        }
-
-        if (cmdCB.waitJPF2stop()) {
+      synchronized (callbackQueue) {
+        if (!callbackQueue.isEmpty()) {
+          CallbackCommand topmostCallback = callbackQueue.remove(0);
           if (DEBUG) {
-            out.println(this.getClass().getSimpleName() + ".run() - waitUntilStopped");
+            out.println(this.getClass().getSimpleName() + ".run() - CB to process topmostCallback=" + topmostCallback);
           }
-          stopHolder.waitUntilStopped();
+
+          if (topmostCallback.waitJPF2stop()) {
+            if (DEBUG) {
+              out.println(this.getClass().getSimpleName() + ".run() - waitUntilStopped");
+            }
+            stopHolder.waitUntilStopped();
+          }
+          if (DEBUG) {
+            out.println(this.getClass().getSimpleName() + ".run() - sending SB topmostCallback=" + topmostCallback);
+          }
+          topmostCallback.sendCallback(clientCallbacks);
+          callbackQueue.notifyAll(); // Notify any threads waiting for the callback queue to be empty.
         }
-        if (DEBUG) {
-          out.println(this.getClass().getSimpleName() + ".run() - sending SB cmdCB=" + cmdCB);
-        }
-        cmdCB.sendCallback(clientCallbacks);
       }
     }
 
     synchronized (callbackQueue) {
-      callbackQueue.notifyAll(); // WakeUP terminate method
+      callbackQueue.notifyAll(); // We are now terminating and we must wake up the terminate method.
     }
     if (DEBUG) {
       out.println(this.getClass().getSimpleName() + ".run() - end");
@@ -182,7 +185,7 @@ public class CallbacksSender extends Thread {
    * Gets the interface whose methods will cause new clientCallbacks to be sent to the client via this thread.
    * @return This thread's serializer.
    */
-  public InspectorCallbacks getCallbackSerializer () {
+  public InspectorServerCallbacks getCallbackSerializer () {
     return new CallbacksSerializer();
   }
 
@@ -192,7 +195,7 @@ public class CallbacksSender extends Thread {
    *
    * All methods of this class merely create a new {@link CallbackCommand} and add it to the callback queue.
    */
-  private class CallbacksSerializer implements InspectorCallbacks {
+  private class CallbacksSerializer implements InspectorServerCallbacks {
 
     /**
      * Queue a new callback to be sent.
@@ -211,7 +214,8 @@ public class CallbacksSender extends Thread {
         }
         if (!terminating) {
           callbackQueue.add(cmdCB);
-          callbackQueue.notify(); // Wake up "Callback thread" if blocked
+          // Wake up the callback thread and, maybe in rare cases, also any threads that wait for the callback queue to be empty.
+          callbackQueue.notifyAll();
         }
       }
       if (DEBUG) {
@@ -258,6 +262,19 @@ public class CallbacksSender extends Thread {
     public void notifyUsedChoice (CGTypes cgType, String cgName, int cgId, int usedChoiceIndex, String usedChoice) {
       CallbackCommandUsedChoice cb = new CallbackCommandUsedChoice(cgType, cgName, cgId, usedChoiceIndex, usedChoice);
       planNewCallback(cb);
+    }
+
+    @Override
+    public void waitUntilCallbackQueueIsEmpty() {
+      synchronized (callbackQueue) {
+        while (!callbackQueue.isEmpty()) {
+          try {
+            callbackQueue.wait();
+          } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+          }
+        }
+      }
     }
 
   }

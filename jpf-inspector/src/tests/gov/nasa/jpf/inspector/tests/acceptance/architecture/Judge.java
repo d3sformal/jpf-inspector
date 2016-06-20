@@ -1,4 +1,4 @@
-package gov.nasa.jpf.inspector.tests.acceptance;
+package gov.nasa.jpf.inspector.tests.acceptance.architecture;
 
 import org.junit.Assert;
 

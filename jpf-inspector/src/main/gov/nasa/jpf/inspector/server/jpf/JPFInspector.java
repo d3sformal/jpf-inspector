@@ -29,6 +29,7 @@ import gov.nasa.jpf.inspector.server.breakpoints.BreakpointHandler;
 import gov.nasa.jpf.inspector.server.breakpoints.CommandsManager;
 import gov.nasa.jpf.inspector.server.breakpoints.DefaultForwardTraceManager;
 import gov.nasa.jpf.inspector.server.callbacks.CallbacksSender;
+import gov.nasa.jpf.inspector.server.callbacks.InspectorServerCallbacks;
 import gov.nasa.jpf.inspector.server.choicegenerators.ChoiceGeneratorsManager;
 import gov.nasa.jpf.inspector.server.programstate.ProgramStateManager;
 import gov.nasa.jpf.search.Search;
@@ -67,7 +68,7 @@ public abstract class JPFInspector implements JPFInspectorBackEndInterface {
   /**
    * This is the server-side serializer that can be called from the JPF thread and which sends callbacks to the user.
    */
-  private final InspectorCallbacks serverCallbacks;
+  private final InspectorServerCallbacks serverCallbacks;
   private final StopHolder stopHolder;
 
   protected final CommandsManager commandsManager;
@@ -120,7 +121,7 @@ public abstract class JPFInspector implements JPFInspectorBackEndInterface {
   }
 
   @Override
-  public InspectorCallbacks getServerCallbacks() {
+  public InspectorServerCallbacks getServerCallbacks() {
     if (DEBUG) {
       getDebugPrintStream().println("  " + JPFInspector.class.getSimpleName() + ".getCallBack()");
     }

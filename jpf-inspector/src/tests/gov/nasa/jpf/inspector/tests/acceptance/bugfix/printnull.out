@@ -3,3 +3,4 @@ INFO: Breakpoint hit: [1 :  state=BP_STATE_ENABLED hits=1 hitsTotal=1 hit_count<
 	SuT (Thread=0) executes the gov/nasa/jpf/inspector/tests/acceptance/sut/Singlepath.java:0 - invokestatic gov.nasa.jpf.inspector.tests.acceptance.sut.Singlepath.main([Ljava/lang/String;)V
 user constant (java.lang.Object) = null
 Breakpoint with ID 1 successfully deleted.
+INFO: JPF Terminating

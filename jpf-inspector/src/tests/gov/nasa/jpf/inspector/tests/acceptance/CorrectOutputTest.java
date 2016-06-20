@@ -4,6 +4,7 @@ import gov.nasa.jpf.JPFShell;
 import gov.nasa.jpf.inspector.frontends.cmd.CommandLineShell;
 import gov.nasa.jpf.inspector.tests.acceptance.architecture.CorrectOutputAbstractTest;
 import gov.nasa.jpf.inspector.tests.acceptance.architecture.CorrectOutputTestCase;
+import gov.nasa.jpf.inspector.tests.acceptance.architecture.Judge;
 import gov.nasa.jpf.inspector.utils.InspectorConfiguration;
 import gov.nasa.jpf.shell.ShellManager;
 import org.junit.After;
