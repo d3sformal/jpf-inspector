@@ -28,6 +28,7 @@ public class CorrectOutputTest extends CorrectOutputAbstractTest {
      return Arrays.asList(
           getCase("simple", "hello"),
           getCase("simple", "breakpoint-expressions"),
+          getCase("features/termination", "terminate_command"),
           getCase("features/extensibility", "alias"),
           getCase("features/extensibility", "custom"),
           getCase("features/extensibility", "then"),
@@ -59,7 +60,7 @@ public class CorrectOutputTest extends CorrectOutputAbstractTest {
     String applicationPropertyFile = BASEFOLDER + testCase.applicationFile;
     String inputFile = BASEFOLDER + testCase.inputFile;
     String outputFile = BASEFOLDER + testCase.outputFile;
-    String[] args = new String[] { applicationPropertyFile };
+    String[] args = { applicationPropertyFile };
 
     InputStream inputStream = new FileInputStream(inputFile);
     ByteArrayOutputStream baos = new ByteArrayOutputStream();

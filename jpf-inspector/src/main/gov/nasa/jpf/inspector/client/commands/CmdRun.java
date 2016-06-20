@@ -35,6 +35,9 @@ import java.util.List;
  */
 public class CmdRun extends ClientCommand {
 
+  /**
+   * Indicates whether execution should be resumed or stopped.
+   */
   public enum CmdRunTypes {
     /**
      * Execution should be started or resumed.
@@ -64,7 +67,7 @@ public class CmdRun extends ClientCommand {
       // Check whether JPF is running or not (if not we start them)
       final List<VerifyCommand> vcList = shellMgr.getCommands(VerifyCommand.class);
       assert vcList != null;
-      assert vcList.size() > 0; // Verify command exists
+      assert !vcList.isEmpty(); // Verify command exists
 
       final VerifyCommand vc = vcList.get(0);
       if (!vc.isVerifying()) {

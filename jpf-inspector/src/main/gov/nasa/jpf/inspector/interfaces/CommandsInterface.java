@@ -55,6 +55,11 @@ public interface CommandsInterface {
   void start() throws JPFInspectorException;
 
   /**
+   * Causes the JPF to terminate at the earliest opportunity.
+   */
+  void requestTermination();
+
+  /**
    * Indicates how many instructions should be skipped when stepping.
    * Full details explaining what each transition step means are in the documentation of Commands.
    */

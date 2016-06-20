@@ -58,6 +58,12 @@ public class CommandsManager implements CommandsInterface {
    *  user is unlikely to type commands quickly enough for it to be a problem.
    */
   private boolean run = true;
+  /**
+   * If true, JPF should terminate at the earliest opportunity.
+   *
+   * Note: The Inspector sets this variable. The JPF thread reads this variable.
+   */
+  private boolean shouldTerminate;
 
   private final JPFInspector inspector;
   private final StopHolder stopHolder;
@@ -85,6 +91,11 @@ public class CommandsManager implements CommandsInterface {
   }
 
   @Override
+  public void requestTermination() {
+    shouldTerminate = true;
+  }
+
+  @Override
   public void waitUntilStopped() {
     if (inspector.getJPF() == null) {
       return;
@@ -105,11 +116,19 @@ public class CommandsManager implements CommandsInterface {
     run = false; // Stops on the next event.
   }
 
-  /** State of the Inspector and the JPF (JPF Thread calls this. Checks whether stop if required. */
+  /**
+   * Determines whether JPF should be stopped and if so, stops it.
+   * This method may only be called from the JPF thread.
+   */
   public void tryStop (InspectorState inspState) {
     if (run == false) {
       stopHolder.stopExecution(inspState);
       run = true;
+    }
+  }
+  public void tryTerminate(Search search) {
+    if (shouldTerminate) {
+      search.terminate();
     }
   }
 
@@ -269,4 +288,6 @@ public class CommandsManager implements CommandsInterface {
     }
     return wasStopped;
   }
+
+
 }

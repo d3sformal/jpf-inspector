@@ -52,6 +52,11 @@ public class JPFInspectorParallel extends JPFInspector {
   }
 
   @Override
+  public void requestTermination() {
+    commandsManager.requestTermination();
+  }
+
+  @Override
   public void waitUntilStopped() {
     commandsManager.waitUntilStopped();
   }

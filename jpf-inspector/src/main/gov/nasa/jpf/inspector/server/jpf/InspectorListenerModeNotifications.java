@@ -19,23 +19,23 @@ public class InspectorListenerModeNotifications extends ListenerAdapter {
   private static final boolean DEBUG = false;
 
   private final JPFInspector inspector;
-  private final CommandsManager cmdMgr;
-  private final BreakpointHandler bpMgr;
+  private final CommandsManager commandsManager;
+  private final BreakpointHandler breakpointHandler;
   private final ChoiceGeneratorNotifications cgNotify;
   private final DefaultForwardTraceManager dftMgr;
 
-  private final InspectorStateImpl inspState = new InspectorStateImpl();
+  private final InspectorStateImpl inspectorState = new InspectorStateImpl();
 
   /**
    * Whether continue or not after a property is violated
    */
   private final boolean searchMultipleError;
 
-  public InspectorListenerModeNotifications (JPFInspector inspector, CommandsManager cmdMgr, BreakpointHandler bpMgr, ChoiceGeneratorNotifications cgNotify,
+  public InspectorListenerModeNotifications (JPFInspector inspector, CommandsManager commandsManager, BreakpointHandler breakpointHandler, ChoiceGeneratorNotifications cgNotify,
                                              DefaultForwardTraceManager dftMgr, boolean searchMultipleError) {
     this.inspector = inspector;
-    this.cmdMgr = cmdMgr;
-    this.bpMgr = bpMgr;
+    this.commandsManager = commandsManager;
+    this.breakpointHandler = breakpointHandler;
     this.cgNotify = cgNotify;
     this.dftMgr = dftMgr;
     this.searchMultipleError = searchMultipleError;
@@ -47,11 +47,11 @@ public class InspectorListenerModeNotifications extends ListenerAdapter {
     if (DEBUG) {
       inspector.getDebugPrintStream().println(this.getClass().getSimpleName() + ".stateAdvanced()");
     }
-    inspState.stateChanged(search, ListenerMethod.LM_STATE_ADVANCED);
-    bpMgr.forwardJPFStep(inspState);
-    bpMgr.checkBreakpoints(inspState);
+    inspectorState.stateChanged(search, ListenerMethod.LM_STATE_ADVANCED);
+    breakpointHandler.forwardJPFStep(inspectorState);
+    breakpointHandler.checkBreakpoints(inspectorState);
     dftMgr.forwardStep(search);
-    cmdMgr.tryStop(inspState);
+    commandsManager.tryStop(inspectorState);
   }
 
   @Override
@@ -59,8 +59,8 @@ public class InspectorListenerModeNotifications extends ListenerAdapter {
     if (DEBUG) {
       inspector.getDebugPrintStream().println(this.getClass().getSimpleName() + ".stateProcessed()");
     }
-    inspState.stateChanged(search, ListenerMethod.LM_NOT_IN_LIST);
-    cmdMgr.tryStop(inspState);
+    inspectorState.stateChanged(search, ListenerMethod.LM_NOT_IN_LIST);
+    commandsManager.tryStop(inspectorState);
   }
 
   @Override
@@ -68,10 +68,10 @@ public class InspectorListenerModeNotifications extends ListenerAdapter {
     if (DEBUG) {
       inspector.getDebugPrintStream().println(this.getClass().getSimpleName() + ".stateBacktracked()");
     }
-    inspState.stateChanged(search, ListenerMethod.LM_STATE_BACKTRACKED);
-    bpMgr.backwardJPFStep(inspState);
+    inspectorState.stateChanged(search, ListenerMethod.LM_STATE_BACKTRACKED);
+    breakpointHandler.backwardJPFStep(inspectorState);
     // dftMgr.extendTrace(search.getTransition());
-    cmdMgr.tryStop(inspState);
+    commandsManager.tryStop(inspectorState);
   }
 
   @Override
@@ -79,8 +79,8 @@ public class InspectorListenerModeNotifications extends ListenerAdapter {
     if (DEBUG) {
       inspector.getDebugPrintStream().println(this.getClass().getSimpleName() + ".searchStarted()");
     }
-    inspState.stateChanged(search, ListenerMethod.LM_NOT_IN_LIST);
-    cmdMgr.tryStop(inspState);
+    inspectorState.stateChanged(search, ListenerMethod.LM_NOT_IN_LIST);
+    commandsManager.tryStop(inspectorState);
   }
 
   @Override
@@ -88,8 +88,8 @@ public class InspectorListenerModeNotifications extends ListenerAdapter {
     if (DEBUG) {
       inspector.getDebugPrintStream().println(this.getClass().getSimpleName() + ".searchConstraintHit()");
     }
-    inspState.stateChanged(search, ListenerMethod.LM_SEARCH_CONSTRAINT_HIT);
-    cmdMgr.tryStop(inspState);
+    inspectorState.stateChanged(search, ListenerMethod.LM_SEARCH_CONSTRAINT_HIT);
+    commandsManager.tryStop(inspectorState);
   }
 
   @Override
@@ -104,8 +104,8 @@ public class InspectorListenerModeNotifications extends ListenerAdapter {
     if (DEBUG) {
       inspector.getDebugPrintStream().println(this.getClass().getSimpleName() + ".executeInstruction(" + instructionToExecute + ")");
     }
-    inspState.notifyListenerMethodCall(ListenerMethod.LM_EXECUTE_INSTRUCTION, vm);
-    bpMgr.checkBreakpoints(inspState);
+    inspectorState.notifyListenerMethodCall(ListenerMethod.LM_EXECUTE_INSTRUCTION, vm);
+    breakpointHandler.checkBreakpoints(inspectorState);
   }
 
 
@@ -118,8 +118,9 @@ public class InspectorListenerModeNotifications extends ListenerAdapter {
           this.getClass().getSimpleName() + ".instructionExecuted(" + executedInstruction + ", loc=" + executedInstruction.getFileLocation()
               + ")");
     }
-    inspState.instructionExecuted(currentThread.getId(), executedInstruction, vm);
-    bpMgr.checkBreakpoints(inspState);
+    inspectorState.instructionExecuted(currentThread.getId(), executedInstruction, vm);
+    breakpointHandler.checkBreakpoints(inspectorState);
+    commandsManager.tryTerminate(vm.getSearch());
   }
 
   @Override
@@ -134,8 +135,8 @@ public class InspectorListenerModeNotifications extends ListenerAdapter {
     if (DEBUG) {
       inspector.getDebugPrintStream().println(this.getClass().getSimpleName() + ".gcBegin()");
     }
-    inspState.notifyListenerMethodCall(ListenerMethod.LM_GC_BEGIN, vm);
-    bpMgr.checkBreakpoints(inspState);
+    inspectorState.notifyListenerMethodCall(ListenerMethod.LM_GC_BEGIN, vm);
+    breakpointHandler.checkBreakpoints(inspectorState);
   }
 
   @Override
@@ -143,8 +144,8 @@ public class InspectorListenerModeNotifications extends ListenerAdapter {
     if (DEBUG) {
       inspector.getDebugPrintStream().println(this.getClass().getSimpleName() + ".gcEnd()");
     }
-    inspState.notifyListenerMethodCall(ListenerMethod.LM_GC_END, vm);
-    bpMgr.checkBreakpoints(inspState);
+    inspectorState.notifyListenerMethodCall(ListenerMethod.LM_GC_END, vm);
+    breakpointHandler.checkBreakpoints(inspectorState);
   }
 
   @Override
@@ -152,8 +153,8 @@ public class InspectorListenerModeNotifications extends ListenerAdapter {
     if (DEBUG) {
       inspector.getDebugPrintStream().println(this.getClass().getSimpleName() + ".objectCreated()");
     }
-    inspState.notifyListenerElementInfoMethodCall(vm, ListenerMethod.LM_OBJECT_CREATED, newObject);
-    bpMgr.checkBreakpoints(inspState);
+    inspectorState.notifyListenerElementInfoMethodCall(vm, ListenerMethod.LM_OBJECT_CREATED, newObject);
+    breakpointHandler.checkBreakpoints(inspectorState);
   }
 
   @Override
@@ -161,8 +162,8 @@ public class InspectorListenerModeNotifications extends ListenerAdapter {
     if (DEBUG) {
       inspector.getDebugPrintStream().println(this.getClass().getSimpleName() + ".objectReleased()");
     }
-    inspState.notifyListenerElementInfoMethodCall(vm, ListenerMethod.LM_OBJECT_RELEASED, releasedObject);
-    bpMgr.checkBreakpoints(inspState);
+    inspectorState.notifyListenerElementInfoMethodCall(vm, ListenerMethod.LM_OBJECT_RELEASED, releasedObject);
+    breakpointHandler.checkBreakpoints(inspectorState);
   }
 
 
@@ -171,8 +172,8 @@ public class InspectorListenerModeNotifications extends ListenerAdapter {
     if (DEBUG) {
       inspector.getDebugPrintStream().println(this.getClass().getSimpleName() + ".exceptionThrown()");
     }
-    inspState.notifyListenerElementInfoMethodCall(vm, ListenerMethod.LM_EXCEPTION_THROWN, thrownException);
-    bpMgr.checkBreakpoints(inspState);
+    inspectorState.notifyListenerElementInfoMethodCall(vm, ListenerMethod.LM_EXCEPTION_THROWN, thrownException);
+    breakpointHandler.checkBreakpoints(inspectorState);
   }
 
   @Override
@@ -191,9 +192,9 @@ public class InspectorListenerModeNotifications extends ListenerAdapter {
           this.getClass().getSimpleName() + ".choiceGeneratorAdvanced() - cg=" + currentCG + " processedChoices="
               + currentCG.getProcessedNumberOfChoices());
     }
-    inspState.notifyListenerMethodCall(ListenerMethod.LM_CHOICE_GENERATOR_ADVANCED, vm);
-    cgNotify.notifyChoiceGeneratorAdvance(currentCG, inspState);
-    bpMgr.checkBreakpoints(inspState);
+    inspectorState.notifyListenerMethodCall(ListenerMethod.LM_CHOICE_GENERATOR_ADVANCED, vm);
+    cgNotify.notifyChoiceGeneratorAdvance(currentCG, inspectorState);
+    breakpointHandler.checkBreakpoints(inspectorState);
 
   }
 
@@ -220,8 +221,8 @@ public class InspectorListenerModeNotifications extends ListenerAdapter {
     if (DEBUG) {
       inspector.getDebugPrintStream().println(this.getClass().getSimpleName() + ".threadScheduled()");
     }
-    inspState.notifyListenerMethodCall(ListenerMethod.LM_THREAD_SCHEDULED, vm);
-    bpMgr.checkBreakpoints(inspState);
+    inspectorState.notifyListenerMethodCall(ListenerMethod.LM_THREAD_SCHEDULED, vm);
+    breakpointHandler.checkBreakpoints(inspectorState);
   }
 
   @Override
@@ -229,15 +230,15 @@ public class InspectorListenerModeNotifications extends ListenerAdapter {
     if (DEBUG) {
       inspector.getDebugPrintStream().println(this.getClass().getSimpleName() + ".propertyViolated()");
     }
-    inspState.stateChanged(search, ListenerMethod.LM_PROPERTY_VIOLATED);
+    inspectorState.stateChanged(search, ListenerMethod.LM_PROPERTY_VIOLATED);
 
     // Simulate behavior of the JPF with original settings
     if (!searchMultipleError) {
       inspector.getStopHolder().terminateAfterResume();
     }
 
-    bpMgr.checkBreakpoints(inspState);
-    cmdMgr.tryStop(inspState);
+    breakpointHandler.checkBreakpoints(inspectorState);
+    commandsManager.tryStop(inspectorState);
 
     super.propertyViolated(search);
   }
