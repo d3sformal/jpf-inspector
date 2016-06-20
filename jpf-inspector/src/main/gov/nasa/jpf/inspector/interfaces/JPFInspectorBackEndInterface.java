@@ -40,7 +40,11 @@ public interface JPFInspectorBackEndInterface extends
    */
   void bindWithJPF(JPF jpf) throws JPFInspectorGenericErrorException;
 
-  InspectorCallbacks getCallBack();
+  /**
+   * Gets the server-side serializer of callbacks. When this serializer's methods are called, new callbacks are sent
+   * to the client.
+   */
+  InspectorCallbacks getServerCallbacks();
 
 
   /**

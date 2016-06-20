@@ -15,8 +15,8 @@ public class CallbackCommandStateChanged implements CallbackCommand {
   }
 
   @Override
-  public void sendCallback(InspectorCallbacks callbacks) {
-    callbacks.notifyStateChange(state, details);
+  public void sendCallback(InspectorCallbacks clientCallbacks) {
+    clientCallbacks.notifyStateChange(state, details);
   }
 
   @Override

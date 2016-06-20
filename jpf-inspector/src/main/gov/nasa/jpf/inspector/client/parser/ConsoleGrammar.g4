@@ -106,6 +106,7 @@ allKeyWordsWithoutCreateBPandHitCount returns [String text]
     | a=TOKEN_HELLO { $text = $a.text; }
     | a=TOKEN_HELP { $text = $a.text; }
     | a=TOKEN_WAIT { $text = $a.text; }
+    | a=TOKEN_TERMINATE { $text = $a.text; }
     | a=TOKEN_BOTH { $text = $a.text; }
     ;
 
@@ -130,7 +131,7 @@ clientCommands1 returns [ClientCommand value]
     | cmdChoiceGenerators    WS? { $value = $cmdChoiceGenerators.value; }
     | cmdRecord              WS? { $value = $cmdRecord.value; }
     | cmdAssertions          WS? { $value = $cmdAssertions.value; }
-    | cmdInformational       WS? { $value = $cmdInformational.value; }
+    | cmdNewCommands         WS? { $value = $cmdNewCommands.value; }
     | cmdCustom              WS? { $value = $cmdCustom.value; }
     ;
 
@@ -199,10 +200,11 @@ cmdSingleSteps returns [CmdSingleStepping value]
     { $value = CmdSingleStepping.createCmdSingleSteppingTransition(false, $c.ctx != null ? $c.cgsType : null, $intValue.ctx != null ? $intValue.value : 1); }
     ;
 
-cmdInformational returns [ClientCommand value]
+cmdNewCommands returns [ClientCommand value]
   : TOKEN_HELLO  { $value = new CmdHello(); }
   | TOKEN_HELP   { $value = new CmdHelp(); }
   | TOKEN_WAIT   { $value = new CmdWait(); }
+  | TOKEN_TERMINATE   { $value = new CmdTerminate(); }
   ;
 
 cmdProgramState returns [ClientCommand value]
@@ -397,6 +399,7 @@ TOKEN_CB_CG_USED_CHOICE : 'callback_choice_generator_used_choice' | 'cb_cg_used_
 TOKEN_HELLO : 'hello';
 TOKEN_HELP : 'help';
 TOKEN_WAIT : 'wait';
+TOKEN_TERMINATE : 'terminate';
 TOKEN_QUIT : 'quit' | 'exit';
 
 // End of keywords.

@@ -3,6 +3,9 @@ package gov.nasa.jpf.inspector.server.callbacks.commands;
 import gov.nasa.jpf.inspector.interfaces.InspectorCallbacks;
 import gov.nasa.jpf.inspector.server.callbacks.CallbackCommand;
 
+/**
+ * Sends the {@link InspectorCallbacks#genericError(String)} callbacks.
+ */
 public class CallbackCommandGenericError implements CallbackCommand {
 
   private final String msg;
@@ -12,8 +15,8 @@ public class CallbackCommandGenericError implements CallbackCommand {
   }
 
   @Override
-  public void sendCallback (InspectorCallbacks callbacks) {
-    callbacks.genericError(msg);
+  public void sendCallback (InspectorCallbacks clientCallbacks) {
+    clientCallbacks.genericError(msg);
   }
 
   @Override

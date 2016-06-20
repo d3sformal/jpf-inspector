@@ -13,8 +13,8 @@ public class CallbackCommandBreakpointHit implements CallbackCommand {
   }
 
   @Override
-  public void sendCallback (InspectorCallbacks callbacks) {
-    callbacks.notifyBreakpointHit(bp);
+  public void sendCallback (InspectorCallbacks clientCallbacks) {
+    clientCallbacks.notifyBreakpointHit(bp);
   }
 
   @Override

@@ -56,6 +56,6 @@ public interface BreakPointManagerInterface {
    * @param bpID Identification of the Breakpoint to delete
    * @return true if Breakpoint with given bpID exists, false if BP not found.
    */
-  boolean deleteBreakPoint(int bpID);
+  boolean deleteBreakpoint(int bpID);
 
 }

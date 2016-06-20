@@ -12,8 +12,8 @@ public class CallbackCommandSpecifyChoiceToUse implements CallbackCommand {
   }
 
   @Override
-  public void sendCallback (InspectorCallbacks callbacks) {
-    callbacks.specifyChoiceToUse(maxChoiceIndex);
+  public void sendCallback (InspectorCallbacks clientCallbacks) {
+    clientCallbacks.specifyChoiceToUse(maxChoiceIndex);
   }
 
   @Override

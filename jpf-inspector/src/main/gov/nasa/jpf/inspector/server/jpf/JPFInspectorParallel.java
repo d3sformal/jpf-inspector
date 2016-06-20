@@ -38,98 +38,102 @@ import java.util.Map;
  */
 public class JPFInspectorParallel extends JPFInspector {
 
-  public JPFInspectorParallel (InspectorCallbacks callBack) {
-    super(callBack);
+  /**
+   * Initializes a new instance of the Inspector server.
+   * @param callbacks The client's callback handler.
+   */
+  public JPFInspectorParallel (InspectorCallbacks callbacks) {
+    super(callbacks);
   }
 
   @Override
   public void start () throws JPFInspectorGenericErrorException {
-    cmdMgr.start();
+    commandsManager.start();
   }
 
   @Override
   public void waitUntilStopped() {
-    cmdMgr.waitUntilStopped();
+    commandsManager.waitUntilStopped();
   }
 
   @Override
   public boolean isPaused() {
-    return cmdMgr.isPaused();
+    return commandsManager.isPaused();
   }
 
   @Override
   public void stop () throws JPFInspectorGenericErrorException {
-    cmdMgr.stop();
+    commandsManager.stop();
   }
 
   @Override
   public BreakpointStatus createBreakPoint (BreakpointCreationInformation newBP) throws JPFInspectorParsingErrorException, JPFInspectorGenericErrorException {
-    return breakpointMgr.createBreakPoint(newBP);
+    return breakpointHandler.createBreakPoint(newBP);
   }
 
   @Override
   public AssertStatus createAssert (AssertCreationInformation newAssert) throws JPFInspectorParsingErrorException, JPFInspectorGenericErrorException {
-    return breakpointMgr.createAssert(newAssert);
+    return breakpointHandler.createAssert(newAssert);
   }
 
   @Override
-  public boolean deleteBreakPoint (int bpID) {
-    return breakpointMgr.deleteBreakPoint(bpID);
+  public boolean deleteBreakpoint(int bpID) {
+    return breakpointHandler.deleteBreakpoint(bpID);
   }
 
   @Override
   public List<BreakpointStatus> getBreakpoints() {
-    return breakpointMgr.getBreakpoints();
+    return breakpointHandler.getBreakpoints();
   }
 
   @Override
   public void backwardStep (StepType type) throws JPFInspectorException {
-    cmdMgr.backwardStep(type);
+    commandsManager.backwardStep(type);
   }
 
   @Override
   public void forwardStep (StepType type) throws JPFInspectorException {
-    cmdMgr.forwardStep(type);
+    commandsManager.forwardStep(type);
 
   }
 
   @Override
   public List<ChoiceGeneratorWrapper> getUsedChoiceGenerators (boolean wait) throws JPFInspectorException {
-    return cgMgr.getUsedChoiceGenerators(wait);
+    return choiceGeneratorsManager.getUsedChoiceGenerators(wait);
   }
 
   @Override
   public Map<Integer, PSEThread> getThreads (Integer threadNum) throws JPFInspectorException {
-    return stateMgr.getThreads(threadNum);
+    return stateManager.getThreads(threadNum);
   }
 
   @Override
   public Map<Integer, InstructionPosition> getThreadsPC (Integer threadNum) throws JPFInspectorException {
-    return stateMgr.getThreadsPC(threadNum);
+    return stateManager.getThreadsPC(threadNum);
   }
 
   @Override
   public ProgramStateEntry evaluateStateExpression (String expr) throws JPFInspectorException {
-    return stateMgr.evaluateStateExpression(expr);
+    return stateManager.evaluateStateExpression(expr);
   }
 
   @Override
   public void modifyCGNotifications (CGNotificationSpecification spec) {
-    cgMgr.modifyCGNotifications(spec);
+    choiceGeneratorsManager.modifyCGNotifications(spec);
   }
 
   @Override
   public CGNotificationSpecification[] getCGNotificationStatus () {
-    return cgMgr.getCGNotificationStatus();
+    return choiceGeneratorsManager.getCGNotificationStatus();
   }
 
   @Override
   public void selectChoice (int selectedChoice) throws JPFInspectorException {
-    cgMgr.selectChoice(selectedChoice);
+    choiceGeneratorsManager.selectChoice(selectedChoice);
   }
 
   @Override
   public void setValue (String expr) throws JPFInspectorException {
-    stateMgr.setValue(expr);
+    stateManager.setValue(expr);
   }
 }

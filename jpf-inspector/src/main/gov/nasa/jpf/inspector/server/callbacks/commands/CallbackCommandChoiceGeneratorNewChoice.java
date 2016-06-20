@@ -23,8 +23,8 @@ public class CallbackCommandChoiceGeneratorNewChoice implements CallbackCommand 
   }
 
   @Override
-  public void sendCallback (InspectorCallbacks callbacks) {
-    callbacks.notifyChoiceGeneratorNewChoice(cgType, cgName, cgId, choices, nextChoice, defaultChoice);
+  public void sendCallback (InspectorCallbacks clientCallbacks) {
+    clientCallbacks.notifyChoiceGeneratorNewChoice(cgType, cgName, cgId, choices, nextChoice, defaultChoice);
   }
 
   @Override

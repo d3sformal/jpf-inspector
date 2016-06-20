@@ -24,7 +24,6 @@ import gov.nasa.jpf.inspector.server.jpf.InspectorListener;
 import gov.nasa.jpf.search.Search;
 import gov.nasa.jpf.vm.ElementInfo;
 import gov.nasa.jpf.vm.Instruction;
-import gov.nasa.jpf.vm.ThreadInfo;
 import gov.nasa.jpf.vm.VM;
 
 import java.util.HashMap;
@@ -64,7 +63,7 @@ public class InspectorStateImpl implements InspectorState {
   }
   @Override
   public ElementInfo getLastCreatedOrReleasedElementInfo() {
-    return null;
+    return lastCreatedOrReleasedElementInfo;
   }
 
   @Override
@@ -75,10 +74,11 @@ public class InspectorStateImpl implements InspectorState {
 
   @Override
   public Instruction getLastExecutedInstruction(int thread) {
-    if (lastExecutedInstructions.containsKey(thread))
+    if (lastExecutedInstructions.containsKey(thread)) {
       return lastExecutedInstructions.get(thread);
-    else
+    } else {
       return null;
+    }
   }
 
   @Override
@@ -111,7 +111,4 @@ public class InspectorStateImpl implements InspectorState {
     this.vm = jvm;
   }
 
-  public void setCurrentInstructionInformation(ThreadInfo currentThread, Instruction instructionToExecute) {
-    // TODO this is meaningless, and never used
-  }
 }

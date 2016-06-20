@@ -105,7 +105,6 @@ public class InspectorListenerModeNotifications extends ListenerAdapter {
       inspector.getDebugPrintStream().println(this.getClass().getSimpleName() + ".executeInstruction(" + instructionToExecute + ")");
     }
     inspState.notifyListenerMethodCall(ListenerMethod.LM_EXECUTE_INSTRUCTION, vm);
-    inspState.setCurrentInstructionInformation(currentThread, instructionToExecute);
     bpMgr.checkBreakpoints(inspState);
   }
 

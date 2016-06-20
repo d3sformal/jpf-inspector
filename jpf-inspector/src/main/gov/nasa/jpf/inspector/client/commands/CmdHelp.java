@@ -23,7 +23,7 @@ public class CmdHelp extends ClientCommand {
     printHitConditions(outStream);
   }
 
-  private void printHitConditions(PrintStream outStream) {
+  private static void printHitConditions(PrintStream outStream) {
     outStream.println();
     outStream.println("You may use the following hit conditions: ");
     outStream.println("garbage_collection = begin/end/both\n" +
@@ -46,7 +46,7 @@ public class CmdHelp extends ClientCommand {
                               "custom_hit_condition ( arguments )");
   }
 
-  private void printCommands(PrintStream outStream) {
+  private static void printCommands(PrintStream outStream) {
     LinkedHashMap<String, List<CommandHelpInfo>> categories = new LinkedHashMap<>();
     // Linked hash map, because we want to preserve our order of categories
 
@@ -73,7 +73,7 @@ public class CmdHelp extends ClientCommand {
     }
   }
 
-  private void addCustomCommands(LinkedHashMap<String, List<CommandHelpInfo>> categories) {
+  private static void addCustomCommands(LinkedHashMap<String, List<CommandHelpInfo>> categories) {
     ArrayList<CommandHelpInfo> customCommands = new ArrayList<>();
     for (Map.Entry<String, CustomCommand> entry : InspectorConfiguration.getInstance().getCustomCommands()) {
       customCommands.add(new CommandHelpInfo(entry.getKey(), null, entry.getValue().getHelpText()));
@@ -81,7 +81,7 @@ public class CmdHelp extends ClientCommand {
     categories.put("Custom commands", customCommands);
   }
 
-  private void addAliases(LinkedHashMap<String, List<CommandHelpInfo>> categories) {
+  private static void addAliases(LinkedHashMap<String, List<CommandHelpInfo>> categories) {
     ArrayList<CommandHelpInfo> aliases = new ArrayList<>();
     for(CommandAlias alias : InspectorConfiguration.getInstance().getAliases()) {
       String aliasLeftPart = alias.getKey().trim();
@@ -101,7 +101,7 @@ public class CmdHelp extends ClientCommand {
     categories.put("Aliases", aliases);
   }
 
-  private void addBuiltInCommands(LinkedHashMap<String, List<CommandHelpInfo>> categories) {
+  private static void addBuiltInCommands(LinkedHashMap<String, List<CommandHelpInfo>> categories) {
     ArrayList<CommandHelpInfo> informationalCommands = new ArrayList<>();
     informationalCommands.add(new CommandHelpInfo("hello", null, "Prints a simple hello message."));
     informationalCommands.add(new CommandHelpInfo("help", null, "Prints this message."));
@@ -115,6 +115,7 @@ public class CmdHelp extends ClientCommand {
     execution.add(new CommandHelpInfo("continue", "run, cont", "Starts or resumes execution."));
     execution.add(new CommandHelpInfo("break", null, "Suspends execution."));
     execution.add(new CommandHelpInfo("wait", null, "Blocks until JPF becomes stopped."));
+    execution.add(new CommandHelpInfo("terminate", null, "Terminates JPF but keeps the shell open."));
     execution.add(new CommandHelpInfo("set [target] = [value]", null, "Modifies a variable's value."));
     categories.put("Execution commands", execution);
 
@@ -153,11 +154,12 @@ public class CmdHelp extends ClientCommand {
     categories.put("Choice generators", choiceGenerators);
   }
 
-  private String pad(String syntax, int length) {
+  private static String pad(String syntax, int length) {
     int spaces = length - syntax.length();
     String spaceString = "";
-    for (int i = 0; i < spaces; i++)
+    for (int i = 0; i < spaces; i++) {
       spaceString += " ";
+    }
     return syntax + spaceString;
   }
 
@@ -166,6 +168,9 @@ public class CmdHelp extends ClientCommand {
     return "help";
   }
 
+  /**
+   * Contains help information about a specific command (built-in or custom).
+   */
   private static class CommandHelpInfo {
     private final String syntax;
     private final String abbreviation;

@@ -43,6 +43,8 @@ import gov.nasa.jpf.vm.Instruction;
  * The factory creates expressions of the initial expression hiearchy by calling constructors and occasionally
  * manipulating an exception.
  */
+@SuppressWarnings("MethodMayBeStatic") // Some methods don't use the factory's fields.
+                                       // However, for consistency, all of them should be instance methods.
 public class ExpressionFactory {
   private final JPFInspector inspector;
   private final RelationOperatorFactory relopFactory;
@@ -236,7 +238,6 @@ public class ExpressionFactory {
   public ExpressionStateStaticAreaEntryList getStateStaticArea (ClassName cn) {
     return new ExpressionStateStaticAreaEntryList(cn);
   }
-  // TODO (elsewhere) print #stackSlot[0] causes assertionerror, if stack slot 0 is "this".
 
   public ExpressionStateValueConstBoolean getConstValueBoolean (boolean value) {
     return new ExpressionStateValueConstBoolean(value);

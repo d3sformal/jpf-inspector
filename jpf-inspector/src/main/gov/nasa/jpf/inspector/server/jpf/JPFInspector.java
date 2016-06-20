@@ -48,7 +48,7 @@ public abstract class JPFInspector implements JPFInspectorBackEndInterface {
   protected static final boolean DEBUG = false;
 
   /**
-   * File where print debug outputs, if not file exists, or name is empty then standard output is used
+   * File where print debug outputs, if not file exists, or name is empty then standard output is used.
    */
   private static final String DEBUG_OUTPUT_FILE = "/tmp/Inspector.log";
 
@@ -62,57 +62,69 @@ public abstract class JPFInspector implements JPFInspectorBackEndInterface {
    * Currently used JPF instance. Is null when no JPF is bound or if currently bound JPF terminates.
    */
   private JPF jpf = null;
-
-  protected final InspectorCallbacks callBacks;
-  protected final CallbacksSender callBacksSender;
-  protected final StopHolder stopHolder;
-  protected final CommandsManager cmdMgr;
-  protected final BreakpointHandler breakpointMgr;
-  protected final ProgramStateManager stateMgr;
-  protected final ChoiceGeneratorsManager cgMgr;
-  protected final DefaultForwardTraceManager dftMgr;
   private InspectorListener listener = null;
 
   /**
-   * Creates and initialize instance of inspector's server part.
-   * 
-   * @param userCallBacks Interface where callback events should take place. Cann't be null.
+   * This is the server-side serializer that can be called from the JPF thread and which sends callbacks to the user.
    */
-  protected JPFInspector (InspectorCallbacks userCallBacks) {
-    debugOutStream = System.out; // Fail safe
+  private final InspectorCallbacks serverCallbacks;
+  private final StopHolder stopHolder;
 
+  protected final CommandsManager commandsManager;
+  protected final BreakpointHandler breakpointHandler;
+  protected final ProgramStateManager stateManager;
+  protected final ChoiceGeneratorsManager choiceGeneratorsManager;
+  private final DefaultForwardTraceManager defaultForwardTraceManager;
+
+  /**
+   * Creates and initializes an instance of the Inspector's server part.
+   * 
+   * @param clientCallbacks Interface where callback events should take place. Can't be null.
+   */
+  protected JPFInspector (InspectorCallbacks clientCallbacks) {
+
+    // Set up debug output stream
     //noinspection ConstantConditions
     if ((DEBUG_OUTPUT_FILE != null) && !DEBUG_OUTPUT_FILE.isEmpty()) {
       try {
         debugOutStream = new PrintStream("/tmp/alf/Inspector.log");
       } catch (FileNotFoundException ignored) {
+        debugOutStream = System.out;
       }
+    } else {
+      debugOutStream = System.out;
     }
 
     if (DEBUG) {
-      getDebugPrintStream().println(JPFInspector.class.getSimpleName() + "." + JPFInspector.class.getSimpleName() + "callBacks=" + callBacks + " )");
+      getDebugPrintStream().println(JPFInspector.class.getSimpleName() + "." + JPFInspector.class.getSimpleName() + "callBacks=" + serverCallbacks + " )");
     }
-    assert userCallBacks != null;
 
-    this.callBacksSender = new CallbacksSender(this, userCallBacks);
-    this.callBacks = callBacksSender.getCallbackSerializer();
+    // Create the callback thread.
+    assert clientCallbacks != null;
+    CallbacksSender callbacksSender = new CallbacksSender(this, clientCallbacks);
+    this.serverCallbacks = callbacksSender.getCallbackSerializer();
 
-    this.stopHolder = new StopHolder(this, callBacks);
-    callBacksSender.enableSender(stopHolder);
+    // Construct components of the Inspector
+    this.stopHolder = new StopHolder(this, serverCallbacks);
 
-    this.dftMgr = new DefaultForwardTraceManager(this);
-    this.breakpointMgr = new BreakpointHandler(this, callBacks, stopHolder);
-    this.cmdMgr = new CommandsManager(this, stopHolder, breakpointMgr, callBacks, dftMgr);
-    this.stateMgr = new ProgramStateManager(this, stopHolder);
-    this.cgMgr = new ChoiceGeneratorsManager(this, callBacks, cmdMgr, stopHolder, dftMgr);
+    this.defaultForwardTraceManager = new DefaultForwardTraceManager(this);
+    this.breakpointHandler = new BreakpointHandler(this, serverCallbacks, stopHolder);
+    this.commandsManager = new CommandsManager(this, stopHolder, breakpointHandler, serverCallbacks,
+                                               defaultForwardTraceManager);
+    this.stateManager = new ProgramStateManager(this, stopHolder);
+    this.choiceGeneratorsManager = new ChoiceGeneratorsManager(this, serverCallbacks, commandsManager, stopHolder,
+                                                               defaultForwardTraceManager);
+
+    // Run the callback thread
+    callbacksSender.enableSender(stopHolder);
   }
 
   @Override
-  public InspectorCallbacks getCallBack () {
+  public InspectorCallbacks getServerCallbacks() {
     if (DEBUG) {
       getDebugPrintStream().println("  " + JPFInspector.class.getSimpleName() + ".getCallBack()");
     }
-    return callBacks;
+    return serverCallbacks;
   }
 
   @Override
@@ -182,24 +194,25 @@ public abstract class JPFInspector implements JPFInspectorBackEndInterface {
       notifyAll(); // JPF is now connected and the "run" command should be notified.
                    // This also requires synchronization.
 
-    listener = new InspectorListener(this, cmdMgr, breakpointMgr, cgMgr, dftMgr, originalSearchMultipleErrors);
+    listener = new InspectorListener(this, commandsManager, breakpointHandler, choiceGeneratorsManager,
+                                     defaultForwardTraceManager, originalSearchMultipleErrors);
     jpf.addListener(listener);
 
     // Initialize instance of the JPF
     Search search = jpf.getSearch();
     if (!(search instanceof SearchInspectorExtension)) {
       // There is no way how to swap search objects
-      getCallBack().genericInfo("Unsupported search class ('" + search.getClass().toString() + "', not all features will be available).\nUse 'gov.nasa.jpf.inspector.server.jpf.DFSearchInspector' or have your class implement the 'gov.nasa.jpf.inspector.server.jpf.SearchInspectorExtension' interface.");
+      getServerCallbacks().genericInfo("Unsupported search class ('" + search.getClass().toString() + "', not all features will be available).\nUse 'gov.nasa.jpf.inspector.server.jpf.DFSearchInspector' or have your class implement the 'gov.nasa.jpf.inspector.server.jpf.SearchInspectorExtension' interface.");
     } else {
       final SearchInspectorExtension searchInspector = (SearchInspectorExtension) search;
       searchInspector.setInspector(this);
     }
 
     // Notify all managers that there is new JPF instance (to be able to update its states)
-    cmdMgr.newJPF();
+    commandsManager.newJPF();
     stopHolder.newJPF();
-    breakpointMgr.newJPF();
-    callBacks.notifyStateChange(InspectorStatusChange.JPF_STARTED, null); // It has to be here because some code is excecuted BEFORE search started is called!!
+    breakpointHandler.newJPF();
+    serverCallbacks.notifyStateChange(InspectorStatusChange.JPF_STARTED, null); // It has to be here because some code is excecuted BEFORE search started is called!!
   }
 
   public synchronized void notifyJPFFinished () {

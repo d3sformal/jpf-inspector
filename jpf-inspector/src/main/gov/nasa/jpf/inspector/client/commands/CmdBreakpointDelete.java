@@ -40,7 +40,7 @@ public class CmdBreakpointDelete extends ClientCommand {
   public void execute(JPFInspectorClient client, JPFInspectorBackEndInterface inspector, PrintStream outStream) {
     try {
       int bpIDint = Integer.parseInt(bpID);
-      final boolean rc = inspector.deleteBreakPoint(bpIDint);
+      final boolean rc = inspector.deleteBreakpoint(bpIDint);
       if (!rc) {
         outStream.println("Breakpoint with ID " + bpIDint + " does not exist.");
       } else {

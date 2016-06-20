@@ -21,8 +21,8 @@ public class CallbackCommandUsedChoice implements CallbackCommand {
   }
 
   @Override
-  public void sendCallback (InspectorCallbacks callbacks) {
-    callbacks.notifyUsedChoice(cgType, cgName, cgId, usedChoiceIndex, usedChoice);
+  public void sendCallback (InspectorCallbacks clientCallbacks) {
+    clientCallbacks.notifyUsedChoice(cgType, cgName, cgId, usedChoiceIndex, usedChoice);
   }
 
   @Override

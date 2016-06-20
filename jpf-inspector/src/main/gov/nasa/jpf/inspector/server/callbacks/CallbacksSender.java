@@ -20,14 +20,12 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * Class used to handle callbacks.
+ * Class used to handle clientCallbacks.
  * 
- * This class serializes callbacks in correct order and can postpone JPF stopped callbacks.
+ * This class serializes clientCallbacks in the correct order and can postpone JPF stopped clientCallbacks.
  * 
- * This class should handle all callbacks which should occur after JPF is stopped. (Prevent creation of separate threads for each callbacks and related
- * non-determinism in callbacks order due to scheduling)
- * 
- * @author alf
+ * This class should handle all clientCallbacks which should occur after JPF is stopped.
+ * (Prevent creation of separate threads for each clientCallbacks and related non-determinism in clientCallbacks order due to scheduling)
  */
 public class CallbacksSender extends Thread {
   protected static final boolean DEBUG = false;
@@ -38,15 +36,22 @@ public class CallbacksSender extends Thread {
    * Flag if true the enabe waits (for notification) until the running "Callbacks thread" first blocks
    */
   private volatile boolean notifyEnable;
-  private final InspectorCallbacks callbacks;
+  private final InspectorCallbacks clientCallbacks;
   /**
    * Cyclic dependency - set immediately after stopHolder is created
    */
   private StopHolder stopHolder;
 
-  private final List<CallbackCommand> cmdCBQueue;
+  /**
+   * Queue of clientCallbacks scheduled to be sent from the server to the client. This queue also acts as the monitor
+   * mutex for this class and as the condition variable for this class.
+   *
+   * The queue itself is created using {@link Collections#synchronizedList(List)} which seems excessive because we are
+   * doing locking manually anyway, but I guess a second failsafe does not hurt.
+   */
+  private final List<CallbackCommand> callbackQueue;
 
-  public CallbacksSender (JPFInspector inspector, InspectorCallbacks callbacks) {
+  public CallbacksSender (JPFInspector inspector, InspectorCallbacks clientCallbacks) {
     super(CallbacksSender.class.getSimpleName());
     if (DEBUG) {
       inspector.getDebugPrintStream().println(CallbacksSender.class.getSimpleName() + "." + CallbacksSender.class.getSimpleName() + "(...)");
@@ -58,9 +63,9 @@ public class CallbacksSender extends Thread {
 
     terminating = false;
     notifyEnable = true;
-    cmdCBQueue = Collections.synchronizedList(new LinkedList<>());
+    callbackQueue = Collections.synchronizedList(new LinkedList<>());
 
-    this.callbacks = callbacks;
+    this.clientCallbacks = clientCallbacks;
     this.out = inspector.getDebugPrintStream();
   }
 
@@ -76,19 +81,23 @@ public class CallbacksSender extends Thread {
     super.finalize();
   }
 
+  /**
+   * Runs this thread, then blocks until the thread actually starts executing.
+   * @param stopHolder The server's {@link StopHolder}.
+   */
   public void enableSender (StopHolder stopHolder) {
     // Have to be set exactly once
     assert (stopHolder != null);
     assert (this.stopHolder == null);
 
-    synchronized (cmdCBQueue) {
+    synchronized (callbackQueue) {
       this.stopHolder = stopHolder;
       notifyEnable = true;
 
       start();
 
       try {
-        cmdCBQueue.wait();
+        callbackQueue.wait();
       } catch (InterruptedException e) {
         Thread.currentThread().interrupt();
       }
@@ -99,12 +108,12 @@ public class CallbacksSender extends Thread {
     if (DEBUG) {
       out.println(this.getClass().getSimpleName() + ".terminate()");
     }
-    synchronized (cmdCBQueue) {
+    synchronized (callbackQueue) {
       terminating = true;
-      cmdCBQueue.clear();
-      cmdCBQueue.notifyAll(); // Wake up "Callback thread"
+      callbackQueue.clear();
+      callbackQueue.notifyAll(); // Wake up "Callback thread"
       try {
-        cmdCBQueue.wait();
+        callbackQueue.wait();
       } catch (InterruptedException e) {
         Thread.currentThread().interrupt();
       }
@@ -114,33 +123,35 @@ public class CallbacksSender extends Thread {
     }
   }
 
-  // "Callback thread"
+  /**
+   * This callback thread is responsible for sending clientCallbacks to the client.
+   */
   @Override
   public void run () {
     if (DEBUG) {
       out.println(this.getClass().getSimpleName() + ".run()");
     }
     while (!terminating) {
-      synchronized (cmdCBQueue) {
+      synchronized (callbackQueue) {
         // Wait until termination or CB to process
-        while (!terminating && cmdCBQueue.isEmpty()) {
+        while (!terminating && callbackQueue.isEmpty()) {
           try {
             if (DEBUG) {
               out.println(this.getClass().getSimpleName() + ".run() - waiting for new command");
             }
             if (notifyEnable) {
-              cmdCBQueue.notifyAll(); // Wakes up {@link #enableSender(StopHolder)} method when block in wait();
+              callbackQueue.notifyAll(); // Wakes up {@link #enableSender(StopHolder)} method when block in wait();
               notifyEnable = false;
             }
-            cmdCBQueue.wait();
+            callbackQueue.wait();
           } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
           }
         }
       }
 
-      if (!cmdCBQueue.isEmpty()) {
-        CallbackCommand cmdCB = cmdCBQueue.remove(0);
+      if (!callbackQueue.isEmpty()) {
+        CallbackCommand cmdCB = callbackQueue.remove(0);
         if (DEBUG) {
           out.println(this.getClass().getSimpleName() + ".run() - CB to process cmdCB=" + cmdCB);
         }
@@ -154,48 +165,59 @@ public class CallbacksSender extends Thread {
         if (DEBUG) {
           out.println(this.getClass().getSimpleName() + ".run() - sending SB cmdCB=" + cmdCB);
         }
-        cmdCB.sendCallback(callbacks);
+        cmdCB.sendCallback(clientCallbacks);
       }
     }
 
-    synchronized (cmdCBQueue) {
-      cmdCBQueue.notifyAll(); // WakeUP terminate method
+    synchronized (callbackQueue) {
+      callbackQueue.notifyAll(); // WakeUP terminate method
     }
     if (DEBUG) {
       out.println(this.getClass().getSimpleName() + ".run() - end");
     }
   }
 
+
   /**
-   * Queue new callback to be executed.
+   * Gets the interface whose methods will cause new clientCallbacks to be sent to the client via this thread.
+   * @return This thread's serializer.
    */
-  private void planNewCallback (CallbackCommand cmdCB) {
-    if (DEBUG) {
-      out.println(this.getClass().getSimpleName() + ".planNewCallback(cmdCB=" + cmdCB + ")");
-    }
-
-    assert (stopHolder != null); // too early to register CB
-
-    synchronized (cmdCBQueue) {
-      if (DEBUG) {
-        out.println(this.getClass().getSimpleName() + ".planNewCallback(cmdCB=" + cmdCB + ") - synch");
-      }
-      if (!terminating) {
-        cmdCBQueue.add(cmdCB);
-        cmdCBQueue.notify(); // Wake up "Callback thread" if blocked
-      }
-    }
-    if (DEBUG) {
-      out.println(this.getClass().getSimpleName() + ".planNewCallback(cmdCB=" + cmdCB + ") - end");
-    }
-  }
-
   public InspectorCallbacks getCallbackSerializer () {
     return new CallbacksSerializer();
   }
 
+  /**
+   * This class implements {@link InspectorCallbacks} in the server. If you call a method of this class,
+   * the appropriate callback will be scheduled to be sent to the client.\
+   *
+   * All methods of this class merely create a new {@link CallbackCommand} and add it to the callback queue.
+   */
   private class CallbacksSerializer implements InspectorCallbacks {
 
+    /**
+     * Queue a new callback to be sent.
+     * @param cmdCB The callback to be sent to the client.
+     */
+    private void planNewCallback (CallbackCommand cmdCB) {
+      if (DEBUG) {
+        out.println(this.getClass().getSimpleName() + ".planNewCallback(cmdCB=" + cmdCB + ")");
+      }
+
+      assert (stopHolder != null); // too early to register CB
+
+      synchronized (callbackQueue) {
+        if (DEBUG) {
+          out.println(this.getClass().getSimpleName() + ".planNewCallback(cmdCB=" + cmdCB + ") - synch");
+        }
+        if (!terminating) {
+          callbackQueue.add(cmdCB);
+          callbackQueue.notify(); // Wake up "Callback thread" if blocked
+        }
+      }
+      if (DEBUG) {
+        out.println(this.getClass().getSimpleName() + ".planNewCallback(cmdCB=" + cmdCB + ") - end");
+      }
+    }
     @Override
     public void notifyStateChange (InspectorStatusChange newState, String details) {
       CallbackCommandStateChanged cb = new CallbackCommandStateChanged(newState, details);

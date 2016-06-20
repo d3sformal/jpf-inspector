@@ -22,10 +22,15 @@ package gov.nasa.jpf.inspector.interfaces;
 import gov.nasa.jpf.vm.ChoiceGenerator;
 
 /**
- * TODO This is implemented by both client and server classes?? Something strange is going on.
+ * This handles callbacks from the server to the client. Used to notify the client about interesting events.
  *
- * This handles callbacks to the client. Used to notify client about interesting events.
  * Client has to implement this interface and provide these methods to the server.
+ * The server has a class that implements this interface and uses it to send these callbacks.
+ *
+ * Thus, the methods of this interface have a double meaning:
+ *
+ * 1. In the client, their implementation is what happens when the callback is received.
+ * 2. In the server, their implementation means "send this callback now".
  * 
  * Note: Only the JPF thread is permitted to sent callbacks.
  * TODO this is strange, examine it:

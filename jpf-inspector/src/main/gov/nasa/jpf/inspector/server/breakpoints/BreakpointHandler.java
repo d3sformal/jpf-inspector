@@ -224,7 +224,7 @@ public class BreakpointHandler implements BreakPointManagerInterface {
   }
 
   @Override
-  public boolean deleteBreakPoint (int bpID) {
+  public boolean deleteBreakpoint(int bpID) {
     synchronized (breakpoints) {
       InternalBreakpointHolder removedBP = breakpoints.remove(bpID);
       return removedBP != null;
