@@ -30,6 +30,7 @@ public class CorrectOutputTest extends CorrectOutputAbstractTest {
           getCase("features/extensibility", "alias"),
           getCase("features/extensibility", "custom"),
           getCase("features/extensibility", "then"),
+          getCase("features/extensibility", "then_advanced"),
           getCase("features/extensibility", "cycle"),
           getCase("features/extensibility", "args"),
           getCase("features/extensibility", "argument_mismatch"),

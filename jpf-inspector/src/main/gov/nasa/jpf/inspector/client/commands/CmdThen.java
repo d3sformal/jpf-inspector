@@ -4,6 +4,7 @@ import gov.nasa.jpf.inspector.client.ClientCommand;
 import gov.nasa.jpf.inspector.client.ClientCommandInterface;
 import gov.nasa.jpf.inspector.client.JPFInspectorClient;
 import gov.nasa.jpf.inspector.interfaces.JPFInspectorBackEndInterface;
+import gov.nasa.jpf.inspector.utils.InspectorConfiguration;
 
 import java.io.PrintStream;
 
@@ -22,6 +23,15 @@ public class CmdThen extends ClientCommand {
   @Override
   public void execute(JPFInspectorClient client, JPFInspectorBackEndInterface inspector, PrintStream outStream) {
     firstCommand.execute(client, inspector, outStream);
+
+    if (InspectorConfiguration.getInstance().isSafeModeActive()) {
+      boolean paused = inspector.isPaused();
+      if (!paused && !secondCommand.isSafeToExecuteWhenNotPaused()) {
+        outStream.println("ERR: The command '" + secondCommand.getNormalizedCommand() + "' may only be used when JPF has started and is paused. The previous command was executed, though.");
+        client.recordComment("The command '" + secondCommand.getNormalizedCommand() + "' failed because safe mode disabled it.");
+        return;
+      }
+    }
     secondCommand.execute(client, inspector, outStream);
   }
 
@@ -32,6 +42,6 @@ public class CmdThen extends ClientCommand {
 
   @Override
   public boolean isSafeToExecuteWhenNotPaused() {
-    return firstCommand.isSafeToExecuteWhenNotPaused() && secondCommand.isSafeToExecuteWhenNotPaused();
+    return firstCommand.isSafeToExecuteWhenNotPaused();
   }
 }
