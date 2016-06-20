@@ -30,6 +30,7 @@ import java.util.Scanner;
  * any implementations of JPFShell, we must redo most of the Shell's work from scratch here.
  *
  */
+@SuppressWarnings({"NonSerializableFieldInSerializableClass", "serial"}) // This class is only serializable because it inherits from JFrame.
 public final class CommandLineShell extends Shell implements VerifyCommandListener {
   private InputStream inputStream;
   private PrintStream outputStream;
@@ -57,12 +58,12 @@ public final class CommandLineShell extends Shell implements VerifyCommandListen
         outputStream.println(Constants.PROMPT + command);
       }
 
-      if (command.length() > 0) {
+      if (!command.isEmpty()) {
         inspector.executeCommand(command, ExecutionContext.FROM_COMMAND_LINE_TERMINAL);
       }
 
       if (!batchMode) {
-        System.out.print(Constants.PROMPT);
+        outputStream.print(Constants.PROMPT);
       }
     }
   }
