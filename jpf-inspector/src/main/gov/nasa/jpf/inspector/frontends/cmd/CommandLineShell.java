@@ -66,6 +66,12 @@ public final class CommandLineShell extends Shell implements VerifyCommandListen
         outputStream.print(Constants.PROMPT);
       }
     }
+    // No more commands will be given.
+    // Let's terminate JPF then.
+    if (inspector.isPaused()) {
+      inspector.executeCommand("wait", ExecutionContext.FROM_COMMAND_LINE_TERMINAL);
+      inspector.executeCommand("terminate", ExecutionContext.FROM_COMMAND_LINE_TERMINAL);
+    }
   }
 
 

@@ -16,6 +16,8 @@ public interface JPFInspectorClientInterface {
 
   void executeCommand(String cmd, ExecutionContext context);
 
+  boolean isPaused();
+
   /**
    * Connects the client to a specific instance of Java PathFinder.
    * 

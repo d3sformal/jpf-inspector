@@ -10,6 +10,8 @@ import org.junit.Assert;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 
 public abstract class CorrectOutputAbstractTest {
   public static final String BASEFOLDER = "jpf-inspector/src/tests/gov/nasa/jpf/inspector/tests/acceptance/";
@@ -62,13 +64,17 @@ public abstract class CorrectOutputAbstractTest {
     }
     ByteArrayOutputStream baos = new ByteArrayOutputStream();
     PrintStream printStream = new PrintStream(baos);
+    String expectedOutput = readAllFile(outputFile);
+
 
 
     JPFShell shell = new CommandLineShell(applicationPropertyFile, inputStream, printStream);
     shell.start(args);
 
+
     String actualOutput = new String(baos.toByteArray(), StandardCharsets.UTF_8);
-    String expectedOutput = readAllFile(outputFile);
     Judge.judge(actualOutput, expectedOutput);
+
+
   }
 }

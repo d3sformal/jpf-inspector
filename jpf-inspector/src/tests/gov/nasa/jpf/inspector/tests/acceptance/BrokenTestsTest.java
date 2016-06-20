@@ -10,7 +10,6 @@ import org.junit.runners.Parameterized.Parameters;
 
 import java.util.Arrays;
 
-@Ignore
 @RunWith(Parameterized.class)
 public class BrokenTestsTest extends CorrectOutputAbstractTest {
 
@@ -26,8 +25,8 @@ public class BrokenTestsTest extends CorrectOutputAbstractTest {
   @Parameters(name = "{0}")
   public static Iterable<?> data() {
      return Arrays.asList(
-             getCase("broken", "everrun"),
              getCase("broken", "everstop")
+             // We won't test infinitely running test cases because we don't have a good means of timeout.
      );
   }
 

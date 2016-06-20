@@ -16,6 +16,5 @@ public class CorrectOutputTestCase {
     this.inputFile = inputFile;
     this.outputFile = outputFile;
     this.applicationFile = applicationFile;
-
   }
 }

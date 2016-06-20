@@ -166,6 +166,11 @@ public class JPFInspectorClient implements JPFInspectorClientInterface {
   }
 
   @Override
+  public boolean isPaused() {
+    return inspector.isPaused();
+  }
+
+  @Override
   public void connect2JPF (JPF jpf) throws JPFInspectorGenericErrorException {
     // Recording cannot be used in the method, so far, because it would cause a deadlock with the "recorder" sync object.
 
