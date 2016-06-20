@@ -1,0 +1,26 @@
+cr bp 10 <= hc it=lock
+enable ask all cg
+run
+cg select 0
+wait
+step_transition
+run
+run
+cg select 1
+wait
+print #thread[1].#stackFrame[0]
+print #heap[336].left
+st
+cg select 1
+wait
+bst
+run
+print #heap[336].right
+used cg
+disable cg
+enable print scheduling cg
+run
+back-step_transition
+st
+del bp 1
+run

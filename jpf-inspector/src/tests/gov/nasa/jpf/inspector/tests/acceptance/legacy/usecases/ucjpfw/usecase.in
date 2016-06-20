@@ -1,0 +1,18 @@
+cr bp pos=*Racer.java:35
+run
+print #thread[0].#stackFrame[0]
+print #heap[0x13d]
+so
+so
+so
+bso
+bso
+set #heap[0x13d].d = 0
+print #heap[0x13d]
+so
+so
+so
+rec print
+
+# Record execution will be a little harder to test automatically.
+# But it should be doable.

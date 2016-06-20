@@ -34,8 +34,6 @@ public class CorrectOutputTest extends CorrectOutputAbstractTest {
           getCase("legacy/simpleassignments", "SimpleAssignments"),
           getCase("features/fixheap", "heap"),
           getCase("features/decimal", "decimal")
-         // getCase("broken", "everrun"),
-         // getCase("broken", "everstop")
      );
   }
 
