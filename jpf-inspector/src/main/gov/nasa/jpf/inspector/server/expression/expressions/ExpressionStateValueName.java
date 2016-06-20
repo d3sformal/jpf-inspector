@@ -203,7 +203,6 @@ public class ExpressionStateValueName extends ExpressionStateValue {
           Statics statics = ClassLoaderInfo.getCurrentClassLoader().getStatics();
           for (int i = 0; i < statics.size(); i++) {
             StaticElementInfo aStaticClass = statics.get(i);
-            System.out.println(aStaticClass.getClassInfo().getName());
             if ((aStaticClass.getClassInfo().getName().endsWith("." + varName))) {
               sei = aStaticClass;
               break;

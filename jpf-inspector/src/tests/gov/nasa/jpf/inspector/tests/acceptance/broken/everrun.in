@@ -1,0 +1,3 @@
+# This program gets stuck in an infinite loop and never stops.
+# It should time out.
+run

@@ -1,0 +1,4 @@
+# This program stops execution and then ends,
+# without letting JPF terminate.
+# The test environment should terminate JPF on its own.
+commence
