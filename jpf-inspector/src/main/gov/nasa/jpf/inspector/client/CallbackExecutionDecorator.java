@@ -38,14 +38,19 @@ import java.io.PrintStream;
  * 
  * Has 2 working modes - pass through {@link WORKING_MODE#WM_USER_COMMANDS}
  * or blocking {@link WORKING_MODE#WM_EXECUTION_RECORD}.
+ *
+ * Well, this class is a mess. As far as I can tell, it only actually does something while in record execution mode
+ * and it attempts to synchronize the hidden "wait for callback" commands with the actual callbacks, and it causes the
+ * JPF thread or whatever is calling these callbacks to wait (on the recorder object) until the command executes or something.
+ * It's weird.
  * 
  * @author Alf
  * 
  */
-public class CallbackExecutionDecorator implements InspectorCallbacks {
-
-  protected static final boolean DEBUG = false;
-  protected final PrintStream out;
+public final class CallbackExecutionDecorator implements InspectorCallbacks {
+  private static final boolean DEBUG = false;
+  @SuppressWarnings("FieldCanBeLocal") // IDEA bug
+  private final PrintStream debugOutStream;
 
   /**
    * Way in which decorator works.
@@ -64,33 +69,46 @@ public class CallbackExecutionDecorator implements InspectorCallbacks {
     WM_EXECUTION_RECORD,
   }
 
-  // *************************************************************************
-  // Protected entries
-  // *************************************************************************
 
-  private final Object syncObj; // Object on which access to Callbacks are synchronized and threads are blocked
-  private final InspectorCallbacks cb; // Where forward callbacks
+  /**
+   * Object on which access to Callbacks are synchronized and threads are blocked.
+   * This should be the client's {@link CommandRecorder}.
+   * All methods of this class are synchronized on this object. Condition variables are also used.
+   */
+  private final CommandRecorder syncObj;
+  /**
+   * The wrapped callback handler.
+   */
+  private final InspectorCallbacks cb;
 
-  protected WORKING_MODE mode;
+  private WORKING_MODE mode;
 
-  protected CallbackKind method = null; // If not null -> Command thread waits for specified CallBack
+  /**
+   * When this is not null, the command execution thread is waiting for a callback of this kind.
+   */
+  private CallbackKind method = null;
 
+  /**
+   * When this is not null and {@link #method} is {@link CallbackKind#CB_STATE_CHANGE}, then the command execution
+   * thread is waiting for a state-change callback that changes to this state.
+   */
   private InspectorStatusChange cbStateChange_expectedState = null;
 
   private boolean isCBwaiting;
-  protected boolean error;
+  private boolean error;
 
   /**
+   * Initializes a new instance of this decorator.
    * 
    * @param syncObj Object used to synchronized Command and CallBacks thread
    * @param cb Where to send/forward callbacks
-   * @param outStream Debug output stream
+   * @param debugOutStream Debug output stream
    */
-  public CallbackExecutionDecorator (Object syncObj, InspectorCallbacks cb, PrintStream outStream) {
+  public CallbackExecutionDecorator (CommandRecorder syncObj, InspectorCallbacks cb, PrintStream debugOutStream) {
     this.syncObj = syncObj;
     this.cb = cb;
     this.mode = WORKING_MODE.WM_USER_COMMANDS;
-    this.out = outStream;
+    this.debugOutStream = debugOutStream;
 
     this.isCBwaiting = false;
     this.error = false;
@@ -126,10 +144,6 @@ public class CallbackExecutionDecorator implements InspectorCallbacks {
     }
   }
 
-  // **************************************************************************
-  // **************************************************************************
-  // **************************************************************************
-
   // Block CB thread until Command thread specifies which CB is expected
   // Null means pass any possible callback
   private void waitUntilCBIsSpecified(CallbackKind calledCallback) {
@@ -157,24 +171,34 @@ public class CallbackExecutionDecorator implements InspectorCallbacks {
     }
   }
 
-  // Blocks Command thread until first callback is executed
+  /**
+   * Blocks execution until a callback of the specified kind arrives from the server.
+   *
+   * This must only be called by the command execution thread.
+   * This only has an effect while executing a record, not during normal command entering.
+   *
+   * @param wait4method Type of the callback to wait for.
+   */
   private void waitForCB(CallbackKind wait4method) {
     synchronized (syncObj) {
       if (mode == WORKING_MODE.WM_EXECUTION_RECORD) {
 
+        // Wait until we either leave record execution mode or until all wait-for-callback commands are processed.
+        // In practice, I think this loop shouldn't ever be entered, but what do I know.
         while (method != null && mode == WORKING_MODE.WM_EXECUTION_RECORD) {
           try {
             syncObj.wait();
           } catch (InterruptedException e) {
-            // Ignore
+            Thread.currentThread().interrupt();
           }
         }
 
+        // If, in the meantime, we left record execution mode, then this command ceases to have any effect.
         if (mode == WORKING_MODE.WM_EXECUTION_RECORD) {
           method = wait4method;
 
           if (isCBwaiting) {
-            // WakeUP waiting CB thread
+            // Wake up waiting CB thread
             syncObj.notifyAll();
           }
 
@@ -182,7 +206,7 @@ public class CallbackExecutionDecorator implements InspectorCallbacks {
           try {
             syncObj.wait();
           } catch (InterruptedException e) {
-            // Ignore
+            Thread.currentThread().interrupt();
           }
         }
       }
@@ -198,18 +222,15 @@ public class CallbackExecutionDecorator implements InspectorCallbacks {
     }
   }
 
-  // **************************************************************************
-  // **************************************************************************
-  // **************************************************************************
 
   @Override
   public void notifyStateChange (InspectorStatusChange newState, String details) {
     if (DEBUG) {
-      out.println(this.getClass().getSimpleName() + ".notifyStateChange( newState=" + newState + ", details=" + details + ")");
+      debugOutStream.println(this.getClass().getSimpleName() + ".notifyStateChange( newState=" + newState + ", details=" + details + ")");
     }
     synchronized (syncObj) {
       if (DEBUG) {
-        out.println(this.getClass().getSimpleName() + ".notifyStateChange - in sync section");
+        debugOutStream.println(this.getClass().getSimpleName() + ".notifyStateChange - in sync section");
       }
 
       if (mode == WORKING_MODE.WM_EXECUTION_RECORD) {
@@ -226,64 +247,35 @@ public class CallbackExecutionDecorator implements InspectorCallbacks {
     }
 
     if (DEBUG) {
-      out.println(this.getClass().getSimpleName() + ".notifyStateChange( newState=" + newState + ", details=" + details + ") - end");
+      debugOutStream.println(this.getClass().getSimpleName() + ".notifyStateChange( newState=" + newState + ", details=" + details + ") - end");
     }
 
   }
-
-  public void nextCB_StateChange (InspectorStatusChange expectedState) {
-    if (DEBUG) {
-      out.println(this.getClass().getSimpleName() + ".nextCB_StateChange(expectedState=" + expectedState + ")");
-    }
-
-    synchronized (syncObj) {
-      cbStateChange_expectedState = expectedState;
-      waitForCB(CallbackKind.CB_STATE_CHANGE);
-    }
-
-    if (DEBUG) {
-      out.println(this.getClass().getSimpleName() + ".nextCB_StateChange(expectedState=" + expectedState + ") - end");
-    }
-  }
-
-  /* **************************************************************************/
-  /* **************************************************************************/
-  /* **************************************************************************/
-
   @Override
   public void genericError (String msg) {
     if (DEBUG) {
-      out.println(this.getClass().getSimpleName() + ".genericError(msg=" + msg + ")");
+      debugOutStream.println(this.getClass().getSimpleName() + ".genericError(msg=" + msg + ")");
     }
 
     synchronized (syncObj) {
       if (DEBUG) {
-        out.println(this.getClass().getSimpleName() + ".genericError - in sync section");
+        debugOutStream.println(this.getClass().getSimpleName() + ".genericError - in sync section");
       }
 
-      waitUntilCBIsSpecified(CallbackKind.CB_STATE_CHANGE);
+      waitUntilCBIsSpecified(CallbackKind.CB_GENERIC_ERROR);
       cb.genericError(msg);
       unblockCmdThread();
     }
   }
-
-  public void nextCB_genericError () {
-    waitForCB(CallbackKind.CB_GENERIC_ERROR);
-  }
-
-  /* **************************************************************************/
-  /* **************************************************************************/
-  /* **************************************************************************/
-
   @Override
   public void genericInfo (String msg) {
     if (DEBUG) {
-      out.println(this.getClass().getSimpleName() + ".genericInfo(msg=" + msg + ")");
+      debugOutStream.println(this.getClass().getSimpleName() + ".genericInfo(msg=" + msg + ")");
     }
 
     synchronized (syncObj) {
       if (DEBUG) {
-        out.println(this.getClass().getSimpleName() + ".genericInfo - in sync section");
+        debugOutStream.println(this.getClass().getSimpleName() + ".genericInfo - in sync section");
       }
 
       waitUntilCBIsSpecified(CallbackKind.CB_ANY);
@@ -293,26 +285,18 @@ public class CallbackExecutionDecorator implements InspectorCallbacks {
     }
 
     if (DEBUG) {
-      out.println(this.getClass().getSimpleName() + ".genericInfo(msg=" + msg + ") - end");
+      debugOutStream.println(this.getClass().getSimpleName() + ".genericInfo(msg=" + msg + ") - end");
     }
   }
-
-  public void nextCB_genericInfo () {
-    // Nothing to do (Generic infos are ignored)
-  }
-
-  /* **************************************************************************/
-  /* **************************************************************************/
-  /* **************************************************************************/
   @Override
   public void notifyBreakpointHit (BreakpointStatus bp) {
     if (DEBUG) {
-      out.println(this.getClass().getSimpleName() + ".notifyBreakpointHit(bp=" + bp + ")");
+      debugOutStream.println(this.getClass().getSimpleName() + ".notifyBreakpointHit(bp=" + bp + ")");
     }
 
     synchronized (syncObj) {
       if (DEBUG) {
-        out.println(this.getClass().getSimpleName() + ".notifyBreakpointHit - in synch section");
+        debugOutStream.println(this.getClass().getSimpleName() + ".notifyBreakpointHit - in synch section");
       }
 
       waitUntilCBIsSpecified(CallbackKind.CB_BREAKPOINT_HIT);
@@ -321,27 +305,20 @@ public class CallbackExecutionDecorator implements InspectorCallbacks {
     }
 
     if (DEBUG) {
-      out.println(this.getClass().getSimpleName() + ".notifyBreakpointHit(bp=" + bp + ") - end");
+      debugOutStream.println(this.getClass().getSimpleName() + ".notifyBreakpointHit(bp=" + bp + ") - end");
     }
   }
 
-  public void nextCB_BreakpointHit () {
-    waitForCB(CallbackKind.CB_BREAKPOINT_HIT);
-  }
-
-  /* **************************************************************************/
-  /* **************************************************************************/
-  /* **************************************************************************/
 
   @Override
   public void notifyChoiceGeneratorNewChoice (CGTypes cgType, String cgName, int cgId, String[] choices, int nextChoice, int defaultChoice) {
     if (DEBUG) {
-      out.println(this.getClass().getSimpleName() + ".notifyChoiceGeneratorNewChoice(...)");
+      debugOutStream.println(this.getClass().getSimpleName() + ".notifyChoiceGeneratorNewChoice(...)");
     }
 
     synchronized (syncObj) {
       if (DEBUG) {
-        out.println(this.getClass().getSimpleName() + ".notifyChoiceGeneratorNewChoice(...) - in sync section");
+        debugOutStream.println(this.getClass().getSimpleName() + ".notifyChoiceGeneratorNewChoice(...) - in sync section");
       }
 
       waitUntilCBIsSpecified(CallbackKind.CB_CG_NEW_CHOICE);
@@ -350,28 +327,19 @@ public class CallbackExecutionDecorator implements InspectorCallbacks {
     }
 
     if (DEBUG) {
-      out.println(this.getClass().getSimpleName() + ".notifyChoiceGeneratorNewChoice(...) - end");
+      debugOutStream.println(this.getClass().getSimpleName() + ".notifyChoiceGeneratorNewChoice(...) - end");
     }
 
   }
-
-  public void nextCB_ChoiceGeneratorNewChoice () {
-    waitForCB(CallbackKind.CB_CG_NEW_CHOICE);
-  }
-
-  /* **************************************************************************/
-  /* **************************************************************************/
-  /* **************************************************************************/
-
   @Override
   public void specifyChoiceToUse (int maxChoiceIndex) {
     if (DEBUG) {
-      out.println(this.getClass().getSimpleName() + ".specifyChoiceToUse(maxChoiceIndex=" + maxChoiceIndex + ")");
+      debugOutStream.println(this.getClass().getSimpleName() + ".specifyChoiceToUse(maxChoiceIndex=" + maxChoiceIndex + ")");
     }
 
     synchronized (syncObj) {
       if (DEBUG) {
-        out.println(this.getClass().getSimpleName() + ".specifyChoiceToUse - in sync section");
+        debugOutStream.println(this.getClass().getSimpleName() + ".specifyChoiceToUse - in sync section");
       }
       waitUntilCBIsSpecified(CallbackKind.CB_CG_CHOICE_TO_USE);
       cb.specifyChoiceToUse(maxChoiceIndex);
@@ -379,28 +347,19 @@ public class CallbackExecutionDecorator implements InspectorCallbacks {
     }
 
     if (DEBUG) {
-      out.println(this.getClass().getSimpleName() + ".specifyChoiceToUse(maxChoiceIndex=" + maxChoiceIndex + ") - end");
+      debugOutStream.println(this.getClass().getSimpleName() + ".specifyChoiceToUse(maxChoiceIndex=" + maxChoiceIndex + ") - end");
     }
 
   }
-
-  public void nextCB_specifyChoiceToUse () {
-    waitForCB(CallbackKind.CB_CG_CHOICE_TO_USE);
-  }
-
-  /* **************************************************************************/
-  /* **************************************************************************/
-  /* **************************************************************************/
-
   @Override
   public void notifyUsedChoice (CGTypes cgType, String cgName, int cgId, int usedChoiceIndex, String usedChoice) {
     if (DEBUG) {
-      out.println(this.getClass().getSimpleName() + ".notifyUsedChoice(...)");
+      debugOutStream.println(this.getClass().getSimpleName() + ".notifyUsedChoice(...)");
     }
 
     synchronized (syncObj) {
       if (DEBUG) {
-        out.println(this.getClass().getSimpleName() + ".notifyUsedChoice(...) - in sync section");
+        debugOutStream.println(this.getClass().getSimpleName() + ".notifyUsedChoice(...) - in sync section");
       }
       waitUntilCBIsSpecified(CallbackKind.CB_CG_USED_CHOICE);
       cb.notifyUsedChoice(cgType, cgName, cgId, usedChoiceIndex, usedChoice);
@@ -408,12 +367,33 @@ public class CallbackExecutionDecorator implements InspectorCallbacks {
     }
 
     if (DEBUG) {
-      out.println(this.getClass().getSimpleName() + ".notifyUsedChoice(...) - end");
+      debugOutStream.println(this.getClass().getSimpleName() + ".notifyUsedChoice(...) - end");
     }
   }
 
+  public void nextCB_genericError () {
+    waitForCB(CallbackKind.CB_GENERIC_ERROR);
+  }
+  public void nextCB_genericInfo () {
+    // Nothing to do (Generic infos are ignored)
+  }
+  public void nextCB_BreakpointHit () {
+    waitForCB(CallbackKind.CB_BREAKPOINT_HIT);
+  }
+  public void nextCB_ChoiceGeneratorNewChoice () {
+    waitForCB(CallbackKind.CB_CG_NEW_CHOICE);
+  }
+  public void nextCB_specifyChoiceToUse () {
+    waitForCB(CallbackKind.CB_CG_CHOICE_TO_USE);
+  }
   public void nextCB_UsedChoice () {
     waitForCB(CallbackKind.CB_CG_USED_CHOICE);
+  }
+  public void nextCB_StateChange (InspectorStatusChange expectedState) {
+    synchronized (syncObj) {
+      cbStateChange_expectedState = expectedState;
+      waitForCB(CallbackKind.CB_STATE_CHANGE);
+    }
   }
 
 }

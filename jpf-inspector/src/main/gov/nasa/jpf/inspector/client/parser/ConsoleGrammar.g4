@@ -23,7 +23,7 @@ options {
 @header{
 package gov.nasa.jpf.inspector.client.parser.generated;
 import gov.nasa.jpf.inspector.interfaces.*;
-import gov.nasa.jpf.inspector.interfaces.CommandsInterface.InspectorStates;
+import gov.nasa.jpf.inspector.interfaces.InspectorStatusChange;
 import gov.nasa.jpf.inspector.interfaces.CallbackKind;
 import gov.nasa.jpf.inspector.client.*;
 import gov.nasa.jpf.inspector.client.commands.*;
@@ -259,11 +259,11 @@ cmdCallback returns [ClientCommand value]
     | TOKEN_CB_CG_USED_CHOICE                                              { $value = new CmdCallback(CallbackKind.CB_CG_USED_CHOICE); }
     ;
 
-inspectorState returns [InspectorStates state]
-    : TOKEN_RUNNING         { $state = InspectorStates.JPF_RUNNING; }
-    | TOKEN_STARTED         { $state = InspectorStates.JPF_STARTED; }
-    | TOKEN_STOPPED         { $state = InspectorStates.JPF_STOPPED; }
-    | TOKEN_TERMINATING     { $state = InspectorStates.JPF_TERMINATING; }
+inspectorState returns [InspectorStatusChange state]
+    : TOKEN_RUNNING         { $state = InspectorStatusChange.JPF_RUNNING; }
+    | TOKEN_STARTED         { $state = InspectorStatusChange.JPF_STARTED; }
+    | TOKEN_STOPPED         { $state = InspectorStatusChange.JPF_STOPPED; }
+    | TOKEN_TERMINATING     { $state = InspectorStatusChange.JPF_TERMINATING; }
     ;
     
 cmdRecord returns [ClientCommand value]
