@@ -23,6 +23,7 @@ import gov.nasa.jpf.inspector.client.ClientCommand;
 import gov.nasa.jpf.inspector.client.JPFInspectorClient;
 import gov.nasa.jpf.inspector.interfaces.JPFInspectorBackEndInterface;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorException;
+import gov.nasa.jpf.inspector.utils.InspectorConfiguration;
 import gov.nasa.jpf.shell.ShellManager;
 import gov.nasa.jpf.shell.commands.VerifyCommand;
 
@@ -100,6 +101,9 @@ public class CmdRun extends ClientCommand {
       }
     } else {
       throw new RuntimeException("Unknown enum " + type.getClass().getName() + " entry " + type);
+    }
+    if (InspectorConfiguration.getInstance().shouldWaitAfterRun()) {
+      inspector.waitUntilStopped();
     }
   }
 

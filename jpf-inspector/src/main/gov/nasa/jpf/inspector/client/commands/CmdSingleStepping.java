@@ -25,6 +25,7 @@ import gov.nasa.jpf.inspector.client.commands.CmdChoiceGeneratorsTracking.CGType
 import gov.nasa.jpf.inspector.interfaces.CommandsInterface.StepType;
 import gov.nasa.jpf.inspector.interfaces.JPFInspectorBackEndInterface;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorException;
+import gov.nasa.jpf.inspector.utils.InspectorConfiguration;
 
 import java.io.PrintStream;
 
@@ -95,6 +96,9 @@ public class CmdSingleStepping extends ClientCommand {
       if (!isFinalStep) {
         inspector.waitUntilStopped();
       }
+    }
+    if (InspectorConfiguration.getInstance().shouldWaitAfterRun()) {
+      inspector.waitUntilStopped();
     }
   }
 

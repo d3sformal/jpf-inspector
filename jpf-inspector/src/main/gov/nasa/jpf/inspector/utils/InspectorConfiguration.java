@@ -6,6 +6,7 @@ import gov.nasa.jpf.inspector.interfaces.CustomHitCondition;
 import gov.nasa.jpf.inspector.server.breakpoints.InternalBreakpointHolder;
 import gov.nasa.jpf.shell.ShellManager;
 
+import javax.swing.plaf.TreeUI;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -192,6 +193,12 @@ public final class InspectorConfiguration {
 
   public boolean shouldEchoInput() {
     return isBatchModeActive() && config.getBoolean("jpf-inspector.batch_mode.echo_input", false);
+  }
+  public boolean doesCustomHitConditionExceptionBreak() {
+    return config.getBoolean("jpf-inspector.custom_breakpoint_exception_breaks", true);
+  }
+  public boolean shouldWaitAfterRun() {
+    return config.getBoolean("jpf-inspector.wait_after_run", false);
   }
 
 

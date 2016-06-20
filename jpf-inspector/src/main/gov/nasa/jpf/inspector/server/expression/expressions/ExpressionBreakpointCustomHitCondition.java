@@ -10,6 +10,7 @@ import gov.nasa.jpf.inspector.server.expression.ExpressionStateRootNode;
 import gov.nasa.jpf.inspector.server.expression.InspectorState;
 import gov.nasa.jpf.inspector.server.jpf.JPFInspector;
 import gov.nasa.jpf.inspector.server.programstate.StateNodeInterface;
+import gov.nasa.jpf.inspector.utils.InspectorConfiguration;
 import gov.nasa.jpf.inspector.utils.expressions.Expressions;
 
 /**
@@ -39,8 +40,11 @@ public class ExpressionBreakpointCustomHitCondition extends ExpressionBooleanLea
     if (DEBUG) {
       inspector.getDebugPrintStream().println(this.getClass().getSimpleName() + ".evaluateExpression(...)");
     }
-    return customHitCondition.isHit(state, evaluateArguments(state));
-    // TODO handle exceptions
+    try {
+      return customHitCondition.isHit(state, evaluateArguments(state));
+    } catch (Throwable e) {
+      return InspectorConfiguration.getInstance().doesCustomHitConditionExceptionBreak();
+    }
   }
 
   private ProgramStateEntry[] evaluateArguments(InspectorState state) throws JPFInspectorException {
@@ -61,21 +65,12 @@ public class ExpressionBreakpointCustomHitCondition extends ExpressionBooleanLea
 
   @Override
   public String getDetails (InspectorState state) {
-    try {
-      if (state != null && evaluateExpression(state)) {
+
         try {
           return customHitCondition.getDetails(state, evaluateArguments(state));
-        } catch (Exception e) {
-          // TODO handle exceptions
-          return null;
+        } catch (Throwable e) {
+          return "";
         }
-      } else {
-        return "";
-      }
-    } catch (JPFInspectorException e) {
-      // TODO handle
-      return "";
-    }
   }
 
   @Override
