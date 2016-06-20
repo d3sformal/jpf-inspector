@@ -21,12 +21,9 @@ package gov.nasa.jpf.inspector.server.expression.expressions;
 
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorException;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorInvalidNameException;
-import gov.nasa.jpf.inspector.migration.MigrationUtilities;
 import gov.nasa.jpf.inspector.server.programstate.*;
 import gov.nasa.jpf.inspector.server.programstate.StateReadableValue;
-import gov.nasa.jpf.vm.ClassInfo;
-import gov.nasa.jpf.vm.FieldInfo;
-import gov.nasa.jpf.vm.StaticElementInfo;
+import gov.nasa.jpf.vm.*;
 
 /**
  * Represents a simple member access expression.
@@ -136,16 +133,16 @@ public class ExpressionStateValueName extends ExpressionStateValue {
   private StateReadableValue tryApplyDoubleHacks (StateNodeInterface sni) {
     // Double hacks.
     if (TOKEN_IDF_NAN.equals(varName)) {
-      return new StateReadableConstValue(sni.getInspector(), MigrationUtilities.getResolvedClassInfo("double"),
+      return new StateReadableConstValue(sni.getInspector(), ClassLoaderInfo.getCurrentResolvedClassInfo("double"),
                                          Double.NaN);
     }
 
     if (TOKEN_IDF_NEGATIVE_INFINITY1_FULL.equals(varName) || TOKEN_IDF_NEGATIVE_INFINITY1_SHORT.equals(varName)) {
-      return new StateReadableConstValue(sni.getInspector(), MigrationUtilities.getResolvedClassInfo("double"),
+      return new StateReadableConstValue(sni.getInspector(), ClassLoaderInfo.getCurrentResolvedClassInfo("double"),
                                          Double.POSITIVE_INFINITY);
     }
     if (TOKEN_IDF_INFINITY.equals(varName) || TOKEN_IDF_POSITIVE_INFINITY1_FULL.equals(varName) || TOKEN_IDF_POSITIVE_INFINITY1_SHORT.equals(varName)) {
-      return new StateReadableConstValue(sni.getInspector(), MigrationUtilities.getResolvedClassInfo("double"),
+      return new StateReadableConstValue(sni.getInspector(), ClassLoaderInfo.getCurrentResolvedClassInfo("double"),
                                          Double.POSITIVE_INFINITY);
     }
 
@@ -200,8 +197,18 @@ public class ExpressionStateValueName extends ExpressionStateValue {
           }
         } else {
           // Not a predecessor class (any other class)
-          StaticElementInfo sei = MigrationUtilities.getStaticElementInfoFromName(varName);
-
+          // We are using the final, unqualified name, only. Really, this is undocumented and will stay that way for now,
+          // because exploring static area is not something we are well equipped to do at this time anyway.
+          StaticElementInfo sei = null;
+          Statics statics = ClassLoaderInfo.getCurrentClassLoader().getStatics();
+          for (int i = 0; i < statics.size(); i++) {
+            StaticElementInfo aStaticClass = statics.get(i);
+            System.out.println(aStaticClass.getClassInfo().getName());
+            if ((aStaticClass.getClassInfo().getName().endsWith("." + varName))) {
+              sei = aStaticClass;
+              break;
+            }
+          }
           if (sei != null) {
             // Class with given name exists
             resultingValue = StateElementInfo.createStaticClass(parent, sei.getClassInfo());

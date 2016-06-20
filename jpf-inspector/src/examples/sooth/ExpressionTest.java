@@ -29,3 +29,7 @@ public class ExpressionTest {
     static String Text = "Text Here";
   }
 }
+@SuppressWarnings("ALL")
+class StaticClass {
+  static int a = 5;
+}

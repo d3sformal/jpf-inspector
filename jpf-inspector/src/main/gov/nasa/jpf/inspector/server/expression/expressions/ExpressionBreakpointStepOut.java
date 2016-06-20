@@ -20,7 +20,6 @@
 package gov.nasa.jpf.inspector.server.expression.expressions;
 
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorGenericErrorException;
-import gov.nasa.jpf.inspector.migration.MigrationUtilities;
 import gov.nasa.jpf.inspector.server.breakpoints.BreakPointModes;
 import gov.nasa.jpf.inspector.server.expression.ExpressionBooleanLeaf;
 import gov.nasa.jpf.inspector.server.expression.InspectorState;
@@ -32,8 +31,6 @@ import gov.nasa.jpf.vm.KernelState;
 import gov.nasa.jpf.vm.StackFrame;
 import gov.nasa.jpf.vm.ThreadInfo;
 import gov.nasa.jpf.vm.ThreadList;
-
-import java.util.Iterator;
 
 /**
  * Represents a hidden breakpoint condition used to implement the "step_out" command.

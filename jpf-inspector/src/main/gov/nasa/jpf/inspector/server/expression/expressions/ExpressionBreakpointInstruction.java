@@ -20,7 +20,6 @@
 package gov.nasa.jpf.inspector.server.expression.expressions;
 
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorGenericErrorException;
-import gov.nasa.jpf.inspector.migration.MigrationUtilities;
 import gov.nasa.jpf.inspector.server.breakpoints.BreakPointModes;
 import gov.nasa.jpf.inspector.server.expression.ExpressionBooleanLeaf;
 import gov.nasa.jpf.inspector.server.expression.InspectorState;
@@ -29,13 +28,9 @@ import gov.nasa.jpf.inspector.server.jpf.JPFInspector;
 import gov.nasa.jpf.inspector.server.jpf.StopHolder;
 import gov.nasa.jpf.inspector.utils.expressions.ClassName;
 import gov.nasa.jpf.inspector.utils.expressions.MethodName;
-import gov.nasa.jpf.vm.ClassInfo;
-import gov.nasa.jpf.vm.VM;
-import gov.nasa.jpf.vm.MethodInfo;
-import gov.nasa.jpf.vm.Step;
-import gov.nasa.jpf.vm.ThreadInfo;
-import gov.nasa.jpf.vm.Transition;
-import gov.nasa.jpf.vm.Instruction;
+import gov.nasa.jpf.vm.*;
+
+import java.util.ArrayList;
 
 /**
  * Used for internal Inspector purposes to implement backward single instruction steps.
@@ -149,7 +144,18 @@ public class ExpressionBreakpointInstruction extends ExpressionBooleanLeaf {
     assert (methodSpec != null);
     ClassName classSpec = methodSpec.getClassNameClass();
 
-    ClassInfo[] cis = MigrationUtilities.getLoadedClasses();
+
+    // The following block used to be the simple assignment
+    // "ClassInfo[] cis = ClassLoader.getLoadedClass();"
+    // However, that method is no longer available in JPF8.
+    ArrayList<ClassInfo> loadedClasses = new ArrayList<>();
+    for (ClassInfo loadedClass : ClassLoaderInfo.getCurrentClassLoader()) {
+      loadedClasses.add(loadedClass);
+    }
+    ClassInfo[] cis = new ClassInfo[loadedClasses.size()];
+    cis = loadedClasses.toArray(cis);
+    // End of block.
+
     for (ClassInfo ci : cis) {
       assert (ci != null);
       if (classSpec.isSameClass(ci)) {

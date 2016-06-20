@@ -21,22 +21,25 @@ package gov.nasa.jpf.inspector.server.expression.expressions;
 
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorException;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorParsingErrorException;
-import gov.nasa.jpf.inspector.migration.MigrationUtilities;
 import gov.nasa.jpf.inspector.server.expression.InspectorState;
 import gov.nasa.jpf.inspector.server.jpf.JPFInspector;
 import gov.nasa.jpf.inspector.server.programstate.StateNodeInterface;
 import gov.nasa.jpf.inspector.server.programstate.StateReadableConstValue;
 import gov.nasa.jpf.inspector.utils.parser.JPFInspectorRuntimeParsingException;
+import gov.nasa.jpf.vm.ClassLoaderInfo;
 
 /**
- * @author Alf
+ * Represents a literal "java.lang.Long" expression.
  */
 public class ExpressionStateValueConstLong extends ExpressionStateValueConst {
+
+  private static final int HEXADECIMAL_MODE = 16;
+
   /**
    * The value has to be string in one of the following formats
    * 10l, +10L, -10l, 0xFFL, +0xFFl, -0xFFl
    * 
-   * @param value
+   * @param value String representation of the number.
    * @return Return value converted to integer or exception if value is out of the integer range or input is malformed.
    */
   public static long convertToLongWrapped (String value) {
@@ -47,9 +50,9 @@ public class ExpressionStateValueConstLong extends ExpressionStateValueConst {
     }
   }
 
-  public static long convertToLong (String value) throws JPFInspectorParsingErrorException {
+  private static long convertToLong(String value) throws JPFInspectorParsingErrorException {
     assert value != null;
-    assert value.length() > 0;
+    assert !value.isEmpty();
 
     String val = value;
     // Check if the last character is 'l' or 'L'
@@ -59,7 +62,7 @@ public class ExpressionStateValueConstLong extends ExpressionStateValueConst {
     }
     val = val.substring(0, val.length() - 1);
 
-    if (val.length() == 0) {
+    if (val.isEmpty()) {
       throw new JPFInspectorParsingErrorException("Invalid long value. Does not contain a number value", value, 0);
     }
 
@@ -77,7 +80,7 @@ public class ExpressionStateValueConstLong extends ExpressionStateValueConst {
         val = val.substring(2);
       }
       try {
-        return Long.valueOf(val, 16);
+        return Long.valueOf(val, HEXADECIMAL_MODE);
       } catch (NumberFormatException nfe) {
         throw new JPFInspectorParsingErrorException("Invalid hex integer value. Value is probably out of the integer range.", value, 0);
       }
@@ -103,7 +106,7 @@ public class ExpressionStateValueConstLong extends ExpressionStateValueConst {
    */
   @Override
   public StateNodeInterface getResultExpression (JPFInspector inspector, InspectorState state) throws JPFInspectorException {
-    return new StateReadableConstValue(inspector, MigrationUtilities.getResolvedClassInfo("long"), Long.valueOf(value));
+    return new StateReadableConstValue(inspector, ClassLoaderInfo.getCurrentResolvedClassInfo("long"), value);
   }
 
   /* @see gov.nasa.jpf.inspector.server.expression.ExpressionNodeInterface#getNormalizedExpression() */

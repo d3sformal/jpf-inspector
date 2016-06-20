@@ -20,10 +20,10 @@
 package gov.nasa.jpf.inspector.server.expression.expressions;
 
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorException;
-import gov.nasa.jpf.inspector.migration.MigrationUtilities;
 import gov.nasa.jpf.inspector.server.expression.InspectorState;
 import gov.nasa.jpf.inspector.server.jpf.JPFInspector;
 import gov.nasa.jpf.inspector.server.programstate.StateReadableConstValue;
+import gov.nasa.jpf.vm.ClassLoaderInfo;
 
 /**
  * @author Alf
@@ -42,7 +42,7 @@ public class ExpressionStateValueConstBoolean extends ExpressionStateValueConst 
 
   @Override
   public StateReadableConstValue getResultExpression (JPFInspector inspector, InspectorState state) throws JPFInspectorException {
-    return new StateReadableConstValue(inspector, MigrationUtilities.getResolvedClassInfo("boolean"), value);
+    return new StateReadableConstValue(inspector, ClassLoaderInfo.getCurrentResolvedClassInfo("boolean"), value);
   }
 
   @Override
