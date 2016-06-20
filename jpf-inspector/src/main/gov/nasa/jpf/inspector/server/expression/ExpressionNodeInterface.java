@@ -25,6 +25,7 @@ import java.util.List;
  * Represents a node in the expression abstract syntax tree.
  *
  * There are two such kinds of nodes:
+ *
  * - Program state expressions
  * - Hit conditions
  *
@@ -37,8 +38,8 @@ public interface ExpressionNodeInterface {
    *
    * This is the expression text that is displayed in the output of the "show breakpoints" command, for example.
    *
-   * Note: Long versions of all keywords should be used.
-   * Note: The returned string has to be parsable by the expression parser.
+   * - Note: Long versions of all keywords should be used.
+   * - Note: The returned string has to be parsable by the expression parser.
    * 
    * @return Normalized parsable version of the represented expression.
    */

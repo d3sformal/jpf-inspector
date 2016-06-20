@@ -32,9 +32,7 @@ import gov.nasa.jpf.vm.ChoiceGenerator;
  * 1. In the client, their implementation is what happens when the callback is received.
  * 2. In the server, their implementation means "send this callback now".
  * 
- * Note: Only the JPF thread is permitted to sent callbacks.
- * TODO this is strange, examine it:
- * (except {@link #genericInfo(String)} which can be called by any thread)
+ * Note: Only the JPF thread is permitted to sent callbacks (except {@link #genericInfo(String)} which can be called by any thread).
  */
 public interface InspectorCallbacks {
 
