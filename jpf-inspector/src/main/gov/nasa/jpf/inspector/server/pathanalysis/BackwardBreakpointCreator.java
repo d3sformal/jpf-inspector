@@ -12,10 +12,8 @@ import gov.nasa.jpf.inspector.server.breakpoints.InstructionPositionImpl;
 import gov.nasa.jpf.inspector.server.expression.ExpressionBoolean;
 import gov.nasa.jpf.inspector.server.expression.InspectorState;
 import gov.nasa.jpf.inspector.server.expression.expressions.ExpressionBreakpointInstruction;
-import gov.nasa.jpf.vm.VM;
-import gov.nasa.jpf.vm.Path;
-import gov.nasa.jpf.vm.Step;
-import gov.nasa.jpf.vm.Transition;
+import gov.nasa.jpf.inspector.utils.Debugging;
+import gov.nasa.jpf.vm.*;
 
 /**
  * An instance of this class is created when a backwards-stepping command is executed. It creates a single breakpoint,
@@ -33,7 +31,7 @@ public final class BackwardBreakpointCreator {
    * Initializes a new instance of the {@link BackwardBreakpointCreator}.
    * This constructor is protected and not private because it's called from the Backtracker classes as well. This class is sealed, there are no inheritors, but we need this to be package-private.
    *
-   * @param transition The current transition.
+   * @param transition The transition containing the step we should backtrack to.
    * @param step Step that we should backtrack to. This step contains the instruction that we want to put a breakpoint on.
    * @param numberOfTransitionsToBacktrack Number of transitions to backtrack.
    */
@@ -134,34 +132,52 @@ public final class BackwardBreakpointCreator {
     Path path = getPath(inspectorState);
     MethodInstructionBacktracker methodInstructionBacktracker = new MethodInstructionBacktracker(path);
 
-    Step step = methodInstructionBacktracker.getPreviousStepInCurrentMethod();
-    InstructionPosition ip = InstructionPositionImpl.getInstructionPosition(step.getInstruction());
+    Instruction currentInstruction = inspectorState.getVM().getInstruction();
+    InstructionPosition currentLocation = InstructionPositionImpl.getInstructionPosition(currentInstruction);
+    Debugging.getLogger().info("Backtracking: back_step_over first step: " + currentInstruction + " at line " + currentLocation.getLineNumber());
+
+    // First step back.
+    Step step = methodInstructionBacktracker.backtrackToPreviousStepInMethod();
 
     // Undo instructions on the current line
-    while ((step != null) && ip.hitPosition(step.getInstruction())) {
-      step = methodInstructionBacktracker.getPreviousStepInCurrentMethod();
+    while ((step != null) && currentLocation.hitPosition(step.getInstruction())) {
+      step = methodInstructionBacktracker.backtrackToPreviousStepInMethod();
     }
 
     if (step == null) {
-      return null; // No such place exists
+      return null; // We have reached the beginning of the thread or the method.
     }
+
+    // We are now either on the previous line or in the caller.
+    if (step.getInstruction().getMethodInfo() != currentInstruction.getMethodInfo()) {
+      // We are in the caller - this happened because we were already at the first line of a method.
+      // We could now delegate to #getBackwardStepOut, but it's not really necessary, as continuing
+      // with this method works just as well.
+    }
+
 
     // We are on the previous line - stop after the first instruction on given line
-    // Be careful - we need to remember previous step and transition2backreack
-    Step prevStep = null;
-    Transition prevTransition = null;
-    int prevTr2Backrack = 0;
-    ip = InstructionPositionImpl.getInstructionPosition(step.getInstruction());
-    while (step != null && ip.hitPosition(step.getInstruction())) {
-      prevStep = step;
-      prevTransition = methodInstructionBacktracker.getCurrentTransition();
-      prevTr2Backrack = methodInstructionBacktracker.getBacktrackedTransitionCount();
+    InstructionPosition previousLinePosition = InstructionPositionImpl.getInstructionPosition(step.getInstruction());
 
-      step = methodInstructionBacktracker.getPreviousStepInCurrentMethod();
+
+    // Be careful - we need to remember previous step and transition2backreack
+    Step previousStep = null;
+    Transition previousTransition = null;
+    int previousTransitionsToBacktrack = 0;
+
+    while (step != null && previousLinePosition.hitPosition(step.getInstruction())) {
+      previousStep = step;
+      previousTransition = methodInstructionBacktracker.getCurrentTransition();
+      previousTransitionsToBacktrack = methodInstructionBacktracker.getBacktrackedTransitionCount();
+      step = methodInstructionBacktracker.backtrackToPreviousStepInMethod();
     }
 
-    // in the prev* variables we hold the first instruction on given line
-    return new BackwardBreakpointCreator(prevTransition, prevStep, prevTr2Backrack);
+    // previousStep now contains the first step on the previous code line
+    // previousTransition and previousTransitionsToBacktrack hold information relating to previousStep
+    // Yes, we could have named it better, as this confuses the meaning of "previous' as in "previous code line"
+    //  and "previous" as in "the step we considered before but is actually after"
+
+    return new BackwardBreakpointCreator(previousTransition, previousStep, previousTransitionsToBacktrack);
   }
 
   /**

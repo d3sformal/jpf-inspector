@@ -159,7 +159,7 @@ class StepThreadBacktracker {
    */
   public Step getCurrentStep () {
     if (currentTransitionStepIndex == BACKSTEP_NOT_YET_CALLED) {
-      throw new RuntimeException("getCurrentStep() must only be called after the first backstep().");
+      return null;
     }
     return currentTransitionSteps[currentTransitionStepIndex];
   }

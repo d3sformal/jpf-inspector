@@ -4,18 +4,12 @@ import gov.nasa.jpf.inspector.server.expression.expressions.ExpressionBreakpoint
 import gov.nasa.jpf.vm.*;
 
 /**
- * 
- * Filter the path and hides instruction executed in method called from the current one.
- * 
- * {@see #getPreviousStepInCurrentMethod()} can be used to retrive previous instruction/step in current method (skipping instructions in called methods).
- * 
- * @author Alf
- * 
+ * This backtracker has the capacity to keep track of what method and line of code we are in, which is useful
+ * for the commands `back_step_over`, `back_step_in` and `back_step_out`.
  */
 public class MethodInstructionBacktracker {
   private static final boolean DEBUG = false;
 
-  // private final TransitionThreadBackracker transitionBacktracker;
   private final StepThreadBacktracker stepThreadBacktracker;
 
   private final CallInstructionChecker callChecker = new CallInstructionChecker();
@@ -23,7 +17,7 @@ public class MethodInstructionBacktracker {
   private final ThrowInstructionChecker throwChecker = new ThrowInstructionChecker();
 
   /**
-   * Contains the value returned by the last call to {@link #getPreviousStepInCurrentMethod()}. If the method
+   * Contains the value returned by the last call to {@link #backtrackToPreviousStepInMethod()}. If the method
    * was not yet called, it is null.
    */
   private Step prevReturnedStep = null;
@@ -60,10 +54,12 @@ public class MethodInstructionBacktracker {
   }
 
   /**
-   * 
-   * @return Previous step in current method/(or in calling method) Null if no previous step exests
+   * Backtracks to the previous step in the current method.
+   * Steps in called methods are backtracked through.
+   * If the current step is the first step in the current method, we return the caller step that called this method.
+   * If the current step is the step where the thread begins, we return null.
    */
-  public Step getPreviousStepInCurrentMethod () {
+  public Step backtrackToPreviousStepInMethod() {
     if (DEBUG) {
       System.out.println(this.getClass().getSimpleName() + ".getPreviousStepInCurrentMethod()");
     }
@@ -157,8 +153,7 @@ public class MethodInstructionBacktracker {
   // ***************************************************************************
 
   /**
-   * 
-   * @return Gets number of backtracked transitions
+   * Gets the number of transitions we backtracked through.
    */
   public int getBacktrackedTransitionCount () {
     return stepThreadBacktracker.getCurrentBackSteppedTransitions();
@@ -169,7 +164,7 @@ public class MethodInstructionBacktracker {
   }
 
   /**
-   * @return Creates Backward breakpoint which represents position of last Step returned by {@link #getPreviousStepInCurrentMethod()}.
+   * @return Creates Backward breakpoint which represents position of last Step returned by {@link #backtrackToPreviousStepInMethod()}.
    */
   public BackwardBreakpointCreator createBackwardBreakpointFromCurrentStep () {
     Step currentStep = stepThreadBacktracker.getCurrentStep();
@@ -221,7 +216,7 @@ public class MethodInstructionBacktracker {
   }
 
   /**
-   * @return Gets result of previous (not last, but one before) {@link #getPreviousStepInCurrentMethod()} call.
+   * @return Gets result of previous (not last, but one before) {@link #backtrackToPreviousStepInMethod()} call.
    */
   private Step getPrevReturnedStep() {
     return prevReturnedStep;
