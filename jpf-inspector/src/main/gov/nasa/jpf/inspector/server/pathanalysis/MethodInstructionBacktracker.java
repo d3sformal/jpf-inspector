@@ -1,10 +1,7 @@
 package gov.nasa.jpf.inspector.server.pathanalysis;
 
 import gov.nasa.jpf.inspector.server.expression.expressions.ExpressionBreakpointInstruction;
-import gov.nasa.jpf.vm.Path;
-import gov.nasa.jpf.vm.Step;
-import gov.nasa.jpf.vm.Transition;
-import gov.nasa.jpf.vm.Instruction;
+import gov.nasa.jpf.vm.*;
 
 /**
  * 
@@ -19,30 +16,46 @@ public class MethodInstructionBacktracker {
   private static final boolean DEBUG = false;
 
   // private final TransitionThreadBackracker transitionBacktracker;
-  private final StepThreadBacktracker stepBacktracker;
+  private final StepThreadBacktracker stepThreadBacktracker;
 
-  private final CheckCallInstruction callChecker = new CheckCallInstruction();
-  private final CheckReturnInstruction returnChecker = new CheckReturnInstruction();
-  private final CheckThrowInstruction throwChecker = new CheckThrowInstruction();
-
-  private Step prevReturnedStep = null; // previous value returned by {@link #getPreviousStepInCurrentMethod()}
-  private Transition prevReturnedStepTransition = null; // transition where prevReturnedStep takes place
-  private int prevReturnedTransition2Backrack = 0; // how many transition has to be backtracked to get prevReturnedStepTransition
+  private final CallInstructionChecker callChecker = new CallInstructionChecker();
+  private final ReturnInstructionChecker returnChecker = new ReturnInstructionChecker();
+  private final ThrowInstructionChecker throwChecker = new ThrowInstructionChecker();
 
   /**
-   * @param path Path to analyze. Cannot be null.
+   * Contains the value returned by the last call to {@link #getPreviousStepInCurrentMethod()}. If the method
+   * was not yet called, it is null.
+   */
+  private Step prevReturnedStep = null;
+  /**
+   * Contains the transition that contains the {@link #prevReturnedStep}.
+   */
+  private Transition prevReturnedStepTransition = null;
+  /**
+   * Indicates how many transitions must be backtracked in order to reach the {@link #prevReturnedStepTransition} transition.
+   */
+  private int prevReturnedTransition2Backrack = 0;
+
+  /**
+   * Initializes a new instance of {@link MethodInstructionBacktracker}.
+   *
+   * Internally, this creates a new {@link TransitionThreadBacktracker} using the path and the current thread and
+   * a new {@link StepThreadBacktracker} to iterate back through our transition path. This backtracker is initialized
+   * to the current step of the current transition.
+   *
+   * @param path The current transition path, including the current transition (i.e. after a call to {@link VM#updatePath()}).
    */
   public MethodInstructionBacktracker (Path path) {
     if (path == null) {
-      throw new IllegalArgumentException("Path cannot be null");
+      throw new IllegalArgumentException("Path cannot be null.");
     }
 
-    Transition lastTr = path.getLast();
-    if (lastTr != null) {
-      int currentThread = lastTr.getThreadIndex();
-      stepBacktracker = new StepThreadBacktracker(new TransitionThreadBacktracker(path, currentThread));
+    Transition currentTransition = path.getLast();
+    if (currentTransition != null) {
+      int currentThread = currentTransition.getThreadIndex();
+      stepThreadBacktracker = new StepThreadBacktracker(new TransitionThreadBacktracker(path, currentThread));
     } else {
-      stepBacktracker = null;
+      throw new IllegalArgumentException("The path must contain at least one transition.");
     }
   }
 
@@ -58,8 +71,9 @@ public class MethodInstructionBacktracker {
   }
 
   /**
+   * Returns the step of the current method's caller that calls this method, i.e. the one containing the call instruction.
    * 
-   * @return Previsou step in method which calls the current method (call instruction for current method)
+   * @return Previous step in method which calls the current method (call instruction for current method), or null if such a step does not exist.
    */
   public Step getCallerOfCurrentMethod () {
     if (DEBUG) {
@@ -69,31 +83,38 @@ public class MethodInstructionBacktracker {
   }
 
   /**
-   * @param method2leave How many method show we leave to return first instruction.
-   * @return First step in method which is in specified depth in the call stack
-   * 
-   *         <br> Note: Use with 0 to take instruction in current method
-   *         <br> Note: Use with 1 to leave current method -> find where current method is called
+   * Returns the first step we encounter during backtracking, but all steps we encounter before we exit the specified
+   * number of methods from the call stack are ignored.
+   *
+   * Returns null if no such step exists (for example, because we are in the first step of the thread).
+   *
+   * Note: Use the argument "0" to backtrack to an instruction within the current method (back_step_over).
+   *
+   * Note: Use the argument "1" to leave the current method and find the instruction in the parent (back_step_out).
+   *
+   * @param howManyMethodsToLeave How many methods we must exit before we return a step.
+   * @return First step we encounter during backtracking that is in the method after we exit the specified number of methods, or null if no such step exists.
    */
-  private Step backtracker (int method2leave) {
-    int callStackDepth = method2leave; // Simulation of the depth of the calls stack above (how many methods have been called by) the method in the end of the
-                                       // path.
+  private Step backtracker (int howManyMethodsToLeave) {
+    int callStackDepth = howManyMethodsToLeave;
+    // Simulation of the depth of the calls stack above (how many methods have been called by)
+    // the method in the end of the path.
 
-    // Store previous state
-    prevReturnedStep = stepBacktracker.getCurrentStep();
-    prevReturnedStepTransition = stepBacktracker.getCurrentTransition();
-    prevReturnedTransition2Backrack = stepBacktracker.getCurrentBackSteppedTransitions();
+    // Store previous state of the backtracker (at first, initialized to the current step).
+    prevReturnedStep = stepThreadBacktracker.getCurrentStep();
+    prevReturnedStepTransition = stepThreadBacktracker.getCurrentTransition();
+    prevReturnedTransition2Backrack = stepThreadBacktracker.getCurrentBackSteppedTransitions();
 
-    Step step = stepBacktracker.getPreviousStep();
+    // We always want to perform at least one backstep.
+    Step step = stepThreadBacktracker.backstep();
 
     while (step != null) {
       if (returnChecker.isReturnStep(step)) {
         callStackDepth++;
       }
       if (throwChecker.isThrowStep(step)) {
-        // Can decrease depth multiple time (or not at all) -> additional info needed
-        // TODO
-        throw new UnsupportedOperationException("backward path ananlysis through throw exception is not supported now");
+        throw new UnsupportedOperationException(
+                "For implementation reasons of the Inspector, it is not possible to backtrack through the throwing of an exception.");
       }
       if (callChecker.isCallStep(step)) {
         callStackDepth--;
@@ -111,19 +132,23 @@ public class MethodInstructionBacktracker {
           System.out.print(" ");
         }
 
-        System.out.println(" inst=" + step.getInstruction() + ", location=" + step.getInstruction().getFilePos() + ", source="
-            + step.getInstruction().getSourceLine());
+        System.out.println(
+                " inst=" + step.getInstruction() + ", location=" + step.getInstruction().getFilePos() + ", source="
+                        + step.getInstruction().getSourceLine());
       }
 
-      // Filter out all "Step" called by current method
+      // Call stack depth indicates how many more methods must we leave before we want to stop.
+      // If it's zero, it means that we already want to stop.
+      // For now, it's impossible for call stack depth to be less than zero.
       if (callStackDepth <= 0) {
         return step;
+      } else {
+        step = stepThreadBacktracker.backstep();
       }
-      // Process next step;
-      step = stepBacktracker.getPreviousStep();
     }
 
-    // prevStep == null -> we reach start of the thread
+    // This means the backstep failed and there is nothing to backtrack to, we are in the first instruction
+    // of the thread, we failed.
     return null;
   }
 
@@ -136,20 +161,20 @@ public class MethodInstructionBacktracker {
    * @return Gets number of backtracked transitions
    */
   public int getBacktrackedTransitionCount () {
-    return stepBacktracker.getCurrentBackSteppedTransitions();
+    return stepThreadBacktracker.getCurrentBackSteppedTransitions();
   }
 
   public Transition getCurrentTransition () {
-    return stepBacktracker.getCurrentTransition();
+    return stepThreadBacktracker.getCurrentTransition();
   }
 
   /**
    * @return Creates Backward breakpoint which represents position of last Step returned by {@link #getPreviousStepInCurrentMethod()}.
    */
   public BackwardBreakpointCreator createBackwardBreakpointFromCurrentStep () {
-    Step currentStep = stepBacktracker.getCurrentStep();
-    Transition currentTransition = stepBacktracker.getCurrentTransition();
-    int currentTransition2backstep = stepBacktracker.getCurrentBackSteppedTransitions();
+    Step currentStep = stepThreadBacktracker.getCurrentStep();
+    Transition currentTransition = stepThreadBacktracker.getCurrentTransition();
+    int currentTransition2backstep = stepThreadBacktracker.getCurrentBackSteppedTransitions();
     if (currentStep == null || currentTransition == null) {
       return null;
     }

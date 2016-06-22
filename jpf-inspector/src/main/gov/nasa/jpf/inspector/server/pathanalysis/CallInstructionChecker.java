@@ -4,15 +4,22 @@ import gov.nasa.jpf.jvm.bytecode.*;
 import gov.nasa.jpf.vm.Step;
 import gov.nasa.jpf.vm.Instruction;
 
-public class CheckCallInstruction extends JVMInstructionVisitorAdapter {
+/**
+ * Checks whether the instruction is a method call (i.e. it puts stuff on the call stack).
+ */
+public class CallInstructionChecker extends JVMInstructionVisitorAdapter {
   private boolean isCallInstr = false;
-  
+
+  /**
+   * Returns a value that indicates whether the step's instruction is a method call.
+   * @param step The step to check.
+   */
   public boolean isCallStep(Step step) {
     assert(step != null);
     return isCallInstruction(step.getInstruction());
   }
 
-  public boolean isCallInstruction(Instruction inst) {
+  private boolean isCallInstruction(Instruction inst) {
     assert(inst != null);
     isCallInstr = false;
     assert(inst instanceof JVMInstruction);

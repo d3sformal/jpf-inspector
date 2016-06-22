@@ -4,65 +4,72 @@ import gov.nasa.jpf.jvm.bytecode.*;
 import gov.nasa.jpf.vm.Step;
 import gov.nasa.jpf.vm.Instruction;
 
-class CheckReturnInstruction extends JVMInstructionVisitorAdapter {
-  private boolean isReturnInstr = false;
-  
+/**
+ * Checks whether an instruction is a return instruction (i.e. it removes frames from the call stack).
+ */
+class ReturnInstructionChecker extends JVMInstructionVisitorAdapter {
+  private boolean isReturnInstruction = false;
+
+  /**
+   * Gets a value that indicates whether a step is a return step (i.e. it removes frames from the call stack).
+   * @param step The step to check.
+   */
   public boolean isReturnStep(Step step) {
     assert(step != null);
     return isReturnInstruction(step.getInstruction());
   }
 
-  public boolean isReturnInstruction(Instruction inst) {
+  private boolean isReturnInstruction(Instruction inst) {
     assert(inst != null);
-    isReturnInstr = false;
+    isReturnInstruction = false;
     assert (inst instanceof JVMInstruction);
     ((JVMInstruction)inst).accept(this);
-    return isReturnInstr;
+    return isReturnInstruction;
   }
   
   @Override
   public void visit(JVMReturnInstruction ins) {
-    isReturnInstr = true;
+    isReturnInstruction = true;
   }
 
   @Override
   public void visit(ARETURN ins) {
-    isReturnInstr = true;
+    isReturnInstruction = true;
   }
 
   @Override
   public void visit(DIRECTCALLRETURN ins) {
-    isReturnInstr = true;
+    isReturnInstruction = true;
   } 
     
   @Override
   public void visit(DRETURN ins) {
-    isReturnInstr = true;
+    isReturnInstruction = true;
   }
 
   @Override
   public void visit(FRETURN ins) {
-    isReturnInstr = true;
+    isReturnInstruction = true;
   }
   
   @Override
   public void visit(IRETURN ins) {
-    isReturnInstr = true;
+    isReturnInstruction = true;
   }
   
   @Override
   public void visit(LRETURN ins) {
-    isReturnInstr = true;
+    isReturnInstruction = true;
   }
   
   @Override
   public void visit(NATIVERETURN ins) {
-    isReturnInstr = true;
+    isReturnInstruction = true;
   }
 
   @Override
   public void visit(RETURN ins) {
-    isReturnInstr = true;
+    isReturnInstruction = true;
   }
 
   //DIRECTCALLRETURN

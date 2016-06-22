@@ -37,7 +37,7 @@ class TransitionThreadBacktracker {
   private Transition currentTransition = null;
 
   /**
-   * revious (not last, but one before the last) result of {@link #getPreviousTransition()} call.
+   * revious (not last, but one before the last) result of {@link #backtrackToPreviousTransition()} call.
    */
   private Transition prevReturnedTransition = null;
   /**
@@ -58,12 +58,12 @@ class TransitionThreadBacktracker {
   }
 
   /**
-   * Gets the previous transition in given thread. Can be used iteratively to go back in program trace.
+   * Backtracks to the previous transition in given thread. Can be used iteratively to go back in program trace.
    * When this method is first called, it returns the current transition.
    * 
-   * @return Get previous transition in given thread or null if no such transition exists.
+   * @return The transition that was backtracked to, or null if the backtracking faileed because no such transition exists.
    */
-  public Transition getPreviousTransition() {
+  public Transition backtrackToPreviousTransition() {
     // Remember previous state
     prevReturnedBacksteppedTransitions = backsteppedTransitions;
     prevReturnedTransition = currentTransition;
@@ -84,7 +84,7 @@ class TransitionThreadBacktracker {
   }
 
   /**
-   * Gets result of the last {@link #getPreviousTransition()} call, or null if no such call was yet made.
+   * Gets result of the last {@link #backtrackToPreviousTransition()} call, or null if no such call was yet made.
    * 
    * @return Current transition of the backtracker.
    */

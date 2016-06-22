@@ -109,8 +109,8 @@ public final class BackwardBreakpointCreator {
     TransitionThreadBacktracker ttb = new TransitionThreadBacktracker(path, currentThread);
     StepThreadBacktracker stb = new StepThreadBacktracker(ttb);
 
-    stb.getPreviousStep(); // Last instruction;
-    Step targetStep = stb.getPreviousStep();
+    stb.backstep(); // Ignore current instruction.
+    Step targetStep = stb.backstep(); // Get the one before.
 
     if (targetStep == null) {
       return null; // No previous instruction
@@ -182,7 +182,7 @@ public final class BackwardBreakpointCreator {
    * @return Creator with all target information collected.
    */
   public static BackwardBreakpointCreator getBackwardStepIn (InspectorState inspectorState) {
-    CheckCallInstruction checkCall = new CheckCallInstruction();
+    CallInstructionChecker checkCall = new CallInstructionChecker();
 
     Path path = getPath(inspectorState);
 
@@ -199,7 +199,7 @@ public final class BackwardBreakpointCreator {
     InstructionPosition ip = null;
 
     do {
-      Step st = stepBacktracker.getPreviousStep();
+      Step st = stepBacktracker.backstep();
       if (st == null) {
         return null; // No such place exists
       }
@@ -209,7 +209,7 @@ public final class BackwardBreakpointCreator {
         ip = InstructionPositionImpl.getInstructionPosition(st.getInstruction());
       }
 
-      if (checkCall.isCallInstruction(st.getInstruction())) {
+      if (checkCall.isCallStep(st)) {
         callInstructionCnt++;
       }
       if (!ip.hitPosition(st.getInstruction())) {
