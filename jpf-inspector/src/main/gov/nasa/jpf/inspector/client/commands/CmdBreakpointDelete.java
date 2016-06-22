@@ -30,7 +30,10 @@ import java.io.PrintStream;
  */
 public class CmdBreakpointDelete extends ClientCommand {
 
-  private final String bpID; // / Identifier of the Breakpoint {@link BreakPoint#getBPID()}
+  /**
+   * Identifier of the breakpoint
+   */
+  private final String bpID;
 
   public CmdBreakpointDelete (String bpID) {
     this.bpID = bpID;
@@ -47,7 +50,7 @@ public class CmdBreakpointDelete extends ClientCommand {
         outStream.println("Breakpoint with ID " + bpIDint + " successfully deleted.");
       }
     } catch (NumberFormatException e) {
-      outStream.println("Malformed breakpoint identifier - \"" + bpID + "\" is not an integer.");
+      outStream.println("Malformed breakpoint identifier - \"" + bpID + "\" is not an integer (maybe it is out of bounds).");
     }
   }
 

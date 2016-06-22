@@ -64,7 +64,7 @@ public class InternalBreakpointHolder implements Comparable<InternalBreakpointHo
   private final boolean singleHitBreakpoint; // / Remove this breakpoint on the first breakpointHit (this or some other BP)
 
   protected BreakPointModes bpMode = BreakPointModes.BP_MODE_NONE;
-  protected BreakpointState bpState = BreakpointState.BP_STATE_ENABLED;
+  protected BreakpointState bpState = BreakpointState.ENABLED;
   protected String bpName = "";
 
   protected int bpHitCounter = 0;
@@ -205,18 +205,18 @@ public class InternalBreakpointHolder implements Comparable<InternalBreakpointHo
 
 
     if (bpShouldExecuteAction && isUserBreakpoint()) {
-      if (bpState == BreakpointState.BP_STATE_DISABLED) {
+      if (bpState == BreakpointState.DISABLED) {
         // No action expected
-      } else if (bpState == BreakpointState.BP_STATE_LOGGING) {
+      } else if (bpState == BreakpointState.LOGGING) {
         callbacks.notifyBreakpointHit(getBreakpointStatus(state));
-      } else if (bpState == BreakpointState.BP_STATE_ENABLED) {
+      } else if (bpState == BreakpointState.ENABLED) {
         callbacks.notifyBreakpointHit(getBreakpointStatus(state));
       } else {
         throw new RuntimeException("Unknown " + BreakpointState.class.getSimpleName() + " entry " + bpState);
       }
     }
 
-    return bpShouldExecuteAction && bpState == BreakpointState.BP_STATE_ENABLED;
+    return bpShouldExecuteAction && bpState == BreakpointState.ENABLED;
 
   }
 

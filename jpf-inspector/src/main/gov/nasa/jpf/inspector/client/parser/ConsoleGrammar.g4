@@ -108,6 +108,7 @@ allKeyWordsWithoutCreateBPandHitCount returns [String text]
     | a=TOKEN_WAIT { $text = $a.text; }
     | a=TOKEN_TERMINATE { $text = $a.text; }
     | a=TOKEN_BOTH { $text = $a.text; }
+    | a=TOKEN_CHANGE { $text = $a.text; }
     ;
 
 // Can parse all Client commands as well as text representation of Callbacks - used for Record&Replay approach
@@ -119,21 +120,35 @@ clientCommands returns [ClientCommand value]
     : WS? clientCommands1 EOF { $value = $clientCommands1.value; }
     ;
 clientCommands1 returns [ClientCommand value]
-    : TOKEN_RUN              WS? { $value = new CmdRun(CmdRunTypes.RUN, "run"); }
-    | TOKEN_CONTINUE         WS? { $value = new CmdRun(CmdRunTypes.RUN, "continue"); }
-    | TOKEN_BREAK            WS? { $value = new CmdRun(CmdRunTypes.STOP, "break"); }
-    | TOKEN_QUIT             WS? { $value = new CmdQuit(); }
-    | left=clientCommands1 WS? SIGN_AMPERSAND_AMPERSAND WS? right=clientCommands1 WS?
-     { $value = new CmdThen($left.value, $right.value); }
+
+    : left=clientCommands1 WS? SIGN_AMPERSAND_AMPERSAND WS? right=clientCommands1 WS?{ $value = new CmdThen($left.value, $right.value); }
+       // the "then" command (&&); recursive, thus must be here and not in a sub-nonterminal
+
     | cmdBreakpoints         WS? { $value = $cmdBreakpoints.value; }
     | cmdSingleSteps         WS? { $value = $cmdSingleSteps.value; }
-    | cmdProgramState        WS? { $value = $cmdProgramState.value; }
+    | cmdInformational        WS? { $value = $cmdInformational.value; }
     | cmdChoiceGenerators    WS? { $value = $cmdChoiceGenerators.value; }
     | cmdRecord              WS? { $value = $cmdRecord.value; }
     | cmdAssertions          WS? { $value = $cmdAssertions.value; }
-    | cmdNewCommands         WS? { $value = $cmdNewCommands.value; }
-    | cmdCustom              WS? { $value = $cmdCustom.value; }
+    | cmdExecution           WS? { $value = $cmdExecution.value; }
+    | cmdCustom              WS? { $value = $cmdCustom.value; }  // Must be the last item because this is a catch-all.
     ;
+cmdExecution returns [ClientCommand value]
+  : TOKEN_RUN              WS? { $value = new CmdRun(CmdRunTypes.RUN, "run"); }
+  | TOKEN_CONTINUE         WS? { $value = new CmdRun(CmdRunTypes.RUN, "continue"); }
+  | TOKEN_BREAK            WS? { $value = new CmdRun(CmdRunTypes.STOP, "break"); }
+  | TOKEN_QUIT             WS? { $value = new CmdQuit(); }
+  | TOKEN_TERMINATE   { $value = new CmdTerminate(); }
+  | TOKEN_WAIT   { $value = new CmdWait(); }
+  | TOKEN_SET        WS? allText      { $value = new CmdSet($allText.text); }
+  ;
+cmdInformational returns [ClientCommand value]
+  : TOKEN_THREAD    (WS? intValue)?   { $value = new CmdStatusThreads($intValue.ctx != null ? $intValue.value : null); }
+  | TOKEN_PRINT     (WS? allText)?    { $value = new CmdPrint($allText.text != null ? $allText.text : ""); }
+  | TOKEN_THREAD_PC (WS? intValue)?   { $value = new CmdThreadsPC($intValue.ctx != null ? $intValue.value : null); }
+  | TOKEN_HELLO  { $value = new CmdHello(); }
+  | TOKEN_HELP   { $value = new CmdHelp(); }
+  ;
 
 cmdCustom returns [ClientCommand value]
   : name=IDF { $value = new CmdCustomCommand($name.text, ""); }
@@ -144,12 +159,18 @@ cmdBreakpoints returns [ClientCommand value]
     : TOKEN_SHOW   WS? TOKEN_BREAKPOINT             { $value = new CmdBreakpointShow(); }
     | TOKEN_DELETE WS? TOKEN_BREAKPOINT WS? INT     { $value = new CmdBreakpointDelete($INT.text); }
     | TOKEN_CREATE WS? TOKEN_BREAKPOINT
-    { BreakpointCreationExpression  bpCreate = new BreakpointCreationExpression(); } ( WS? cmdCreateBP[bpCreate])* WS bpExpression { bpCreate.setBPExpression($bpExpression.expr); $value = new CmdBreakpointCreate(bpCreate); }
+    { BreakpointCreationExpression  bpCreate = new BreakpointCreationExpression(); } ( WS? cmdCreateBP[bpCreate])* WS bpExpression
+     { bpCreate.setBPExpression($bpExpression.expr); $value = new CmdBreakpointCreate(bpCreate); }
+    | cmdChangeBreakpoint                           { $value = $cmdChangeBreakpoint.value; }
     ;
+
+cmdChangeBreakpoint returns [ClientCommand value]
+  : TOKEN_ENABLE WS TOKEN_BREAKPOINT WS INT { $value = CmdBreakpointChange.createEnableBreakpointCommand($INT.text); }
+  ;
 
 cmdCreateBP [BreakpointCreationExpression bpCreate]
     : TOKEN_NAME  WS? SIGN_EQUAL WS? anyWord { $bpCreate.setName($anyWord.text); }
-    | TOKEN_STATE WS? SIGN_EQUAL WS? cmdBreakpointsStates { $bpCreate.setState($cmdBreakpointsStates.bpState); }
+    | TOKEN_STATE WS? SIGN_EQUAL WS? cmdBreakpointState { $bpCreate.setState($cmdBreakpointState.bpState); }
     | (lower=intValue  WS? signLess=LESS WS?)? TOKEN_HIT_COUNT (WS? signHigh=LESS WS? upper=intValue)?
      {
         $bpCreate.setBounds(
@@ -161,10 +182,10 @@ cmdCreateBP [BreakpointCreationExpression bpCreate]
      }
     ;
 
-cmdBreakpointsStates returns [BreakpointState bpState]
-    : TOKEN_DISABLE         { $bpState = BreakpointState.BP_STATE_DISABLED; }
-    | TOKEN_LOG             { $bpState = BreakpointState.BP_STATE_LOGGING; }
-    | TOKEN_ENABLE          { $bpState = BreakpointState.BP_STATE_ENABLED; }
+cmdBreakpointState returns [BreakpointState bpState]
+    : TOKEN_DISABLE         { $bpState = BreakpointState.DISABLED; }
+    | TOKEN_LOG             { $bpState = BreakpointState.LOGGING; }
+    | TOKEN_ENABLE          { $bpState = BreakpointState.ENABLED; }
     ;
 
 // We have to solve collision between bpExpression and "hitCountExpression" expression
@@ -200,20 +221,9 @@ cmdSingleSteps returns [CmdSingleStepping value]
     { $value = CmdSingleStepping.createCmdSingleSteppingTransition(false, $c.ctx != null ? $c.cgsType : null, $intValue.ctx != null ? $intValue.value : 1); }
     ;
 
-cmdNewCommands returns [ClientCommand value]
-  : TOKEN_HELLO  { $value = new CmdHello(); }
-  | TOKEN_HELP   { $value = new CmdHelp(); }
-  | TOKEN_WAIT   { $value = new CmdWait(); }
-  | TOKEN_TERMINATE   { $value = new CmdTerminate(); }
-  ;
 
-cmdProgramState returns [ClientCommand value]
-  : TOKEN_THREAD    (WS? intValue)?   { $value = new CmdStatusThreads($intValue.ctx != null ? $intValue.value : null); }
-  | TOKEN_PRINT     (WS? allText)?    { $value = new CmdPrint($allText.text != null ? $allText.text : ""); }
-  | TOKEN_THREAD_PC (WS? intValue)?   { $value = new CmdThreadsPC($intValue.ctx != null ? $intValue.value : null); }
-  | TOKEN_SET        WS? allText      { $value = new CmdSet($allText.text); }
-  ;
-  
+
+
 
 cmdChoiceGenerators returns [ClientCommand value]
     : TOKEN_USED WS? TOKEN_CHOICE_GENERATORS { $value = new CmdUsedChoiceGenerators(); }
@@ -344,6 +354,7 @@ TOKEN_BOTH : 'both';
 TOKEN_BREAK : 'break' ;
 TOKEN_BREAKPOINT : 'breakpoint' | 'bp' ;
 TOKEN_CHOICE_GENERATORS : 'choice_generators' | 'cg' ;
+TOKEN_CHANGE : 'change';
 TOKEN_CONTINUE : 'continue' | 'cont' ;
 TOKEN_CLEAR : 'clear' ;
 TOKEN_CREATE : 'create' | 'cr' ;

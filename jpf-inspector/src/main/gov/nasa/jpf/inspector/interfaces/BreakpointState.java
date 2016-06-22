@@ -20,19 +20,36 @@
 package gov.nasa.jpf.inspector.interfaces;
 
 /**
- * Determines the action that occurs when the breakpoint is hit.
+ * Determines the action that occurs when the breakpoint is hit (nothing, logging, or execution break).
  */
 public enum BreakpointState {
   /**
    * The hit counter is updated but nothing is shown to the user.
    */
-  BP_STATE_DISABLED,
+  DISABLED,
   /**
    * The hit counter is updated and execution is suspended.
    */
-  BP_STATE_ENABLED,
+  ENABLED,
   /**
    * The hit counter is updated and a message is shown to the user.
    */
-  BP_STATE_LOGGING
+  LOGGING;
+
+
+  /**
+   * Gets the normalized expression representation of this state.
+   */
+  @Override
+  public String toString() {
+    switch (this){
+      case ENABLED:
+        return "enable";
+      case DISABLED:
+        return "disable";
+      case LOGGING:
+        return "log";
+    }
+    throw new RuntimeException("Unknown enum " + BreakpointState.class + " value.");
+  }
 }

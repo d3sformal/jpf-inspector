@@ -140,7 +140,7 @@ public class JPFClientCallbackHandler implements InspectorCallbacks {
       AssertStatus as = (AssertStatus) bp;
 
       String message = "Assertion violated:";
-      if (bp.getState() == BreakpointState.BP_STATE_LOGGING) {
+      if (bp.getState() == BreakpointState.LOGGING) {
         message = "Logging assertion violated:";
       }
       out.println("INFO: " + message + " [assert " + as.getNormalizedPosition() + " " + as.getNormalizedCondition() + "]");
@@ -148,7 +148,7 @@ public class JPFClientCallbackHandler implements InspectorCallbacks {
     } else {
       // Standard breakpoint
       String message = "Breakpoint hit:";
-      if (bp.getState() == BreakpointState.BP_STATE_LOGGING) {
+      if (bp.getState() == BreakpointState.LOGGING) {
         message = "Logging breakpoint hit:";
       }
       out.println("INFO: " + message + " [" + CmdBreakpointShow.breakpointToString(bp) + "]");

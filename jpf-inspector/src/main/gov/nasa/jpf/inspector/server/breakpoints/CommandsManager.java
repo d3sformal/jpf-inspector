@@ -228,7 +228,7 @@ public class CommandsManager implements CommandsInterface {
 
     BreakpointCreationExpression newBP = new BreakpointCreationExpression();
     newBP.setBounds(null, null, "<=", 1);
-    newBP.setState(BreakpointState.BP_STATE_ENABLED);
+    newBP.setState(BreakpointState.ENABLED);
 
     ExpressionBoolean bpExpression;
     if (type == StepType.ST_TRANSITION_DATA) {

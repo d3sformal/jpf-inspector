@@ -97,11 +97,11 @@ public class BreakpointCreationExpression implements BreakpointCreationInformati
     assert (bpState != null);
 
     switch (bpState) {
-    case BP_STATE_DISABLED:
+    case DISABLED:
       return "disable"; // dis
-    case BP_STATE_ENABLED:
+    case ENABLED:
       return "enable"; // en
-    case BP_STATE_LOGGING:
+    case LOGGING:
       return "log"; // log
     default:
       throw new RuntimeException("Internal error: Unknown " + bpState.getClass().getName() + " entry: " + bpState);
