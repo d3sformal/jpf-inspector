@@ -20,10 +20,7 @@
 package gov.nasa.jpf.inspector.server.breakpoints;
 
 import gov.nasa.jpf.inspector.common.BreakpointCreationExpression;
-import gov.nasa.jpf.inspector.interfaces.BreakpointState;
-import gov.nasa.jpf.inspector.interfaces.CommandsInterface;
-import gov.nasa.jpf.inspector.interfaces.InspectorCallbacks;
-import gov.nasa.jpf.inspector.interfaces.InstructionType;
+import gov.nasa.jpf.inspector.interfaces.*;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorGenericErrorException;
 import gov.nasa.jpf.inspector.server.expression.ExpressionBoolean;
 import gov.nasa.jpf.inspector.server.expression.InspectorState;
@@ -38,8 +35,8 @@ import gov.nasa.jpf.inspector.server.jpf.JPFInspector;
 import gov.nasa.jpf.inspector.server.jpf.StopHolder;
 import gov.nasa.jpf.inspector.server.pathanalysis.BackwardBreakpointCreator;
 import gov.nasa.jpf.inspector.utils.Debugging;
-import gov.nasa.jpf.vm.ThreadInfo;
 import gov.nasa.jpf.vm.ChoiceGenerator;
+import gov.nasa.jpf.vm.ThreadInfo;
 import gov.nasa.jpf.search.Search;
 
 /**
@@ -67,16 +64,17 @@ public class CommandsManager implements CommandsInterface {
 
   private final JPFInspector inspector;
   private final StopHolder stopHolder;
-  private final InspectorCallbacks callbacks;
+  private final InspectorCallbacks serverCallbacks;
   private final DefaultForwardTraceManager dftMgr;
-  private final BreakpointHandler breakpointMgr;
+  private final BreakpointHandler breakpointHandler;
 
-  public CommandsManager (JPFInspector inspector, StopHolder stopHolder, BreakpointHandler breakpointMgr, InspectorCallbacks callbacks,
+  public CommandsManager (JPFInspector inspector, StopHolder stopHolder, BreakpointHandler breakpointHandler,
+                          InspectorCallbacks serverCallbacks,
                           DefaultForwardTraceManager dftMgr) {
     this.inspector = inspector;
     this.stopHolder = stopHolder;
-    this.callbacks = callbacks;
-    this.breakpointMgr = breakpointMgr;
+    this.serverCallbacks = serverCallbacks;
+    this.breakpointHandler = breakpointHandler;
     this.dftMgr = dftMgr;
     newJPF();
   }
@@ -171,38 +169,46 @@ public class CommandsManager implements CommandsInterface {
     }
 
     // Create the breakpoint on that specific instruction
-    int bpID = bbc.createBreakpoint(breakpointMgr);
+    int bpID = bbc.createBreakpoint(breakpointHandler);
+    BreakpointStatus breakpointStatus = breakpointHandler.getBreakpoint(bpID);
+    serverCallbacks.genericInfo("The following breakpoint would be created:\n--> " + breakpointStatus.getNormalizedBreakpointExpression());
 
-    // Enable silent mode in JPF Listener
-    InspectorListener listener = inspector.getInspectorListener();
-    assert listener != null : "Internal error - if JPF is connected then Listener has to be set";
-    InspectorListenerModeSilent listenerSilentMode =
-            new InspectorListenerModeSilent(inspector, this, breakpointMgr,
-                                            bbc.getTransitionsToBacktrack(),
-                                            bpID, dftMgr, stopHolder);
-    listener.pushMode(listenerSilentMode);
+    //noinspection ConstantIfStatement,ConstantConditions
+    if (false) {
+      // Enable silent mode in JPF Listener
+      InspectorListener listener = inspector.getInspectorListener();
+      assert listener != null : "Internal error - if JPF is connected then Listener has to be set";
+      InspectorListenerModeSilent listenerSilentMode =
+              new InspectorListenerModeSilent(inspector, this, breakpointHandler,
+                                              bbc.getTransitionsToBacktrack(),
+                                              bpID, dftMgr, stopHolder);
+      listener.pushMode(listenerSilentMode);
 
-    Search search = inspState.getSearch();
-    assert search != null : "Internal error - not specified search";
+      Search search = inspState.getSearch();
+      assert search != null : "Internal error - not specified search";
 
-    // reset the root CG if we might backtrack to it
-    ChoiceGenerator<?>[] allCGs = search.getVM().getSystemState().getChoiceGenerators();
-    if (bbc.getTransitionsToBacktrack() >= allCGs.length) {
-      allCGs[0].reset();
+      // reset the root CG if we might backtrack to it
+      ChoiceGenerator<?>[] allCGs = search.getVM().getSystemState().getChoiceGenerators();
+      if (bbc.getTransitionsToBacktrack() >= allCGs.length) {
+        allCGs[0].reset();
+      }
+
+      // Stop current transition (to prevent invoke more instruction than necessary) - only if this makes sense - instruction/throw/object_created
+      //search.getVM().breakTransition(); // We cannot add new transition
+      //search.requestBacktrack();
+      search.getVM().ignoreState();
+
+      if (DEBUG) {
+        Debugging.getSwingShellLogger()
+                .warning(
+                        "Backstep commences, backtrack " + bbc.getTransitionsToBacktrack() + " transitions to breakpoint \"" + bbc
+                                .getBreakpointHitCondition()
+                                .getNormalizedExpression() + "\"");
+      }
+
+      // Resume execution -> now silent backtrack and "breakpoint hit in single forward step should occur"
+      stopHolder.resumeExecution();
     }
-
-    // Stop current transition (to prevent invoke more instruction than necessary) - only if this makes sense - instruction/throw/object_created
-    //search.getVM().breakTransition(); // We cannot add new transition
-    //search.requestBacktrack();
-    search.getVM().ignoreState();
-
-    if (DEBUG) {
-      Debugging.getSwingShellLogger().warning("Backstep commences, backtrack " + bbc.getTransitionsToBacktrack() + " transitions to breakpoint \"" + bbc.getBreakpointHitCondition().getNormalizedExpression() + "\"");
-    }
-
-    // Resume execution -> now silent backtrack and "breakpoint hit in single forward step should occur"
-    stopHolder.resumeExecution();
-
   /*
    * I don't get what this means. It's probably the steps that happen, in order, in the silent mode:
    *
@@ -245,7 +251,7 @@ public class CommandsManager implements CommandsInterface {
     }
 
     assert (bpExpression != null);
-    breakpointMgr.createInternalBreakpoint(newBP, bpExpression, true);
+    breakpointHandler.createInternalBreakpoint(newBP, bpExpression, true);
 
     stopHolder.resumeExecution();
   }
@@ -265,7 +271,7 @@ public class CommandsManager implements CommandsInterface {
     listener.popMode();
 
     if (!success) {
-      callbacks.genericError("Backward step failed (" + reason + ")");
+      serverCallbacks.genericError("Backward step failed (" + reason + ")");
     }
   }
 

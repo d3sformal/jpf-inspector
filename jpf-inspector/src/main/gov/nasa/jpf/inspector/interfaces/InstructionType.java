@@ -35,5 +35,20 @@ public enum InstructionType {
    * MoniterEnter/MonitorExit
    */
   IT_LOCK,
-  IT_ARRAY
+  IT_ARRAY,
+  /**
+   * The instruction accesses a local variable.
+   * (aload*, astore*, dload*, dstore*, fload*, fstore*, iload*, istore*, lload*, lstore*, ret)
+   */
+  LOCAL_ACCESS,
+  /**
+   * The instruction reads a value from a local variable.
+   * (aload*, dload*, fload*, iload*, lload*, ret)
+   */
+  LOCAL_READ,
+  /**
+   * The instruction writes a value into a local variable.
+   * (astore*, dstore*, fstore*, istore*, lstore*)
+   */
+  LOCAL_WRITE
 }

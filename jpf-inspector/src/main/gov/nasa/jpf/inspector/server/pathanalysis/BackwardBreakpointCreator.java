@@ -24,25 +24,29 @@ import gov.nasa.jpf.vm.Transition;
  *
  * All of this happens inside the {@link CommandsManager#backwardStep(CommandsInterface.StepType)} method.
  */
-public class BackwardBreakpointCreator {
+public final class BackwardBreakpointCreator {
 
   private final ExpressionBoolean breakpointHitCondition;
   private final int numberOfTransitionsToBacktrack;
 
   /**
    * Initializes a new instance of the {@link BackwardBreakpointCreator}.
-   * This constructor is protected and not private because it's called from the Backtracker classes as well.
+   * This constructor is protected and not private because it's called from the Backtracker classes as well. This class is sealed, there are no inheritors, but we need this to be package-private.
    *
-   * @param transition The current transition. This is only used to get the current thread index. Maybe should be refactored.
+   * @param transition The current transition.
    * @param step Step that we should backtrack to. This step contains the instruction that we want to put a breakpoint on.
    * @param numberOfTransitionsToBacktrack Number of transitions to backtrack.
    */
   protected BackwardBreakpointCreator(Transition transition, Step step, int numberOfTransitionsToBacktrack) {
-    int backwardBreakpointBound = MethodInstructionBacktracker.getInstrCountInTransition(transition, step);
+    assert transition != null;
+    assert step != null;
+    assert numberOfTransitionsToBacktrack > 0;
+
+    int stepToBreakOn = MethodInstructionBacktracker.howManySameInstructionStepsUpToStep(transition, step);
 
     this.breakpointHitCondition = new ExpressionBreakpointInstruction(transition.getThreadIndex(),
                                                                       step.getInstruction(),
-                                                                      backwardBreakpointBound);
+                                                                      stepToBreakOn);
     this.numberOfTransitionsToBacktrack = numberOfTransitionsToBacktrack;
 
   }
@@ -81,11 +85,23 @@ public class BackwardBreakpointCreator {
     return numberOfTransitionsToBacktrack;
   }
 
-  public static BackwardBreakpointCreator getBackwardStepInstruction (InspectorState insp) {
-    Path path = getPath(insp);
+  // The following methods create the creator based on the backstep type that was requested.
+
+  /**
+   * Returns a creator for back_step_instruction.
+   *
+   * Specification:
+   * Undoes the last instruction. Specifically, backtracks through the JPF transition path and then re-executes transitions until it stops just before the last instruction that was executed.
+   *
+   * @param inspectorState The current Inspector state used to get the transition path.
+   * @return Creator with all target information collected.
+   */
+  public static BackwardBreakpointCreator getBackwardStepInstruction (InspectorState inspectorState) {
+    Path path = getPath(inspectorState);
     Transition currentTransition = path.getLast();
     if (currentTransition == null) {
-      // Called to early
+      // Called too early,
+      assert false; // This should not happen.
       return null;
     }
     int currentThread = currentTransition.getThreadIndex();
@@ -103,19 +119,31 @@ public class BackwardBreakpointCreator {
     return new BackwardBreakpointCreator(ttb.getCurrentTransition(), targetStep, ttb.getBacksteppedTransitions());
   }
 
-  public static BackwardBreakpointCreator getBackwardStepLine (InspectorState insp) {
-    Path path = getPath(insp);
-    MethodInstructionBacktracker bpa = new MethodInstructionBacktracker(path);
+  /**
+   * Returns a creator for back_step_over.
+   *
+   * Specification:
+   *
+   * Undoes instructions on the current and previous source code lines in the current method (all instructions in nested method calls are undone as well). Specifically, backtracks through the JPF transition path and then re-executes transitions until it stops just before the first instruction on the code line just before the current code line.
 
-    Step st = bpa.getPreviousStepInCurrentMethod();
-    InstructionPosition ip = InstructionPositionImpl.getInstructionPosition(st.getInstruction());
+   If prior to the back step, execution is stopped at the first code line of a method, then the command executes as though back_step_out was executed.
+
+   * @param inspectorState The current Inspector state used to get the transition path.
+   * @return Creator with all target information collected.
+   */
+  public static BackwardBreakpointCreator getBackwardStepLine (InspectorState inspectorState) {
+    Path path = getPath(inspectorState);
+    MethodInstructionBacktracker methodInstructionBacktracker = new MethodInstructionBacktracker(path);
+
+    Step step = methodInstructionBacktracker.getPreviousStepInCurrentMethod();
+    InstructionPosition ip = InstructionPositionImpl.getInstructionPosition(step.getInstruction());
 
     // Undo instructions on the current line
-    while ((st != null) && ip.hitPosition(st.getInstruction())) {
-      st = bpa.getPreviousStepInCurrentMethod();
+    while ((step != null) && ip.hitPosition(step.getInstruction())) {
+      step = methodInstructionBacktracker.getPreviousStepInCurrentMethod();
     }
 
-    if (st == null) {
+    if (step == null) {
       return null; // No such place exists
     }
 
@@ -124,33 +152,49 @@ public class BackwardBreakpointCreator {
     Step prevStep = null;
     Transition prevTransition = null;
     int prevTr2Backrack = 0;
-    ip = InstructionPositionImpl.getInstructionPosition(st.getInstruction());
-    while (st != null && ip.hitPosition(st.getInstruction())) {
-      prevStep = st;
-      prevTransition = bpa.getCurrentTransition();
-      prevTr2Backrack = bpa.getBacktrackedTransitionCount();
+    ip = InstructionPositionImpl.getInstructionPosition(step.getInstruction());
+    while (step != null && ip.hitPosition(step.getInstruction())) {
+      prevStep = step;
+      prevTransition = methodInstructionBacktracker.getCurrentTransition();
+      prevTr2Backrack = methodInstructionBacktracker.getBacktrackedTransitionCount();
 
-      st = bpa.getPreviousStepInCurrentMethod();
+      step = methodInstructionBacktracker.getPreviousStepInCurrentMethod();
     }
 
     // in the prev* variables we hold the first instruction on given line
     return new BackwardBreakpointCreator(prevTransition, prevStep, prevTr2Backrack);
   }
 
-  public static BackwardBreakpointCreator getBackwardStepIn (InspectorState insp) {
+  /**
+   * Returns a creator for back_step_in.
+   *
+   * Specification:
+   *
+   * Undoes all instructions on the current line, then undoes instructions on the previous code line in the same method until it backtracks into a method call, in which case it stops just before the called method's return instruction.
+
+   If no method call occurs on the previous code line, the command behaves as back_step_over.
+
+   If there is no previous code line (because prior to the back step, execution is stopped at the first code line of a method), the command behaves as back_step_out.
+
+   Implementation-wise, what actually happens is that we backtrack to the beginning of the appropriate transition and then step forward until we reach the return instruction, just like in all the other back-stepping instructions.
+   *
+   * @param inspectorState The current Inspector state used to get the transition path.
+   * @return Creator with all target information collected.
+   */
+  public static BackwardBreakpointCreator getBackwardStepIn (InspectorState inspectorState) {
     CheckCallInstruction checkCall = new CheckCallInstruction();
 
-    Path path = getPath(insp);
+    Path path = getPath(inspectorState);
 
-    Transition lastTr = path.getLast();
-    if (lastTr == null) {
+    Transition currentTransition = path.getLast();
+    if (currentTransition == null) {
       return null;
     }
-    int currentThread = lastTr.getThreadIndex();
+    int currentThread = currentTransition.getThreadIndex();
     TransitionThreadBacktracker trBacktracker = new TransitionThreadBacktracker(path, currentThread);
     StepThreadBacktracker stepBacktracker = new StepThreadBacktracker(trBacktracker);
 
-    int lineChangeCnt = 0; // How many different lines we meet
+    int lineChangeCnt = 0;      // How many different lines we meet
     int callInstructionCnt = 0; // How many call instructions we reached
     InstructionPosition ip = null;
 
@@ -178,12 +222,20 @@ public class BackwardBreakpointCreator {
     return stepBacktracker.createBackwardBreakpointFromPreviousReturnedStep();
   }
 
-  public static BackwardBreakpointCreator getBackwardStepOut (InspectorState insp) {
-    Path path = getPath(insp);
+  /**
+   * Returns a creator for back_step_out.
+   *
+   * Undoes all instructions that have been executed since this method was entered, backsteps out of the method and then undoes instructions in the parent until it stops at the beginning of the source code line of the callsite.
+   *
+   * @param inspectorState The current Inspector state used to get the transition path.
+   * @return Creator with all target information collected.
+   */
+  public static BackwardBreakpointCreator getBackwardStepOut (InspectorState inspectorState) {
+    Path path = getPath(inspectorState);
     MethodInstructionBacktracker mib = new MethodInstructionBacktracker(path);
     Step st = mib.getCallerOfCurrentMethod();
     if (st == null) {
-      return null; // No such place exists
+      return null; // No callsite could be found, perhaps because we are the root method.
     }
     return mib.createBackwardBreakpointFromCurrentStep();
   }

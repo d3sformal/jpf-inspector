@@ -33,48 +33,100 @@ import gov.nasa.jpf.vm.*;
 import java.util.ArrayList;
 
 /**
+ * Represents the undocumented "specific_instruction" hit condition that hits when the specific instruction is about to be executed.
+ *
  * Used for internal Inspector purposes to implement backward single instruction steps.
  * 
- * Note: Should be used in the single JPF transition. Don't support backtracking. Note: Meaningful usage ... take back current transition (backtrack), restart
- * the choice generator to previous state and reexecute the same choice again Note: Inspector has to call {@link #evaluateExpression(InspectorState)} after each
- * executed instruction, no optimalization permitted.
+ * Note: Should only be used during the transition it was created for.
+ *
+ * Note: Doesn't support backtracking, that is done by other class.
+ *
+ * Note: The way this is is used is that the Inspector backtracks the current transition, restarts the choice generator
+ * to a previous state and reexecutes the same choice again.
+ *
+ * Note: The Inspector has to call {@link #evaluateExpression(InspectorState)} before each instruction to be executed,
+ * no optimization is permitted because we must count all the instructions we want to skip.
  */
 public class ExpressionBreakpointInstruction extends ExpressionBooleanLeaf {
   private static final boolean DEBUG = false;
 
+  /**
+   * We are only interested in the actions of this thread.
+   * However, because we only work during a single transition, this seems granted because the transition will always
+   * be executed by the only thread which is the one we're interested in. After we hit the breakpoint, it is removed.
+   *
+   * In theory, it might be possible for something to go wrong here, but user breakpoints are disabled during
+   * backwards-stepping and the console command for creating this hit condition is undocumented (for good reason)
+   * so we'll just assert that all threads reaching this breakpoint must have the index {@link #threadNum}.
+   */
   private final int threadNum;
-  private final Instruction instr;
-  private int count; // How many times we reach specified instruction
-  private final int hitCount; // / How many times has the specific thread reach the instruction to hit the Breakpoint
+  /**
+   * We want to stop right before we execute this instruction.
+   */
+  private final Instruction instruction;
+  /**
+   * How many times we have hit this instruction already.
+   */
+  private int count = 0;
+  /**
+   * At which hit should we finally trigger? (i.e. we should skip a number of hits equal to `{@link #hitCount} - 1`)
+   */
+  private final int hitCount;
 
   /**
-   * 
-   * @param threadNum
-   *        Specify thread we observe. Instruction from different threads are ignored.
-   * @param instr
-   *        Instruction we wanted to hit.
-   * @param hitCount
-   *        How many time has to be instruction executed to hit the breakpoint. If the hit count is 0 then breaks on the first instruction in given thread.
+   * Initializes a new instance of the {@link ExpressionBreakpointInstruction}.
+   *
+   * @param threadNum The thread to observe. Instructions from different threads are ignored and should not actually happen.
+   * @param instruction The specific instruction that we want to break on.
+   * @param hitCount At which hit should we finally trigger? (i.e. we should skip a number of hits equal to `hitCount - 1`)
    */
-  public ExpressionBreakpointInstruction (int threadNum, Instruction instr, int hitCount) {
+  public ExpressionBreakpointInstruction (int threadNum, Instruction instruction, int hitCount) {
     if (DEBUG) {
-      System.out.println(this.getClass().getSimpleName() + "." + this.getClass().getSimpleName() + "( threadNum=" + threadNum + ", instr=" + instr + "("
-          + (instr != null ? instr.getFilePos() : "?") + "), hitCount=" + hitCount + ")");
+      System.out.println(this.getClass().getSimpleName() + "." + this.getClass().getSimpleName() + "( threadNum=" + threadNum + ", instruction=" + instruction + "("
+          + (instruction != null ? instruction.getFilePos() : "?") + "), hitCount=" + hitCount + ")");
     }
-    assert instr != null;
+    assert instruction != null;
     assert hitCount > 0;
     this.threadNum = threadNum;
-    this.instr = instr;
+    this.instruction = instruction;
     this.hitCount = hitCount;
-    count = 0;
   }
 
+
+
+  @Override
+  public boolean evaluateExpression (InspectorState state) {
+    if (state.getListenerMethod() == ListenerMethod.LM_EXECUTE_INSTRUCTION) {
+      VM vm = state.getVM();
+      assert vm != null;
+      ThreadInfo ti = vm.getCurrentThread();
+      assert ti.getId() == threadNum;
+      if (ti.getId() == threadNum) {
+        Instruction executedInstr = vm.getInstruction();
+        if (instruction.equals(executedInstr)) {
+          count++;
+          return count == hitCount;
+        }
+      }
+    }
+    return false;
+  }
+
+  @Override
+  public BreakPointModes getBPMode () {
+    return BreakPointModes.BP_MODE_INTERNAL_INSTRUCTION;
+  }
+
+
   /**
+   * This is a legacy method that does not serve any use. Deleting it won't cause any problems.
+   *
    * Analyze given transition and create BreakpointExpression that hits on the last but one instruction in given transition.
-   * 
+   *
    * @param tr Transition to analyze. Cann't be null.
    * @return BreakpointExpression. If there is no place where put the BP (only one executed instruction) returns null.
    */
+  @SuppressWarnings("unused") // The method is useless, but I'd rather not risk removing something I'll need later because backstepping is tricky.
   static ExpressionBreakpointInstruction getBPonPreviousInstruction (Transition tr) {
     assert tr != null;
     int instrIndex = tr.getStepCount() - 1;
@@ -95,29 +147,9 @@ public class ExpressionBreakpointInstruction extends ExpressionBooleanLeaf {
     return new ExpressionBreakpointInstruction(tr.getThreadIndex(), penultimateInstr, sameInstrCount);
   }
 
-  @Override
-  public boolean evaluateExpression (InspectorState state) {
-    if (state.getListenerMethod() == ListenerMethod.LM_EXECUTE_INSTRUCTION) {
-      VM vm = state.getVM();
-      assert vm != null;
-      ThreadInfo ti = vm.getCurrentThread();
-      if (ti.getId() == threadNum) {
-        Instruction executedInstr = vm.getInstruction();
-        if (instr.equals(executedInstr)) {
-          count++;
-          return count == hitCount;
-        }
-      }
-    }
-    return false;
-  }
-
-  @Override
-  public BreakPointModes getBPMode () {
-    return BreakPointModes.BP_MODE_INTERNAL_INSTRUCTION;
-  }
-
   /**
+   * This method is used for the undocumented command "specific_instruction".
+   *
    * Gather Instruction in given method at given position.
    * 
    * Note: Uses first matching method for methodSpec (use no wildchars in Method name specification)
@@ -178,14 +210,14 @@ public class ExpressionBreakpointInstruction extends ExpressionBooleanLeaf {
     sb.append(" thread=");
     sb.append(threadNum);
     sb.append(" instruction=");
-    MethodInfo mi = instr.getMethodInfo();
+    MethodInfo mi = instruction.getMethodInfo();
     sb.append(mi.getClassName());
     sb.append(':');
     sb.append(mi.getName());
     sb.append(':');
-    sb.append(instr.getInstructionIndex());
+    sb.append(instruction.getInstructionIndex());
     sb.append('(');
-    sb.append(instr.toString());
+    sb.append(instruction.toString());
     sb.append(')');
     sb.append(" hit_count=");
     sb.append(hitCount);

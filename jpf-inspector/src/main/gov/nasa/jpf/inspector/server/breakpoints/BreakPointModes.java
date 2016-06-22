@@ -19,6 +19,10 @@
 
 package gov.nasa.jpf.inspector.server.breakpoints;
 
+/**
+ * Breakpoint modes are used by some hit conditions internally. However, it is a legacy mechanism, doesn't work well
+ * with the operator "and" and they should be avoided for any new hit conditions. Do not rely on them in new code.
+ */
 public enum BreakPointModes {
   BP_MODE_NONE, // / No condition is associated
   /**
@@ -50,8 +54,17 @@ public enum BreakPointModes {
    * The breakpoint's mode is not important.
    */
   BP_MODE_USER_CONDITION,
-
+  /**
+   * No special meaning.
+   * Indicates the "specific_instruction" hit condition.
+   */
   BP_MODE_INTERNAL_INSTRUCTION,
   BP_MODE_INTERNAL_STEP_OUT,
-  BP_MODE_INTERNAL_STEP_OVER
+  BP_MODE_INTERNAL_STEP_OVER,
+  /**
+   * No special meaning.
+   * This enumeration exists for legacy reasons only so there is no reason to add additional enumeration values here
+   * for new hit conditions.
+   */
+  BP_UNIMPORTANT
 }

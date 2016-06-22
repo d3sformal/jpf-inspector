@@ -100,8 +100,9 @@ public class MethodInstructionBacktracker {
       }
       if (DEBUG) {
         System.out.print(" |");
-        for (int i = 0; i < callStackDepth; i++)
+        for (int i = 0; i < callStackDepth; i++) {
           System.out.print(" |");
+        }
         if (returnChecker.isReturnStep(step)) {
           System.out.print("-");
         } else if (callChecker.isCallStep(step)) {
@@ -157,22 +158,25 @@ public class MethodInstructionBacktracker {
   }
 
   /**
-   * Get how many steps with instruction, which equals to instruction in step "st", are in the transition before step "st"
+   * Returns the number of steps in this transition, prior to the specified step and including the specified step,
+   * are associated with the same instruction as the specified step.
+   * The specific instruction only is considered, not all instructions with the same mnemonic.
    * 
-   * Usefull for {@link ExpressionBreakpointInstruction}.
+   * Useful in {@link BackwardBreakpointCreator} to create an instance of {@link ExpressionBreakpointInstruction}.
    * 
-   * @param tr Transition to process
-   * @param st Step to found
-   * @return Get how many steps with instruction, which equals to instruction in step "st", are in the transition before step "st"
+   * @param transition Transition to search through.
+   * @param step We are interested in steps strictly before this step.
+   * @return The number of times the step's instruction is executed before the step, plus +1 for its execution during
+   * the step. Thus, the return value is always 1 or more.
    */
-  public static int getInstrCountInTransition (Transition tr, Step st) {
-    assert (tr != null);
-    assert (st != null);
+  public static int howManySameInstructionStepsUpToStep(Transition transition, Step step) {
+    assert (transition != null);
+    assert (step != null);
 
-    final Instruction stInst = st.getInstruction();
+    final Instruction stInst = step.getInstruction();
 
     int count = 0;
-    Step trStep = tr.getStep(0);
+    Step trStep = transition.getStep(0);
     while (trStep != null) {
 
       // Same instruction
@@ -181,12 +185,13 @@ public class MethodInstructionBacktracker {
       }
 
       // Are all instruction before processed?
-      if (st.equals(trStep)) {
+      if (step.equals(trStep)) {
         break;
       }
       trStep = trStep.getNext();
     } // End while
 
+    assert count >= 1;
     return count;
   }
 

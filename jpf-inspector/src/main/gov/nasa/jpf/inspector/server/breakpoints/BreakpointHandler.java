@@ -107,6 +107,13 @@ public class BreakpointHandler implements BreakPointManagerInterface {
     return result;
   }
 
+  public BreakpointStatus getBreakpoint(int id) {
+    synchronized (breakpoints) {
+      assert breakpoints.containsKey(id);
+      return breakpoints.get(id).getBreakpointStatus(null);
+    }
+  }
+
   /**
    * Creates a new (if breakpoint ID is -1) or modifies an existing breakpoint.
    * 
@@ -257,13 +264,14 @@ public class BreakpointHandler implements BreakPointManagerInterface {
   }
 
   /**
-   * Checks if breakpoint hits but DOES NOT BLOCK.   *
+   * Checks if specified breakpoint hits.
    * 
    * @param inspState Program state.
-   * @param bpID Breakpoint ID to check.
-   * @return True if Breakpoint hits, false otherwise.
+   * @param bpID ID of the breakpoint to check.
+   * @return True if the breakpoint hits, false otherwise.
    * 
-   *  Note: If single hit single hit breeakpoints are removed.
+   *  Note: If the breakpoint is single-hit, then single-hit breakpoints are removed.
+   *
    *  Note: Executed by the JPF thread.
    */
   public boolean checkBreakpoint (InspectorState inspState, int bpID) {
