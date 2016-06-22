@@ -42,9 +42,12 @@ import gov.nasa.jpf.vm.Instruction;
 /**
  * The factory creates expressions of the initial expression hiearchy by calling constructors and occasionally
  * manipulating an exception.
+ *
+ * This factory is used by the ANTLR-generated grammar.
  */
-@SuppressWarnings("MethodMayBeStatic") // Some methods don't use the factory's fields.
-                                       // However, for consistency, all of them should be instance methods.
+@SuppressWarnings("MethodMayBeStatic")
+// Some methods don't use the factory's fields.
+// However, for consistency, all of them should be instance methods.
 public class ExpressionFactory {
   private final JPFInspector inspector;
   private final RelationOperatorFactory relopFactory;
@@ -192,9 +195,6 @@ public class ExpressionFactory {
     return new ExpressionBreakpointOperatorOr(left, right);
   }
 
-  /**
-   * @throws GenericErrorRuntimeException Wrapped {@link JPFInspectorGenericErrorException}
-   */
   public ExpressionBreakpointStepOut getBreakpointStepOut (int threadId, int stackDepth) throws GenericErrorRuntimeException {
     try {
       return ExpressionBreakpointStepOut.getStepOutToCaller(inspector, threadId, stackDepth);
@@ -208,9 +208,6 @@ public class ExpressionFactory {
     return new ExpressionBreakpointStateAdvanced();
   }
 
-  /**
-   * @throws GenericErrorRuntimeException Wrapped {@link JPFInspectorGenericErrorException}
-   */
   public ExpressionBreakpointSingleStep getBreakpointSingleStep (StepType stepType) throws GenericErrorRuntimeException {
     try {
       return ExpressionBreakpointSingleStep.createBreakpointSingleStep(inspector, stepType);
@@ -289,5 +286,23 @@ public class ExpressionFactory {
   public ExpressionBreakpointAssert getBreakpointAssert (ExpressionBooleanInterface position,
                                                          ExpressionBooleanInterface condition) {
     return new ExpressionBreakpointAssert(position, condition);
+  }
+  public ExpressionBreakpointOperatorNot getBreakpointNot(ExpressionBoolean inner) {
+    return new ExpressionBreakpointOperatorNot(inner);
+  }
+  public ExpressionBreakpointMethodName getBreakpointMethod(MethodName name) {
+    return new ExpressionBreakpointMethodName(name);
+  }
+  public ExpressionBreakpointClassName getBreakpointClass(ClassName className) {
+    return new ExpressionBreakpointClassName(className);
+  }
+  public ExpressionBreakpointLocalAccess getBreakpointLocalAccess(String name) {
+    return new ExpressionBreakpointLocalAccess(ExpressionBreakpointLocalAccess.LocalAccessMode.ANY_ACCESS, name);
+  }
+  public ExpressionBreakpointLocalAccess getBreakpointLocalRead(String name) {
+    return new ExpressionBreakpointLocalAccess(ExpressionBreakpointLocalAccess.LocalAccessMode.READ, name);
+  }
+  public ExpressionBreakpointLocalAccess getBreakpointLocalWrite(String name) {
+    return new ExpressionBreakpointLocalAccess(ExpressionBreakpointLocalAccess.LocalAccessMode.WRITE, name);
   }
 }

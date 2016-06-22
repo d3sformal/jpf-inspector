@@ -61,23 +61,23 @@ public class ExpressionBreakpointInstructionType extends ExpressionBooleanLeaf {
 
     if (inst == null) {
       return false;
-    } else if (instType == InstructionType.IT_ANY) {
+    } else if (instType == InstructionType.ANY) {
       return true;
-    } else if (instType == InstructionType.IT_ARRAY) {
+    } else if (instType == InstructionType.ARRAY) {
       return (inst instanceof ArrayElementInstruction);
-    } else if (instType == InstructionType.IT_FIELD_ACCESS) {
+    } else if (instType == InstructionType.FIELD_ACCESS) {
       return (inst instanceof FieldInstruction);
-    } else if (instType == InstructionType.IT_FIELD_READ) {
+    } else if (instType == InstructionType.FIELD_READ) {
       return (inst instanceof GETFIELD) || (inst instanceof GETSTATIC);
-    } else if (instType == InstructionType.IT_FIELD_WRITE) {
+    } else if (instType == InstructionType.FIELD_WRITE) {
       return (inst instanceof PUTFIELD) || (inst instanceof PUTSTATIC);
-    } else if (instType == InstructionType.IT_IFCOND) {
+    } else if (instType == InstructionType.IFCOND) {
       return (inst instanceof IfInstruction);
-    } else if (instType == InstructionType.IT_INVOKE) {
+    } else if (instType == InstructionType.INVOKE) {
       return (inst instanceof InvokeInstruction);
-    } else if (instType == InstructionType.IT_LOCK) {
+    } else if (instType == InstructionType.LOCK) {
       return (inst instanceof LockInstruction);
-    } else if (instType == InstructionType.IT_RETURN) {
+    } else if (instType == InstructionType.RETURN) {
       return (inst instanceof ReturnInstruction);
     } else {
       throw new RuntimeException("Internal error - Unknown enum " + InstructionType.class.getSimpleName() + " entry " + instType);
@@ -103,25 +103,25 @@ public class ExpressionBreakpointInstructionType extends ExpressionBooleanLeaf {
   public String getNormalizedExpression () {
     StringBuilder sb = new StringBuilder(30);
     sb.append("instruction_type=");
-    if (instType == InstructionType.IT_ANY) {
+    if (instType == InstructionType.ANY) {
       sb.append("any");
-    } else if (instType == InstructionType.IT_NONE) {
+    } else if (instType == InstructionType.NONE) {
       sb.append("none");
-    } else if (instType == InstructionType.IT_INVOKE) {
+    } else if (instType == InstructionType.INVOKE) {
       sb.append("invoke");
-    } else if (instType == InstructionType.IT_RETURN) {
+    } else if (instType == InstructionType.RETURN) {
       sb.append("return");
-    } else if (instType == InstructionType.IT_FIELD_ACCESS) {
+    } else if (instType == InstructionType.FIELD_ACCESS) {
       sb.append("field_access");
-    } else if (instType == InstructionType.IT_FIELD_READ) {
+    } else if (instType == InstructionType.FIELD_READ) {
       sb.append("field_read");
-    } else if (instType == InstructionType.IT_FIELD_WRITE) {
+    } else if (instType == InstructionType.FIELD_WRITE) {
       sb.append("field_write");
-    } else if (instType == InstructionType.IT_IFCOND) {
+    } else if (instType == InstructionType.IFCOND) {
       sb.append("condition");
-    } else if (instType == InstructionType.IT_LOCK) {
+    } else if (instType == InstructionType.LOCK) {
       sb.append("lock");
-    } else if (instType == InstructionType.IT_ARRAY) {
+    } else if (instType == InstructionType.ARRAY) {
       sb.append("array");
     } else {
       throw new RuntimeException("Internal error - Unsupported " + instType.getClass().getSimpleName() + "(" + instType + ")");

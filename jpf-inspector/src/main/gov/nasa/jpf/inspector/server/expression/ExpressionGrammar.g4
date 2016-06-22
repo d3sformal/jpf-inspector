@@ -47,7 +47,8 @@ allKeyWordsIDFLike
     | TOKEN_B
     | TOKEN_BEGIN
     | TOKEN_BOTH
-    | TOKEN_CHOICE_GENERATOR 
+    | TOKEN_CHOICE_GENERATOR
+    | TOKEN_CLASS
     | TOKEN_CONDITION
     | TOKEN_D
     | TOKEN_DATA
@@ -66,10 +67,15 @@ allKeyWordsIDFLike
     | TOKEN_INSTRUCTION_TYPE
     | TOKEN_INVOKE 
     | TOKEN_L
+    | TOKEN_LOCAL_ACCESS
+    | TOKEN_LOCAL_READ
+    | TOKEN_LOCAL_WRITE
     | TOKEN_LOCK
+    | TOKEN_METHOD
     | TOKEN_NAN
     | TOKEN_NEGATIVE_INFINITY1
     | TOKEN_NONE
+    | TOKEN_NOT
     | TOKEN_NOTIFY
     | TOKEN_METHOD_INVOKE
     | TOKEN_OBJECT_CREATED
@@ -165,6 +171,7 @@ cmdBreakpointsCreateParams1 [ExpressionFactory expFactory] returns [ExpressionBo
            ( (WS TOKEN_AND b2=cmdBreakpointsCreateParams1[expFactory] { $bp = expFactory.getBreakpointOperatorAnd($a2.bp, $b2.bp); } ) |
              (WS TOKEN_OR  b2=cmdBreakpointsCreateParams1[expFactory] { $bp = expFactory.getBreakpointOperatorOr ($a2.bp, $b2.bp); } )
            )?
+    | TOKEN_NOT WS? a3=cmdBreakpointsCreateParams1[expFactory] { $bp = expFactory.getBreakpointNot($a3.bp); }
     ;
 
 
@@ -210,6 +217,15 @@ cmdBreakpointsCreateParamsAtomTerminateIDF [ExpressionFactory expFactory] return
     { $bp = expFactory.getBreakpointObjectReleased($className.cn); }
     | WS? TOKEN_EXCEPTION_THROWN   WS? '=' WS? className WS?
     { $bp = expFactory.getBreakpointExpecptionThrown($className.cn); }
+    | WS? TOKEN_CLASS WS? '=' WS? className WS?
+    { $bp = expFactory.getBreakpointClass($className.cn); }
+    | WS? TOKEN_METHOD WS? '=' WS? methodName[new ClassName("*")] WS?
+    { $bp = expFactory.getBreakpointMethod($methodName.mn); }
+    | WS? TOKEN_METHOD WS? '=' WS? className WS? ':' WS? methodName[$className.cn] WS?
+    { $bp = expFactory.getBreakpointMethod($methodName.mn); }
+    | WS? TOKEN_LOCAL_ACCESS WS? '=' WS? idf WS? { $bp = expFactory.getBreakpointLocalAccess($idf.text); }
+    | WS? TOKEN_LOCAL_READ WS? '=' WS? idf WS? { $bp = expFactory.getBreakpointLocalRead($idf.text); }
+    | WS? TOKEN_LOCAL_WRITE WS? '=' WS? idf WS? { $bp = expFactory.getBreakpointLocalWrite($idf.text); }
     | l=cmdStateExpression1Value[expFactory]  relOp[expFactory] r=cmdStateExpression1Value[expFactory]
     { $bp = expFactory.getBreakpointCompare($l.expr, $relOp.relop, $r.expr); }
     ;
@@ -241,16 +257,19 @@ cmdChoiceGeneratorType returns [BreakPointModes bpMode]
     ;
 
 cmdInstructionTypes returns [InstructionType instructionType]
-    : TOKEN_ANY               { $instructionType = InstructionType.IT_ANY; }
-    | TOKEN_NONE              { $instructionType = InstructionType.IT_NONE; }
-    | TOKEN_INVOKE            { $instructionType = InstructionType.IT_INVOKE; }
-    | TOKEN_RETURN            { $instructionType = InstructionType.IT_RETURN; }
-    | TOKEN_FIELD_ACCESS      { $instructionType = InstructionType.IT_FIELD_ACCESS; }
-    | TOKEN_FIELD_READ        { $instructionType = InstructionType.IT_FIELD_READ; }
-    | TOKEN_FIELD_WRITE       { $instructionType = InstructionType.IT_FIELD_WRITE; }
-    | TOKEN_CONDITION         { $instructionType = InstructionType.IT_IFCOND; }
-    | TOKEN_LOCK              { $instructionType = InstructionType.IT_LOCK; }
-    | TOKEN_ARRAY             { $instructionType = InstructionType.IT_ARRAY; }
+    : TOKEN_ANY               { $instructionType = InstructionType.ANY; }
+    | TOKEN_NONE              { $instructionType = InstructionType.NONE; }
+    | TOKEN_INVOKE            { $instructionType = InstructionType.INVOKE; }
+    | TOKEN_RETURN            { $instructionType = InstructionType.RETURN; }
+    | TOKEN_FIELD_ACCESS      { $instructionType = InstructionType.FIELD_ACCESS; }
+    | TOKEN_FIELD_READ        { $instructionType = InstructionType.FIELD_READ; }
+    | TOKEN_FIELD_WRITE       { $instructionType = InstructionType.FIELD_WRITE; }
+    | TOKEN_LOCAL_ACCESS      { $instructionType = InstructionType.LOCAL_ACCESS; }
+    | TOKEN_LOCAL_READ        { $instructionType = InstructionType.LOCAL_READ; }
+    | TOKEN_LOCAL_WRITE       { $instructionType = InstructionType.LOCAL_WRITE; }
+    | TOKEN_CONDITION         { $instructionType = InstructionType.IFCOND; }
+    | TOKEN_LOCK              { $instructionType = InstructionType.LOCK; }
+    | TOKEN_ARRAY             { $instructionType = InstructionType.ARRAY; }
     ;
 
 cmdThreadScheduledDirection returns [BreakPointModes bpMode]
@@ -573,6 +592,14 @@ TOKEN_THREAD                    : 'thread' | 'ti' ;
 TOKEN_THREAD_SCHEDULED          : 'thread_scheduled' | 'ts' ;
 TOKEN_TRUE                      : 'true' ;
 TOKEN_X                         : 'x' | 'X' ;
+
+TOKEN_LOCAL_ACCESS : 'local_access' | 'la';
+TOKEN_LOCAL_READ : 'local_read' | 'lr';
+TOKEN_LOCAL_WRITE : 'local_write' | 'lr';
+TOKEN_METHOD : 'method';
+TOKEN_CLASS : 'class';
+TOKEN_NOT : 'not';
+
 
 SIGN_ASTERISK                   : '*' ;
 SIGN_BACK_SHLASH                : '\\' ;

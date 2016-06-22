@@ -21,20 +21,26 @@ package gov.nasa.jpf.inspector.interfaces;
 
 import gov.nasa.jpf.vm.Instruction;
 
+/**
+ * Represents the coordinates of an instruction, i.e. its location in the source code and in its method's bytecode.
+ */
 public interface InstructionPosition {
 
-  public static final int IP_POS_LINE_NOT_DEFINED = -1; /// Unspecified line
+  /**
+   * The source code line is unspecified.
+   */
+  int IP_POS_LINE_NOT_DEFINED = -1;
 
   /**
    * Can be obtained by calling Instruction.getLineNumber()
    */
-  public int getLineNumber();
+  int getLineNumber();
 
   
   /**
    * File name where the class is defined. (If the class file is stored in the jar file, then jar file name is ignored) 
    */
-  public String getFileName();
+  String getFileName();
   
   /**
    * Test whether given instruction take place at represented position. (File && Line)
@@ -42,32 +48,33 @@ public interface InstructionPosition {
    * @param instr Instruction which position is tested.
    * @return true if position of given instruction is the represented one
    */
-  public boolean hitPosition(Instruction instr);
+  boolean hitPosition(Instruction instr);
   
 
   //Note following entries may not be valid all the time
+
   /**
    * @return Line from source file with represented position
    */
-  public String getSourceLine();
+  String getSourceLine();
   
   /**
    * @return Class name in which represented position takes place
    */
-  public String getClassName();
+  String getClassName();
 
   /**
    * @return Method name in which represented position takes place
    */
-  public String getMethodName();
+  String getMethodName();
   
   /**
    * @return Get index of represented instruction in method
    */
-  public int getInstructionOffset();
+  int getInstructionOffset();
   
   /**
    * @return Name of the represented instruction
    */
-  public String getInstructionName();
+  String getInstructionName();
 }

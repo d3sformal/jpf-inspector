@@ -238,7 +238,7 @@ public class CommandsManager implements CommandsInterface {
     } else if (type == StepType.ST_TRANSITION_ALL) {
       bpExpression = new ExpressionBreakpointChoiceGenerator(BreakPointModes.BP_MODE_CHOICE_BOTH);
     } else if (type == StepType.ST_INSTRUCTION) {
-      bpExpression = new ExpressionBreakpointInstructionType(InstructionType.IT_ANY);
+      bpExpression = new ExpressionBreakpointInstructionType(InstructionType.ANY);
     } else if (type == StepType.ST_LINE) {
       bpExpression = new ExpressionBreakpointSingleStep(inspector, stopHolder.getJVM(), LocationTypes.LT_POSITION_LEAVED_STEP_OVER);
     } else if (type == StepType.ST_STEP_IN) {

@@ -47,6 +47,9 @@ class TransitionThreadBacktracker {
 
   /**
    * Initializes the backtracker.
+   *
+   * Starts uninitialized and "backtrackToPreviousTransition" must be called once to get to the current transition first.
+   *
    * @param path The current JPF transition path.
    * @param threadId The thread we are interested in.
    */
