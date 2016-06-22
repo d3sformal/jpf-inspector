@@ -94,7 +94,7 @@ public final class BackwardBreakpointCreator {
    * Undoes the last instruction. Specifically, backtracks through the JPF transition path and then re-executes transitions until it stops just before the last instruction that was executed.
    *
    * @param inspectorState The current Inspector state used to get the transition path.
-   * @return Creator with all target information collected.
+   * @return Creator with all target information collected. Returns null on failure.
    */
   public static BackwardBreakpointCreator getBackwardStepInstruction (InspectorState inspectorState) {
     Path path = getPath(inspectorState);
@@ -106,17 +106,16 @@ public final class BackwardBreakpointCreator {
     }
     int currentThread = currentTransition.getThreadIndex();
 
-    TransitionThreadBacktracker ttb = new TransitionThreadBacktracker(path, currentThread);
-    StepThreadBacktracker stb = new StepThreadBacktracker(ttb);
+    StepThreadBacktracker stb = new StepThreadBacktracker(new TransitionThreadBacktracker(path, currentThread));
 
-    stb.backstep(); // Ignore current instruction.
-    Step targetStep = stb.backstep(); // Get the one before.
+    // Get the immediately preceding instruction:
+    Step targetStep = stb.backstep();
 
     if (targetStep == null) {
-      return null; // No previous instruction
+      return null; // No previous instruction exists, this is the start of the thread.
     }
 
-    return new BackwardBreakpointCreator(ttb.getCurrentTransition(), targetStep, ttb.getBacksteppedTransitions());
+    return new BackwardBreakpointCreator(stb.getCurrentTransition(), targetStep, stb.getCurrentBackSteppedTransitions());
   }
 
   /**

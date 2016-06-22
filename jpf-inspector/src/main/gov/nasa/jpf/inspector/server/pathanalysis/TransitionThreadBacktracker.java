@@ -1,5 +1,6 @@
 package gov.nasa.jpf.inspector.server.pathanalysis;
 
+import gov.nasa.jpf.inspector.utils.Debugging;
 import gov.nasa.jpf.vm.Path;
 import gov.nasa.jpf.vm.Transition;
 
@@ -58,13 +59,14 @@ class TransitionThreadBacktracker {
    * @return The transition that was backtracked to, or null if the backtracking faileed because no such transition exists.
    */
   public Transition backtrackToPreviousTransition() {
-    // Remember previous state
+    Debugging.getLogger().info("Backtracking: Transition backtracking commences.");
 
     // Iterate until we find a transition executed by the thread we are interested in.
     while (reversePathIterator.hasNext()) {
 
       // Update current state
       currentTransition = reversePathIterator.next();
+      Debugging.getLogger().info("Backtracking: Backtracked to transition labeled '" + currentTransition.getLabel() + "'");
       backsteppedTransitions++;
 
       if (currentTransition.getThreadIndex() == threadId) {

@@ -2,7 +2,7 @@ package sooth;
 
 @SuppressWarnings("ALL")
 public class Stepping {
-  public static void Main(String[] args){
+  public static void main(String[] args){
     int outside = 1;
     outside = 2;
 

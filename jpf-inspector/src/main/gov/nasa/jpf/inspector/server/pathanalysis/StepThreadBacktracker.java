@@ -1,5 +1,6 @@
 package gov.nasa.jpf.inspector.server.pathanalysis;
 
+import gov.nasa.jpf.inspector.utils.Debugging;
 import gov.nasa.jpf.vm.Backtracker;
 import gov.nasa.jpf.vm.Instruction;
 import gov.nasa.jpf.vm.Step;
@@ -70,17 +71,19 @@ class StepThreadBacktracker {
     prevReturnedStepIndex = currentTransitionStepIndex;
     prevReturnedTransition = ttb.getCurrentTransition();
     prevReturnedTransition2Backrack = ttb.getBacksteppedTransitions();
-
+    Debugging.getLogger().info("Backtracking: Backstep: Commencing.");
     // If we are the start of a transition, and before we begin, we must request a new transition.
     if (currentTransitionStepIndex <= 0) {
       if (!requestPreviousTransition()) {
         return null;
       }
+      Debugging.getLogger().info("Backtracking: Backstep: Transition successfully requested. It has " + currentTransitionSteps.length + " steps.");
     }
     assert (currentTransitionStepIndex > 0); // Single instruction transition with bottom half of executed instruction??
 
     // Perform the backstep now.
     currentTransitionStepIndex--;
+    Debugging.getLogger().info("Backtracking: Backstepped into " + currentTransitionSteps[currentTransitionStepIndex].getInstruction() +" at line " + currentTransitionSteps[currentTransitionStepIndex].getLineString() + ".");
     return currentTransitionSteps[currentTransitionStepIndex];
   }
 
