@@ -1,5 +1,6 @@
 package gov.nasa.jpf.inspector.server.pathanalysis;
 
+import gov.nasa.jpf.vm.Backtracker;
 import gov.nasa.jpf.vm.Instruction;
 import gov.nasa.jpf.vm.Step;
 import gov.nasa.jpf.vm.Transition;
@@ -15,6 +16,9 @@ class StepThreadBacktracker {
    * Indicates that we have not yet called the {@link #backstep()} method. This constant must be less than zero.
    */
   private static final int BACKSTEP_NOT_YET_CALLED = -1;
+  /**
+   * We use this {@link TransitionThreadBacktracker} to get previous transitions. We are responsible for initializing it.
+   */
   private final TransitionThreadBacktracker ttb;
 
   /**
@@ -22,7 +26,8 @@ class StepThreadBacktracker {
    */
   private Step[] currentTransitionSteps = null;
   /**
-   * Step to processed. Steps after this index are processed, steps before waits for processing.
+   * Step to process. Steps after this index are processed, steps before wait for processing.
+   * It is the step that was last returned from the {@link #backstep()} method.
    */
   private int currentTransitionStepIndex = BACKSTEP_NOT_YET_CALLED;
 
@@ -44,10 +49,12 @@ class StepThreadBacktracker {
   /**
    * Initializes a new {@link StepThreadBacktracker} that only uses transitions given by the specified {@link TransitionThreadBacktracker}.
    *
-   * @param ttb The {@link TransitionThreadBacktracker} that supplies transitions.
+   * @param ttb The {@link TransitionThreadBacktracker} that supplies transitions. The transition backtracker must be
+   *            uninitialized, i.e. still before its first call.
    */
   public StepThreadBacktracker (TransitionThreadBacktracker ttb) {
     this.ttb = ttb;
+    assert this.ttb.getBacksteppedTransitions() == 0 : "This transition thread backtracker was already used.";
   }
 
   /**
@@ -82,6 +89,10 @@ class StepThreadBacktracker {
    * Uses the {@link TransitionThreadBacktracker} to backtrack to the previous transition and sets this backtracker's
    * current transition to that transition.
    *
+   * After this method terminates, the {@link #currentTransitionStepIndex} will be set to the number of steps of the
+   * transition, i.e. a number greater by 1 than the topmost step. It is the responsibility of {@link #backstep()} to
+   * decrement it. {@link #backstep()} is the only method to call this one.
+   *
    * @return True if the previous transition was loaded; false if there is no previous transition.
    */
   private boolean requestPreviousTransition() {
@@ -105,8 +116,10 @@ class StepThreadBacktracker {
 
     currentTransitionSteps = transition2StepArray(currentTransition);
     currentTransitionStepIndex = currentTransitionSteps.length;
+    assert currentTransitionStepIndex > 0;
     if (currentTransitionStepIndex > 0) {
-      // Check if the last step in current transition is not the bottom half of the first step in previous (consequent) transition
+      // Check if the last step in current transition is not the bottom half
+      // of the first step in previous (consequent) transition
       if (previousStep != null) {
         Instruction instCT = currentTransitionSteps[currentTransitionStepIndex - 1].getInstruction();
         assert (instCT != null);
@@ -139,25 +152,28 @@ class StepThreadBacktracker {
   }
 
   /**
-   * @return Gets result of the last {@link #backstep()} method call.
+   * Gets result of the last {@link #backstep()} method call.
    */
   public Step getCurrentStep () {
     if (currentTransitionStepIndex == BACKSTEP_NOT_YET_CALLED) {
-      return null;
+      throw new RuntimeException("getCurrentStep() must only be called after the first backstep().");
     }
     return currentTransitionSteps[currentTransitionStepIndex];
   }
 
   /**
-   * @return Gets transition where {@link #getCurrentStep()} step is stored.
+   * Gets the transition where the currently processed step is contained.
    */
   public Transition getCurrentTransition () {
     return ttb.getCurrentTransition();
   }
 
   /**
-   * @return Gets number of transitions (including the skipped transition in different threads) which were "backstepped" to obtain
-   * {@link #getCurrentTransition()} transition
+   * Returns the number of transitions we backtracked through.
+   * "0" means we haven't begun yet.
+   * "1" means we backtracked through the topmost transition only.
+   *
+   * This includes transitions executed by threads other than the one we are interested in.
    */
   public int getCurrentBackSteppedTransitions () {
     return ttb.getBacksteppedTransitions();

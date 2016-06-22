@@ -37,15 +37,6 @@ class TransitionThreadBacktracker {
   private Transition currentTransition = null;
 
   /**
-   * revious (not last, but one before the last) result of {@link #backtrackToPreviousTransition()} call.
-   */
-  private Transition prevReturnedTransition = null;
-  /**
-   * Number of transition to backtrack to obtain {@link #prevReturnedTransition}.
-   */
-  private int prevReturnedBacksteppedTransitions = 0;
-
-  /**
    * Initializes the backtracker.
    *
    * Starts uninitialized and "backtrackToPreviousTransition" must be called once to get to the current transition first.
@@ -68,8 +59,6 @@ class TransitionThreadBacktracker {
    */
   public Transition backtrackToPreviousTransition() {
     // Remember previous state
-    prevReturnedBacksteppedTransitions = backsteppedTransitions;
-    prevReturnedTransition = currentTransition;
 
     // Iterate until we find a transition executed by the thread we are interested in.
     while (reversePathIterator.hasNext()) {
