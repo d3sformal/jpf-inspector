@@ -50,14 +50,6 @@ import jline.ConsoleReader;
  */
 public class JPFShellInspectorPanel extends ShellPanel implements VerifyCommandListener {
   private static Logger log = Debugging.getLogger(ShellManager.getManager().getConfig());
-  /**
-   * Commands that should be run at the beginning of a JPF Inspector session.
-   * This is used for debugging only.
-   */
-  @SuppressWarnings("MismatchedReadAndWriteOfArray")
-  private static final String[] INITIAL_COMMANDS = {};
-
-  private int initialCmdProcessed = 0;
 
   private static final boolean DEBUG = false;
 
@@ -128,34 +120,20 @@ public class JPFShellInspectorPanel extends ShellPanel implements VerifyCommandL
 
     @Override
     public void run () {
-      try {
-        //noinspection InfiniteLoopStatement
-        while (true) {
-          try {
-            String s;
-            if (initialCmdProcessed < INITIAL_COMMANDS.length) {
-              // if (initialCmdProcessed > 1 && INITIAL_COMMANDS[initialCmdProcessed-1].equals("run")) sleep(500);
-              // useful for debugging (if some commands are predefined)
-              sleep(1500);
-              s = INITIAL_COMMANDS[initialCmdProcessed++];
-            } else {
-              s = console.readLine(Constants.PROMPT);
-            }
-            String sTrimmed = s.trim();
-            if (sTrimmed.length() == 0) {
-              consolePrintStream.println("\n" + Constants.PROMPT);
-            }
-            if (s.trim().length() > 0) {
-              consolePrintStream.println();
-              inspector.executeCommand(s, ExecutionContext.FROM_SWING_TERMINAL);
-            }
-          } catch (IOException e) {
-            consolePrintStream.println("ERR: Error while reading a command.");
+      //noinspection InfiniteLoopStatement
+      while (true) {
+        try {
+          String s = console.readLine(Constants.PROMPT);
+          if (s.trim().isEmpty()) {
+            consolePrintStream.println("\n" + Constants.PROMPT);
+          } else {
+            consolePrintStream.println();
+            inspector.executeCommand(s.trim(), ExecutionContext.FROM_SWING_TERMINAL);
           }
-        } // end of while
-      } catch (InterruptedException e) {
-        // Terminate the command loop
-      }
+        } catch (IOException e) {
+          consolePrintStream.println("ERR: Error while reading a command.");
+        }
+      } // end of while
     }
   }
 
