@@ -50,6 +50,9 @@ public class CommandParserUserCommands implements CommandParserInterface {
     try {
       ConsoleGrammarParser parser = CommandParserFactory.getParser(cmd);
       return parser.clientCommands().value;
+    } catch (NumberFormatException e) {
+      throw new JPFInspectorParsingErrorException("Could not parse a string as a number (perhaps the number does not fit in 32 bits?)\n" +
+                                                          e.getMessage(), null, 0);
     } catch (RecognitionRuntimeException e) {
       throw new JPFInspectorParsingErrorException("Invalid input" + (e.getMessage() != null ? " - " + e.getMessage() : ""), cmd, e.getRecognitionException());
     } catch (AntlrParseException e) {

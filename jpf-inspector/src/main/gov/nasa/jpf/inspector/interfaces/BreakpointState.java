@@ -34,22 +34,5 @@ public enum BreakpointState {
   /**
    * The hit counter is updated and a message is shown to the user.
    */
-  LOGGING;
-
-
-  /**
-   * Gets the normalized expression representation of this state.
-   */
-  @Override
-  public String toString() {
-    switch (this){
-      case ENABLED:
-        return "enable";
-      case DISABLED:
-        return "disable";
-      case LOGGING:
-        return "log";
-    }
-    throw new RuntimeException("Unknown enum " + BreakpointState.class + " value.");
-  }
+  LOGGING
 }

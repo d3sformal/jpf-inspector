@@ -1,15 +1,15 @@
-1 :  state=BP_STATE_ENABLED hits=0 hitsTotal=0 position=*:9
+1 :  state=ENABLED hits=0 hitsTotal=0 position=*:9
 INFO: JPF created and connected, SuT is started
-INFO: Breakpoint hit: [1 :  state=BP_STATE_ENABLED hits=1 hitsTotal=1 position=*:9]
+INFO: Breakpoint hit: [1 :  state=ENABLED hits=1 hitsTotal=1 position=*:9]
 	SuT will now execute "return  gov.nasa.jpf.inspector.tests.acceptance.legacy.AssertSimpleTest.main([Ljava/lang/String;)V" at position *:9.
-INFO: Breakpoint hit: [1 :  state=BP_STATE_ENABLED hits=1 hitsTotal=2 position=*:9]
+INFO: Breakpoint hit: [1 :  state=ENABLED hits=1 hitsTotal=2 position=*:9]
 	SuT will now execute "return  gov.nasa.jpf.inspector.tests.acceptance.legacy.AssertSimpleTest.main([Ljava/lang/String;)V" at position *:9.
-INFO: Breakpoint hit: [1 :  state=BP_STATE_ENABLED hits=1 hitsTotal=3 position=*:9]
+INFO: Breakpoint hit: [1 :  state=ENABLED hits=1 hitsTotal=3 position=*:9]
 	SuT will now execute "return  gov.nasa.jpf.inspector.tests.acceptance.legacy.AssertSimpleTest.main([Ljava/lang/String;)V" at position *:9.
-INFO: Breakpoint hit: [1 :  state=BP_STATE_ENABLED hits=1 hitsTotal=4 position=*:9]
+INFO: Breakpoint hit: [1 :  state=ENABLED hits=1 hitsTotal=4 position=*:9]
 	SuT will now execute "return  gov.nasa.jpf.inspector.tests.acceptance.legacy.AssertSimpleTest.main([Ljava/lang/String;)V" at position *:9.
-INFO: Breakpoint hit: [1 :  state=BP_STATE_ENABLED hits=1 hitsTotal=5 position=*:9]
+INFO: Breakpoint hit: [1 :  state=ENABLED hits=1 hitsTotal=5 position=*:9]
 	SuT will now execute "return  gov.nasa.jpf.inspector.tests.acceptance.legacy.AssertSimpleTest.main([Ljava/lang/String;)V" at position *:9.
 INFO: JPF Terminating
-1 :  state=BP_STATE_ENABLED hits=0 hitsTotal=5 position=*:9
+1 :  state=ENABLED hits=0 hitsTotal=5 position=*:9
 ERR: This command may only be used when JPF has started and is paused. If JPF is not already started, then start it using 'run' and if it is already running, then pause it using 'break'. Then you will be able to execute this command. Alternatively, you may disable safe mode in the configuration file by setting 'jpf-inspector.safe-mode = false'.

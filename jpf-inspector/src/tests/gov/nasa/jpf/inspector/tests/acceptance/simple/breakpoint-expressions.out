@@ -61,65 +61,65 @@ cmd>create breakpoint    choice_generator =   both
 cmd>create breakpoint cg=data
 cmd>create breakpoint   cg     =sched
 cmd>sw breakpoint
-1 :  state=BP_STATE_ENABLED hits=0 hitsTotal=0 ( property_violated ) and ( property_violated )
-2 :  state=BP_STATE_ENABLED hits=0 hitsTotal=0 ( property_violated ) or ( property_violated )
-3 :  state=BP_STATE_ENABLED hits=0 hitsTotal=0 ( instruction_type=condition ) and ( method_invoke=pos:pos )
-4 :  state=BP_STATE_ENABLED hits=0 hitsTotal=0 ( ( instruction_type=condition ) and ( method_invoke=pos:pos ) ) or ( property_violated )
-5 :  state=BP_STATE_ENABLED hits=0 hitsTotal=0 state_advanced
-6 :  state=BP_STATE_ENABLED hits=0 hitsTotal=0 state_advanced
-7 :  state=BP_STATE_ENABLED hits=0 hitsTotal=0 method_invoke=Agent:Alf009
-8 :  state=BP_STATE_ENABLED hits=0 hitsTotal=0 method_invoke=mil.pentagon.target.Main:hit
-9 :  state=BP_STATE_ENABLED hits=0 hitsTotal=0 method_invoke=pos:pos
-10 :  state=BP_STATE_ENABLED hits=0 hitsTotal=0 method_invoke=mi:mi
-11 :  state=BP_STATE_ENABLED hits=0 hitsTotal=0 method_invoke=field_access.fr:field_access
-12 :  state=BP_STATE_ENABLED hits=0 hitsTotal=0 method_invoke=cg.both.cgdata.Alf:garbage_collection
-13 :  state=BP_STATE_ENABLED hits=0 hitsTotal=0 method_invoke=cg.both.cgdata.Cg$Runner:garbage_collection
-14 :  state=BP_STATE_ENABLED hits=0 hitsTotal=0 thread_scheduled=both:0
-15 :  state=BP_STATE_ENABLED hits=0 hitsTotal=0 thread_scheduled=in:1
-16 :  state=BP_STATE_ENABLED hits=0 hitsTotal=0 thread_scheduled=out
-17 :  state=BP_STATE_ENABLED hits=0 hitsTotal=0 object_created=cia.Bond007
-18 :  state=BP_STATE_ENABLED hits=0 hitsTotal=0 object_created=objc.object_created.object_released.Class.print
-19 :  state=BP_STATE_ENABLED hits=0 hitsTotal=0 object_released=thread.this$MyClass
-20 :  state=BP_STATE_ENABLED hits=0 hitsTotal=0 object_released=pv.property_violated.mi.array$none
-21 :  state=BP_STATE_ENABLED hits=0 hitsTotal=0 exception_thrown=java.lang.RuntimeException
-22 :  state=BP_STATE_ENABLED hits=0 hitsTotal=0 exception_thrown=et.notify.block.me.Now
-23 :  state=BP_STATE_ENABLED hits=0 hitsTotal=0 field_access=MyClass:fw
-24 :  state=BP_STATE_ENABLED hits=0 hitsTotal=0 field_access=My*:x
-25 :  state=BP_STATE_ENABLED hits=0 hitsTotal=0 field_access=field:DEBUG
-26 :  state=BP_STATE_ENABLED hits=0 hitsTotal=0 field_read=fw_fw3:r42
-27 :  state=BP_STATE_ENABLED hits=0 hitsTotal=0 field_read=*:init5
-28 :  state=BP_STATE_ENABLED hits=0 hitsTotal=0 field_write=*x*:field_write
-29 :  state=BP_STATE_ENABLED hits=0 hitsTotal=0 field_write=field_access:a12345
-30 :  state=BP_STATE_ENABLED hits=0 hitsTotal=0 garbage_collection=both
-31 :  state=BP_STATE_ENABLED hits=0 hitsTotal=0 garbage_collection=begin
-32 :  state=BP_STATE_ENABLED hits=0 hitsTotal=0 garbage_collection=end
-33 :  state=BP_STATE_ENABLED hits=0 hitsTotal=0 instruction_type=any
-34 :  state=BP_STATE_ENABLED hits=0 hitsTotal=0 instruction_type=none
-35 :  state=BP_STATE_ENABLED hits=0 hitsTotal=0 instruction_type=invoke
-36 :  state=BP_STATE_ENABLED hits=0 hitsTotal=0 instruction_type=invoke
-37 :  state=BP_STATE_ENABLED hits=0 hitsTotal=0 instruction_type=return
-38 :  state=BP_STATE_ENABLED hits=0 hitsTotal=0 instruction_type=return
-39 :  state=BP_STATE_ENABLED hits=0 hitsTotal=0 instruction_type=field_access
-40 :  state=BP_STATE_ENABLED hits=0 hitsTotal=0 instruction_type=field_access
-41 :  state=BP_STATE_ENABLED hits=0 hitsTotal=0 instruction_type=field_access
-42 :  state=BP_STATE_ENABLED hits=0 hitsTotal=0 instruction_type=field_read
-43 :  state=BP_STATE_ENABLED hits=0 hitsTotal=0 instruction_type=field_read
-44 :  state=BP_STATE_ENABLED hits=0 hitsTotal=0 instruction_type=field_write
-45 :  state=BP_STATE_ENABLED hits=0 hitsTotal=0 instruction_type=field_write
-46 :  state=BP_STATE_ENABLED hits=0 hitsTotal=0 instruction_type=condition
-47 :  state=BP_STATE_ENABLED hits=0 hitsTotal=0 instruction_type=condition
-48 :  state=BP_STATE_ENABLED hits=0 hitsTotal=0 instruction_type=lock
-49 :  state=BP_STATE_ENABLED hits=0 hitsTotal=0 instruction_type=array
-50 :  state=BP_STATE_ENABLED hits=0 hitsTotal=0 position=Alf:9
-51 :  state=BP_STATE_ENABLED hits=0 hitsTotal=0 position=gov/nasa/jpf/inspector/JPFInspector:13
-52 :  state=BP_STATE_ENABLED hits=0 hitsTotal=0 position=gc:1
-53 :  state=BP_STATE_ENABLED hits=0 hitsTotal=0 position=pos:1
-54 :  state=BP_STATE_ENABLED hits=0 hitsTotal=0 position=field_write:2
-55 :  state=BP_STATE_ENABLED hits=0 hitsTotal=0 position=it:3
-56 :  state=BP_STATE_ENABLED hits=0 hitsTotal=0 position=inv:4
-57 :  state=BP_STATE_ENABLED hits=0 hitsTotal=0 position=invit:5
-58 :  state=BP_STATE_ENABLED hits=0 hitsTotal=0 property_violated
-59 :  state=BP_STATE_ENABLED hits=0 hitsTotal=0 property_violated
-60 :  state=BP_STATE_ENABLED hits=0 hitsTotal=0 choice_generator=both
-61 :  state=BP_STATE_ENABLED hits=0 hitsTotal=0 choice_generator=data
-62 :  state=BP_STATE_ENABLED hits=0 hitsTotal=0 choice_generator=scheduling
+1 :  state=ENABLED hits=0 hitsTotal=0 ( property_violated ) and ( property_violated )
+2 :  state=ENABLED hits=0 hitsTotal=0 ( property_violated ) or ( property_violated )
+3 :  state=ENABLED hits=0 hitsTotal=0 ( instruction_type=condition ) and ( method_invoke=pos:pos )
+4 :  state=ENABLED hits=0 hitsTotal=0 ( ( instruction_type=condition ) and ( method_invoke=pos:pos ) ) or ( property_violated )
+5 :  state=ENABLED hits=0 hitsTotal=0 state_advanced
+6 :  state=ENABLED hits=0 hitsTotal=0 state_advanced
+7 :  state=ENABLED hits=0 hitsTotal=0 method_invoke=Agent:Alf009
+8 :  state=ENABLED hits=0 hitsTotal=0 method_invoke=mil.pentagon.target.Main:hit
+9 :  state=ENABLED hits=0 hitsTotal=0 method_invoke=pos:pos
+10 :  state=ENABLED hits=0 hitsTotal=0 method_invoke=mi:mi
+11 :  state=ENABLED hits=0 hitsTotal=0 method_invoke=field_access.fr:field_access
+12 :  state=ENABLED hits=0 hitsTotal=0 method_invoke=cg.both.cgdata.Alf:garbage_collection
+13 :  state=ENABLED hits=0 hitsTotal=0 method_invoke=cg.both.cgdata.Cg$Runner:garbage_collection
+14 :  state=ENABLED hits=0 hitsTotal=0 thread_scheduled=both:0
+15 :  state=ENABLED hits=0 hitsTotal=0 thread_scheduled=in:1
+16 :  state=ENABLED hits=0 hitsTotal=0 thread_scheduled=out
+17 :  state=ENABLED hits=0 hitsTotal=0 object_created=cia.Bond007
+18 :  state=ENABLED hits=0 hitsTotal=0 object_created=objc.object_created.object_released.Class.print
+19 :  state=ENABLED hits=0 hitsTotal=0 object_released=thread.this$MyClass
+20 :  state=ENABLED hits=0 hitsTotal=0 object_released=pv.property_violated.mi.array$none
+21 :  state=ENABLED hits=0 hitsTotal=0 exception_thrown=java.lang.RuntimeException
+22 :  state=ENABLED hits=0 hitsTotal=0 exception_thrown=et.notify.block.me.Now
+23 :  state=ENABLED hits=0 hitsTotal=0 field_access=MyClass:fw
+24 :  state=ENABLED hits=0 hitsTotal=0 field_access=My*:x
+25 :  state=ENABLED hits=0 hitsTotal=0 field_access=field:DEBUG
+26 :  state=ENABLED hits=0 hitsTotal=0 field_read=fw_fw3:r42
+27 :  state=ENABLED hits=0 hitsTotal=0 field_read=*:init5
+28 :  state=ENABLED hits=0 hitsTotal=0 field_write=*x*:field_write
+29 :  state=ENABLED hits=0 hitsTotal=0 field_write=field_access:a12345
+30 :  state=ENABLED hits=0 hitsTotal=0 garbage_collection=both
+31 :  state=ENABLED hits=0 hitsTotal=0 garbage_collection=begin
+32 :  state=ENABLED hits=0 hitsTotal=0 garbage_collection=end
+33 :  state=ENABLED hits=0 hitsTotal=0 instruction_type=any
+34 :  state=ENABLED hits=0 hitsTotal=0 instruction_type=none
+35 :  state=ENABLED hits=0 hitsTotal=0 instruction_type=invoke
+36 :  state=ENABLED hits=0 hitsTotal=0 instruction_type=invoke
+37 :  state=ENABLED hits=0 hitsTotal=0 instruction_type=return
+38 :  state=ENABLED hits=0 hitsTotal=0 instruction_type=return
+39 :  state=ENABLED hits=0 hitsTotal=0 instruction_type=field_access
+40 :  state=ENABLED hits=0 hitsTotal=0 instruction_type=field_access
+41 :  state=ENABLED hits=0 hitsTotal=0 instruction_type=field_access
+42 :  state=ENABLED hits=0 hitsTotal=0 instruction_type=field_read
+43 :  state=ENABLED hits=0 hitsTotal=0 instruction_type=field_read
+44 :  state=ENABLED hits=0 hitsTotal=0 instruction_type=field_write
+45 :  state=ENABLED hits=0 hitsTotal=0 instruction_type=field_write
+46 :  state=ENABLED hits=0 hitsTotal=0 instruction_type=condition
+47 :  state=ENABLED hits=0 hitsTotal=0 instruction_type=condition
+48 :  state=ENABLED hits=0 hitsTotal=0 instruction_type=lock
+49 :  state=ENABLED hits=0 hitsTotal=0 instruction_type=array
+50 :  state=ENABLED hits=0 hitsTotal=0 position=Alf:9
+51 :  state=ENABLED hits=0 hitsTotal=0 position=gov/nasa/jpf/inspector/JPFInspector:13
+52 :  state=ENABLED hits=0 hitsTotal=0 position=gc:1
+53 :  state=ENABLED hits=0 hitsTotal=0 position=pos:1
+54 :  state=ENABLED hits=0 hitsTotal=0 position=field_write:2
+55 :  state=ENABLED hits=0 hitsTotal=0 position=it:3
+56 :  state=ENABLED hits=0 hitsTotal=0 position=inv:4
+57 :  state=ENABLED hits=0 hitsTotal=0 position=invit:5
+58 :  state=ENABLED hits=0 hitsTotal=0 property_violated
+59 :  state=ENABLED hits=0 hitsTotal=0 property_violated
+60 :  state=ENABLED hits=0 hitsTotal=0 choice_generator=both
+61 :  state=ENABLED hits=0 hitsTotal=0 choice_generator=data
+62 :  state=ENABLED hits=0 hitsTotal=0 choice_generator=scheduling

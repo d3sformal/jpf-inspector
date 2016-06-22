@@ -145,6 +145,9 @@
       <option name="ignoreIterators" value="false" />
     </inspection_tool>
     <inspection_tool class="MagicNumber" enabled="true" level="WARNING" enabled_by_default="true">
+      <scope name="Tests" level="WARNING" enabled="false">
+        <option name="ignoreInitialCapacity" value="true" />
+      </scope>
       <option name="ignoreInitialCapacity" value="true" />
     </inspection_tool>
     <inspection_tool class="MethodCanBeVariableArityMethod" enabled="false" level="WEAK WARNING" enabled_by_default="false" />

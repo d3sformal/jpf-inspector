@@ -11,7 +11,7 @@ import java.io.PrintStream;
  * Represents the "enable thread" and "disable thread" commands which determine whether a thread is eligible to
  * be scheduled.
  */
-public class CmdEnableThread extends ClientCommand {
+public final class CmdEnableThread extends ClientCommand {
   private int threadId;
   private final ThreadSchedulingOption newOption;
   private ThreadSchedulingOption newSchedulingOption;
@@ -21,7 +21,7 @@ public class CmdEnableThread extends ClientCommand {
     this.newOption = newOption;
   }
 
-  public static CmdEnableThread createEnableThreadCommnad(int id) {
+  public static CmdEnableThread createEnableThreadCommand(int id) {
     return new CmdEnableThread(id, ThreadSchedulingOption.SCHEDULE_AS_NORMAL);
   }
   public static CmdEnableThread createDisableThreadCommand(int id) {

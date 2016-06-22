@@ -9,6 +9,9 @@ import org.junit.runners.Parameterized.Parameters;
 
 import java.util.Arrays;
 
+/**
+ * Contains system tests that would not fit elsewhere.
+ */
 @RunWith(Parameterized.class)
 public class CorrectOutputTest extends CorrectOutputAbstractTest {
 
@@ -29,6 +32,7 @@ public class CorrectOutputTest extends CorrectOutputAbstractTest {
           getCase("hitcondition", "complex-breakpoint"),
           getCase("bugfix", "printnull"),
           getCase("bugfix", "b"),
+          getCase("bugfix", "number"),
           getCase("legacy", "AssertSimpleTest"),
           getCase("legacy", "BreakpointTest"),
           getCase("features/fixheap", "heap"),

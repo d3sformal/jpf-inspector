@@ -21,6 +21,9 @@ package gov.nasa.jpf.inspector.exceptions;
 
 import org.antlr.runtime.RecognitionException;
 
+/**
+ * Represents any error during parsing.
+ */
 public class JPFInspectorParsingErrorException extends JPFInspectorException {
 
   public static final int DEFAULT_LINE_LENGTH = 80;
@@ -31,10 +34,12 @@ public class JPFInspectorParsingErrorException extends JPFInspectorException {
   private final int position;
 
   /**
-   * 
-   * @param msg
-   * @param expression
-   * @param position Zero based position index where error takes place.
+   * Initializes a new instance of this exception.
+   *
+   * @param msg Message to display to the user.
+   * @param expression The command or expression at which the parsing error occured.
+   *                   If null, then the expression is not printed back to the user.
+   * @param position Zero based position index where error takes place. If the expression is null, then the position is ignored.
    */
   public JPFInspectorParsingErrorException (String msg, String expression, int position) {
     super(msg);
@@ -119,34 +124,5 @@ public class JPFInspectorParsingErrorException extends JPFInspectorException {
       sb.append('^');
     }
     return sb.toString();
-  }
-
-  public static void main (String[] args) {
-    JPFInspectorParsingErrorException ex;
-
-    System.out.println("Position 0 - char 0 should be marked");
-    ex = new JPFInspectorParsingErrorException(null, "01234567890123456789", 0);
-    System.out.println(ex.expressError(8));
-    System.out.println(ex.expressError(10));
-    System.out.println(ex.expressError(20));
-    System.out.println(ex.expressError(30));
-
-    System.out.println("Position 2 - char 2 should be marked");
-    ex = new JPFInspectorParsingErrorException(null, "01234567890123456789", 2);
-    System.out.println(ex.expressError(8));
-    System.out.println(ex.expressError(10));
-    System.out.println(ex.expressError(20));
-    System.out.println(ex.expressError(30));
-
-    System.out.println("Position 40 - char 2 (in 21) should be marked");
-    ex = new JPFInspectorParsingErrorException(null, "01020304050607080910111213141516171819202122232425262728293031323334353637383940", 40);
-    System.out.println(ex.expressError(10));
-    System.out.println(ex.expressError(20));
-    System.out.println(ex.expressError(40));
-    System.out.println(ex.expressError(21));
-
-    System.out.println("Position -1 - no ^ should be shown and all input should be printed");
-    ex = new JPFInspectorParsingErrorException(null, "01020304050607080910111213141516171819202122232425262728293031323334353637383940", -1);
-    System.out.println(ex.expressError(10));
   }
 }

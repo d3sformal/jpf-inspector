@@ -29,7 +29,13 @@ public final class CmdBreakpointChange extends ClientCommand {
     return new CmdBreakpointChange(id, BreakpointState.DISABLED, "disable breakpoint " + id);
   }
   public static CmdBreakpointChange createChangeBreakpointCommand(String id, BreakpointState newState) {
-    return new CmdBreakpointChange(id, newState, "change breakpoint " + id + " state = " + newState.toString());
+    String stateWord = null;
+    switch (newState) {
+      case DISABLED: stateWord = "disable"; break;
+      case ENABLED: stateWord = "enable"; break;
+      case LOGGING: stateWord = "log"; break;
+    }
+    return new CmdBreakpointChange(id, newState, "change breakpoint " + id + " state = " + stateWord);
   }
 
 

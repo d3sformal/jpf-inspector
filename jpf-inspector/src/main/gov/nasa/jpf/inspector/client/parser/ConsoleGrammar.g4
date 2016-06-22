@@ -165,7 +165,10 @@ cmdBreakpoints returns [ClientCommand value]
     ;
 
 cmdChangeBreakpoint returns [ClientCommand value]
-  : TOKEN_ENABLE WS TOKEN_BREAKPOINT WS INT { $value = CmdBreakpointChange.createEnableBreakpointCommand($INT.text); }
+  : TOKEN_ENABLE WS? TOKEN_BREAKPOINT WS? INT { $value = CmdBreakpointChange.createEnableBreakpointCommand($INT.text); }
+  | TOKEN_DISABLE WS? TOKEN_BREAKPOINT WS? INT { $value = CmdBreakpointChange.createDisableBreakpointCommand($INT.text); }
+  | TOKEN_CHANGE WS? TOKEN_BREAKPOINT WS? INT WS? TOKEN_STATE WS? SIGN_EQUAL WS? cmdBreakpointState
+  { $value = CmdBreakpointChange.createChangeBreakpointCommand($INT.text, $cmdBreakpointState.bpState); }
   ;
 
 cmdCreateBP [BreakpointCreationExpression bpCreate]
@@ -235,6 +238,8 @@ cmdChoiceGenerators returns [ClientCommand value]
       $a.value);
       }
     | TOKEN_CHOICE_GENERATORS WS? TOKEN_SELECT cgChoice { $value = new CmdChoiceSelect($cgChoice.choice); }
+    | TOKEN_ENABLE WS? TOKEN_THREAD WS? intValue { $value = CmdEnableThread.createEnableThreadCommand($intValue.value); }
+    | TOKEN_DISABLE WS? TOKEN_THREAD WS? intValue { $value = CmdEnableThread.createDisableThreadCommand($intValue.value); }
     ;
 
 cgType returns [CmdChoiceGeneratorsTracking.CGTypeSpec cgsType]
@@ -381,7 +386,7 @@ TOKEN_STATE : 'state' ;
 TOKEN_STOPPED : 'stopped' ;
 TOKEN_USED : 'used' ;
 TOKEN_TERMINATING : 'terminating' ;
-TOKEN_THREAD : 'thread' | 'ti' ;
+TOKEN_THREAD : 'thread' | 'ti'  | 't';
 TOKEN_THREAD_PC : 'thread_pc' | 'thpc' ;
 TOKEN_X : 'x' | 'X' ;
 

@@ -1,5 +1,5 @@
 INFO: JPF created and connected, SuT is started
-INFO: Breakpoint hit: [1 :  state=BP_STATE_ENABLED hits=1 hitsTotal=1 hit_count<=1 instruction_type=any]
+INFO: Breakpoint hit: [1 :  state=ENABLED hits=1 hitsTotal=1 hit_count<=1 instruction_type=any]
 	SuT (Thread=0) executes the gov/nasa/jpf/inspector/tests/acceptance/sut/Singlepath.java:0 - invokestatic gov.nasa.jpf.inspector.tests.acceptance.sut.Singlepath.main([Ljava/lang/String;)V
 ERR: No entry (field, local variable, parameter) with the name "b" exists (maybe we are inside a native method).
 INFO: JPF Terminating
