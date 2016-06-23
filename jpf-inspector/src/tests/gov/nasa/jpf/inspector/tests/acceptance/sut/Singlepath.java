@@ -4,5 +4,6 @@ public class Singlepath {
     int a = 5;
     int b = a + 4;
     int c = b - 8;
+    a = 3;
   }
 }

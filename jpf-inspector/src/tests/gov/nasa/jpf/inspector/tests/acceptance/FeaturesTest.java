@@ -33,7 +33,11 @@ public class FeaturesTest extends CorrectOutputAbstractTest {
           getCase("features/extensibility", "args"),
           getCase("features/extensibility", "argument_mismatch"),
           getCase("features/extensibility", "invalid_alias"),
-          getCase("features/ignorejava", "ignore")
+          getCase("features/ignorejava", "ignore"),
+          getCase("hitcondition", "not"),
+          getCase("hitcondition/locals", "methodname"),
+          getCase("hitcondition/locals", "classname"),
+          getCase("hitcondition/locals", "locals")
      );
   }
 

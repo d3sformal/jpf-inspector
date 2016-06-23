@@ -165,61 +165,50 @@ public class CommandsManager implements CommandsInterface {
       throw new RuntimeException("Unsupported " + type.getClass().getSimpleName() + " entry " + type);
     }
     if (bbc == null) {
-      throw new JPFInspectorGenericErrorException("Backwards step not possible (there is no appropriate step left for this thread to backtrack to).");
+      throw new JPFInspectorGenericErrorException(
+              "Backwards step not possible (there is no appropriate step left for this thread to backtrack to).");
     }
 
     // Create the breakpoint on that specific instruction
     int bpID = bbc.createBreakpoint(breakpointHandler);
     BreakpointStatus breakpointStatus = breakpointHandler.getBreakpoint(bpID);
-    serverCallbacks.genericInfo("The following breakpoint would be created:\n--> " + breakpointStatus.getNormalizedBreakpointExpression());
+    Debugging.getLogger()
+            .info("The following breakpoint would be created:\n--> " + breakpointStatus.getNormalizedBreakpointExpression());
 
-    //noinspection ConstantIfStatement,ConstantConditions
-    if (false) {
-      // Enable silent mode in JPF Listener
-      InspectorListener listener = inspector.getInspectorListener();
-      assert listener != null : "Internal error - if JPF is connected then Listener has to be set";
-      InspectorListenerModeSilent listenerSilentMode =
-              new InspectorListenerModeSilent(inspector, this, breakpointHandler,
-                                              bbc.getTransitionsToBacktrack(),
-                                              bpID, dftMgr, stopHolder);
-      listener.pushMode(listenerSilentMode);
 
-      Search search = inspState.getSearch();
-      assert search != null : "Internal error - not specified search";
+    // Enable silent mode in JPF Listener
+    InspectorListener listener = inspector.getInspectorListener();
+    assert listener != null : "Internal error - if JPF is connected then Listener has to be set";
+    InspectorListenerModeSilent listenerSilentMode =
+            new InspectorListenerModeSilent(inspector, this, breakpointHandler,
+                                            bbc.getTransitionsToBacktrack(),
+                                            bpID, dftMgr, stopHolder);
+    listener.pushMode(listenerSilentMode);
 
-      // reset the root CG if we might backtrack to it
-      ChoiceGenerator<?>[] allCGs = search.getVM().getSystemState().getChoiceGenerators();
-      if (bbc.getTransitionsToBacktrack() >= allCGs.length) {
-        allCGs[0].reset();
-      }
+    Search search = inspState.getSearch();
+    assert search != null : "Internal error - not specified search";
 
-      // Stop current transition (to prevent invoke more instruction than necessary) - only if this makes sense - instruction/throw/object_created
-      //search.getVM().breakTransition(); // We cannot add new transition
-      //search.requestBacktrack();
-      search.getVM().ignoreState();
-
-      if (DEBUG) {
-        Debugging.getSwingShellLogger()
-                .warning(
-                        "Backstep commences, backtrack " + bbc.getTransitionsToBacktrack() + " transitions to breakpoint \"" + bbc
-                                .getBreakpointHitCondition()
-                                .getNormalizedExpression() + "\"");
-      }
-
-      // Resume execution -> now silent backtrack and "breakpoint hit in single forward step should occur"
-      stopHolder.resumeExecution();
+    // reset the root CG if we might backtrack to it
+    ChoiceGenerator<?>[] allCGs = search.getVM().getSystemState().getChoiceGenerators();
+    if (bbc.getTransitionsToBacktrack() >= allCGs.length) {
+      allCGs[0].reset();
     }
-  /*
-   * I don't get what this means. It's probably the steps that happen, in order, in the silent mode:
-   *
-   * Rest is done in the listenerSilentMode
-   * Receives silent backtrack notifications
-   * Updates default trace
-   * Restores CG to same choice as before
-   * Start forward execution
-   * In the this.notifyBackwardStep()
-   * Enable normal mode in JPF Listener
-   */
+
+    // Stop current transition (to prevent invoke more instruction than necessary) - only if this makes sense - instruction/throw/object_created
+    //search.getVM().breakTransition(); // We cannot add new transition
+    //search.requestBacktrack();
+    search.getVM().ignoreState();
+
+    // Resume execution -> now silent backtrack and "breakpoint hit in single forward step should occur"
+    stopHolder.resumeExecution();
+
+    // The rest happens in the silent-mode Inspector listener.
+    // 1. It backtracks the determined number of transitions.
+    // 1a. During this, it updates the default forward trace.
+    // 2. It restores the first transition's CG to the same choice as before.
+    // 3. It starts forward execution until it reaches the breakpoint we just created.
+    // 4. It calls this.notifyBackwardStep().
+    // 4a. In which the normal notifications-mode Inspector listener is reactived and the backstepping ends.
   }
 
   @Override

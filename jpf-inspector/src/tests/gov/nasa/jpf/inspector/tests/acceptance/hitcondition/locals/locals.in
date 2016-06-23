@@ -1,0 +1,18 @@
+cr bp local_access = outside
+cr bp local_read = outside
+rw
+del bp 1 && del bp 2
+cr bp local_write = outside
+rw
+del bp 3
+cr bp class = *Classtack and method = middle and local_access = x
+rw
+del bp 4
+cr bp it=lr or it=lw
+rw
+del bp 5
+cr bp it=la
+rw
+del bp 6
+rw
+

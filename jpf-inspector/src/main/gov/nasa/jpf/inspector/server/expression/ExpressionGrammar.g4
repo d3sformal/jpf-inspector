@@ -163,7 +163,8 @@ cmdBreakpointsCreateParams [ExpressionFactory expFactory] returns [ExpressionBoo
     ;
 
 cmdBreakpointsCreateParams1 [ExpressionFactory expFactory] returns [ExpressionBoolean bp]
-    : a=cmdBreakpointsCreateParamsAtomNotTerminateIDF[expFactory] {$bp = $a.bp; }
+    : WS? TOKEN_NOT WS? a3=cmdBreakpointsCreateParams1[expFactory] { $bp = expFactory.getBreakpointNot($a3.bp); }
+    | a=cmdBreakpointsCreateParamsAtomNotTerminateIDF[expFactory] {$bp = $a.bp; }
            ( (TOKEN_AND b=cmdBreakpointsCreateParams1[expFactory] { $bp = expFactory.getBreakpointOperatorAnd($a.bp, $b.bp); } ) |
              (TOKEN_OR  b=cmdBreakpointsCreateParams1[expFactory] { $bp = expFactory.getBreakpointOperatorOr ($a.bp, $b.bp); } )
            )?
@@ -171,7 +172,6 @@ cmdBreakpointsCreateParams1 [ExpressionFactory expFactory] returns [ExpressionBo
            ( (WS TOKEN_AND b2=cmdBreakpointsCreateParams1[expFactory] { $bp = expFactory.getBreakpointOperatorAnd($a2.bp, $b2.bp); } ) |
              (WS TOKEN_OR  b2=cmdBreakpointsCreateParams1[expFactory] { $bp = expFactory.getBreakpointOperatorOr ($a2.bp, $b2.bp); } )
            )?
-    | TOKEN_NOT WS? a3=cmdBreakpointsCreateParams1[expFactory] { $bp = expFactory.getBreakpointNot($a3.bp); }
     ;
 
 

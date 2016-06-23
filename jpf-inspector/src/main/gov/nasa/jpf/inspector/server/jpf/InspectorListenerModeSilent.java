@@ -2,7 +2,6 @@ package gov.nasa.jpf.inspector.server.jpf;
 
 import gov.nasa.jpf.ListenerAdapter;
 import gov.nasa.jpf.inspector.interfaces.BreakpointCreationInformation;
-import gov.nasa.jpf.inspector.interfaces.CommandsInterface;
 import gov.nasa.jpf.inspector.server.breakpoints.BreakpointHandler;
 import gov.nasa.jpf.inspector.server.breakpoints.CommandsManager;
 import gov.nasa.jpf.inspector.server.breakpoints.DefaultForwardTraceManager;
@@ -12,7 +11,8 @@ import gov.nasa.jpf.vm.*;
 import gov.nasa.jpf.search.Search;
 
 /**
- * InspectorListener mode which is enabled during backward steps processing. Notification only to the specified {@link CommandsInterface} are sent.
+ * InspectorListener mode which is enabled during backward steps processing.
+ * Only select notifications are sent.
  *
  * This listener starts being active at the point a backwards step is initiated and stops being active at the point
  * when the breakpoint created by the backwards step is hit.
@@ -21,18 +21,29 @@ public class InspectorListenerModeSilent extends ListenerAdapter {
   private static final boolean DEBUG = true;
 
   private final JPFInspector inspector;
-  private final CommandsManager cmdMgr;
-  private final BreakpointHandler bpMgr;
-  private final DefaultForwardTraceManager dftMgf;
+  private final CommandsManager commandsManager;
+  private final BreakpointHandler breakpointHandler;
+  private final DefaultForwardTraceManager defaultForwardTraceManager;
   private final StopHolder stopHolder;
-  private final int bpID;
-  private int backwardStepsCnt;
+  private final int targetBreakpointId;
+  private int remainingTransitionsToBacktrack;
 
-  private final InspectorStateImpl inspState = new InspectorStateImpl();
+  private final InspectorStateImpl inspectorState = new InspectorStateImpl();
 
-  // For internals checks
-  // expected usage - at first advanced method is called to notify that transition is completed
-  // then backtracked and stateProcessed are called in turns and after last backtrack, instruction executed methods are expected.
+  /**
+   * Represents the state of this listener.
+   *
+   * The state diagram looks like this:
+   *
+   * ```
+   * Start: WAIT_FOR_FIRST_INSTRUCTION_EXECUTED
+   * WAIT_FOR_FIRST_INSTRUCTION_EXECUTED --> TRANSITION_END
+   * TRANSITION_END                      --> BACKTRACKING
+   * STATE_PROCESSED || TRANSITION_END   --> BACKTRACKING
+   * BACKTRACKING    || TRANSITION_END   --> STATE_PROCESSED
+   * BACKTRACKING    || TRANSITION_END   --> FORWARD_STEPS
+   * ```
+   */
   private enum InternalState {
     /**
      * During the 2016 update, breakpoints start to hit <b>before</b> an instruction is executed, not after. Thus,
@@ -45,6 +56,9 @@ public class InspectorListenerModeSilent extends ListenerAdapter {
     TRANSITION_END,
     BACKTRACKING,
     STATE_PROCESSED,
+    /**
+     * We are now moving forward in the final phase and will only stop when we reach the target breakpoint.
+     */
     FORWARD_STEPS
   }
 
@@ -52,14 +66,10 @@ public class InspectorListenerModeSilent extends ListenerAdapter {
   private InternalState state = InternalState.WAIT_FOR_FIRST_INSTRUCTION_EXECUTED;
 
   /**
-   * The state diagram looks like this:
-   * <pre>
-   * Start: TRANSITION_END
-   * TRANSITION_END                       --> BACKTRACKING
-     STATE_PROCESSED || TRANSITION_END --> BACKTRACKING
-     BACKTRACKING    || TRANSITION_END --> STATE_PROCESSED
-     BACKTRACKING    || TRANSITION_END --> FORWARD_STEPS
-     </pre>
+   * Sets the listener's internal state.
+   *
+   * See {{@link InternalState}} for the state diagram.
+   *
    * @param newState New state of the listener.
    */
   private void setState(InternalState newState) {
@@ -69,19 +79,31 @@ public class InspectorListenerModeSilent extends ListenerAdapter {
     state = newState;
   }
 
-  public InspectorListenerModeSilent (JPFInspector inspector, CommandsManager cmdMgr, BreakpointHandler bpMgr, int backwardStepsCnt, int bpID,
-                                      DefaultForwardTraceManager dftMgf, StopHolder stopHolder) {
-    assert backwardStepsCnt > 0;
-    assert bpID != BreakpointCreationInformation.BP_ID_NOT_DEFINED;
+  /**
+   * Initializes the Inspector listener's silent mode.
+   * @param inspector The Inspector server.
+   * @param commandsManager The commands manager.
+   * @param breakpointHandler The breakpoint handler.
+   * @param transitionsToBacktrack Number of transitions to backtrack.
+   * @param targetBreakpointId ID of the breakpoint created by the backwards-step-creator.
+   * @param defaultForwardTraceManager The default forward trace manager.
+   * @param stopHolder The stop holder.
+   */
+  public InspectorListenerModeSilent (JPFInspector inspector, CommandsManager commandsManager,
+                                      BreakpointHandler breakpointHandler, int transitionsToBacktrack,
+                                      int targetBreakpointId,
+                                      DefaultForwardTraceManager defaultForwardTraceManager, StopHolder stopHolder) {
+    assert remainingTransitionsToBacktrack > 0;
+    assert targetBreakpointId != BreakpointCreationInformation.BP_ID_NOT_DEFINED;
 
-    this.cmdMgr = cmdMgr;
-    this.bpMgr = bpMgr;
+    this.commandsManager = commandsManager;
+    this.breakpointHandler = breakpointHandler;
     this.inspector = inspector;
-    this.dftMgf = dftMgf;
+    this.defaultForwardTraceManager = defaultForwardTraceManager;
     this.stopHolder = stopHolder;
 
-    this.bpID = bpID;
-    this.backwardStepsCnt = backwardStepsCnt;
+    this.targetBreakpointId = targetBreakpointId;
+    this.remainingTransitionsToBacktrack = transitionsToBacktrack;
   }
 
   @Override
@@ -94,9 +116,9 @@ public class InspectorListenerModeSilent extends ListenerAdapter {
       return;
     }
     setState(InternalState.BACKTRACKING);
-    inspState.stateChanged(search, ListenerMethod.LM_STATE_ADVANCED);
-    dftMgf.extendTrace(search.getTransition());
-    cmdMgr.tryStop(inspState);
+    inspectorState.stateChanged(search, ListenerMethod.LM_STATE_ADVANCED);
+    defaultForwardTraceManager.extendTrace(search.getTransition());
+    commandsManager.tryStop(inspectorState);
   }
 
   @Override
@@ -110,8 +132,7 @@ public class InspectorListenerModeSilent extends ListenerAdapter {
       return;
     }
     setState(InternalState.BACKTRACKING);
-    // dftMgf.extendTrace(search.getTransition());
-
+    // defaultForwardTraceManager.extendTrace(search.getTransition());
   }
 
   @Override
@@ -119,15 +140,15 @@ public class InspectorListenerModeSilent extends ListenerAdapter {
     if (DEBUG) {
       inspector.getDebugPrintStream().println(this.getClass().getSimpleName() + ".stateBacktracked()");
     }
-    if (state != InternalState.BACKTRACKING && state != InternalState.TRANSITION_END) { // Initial CB is backtracked (advance or processed has been called
-                                                                                              // before in forward stepping)
+    if (state != InternalState.BACKTRACKING && state != InternalState.TRANSITION_END) {
+      // Initial CB is backtracked (advance or processed has been called before in forward stepping)
       reportError("State cannot be backtracked while processing or in the final phase.");
       return;
     }
-    inspState.stateChanged(search, ListenerMethod.LM_STATE_BACKTRACKED);
-    backwardStepsCnt--;
-    if (backwardStepsCnt > 0) {
-      dftMgf.extendTrace(search.getTransition());
+    inspectorState.stateChanged(search, ListenerMethod.LM_STATE_BACKTRACKED);
+    remainingTransitionsToBacktrack--;
+    if (remainingTransitionsToBacktrack > 0) {
+      defaultForwardTraceManager.extendTrace(search.getTransition());
 
       VM vm = search.getVM();
       // SystemState ss = vm.getSystemState();
@@ -150,7 +171,7 @@ public class InspectorListenerModeSilent extends ListenerAdapter {
       setState(InternalState.STATE_PROCESSED);
       return;
     }
-    if (backwardStepsCnt == 0) {
+    if (remainingTransitionsToBacktrack == 0) {
       // Backtracking terminated, use the same choices before
       VM vm = search.getVM();
       SystemState ss = vm.getSystemState();
@@ -177,7 +198,7 @@ public class InspectorListenerModeSilent extends ListenerAdapter {
     }
 
     // Should not be reached
-    reportError("This should never be reached.");
+    reportError("This should never be reached: There are less than 0 remaining transitions.");
   }
 
   @Override
@@ -190,11 +211,11 @@ public class InspectorListenerModeSilent extends ListenerAdapter {
       reportError("Moving forwards can only be done in the last phase of the backstepping.");
       return;
     }
-    inspState.notifyListenerMethodCall(ListenerMethod.LM_EXECUTE_INSTRUCTION, vm);
-    if (bpMgr.checkBreakpoint(inspState, bpID)) {
+    inspectorState.notifyListenerMethodCall(ListenerMethod.LM_EXECUTE_INSTRUCTION, vm);
+    if (breakpointHandler.checkBreakpoint(inspectorState, targetBreakpointId)) {
       // Notify Command manager that backward step is done
-      cmdMgr.notifyBackwardStepCompleted(true, "Successfully backstepped.");
-      stopHolder.stopExecution(inspState);
+      commandsManager.notifyBackwardStepCompleted(true, "Successfully backstepped.");
+      stopHolder.stopExecution(inspectorState);
     }
   }
 
@@ -217,7 +238,7 @@ public class InspectorListenerModeSilent extends ListenerAdapter {
     // we must backtrack over one additional transition
     if ((state == InternalState.TRANSITION_END) && currentThread.isFirstStepInsn())
     {
-      backwardStepsCnt++;
+      remainingTransitionsToBacktrack++;
       return;
     }
 
@@ -225,7 +246,7 @@ public class InspectorListenerModeSilent extends ListenerAdapter {
       reportError("Moving forwards can only be done in the last phase of the backstepping.");
       return;
     }
-    inspState.instructionExecuted(currentThread.getId(), executedInstruction, vm);
+    inspectorState.instructionExecuted(currentThread.getId(), executedInstruction, vm);
 
 
   }
@@ -270,8 +291,8 @@ public class InspectorListenerModeSilent extends ListenerAdapter {
   }
 
   private void reportError(String reason) {
-    cmdMgr.notifyBackwardStepCompleted(false, reason);
-    dftMgf.destroyTrace(true);
+    commandsManager.notifyBackwardStepCompleted(false, reason);
+    defaultForwardTraceManager.destroyTrace(true);
   }
 
 }

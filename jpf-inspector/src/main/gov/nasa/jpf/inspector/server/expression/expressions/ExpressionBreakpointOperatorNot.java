@@ -24,6 +24,8 @@ import gov.nasa.jpf.inspector.server.breakpoints.BreakPointModes;
 import gov.nasa.jpf.inspector.server.expression.ExpressionBoolean;
 import gov.nasa.jpf.inspector.server.expression.InspectorState;
 
+import java.util.Objects;
+
 /**
  * Represents the breakpoint expression "not (hit condition 1)".
  */
@@ -37,7 +39,7 @@ public class ExpressionBreakpointOperatorNot extends ExpressionBoolean {
 
   @Override
   public boolean evaluateExpression (InspectorState state) throws JPFInspectorException {
-       return innerHitCondition.evaluateExpression(state);
+       return !innerHitCondition.evaluateExpression(state);
   }
 
   @Override
@@ -50,7 +52,7 @@ public class ExpressionBreakpointOperatorNot extends ExpressionBoolean {
     try {
       if (evaluateExpression(state)) {
         String innerDetails = innerHitCondition.getDetails(state);
-        if (innerDetails != null) {
+        if (innerDetails != null && !Objects.equals(innerDetails.trim(), "")) {
           return "(negated condition) " + innerDetails;
         }
         return "";
