@@ -344,10 +344,9 @@ public class DefaultForwardTraceManager {
   }
 
   /**
-   * Adds new transition into start of the default trace.
+   * Pushes a new transition onto the start of the default trace.
    * 
-   * @param tr
-   *        Transition which will be backtracked (by backward single stepping)
+   * @param tr Transition which will be backtracked (by backward single stepping)
    * 
    *        // Has to be called after forward method (to be transition completely "initialized")
    */

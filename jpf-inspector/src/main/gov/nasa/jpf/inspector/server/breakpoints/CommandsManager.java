@@ -174,6 +174,7 @@ public class CommandsManager implements CommandsInterface {
     BreakpointStatus breakpointStatus = breakpointHandler.getBreakpoint(bpID);
     Debugging.getLogger()
             .info("The following breakpoint would be created:\n--> " + breakpointStatus.getNormalizedBreakpointExpression());
+    Debugging.getLogger().info("We will need to backtrack " + bbc.getTransitionsToBacktrack() + " transitions.");
 
 
     // Enable silent mode in JPF Listener
@@ -189,10 +190,12 @@ public class CommandsManager implements CommandsInterface {
     assert search != null : "Internal error - not specified search";
 
     // reset the root CG if we might backtrack to it
+    /*
     ChoiceGenerator<?>[] allCGs = search.getVM().getSystemState().getChoiceGenerators();
     if (bbc.getTransitionsToBacktrack() >= allCGs.length) {
       allCGs[0].reset();
     }
+    */
 
     // Stop current transition (to prevent invoke more instruction than necessary) - only if this makes sense - instruction/throw/object_created
     //search.getVM().breakTransition(); // We cannot add new transition

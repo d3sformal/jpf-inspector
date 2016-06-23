@@ -7,6 +7,7 @@ import gov.nasa.jpf.inspector.server.breakpoints.CommandsManager;
 import gov.nasa.jpf.inspector.server.breakpoints.DefaultForwardTraceManager;
 import gov.nasa.jpf.inspector.server.expression.InspectorState.ListenerMethod;
 import gov.nasa.jpf.inspector.server.expression.InspectorStateImpl;
+import gov.nasa.jpf.inspector.utils.Debugging;
 import gov.nasa.jpf.vm.*;
 import gov.nasa.jpf.search.Search;
 
@@ -93,8 +94,8 @@ public class InspectorListenerModeSilent extends ListenerAdapter {
                                       BreakpointHandler breakpointHandler, int transitionsToBacktrack,
                                       int targetBreakpointId,
                                       DefaultForwardTraceManager defaultForwardTraceManager, StopHolder stopHolder) {
-    assert remainingTransitionsToBacktrack > 0;
-    assert targetBreakpointId != BreakpointCreationInformation.BP_ID_NOT_DEFINED;
+    assert transitionsToBacktrack > 0 : "No transitions are to be backtracked.";
+    assert targetBreakpointId != BreakpointCreationInformation.BP_ID_NOT_DEFINED : "No breakpoint ID is set.";
 
     this.commandsManager = commandsManager;
     this.breakpointHandler = breakpointHandler;
@@ -111,7 +112,11 @@ public class InspectorListenerModeSilent extends ListenerAdapter {
     if (DEBUG) {
       inspector.getDebugPrintStream().println(this.getClass().getSimpleName() + ".stateAdvanced()");
     }
-    if (state != InternalState.TRANSITION_END) {
+    if (state != InternalState.TRANSITION_END && state != InternalState.FORWARD_STEPS) {
+      // TODO Comparing to FORWARD_STEPS definitely should not be here.
+      // I just have no idea why stateAdvanced is called. It seems to happen when we move far enough
+      // near the root CG or something?
+      // Who knows. I'll need to find out.
       reportError("State can only be advanced in the first phase of the backstepping.");
       return;
     }
@@ -179,16 +184,23 @@ public class InspectorListenerModeSilent extends ListenerAdapter {
       
       // we must skip choices that have been processed before this call
       // special case: there might be a cascade with multiple CGs at one instruction
-      // it is not possible to move back a CG in the cascade if there is one processed choice (the first one) -> we must manually "set all choices as being explored", so that this CG is explored again from the start (for the parent choice) on the way forward
+      // it is not possible to move back a CG in the cascade if there is one processed choice (the first one)
+      // -> we must manually "set all choices as being explored",
+      // so that this CG is explored again from the start (for the parent choice) on the way forward
       // this does not apply to the top CG in the cascade (which does not have a cascaded parent)
+
       while ((cg.getCascadedParent() != null) && (cg.getProcessedNumberOfChoices() == 1)) {
+        Debugging.getLogger().info("Moving through a CG with this number of choices: " + cg.getTotalNumberOfChoices());
         // Set this to last value && end delegate to predecessor
         cg.advance(cg.getTotalNumberOfChoices() - cg.getProcessedNumberOfChoices());
         cg = cg.getCascadedParent();
       }
+      Debugging.getLogger().info("CG: " + cg.getTotalNumberOfChoices());
       // CG undo last choice
       int processedChoices = cg.getProcessedNumberOfChoices();
-      assert (processedChoices > 0); // Which choice which used for path we are backtracking??
+      assert (processedChoices > 0) : "There are no processed choices.";
+         // Which choice which used for path we are backtracking??
+
       cg.reset();
       cg.advance(processedChoices - 1);
       // "Force" forward step
@@ -203,7 +215,7 @@ public class InspectorListenerModeSilent extends ListenerAdapter {
 
   @Override
   public void executeInstruction(VM vm, ThreadInfo currentThread, Instruction instructionToExecute) {
-    if (DEBUG) {
+    if (false) {
         inspector.getDebugPrintStream().println(
                 this.getClass().getSimpleName() + ".executeInstruction() inst=" + instructionToExecute );
     }
@@ -221,7 +233,7 @@ public class InspectorListenerModeSilent extends ListenerAdapter {
 
   @Override
   public void instructionExecuted(VM vm, ThreadInfo currentThread, Instruction nextInstruction, Instruction executedInstruction) {
-    if (DEBUG) {
+    if (false) {
       if ((executedInstruction.getMethodInfo().getClassInfo() != null) && (executedInstruction.getMethodInfo().getClassInfo().getSourceFileName() != null))
       {
         inspector.getDebugPrintStream().println(
