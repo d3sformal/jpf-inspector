@@ -595,7 +595,7 @@ TOKEN_X                         : 'x' | 'X' ;
 
 TOKEN_LOCAL_ACCESS : 'local_access' | 'la';
 TOKEN_LOCAL_READ : 'local_read' | 'lr';
-TOKEN_LOCAL_WRITE : 'local_write' | 'lr';
+TOKEN_LOCAL_WRITE : 'local_write' | 'lw';
 TOKEN_METHOD : 'method';
 TOKEN_CLASS : 'class';
 TOKEN_NOT : 'not';

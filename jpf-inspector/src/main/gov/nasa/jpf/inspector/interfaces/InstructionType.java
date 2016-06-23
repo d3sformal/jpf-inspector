@@ -19,31 +19,54 @@
 
 package gov.nasa.jpf.inspector.interfaces;
 
+import gov.nasa.jpf.jvm.bytecode.*;
+
 /**
  * Represents the argument of the "instruction type = [type]" hit condition.
  */
 public enum InstructionType {
   ANY,
   NONE,
+  /**
+   * The instruction is an invocation instruction that starts with the letters INVOKE, such as {@link INVOKEVIRTUAL}.
+   */
   INVOKE,
+  /**
+   * The instruction returns from a method.
+   */
   RETURN,
+  /**
+   * The instruction accesses a field. This is the union of {@link #FIELD_READ} and {@link #FIELD_WRITE}.
+   */
   FIELD_ACCESS,
+  /**
+   * The instruction is a {@link GETFIELD} or a {@link GETSTATIC}.
+   */
   FIELD_READ,
+  /**
+   * The instruction is a {@link PUTFIELD} or a {@link PUTSTATIC}.
+   */
   FIELD_WRITE,
+  /**
+   * The instruction is an if-condition instruction that starts with the letters IF, such as {@link IF_ACMPEQ} or {@link IFGT}.
+   */
   IFCOND,
   /**
-   * MoniterEnter/MonitorExit
+   * The instruction is a {@link MONITORENTER} or a {@link MONITOREXIT}.
    */
   LOCK,
+  /**
+   * The instruction accesses an array element.
+   */
   ARRAY,
   /**
-   * The instruction accesses a local variable.
-   * (aload*, astore*, dload*, dstore*, fload*, fstore*, iload*, istore*, lload*, lstore*, ret)
+   * The instruction accesses a local variable. This is the union of {@link #LOCAL_READ} and {@link #LOCAL_WRITE}
+   * instruction types.
    */
   LOCAL_ACCESS,
   /**
    * The instruction reads a value from a local variable.
-   * (aload*, dload*, fload*, iload*, lload*, ret)
+   * (aload*, dload*, fload*, iload*, lload*)
    */
   LOCAL_READ,
   /**

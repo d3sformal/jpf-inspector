@@ -5,7 +5,7 @@ del bp 1 && del bp 2
 cr bp local_write = outside
 rw
 del bp 3
-cr bp class = *Classtack and method = middle and local_access = x
+cr bp class = *Callstack and method = middle and local_access = x
 rw
 del bp 4
 cr bp it=lr or it=lw

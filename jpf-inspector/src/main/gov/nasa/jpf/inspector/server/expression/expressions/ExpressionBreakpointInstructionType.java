@@ -25,17 +25,14 @@ import gov.nasa.jpf.inspector.server.expression.ExpressionBooleanLeaf;
 import gov.nasa.jpf.inspector.server.expression.InspectorState;
 import gov.nasa.jpf.inspector.server.expression.InspectorState.ListenerMethod;
 import gov.nasa.jpf.vm.VM;
-import gov.nasa.jpf.vm.bytecode.ArrayElementInstruction;
-import gov.nasa.jpf.vm.bytecode.FieldInstruction;
+import gov.nasa.jpf.vm.bytecode.*;
 import gov.nasa.jpf.jvm.bytecode.GETFIELD;
 import gov.nasa.jpf.jvm.bytecode.GETSTATIC;
 import gov.nasa.jpf.jvm.bytecode.IfInstruction;
 import gov.nasa.jpf.vm.Instruction;
-import gov.nasa.jpf.vm.bytecode.InvokeInstruction;
 import gov.nasa.jpf.jvm.bytecode.LockInstruction;
 import gov.nasa.jpf.jvm.bytecode.PUTFIELD;
 import gov.nasa.jpf.jvm.bytecode.PUTSTATIC;
-import gov.nasa.jpf.vm.bytecode.ReturnInstruction;
 
 /**
  * Represents the "instruction_type" hit condition. This hit condition is also used internally for creating breakpoints
@@ -79,6 +76,14 @@ public class ExpressionBreakpointInstructionType extends ExpressionBooleanLeaf {
       return (inst instanceof LockInstruction);
     } else if (instType == InstructionType.RETURN) {
       return (inst instanceof ReturnInstruction);
+    } else if (instType == InstructionType.LOCAL_ACCESS) {
+      return (inst instanceof gov.nasa.jpf.jvm.bytecode.JVMLocalVariableInstruction);
+    } else if (instType == InstructionType.LOCAL_READ) {
+      return (inst instanceof gov.nasa.jpf.jvm.bytecode.JVMLocalVariableInstruction) &&
+              !(inst instanceof StoreInstruction);
+    } else if (instType == InstructionType.LOCAL_WRITE) {
+      return (inst instanceof gov.nasa.jpf.jvm.bytecode.JVMLocalVariableInstruction) &&
+              (inst instanceof StoreInstruction);
     } else {
       throw new RuntimeException("Internal error - Unknown enum " + InstructionType.class.getSimpleName() + " entry " + instType);
     }
@@ -123,7 +128,13 @@ public class ExpressionBreakpointInstructionType extends ExpressionBooleanLeaf {
       sb.append("lock");
     } else if (instType == InstructionType.ARRAY) {
       sb.append("array");
-    } else {
+    } else if (instType == InstructionType.LOCAL_ACCESS) {
+      sb.append("local_access");
+    } else if (instType == InstructionType.LOCAL_WRITE) {
+      sb.append("local_write");
+    }  else if (instType == InstructionType.LOCAL_READ) {
+      sb.append("local_read");
+    }  else {
       throw new RuntimeException("Internal error - Unsupported " + instType.getClass().getSimpleName() + "(" + instType + ")");
     }
     return sb.toString();

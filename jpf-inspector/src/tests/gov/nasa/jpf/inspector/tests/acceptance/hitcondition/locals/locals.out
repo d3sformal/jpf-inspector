@@ -1,6 +1,17 @@
-cr bp it=any and (a == 5)
-run
-wait
-del bp 1
-run
-wait
+INFO: JPF created and connected, SuT is started
+INFO: Breakpoint hit: [1 :  state=ENABLED hits=1 hitsTotal=1 local_access=outside]
+Breakpoint with ID 1 successfully deleted.
+Breakpoint with ID 2 successfully deleted.
+INFO: Breakpoint hit: [3 :  state=ENABLED hits=1 hitsTotal=1 local_write=outside]
+Breakpoint with ID 3 successfully deleted.
+INFO: Breakpoint hit: [4 :  state=ENABLED hits=1 hitsTotal=1 ( class = *Callstack ) and ( ( method = middle ) and ( local_access=x ) )]
+	In class "gov.nasa.jpf.inspector.tests.acceptance.sut.Callstack".
+	In method "middle".
+Breakpoint with ID 4 successfully deleted.
+INFO: Breakpoint hit: [5 :  state=ENABLED hits=1 hitsTotal=1 ( instruction_type=local_read ) or ( instruction_type=local_write )]
+	SuT (Thread=0) executes the gov/nasa/jpf/inspector/tests/acceptance/sut/Callstack.java:23 - istore_2
+Breakpoint with ID 5 successfully deleted.
+INFO: Breakpoint hit: [6 :  state=ENABLED hits=1 hitsTotal=1 instruction_type=local_access]
+	SuT (Thread=0) executes the gov/nasa/jpf/inspector/tests/acceptance/sut/Callstack.java:32 - istore_0
+Breakpoint with ID 6 successfully deleted.
+INFO: JPF Terminating
