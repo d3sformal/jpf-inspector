@@ -87,6 +87,11 @@ public class JPFInspectorParallel extends JPFInspector {
   }
 
   @Override
+  public boolean changeBreakpointState(int breakpointId, BreakpointState newState) {
+    return breakpointHandler.changeBreakpointState(breakpointId, newState);
+  }
+
+  @Override
   public List<BreakpointStatus> getBreakpoints() {
     return breakpointHandler.getBreakpoints();
   }

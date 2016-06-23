@@ -9,6 +9,9 @@ import org.junit.runners.Parameterized.Parameters;
 
 import java.util.Arrays;
 
+/**
+ * This test tests new features added during the 2016 update.
+ */
 @RunWith(Parameterized.class)
 public class FeaturesTest extends CorrectOutputAbstractTest {
 
@@ -33,6 +36,7 @@ public class FeaturesTest extends CorrectOutputAbstractTest {
           getCase("features/extensibility", "args"),
           getCase("features/extensibility", "argument_mismatch"),
           getCase("features/extensibility", "invalid_alias"),
+          getCase("features/changebp", "changebp"),
           getCase("features/ignorejava", "ignore"),
           getCase("hitcondition", "not"),
           getCase("hitcondition/locals", "methodname"),

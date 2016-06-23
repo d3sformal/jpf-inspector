@@ -41,8 +41,24 @@ public final class CmdBreakpointChange extends ClientCommand {
 
   @Override
   public void execute(JPFInspectorClient client, JPFInspectorBackEndInterface inspector, PrintStream outStream) {
-   // TODO
-    outStream.println("Not yet implemented.");
+    try {
+      int breakpointIdInteger = Integer.parseInt(breakpointId);
+      final boolean rc = inspector.changeBreakpointState(breakpointIdInteger, newState);
+      if (!rc) {
+        outStream.println("Breakpoint with ID " + breakpointIdInteger + " does not exist.");
+      } else {
+        String newStatus = "enabled";
+        if (newState == BreakpointState.LOGGING) {
+          newStatus = "a logging breakpoint";
+        }
+        if (newState == BreakpointState.DISABLED) {
+          newStatus = "disabled";
+        }
+        outStream.println("Breakpoint with ID " + breakpointIdInteger + " is now " + newStatus + ".");
+      }
+    } catch (NumberFormatException e) {
+      outStream.println("Malformed breakpoint identifier - \"" + breakpointId + "\" is not an integer (maybe it is out of bounds).");
+    }
   }
 
   @Override

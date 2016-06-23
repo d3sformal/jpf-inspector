@@ -20,12 +20,7 @@
 package gov.nasa.jpf.inspector.server.breakpoints;
 
 import gov.nasa.jpf.ListenerAdapter;
-import gov.nasa.jpf.inspector.interfaces.AssertCreationInformation;
-import gov.nasa.jpf.inspector.interfaces.AssertStatus;
-import gov.nasa.jpf.inspector.interfaces.BreakpointCreationInformation;
-import gov.nasa.jpf.inspector.interfaces.BreakPointManagerInterface;
-import gov.nasa.jpf.inspector.interfaces.BreakpointStatus;
-import gov.nasa.jpf.inspector.interfaces.InspectorCallbacks;
+import gov.nasa.jpf.inspector.interfaces.*;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorGenericErrorException;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorParsingErrorException;
 import gov.nasa.jpf.inspector.server.expression.ExpressionBooleanInterface;
@@ -200,7 +195,7 @@ public class BreakpointHandler implements BreakPointManagerInterface {
         iah = new InternalAssertHolder(newAssert.getBPID(), callBacks, true, false, newAssert.getPosition(), newAssert.getCondition());
       }
 
-      iah.modifyBPSettings(newAssert, newBPExpression);
+      iah.modifyAssertSettings(newAssert, newBPExpression);
 
       breakpoints.put(iah.getBPID(), iah);
 
@@ -235,6 +230,18 @@ public class BreakpointHandler implements BreakPointManagerInterface {
     synchronized (breakpoints) {
       InternalBreakpointHolder removedBP = breakpoints.remove(bpID);
       return removedBP != null;
+    }
+  }
+
+  @Override
+  public boolean changeBreakpointState(int breakpointId, BreakpointState newState) {
+    synchronized (breakpoints) {
+      if (breakpoints.containsKey(breakpointId)) {
+        breakpoints.get(breakpointId).breakpointState = newState;
+        return true;
+      } else {
+        return false;
+      }
     }
   }
 

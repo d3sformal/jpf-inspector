@@ -44,7 +44,8 @@ public class InternalAssertHolder extends InternalBreakpointHolder {
     return true;
   }
 
-  public void modifyBPSettings (BreakpointCreationInformation newSettings, ExpressionBreakpointAssert bpExpAsser) {
+  public void modifyAssertSettings(BreakpointCreationInformation newSettings,
+                                   ExpressionBreakpointAssert bpExpAsser) {
     super.modifyBPSettings(newSettings, bpExpAsser);
   }
 
@@ -68,8 +69,8 @@ public class InternalAssertHolder extends InternalBreakpointHolder {
       normalizedCondition = expAssert.getNormalizedCondition();
     }
 
-    return new AssertStatusImpl(bpID, bpName, bpHitCounter, bpHitCounterTotal, lowerBound, upperBound, bpState, bpMode, bpExpressionStr,
-        bpExpressionNormalized, details, position, condition, normalizedPosition, normalizedCondition);
+    return new AssertStatusImpl(bpID, bpName, bpHitCounter, bpHitCounterTotal, lowerBound, upperBound, breakpointState, bpMode, bpExpressionStr,
+                                bpExpressionNormalized, details, position, condition, normalizedPosition, normalizedCondition);
   }
 
 }

@@ -6,7 +6,6 @@ import gov.nasa.jpf.inspector.interfaces.CustomHitCondition;
 import gov.nasa.jpf.inspector.server.breakpoints.InternalBreakpointHolder;
 import gov.nasa.jpf.shell.ShellManager;
 
-import javax.swing.plaf.TreeUI;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -97,9 +96,9 @@ public final class InspectorConfiguration {
   }
 
   private Object instantiateClass(Class<?> classToInstantiate) {
-    Object instance;
+    Object newInstance;
     try {
-      instance = classToInstantiate.newInstance();
+      newInstance = classToInstantiate.newInstance();
     } catch (InstantiationException e) {
       logger.warning("Class '" + classToInstantiate.getName() + "' cannot be instantiated because of the InstantiationException: " + e.toString() + ". It won't be usable in the Inspector.");
       return null;
@@ -107,7 +106,7 @@ public final class InspectorConfiguration {
       logger.warning("Class '" + classToInstantiate.getName() + "' cannot be instantiated because of the IllegalAccessException: " + e.toString()+ ". It won't be usable in the Inspector.");
       return null;
     }
-    return instance;
+    return newInstance;
   }
 
   /**
@@ -134,9 +133,13 @@ public final class InspectorConfiguration {
 
   public static InspectorConfiguration getInstance() {
     if (instance == null) {
-      if (ShellManager.getManager() == null) throw new IllegalStateException("Shell manager but be instantiated first.");
+      if (ShellManager.getManager() == null) {
+        throw new IllegalStateException("Shell manager but be instantiated first.");
+      }
       Config config = ShellManager.getManager().getConfig();
-      if (config == null) throw new IllegalStateException("Shell manager does not have a loaded Config object yet.");
+      if (config == null) {
+        throw new IllegalStateException("Shell manager does not have a loaded Config object yet.");
+      }
       instance = new InspectorConfiguration(config);
     }
     return instance;
@@ -152,7 +155,9 @@ public final class InspectorConfiguration {
    * @param className Full qualified name of a Java class.
    */
   public boolean isClassIgnored(String className) {
-    if (!ignoreClassesFeature) return false; // If false, then we ignore nothing.
+    if (!ignoreClassesFeature) {
+      return false; // If false, then we ignore nothing.
+    }
 
     for (String ignoredClass : ignoredClasses) {
       if (logger.isLoggable(Level.FINE)) {
@@ -207,7 +212,7 @@ public final class InspectorConfiguration {
    * This is useful for unit tests.
    */
   public static void staticReset() {
-    InternalBreakpointHolder.bpIDCounter = 1;
+    InternalBreakpointHolder.resetBreakpointIdCounter();
     instance = null;
   }
 

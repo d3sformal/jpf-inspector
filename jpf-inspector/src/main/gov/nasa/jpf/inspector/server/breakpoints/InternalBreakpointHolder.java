@@ -41,9 +41,15 @@ import java.util.logging.Logger;
 public class InternalBreakpointHolder implements Comparable<InternalBreakpointHolder> {
   /**
    * ID of the next breakpoint to be created.
-   * This must be public so that it can be reset by {@link InspectorConfiguration#staticReset()}.
    */
-  public static int bpIDCounter = 1;
+  private static int bpIDCounter = 1;
+
+  /**
+   * {@link InspectorConfiguration#staticReset()} uses this to reset the static state of the Inspector.
+   */
+  public static void resetBreakpointIdCounter() {
+    bpIDCounter = 1;
+  }
   private static final Object bpIDCounterLock = new Object();
   private static Logger log = Debugging.getSimpleLogger();
 
@@ -64,7 +70,7 @@ public class InternalBreakpointHolder implements Comparable<InternalBreakpointHo
   private final boolean singleHitBreakpoint; // / Remove this breakpoint on the first breakpointHit (this or some other BP)
 
   protected BreakPointModes bpMode = BreakPointModes.BP_MODE_NONE;
-  protected BreakpointState bpState = BreakpointState.ENABLED;
+  protected BreakpointState breakpointState = BreakpointState.ENABLED;
   protected String bpName = "";
 
   protected int bpHitCounter = 0;
@@ -84,6 +90,7 @@ public class InternalBreakpointHolder implements Comparable<InternalBreakpointHo
    * @param userBP This breakpoint is created by the client inspector side (should by reported to user)
    * @param sigleHitBP This breakpoint should be removed if the first breakpoint hits (this or some other BP)
    */
+  @SuppressWarnings("AssignmentToMethodParameter")
   public InternalBreakpointHolder (int newID, InspectorCallbacks callbacks, boolean userBP, boolean sigleHitBP) {
     if (newID == BreakpointCreationInformation.BP_ID_NOT_DEFINED) {
       newID = getNextBpID();
@@ -108,7 +115,7 @@ public class InternalBreakpointHolder implements Comparable<InternalBreakpointHo
       bpName = newSettings.getName();
     }
     if (newSettings.getState() != null) {
-      bpState = newSettings.getState();
+      breakpointState = newSettings.getState();
     }
     if (newSettings.bpHitCountLowerBound() != null) {
       lowerBound = newSettings.bpHitCountLowerBound();
@@ -157,8 +164,9 @@ public class InternalBreakpointHolder implements Comparable<InternalBreakpointHo
       bpExpressionNormalized = bpExpression.getNormalizedExpression();
     }
 
-    return new BreakPointStatusImpl(bpID, bpName, bpHitCounter, bpHitCounterTotal, lowerBound, upperBound, bpState, bpMode, bpExpressionStr,
-        bpExpressionNormalized, details);
+    return new BreakPointStatusImpl(bpID, bpName, bpHitCounter, bpHitCounterTotal, lowerBound, upperBound,
+                                    breakpointState, bpMode, bpExpressionStr,
+                                    bpExpressionNormalized, details);
   }
 
   /**
@@ -205,18 +213,18 @@ public class InternalBreakpointHolder implements Comparable<InternalBreakpointHo
 
 
     if (bpShouldExecuteAction && isUserBreakpoint()) {
-      if (bpState == BreakpointState.DISABLED) {
+      if (breakpointState == BreakpointState.DISABLED) {
         // No action expected
-      } else if (bpState == BreakpointState.LOGGING) {
+      } else if (breakpointState == BreakpointState.LOGGING) {
         callbacks.notifyBreakpointHit(getBreakpointStatus(state));
-      } else if (bpState == BreakpointState.ENABLED) {
+      } else if (breakpointState == BreakpointState.ENABLED) {
         callbacks.notifyBreakpointHit(getBreakpointStatus(state));
       } else {
-        throw new RuntimeException("Unknown " + BreakpointState.class.getSimpleName() + " entry " + bpState);
+        throw new RuntimeException("Unknown " + BreakpointState.class.getSimpleName() + " entry " + breakpointState);
       }
     }
 
-    return bpShouldExecuteAction && bpState == BreakpointState.ENABLED;
+    return bpShouldExecuteAction && breakpointState == BreakpointState.ENABLED;
 
   }
 

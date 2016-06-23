@@ -51,11 +51,19 @@ public interface BreakPointManagerInterface {
   AssertStatus createAssert(AssertCreationInformation newAssert) throws JPFInspectorParsingErrorException, JPFInspectorGenericErrorException;
 
   /**
-   * Deletes the breakpoint with specified ID.
+   * Deletes the breakpoint with the specified ID.
    *
-   * @param bpID Identification of the Breakpoint to delete
-   * @return true if Breakpoint with given bpID exists, false if BP not found.
+   * @param bpID The breakpoint's ID.
+   * @return True if the breakpoint was deleted; false if the breakpoint did not exist.
    */
   boolean deleteBreakpoint(int bpID);
 
+  /**
+   * Changes the state of a breakpoint.
+   *
+   * @param breakpointId The breakpoint's ID.
+   * @param newState The new state that the breakpoint should assume.
+   * @return True if the breakpoint's state changed; false if the breakpoint does not exist.
+   */
+  boolean changeBreakpointState(int breakpointId, BreakpointState newState);
 }
