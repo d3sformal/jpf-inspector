@@ -178,7 +178,7 @@ class StepThreadBacktracker {
    *
    * This includes transitions executed by threads other than the one we are interested in.
    */
-  public int getCurrentBackSteppedTransitions () {
+  public int getBacktrackedTransitionCount() {
     return ttb.getBacksteppedTransitions();
   }
 

@@ -100,7 +100,7 @@ public class MethodInstructionBacktracker {
     // Store previous state of the backtracker (at first, initialized to the current step).
     prevReturnedStep = stepThreadBacktracker.getCurrentStep();
     prevReturnedStepTransition = stepThreadBacktracker.getCurrentTransition();
-    prevReturnedTransition2Backrack = stepThreadBacktracker.getCurrentBackSteppedTransitions();
+    prevReturnedTransition2Backrack = stepThreadBacktracker.getBacktrackedTransitionCount();
 
     // We always want to perform at least one backstep.
     Step step = stepThreadBacktracker.backstep();
@@ -157,7 +157,7 @@ public class MethodInstructionBacktracker {
    * Gets the number of transitions we backtracked through.
    */
   public int getBacktrackedTransitionCount () {
-    return stepThreadBacktracker.getCurrentBackSteppedTransitions();
+    return stepThreadBacktracker.getBacktrackedTransitionCount();
   }
 
   public Transition getCurrentTransition () {

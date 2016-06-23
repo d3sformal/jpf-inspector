@@ -113,7 +113,7 @@ public final class BackwardBreakpointCreator {
       return null; // No previous instruction exists, this is the start of the thread.
     }
 
-    return new BackwardBreakpointCreator(stb.getCurrentTransition(), targetStep, stb.getCurrentBackSteppedTransitions());
+    return new BackwardBreakpointCreator(stb.getCurrentTransition(), targetStep, stb.getBacktrackedTransitionCount());
   }
 
   /**
@@ -197,7 +197,7 @@ public final class BackwardBreakpointCreator {
    * @return Creator with all target information collected.
    */
   public static BackwardBreakpointCreator getBackwardStepIn (InspectorState inspectorState) {
-    CallInstructionChecker checkCall = new CallInstructionChecker();
+    ReturnInstructionChecker returnInstructionChecker = new ReturnInstructionChecker();
     Path path = updateAndGetPath(inspectorState);
 
     Transition currentTransition = path.getLast();
@@ -205,35 +205,49 @@ public final class BackwardBreakpointCreator {
       return null;
     }
     int currentThread = currentTransition.getThreadIndex();
-    TransitionThreadBacktracker trBacktracker = new TransitionThreadBacktracker(path, currentThread);
-    StepThreadBacktracker stepBacktracker = new StepThreadBacktracker(trBacktracker);
+    StepThreadBacktracker stepBacktracker = new StepThreadBacktracker(new TransitionThreadBacktracker(path, currentThread));
 
-    int lineChangeCnt = 0;      // How many different lines we meet
-    int callInstructionCnt = 0; // How many call instructions we reached
-    InstructionPosition ip = null;
+    Instruction currentInstruction = inspectorState.getVM().getInstruction();
+    InstructionPosition currentLocation = InstructionPositionImpl.getInstructionPosition(currentInstruction);
 
-    do {
-      Step st = stepBacktracker.backstep();
-      if (st == null) {
-        return null; // No such place exists
-      }
+    // First step back.
+    Step step = stepBacktracker.backstep();
+    // Undo instructions on the current line
+    while ((step != null) && currentLocation.hitPosition(step.getInstruction())) {
+      step = stepBacktracker.backstep();
+    }
 
-      if (ip == null) {
-        // Initial cycle run
-        ip = InstructionPositionImpl.getInstructionPosition(st.getInstruction());
-      }
+    if (step == null) {
+      return null; // We have reached the beginning of the thread or the method.
+    }
 
-      if (checkCall.isCallStep(st)) {
-        callInstructionCnt++;
-      }
-      if (!ip.hitPosition(st.getInstruction())) {
-        lineChangeCnt++;
-        ip = InstructionPositionImpl.getInstructionPosition(st.getInstruction());
-      }
+    // We are now either on the previous line or in the caller or in a callee.
+    if (step.getInstruction().getMethodInfo() != currentInstruction.getMethodInfo()) {
+      // We are in the caller or calleee - we should stop now.
+      return new BackwardBreakpointCreator(stepBacktracker.getCurrentTransition(), step, stepBacktracker.getBacktrackedTransitionCount());
+    }
 
-    } while (lineChangeCnt < 2 && callInstructionCnt < 2);
+    // We are on the previous line - stop after the first instruction on given line or when method changes
+    InstructionPosition previousLinePosition = InstructionPositionImpl.getInstructionPosition(step.getInstruction());
+    Step previousStep = null;
+    Transition previousTransition = null;
+    int previousTransitionsToBacktrack = 0;
+    while ((step != null) && previousLinePosition.hitPosition(step.getInstruction())) {
+      previousStep = step;
+      previousTransition = stepBacktracker.getCurrentTransition();
+      previousTransitionsToBacktrack = stepBacktracker.getBacktrackedTransitionCount();
+      step = stepBacktracker.backstep();
+    }
 
-    return stepBacktracker.createBackwardBreakpointFromPreviousReturnedStep();
+    if (step == null) {
+      return null; // We have reached the beginning of the thread or the method.
+    }
+
+    if (step.getInstruction().getMethodInfo() != currentInstruction.getMethodInfo() && returnInstructionChecker.isReturnStep(step) ) {
+      return new BackwardBreakpointCreator(stepBacktracker.getCurrentTransition(), step, stepBacktracker.getBacktrackedTransitionCount());
+    } else {
+      return new BackwardBreakpointCreator(previousTransition, previousStep, previousTransitionsToBacktrack);
+    }
   }
 
   /**
