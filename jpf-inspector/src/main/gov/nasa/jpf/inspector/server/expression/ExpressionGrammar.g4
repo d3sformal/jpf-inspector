@@ -198,13 +198,19 @@ cmdBreakpointsCreateParamsAtomNotTerminateIDF [ExpressionFactory expFactory] ret
     | WS? TOKEN_STEP_OUT             WS? TOKEN_THREAD WS? '=' WS? tid=intValue WS? TOKEN_STACK_FRAME WS? '=' WS? sfDepth=intValue WS?                                                                                                            { $bp = expFactory.getBreakpointStepOut( $tid.value, $sfDepth.value); }
     | WS? TOKEN_SPECIFIC_INSTRUCTION WS? TOKEN_THREAD WS? '=' WS? tid=intValue WS? TOKEN_INSTRUCTION WS? '=' WS? className WS? ':' WS? methodName[$className.cn] WS? ':' WS? instIndex=intValue WS? TOKEN_HIT_COUNT WS? '=' WS? hc=intValue WS?  { $bp = expFactory.getBreakpointInstruction($tid.value, $methodName.mn, $instIndex.value, $hc.value); }
     | WS? TOKEN_ASSERT               WS? '(' fileName WS? ':' WS? intValue WS? ')' WS? '(' cmdBreakpointsCreateParams1[expFactory] ')'                                                                                                           { $bp = expFactory.getBreakpointAssert(expFactory.getExpBreakpointPosition($fileName.text, $intValue.value), $cmdBreakpointsCreateParams1.bp); }
-    | WS? idf WS? '(' (WS? exprs=comma_separated_expressions[expFactory])? WS? ')' WS? { $bp = expFactory.getCustomHitCondition($idf.text, $exprs.ctx != null ? $exprs.expressions : new Expressions() ); }
+    | WS? idf WS? '(' (WS? exprs=comma_separated_expressions[expFactory])? WS? ')' WS?
+    { $bp = expFactory.getCustomHitCondition($idf.text, $exprs.ctx != null ? $exprs.expressions : new Expressions() ); }
     ;
 comma_separated_expressions [ExpressionFactory expFactory] returns [Expressions expressions]
-  :  a=cmdStateExpression1Value[expFactory] WS? ',' WS? exprs=comma_separated_expressions[expFactory]
-  { $expressions = $exprs.expressions; $expressions.insert($a.expr); }
-  | b=cmdStateExpression1Value[expFactory] { $expressions = new Expressions(); $expressions.insert($b.expr); }
+  :  a=nonCommaText WS? ',' WS? exprs=comma_separated_expressions[expFactory]
+  { $expressions = $exprs.expressions; $expressions.insert($a.text); }
+  | b=nonCommaText { $expressions = new Expressions(); $expressions.insert($b.text); }
   ;
+nonCommaText
+ : (~',') nonCommaText
+ | (~',')
+ ;
+
 
 cmdBreakpointsCreateParamsAtomTerminateIDF [ExpressionFactory expFactory] returns [ExpressionBoolean bp]
     : WS? fieldAccess              WS? '=' WS? className WS? ':' WS? fieldName[$className.cn] WS?

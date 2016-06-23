@@ -219,6 +219,11 @@ public class InspectorListenerModeSilent extends ListenerAdapter {
         inspector.getDebugPrintStream().println(
                 this.getClass().getSimpleName() + ".executeInstruction() inst=" + instructionToExecute );
     }
+    if (state == InternalState.WAIT_FOR_FIRST_INSTRUCTION_EXECUTED) {
+      Debugging.getLogger().info("We were apparently broken somewhere else beside prior to an instruction. Go figure.");
+      state = InternalState.TRANSITION_END;
+      return;
+    }
     if (state != InternalState.FORWARD_STEPS) {
       reportError("Moving forwards can only be done in the last phase of the backstepping.");
       return;

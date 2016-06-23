@@ -62,7 +62,7 @@ public class CmdBreakpointCreate extends ClientCommand {
       client.recordComment(e.getMessage());
       client.recordComment(e.expressError(JPFInspectorParsingErrorException.DEFAULT_LINE_LENGTH));
     } catch (JPFInspectorGenericErrorException e) {
-      outStream.append(e.getMessage());
+      outStream.println(e.getMessage());
       client.recordComment(e.getMessage());
     }
 

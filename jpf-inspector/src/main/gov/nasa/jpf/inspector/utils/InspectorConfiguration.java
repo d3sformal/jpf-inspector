@@ -71,8 +71,9 @@ public final class InspectorConfiguration {
         continue;
       }
       CustomHitCondition customHitCondition = (CustomHitCondition) exampleInstance;
-      String name = customHitCondition.getName();
-      customHitConditions.put(name, customHitCondition.getClass());
+      for (String name : customHitCondition.getNames()) {
+        customHitConditions.put(name, customHitCondition.getClass());
+      }
     }
   }
 

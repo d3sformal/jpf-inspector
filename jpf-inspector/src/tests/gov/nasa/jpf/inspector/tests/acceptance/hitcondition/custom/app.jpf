@@ -1,0 +1,7 @@
+target = gov.nasa.jpf.inspector.tests.acceptance.sut.Callstack
+
+jpf-inspector.batch_mode.echo_input = false
+
+jpf-inspector.custom_hit_conditions=gov.nasa.jpf.inspector.tests.acceptance.hitcondition.custom.OnLineHitCondition
+
+@include ../../inspectortest.jpf

@@ -1,4 +1,4 @@
-cr bp fa=SecondTask:count
+cr bp fa=*SecondTask:count
 create breakpoint ts=out:1
 
 run
@@ -17,7 +17,7 @@ step_over
 step_over
 thread_pc
 
-cr bp state=log field_write=Event:count
+cr bp state=log field_write=*Event:count
 
 run
 # Several logging breakpoints hit.
