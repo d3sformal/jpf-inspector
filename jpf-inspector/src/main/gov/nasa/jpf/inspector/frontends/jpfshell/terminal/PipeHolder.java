@@ -17,7 +17,7 @@
 // DOCUMENTATION, IF PROVIDED, WILL CONFORM TO THE SUBJECT SOFTWARE.
 //  
 
-package gov.nasa.jpf.inspector.frontends.jpfshell.gui;
+package gov.nasa.jpf.inspector.frontends.jpfshell.terminal;
 
 import java.io.IOException;
 import java.io.PipedInputStream;
@@ -29,6 +29,7 @@ import java.io.PipedOutputStream;
  * @author Alf
  */
 final class PipeHolder extends Thread {
+  private static final int PIPE_SIZE = 512;
   private PipedInputStream pInputStream = null;
   private PipedOutputStream pOutputStream = null;
 
@@ -50,7 +51,7 @@ final class PipeHolder extends Thread {
   @Override
   public synchronized void run () {
     try {
-      pInputStream = new PipedInputStream(512);
+      pInputStream = new PipedInputStream(PIPE_SIZE);
       pOutputStream = new PipedOutputStream(pInputStream);
     } catch (IOException e) {
       pOutputStream = null;

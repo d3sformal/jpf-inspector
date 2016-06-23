@@ -1,4 +1,4 @@
-package gov.nasa.jpf.inspector.frontends.jpfshell.gui;
+package gov.nasa.jpf.inspector.frontends.jpfshell.terminal;
 
 import javax.swing.text.BadLocationException;
 import javax.swing.text.Document;
@@ -22,7 +22,7 @@ public class TextComponentFeeder {
 
   private int moveCursorLeft = 0;
 
-  public void addTextAtTheVeryEnd(String s, JTextComponent console) {
+  public static void addTextAtTheVeryEnd(String s, JTextComponent console) {
     Document doc = console.getDocument();
     try {
         doc.insertString(doc.getLength(), s, null);

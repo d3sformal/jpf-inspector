@@ -2,12 +2,14 @@ package gov.nasa.jpf.inspector.frontends.jpfshell;
 
 import gov.nasa.jpf.shell.ShellPanel;
 
-import javax.swing.*;
-
+/**
+ * The source code view panel allows the user to view the source code of the file where the
+ * currently executed instruction resides.
+ */
 public class SourceCodeViewPanel extends ShellPanel {
   private static final long serialVersionUID = -332650333255593274L;
 
-  public SourceCodeViewPanel(String title, Icon icon, String tip) {
-    super(title, icon, tip);
+  public SourceCodeViewPanel() {
+    super("Source", null, "View the source code of the currently executed instruction.");
   }
 }

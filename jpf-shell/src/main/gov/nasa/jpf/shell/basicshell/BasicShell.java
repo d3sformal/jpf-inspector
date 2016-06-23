@@ -526,7 +526,7 @@ public class BasicShell extends Shell {
   static class CommandButton extends JButton{
 
     public CommandButton(ShellCommand c){
-      super(c.getIcon());
+      super(c.getIcon() == null ? c.getName() : null, c.getIcon());
       setOpaque(false);
       setContentAreaFilled(false);
       setRolloverEnabled(true);

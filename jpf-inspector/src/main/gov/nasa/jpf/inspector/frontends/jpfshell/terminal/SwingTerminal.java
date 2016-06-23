@@ -17,7 +17,7 @@
 // DOCUMENTATION, IF PROVIDED, WILL CONFORM TO THE SUBJECT SOFTWARE.
 //  
 
-package gov.nasa.jpf.inspector.frontends.jpfshell.gui;
+package gov.nasa.jpf.inspector.frontends.jpfshell.terminal;
 
 import java.awt.*;
 import java.awt.event.FocusEvent;
@@ -33,14 +33,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javax.swing.*;
-import javax.swing.plaf.metal.MetalLookAndFeel;
-import javax.swing.plaf.nimbus.NimbusLookAndFeel;
 import javax.swing.text.DefaultCaret;
-import javax.swing.text.DefaultEditorKit;
 import javax.swing.text.JTextComponent;
 
-import com.sun.java.swing.plaf.motif.MotifLookAndFeel;
-import com.sun.java.swing.plaf.windows.WindowsLookAndFeel;
 import gov.nasa.jpf.inspector.utils.Debugging;
 import gov.nasa.jpf.inspector.utils.InspectorConfiguration;
 import gov.nasa.jpf.shell.ShellManager;
@@ -58,7 +53,7 @@ import jline.Terminal;
  * The {@link #getUserTextPrintStream()} print stream can be used to print additional output to the console (just above the prompt line).
  * 
  */
-public class SwingTerminal extends Terminal {
+public final class SwingTerminal extends Terminal {
   private static final boolean DEBUG = false;
 
   private final JEditorPane console; // Panel where writer s printed and where user writes commands.
@@ -72,8 +67,6 @@ public class SwingTerminal extends Terminal {
    * least significant byte is sent first
    */
   private final PipeHolder pipeKeyListener2JLine;
-
-  private KeyListener listener = null; // / Observes pressed events and writes them into inWriter stream
 
   private ConsoleReader creader = null;
   private final TextComponentFeeder interpreter;
@@ -156,7 +149,7 @@ public class SwingTerminal extends Terminal {
       e.printStackTrace();
     }
 
-    listener = new ConsoleKeyListener(creader, pipeKeyListener2JLine.getOutpoutStream());
+    KeyListener listener = new ConsoleKeyListener(creader, pipeKeyListener2JLine.getOutpoutStream());
     console.addKeyListener(listener);
 
 
@@ -325,7 +318,7 @@ public class SwingTerminal extends Terminal {
   /**
    * Handles the user input (pressed keys), converts them and sends them into the jLine console (through stream)
    */
-  private class ConsoleKeyListener implements KeyListener {
+  private static class ConsoleKeyListener implements KeyListener {
     private final OutputStream output;
 
     private final int JL_PREV_CHAR; // Left
@@ -383,13 +376,13 @@ public class SwingTerminal extends Terminal {
     /**
      * Writes int to output stream
      * 
-     * @param c Value to write into output
+     * @param singleCharacter Value to write into output
      */
-    private void write (int c) {
+    private void write (int singleCharacter) {
       try {
         for (int i = 0; i < 4; i++) {
-          output.write(c & 0xFF);
-          c >>>= 8;
+          output.write(singleCharacter & 0xFF);
+          singleCharacter >>>= 8;
         }
       } catch (IOException e) {
         // Cannot write - ignore
@@ -482,7 +475,7 @@ public class SwingTerminal extends Terminal {
    * 
    * This listener repairs this behavior.
    */
-  class ConsoleFocusListener implements FocusListener {
+  private class ConsoleFocusListener implements FocusListener {
 
     @Override
     public void focusGained (FocusEvent e) {
@@ -498,7 +491,7 @@ public class SwingTerminal extends Terminal {
     }
   }
 
-  public static class JLineSimpleOutputStream extends OutputStream {
+  private static class JLineSimpleOutputStream extends OutputStream {
     private static Logger log = Debugging.getLogger(ShellManager.getManager().getConfig());
 
     private final TextComponentFeeder interpreter;
@@ -511,7 +504,7 @@ public class SwingTerminal extends Terminal {
       }
       char[] c = new char[1];
       c[0] = (char) b;
-      interpreter.addTextAtTheVeryEnd(new String(c), console);
+      TextComponentFeeder.addTextAtTheVeryEnd(new String(c), console);
     }
 
     @Override
@@ -520,7 +513,7 @@ public class SwingTerminal extends Terminal {
       if (log.isLoggable(Level.FINE)) {
         log.fine(this.getClass().getSimpleName() + "write( str=" + str + ")");
       }
-      interpreter.addTextAtTheVeryEnd(str, console);
+      TextComponentFeeder.addTextAtTheVeryEnd(str, console);
     }
 
     public JLineSimpleOutputStream(TextComponentFeeder interpreter, JTextComponent console) {

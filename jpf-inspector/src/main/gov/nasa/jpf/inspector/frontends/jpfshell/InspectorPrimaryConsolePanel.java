@@ -25,7 +25,7 @@ import gov.nasa.jpf.inspector.JPFInspectorFacade;
 import gov.nasa.jpf.inspector.client.ExecutionContext;
 import gov.nasa.jpf.inspector.client.JPFInspectorClientInterface;
 import gov.nasa.jpf.inspector.common.Constants;
-import gov.nasa.jpf.inspector.frontends.jpfshell.gui.SwingTerminal;
+import gov.nasa.jpf.inspector.frontends.jpfshell.terminal.SwingTerminal;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorGenericErrorException;
 import gov.nasa.jpf.inspector.utils.Debugging;
 import gov.nasa.jpf.inspector.utils.InspectorConfiguration;
@@ -39,36 +39,49 @@ import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
 import java.io.IOException;
 import java.io.PrintStream;
+import java.net.URL;
 import java.util.logging.Logger;
 
 import jline.ConsoleReader;
+
+import javax.swing.*;
 
 /**
  * This a panel for JPF Shell that contains the Inspector console.
  * This is the main entry point for JPF Inspector, if it is launched by means of a graphical shell.
  * 
  */
-public class JPFShellInspectorPanel extends ShellPanel implements VerifyCommandListener {
-  private static Logger log = Debugging.getLogger(ShellManager.getManager().getConfig());
-
+public class InspectorPrimaryConsolePanel extends ShellPanel implements VerifyCommandListener {
+  private static Logger log = Debugging.getLogger();
   private static final boolean DEBUG = false;
-
   private static final long serialVersionUID = 20110715L;
 
-  private final ConsoleReader console; // / Console that handles user input (jLine from jline library)
-  private final SwingTerminal terminal; // / Terminal that shows input and output
-  private final PrintStream consolePrintStream; // Stream where print output to user
-
-  private final JPFInspectorClientInterface inspector; // / Server part of the inspector
+  /**
+   * Console that handles user input (jLine from jline library)
+   */
+  private final ConsoleReader console;
+  /**
+   * Terminal that shows input and output
+   */
+  private final SwingTerminal terminal;
+  /**
+   * Stream where print output to user
+   */
+  private final PrintStream consolePrintStream;
+  /**
+   * The Inspector client.
+   */
+  private final JPFInspectorClientInterface inspector;
 
   /**
-   * Creates the JPFInspector - front end
+   * Creates the JPFInspector Swing frontend main panel.
    */
-  public JPFShellInspectorPanel () {
+  public InspectorPrimaryConsolePanel() {
     super("JPF Inspector", null, "JPF Inspector command console");
     Config config = ShellManager.getManager().getConfig();
+    String target = config.getTarget();
 
-    // Create terminal with specified theme
+    // Create a terminal with specified theme
     if (config.get("jpf-inspector.theme").equals("white_on_black")) {
       terminal = SwingTerminal.getSwingTerminalBlack();
       log.info("JPF Inspector theme: white-on-black.");
@@ -81,30 +94,60 @@ public class JPFShellInspectorPanel extends ShellPanel implements VerifyCommandL
       log.warning("Theme '" + config.get("jpf-inspector.theme") + "' not recognized. Defaulting to black-on-white.");
     }
 
+    // Make sure the terminal is selected whenever we are on this panel
     addComponentListener(new PanelComponentListener());
 
+    // Prepare communication streams
     consolePrintStream = terminal.getUserTextPrintStream();
     PrintStream startingInfoStream = terminal.getSimplePrintStream();
-
-    String target = config.getTarget();
+    console = terminal.getConsoleReader();
 
     // Initialize server part
     inspector = JPFInspectorFacade.getInspectorClient(target, consolePrintStream);
 
-    // Registering JPFShellInspectorPanel as Verify command listener
+    // Register InspectorPrimaryConsolePanel as a Verify command listener
     ShellManager.getManager().addCommandListener(VerifyCommand.class, this);
-    this.setLayout(new BorderLayout());
 
+    // Set up the layout
+    this.setLayout(new BorderLayout());
     add(terminal.getScrollPanel());
 
+    // Say hello to the user
     startingInfoStream.println("This is the JPF Inspector console for debugging the target \"" + target + "\".");
     startingInfoStream.println("Type \"hello\" to test if the Inspector is working or \"help\" to get a list of commands.");
     startingInfoStream.println();
 
-    console = terminal.getConsoleReader();
+    // Set up quick commands
+    setUpQuickCommands();
 
+    // Start up the command execution thread
     Thread t = new CommandProcessingThread();
     t.start();
+  }
+
+  private void setUpQuickCommands() {
+    Icon standardIcon = null;
+    @SuppressWarnings("ConstantConditions")
+    InspectorToolbarCommand[] commands = {
+            new InspectorToolbarCommand("Continue", getQuickCommandIcon("Placeholder"), "Resumes execution of JPF.", "continue", inspector, consolePrintStream),
+            new InspectorToolbarCommand("Step Instruction", standardIcon, "Steps one bytecode instruction forward.", "step_instruction", inspector, consolePrintStream),
+            new InspectorToolbarCommand("Step In", standardIcon, "Steps into the next method call.", "step_in", inspector, consolePrintStream),
+            new InspectorToolbarCommand("Step Over", standardIcon, "Steps over this line of code.", "step_over", inspector, consolePrintStream),
+            new InspectorToolbarCommand("Step Out", standardIcon, "Steps out of the current method.", "step_out", inspector, consolePrintStream),
+            new InspectorToolbarCommand("Backstep Instruction", standardIcon, "Undoes the last bytecode instruction.", "back_step_instruction", inspector, consolePrintStream),
+            new InspectorToolbarCommand("Backstep In", standardIcon, "Steps back into the previous method call.", "back_step_in", inspector, consolePrintStream),
+            new InspectorToolbarCommand("Backstep Over", standardIcon, "Undoes the previous line of code.", "back_step_over", inspector, consolePrintStream),
+            new InspectorToolbarCommand("Backstep Out", standardIcon, "Undoes everything in this methods and backsteps out to the caller.", "back_step_out", inspector, consolePrintStream),
+    };
+    for (InspectorToolbarCommand command : commands) {
+      ShellManager.getManager().addCommand(command);
+    }
+  }
+
+  private static Icon getQuickCommandIcon(String filename) {
+    URL url = InspectorPrimaryConsolePanel.class.getResource("icons/" + filename + ".png");
+    ImageIcon imageIcon = new ImageIcon(url);
+    return imageIcon;
   }
 
   /**
@@ -140,7 +183,7 @@ public class JPFShellInspectorPanel extends ShellPanel implements VerifyCommandL
   @Override
   public void afterJPFInit (VerifyCommand command) {
     if (DEBUG) {
-      System.out.println(JPFShellInspectorPanel.class.getSimpleName() + ".afterJPFInit(command=" + command + " )");
+      System.out.println(InspectorPrimaryConsolePanel.class.getSimpleName() + ".afterJPFInit(command=" + command + " )");
     }
     JPF jpf = command.getJPF();
     try {
