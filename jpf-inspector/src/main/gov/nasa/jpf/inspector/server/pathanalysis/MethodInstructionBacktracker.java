@@ -68,7 +68,7 @@ public class MethodInstructionBacktracker {
 
   /**
    * Returns the step of the current method's caller that calls this method, i.e. the one containing the call instruction.
-   * 
+   *
    * @return Previous step in method which calls the current method (call instruction for current method), or null if such a step does not exist.
    */
   public Step getCallerOfCurrentMethod () {
@@ -93,6 +93,7 @@ public class MethodInstructionBacktracker {
    */
   private Step backtracker (int howManyMethodsToLeave) {
     int callStackDepth = howManyMethodsToLeave;
+    boolean hack_weAreFirstStep = true;
     // Simulation of the depth of the calls stack above (how many methods have been called by)
     // the method in the end of the path.
 
@@ -161,20 +162,6 @@ public class MethodInstructionBacktracker {
 
   public Transition getCurrentTransition () {
     return stepThreadBacktracker.getCurrentTransition();
-  }
-
-  /**
-   * @return Creates Backward breakpoint which represents position of last Step returned by {@link #backtrackToPreviousStepInMethod()}.
-   */
-  public BackwardBreakpointCreator createBackwardBreakpointFromCurrentStep () {
-    Step currentStep = stepThreadBacktracker.getCurrentStep();
-    Transition currentTransition = stepThreadBacktracker.getCurrentTransition();
-    int currentTransition2backstep = stepThreadBacktracker.getCurrentBackSteppedTransitions();
-    if (currentStep == null || currentTransition == null) {
-      return null;
-    }
-
-    return new BackwardBreakpointCreator(currentTransition, currentStep, currentTransition2backstep);
   }
 
   /**

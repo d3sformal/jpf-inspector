@@ -95,7 +95,7 @@ public final class BackwardBreakpointCreator {
    * @return Creator with all target information collected. Returns null on failure.
    */
   public static BackwardBreakpointCreator getBackwardStepInstruction (InspectorState inspectorState) {
-    Path path = getPath(inspectorState);
+    Path path = updateAndGetPath(inspectorState);
     Transition currentTransition = path.getLast();
     if (currentTransition == null) {
       // Called too early,
@@ -129,7 +129,7 @@ public final class BackwardBreakpointCreator {
    * @return Creator with all target information collected.
    */
   public static BackwardBreakpointCreator getBackwardStepLine (InspectorState inspectorState) {
-    Path path = getPath(inspectorState);
+    Path path = updateAndGetPath(inspectorState);
     MethodInstructionBacktracker methodInstructionBacktracker = new MethodInstructionBacktracker(path);
 
     Instruction currentInstruction = inspectorState.getVM().getInstruction();
@@ -198,8 +198,7 @@ public final class BackwardBreakpointCreator {
    */
   public static BackwardBreakpointCreator getBackwardStepIn (InspectorState inspectorState) {
     CallInstructionChecker checkCall = new CallInstructionChecker();
-
-    Path path = getPath(inspectorState);
+    Path path = updateAndGetPath(inspectorState);
 
     Transition currentTransition = path.getLast();
     if (currentTransition == null) {
@@ -242,23 +241,30 @@ public final class BackwardBreakpointCreator {
    *
    * Undoes all instructions that have been executed since this method was entered, backsteps out of the method and then undoes instructions in the parent until it stops at the beginning of the source code line of the callsite.
    *
+   * TODO: currently, it steps before the call instruction, not at the beginning of the source code line
+   *
    * @param inspectorState The current Inspector state used to get the transition path.
    * @return Creator with all target information collected.
    */
   public static BackwardBreakpointCreator getBackwardStepOut (InspectorState inspectorState) {
-    Path path = getPath(inspectorState);
+    Path path = updateAndGetPath(inspectorState);
+
     MethodInstructionBacktracker mib = new MethodInstructionBacktracker(path);
-    Step st = mib.getCallerOfCurrentMethod();
-    if (st == null) {
+    Step callerStep = mib.getCallerOfCurrentMethod();
+
+    if (callerStep == null) {
       return null; // No callsite could be found, perhaps because we are the root method.
     }
-    return mib.createBackwardBreakpointFromCurrentStep();
+
+    Transition currentTransition = mib.getCurrentTransition();
+    int currentTransition2backstep = mib.getBacktrackedTransitionCount();
+    return new BackwardBreakpointCreator(currentTransition, callerStep, currentTransition2backstep);
   }
 
   /**
    * Gets the current JPF transition path <b>including</b> the current transition.
    */
-  private static Path getPath (InspectorState insp) {
+  private static Path updateAndGetPath(InspectorState insp) {
     VM vm = insp.getVM();
     vm.updatePath();
     return vm.getPath();

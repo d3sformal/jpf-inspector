@@ -165,7 +165,7 @@ public class CommandsManager implements CommandsInterface {
       throw new RuntimeException("Unsupported " + type.getClass().getSimpleName() + " entry " + type);
     }
     if (bbc == null) {
-      throw new JPFInspectorGenericErrorException("Backwards step not possible.");
+      throw new JPFInspectorGenericErrorException("Backwards step not possible (there is no appropriate step left for this thread to backtrack to).");
     }
 
     // Create the breakpoint on that specific instruction

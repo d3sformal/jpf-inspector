@@ -6,7 +6,7 @@ public class Stepping {
     int outside = 1;
     outside = 2;
 
-    middle();
+    int uselessthing1 = 3; middle();
 
 
     int outside_after = 3;
@@ -16,7 +16,7 @@ public class Stepping {
     int middle = 5;
     middle = 6;
 
-    inside();
+    int uselessthing2 = 3; inside();
 
     int middle_after = 7;
     middle_after = 8;
