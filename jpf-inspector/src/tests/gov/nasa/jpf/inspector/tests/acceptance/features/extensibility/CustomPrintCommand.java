@@ -1,12 +1,10 @@
 package gov.nasa.jpf.inspector.tests.acceptance.features.extensibility;
 
 import gov.nasa.jpf.inspector.client.JPFInspectorClient;
-import gov.nasa.jpf.inspector.interfaces.BreakpointStatus;
 import gov.nasa.jpf.inspector.interfaces.CustomCommand;
 import gov.nasa.jpf.inspector.interfaces.JPFInspectorBackEndInterface;
 
 import java.io.PrintStream;
-import java.util.List;
 
 /**
  * Only used for testing.

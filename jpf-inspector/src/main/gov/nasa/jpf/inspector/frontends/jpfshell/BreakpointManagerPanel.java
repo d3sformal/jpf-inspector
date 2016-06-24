@@ -2,6 +2,8 @@ package gov.nasa.jpf.inspector.frontends.jpfshell;
 
 import gov.nasa.jpf.shell.ShellPanel;
 
+import javax.swing.*;
+
 /**
  * The breakpoint manager panel allows the user to view and delete breakpoints.
  */
@@ -10,5 +12,7 @@ public class BreakpointManagerPanel extends ShellPanel {
 
   public BreakpointManagerPanel() {
     super("Breakpoints", null, "View and delete Inspector breakpoints.");
+
+    // Create layout
   }
 }

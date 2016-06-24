@@ -18,6 +18,8 @@ public interface CustomCommand {
    * For example, if this method returns a string array with the only element "hi",
    * then the command "hi arg1 arg2" would cause an instance of this class to be created.
    *
+   * A custom command SHOULD NOT return a keyword of the Inspector in this method because that wouldn't work anyway.
+   *
    * Each element of the array is one way to name the command. For example, if the built-in command
    * "continue" were implemented as a custom command, then this method would return an array consisting
    * of "continue" and "cont".
