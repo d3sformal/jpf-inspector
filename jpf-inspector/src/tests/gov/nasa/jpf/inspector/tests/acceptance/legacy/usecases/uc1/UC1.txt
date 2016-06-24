@@ -1,0 +1,151 @@
+target example: oldclassic
+
+
+command sequence
+----------------
+cr bp fa=SecondTask:count
+
+create breakpoint ts=out:1
+
+run
+ - breakpoint hit at the access to SecondTask:count (in the constructor)
+	INFO: JPF created and connected, SuT is started
+	INFO: Breakpoint hit [ 1 :  state=BP_STATE_ENABLED hits=1 hitsTotal=1 field_access=SecondTask:count] 
+
+ti
+ - main thread running, other threads are new
+
+show bp
+
+delete breakpoint 2
+
+print #thread[0]
+ - stack trace of the main thread
+	0 : main state=RUNNING priority=5
+		0 : SecondTask.<init> - (in file oldclassic.java:116) -   int   count = 0;  // bad optimization - local...
+		1 : oldclassic.main - (in file oldclassic.java:52) -     SecondTask task2 = new SecondTask(new_event...
+		2 : ???.[main] - (in file [VM]:0)
+
+step_over
+ - next instruction
+	SuT  (Thread=0) executes the oldclassic.java:119 - aload_0 source:     this.event1 = e1;
+
+thread
+
+step_over
+ - next instruction
+	SuT  (Thread=0) executes the oldclassic.java:120 - aload_0 source:     this.event2 = e2;
+
+thread_pc
+ - next instruction for the main thread
+	0 : oldclassic.java:120:    this.event2 = e2;
+		SecondTask:<init>:8:aload_0
+
+cr bp state=log field_write=Event:count
+
+run
+ - logging output and breakpoint hit
+	INFO: Logging breakpoint hit [ 5 :  state=BP_STATE_LOGGING hits=1 hitsTotal=1 field_write=Event:count]
+	INFO: Logging breakpoint hit [ 5 :  state=BP_STATE_LOGGING hits=2 hitsTotal=2 field_write=Event:count]
+	INFO: Breakpoint hit [ 1 :  state=BP_STATE_ENABLED hits=2 hitsTotal=2 field_access=SecondTask:count]
+	INFO: Logging breakpoint hit [ 5 :  state=BP_STATE_LOGGING hits=3 hitsTotal=3 field_write=Event:count]
+
+print #thread[0]
+ - this is right because the main thread already finished
+	ERR: There is no thread with index 0
+
+print #thread[1]
+ - stack trace of the first thread
+	1 : Thread-1 state=WAITING priority=5
+		0 : java.lang.Object.wait - (in file java/lang/Object.java:-1)
+		1 : Event.wait_for_event - (in file oldclassic.java:80) -       wait();
+		2 : FirstTask.run - (in file oldclassic.java:104) -         event1.wait_for_event();
+		3 : ???.[run] - (in file [VM]:0)
+
+so
+ - next instruction
+	SuT  (Thread=2) executes the oldclassic.java:127 - getstatic source:       System.out.println("  2");
+
+thread_pc
+ - next instruction for all threads
+	1 : java/lang/Object.java:-1
+		java.lang.Object:wait:0:executenative JPF_java_lang_Object.wait____V
+	2 : oldclassic.java:127:      System.out.println("  2");
+		SecondTask:run:5:getstatic
+
+bso
+ - back step over the current and previous source code line
+	SuT  (Thread=2) executes the oldclassic.java:124 - aload_0 source:     count = event2.count;          // <race> violates event2 mtionitor encapsulation
+
+thread_pc
+ - next instruction for each thread
+	1 : java/lang/Object.java:-1
+		java.lang.Object:wait:0:executenative JPF_java_lang_Object.wait____V
+	2 : oldclassic.java:124:    count = event2.count;          // <race> violates event2 monitor encapsulation
+		SecondTask:run:0:aload_0
+
+ti
+ - thread status
+	1 : state=WAITING priority=5
+	2 : state=RUNNING priority=5
+
+del bp 1
+ - output:
+	Breakpoint with ID = 1 delete succesfully
+
+show breakpoint
+ - only the logging breakpoint remains
+	5 :  state=BP_STATE_LOGGING hits=3 hitsTotal=3 field_write=Event:count
+
+run
+ - there is no real breakpoint that would stop execution and JPF runs until the end
+ - many logging notifications
+	INFO: Logging breakpoint hit [ 5 :  state=BP_STATE_LOGGING hits=129 hitsTotal=691 field_write=Event:count]
+
+cr bp 5 <= hc ts=both
+ - breakpoint with hit count
+
+run
+ - breakpoint was hit five times before the execution stopped
+	INFO: Breakpoint hit [ 8 :  state=BP_STATE_ENABLED hits=5 hitsTotal=5 5<=hit_count thread_scheduled=both]
+
+ti
+
+print #thread[2]
+ - stack frame of the second thread
+	2 : Thread-2 state=RUNNING priority=5
+		0 : SecondTask.run - (in file oldclassic.java:130) -       if (count == event2.count) { // <race> ditto
+		1 : ???.[run] - (in file [VM]:0)
+
+back_step_over
+ - back step over the current and previous source code line
+	SuT  (Thread=2) executes the oldclassic.java:128 - aload_0 source:       event1.signal_event();       // updates event1.count
+
+print
+ - top stack frame of the curren thread and fields of the receiver object
+	SecondTask.run - (in file oldclassic.java:128) -       event1.signal_event();       // updates e...
+	Stack slots
+		0 : this (SecondTask) = SecondTask@15a
+		1 : ???-RawView-no Name or Type provided (int) = 346
+	Fields
+		0 : id (int) = 2
+		1 : group (java.lang.ThreadGroup) = java.lang.ThreadGroup@1
+		2 : target (java.lang.Runnable) = null
+		3 : name (java.lang.String) = "Thread-2"
+		4 : priority (int) = 5
+		5 : isDaemon (boolean) = false
+		6 : interrupted (boolean) = false
+		7 : threadLocals (java.lang.ThreadLocal$ThreadLocalMap) = null
+		8 : inheritableThreadLocals (java.lang.ThreadLocal$ThreadLocalMap) = null
+		9 : permit (java.lang.Thread$Permit) = java.lang.Thread$Permit@15f
+		10 : parkBlocker (java.lang.Object) = null
+		11 : stopException (java.lang.Throwable) = null
+		12 : uncaughtExceptionHandler (java.lang.Thread$UncaughtExceptionHandler) = null
+		13 : event1 (Event) = Event@140
+		14 : event2 (Event) = Event@141
+		15 : count (int) = 1
+
+continue
+ - another breeakpoint hit (total number of hits should be 6)
+	INFO: Breakpoint hit [ 8 :  state=BP_STATE_ENABLED hits=6 hitsTotal=6 5<=hit_count thread_scheduled=both]
+

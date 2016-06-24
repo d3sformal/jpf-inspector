@@ -35,6 +35,11 @@ public class FileName {
 
   private Map<String, Boolean> fileNameMatches; /// For each tested loaded class name in JPF holds whether matches given pattern or not.
 
+  /**
+   * Creates a new {@link FileName} filter that matches a filename mask.
+   *
+   * @param fileName The filter to use (for example, "hel*" would accept the file "hello.java")
+   */
   public FileName(String fileName) {
     assert fileName != null;
 
@@ -69,8 +74,8 @@ public class FileName {
       return wasTestedBefore;
     }
 
-    Matcher m = fileNamePattern.matcher(fiName);
-    Boolean nameMatch = m.matches();
+    Matcher matcher = fileNamePattern.matcher(fiName);
+    Boolean nameMatch = matcher.matches();
     fileNameMatches.put(fiName, nameMatch);
     return nameMatch;
   }

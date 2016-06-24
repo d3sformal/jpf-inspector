@@ -26,11 +26,10 @@ import gov.nasa.jpf.vm.MethodInfo;
 import gov.nasa.jpf.vm.Instruction;
 
 /**
- * Represents position of the instruction.
- * 
- * <br>
- * It hits on any instruction that is in same file and and takes place at given line.
- * 
+ * Represents the source code location of an instruction.
+ *
+ * It is used as a filter or a tester that "hits" on any instruction that is in same file
+ * and takes place at given line.
  */
 public class InstructionPositionImpl implements InstructionPosition {
 
@@ -127,10 +126,10 @@ public class InstructionPositionImpl implements InstructionPosition {
   }
 
   /**
-   * For given instruction get file where instruction is defined.
+   * Gets the filename of the source file where the instruction is used, or null if the source file cannot be found.
    * 
-   * @param instr Instruction to process
-   * @return File name where instruction takes place.
+   * @param instr Instruction whose file we wish to discover.
+   * @return Filename where the instruction takes place, or null if it could not be found.
    */
   private static String getInstructionFileName(Instruction instr) {
     assert instr != null;

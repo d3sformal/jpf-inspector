@@ -1,0 +1,15 @@
+cr bp 5 <= hc ts=both
+
+run
+# Breakpoint hit five times before execution is stopped.
+
+ti
+print #thread[2]
+back_step_over
+
+print
+
+continue
+
+wait
+# Now the program has terminated.

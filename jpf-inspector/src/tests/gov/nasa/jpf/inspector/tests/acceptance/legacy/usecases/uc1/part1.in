@@ -1,0 +1,45 @@
+cr bp fa=*SecondTask:count
+create breakpoint ts=out:1
+
+run
+# Breakpoint should be hit.
+
+ti
+# Main thread should be running, other threads are new.
+
+show bp
+delete breakpoint 2
+
+print #thread[0]
+# Prints stack trace of the main thread
+
+step_over
+step_over
+thread_pc
+
+cr bp state=log field_write=*Event:count
+
+run
+# Several logging breakpoints hit.
+
+print #thread[0]
+# This should result in error because the main thread is already finished.
+
+print #thread[1]
+# Stack trace should be prined correctly.
+
+so
+
+thread_pc
+# For all threads, the next instruction should be printed.
+
+bso
+thread_pc
+ti
+del bp 1
+show breakpoint
+
+run
+# Many logging notifications, then the program runs until the end.
+
+wait

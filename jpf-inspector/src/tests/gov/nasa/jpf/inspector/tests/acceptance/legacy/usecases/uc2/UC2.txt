@@ -1,0 +1,162 @@
+target example: Crossing
+
+
+command sequence
+----------------
+cr bp position = Crossing.java:190
+
+run
+ - breakpoint hit
+  INFO: Breakpoint hit [ 1 :  state=BP_STATE_ENABLED hits=1 hitsTotal=1 position=Crossing.java:190]
+    SuT enters the Crossing.java:190
+
+so
+ - executed instruction
+   INFO: SuT is stopped
+    SuT  (Thread=0) executes the Crossing.java:192 - aload 4 source:       p1.move();
+
+print #thread[0].#stackFrame[1]
+ - previous stack frame of the main thread (synthetic method)
+  ???.[main] - (in file [VM]:0)
+  Stack slots
+    0 : ???-RawView-no Name or Type provided (int) = 167
+
+step_in
+ - step inside the Person.move() method and load "this" on the stack
+  SuT  (Thread=0) executes the Crossing.java:148 - aload_0 source:     if (side == Torch.side) {
+
+sins
+ - next instruction loads value of the field "side"
+  SuT  (Thread=0) executes the Crossing.java:148 - getfield source:     if (side == Torch.side) {
+
+sins
+ - load static field ("Torch.side")
+  SuT  (Thread=0) executes the Crossing.java:148 - getstatic source:     if (side == Torch.side) {
+
+bso
+ - executed instruction
+  INFO: SuT is stopped
+    SuT  (Thread=0) executes the Crossing.java:192 - aload 4 source:       p1.move();
+
+cr bp pos = Crossing.java:86
+
+run
+ - breakpoint hit
+  INFO: Breakpoint hit [ 7 :  state=BP_STATE_ENABLED hits=1 hitsTotal=1 position=Crossing.java:86]
+    SuT enters the Crossing.java:86
+
+step_out
+ - executed instruction
+   INFO: SuT is stopped
+    SuT  (Thread=0) executes the Crossing.java:101 - ireturn Bridge.Cross()I source:     return time;
+
+print #thread[1].#stackFrame[0]
+ - this is right because there is no thread with index 1
+  ERR: There is no thread with index 1
+
+si
+ - executed instruction
+  INFO: SuT is stopped
+    SuT  (Thread=0) executes the Crossing.java:203 - invokestatic gov.nasa.jpf.jvm.Verify.ignoreIf(Z)V source:       Verify.ignoreIf(total > 17); //with this DFS will also find error
+
+print #thread[0].#stackFrame[0]
+ - inside native method 
+  gov.nasa.jpf.jvm.Verify.ignoreIf - (in file gov/nasa/jpf/jvm/Verify.java:-1)
+
+bsi
+ - current position
+  INFO: SuT is stopped
+    SuT  (Thread=0) executes the Crossing.java:198 - iadd source:         total += Bridge.Cross();
+
+back_step_over
+ - current position
+  INFO: SuT is stopped
+    SuT  (Thread=0) executes the Crossing.java:197 - invokestatic Bridge.isFull()Z source:       if (Bridge.isFull()) {
+
+run
+ - breakpoint hit
+  INFO: Breakpoint hit [ 7 :  state=BP_STATE_ENABLED hits=2 hitsTotal=2 position=Crossing.java:86]
+    SuT enters the Crossing.java:86
+
+assert Crossing.java:217 finished == false
+ - new breakpoint with condition on the values of program variables
+  New assertion succesfully created with ID=12
+
+step_instruction
+ - current position
+  INFO: SuT is stopped
+    SuT  (Thread=0) executes the Crossing.java:86 - iconst_0 source:       onBridge[0].side = Torch.side;
+
+bsins
+ - current position
+  INFO: SuT is stopped
+    SuT  (Thread=0) executes the Crossing.java:86 - getstatic source:       onBridge[0].side = Torch.side;
+
+print #thread[0].#stackFrame[5]
+ - correct: the stack for thread 0 has a smaller depth
+  ERR: No stack frame at depth 5 in thread 0
+
+print #thread[0]
+ - this also shows the current stack depth
+  0 : main state=RUNNING priority=5
+    0 : Bridge.Cross - (in file Crossing.java:86) -       onBridge[0].side = Torch.side;
+    1 : Crossing.main - (in file Crossing.java:198) -         total += Bridge.Cross();
+    2 : ???.[main] - (in file [VM]:0)
+ 
+cr bp choice_generator = data
+
+continue
+ - hit breakpoint with assertion
+  INFO: Breakpoint hit [ 1 :  state=BP_STATE_ENABLED hits=2 hitsTotal=2 position=Crossing.java:190]
+    SuT enters the Crossing.java:190
+
+print #thread[0].#stackFrame[1]
+ - synthetic method
+  ???.[main] - (in file [VM]:0)
+    Stack slots
+    0 : ???-RawView-no Name or Type provided (int) = 167
+
+print #thread[0].#stackFrame[0]
+ - top stack frame of the main thread
+  Crossing.main - (in file Crossing.java:190) -     while (!finished) {
+  Stack slots
+    0 : args (java.lang.String[]) = []
+    1 : isNative (boolean) = false
+    2 : total (int) = 2
+    3 : finished (boolean) = false
+    4 : p1 (Person) = Person@147
+    5 : p2 (Person) = Person@148
+    6 : p3 (Person) = Person@149
+    7 : p4 (Person) = Person@14a
+    8 : ???-RawView-no Name or Type provided (int) = 0
+
+print #thread[0].#stackFrame[0].p2
+ - fields of the local variable of an object type
+  p2 (Person) = Person@148
+    Instance fields
+    0 : id (int) = 2
+    1 : time (int) = 2
+    2 : side (boolean) = false
+
+print #thread[0].#stackFrame[0].isNative
+ - current value of the local variable
+  1 : isNative (boolean) = false
+
+bsout
+ - correct output: we hit the start of the main thread (we would have to step out of the "main")
+  ERR: Back step not possible
+
+run
+ - breakpoint hit
+  INFO: Breakpoint hit [ 15 :  state=BP_STATE_ENABLED hits=1 hitsTotal=1 choice_generator=data]
+
+sout
+ - current position
+  INFO: SuT is stopped
+    SuT  (Thread=0) executes the gov/nasa/jpf/jvm/Verify.java:-1 - nativereturn gov.nasa.jpf.jvm.Verify.getBoolean()Z source: null
+
+sins
+ - current position
+  INFO: SuT is stopped
+    SuT  (Thread=0) executes the Crossing.java:149 - ifne 21 source:       if (!Verify.getBoolean()) {
+

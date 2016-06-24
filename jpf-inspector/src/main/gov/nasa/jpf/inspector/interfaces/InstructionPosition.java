@@ -32,13 +32,17 @@ public interface InstructionPosition {
   int IP_POS_LINE_NOT_DEFINED = -1;
 
   /**
+   * Gets the line number of this location, or -1 if the line could not be found.
+   *
    * Can be obtained by calling Instruction.getLineNumber()
    */
   int getLineNumber();
 
   
   /**
-   * File name where the class is defined. (If the class file is stored in the jar file, then jar file name is ignored) 
+   * Gets the name of the file where the instruction's class is defined. (If the class file is stored in the jar file, then jar file name is ignored.)
+   *
+   * If the filename could not be found, this returs null.
    */
   String getFileName();
   

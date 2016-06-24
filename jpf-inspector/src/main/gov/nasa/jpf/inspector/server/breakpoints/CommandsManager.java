@@ -140,9 +140,6 @@ public class CommandsManager implements CommandsInterface {
   @Override
   public void backwardStep (StepType type) throws JPFInspectorGenericErrorException {
     initialStopTest(true, "cannot execute backward step");
-    // According stepType find
-    // a) how much transitions it is required to backtrack
-    // b) create breakpoint for specific position in transition (handle repetitive invocations??)
 
     // Instantiate the creator and discover the instruction to backtrack to
     InspectorState inspState = stopHolder.getInspectorState();
@@ -168,6 +165,11 @@ public class CommandsManager implements CommandsInterface {
       throw new JPFInspectorGenericErrorException(
               "Backwards step not possible (there is no appropriate step left for this thread to backtrack to).");
     }
+    if (bbc.getTargetStep().getInstruction().getMethodInfo().isSynthetic()) {
+      throw new JPFInspectorGenericErrorException(
+              "It is not possible to backtrack into synthetic methods.");
+    }
+
 
     // Create the breakpoint on that specific instruction
     int bpID = bbc.createBreakpoint(breakpointHandler);
