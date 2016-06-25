@@ -1,9 +1,10 @@
 package gov.nasa.jpf.inspector.frontends.swing.explorer;
 
 import gov.nasa.jpf.inspector.frontends.swing.AuxiliaryInspectorPanel;
-import gov.nasa.jpf.shell.ShellPanel;
 
 import javax.swing.*;
+import javax.swing.event.TreeExpansionEvent;
+import javax.swing.event.TreeExpansionListener;
 import java.awt.*;
 
 /**
@@ -11,18 +12,41 @@ import java.awt.*;
  * in the threads and in the static area, visually.
  */
 public class ProgramStateExplorerPanel extends AuxiliaryInspectorPanel {
+
+  private ProgramStateTreeModel model;
+  private final JTree jTree;
+
   public ProgramStateExplorerPanel() {
     super("Explorer", null, "View all Java objects in the current program state.");
 
     setLayout(new BorderLayout());
-    ProgramStateTreeModel model = new ProgramStateTreeModel();
-    JTree jTree = new JTree(model);
+    jTree = new JTree();
+    jTree.setRootVisible(true);
+    jTree.setShowsRootHandles(true);
+    jTree.addTreeExpansionListener(new TreeExpansionListener() {
+      @Override
+      public void treeExpanded(TreeExpansionEvent event) {
+
+      }
+
+      @Override
+      public void treeCollapsed(TreeExpansionEvent event) {
+
+      }
+    });
     JScrollPane treeView = new JScrollPane(jTree);
     add(treeView, BorderLayout.CENTER);
   }
 
   @Override
-  protected void commandExecutedOrCallbackReceived() {
+  protected void addedToShell() {
+    super.addedToShell();
+    model = new ProgramStateTreeModel(inspectorClient.getServer());
+    jTree.setModel(model);
+  }
 
+  @Override
+  protected void commandExecutedOrCallbackReceived() {
+    model.update();
   }
 }

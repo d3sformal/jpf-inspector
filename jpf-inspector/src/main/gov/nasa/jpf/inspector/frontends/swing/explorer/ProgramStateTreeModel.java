@@ -1,47 +1,27 @@
 package gov.nasa.jpf.inspector.frontends.swing.explorer;
 
-import javax.swing.event.TreeModelListener;
-import javax.swing.tree.TreeModel;
-import javax.swing.tree.TreePath;
+import gov.nasa.jpf.inspector.frontends.swing.explorer.hierarchy.ExplorerRoot;
+import gov.nasa.jpf.inspector.interfaces.JPFInspectorBackEndInterface;
+import gov.nasa.jpf.vm.VM;
 
-public class ProgramStateTreeModel implements TreeModel {
-  @Override
-  public Object getRoot() {
-    return null;
+import javax.swing.tree.DefaultTreeModel;
+import javax.swing.tree.TreeNode;
+
+public class ProgramStateTreeModel extends DefaultTreeModel {
+  private ExplorerRoot explorerRoot;
+  private JPFInspectorBackEndInterface server;
+
+  public ProgramStateTreeModel(JPFInspectorBackEndInterface server) {
+    super(new ExplorerRoot(), true);
+    this.server = server;
+    this.explorerRoot = (ExplorerRoot)this.root;
+    ((ExplorerRoot)this.root).initialize(this);
   }
 
-  @Override
-  public Object getChild(Object parent, int index) {
-    return null;
+  public VM getVM() {
+    return server.getVM();
   }
-
-  @Override
-  public int getChildCount(Object parent) {
-    return 0;
-  }
-
-  @Override
-  public boolean isLeaf(Object node) {
-    return false;
-  }
-
-  @Override
-  public void valueForPathChanged(TreePath path, Object newValue) {
-
-  }
-
-  @Override
-  public int getIndexOfChild(Object parent, Object child) {
-    return 0;
-  }
-
-  @Override
-  public void addTreeModelListener(TreeModelListener l) {
-
-  }
-
-  @Override
-  public void removeTreeModelListener(TreeModelListener l) {
-
+  public void update() {
+    this.explorerRoot.updateFromJpf();
   }
 }

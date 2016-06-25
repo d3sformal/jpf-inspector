@@ -23,6 +23,7 @@ import gov.nasa.jpf.JPF;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorGenericErrorException;
 import gov.nasa.jpf.inspector.server.callbacks.InspectorServerCallbacks;
 import gov.nasa.jpf.vm.Instruction;
+import gov.nasa.jpf.vm.VM;
 
 /**
  * Interface provided by JPFInspector back-end ("server") part. Low level interface.
@@ -56,4 +57,13 @@ public interface JPFInspectorBackEndInterface extends
   void waitUntilJpfBecomesConnected();
 
   Instruction getCurrentInstruction();
+
+  /**
+   * This may violate encapsulation, but, on the other hand, the Inspector's codebase is already too fragmented and
+   * adding more interfaces and yet another hierarchy of data objects isn't worth it, but perhaps we'll think of an
+   * alternative.
+   *
+   * It is the caller's responsibility to only use the VM when the VM is paused.
+   */
+  VM getVM();
 }

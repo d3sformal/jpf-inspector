@@ -23,7 +23,6 @@
     <inspection_tool class="AssignmentToNull" enabled="true" level="WARNING" enabled_by_default="true">
       <option name="ignoreAssignmentsToFields" value="true" />
     </inspection_tool>
-    <inspection_tool class="AssignmentToSuperclassField" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="AssignmentUsedAsCondition" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="CStyleArrayDeclaration" enabled="true" level="ERROR" enabled_by_default="true" />
     <inspection_tool class="CallToStringConcatCanBeReplacedByOperator" enabled="true" level="WARNING" enabled_by_default="true" />

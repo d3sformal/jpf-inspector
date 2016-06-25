@@ -35,6 +35,7 @@ import gov.nasa.jpf.inspector.server.choicegenerators.ChoiceGeneratorsManager;
 import gov.nasa.jpf.inspector.server.programstate.ProgramStateManager;
 import gov.nasa.jpf.search.Search;
 import gov.nasa.jpf.vm.Instruction;
+import gov.nasa.jpf.vm.VM;
 
 import java.io.FileNotFoundException;
 import java.io.PrintStream;
@@ -147,6 +148,11 @@ public abstract class JPFInspector implements JPFInspectorBackEndInterface {
   @Override
   public Instruction getCurrentInstruction() {
     return (jpf.getVM().getInstruction());
+  }
+
+  @Override
+  public VM getVM() {
+    return stopHolder.getJVM();
   }
 
   /**
