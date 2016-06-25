@@ -8,10 +8,13 @@ import gov.nasa.jpf.inspector.client.parser.CommandParserInterface;
 import gov.nasa.jpf.inspector.common.ConsoleInformation;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorGenericErrorException;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorParsingErrorException;
+import gov.nasa.jpf.inspector.frontends.swing.AuxiliaryInspectorPanel;
 import gov.nasa.jpf.inspector.interfaces.JPFInspectorBackEndInterface;
 import gov.nasa.jpf.inspector.utils.InspectorConfiguration;
 
 import java.io.PrintStream;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Represents the JPF Inspector client.
@@ -24,6 +27,7 @@ public class JPFInspectorClient implements JPFInspectorClientInterface {
   private final CallbackExecutionDecorator cbExecutionDecorator;
 
   private final CommandRecorder recorder;
+  private final List<AuxiliaryInspectorPanel> listeners = new ArrayList<>();
 
   public JPFInspectorClient (String target, PrintStream outStream) {
 
@@ -120,27 +124,30 @@ public class JPFInspectorClient implements JPFInspectorClientInterface {
     //     was susceptible to cause deadlocks.
     // If the removal of this block causes problems, it may be reinstated.
 
-      try {
-        // In Swing, we must echo the prompt.
-        if (!cmd.isHiddenCommand() && (context == ExecutionContext.FROM_SWING_TERMINAL)) {
-          outputStream.println("cmd>" + cmd.getNormalizedCommand());
-        }
-
-        // Record.
-        cmd.recordCommand(recorder);
-
-        // Execute.
-        if (isSafe(cmd)) {
-          cmd.execute(this, inspector, outputStream);
-        }
-
-      } catch (Throwable e) {
-        outputStream.println("ERR: Generic error while processing a command:");
-        e.printStackTrace(outputStream);
-        recordComment("ERR: Generic error while processing a command:");
-        recordComment(e.getMessage());
+    try {
+      // In Swing, we must echo the prompt.
+      if (!cmd.isHiddenCommand() && (context == ExecutionContext.FROM_SWING_TERMINAL)) {
+        outputStream.println("cmd>" + cmd.getNormalizedCommand());
       }
 
+      // Record.
+      cmd.recordCommand(recorder);
+
+      // Execute.
+      if (isSafe(cmd)) {
+        cmd.execute(this, inspector, outputStream);
+      }
+
+    } catch (Throwable e) {
+      outputStream.println("ERR: Generic error while processing a command:");
+      e.printStackTrace(outputStream);
+      recordComment("ERR: Generic error while processing a command:");
+      recordComment(e.getMessage());
+    }
+
+    for (AuxiliaryInspectorPanel panel : listeners) {
+      panel.fireCommandExecutedOrCallbackReceived();
+    }
   }
 
   /**
@@ -189,6 +196,16 @@ public class JPFInspectorClient implements JPFInspectorClientInterface {
 
       throw e;
     }
+  }
+
+  @Override
+  public void addInspectorListener(AuxiliaryInspectorPanel auxiliaryInspectorPanel) {
+    listeners.add(auxiliaryInspectorPanel);
+  }
+
+  @Override
+  public JPFInspectorBackEndInterface getServer() {
+    return this.inspector;
   }
 
   /**

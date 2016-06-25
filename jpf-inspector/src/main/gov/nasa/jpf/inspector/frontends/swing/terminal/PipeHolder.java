@@ -17,7 +17,7 @@
 // DOCUMENTATION, IF PROVIDED, WILL CONFORM TO THE SUBJECT SOFTWARE.
 //  
 
-package gov.nasa.jpf.inspector.frontends.jpfshell.terminal;
+package gov.nasa.jpf.inspector.frontends.swing.terminal;
 
 import java.io.IOException;
 import java.io.PipedInputStream;

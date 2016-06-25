@@ -51,5 +51,4 @@ public interface BreakpointStatus extends BreakpointCreationInformation {
   String getDetails();
 
   String getNormalizedBreakpointExpression();
-
 }

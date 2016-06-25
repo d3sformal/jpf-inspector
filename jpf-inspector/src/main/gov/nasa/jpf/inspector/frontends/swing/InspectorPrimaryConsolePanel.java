@@ -17,7 +17,7 @@
 // DOCUMENTATION, IF PROVIDED, WILL CONFORM TO THE SUBJECT SOFTWARE.
 //  
 
-package gov.nasa.jpf.inspector.frontends.jpfshell;
+package gov.nasa.jpf.inspector.frontends.swing;
 
 import gov.nasa.jpf.Config;
 import gov.nasa.jpf.JPF;
@@ -25,7 +25,7 @@ import gov.nasa.jpf.inspector.JPFInspectorFacade;
 import gov.nasa.jpf.inspector.client.ExecutionContext;
 import gov.nasa.jpf.inspector.client.JPFInspectorClientInterface;
 import gov.nasa.jpf.inspector.common.Constants;
-import gov.nasa.jpf.inspector.frontends.jpfshell.terminal.SwingTerminal;
+import gov.nasa.jpf.inspector.frontends.swing.terminal.SwingTerminal;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorGenericErrorException;
 import gov.nasa.jpf.inspector.utils.Debugging;
 import gov.nasa.jpf.inspector.utils.InspectorConfiguration;
@@ -71,7 +71,7 @@ public class InspectorPrimaryConsolePanel extends ShellPanel implements VerifyCo
   /**
    * The Inspector client.
    */
-  private final JPFInspectorClientInterface inspector;
+  private final JPFInspectorClientInterface inspectorClient;
 
   /**
    * Creates the JPFInspector Swing frontend main panel.
@@ -103,7 +103,7 @@ public class InspectorPrimaryConsolePanel extends ShellPanel implements VerifyCo
     console = terminal.getConsoleReader();
 
     // Initialize server part
-    inspector = JPFInspectorFacade.getInspectorClient(target, consolePrintStream);
+    inspectorClient = JPFInspectorFacade.getInspectorClient(target, consolePrintStream);
 
     // Register InspectorPrimaryConsolePanel as a Verify command listener
     ShellManager.getManager().addCommandListener(VerifyCommand.class, this);
@@ -129,15 +129,24 @@ public class InspectorPrimaryConsolePanel extends ShellPanel implements VerifyCo
     Icon standardIcon = null;
     @SuppressWarnings("ConstantConditions")
     InspectorToolbarCommand[] commands = {
-            new InspectorToolbarCommand("Continue", getQuickCommandIcon("Placeholder"), "Resumes execution of JPF.", "continue", inspector, consolePrintStream),
-            new InspectorToolbarCommand("Step Instruction", standardIcon, "Steps one bytecode instruction forward.", "step_instruction", inspector, consolePrintStream),
-            new InspectorToolbarCommand("Step In", standardIcon, "Steps into the next method call.", "step_in", inspector, consolePrintStream),
-            new InspectorToolbarCommand("Step Over", standardIcon, "Steps over this line of code.", "step_over", inspector, consolePrintStream),
-            new InspectorToolbarCommand("Step Out", standardIcon, "Steps out of the current method.", "step_out", inspector, consolePrintStream),
-            new InspectorToolbarCommand("Backstep Instruction", standardIcon, "Undoes the last bytecode instruction.", "back_step_instruction", inspector, consolePrintStream),
-            new InspectorToolbarCommand("Backstep In", standardIcon, "Steps back into the previous method call.", "back_step_in", inspector, consolePrintStream),
-            new InspectorToolbarCommand("Backstep Over", standardIcon, "Undoes the previous line of code.", "back_step_over", inspector, consolePrintStream),
-            new InspectorToolbarCommand("Backstep Out", standardIcon, "Undoes everything in this methods and backsteps out to the caller.", "back_step_out", inspector, consolePrintStream),
+            new InspectorToolbarCommand("Continue", getQuickCommandIcon("Placeholder"), "Resumes execution of JPF.", "continue",
+                                        getInspectorClient(), consolePrintStream),
+            new InspectorToolbarCommand("Step Instruction", standardIcon, "Steps one bytecode instruction forward.", "step_instruction",
+                                        getInspectorClient(), consolePrintStream),
+            new InspectorToolbarCommand("Step In", standardIcon, "Steps into the next method call.", "step_in",
+                                        getInspectorClient(), consolePrintStream),
+            new InspectorToolbarCommand("Step Over", standardIcon, "Steps over this line of code.", "step_over",
+                                        getInspectorClient(), consolePrintStream),
+            new InspectorToolbarCommand("Step Out", standardIcon, "Steps out of the current method.", "step_out",
+                                        getInspectorClient(), consolePrintStream),
+            new InspectorToolbarCommand("Backstep Instruction", standardIcon, "Undoes the last bytecode instruction.", "back_step_instruction",
+                                        getInspectorClient(), consolePrintStream),
+            new InspectorToolbarCommand("Backstep In", standardIcon, "Steps back into the previous method call.", "back_step_in",
+                                        getInspectorClient(), consolePrintStream),
+            new InspectorToolbarCommand("Backstep Over", standardIcon, "Undoes the previous line of code.", "back_step_over",
+                                        getInspectorClient(), consolePrintStream),
+            new InspectorToolbarCommand("Backstep Out", standardIcon, "Undoes everything in this methods and backsteps out to the caller.", "back_step_out",
+                                        getInspectorClient(), consolePrintStream),
     };
     for (InspectorToolbarCommand command : commands) {
       ShellManager.getManager().addCommand(command);
@@ -148,6 +157,17 @@ public class InspectorPrimaryConsolePanel extends ShellPanel implements VerifyCo
     URL url = InspectorPrimaryConsolePanel.class.getResource("icons/" + filename + ".png");
     ImageIcon imageIcon = new ImageIcon(url);
     return imageIcon;
+  }
+
+  public void addAuxiliaryPanel(AuxiliaryInspectorPanel auxiliaryInspectorPanel) {
+    getInspectorClient().addInspectorListener(auxiliaryInspectorPanel);
+  }
+
+  /**
+   * The Inspector client.
+   */
+  public JPFInspectorClientInterface getInspectorClient() {
+    return inspectorClient;
   }
 
   /**
@@ -171,7 +191,7 @@ public class InspectorPrimaryConsolePanel extends ShellPanel implements VerifyCo
             consolePrintStream.println("\n" + Constants.PROMPT);
           } else {
             consolePrintStream.println();
-            inspector.executeCommand(s.trim(), ExecutionContext.FROM_SWING_TERMINAL);
+            getInspectorClient().executeCommand(s.trim(), ExecutionContext.FROM_SWING_TERMINAL);
           }
         } catch (IOException e) {
           consolePrintStream.println("ERR: Error while reading a command.");
@@ -187,7 +207,7 @@ public class InspectorPrimaryConsolePanel extends ShellPanel implements VerifyCo
     }
     JPF jpf = command.getJPF();
     try {
-      inspector.connect2JPF(jpf);
+      getInspectorClient().connect2JPF(jpf);
     } catch (JPFInspectorGenericErrorException ignored) {
       // Silently ignore - error is reported in connect2JPF method
     }

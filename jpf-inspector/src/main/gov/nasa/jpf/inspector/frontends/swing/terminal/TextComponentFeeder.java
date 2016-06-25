@@ -1,4 +1,4 @@
-package gov.nasa.jpf.inspector.frontends.jpfshell.terminal;
+package gov.nasa.jpf.inspector.frontends.swing.terminal;
 
 import javax.swing.text.BadLocationException;
 import javax.swing.text.Document;

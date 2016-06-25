@@ -1,8 +1,6 @@
-package gov.nasa.jpf.inspector.frontends.jpfshell;
+package gov.nasa.jpf.inspector.frontends.swing;
 
 import gov.nasa.jpf.shell.ShellPanel;
-
-import javax.swing.*;
 
 /**
  * The Program State Explorer panels allows the user to view values of all variables on the heap,

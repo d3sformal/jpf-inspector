@@ -218,7 +218,7 @@
       <option name="ignoreObscureOperators" value="true" />
     </inspection_tool>
     <inspection_tool class="ResultOfObjectAllocationIgnored" enabled="true" level="WARNING" enabled_by_default="true" />
-    <inspection_tool class="SerializableHasSerialVersionUIDField" enabled="true" level="ERROR" enabled_by_default="true">
+    <inspection_tool class="SerializableHasSerialVersionUIDField" enabled="false" level="ERROR" enabled_by_default="false">
       <option name="ignoreAnonymousInnerClasses" value="false" />
       <option name="superClassString" value="" />
     </inspection_tool>

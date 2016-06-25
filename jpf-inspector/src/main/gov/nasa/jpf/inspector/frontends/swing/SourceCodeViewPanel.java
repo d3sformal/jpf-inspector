@@ -1,4 +1,4 @@
-package gov.nasa.jpf.inspector.frontends.jpfshell;
+package gov.nasa.jpf.inspector.frontends.swing;
 
 import gov.nasa.jpf.shell.ShellPanel;
 
