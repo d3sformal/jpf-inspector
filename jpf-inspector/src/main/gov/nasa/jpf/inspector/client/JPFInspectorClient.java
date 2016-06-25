@@ -38,7 +38,7 @@ public class JPFInspectorClient implements JPFInspectorClientInterface {
     this.recorder = new CommandRecorder(target, outStream);
 
     // Create the fully decorated callbacks handler.
-    JPFClientCallbackHandler callbacks = new JPFClientCallbackHandler(outStream);
+    JPFClientCallbackHandler callbacks = new JPFClientCallbackHandler(listeners, outStream);
     CallbackRecordingDecorator cbRecDecorator = new CallbackRecordingDecorator(callbacks, recorder);
     this.cbExecutionDecorator = new CallbackExecutionDecorator(recorder, cbRecDecorator, System.out);
 

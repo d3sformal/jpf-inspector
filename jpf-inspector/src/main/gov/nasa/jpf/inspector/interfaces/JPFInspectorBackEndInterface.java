@@ -22,6 +22,7 @@ package gov.nasa.jpf.inspector.interfaces;
 import gov.nasa.jpf.JPF;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorGenericErrorException;
 import gov.nasa.jpf.inspector.server.callbacks.InspectorServerCallbacks;
+import gov.nasa.jpf.vm.Instruction;
 
 /**
  * Interface provided by JPFInspector back-end ("server") part. Low level interface.
@@ -53,4 +54,6 @@ public interface JPFInspectorBackEndInterface extends
    * it returns immediately.
    */
   void waitUntilJpfBecomesConnected();
+
+  Instruction getCurrentInstruction();
 }

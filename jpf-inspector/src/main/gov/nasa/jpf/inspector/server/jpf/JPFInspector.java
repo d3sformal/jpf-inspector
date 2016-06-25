@@ -28,11 +28,13 @@ import gov.nasa.jpf.inspector.exceptions.JPFInspectorGenericErrorException;
 import gov.nasa.jpf.inspector.server.breakpoints.BreakpointHandler;
 import gov.nasa.jpf.inspector.server.breakpoints.CommandsManager;
 import gov.nasa.jpf.inspector.server.breakpoints.DefaultForwardTraceManager;
+import gov.nasa.jpf.inspector.server.breakpoints.InstructionPositionImpl;
 import gov.nasa.jpf.inspector.server.callbacks.CallbacksSender;
 import gov.nasa.jpf.inspector.server.callbacks.InspectorServerCallbacks;
 import gov.nasa.jpf.inspector.server.choicegenerators.ChoiceGeneratorsManager;
 import gov.nasa.jpf.inspector.server.programstate.ProgramStateManager;
 import gov.nasa.jpf.search.Search;
+import gov.nasa.jpf.vm.Instruction;
 
 import java.io.FileNotFoundException;
 import java.io.PrintStream;
@@ -96,14 +98,16 @@ public abstract class JPFInspector implements JPFInspectorBackEndInterface {
       debugOutStream = System.out;
     }
 
-    if (DEBUG) {
-      getDebugPrintStream().println(JPFInspector.class.getSimpleName() + "." + JPFInspector.class.getSimpleName() + "callBacks=" + serverCallbacks + " )");
-    }
+
 
     // Create the callback thread.
     assert clientCallbacks != null;
     CallbacksSender callbacksSender = new CallbacksSender(this, clientCallbacks);
     this.serverCallbacks = callbacksSender.getCallbackSerializer();
+
+    if (DEBUG) {
+      getDebugPrintStream().println(JPFInspector.class.getSimpleName() + "." + JPFInspector.class.getSimpleName() + "callBacks=" + serverCallbacks + " )");
+    }
 
     // Construct components of the Inspector
     this.stopHolder = new StopHolder(this, serverCallbacks);
@@ -138,6 +142,11 @@ public abstract class JPFInspector implements JPFInspectorBackEndInterface {
       }
     }
     jpfHasLaunched = false;
+  }
+
+  @Override
+  public Instruction getCurrentInstruction() {
+    return (jpf.getVM().getInstruction());
   }
 
   /**

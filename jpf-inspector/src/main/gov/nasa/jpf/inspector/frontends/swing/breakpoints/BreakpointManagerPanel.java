@@ -39,20 +39,26 @@ public class BreakpointManagerPanel extends AuxiliaryInspectorPanel {
     buttonDisable = new JButton("Disable");
     buttonDelete = new JButton("Delete");
     buttonEnable.setEnabled(false);
+    buttonEnable.setToolTipText("Enables the selected breakpoints which will cause execution to pause when they are hit.");
     buttonEnable.addActionListener((actionEvent) -> this.changeBreakpointStatus(BreakpointState.ENABLED));
     buttonLogging.setEnabled(false);
+    buttonLogging.setToolTipText("Selected breakpoints will become logging breakpoints that merely print out a message when they are hit.");
     buttonLogging.addActionListener((actionEvent) -> this.changeBreakpointStatus(BreakpointState.LOGGING));
     buttonDisable.setEnabled(false);
+    buttonDisable.setToolTipText("Disables the selected breakpoints. They can be reenabled later.");
     buttonDisable.addActionListener((actionEvent) -> this.changeBreakpointStatus(BreakpointState.DISABLED));
     buttonDelete.setEnabled(false);
     buttonDelete.addActionListener(this::deleteBreakpoint);
+    buttonDelete.setToolTipText("Deletes the selected breakpoints.");
 
     buttons.add(buttonEnable);
     buttons.add(buttonLogging);
     buttons.add(buttonDisable);
     buttons.add(buttonDelete);
     setLayout(new BorderLayout());
-    add(breakpointStatusJList, BorderLayout.CENTER);
+
+    add(new JLabel("List of breakpoints:"), BorderLayout.NORTH);
+    add(new JScrollPane(breakpointStatusJList, ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED), BorderLayout.CENTER);
     add(buttons, BorderLayout.SOUTH);
   }
 

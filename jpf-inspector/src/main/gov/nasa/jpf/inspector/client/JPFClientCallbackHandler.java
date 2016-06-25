@@ -20,11 +20,13 @@
 package gov.nasa.jpf.inspector.client;
 
 import gov.nasa.jpf.inspector.client.commands.CmdBreakpointShow;
+import gov.nasa.jpf.inspector.frontends.swing.AuxiliaryInspectorPanel;
 import gov.nasa.jpf.inspector.interfaces.*;
 import gov.nasa.jpf.inspector.interfaces.ChoiceGeneratorsInterface.CGTypes;
 import gov.nasa.jpf.inspector.interfaces.InspectorStatusChange;
 
 import java.io.PrintStream;
+import java.util.List;
 
 /**
  * Handles notifications from the JPFInspector server.
@@ -32,6 +34,7 @@ import java.io.PrintStream;
  * This class is created by the client.
  */
 public class JPFClientCallbackHandler implements InspectorCallbacks {
+  private List<AuxiliaryInspectorPanel> listeners;
   /**
    * Console where server notifications should be printed out.
    */
@@ -51,16 +54,25 @@ public class JPFClientCallbackHandler implements InspectorCallbacks {
   /**
    * Initializes a new instance of this class. This class should never be used directly, but should be instead
    * decorated in {@link CallbackRecordingDecorator}.
+   * @param listeners Listeners that should be notified when a callback arrives.
    * @param out Where server notifications should be printed out.
    */
-  public JPFClientCallbackHandler (PrintStream out) {
+  public JPFClientCallbackHandler(List<AuxiliaryInspectorPanel> listeners, PrintStream out) {
+    this.listeners = listeners;
     this.out = out;
+  }
+
+  private void callbackReceived() {
+    for(AuxiliaryInspectorPanel panel : listeners) {
+      panel.fireCommandExecutedOrCallbackReceived();
+    }
   }
 
   @Override
   public void genericError (String msg) {
     out.println("ERR: " + msg);
     lastCallback = CallbackKind.CB_GENERIC_ERROR;
+    callbackReceived();
   }
 
   @Override
@@ -76,6 +88,7 @@ public class JPFClientCallbackHandler implements InspectorCallbacks {
     // the code, we shouldn't be making uneasy changes.
 
     // lastCallback = CB_METHODS.CB_GENERIC_INFO;
+    callbackReceived();
   }
 
   private static boolean shouldStateChangeNotificationBeShown(CallbackKind prevCB,
@@ -130,6 +143,7 @@ public class JPFClientCallbackHandler implements InspectorCallbacks {
     if (newState == InspectorStatusChange.JPF_TERMINATING) {
       lastCallback = null;
     }
+    callbackReceived();
   }
 
   @Override
@@ -158,6 +172,7 @@ public class JPFClientCallbackHandler implements InspectorCallbacks {
       }
     }
     lastCallback = CallbackKind.CB_BREAKPOINT_HIT;
+    callbackReceived();
   }
 
   @Override
@@ -188,6 +203,7 @@ public class JPFClientCallbackHandler implements InspectorCallbacks {
     }
     out.print(result.toString());
     lastCallback = CallbackKind.CB_CG_NEW_CHOICE;
+    callbackReceived();
   }
 
   @Override
@@ -203,6 +219,7 @@ public class JPFClientCallbackHandler implements InspectorCallbacks {
     result.append('\n');
     out.print(result.toString());
     lastCallback = CallbackKind.CB_CG_USED_CHOICE;
+    callbackReceived();
   }
 
 
@@ -216,7 +233,9 @@ public class JPFClientCallbackHandler implements InspectorCallbacks {
     }
     out.println(userText);
     lastCallback = CallbackKind.CB_CG_CHOICE_TO_USE;
+    callbackReceived();
   }
+
 
   private static void generateCGHeader (StringBuilder sb, ChoiceGeneratorsInterface.CGTypes cgType, String cgName, int cgId) {
     if (CGTypes.CG_TYPE_DATA.equals(cgType)) {

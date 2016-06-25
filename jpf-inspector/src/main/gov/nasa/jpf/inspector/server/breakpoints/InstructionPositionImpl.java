@@ -52,7 +52,7 @@ public class InstructionPositionImpl implements InstructionPosition {
   }
 
   // In this case we match at the same line as the instruction (not at given instruction)
-  private InstructionPositionImpl(Instruction instr) {
+  public InstructionPositionImpl(Instruction instr) {
     assert instr != null;
 
     this.fileName = new FileName(getInstructionFileName(instr));
