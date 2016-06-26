@@ -22,7 +22,9 @@ public class ProgramStateTreeModel extends DefaultTreeModel {
     return server.getVM();
   }
   public void update() {
-    this.explorerRoot.updateFromJpf();
+    if (server.isPaused()) {
+      this.explorerRoot.updateFromJpf(this.explorerRoot);
+    }
   }
 
   public JPFInspectorBackEndInterface getServer() {

@@ -217,6 +217,10 @@ public final class BackwardBreakpointCreator {
     Instruction currentInstruction = inspectorState.getVM().getInstruction();
     InstructionPosition currentLocation = InstructionPositionImpl.getInstructionPosition(currentInstruction);
 
+    MethodInstructionBacktracker methodInstructionBacktracker = new MethodInstructionBacktracker(path);
+
+    return methodInstructionBacktracker.backtrackIn(currentLocation);
+    /*
     // First step back.
     // TODO we should ignore all instructions on the current line.... oh god
     Step step = stepBacktracker.backstep();
@@ -258,6 +262,7 @@ public final class BackwardBreakpointCreator {
     } else {
       return new BackwardBreakpointCreator(previousTransition, previousStep, previousTransitionsToBacktrack);
     }
+    */
   }
 
   /**

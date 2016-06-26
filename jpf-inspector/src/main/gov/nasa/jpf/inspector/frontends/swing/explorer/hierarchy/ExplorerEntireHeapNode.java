@@ -34,7 +34,7 @@ public class ExplorerEntireHeapNode extends ExplorerComplexNode {
 
 
   @Override
-  public void updateComplexNodeFromJpf() {
+  public void updateComplexNodeFromJpf(ExplorerNode newVersion) {
     // Updates self
   }
 

@@ -31,7 +31,7 @@ public class ExplorerRoot extends ExplorerComplexNode {
   }
 
   @Override
-  public void updateComplexNodeFromJpf() {
+  public void updateComplexNodeFromJpf(ExplorerNode newVersion) {
     // Nothing.
   }
 

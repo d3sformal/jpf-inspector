@@ -54,6 +54,7 @@ public class ProgramStateExplorerPanel extends AuxiliaryInspectorPanel {
 
   @Override
   protected void commandExecutedOrCallbackReceived() {
+
     model.update();
   }
 }

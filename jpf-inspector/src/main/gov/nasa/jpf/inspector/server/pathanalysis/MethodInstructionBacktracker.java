@@ -1,5 +1,7 @@
 package gov.nasa.jpf.inspector.server.pathanalysis;
 
+import gov.nasa.jpf.inspector.interfaces.InstructionPosition;
+import gov.nasa.jpf.inspector.server.breakpoints.InstructionPositionImpl;
 import gov.nasa.jpf.inspector.server.expression.expressions.ExpressionBreakpointInstruction;
 import gov.nasa.jpf.vm.*;
 
@@ -235,4 +237,36 @@ public class MethodInstructionBacktracker {
     return new BackwardBreakpointCreator(prevReturnedStepTransition, prevReturnedStep, prevReturnedTransition2Backrack);
   }
 
+  public BackwardBreakpointCreator backtrackIn(InstructionPosition currentLocation) {
+    // We must first leave the current line.
+    Step step = backtracker(0); // We must make at least one step.
+    while (step != null && currentLocation.hitPosition(step.getInstruction())) {
+      step = backtracker(0);
+    }
+    if (step == null) {
+      // Beginning of thread.
+      return null;
+    }
+    // Now we're on the previous line, either in the same method or in the caller.
+
+    InstructionPosition previousLinePosition = InstructionPositionImpl.getInstructionPosition(step.getInstruction());
+    // Be careful - we need to remember previous step and transition2backreack
+    Step previousStep = null;
+    Transition previousTransition = null;
+    int previousTransitionsToBacktrack = 0;
+    ReturnInstructionChecker returnInstructionChecker = new ReturnInstructionChecker();
+    while (step != null && previousLinePosition.hitPosition(step.getInstruction())) {
+      previousStep = step;
+      previousTransition = getCurrentTransition();
+      previousTransitionsToBacktrack = getBacktrackedTransitionCount();
+      step = stepThreadBacktracker.backstep();
+      if (returnInstructionChecker.isReturnStep(step)) {
+        return new BackwardBreakpointCreator(getCurrentTransition(), step, getBacktrackedTransitionCount());
+      }
+    }
+    if (step == null) {
+      return null;
+    }
+    return new BackwardBreakpointCreator(previousTransition, previousStep, previousTransitionsToBacktrack);
+  }
 }

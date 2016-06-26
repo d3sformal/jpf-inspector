@@ -6,7 +6,6 @@ import gov.nasa.jpf.inspector.server.programstate.StateReadableValue;
 import gov.nasa.jpf.inspector.server.programstate.StateWritableValue;
 import gov.nasa.jpf.vm.ElementInfo;
 import gov.nasa.jpf.vm.FieldInfo;
-import gov.nasa.jpf.vm.Fields;
 
 import java.util.ArrayList;
 
@@ -34,7 +33,7 @@ public class ExplorerJavaObject extends ExplorerComplexNode {
   }
 
   @Override
-  public void updateComplexNodeFromJpf() {
+  public void updateComplexNodeFromJpf(ExplorerNode newVersion) {
   }
 
   @Override

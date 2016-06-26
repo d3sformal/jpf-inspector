@@ -37,23 +37,17 @@ public abstract class ExplorerComplexNode extends ExplorerNode {
   }
 
   @Override
-  public final void updateFromJpf() {
+  public final void updateFromJpf(ExplorerNode newVersion) {
     if (wronglyExpanded) {
       wronglyExpanded = false;
       children = null;
       model.nodeStructureChanged(this);
     }
 
-    updateComplexNodeFromJpf();
+    updateComplexNodeFromJpf(newVersion);
 
     if (children != null) {
-      // First, update what children are shown.
       childrenNeedToBeUpdated();
-
-      // Then, update the children themselves.
-      for(ExplorerNode child : children) {
-        child.updateFromJpf();
-      }
     }
   }
 
@@ -68,10 +62,11 @@ public abstract class ExplorerComplexNode extends ExplorerNode {
           model.nodesWereInserted(this, new int[]{oldChildren.size() - 1});
           oldIndex++;
         } else {
-          // Who knows what this is??
+          // Removal or change
           ExplorerNode oldChild = oldChildren.get(oldIndex);
           ExplorerNode newChild = newChildren.get(newIndex);
           if (newChild.isRecognizableAs(oldChild)) {
+            oldChild.updateFromJpf(newChild);
             oldIndex++;
           } else {
             oldChildren.remove(oldIndex);
@@ -88,7 +83,7 @@ public abstract class ExplorerComplexNode extends ExplorerNode {
     }
   }
 
-  public abstract void updateComplexNodeFromJpf();
+  public abstract void updateComplexNodeFromJpf(ExplorerNode newVersion);
 
   @Override
   public final TreeNode getChildAt(int childIndex) {

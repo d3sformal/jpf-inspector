@@ -18,18 +18,20 @@ public class ExplorerThreadInfoNode extends ExplorerComplexNode {
   @Override
   protected ArrayList<ExplorerNode> populateChildren() {
     ArrayList<ExplorerNode> frames = new ArrayList<>();
-    frames.add(new ExplorerStackFrameNode(AttachmentInformation.topmostStackFrame(), threadInfo.getCallerStackFrame(0),
+    frames.add(new ExplorerStackFrameNode(AttachmentInformation.topmostStackFrame(), threadInfo,
+                                          threadInfo.getCallerStackFrame(0),
                                           model, this));
     for (int i = 0; i < threadInfo.getStackDepth(); i++) {
       StackFrame callerStackFrame = threadInfo.getCallerStackFrame(i);
-      frames.add(new ExplorerStackFrameNode(AttachmentInformation.stackFrame(i), callerStackFrame,
+      frames.add(new ExplorerStackFrameNode(AttachmentInformation.stackFrame(i), threadInfo,
+                                            callerStackFrame,
                                             model, this));
     }
     return frames;
   }
 
   @Override
-  public void updateComplexNodeFromJpf() {
+  public void updateComplexNodeFromJpf(ExplorerNode newVersion) {
 
   }
 
@@ -43,7 +45,7 @@ public class ExplorerThreadInfoNode extends ExplorerComplexNode {
     return oldNode instanceof ExplorerThreadInfoNode && ((ExplorerThreadInfoNode)oldNode).threadInfo == this.threadInfo;
   }
 
-  public static String threadInfoToShortFormValue(ThreadInfo threadInfo) {
+  private static String threadInfoToShortFormValue(ThreadInfo threadInfo) {
     String s =
             threadInfo.getId() + " : " +
                     threadInfo.getName() + " state=" +

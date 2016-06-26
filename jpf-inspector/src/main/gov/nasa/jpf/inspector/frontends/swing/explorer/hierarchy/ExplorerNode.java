@@ -23,7 +23,7 @@ public abstract class ExplorerNode implements TreeNode {
     return parent;
   }
 
-  public abstract void updateFromJpf();
+  public abstract void updateFromJpf(ExplorerNode newVersion);
 
   /**
    * Returns true if this node is just a newer version of the given node. For example, if this node represents
