@@ -6,6 +6,7 @@ import gov.nasa.jpf.shell.ShellCommand;
 
 import javax.swing.*;
 import java.io.PrintStream;
+import java.util.Objects;
 
 /**
  * Represents a command (button) on the Inspector toolbar. These commands permit the user to perform the most common
@@ -37,7 +38,7 @@ public class InspectorToolbarCommand extends ShellCommand {
 
   @Override
   public String getToolTip() {
-    return tooltip + " [" + command + "]";
+    return  tooltip + (!Objects.equals(tooltip, "") ? " " : "") + "[" + command + "]";
   }
 
   @Override

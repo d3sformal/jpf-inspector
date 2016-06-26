@@ -1,11 +1,15 @@
 package gov.nasa.jpf.inspector.utils;
 
 import gov.nasa.jpf.Config;
+import gov.nasa.jpf.inspector.client.JPFInspectorClientInterface;
+import gov.nasa.jpf.inspector.frontends.swing.InspectorToolbarCommand;
 import gov.nasa.jpf.inspector.interfaces.CustomCommand;
 import gov.nasa.jpf.inspector.interfaces.CustomHitCondition;
 import gov.nasa.jpf.inspector.server.breakpoints.InternalBreakpointHolder;
 import gov.nasa.jpf.shell.ShellManager;
 
+import java.io.PrintStream;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -246,5 +250,17 @@ public final class InspectorConfiguration {
   }
   public Iterable<? extends CommandAlias> getAliases() {
     return aliases.values();
+  }
+
+  public Iterable<? extends InspectorToolbarCommand> getCustomToolBarCommands(JPFInspectorClientInterface inspectorClient, PrintStream consolePrintStream) {
+    ArrayList<InspectorToolbarCommand> toolbarCommands = new ArrayList<>();
+    String[] toolbarKeys = config.getKeysStartingWith("jpf-inspector.toolbar.");
+    for (String key : toolbarKeys) {
+      String toolbarCommandName = key.substring("jpf-inspector.toolbar.".length()).trim();
+      String toolbarCommandCommand = config.getString(key);
+      toolbarCommands.add(new InspectorToolbarCommand(toolbarCommandName, null,
+              "", toolbarCommandCommand, inspectorClient, consolePrintStream));
+    }
+    return toolbarCommands;
   }
 }
