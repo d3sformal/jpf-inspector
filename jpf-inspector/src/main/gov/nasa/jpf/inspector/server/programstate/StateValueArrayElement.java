@@ -142,7 +142,6 @@ public class StateValueArrayElement extends StateWritableValue {
     }
   }
 
-  /* @see gov.nasa.jpf.inspector.server.programstate.StateNode#getResultExpression(java.lang.String, int) */
   @Override
   public PSEVariable toHierarchy3() throws JPFInspectorException {
     final String varName = "[" + index + "]";
@@ -151,7 +150,6 @@ public class StateValueArrayElement extends StateWritableValue {
     return StateReadableValue.createPSEVariable(this, varName, index, definedIn);
   }
 
-  /* @see gov.nasa.jpf.inspector.server.programstate.StateReadableValue#createSuper() */
   @Override
   public StateValueArrayElement createSuper () throws JPFInspectorException {
     ClassInfo superClassInfo = ci.getSuperClass();
@@ -161,13 +159,11 @@ public class StateValueArrayElement extends StateWritableValue {
     return new StateValueArrayElement(this, superClassInfo, getStateExpr() + '.' + PSEVariable.EXPRESSION_SUPER);
   }
 
-  /* @see gov.nasa.jpf.inspector.server.programstate.StateReadableValue#createPredecessorClass(gov.nasa.jpf.jvm.ClassInfo) */
   @Override
   public StateValueArrayElement createPredecessorClass (ClassInfo ci) throws JPFInspectorNotSuperClassException {
     return new StateValueArrayElement(this, ci, getStateExpr() + '.' + StateWritableValue.getSimpleName(ci));
   }
 
-  /* @see gov.nasa.jpf.inspector.server.programstate.StateReadableValue#createThisValue() */
   @Override
   public StateReadableValue createThisValue () throws JPFInspectorException {
     if (ci.isArray() || ci.isPrimitive()) {
@@ -181,58 +177,49 @@ public class StateValueArrayElement extends StateWritableValue {
   // ** Modify represented value infrastructure
   // *************************************************************************
 
-  /* @see gov.nasa.jpf.inspector.server.programstate.StateWritableValue#assignValueBoolean(boolean) */
   @Override
   protected void assignValueBoolean (boolean newVal) {
-    ei.setBooleanElement(index, newVal);
+    ei.getModifiableInstance().setBooleanElement(index, newVal);
   }
 
-  /* @see gov.nasa.jpf.inspector.server.programstate.StateWritableValue#assignValueChar(char) */
   @Override
   protected void assignValueChar (char newVal) {
-    ei.setCharElement(index, newVal);
+    ei.getModifiableInstance().setCharElement(index, newVal);
   }
 
-  /* @see gov.nasa.jpf.inspector.server.programstate.StateWritableValue#assignValueByte(byte) */
   @Override
   protected void assignValueByte (byte newVal) {
-    ei.setByteElement(index, newVal);
+    ei.getModifiableInstance().setByteElement(index, newVal);
   }
 
-  /* @see gov.nasa.jpf.inspector.server.programstate.StateWritableValue#assignValueShort(short) */
   @Override
   protected void assignValueShort (short newVal) {
-    ei.setShortElement(index, newVal);
+    ei.getModifiableInstance().setShortElement(index, newVal);
   }
 
-  /* @see gov.nasa.jpf.inspector.server.programstate.StateWritableValue#assignValueInt(int) */
   @Override
   protected void assignValueInt (int newVal) {
-    ei.setIntElement(index, newVal);
+    ei.getModifiableInstance().setIntElement(index, newVal);
   }
 
-  /* @see gov.nasa.jpf.inspector.server.programstate.StateWritableValue#assignValueLong(long) */
   @Override
   protected void assignValueLong (long newVal) {
-    ei.setLongElement(index, newVal);
+    ei.getModifiableInstance().setLongElement(index, newVal);
   }
 
-  /* @see gov.nasa.jpf.inspector.server.programstate.StateWritableValue#assignValueFloat(float) */
   @Override
   protected void assignValueFloat (float newVal) {
-    ei.setFloatElement(index, newVal);
+    ei.getModifiableInstance().setFloatElement(index, newVal);
   }
 
-  /* @see gov.nasa.jpf.inspector.server.programstate.StateWritableValue#assignValueDouble(double) */
   @Override
   protected void assignValueDouble (double newVal) {
-    ei.setDoubleElement(index, newVal);
+    ei.getModifiableInstance().setDoubleElement(index, newVal);
   }
 
-  /* @see gov.nasa.jpf.inspector.server.programstate.StateWritableValue#assignValueRef(int) */
   @Override
   protected void assignValueRef (int newValRef) {
-    ei.setReferenceElement(index, newValRef);
+    ei.getModifiableInstance().setReferenceElement(index, newValRef);
   }
 
 }

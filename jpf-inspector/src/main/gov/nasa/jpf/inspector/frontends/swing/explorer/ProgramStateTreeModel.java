@@ -24,4 +24,8 @@ public class ProgramStateTreeModel extends DefaultTreeModel {
   public void update() {
     this.explorerRoot.updateFromJpf();
   }
+
+  public JPFInspectorBackEndInterface getServer() {
+    return server;
+  }
 }

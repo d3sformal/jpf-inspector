@@ -23,6 +23,7 @@ public class ProgramStateExplorerPanel extends AuxiliaryInspectorPanel {
     jTree = new JTree();
     jTree.setRootVisible(true);
     jTree.setShowsRootHandles(true);
+    jTree.setCellRenderer(new ProgramStateCellRenderer());
     jTree.addTreeExpansionListener(new TreeExpansionListener() {
       @Override
       public void treeExpanded(TreeExpansionEvent event) {
@@ -38,12 +39,18 @@ public class ProgramStateExplorerPanel extends AuxiliaryInspectorPanel {
     add(treeView, BorderLayout.CENTER);
   }
 
+  private boolean firstTimeAddedToShell = true;
   @Override
   protected void addedToShell() {
     super.addedToShell();
-    model = new ProgramStateTreeModel(inspectorClient.getServer());
-    jTree.setModel(model);
+    if (firstTimeAddedToShell) {
+      model = new ProgramStateTreeModel(inspectorClient.getServer());
+      jTree.setModel(model);
+    }
+    firstTimeAddedToShell = false;
   }
+
+
 
   @Override
   protected void commandExecutedOrCallbackReceived() {

@@ -206,7 +206,6 @@ public class StateValueElementInfoField extends StateWritableValue {
     this.fieldInfo = me.fieldInfo;
   }
 
-  /* @see gov.nasa.jpf.inspector.server.programstate.StateReadableValue#getReferenceValue() */
   @Override
   public ElementInfo getReferenceValue () {
     if (fieldInfo.isReference()) {
@@ -217,7 +216,6 @@ public class StateValueElementInfoField extends StateWritableValue {
     return null;
   }
 
-  /* @see gov.nasa.jpf.inspector.server.programstate.StateReadableValue#getValue() */
   @Override
   public Object getValue () {
     final Fields fields = ei.getFields();
@@ -225,7 +223,6 @@ public class StateValueElementInfoField extends StateWritableValue {
     return fieldInfo.getValueObject(fields);
   }
 
-  /* @see gov.nasa.jpf.inspector.server.programstate.StateNode#getResultExpression(java.lang.String, int) */
   @Override
   public PSEVariable toHierarchy3() throws JPFInspectorException {
     final String varName = fieldInfo.getName();
@@ -259,7 +256,6 @@ public class StateValueElementInfoField extends StateWritableValue {
     return null;
   }
 
-  /* @see gov.nasa.jpf.inspector.server.programstate.StateReadableValue#createSuper() */
   @Override
   public StateValueElementInfoField createSuper () throws JPFInspectorException {
     ClassInfo superClassInfo = ci.getSuperClass();
@@ -269,13 +265,11 @@ public class StateValueElementInfoField extends StateWritableValue {
     return new StateValueElementInfoField(this, superClassInfo, getStateExpr() + '.' + PSEVariable.EXPRESSION_SUPER);
   }
 
-  /* @see gov.nasa.jpf.inspector.server.programstate.StateReadableValue#createPredecessorClass(gov.nasa.jpf.jvm.ClassInfo) */
   @Override
   public StateValueElementInfoField createPredecessorClass (ClassInfo ci) throws JPFInspectorNotSuperClassException {
     return new StateValueElementInfoField(this, ci, getStateExpr() + '.' + StateWritableValue.getSimpleName(ci));
   }
 
-  /* @see gov.nasa.jpf.inspector.server.programstate.StateReadableValue#createThisValue() */
   @Override
   public StateValueElementInfoField createThisValue () throws JPFInspectorException {
     if (ci.isArray() || ci.isPrimitive()) {
@@ -289,60 +283,49 @@ public class StateValueElementInfoField extends StateWritableValue {
   // ** Modify represented value infrastructure
   // *************************************************************************
 
-  /* @see gov.nasa.jpf.inspector.server.programstate.StateWritableValue#assignValueBoolean(boolean) */
   @Override
   protected void assignValueBoolean (boolean newVal) {
-    ei.setBooleanField(fieldInfo, newVal);
+    ei.getModifiableInstance().setBooleanField(fieldInfo, newVal);
   }
 
-  /* @see gov.nasa.jpf.inspector.server.programstate.StateWritableValue#assignValueChar(char) */
   @Override
   protected void assignValueChar (char newVal) {
-    ei.setCharField(fieldInfo, newVal);
-
+    ei.getModifiableInstance().setCharField(fieldInfo, newVal);
   }
 
-  /* @see gov.nasa.jpf.inspector.server.programstate.StateWritableValue#assignValueByte(byte) */
   @Override
   protected void assignValueByte (byte newVal) {
-    ei.setByteField(fieldInfo, newVal);
-
+    ei.getModifiableInstance().setByteField(fieldInfo, newVal);
   }
 
-  /* @see gov.nasa.jpf.inspector.server.programstate.StateWritableValue#assignValueShort(short) */
   @Override
   protected void assignValueShort (short newVal) {
-    ei.setShortField(fieldInfo, newVal);
+    ei.getModifiableInstance().setShortField(fieldInfo, newVal);
   }
 
-  /* @see gov.nasa.jpf.inspector.server.programstate.StateWritableValue#assignValueInt(int) */
   @Override
   protected void assignValueInt (int newVal) {
-    ei.setIntField(fieldInfo, newVal);
+    ei.getModifiableInstance().setIntField(fieldInfo, newVal);
   }
 
-  /* @see gov.nasa.jpf.inspector.server.programstate.StateWritableValue#assignValueLong(long) */
   @Override
   protected void assignValueLong (long newVal) {
-    ei.setLongField(fieldInfo, newVal);
+    ei.getModifiableInstance().setLongField(fieldInfo, newVal);
   }
 
-  /* @see gov.nasa.jpf.inspector.server.programstate.StateWritableValue#assignValueFloat(float) */
   @Override
   protected void assignValueFloat (float newVal) {
-    ei.setFloatField(fieldInfo, newVal);
+    ei.getModifiableInstance().setFloatField(fieldInfo, newVal);
   }
 
-  /* @see gov.nasa.jpf.inspector.server.programstate.StateWritableValue#assignValueDouble(double) */
   @Override
   protected void assignValueDouble (double newVal) {
-    ei.setDoubleField(fieldInfo, newVal);
+    ei.getModifiableInstance().setDoubleField(fieldInfo, newVal);
   }
 
-  /* @see gov.nasa.jpf.inspector.server.programstate.StateWritableValue#assignValueRef(int) */
   @Override
   protected void assignValueRef (int newValRef) {
-    ei.setReferenceField(fieldInfo, newValRef);
+    ei.getModifiableInstance().setReferenceField(fieldInfo, newValRef);
   }
 
 }

@@ -1,6 +1,5 @@
 package gov.nasa.jpf.inspector.frontends.swing.explorer.hierarchy;
 
-import gov.nasa.jpf.inspector.frontends.swing.explorer.CustomTreeModelDeprecated;
 import gov.nasa.jpf.inspector.frontends.swing.explorer.ProgramStateTreeModel;
 
 import java.util.ArrayList;
@@ -8,7 +7,7 @@ import java.util.ArrayList;
 public class ExplorerRoot extends ExplorerComplexNode {
 
   public ExplorerRoot() {
-    super(null);
+    super(null, null);
   }
 
 
@@ -17,20 +16,27 @@ public class ExplorerRoot extends ExplorerComplexNode {
     children.add(new ExplorerEntireHeapNode(model, this));
     children.add(new ExplorerEntireHeapNode(model, this));
     children.add(new ExplorerEntireHeapNode(model, this));
+    children.add(new ExplorerAllThreadsNode(model, this));
+    children.add(new ExplorerAllThreadsNode(model, this));
   }
 
   @Override
   public String toString() {
-    return "root";
+    return "Program State Explorer Root Node";
   }
 
   @Override
-  public void updateFromJpf() {
-
+  protected ArrayList<ExplorerNode> populateChildren() {
+    return children; // We will never change.
   }
 
   @Override
-  protected void ensureChildrenArePopulated() {
-    // Automatically ensured.
+  public void updateComplexNodeFromJpf() {
+    // Nothing.
+  }
+
+  @Override
+  public boolean isRecognizableAs(ExplorerNode oldNode) {
+    return oldNode instanceof ExplorerRoot;
   }
 }

@@ -1,6 +1,5 @@
 package gov.nasa.jpf.inspector.frontends.swing.explorer.hierarchy;
 
-import gov.nasa.jpf.inspector.frontends.swing.explorer.CustomTreeModelDeprecated;
 import gov.nasa.jpf.inspector.frontends.swing.explorer.ProgramStateTreeModel;
 import gov.nasa.jpf.vm.ElementInfo;
 import gov.nasa.jpf.vm.Heap;
@@ -11,7 +10,7 @@ public class ExplorerEntireHeapNode extends ExplorerComplexNode {
   ProgramStateTreeModel model;
 
   public ExplorerEntireHeapNode(ProgramStateTreeModel model, ExplorerNode parent) {
-      super(parent);
+      super(model, parent);
       this.model = model;
 
   }
@@ -22,18 +21,25 @@ public class ExplorerEntireHeapNode extends ExplorerComplexNode {
   }
 
   @Override
-  public void updateFromJpf() {
+  public ArrayList<ExplorerNode> populateChildren() {
+    ArrayList<ExplorerNode> heapList = new ArrayList<>(400);
+    Heap heap = model.getVM().getHeap();
+    for (ElementInfo elementInfo : heap) {
+      ExplorerJavaObject newObject = new ExplorerJavaObject(Integer.toString(elementInfo.getObjectRef()), elementInfo,
+                                                            model, this);
+      heapList.add(newObject);
+    }
+    return heapList;
+  }
+
+
+  @Override
+  public void updateComplexNodeFromJpf() {
+    // Updates self
   }
 
   @Override
-  protected void ensureChildrenArePopulated() {
-    if (children == null) {
-      children = new ArrayList<>();
-      Heap heap = model.getVM().getHeap();
-      for (ElementInfo elementInfo : heap) {
-        children.add(new ExplorerDebugLeafNode(elementInfo.getClassInfo().getName(), this));
-        model.nodesWereInserted(this, new int[]{children.size() - 1});
-      }
-    }
+  public boolean isRecognizableAs(ExplorerNode oldNode) {
+    return oldNode instanceof ExplorerEntireHeapNode;
   }
 }

@@ -3,6 +3,7 @@ package sooth;
 @SuppressWarnings("ALL")
 public class ExpressionTest {
   static ExpressionTest mainTest;
+  ExpressionTest instanceTest;
 
   int field = 5;
 
@@ -19,6 +20,7 @@ public class ExpressionTest {
   static int[] arrayOfIntegers;
 
   public void mk() {
+    instanceTest = this;
     int local = 8;
     int ten = local + 6; // break here
     ExpressionTest asLocal = this;

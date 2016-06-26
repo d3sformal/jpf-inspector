@@ -147,6 +147,9 @@ public class InspectorPrimaryConsolePanel extends ShellPanel implements VerifyCo
                                         getInspectorClient(), consolePrintStream),
             new InspectorToolbarCommand("Backstep Out", standardIcon, "Undoes everything in this methods and backsteps out to the caller.", "back_step_out",
                                         getInspectorClient(), consolePrintStream),
+
+            new InspectorToolbarCommand("cmc", standardIcon, "cmc", "cmc",
+                                        getInspectorClient(), consolePrintStream),
     };
     for (InspectorToolbarCommand command : commands) {
       ShellManager.getManager().addCommand(command);

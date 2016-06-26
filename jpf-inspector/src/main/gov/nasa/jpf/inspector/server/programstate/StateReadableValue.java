@@ -47,7 +47,7 @@ public abstract class StateReadableValue extends StateNode {
     this.shouldExpandMembers = shouldExpandMembers;
   }
 
-  private static String elementInfo2String(ElementInfo ei) {
+  public static String elementInfo2String(ElementInfo ei) {
     if (ei == null) {
       return "null";
     }
