@@ -1,6 +1,6 @@
 package gov.nasa.jpf.inspector.frontends.swing.explorer.hierarchy;
 
-import gov.nasa.jpf.inspector.frontends.swing.explorer.AttachmentInformation;
+import gov.nasa.jpf.inspector.frontends.swing.explorer.Attachment;
 import gov.nasa.jpf.inspector.frontends.swing.explorer.ProgramStateTreeModel;
 import gov.nasa.jpf.vm.StackFrame;
 import gov.nasa.jpf.vm.ThreadInfo;
@@ -18,12 +18,12 @@ public class ExplorerThreadInfoNode extends ExplorerComplexNode {
   @Override
   protected ArrayList<ExplorerNode> populateChildren() {
     ArrayList<ExplorerNode> frames = new ArrayList<>();
-    frames.add(new ExplorerStackFrameNode(AttachmentInformation.topmostStackFrame(), threadInfo,
+    frames.add(new ExplorerStackFrameNode(Attachment.topmostStackFrame(), threadInfo,
                                           threadInfo.getCallerStackFrame(0),
                                           model, this));
     for (int i = 0; i < threadInfo.getStackDepth(); i++) {
       StackFrame callerStackFrame = threadInfo.getCallerStackFrame(i);
-      frames.add(new ExplorerStackFrameNode(AttachmentInformation.stackFrame(i), threadInfo,
+      frames.add(new ExplorerStackFrameNode(Attachment.stackFrame(i), threadInfo,
                                             callerStackFrame,
                                             model, this));
     }

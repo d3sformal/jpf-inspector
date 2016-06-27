@@ -1,6 +1,6 @@
 package gov.nasa.jpf.inspector.frontends.swing.explorer.hierarchy;
 
-import gov.nasa.jpf.inspector.frontends.swing.explorer.AttachmentInformation;
+import gov.nasa.jpf.inspector.frontends.swing.explorer.Attachment;
 import gov.nasa.jpf.inspector.frontends.swing.explorer.ProgramStateTreeModel;
 import gov.nasa.jpf.inspector.server.choicegenerators.ChoiceGeneratorsManager;
 import gov.nasa.jpf.inspector.utils.InstructionWrapper;
@@ -8,21 +8,20 @@ import gov.nasa.jpf.vm.StackFrame;
 import gov.nasa.jpf.vm.ThreadInfo;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
 public class ExplorerStackFrameNode extends ExplorerComplexNode {
-  private AttachmentInformation attachmentInformation;
+  private Attachment attachment;
   private final ThreadInfo parentThread;
   private StackFrame stackFrame;
 
   private String shortFormDescription;
 
-  protected ExplorerStackFrameNode(AttachmentInformation attachmentInformation,
+  protected ExplorerStackFrameNode(Attachment attachment,
                                    ThreadInfo parentThread,
                                    StackFrame stackFrame,
                                    ProgramStateTreeModel model, ExplorerNode parent) {
     super(model, parent);
-    this.attachmentInformation = attachmentInformation;
+    this.attachment = attachment;
     this.parentThread = parentThread;
     this.stackFrame = stackFrame;
   }
@@ -36,16 +35,16 @@ public class ExplorerStackFrameNode extends ExplorerComplexNode {
   public void updateComplexNodeFromJpf(ExplorerNode newVersion) {
     shortFormDescription = toString();
 
-    if (attachmentInformation.getKind() == AttachmentInformation.AttachmentKind.TOPMOST_STACK_FRAME) {
+    if (attachment.getKind() == Attachment.AttachmentKind.TOPMOST_STACK_FRAME) {
       if (parentThread.getCallerStackFrame(0) != stackFrame) {
         stackFrame = parentThread.getCallerStackFrame(0);
         model.nodesChanged(parent, new int[] { parent.getIndex(this)});
       }
     }
 
-    AttachmentInformation newAttachmentInformation =  ((ExplorerStackFrameNode)newVersion).attachmentInformation;
-    if (!newAttachmentInformation.equals(this.attachmentInformation)) {
-      this.attachmentInformation = newAttachmentInformation;
+    Attachment newAttachment =  ((ExplorerStackFrameNode)newVersion).attachment;
+    if (!newAttachment.equals(this.attachment)) {
+      this.attachment = newAttachment;
     }
     model.nodesChanged(parent, new int[] { parent.getIndex(this)});
   }
@@ -53,7 +52,7 @@ public class ExplorerStackFrameNode extends ExplorerComplexNode {
   @Override
   public String toString() {
     InstructionWrapper instructionWrapper = ChoiceGeneratorsManager.createInstructionWrapper(stackFrame.getPC());
-    return attachmentInformation.getName() + ": " + instructionWrapper.toString();
+    return attachment.getName() + ": " + instructionWrapper.toString();
   }
 
   @Override
@@ -62,8 +61,8 @@ public class ExplorerStackFrameNode extends ExplorerComplexNode {
       return false;
     }
     ExplorerStackFrameNode other = (ExplorerStackFrameNode)oldNode;
-    if (other.attachmentInformation.getKind() == AttachmentInformation.AttachmentKind.TOPMOST_STACK_FRAME &&
-            this.attachmentInformation.getKind() == AttachmentInformation.AttachmentKind.TOPMOST_STACK_FRAME) {
+    if (other.attachment.getKind() == Attachment.AttachmentKind.TOPMOST_STACK_FRAME &&
+            this.attachment.getKind() == Attachment.AttachmentKind.TOPMOST_STACK_FRAME) {
       return true;
     }
     return this.stackFrame == other.stackFrame;

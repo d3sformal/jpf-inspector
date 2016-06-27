@@ -1,6 +1,6 @@
 package gov.nasa.jpf.inspector.frontends.swing.explorer.hierarchy;
 
-import gov.nasa.jpf.inspector.frontends.swing.explorer.AttachmentInformation;
+import gov.nasa.jpf.inspector.frontends.swing.explorer.Attachment;
 import gov.nasa.jpf.inspector.frontends.swing.explorer.ExplorerNodeFactory;
 import gov.nasa.jpf.inspector.frontends.swing.explorer.ProgramStateTreeModel;
 import gov.nasa.jpf.inspector.server.programstate.StateReadableValue;
@@ -11,14 +11,14 @@ import gov.nasa.jpf.vm.FieldInfo;
 import java.util.ArrayList;
 
 public class ExplorerJavaObject extends ExplorerComplexNode {
-  private AttachmentInformation attachmentInformation;
+  private Attachment attachment;
   private final ElementInfo elementInfo;
 
-  public ExplorerJavaObject(AttachmentInformation attachmentInformation, ElementInfo elementInfo,
+  public ExplorerJavaObject(Attachment attachment, ElementInfo elementInfo,
                             ProgramStateTreeModel model, ExplorerNode parent) {
     super(model, parent);
 
-    this.attachmentInformation = attachmentInformation;
+    this.attachment = attachment;
     this.elementInfo = elementInfo;
   }
 
@@ -26,6 +26,9 @@ public class ExplorerJavaObject extends ExplorerComplexNode {
   @Override
   protected ArrayList<ExplorerNode> populateChildren() {
     ArrayList<ExplorerNode> children = new ArrayList<>();
+    if (elementInfo == null) {
+      return children;
+    }
     for (FieldInfo fieldInfo : elementInfo.getClassInfo().getInstanceFields()) {
        String fieldInfoName = fieldInfo.getName();
        ExplorerNode child = ExplorerNodeFactory.createFromField(fieldInfoName, fieldInfo, elementInfo.getFields(), model, this);
@@ -41,17 +44,17 @@ public class ExplorerJavaObject extends ExplorerComplexNode {
   @Override
   public String toString() {
     if (elementInfo == null) {
-      return attachmentInformation.getName() + ": " + null;
+      return attachment.getName() + ": " + null;
     }
     String typeName = StateWritableValue.demangleTypeName(elementInfo.getType());
     String shortFormValue = StateReadableValue.elementInfo2String(elementInfo);
-    return attachmentInformation.getName() + " (" + typeName + ") = " + shortFormValue;
+    return attachment.getName() + " (" + typeName + ") = " + shortFormValue;
   }
 
   @Override
   public boolean isRecognizableAs(ExplorerNode oldNode) {
     return oldNode instanceof ExplorerJavaObject &&
             ((ExplorerJavaObject)oldNode).elementInfo == this.elementInfo &&
-            ((ExplorerJavaObject)oldNode).attachmentInformation == this.attachmentInformation;
+            ((ExplorerJavaObject)oldNode).attachment == this.attachment;
   }
 }

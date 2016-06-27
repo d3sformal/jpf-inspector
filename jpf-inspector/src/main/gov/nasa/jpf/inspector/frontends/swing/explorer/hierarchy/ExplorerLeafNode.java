@@ -37,9 +37,4 @@ public abstract class ExplorerLeafNode extends ExplorerNode {
   public final Enumeration children() {
     return null;
   }
-
-  @Override
-  public final boolean isRecognizableAs(ExplorerNode oldNode) {
-    return false;
-  }
 }
