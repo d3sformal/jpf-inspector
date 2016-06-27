@@ -14,7 +14,7 @@ public class ExplorerDebugLeafNode extends ExplorerLeafNode {
   }
 
   @Override
-  public void updateFromJpf() {
+  public void updateFromJpf(ExplorerNode newVersion) {
 
   }
 }

@@ -1,5 +1,6 @@
 package gov.nasa.jpf.inspector.frontends.swing.explorer.hierarchy;
 
+import gov.nasa.jpf.inspector.frontends.swing.explorer.AttachmentInformation;
 import gov.nasa.jpf.inspector.frontends.swing.explorer.ExplorerNodeFactory;
 import gov.nasa.jpf.inspector.frontends.swing.explorer.ProgramStateTreeModel;
 import gov.nasa.jpf.inspector.server.programstate.StateReadableValue;
@@ -10,13 +11,14 @@ import gov.nasa.jpf.vm.FieldInfo;
 import java.util.ArrayList;
 
 public class ExplorerJavaObject extends ExplorerComplexNode {
-  private String name;
+  private AttachmentInformation attachmentInformation;
   private final ElementInfo elementInfo;
 
-  public ExplorerJavaObject(String name, ElementInfo elementInfo, ProgramStateTreeModel model, ExplorerNode parent) {
+  public ExplorerJavaObject(AttachmentInformation attachmentInformation, ElementInfo elementInfo,
+                            ProgramStateTreeModel model, ExplorerNode parent) {
     super(model, parent);
 
-    this.name = name;
+    this.attachmentInformation = attachmentInformation;
     this.elementInfo = elementInfo;
   }
 
@@ -39,15 +41,17 @@ public class ExplorerJavaObject extends ExplorerComplexNode {
   @Override
   public String toString() {
     if (elementInfo == null) {
-      return name + ": " + null;
+      return attachmentInformation.getName() + ": " + null;
     }
     String typeName = StateWritableValue.demangleTypeName(elementInfo.getType());
     String shortFormValue = StateReadableValue.elementInfo2String(elementInfo);
-    return name + ": " + typeName + " = " + shortFormValue;
+    return attachmentInformation.getName() + " (" + typeName + ") = " + shortFormValue;
   }
 
   @Override
   public boolean isRecognizableAs(ExplorerNode oldNode) {
-    return oldNode instanceof ExplorerJavaObject && ((ExplorerJavaObject)oldNode).elementInfo == this.elementInfo;
+    return oldNode instanceof ExplorerJavaObject &&
+            ((ExplorerJavaObject)oldNode).elementInfo == this.elementInfo &&
+            ((ExplorerJavaObject)oldNode).attachmentInformation == this.attachmentInformation;
   }
 }

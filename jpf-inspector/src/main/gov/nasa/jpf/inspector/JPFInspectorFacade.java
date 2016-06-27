@@ -51,10 +51,21 @@ public final class JPFInspectorFacade {
    *
    * @param target Name of the target (.jpf file name, without the .jpf extension). For logging purposes only.
    * @param out Stream where command output should be printed.
-   * @return New instance of high level client part of the JPF Inspector.   *
+   * @return New instance of high level client part of the JPF Inspector.
    */
   public static JPFInspectorClientInterface getInspectorClient (String target, PrintStream out) {
     return new JPFInspectorClient(target, out);
+  }
+  /**
+   * Creates an instance of the JPFInspectorClient (the client part).
+   *
+   * @param target Name of the target (.jpf file name, without the .jpf extension). For logging purposes only.
+   * @param out Stream where command output should be printed.
+   * @param callbackOut  Stream where callback output should be printed.
+   * @return New instance of high level client part of the JPF Inspector.
+   */
+  public static JPFInspectorClientInterface getInspectorClient (String target, PrintStream out, PrintStream callbackOut) {
+    return new JPFInspectorClient(target, out, callbackOut);
   }
 
 }

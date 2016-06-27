@@ -23,7 +23,6 @@ public class ExplorerAllThreadsNode extends ExplorerComplexNode {
 
   @Override
   public void updateComplexNodeFromJpf(ExplorerNode newVersion) {
-
   }
 
   @Override

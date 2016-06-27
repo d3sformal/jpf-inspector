@@ -1,5 +1,6 @@
 package gov.nasa.jpf.inspector.frontends.swing.explorer.hierarchy;
 
+import gov.nasa.jpf.inspector.frontends.swing.explorer.AttachmentInformation;
 import gov.nasa.jpf.inspector.frontends.swing.explorer.ProgramStateTreeModel;
 import gov.nasa.jpf.vm.ElementInfo;
 import gov.nasa.jpf.vm.Heap;
@@ -25,7 +26,8 @@ public class ExplorerEntireHeapNode extends ExplorerComplexNode {
     ArrayList<ExplorerNode> heapList = new ArrayList<>(400);
     Heap heap = model.getVM().getHeap();
     for (ElementInfo elementInfo : heap) {
-      ExplorerJavaObject newObject = new ExplorerJavaObject(Integer.toString(elementInfo.getObjectRef()), elementInfo,
+      ExplorerJavaObject newObject = new ExplorerJavaObject(AttachmentInformation.heapEntry(elementInfo.getObjectRef()),
+                                                            elementInfo,
                                                             model, this);
       heapList.add(newObject);
     }

@@ -38,10 +38,17 @@ public class AttachmentInformation {
     return name;
   }
 
+  public static AttachmentInformation heapEntry(int objectRef) {
+    return new AttachmentInformation("#" + objectRef, AttachmentKind.HEAP_ENTRY);
+  }
+
   public enum AttachmentKind {
     NONE,
     INSTANCE_FIELD,
+    STATIC_FIELD,
+    ARRAY_ELEMENT,
     STACK_FRAME,
-    TOPMOST_STACK_FRAME
+    TOPMOST_STACK_FRAME,
+    HEAP_ENTRY
   }
 }

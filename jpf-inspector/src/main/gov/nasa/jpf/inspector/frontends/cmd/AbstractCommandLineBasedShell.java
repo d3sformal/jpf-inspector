@@ -22,7 +22,7 @@ public abstract class AbstractCommandLineBasedShell  extends Shell implements Ve
   private static final long serialVersionUID = -579285459191711234L;
   protected JPFInspectorClientInterface inspector;
 
-  abstract void mainLoop();
+  protected abstract void mainLoop();
 
 
   @Override

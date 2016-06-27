@@ -44,11 +44,11 @@ public final class CommandLineShell extends AbstractCommandLineBasedShell {
     }
     while (scanner.hasNextLine()) {
       String command = scanner.nextLine().trim();
-      if (batchModeEchoInput) {
-        outputStream.println(Constants.PROMPT + command);
-      }
 
       if (!command.isEmpty()) {
+        if (batchModeEchoInput) {
+          outputStream.println(Constants.PROMPT + command);
+        }
         inspector.executeCommand(command, ExecutionContext.FROM_COMMAND_LINE_TERMINAL);
       }
 

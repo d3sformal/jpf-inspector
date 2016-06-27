@@ -13,6 +13,7 @@ public class ExplorerNodeFactory {
     if (fieldInfo.getTypeClassInfo().isPrimitive()) {
       return new ExplorerDebugLeafNode(name + ": A primitive value.", parent);
     }
-    return new ExplorerJavaObject(name, (ElementInfo)fieldInfo.getValueObject(fields), model, parent);
+    return new ExplorerJavaObject(AttachmentInformation.instanceField(name),
+                                  (ElementInfo)fieldInfo.getValueObject(fields), model, parent);
   }
 }

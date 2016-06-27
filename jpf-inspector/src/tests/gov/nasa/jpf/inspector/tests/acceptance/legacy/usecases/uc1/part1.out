@@ -1,30 +1,25 @@
 cmd>cr bp fa=*SecondTask:count
 cmd>create breakpoint ts=out:1
-cmd>
 cmd>run
 INFO: JPF created and connected, SuT is started
 INFO: Breakpoint hit: [1 :  state=ENABLED hits=1 hitsTotal=1 field_access=*SecondTask:count]
 cmd># Breakpoint should be hit.
-cmd>
 cmd>ti
 0 : main state=RUNNING priority=5
 1 : state=NEW priority=5
 2 : state=NEW priority=5
 cmd># Main thread should be running, other threads are new.
-cmd>
 cmd>show bp
 1 :  state=ENABLED hits=1 hitsTotal=1 field_access=*SecondTask:count
 2 :  state=ENABLED hits=0 hitsTotal=0 thread_scheduled=out:1
 cmd>delete breakpoint 2
 Breakpoint with ID 2 successfully deleted.
-cmd>
 cmd>print #thread[0]
 0 : main state=RUNNING priority=5
 	0 : gov.nasa.jpf.inspector.tests.acceptance.legacy.usecases.uc1.SecondTask.<init> - (in file gov/nasa/jpf/inspector/tests/acceptance/legacy/usecases/uc1/oldclassic.java:120) - int   count = 0;  // bad optimization - local c...
 	1 : gov.nasa.jpf.inspector.tests.acceptance.legacy.usecases.uc1.oldclassic.main - (in file gov/nasa/jpf/inspector/tests/acceptance/legacy/usecases/uc1/oldclassic.java:52) - SecondTask task2 = new SecondTask(new_event1, n...
 	2 : gov.nasa.jpf.inspector.tests.acceptance.legacy.usecases.uc1.oldclassic.[main] - (in file gov/nasa/jpf/inspector/tests/acceptance/legacy/usecases/uc1/oldclassic.java:0)
 cmd># Prints stack trace of the main thread
-cmd>
 cmd>step_over
 INFO: SuT is stopped
 	SuT (thread 0) will now execute gov/nasa/jpf/inspector/tests/acceptance/legacy/usecases/uc1/oldclassic.java:123 (aload_0), source: this.event1 = e1;
@@ -34,20 +29,16 @@ INFO: SuT is stopped
 cmd>thread_pc
 0 : gov/nasa/jpf/inspector/tests/acceptance/legacy/usecases/uc1/oldclassic.java:124:    this.event2 = e2;
 	gov.nasa.jpf.inspector.tests.acceptance.legacy.usecases.uc1.SecondTask:<init>:8:aload_0
-cmd>
 cmd>cr bp state=log field_write=*Event:count
-cmd>
 cmd>run
 INFO: Logging breakpoint hit: [5 :  state=LOGGING hits=1 hitsTotal=1 field_write=*Event:count]
 INFO: Logging breakpoint hit: [5 :  state=LOGGING hits=2 hitsTotal=2 field_write=*Event:count]
 INFO: Breakpoint hit: [1 :  state=ENABLED hits=2 hitsTotal=2 field_access=*SecondTask:count]
 INFO: Logging breakpoint hit: [5 :  state=LOGGING hits=3 hitsTotal=3 field_write=*Event:count]
 cmd># Several logging breakpoints hit.
-cmd>
 cmd>print #thread[0]
 ERR: There is no thread with the index 0.
 cmd># This should result in error because the main thread is already finished.
-cmd>
 cmd>print #thread[1]
 1 : Thread-1 state=WAITING priority=5
 	0 : java.lang.Object.wait - (in file java/lang/Object.java:-1)
@@ -55,18 +46,15 @@ cmd>print #thread[1]
 	2 : gov.nasa.jpf.inspector.tests.acceptance.legacy.usecases.uc1.FirstTask.run - (in file gov/nasa/jpf/inspector/tests/acceptance/legacy/usecases/uc1/oldclassic.java:107) - event1.wait_for_event();
 	3 : gov.nasa.jpf.inspector.tests.acceptance.legacy.usecases.uc1.FirstTask.[run] - (in file gov/nasa/jpf/inspector/tests/acceptance/legacy/usecases/uc1/oldclassic.java:1) - package gov.nasa.jpf.inspector.tests.acceptance...
 cmd># Stack trace should be prined correctly.
-cmd>
 cmd>so
 INFO: SuT is stopped
 	SuT (thread 2) will now execute gov/nasa/jpf/inspector/tests/acceptance/legacy/usecases/uc1/oldclassic.java:132 (getstatic java.lang.System.out), source: System.out.println("  2");
-cmd>
 cmd>thread_pc
 1 : java/lang/Object.java:-1
 	java.lang.Object:wait:0:executenative JPF_java_lang_Object.wait____V
 2 : gov/nasa/jpf/inspector/tests/acceptance/legacy/usecases/uc1/oldclassic.java:132:      System.out.println("  2");
 	gov.nasa.jpf.inspector.tests.acceptance.legacy.usecases.uc1.SecondTask:run:5:getstatic java.lang.System.out
 cmd># For all threads, the next instruction should be printed.
-cmd>
 cmd>bso
 INFO: SuT is stopped
 	SuT (thread 2) will now execute gov/nasa/jpf/inspector/tests/acceptance/legacy/usecases/uc1/oldclassic.java:129 (aload_0), source: count = event2.count;          // <race> violates event2 monitor encapsulation
@@ -82,7 +70,6 @@ cmd>del bp 1
 Breakpoint with ID 1 successfully deleted.
 cmd>show breakpoint
 5 :  state=LOGGING hits=3 hitsTotal=3 field_write=*Event:count
-cmd>
 cmd>run
 INFO: Logging breakpoint hit: [5 :  state=LOGGING hits=4 hitsTotal=4 field_write=*Event:count]
 INFO: Logging breakpoint hit: [5 :  state=LOGGING hits=5 hitsTotal=5 field_write=*Event:count]
@@ -107,5 +94,4 @@ INFO: Logging breakpoint hit: [5 :  state=LOGGING hits=17 hitsTotal=23 field_wri
 INFO: Logging breakpoint hit: [5 :  state=LOGGING hits=17 hitsTotal=24 field_write=*Event:count]
 INFO: JPF Terminating
 cmd># Many logging notifications, then the program runs until the end.
-cmd>
 cmd>wait

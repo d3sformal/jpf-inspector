@@ -127,6 +127,7 @@ public class SimpleAssignments {
     System.out.println("sa_slot_Object=" + sa_slot_Object);
 
     // Important point here
+    breakpoint();
 
     System.out.println("sa_field_boolean=" + sa_field_boolean);
     System.out.println("sa_field_char=" + sa_field_char);
@@ -167,8 +168,12 @@ public class SimpleAssignments {
     System.out.println("sa_slot_Object=" + sa_slot_Object);
 
     // important point here
+    breakpoint();
 
     return;
+  }
+
+  private void breakpoint() {
   }
 
   public boolean sa_field_boolean = true;

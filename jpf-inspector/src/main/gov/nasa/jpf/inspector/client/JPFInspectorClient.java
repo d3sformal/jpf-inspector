@@ -30,6 +30,9 @@ public class JPFInspectorClient implements JPFInspectorClientInterface {
   private final List<AuxiliaryInspectorPanel> listeners = new ArrayList<>();
 
   public JPFInspectorClient (String target, PrintStream outStream) {
+    this(target, outStream, outStream);
+  }
+  public JPFInspectorClient (String target, PrintStream outStream, PrintStream callbackOutStream) {
 
     if (outStream == null) {
       throw new IllegalArgumentException("Output stream not specified (null).");
@@ -38,7 +41,7 @@ public class JPFInspectorClient implements JPFInspectorClientInterface {
     this.recorder = new CommandRecorder(target, outStream);
 
     // Create the fully decorated callbacks handler.
-    JPFClientCallbackHandler callbacks = new JPFClientCallbackHandler(listeners, outStream);
+    JPFClientCallbackHandler callbacks = new JPFClientCallbackHandler(listeners, callbackOutStream);
     CallbackRecordingDecorator cbRecDecorator = new CallbackRecordingDecorator(callbacks, recorder);
     this.cbExecutionDecorator = new CallbackExecutionDecorator(recorder, cbRecDecorator, System.out);
 

@@ -2,6 +2,8 @@ package gov.nasa.jpf.inspector.common;
 
 import gov.nasa.jpf.inspector.common.pse.PSEThread;
 
+import java.awt.*;
+
 /**
  * Contains constants used throughout JPF Inspector.
  */
@@ -16,5 +18,7 @@ public final class Constants {
    * if the echo_input option is set.
    */
   public static final String PROMPT = "cmd>";
+
+  public static final Font fontMonospaced = new Font(Font.MONOSPACED, Font.PLAIN, 12);
 
 }

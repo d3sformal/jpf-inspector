@@ -35,7 +35,7 @@ public class JLineCommandLineShell extends AbstractCommandLineBasedShell {
   }
 
   @Override
-  void mainLoop() {
+  protected void mainLoop() {
     try {
 
       Config config = ShellManager.getManager().getConfig();

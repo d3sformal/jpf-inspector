@@ -1,5 +1,6 @@
 package gov.nasa.jpf.inspector.frontends.swing.explorer;
 
+import gov.nasa.jpf.inspector.common.Constants;
 import gov.nasa.jpf.inspector.frontends.swing.explorer.hierarchy.ExplorerNode;
 
 import javax.swing.*;
@@ -13,6 +14,7 @@ public class ProgramStateCellRenderer extends DefaultTreeCellRenderer {
                                                 boolean leaf, int row, boolean hasFocus) {
     DefaultTreeCellRenderer item =
             (DefaultTreeCellRenderer) super.getTreeCellRendererComponent(tree, value, sel, expanded, leaf, row, hasFocus);
+    item.setFont(Constants.fontMonospaced);
     if (value instanceof ExplorerNode) {
       ExplorerNode  node = (ExplorerNode)value;
       if (node.isWronglyExpanded()) {
