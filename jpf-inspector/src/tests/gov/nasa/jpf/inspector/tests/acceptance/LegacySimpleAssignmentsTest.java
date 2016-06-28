@@ -1,28 +1,25 @@
 package gov.nasa.jpf.inspector.tests.acceptance;
 
-import gov.nasa.jpf.Config;
-import gov.nasa.jpf.JPFShell;
-import gov.nasa.jpf.inspector.common.BreakpointCreationExpression;
+import gov.nasa.jpf.inspector.common.pse.PSEVariable;
+import gov.nasa.jpf.inspector.common.pse.ProgramStateEntry;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorArrayIndexOutOutRangeException;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorAssignmentOutOfRangeException;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorException;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorIncompatibleTypesException;
-import gov.nasa.jpf.inspector.frontends.cmd.CommandLineShell;
 import gov.nasa.jpf.inspector.tests.acceptance.architecture.InteractableTestShell;
-import gov.nasa.jpf.inspector.tests.acceptance.architecture.Judge;
 import gov.nasa.jpf.inspector.utils.InspectorConfiguration;
 import gov.nasa.jpf.shell.ShellManager;
 import org.junit.After;
 import org.junit.Assert;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import java.io.*;
-import java.nio.channels.Pipe;
-import java.nio.charset.StandardCharsets;
 
 import static gov.nasa.jpf.inspector.tests.acceptance.architecture.CorrectOutputAbstractTest.BASEFOLDER;
 
+/**
+ * This legacy test verifies that program state modification works correctly.
+ */
 public class LegacySimpleAssignmentsTest {
   @Test
   public void testAssignments() {
@@ -37,40 +34,96 @@ public class LegacySimpleAssignmentsTest {
     shell.start(args);
 
     System.out.println("\tCreating breakpoint..." + shell.executeCommand("create breakpoint method_invoke=*:breakpoint"));
-    System.out.println("Showing breakpoint..." + shell.executeCommand("show bp"));
+    System.out.println("Showing breakpoints..." + shell.executeCommand("show bp"));
     System.out.println("\tRunning..." + shell.executeCommand("run"));
     System.out.println("\tWaiting..." + shell.executeCommand("wait"));
 
     // Set values
     System.out.println("\tSetting values...\n");
-
+    setValues(shell);
 
     System.out.println("\tResuming...");
     System.out.println(shell.executeCommand("run && wait"));
 
     // Check values
     System.out.println("\tChecking set values...\n");
+    checkValues(shell);
 
     System.out.println("\tFinishing...");
     System.out.println(shell.executeCommand("run && wait"));
     System.out.println("\tDone.");
   }
+
+  private static void checkValues(InteractableTestShell shell) {
+    for (TestInput spec : testInputs) {
+      if (spec.passing == false) {
+        continue;
+      }
+
+      try {
+        System.out.print("\t\tPrinting " + spec.varName);
+        ProgramStateEntry pse1 = shell.getServer().evaluateStateExpression(spec.varName);
+
+        Assert.assertNotNull(pse1);
+        Assert.assertTrue(pse1 instanceof PSEVariable);
+
+        PSEVariable pseVar = (PSEVariable) pse1;
+
+        System.out.println(", result: " + pseVar.getVarValue());
+
+        assert spec.passing;
+
+        Assert.assertEquals(spec.expectedValue, pseVar.getVarValue());
+
+      } catch (JPFInspectorException e) {
+        Assert.fail(e.getMessage());
+      }
+    }
+  }
+
+  private static void setValues(InteractableTestShell shell) {
+    for (TestInput spec : testInputs) {
+      try {
+        String setExpression = spec.varName + " = " + spec.varSetValue;
+        System.out.println("\t\tExecuting the 'set' command with the following argument: " + setExpression);
+        shell.getServer().setValue(setExpression);
+
+        if (spec.passing == false) {
+          Assert.fail("Exception of the " + spec.getExceptionType().getSimpleName() + " type is expected.");
+        }
+      } catch (JPFInspectorException e) {
+        if (spec.passing == true) {
+          Assert.fail(e.toString());
+        } else {
+          if ((e.getClass().equals(spec.getExceptionType())) == false) {
+            Assert.fail(
+                    "Wrong type of exception thrown. Expected exception of type " + spec.getExceptionType().getSimpleName() + " but thrown exception type is "
+                            + e.getClass().getSimpleName() + "\n" + e.getMessage());
+          }
+        }
+      }
+    }
+  }
+
   @After
   public void cleanup() {
     ShellManager.destroy();
   }
 
-  static private class TestInput {
+  /**
+   * Represents an "input/expected output" combination for the legacy Simple Assignments test.
+   */
+  private static class TestInput {
     public final boolean passing; // Test pass, if false=given method chould throw exception
 
     public final String varName; // "#stack[2].fiels - specification of the value to set (stateExpression)
     public final String varSetValue; // 15, "Alf" - text with value to set - as used in the set expression
 
-    public final String exceptedValue; // Expected value after the set as returns "print" command
+    public final String expectedValue; // Expected value after the set as returns "print" command
 
-    public final Class<? extends JPFInspectorException> exceptionType; // Expected exception which is thrown in case of the not passing test
+    private final Class<? extends JPFInspectorException> exceptionType; // Expected exception which is thrown in case of the not passing test
 
-    private final static String PREFFIX_STATE_EXPR = "#stackFrame[1]."; // When checked we are stopped in the break method.
+    private static final String PREFFIX_STATE_EXPR = "#stackFrame[0]."; // When checked we are stopped in the main testing method.
 
     public static TestInput createPassingTestPrefixVarName (String varName, String varValue) {
       return TestInput.createPassingTestPrefixVarName(varName, varValue, varValue);
@@ -93,16 +146,18 @@ public class LegacySimpleAssignmentsTest {
       return new TestInput(false, PREFFIX_STATE_EXPR + varName, PREFFIX_STATE_EXPR + varNameWithValue2Set, null, exceptionType);
     }
 
-    public TestInput (boolean passing, String varName, String varSetValue, String exceptedValue, Class<? extends JPFInspectorException> exceptionType) {
-      super();
+    public TestInput (boolean passing, String varName, String varSetValue, String expectedValue, Class<? extends JPFInspectorException> exceptionType) {
       this.passing = passing;
       this.varName = varName;
       this.varSetValue = varSetValue;
-      this.exceptedValue = exceptedValue;
+      this.expectedValue = expectedValue;
 
       this.exceptionType = exceptionType;
     }
 
+    public Class<? extends JPFInspectorException> getExceptionType() {
+      return exceptionType;
+    }
   }
 
   private static final TestInput[] testInputs = {
@@ -194,11 +249,11 @@ public class LegacySimpleAssignmentsTest {
                   .createFailingTestPrefixVarName("sa_field_short", Integer.valueOf(Short.MAX_VALUE + 1).toString(), JPFInspectorAssignmentOutOfRangeException.class),
           TestInput.createFailingTestPrefixVarName(
                   "sa_field_int",
-                  Long.valueOf(Long.valueOf(Integer.MIN_VALUE) - 1L).toString() + "l",
+                  Long.valueOf((long) Integer.MIN_VALUE - 1L).toString() + "l",
                   JPFInspectorAssignmentOutOfRangeException.class),
           TestInput.createFailingTestPrefixVarName(
                   "sa_field_int",
-                  Long.valueOf(Long.valueOf(Integer.MAX_VALUE) + 1L).toString() + "l",
+                  Long.valueOf((long) Integer.MAX_VALUE + 1L).toString() + "l",
                   JPFInspectorAssignmentOutOfRangeException.class),
 
           // Slot assignments tests

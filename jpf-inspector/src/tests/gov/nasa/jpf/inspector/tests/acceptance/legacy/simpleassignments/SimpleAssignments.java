@@ -86,6 +86,7 @@ public class SimpleAssignments {
             { "JPF-Shell" } };
 
 
+    /*
     System.out.println("sa_field_boolean=" + sa_field_boolean);
     System.out.println("sa_field_char=" + sa_field_char);
     System.out.println("sa_field_byte=" + sa_field_byte);
@@ -125,10 +126,11 @@ public class SimpleAssignments {
     System.out.println("sa_slot_double=" + sa_slot_double);
     System.out.println("sa_slot_string=" + sa_slot_string);
     System.out.println("sa_slot_Object=" + sa_slot_Object);
-
+*/
     // Important point here
     breakpoint();
 
+    /*
     System.out.println("sa_field_boolean=" + sa_field_boolean);
     System.out.println("sa_field_char=" + sa_field_char);
     System.out.println("sa_field_byte=" + sa_field_byte);
@@ -166,7 +168,7 @@ public class SimpleAssignments {
     System.out.println("sa_slot_double=" + sa_slot_double);
     System.out.println("sa_slot_string=" + sa_slot_string);
     System.out.println("sa_slot_Object=" + sa_slot_Object);
-
+*/
     // important point here
     breakpoint();
 
