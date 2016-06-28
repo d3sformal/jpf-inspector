@@ -5,8 +5,10 @@ import gov.nasa.jpf.inspector.frontends.swing.explorer.ExplorerNodeFactory;
 import gov.nasa.jpf.inspector.frontends.swing.explorer.ProgramStateTreeModel;
 import gov.nasa.jpf.inspector.server.programstate.StateReadableValue;
 import gov.nasa.jpf.inspector.server.programstate.StateWritableValue;
+import gov.nasa.jpf.vm.ClassInfo;
 import gov.nasa.jpf.vm.ElementInfo;
 import gov.nasa.jpf.vm.FieldInfo;
+import gov.nasa.jpf.vm.StaticElementInfo;
 
 import java.util.ArrayList;
 
@@ -23,16 +25,30 @@ public class ExplorerJavaObjectNode extends ExplorerComplexNode {
 
   @Override
   protected ArrayList<ExplorerNode> populateChildren() {
-    ArrayList<ExplorerNode> children = new ArrayList<>();
+    ArrayList<ExplorerNode> localChildren = new ArrayList<>();
     if (elementInfo == null) {
-      return children;
+      return localChildren;
     }
-    for (FieldInfo fieldInfo : elementInfo.getClassInfo().getInstanceFields()) {
+    ClassInfo myClass = elementInfo.getClassInfo();
+
+    // Instance fields
+    for (FieldInfo fieldInfo : myClass.getInstanceFields()) {
        String fieldInfoName = fieldInfo.getName();
        ExplorerNode child = ExplorerNodeFactory.createFromField(fieldInfoName, fieldInfo, elementInfo.getFields(), model, this);
-       children.add(child);
+       localChildren.add(child);
     }
-    return children;
+
+    // Static fields
+    int staticFieldCount = myClass.getNumberOfStaticFields();
+    for (int i = 0; i < staticFieldCount; i++) {
+      FieldInfo staticField = myClass.getStaticField(i);
+      String fieldInfoName = staticField.getName();
+      StaticElementInfo staticElementInfo = myClass.getStaticElementInfo();
+      ExplorerNode child = ExplorerNodeFactory.createFromStaticField(fieldInfoName, staticField, staticElementInfo.getFields(), model, this);
+      localChildren.add(child);
+    }
+
+    return localChildren;
   }
 
   @Override

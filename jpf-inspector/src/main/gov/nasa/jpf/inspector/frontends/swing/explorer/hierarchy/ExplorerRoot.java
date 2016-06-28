@@ -15,10 +15,8 @@ public class ExplorerRoot extends ExplorerComplexNode {
   public void initialize(ProgramStateTreeModel model) {
     children = new ArrayList<>();
     children.add(new ExplorerEntireHeapNode(model, this));
-    children.add(new ExplorerEntireHeapNode(model, this));
-    children.add(new ExplorerEntireHeapNode(model, this));
     children.add(new ExplorerAllThreadsNode(model, this));
-    children.add(new ExplorerAllThreadsNode(model, this));
+    children.add(new ExplorerStaticAreaNode(model, this));
   }
 
   @Override

@@ -5,6 +5,7 @@ import gov.nasa.jpf.inspector.frontends.swing.AuxiliaryInspectorPanel;
 import javax.swing.*;
 import javax.swing.event.TreeExpansionEvent;
 import javax.swing.event.TreeExpansionListener;
+import javax.swing.tree.TreePath;
 import java.awt.*;
 
 /**
@@ -21,7 +22,7 @@ public class ProgramStateExplorerPanel extends AuxiliaryInspectorPanel {
 
     setLayout(new BorderLayout());
     jTree = new JTree();
-    jTree.setRootVisible(true);
+    jTree.setRootVisible(false);
     jTree.setShowsRootHandles(true);
     jTree.setCellRenderer(new ProgramStateCellRenderer());
     jTree.addTreeExpansionListener(new TreeExpansionListener() {
@@ -47,6 +48,7 @@ public class ProgramStateExplorerPanel extends AuxiliaryInspectorPanel {
       model = new ProgramStateTreeModel(inspectorClient.getServer());
       jTree.setModel(model);
     }
+    // Here, we could automatically expand some path if that would be useful for users.
     firstTimeAddedToShell = false;
   }
 

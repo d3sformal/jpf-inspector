@@ -31,7 +31,8 @@ public class ExplorerNodeFactory {
 
   public static ExplorerNode createFromField(String name, FieldInfo fieldInfo, Fields fields,
                                              ProgramStateTreeModel model,  ExplorerJavaObjectNode parent) {
-    return createNode(Attachment.instanceField(name), fieldInfo.getValueObject(fields), fieldInfo.getTypeClassInfo(), model, parent);
+    return createNode(Attachment.instanceField(name), fieldInfo.getValueObject(fields), fieldInfo.getTypeClassInfo(),
+                      model, parent);
 
   }
   public static ExplorerNode createFromStackSlot(String name,
@@ -41,12 +42,20 @@ public class ExplorerNodeFactory {
                                                  ExplorerStackFrameNode parent) {
     String stackSlotType = localVarInfo.getType();
     ClassInfo stackSlotClass = ClassLoaderInfo.getCurrentResolvedClassInfo(stackSlotType);
-    return createNode(Attachment.stackSlot(name), stackFrame.getLocalValueObject(localVarInfo), stackSlotClass, model, parent);
+    return createNode(Attachment.stackSlot(name), stackFrame.getLocalValueObject(localVarInfo), stackSlotClass,
+                      model, parent);
   }
   public static ExplorerNode createFromArrayElement(int index,
                                                     ClassInfo componentClass,
                                                     Object componentValue,
                                                     ProgramStateTreeModel model,  ExplorerNode parent) {
     return createNode(Attachment.arrayElement(index), componentValue, componentClass, model, parent);
+  }
+
+  public static ExplorerNode createFromStaticField(String name, FieldInfo fieldInfo, Fields fields,
+                                                   ProgramStateTreeModel model, ExplorerJavaObjectNode parent) {
+    return createNode(Attachment.staticField(name), fieldInfo.getValueObject(fields), fieldInfo.getTypeClassInfo(),
+                      model, parent);
+
   }
 }

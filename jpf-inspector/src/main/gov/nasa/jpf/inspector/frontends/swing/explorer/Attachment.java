@@ -1,6 +1,12 @@
 package gov.nasa.jpf.inspector.frontends.swing.explorer;
 
-public class Attachment {
+/**
+ * Represents a way in which an Explorer node is connected to its parent.
+ *
+ * This consists of its relationship ({@link AttachmentKind}) and name with respect
+ * to the parent (for example, field name or array index).
+ */
+public final class Attachment {
   public final String name;
   public final AttachmentKind kind;
 
@@ -54,6 +60,24 @@ public class Attachment {
     return new Attachment("["+ index + "]", AttachmentKind.ARRAY_ELEMENT);
   }
 
+  public static Attachment staticAreaEntry(String typeName) {
+    return new Attachment(typeName, AttachmentKind.STATIC_AREA_ENTRY);
+  }
+
+  @Override
+  public int hashCode() {
+    int result = name.hashCode();
+    result = 31 * result + kind.hashCode();
+    return result;
+  }
+
+  public static Attachment staticField(String name) {
+    return new Attachment(name, AttachmentKind.STATIC_FIELD);
+  }
+
+  /**
+   * Represents the relationship of an Explorer node to its parent.
+   */
   public enum AttachmentKind {
     PARENTLESS,
     UNSPECIFIED,
@@ -63,6 +87,7 @@ public class Attachment {
     STACK_FRAME,
     TOPMOST_STACK_FRAME,
     STACK_SLOT,
+    STATIC_AREA_ENTRY,
     HEAP_ENTRY
   }
 }
