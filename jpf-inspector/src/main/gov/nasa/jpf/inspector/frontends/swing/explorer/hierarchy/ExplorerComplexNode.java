@@ -1,5 +1,6 @@
 package gov.nasa.jpf.inspector.frontends.swing.explorer.hierarchy;
 
+import gov.nasa.jpf.inspector.frontends.swing.explorer.Attachment;
 import gov.nasa.jpf.inspector.frontends.swing.explorer.ProgramStateTreeModel;
 
 import javax.swing.tree.TreeNode;
@@ -8,12 +9,10 @@ import java.util.Collections;
 import java.util.Enumeration;
 
 public abstract class ExplorerComplexNode extends ExplorerNode {
-  protected final ProgramStateTreeModel model;
   protected ArrayList<ExplorerNode> children;
 
-  protected ExplorerComplexNode(ProgramStateTreeModel model, ExplorerNode parent) {
-    super(parent);
-    this.model = model;
+  protected ExplorerComplexNode(ProgramStateTreeModel model, Attachment attachment, ExplorerNode parent) {
+    super(attachment, model, parent);
   }
 
   protected abstract ArrayList<ExplorerNode> populateChildren();
@@ -71,6 +70,7 @@ public abstract class ExplorerComplexNode extends ExplorerNode {
           } else {
             oldChildren.remove(oldIndex);
             model.nodesWereRemoved(this, new int[] { oldIndex }, new Object[] { oldChild});
+            System.out.println("NODE REMOVED.");
             //noinspection AssignmentToForLoopParameter
             newIndex--;
           }
@@ -123,5 +123,13 @@ public abstract class ExplorerComplexNode extends ExplorerNode {
     return Collections.enumeration(this.children);
   }
 
-
+  @Override
+  public void fireChanged() {
+    super.fireChanged();
+    if (children != null) {
+      for (ExplorerNode child : children) {
+        child.fireChanged();
+      }
+    }
+  }
 }

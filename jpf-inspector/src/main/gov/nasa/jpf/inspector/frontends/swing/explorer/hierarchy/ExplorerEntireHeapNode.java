@@ -11,7 +11,7 @@ public class ExplorerEntireHeapNode extends ExplorerComplexNode {
   ProgramStateTreeModel model;
 
   public ExplorerEntireHeapNode(ProgramStateTreeModel model, ExplorerNode parent) {
-      super(model, parent);
+      super(model, Attachment.irrelevant(), parent);
       this.model = model;
 
   }
@@ -26,10 +26,19 @@ public class ExplorerEntireHeapNode extends ExplorerComplexNode {
     ArrayList<ExplorerNode> heapList = new ArrayList<>(400);
     Heap heap = model.getVM().getHeap();
     for (ElementInfo elementInfo : heap) {
-      ExplorerJavaObject newObject = new ExplorerJavaObject(Attachment.heapEntry(elementInfo.getObjectRef()),
-                                                            elementInfo,
-                                                            model, this);
-      heapList.add(newObject);
+      if (elementInfo.getClassInfo().isArray()) {
+        ExplorerArrayNode newObject = new ExplorerArrayNode(Attachment.heapEntry(elementInfo.getObjectRef()),
+                                                                      elementInfo,
+                                                                      model, this);
+
+        heapList.add(newObject);
+      } else {
+        ExplorerJavaObjectNode newObject = new ExplorerJavaObjectNode(Attachment.heapEntry(elementInfo.getObjectRef()),
+                                                                      elementInfo,
+                                                                      model, this);
+
+        heapList.add(newObject);
+      }
     }
     return heapList;
   }

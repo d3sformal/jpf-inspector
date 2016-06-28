@@ -1,5 +1,6 @@
 package gov.nasa.jpf.inspector.frontends.swing.explorer.hierarchy;
 
+import gov.nasa.jpf.inspector.frontends.swing.explorer.Attachment;
 import gov.nasa.jpf.inspector.frontends.swing.explorer.ProgramStateTreeModel;
 
 import java.util.ArrayList;
@@ -7,7 +8,7 @@ import java.util.ArrayList;
 public class ExplorerRoot extends ExplorerComplexNode {
 
   public ExplorerRoot() {
-    super(null, null);
+    super(null, Attachment.irrelevant(), null);
   }
 
 

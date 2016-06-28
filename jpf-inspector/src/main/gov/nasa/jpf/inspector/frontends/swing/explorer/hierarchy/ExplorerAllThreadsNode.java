@@ -1,5 +1,6 @@
 package gov.nasa.jpf.inspector.frontends.swing.explorer.hierarchy;
 
+import gov.nasa.jpf.inspector.frontends.swing.explorer.Attachment;
 import gov.nasa.jpf.inspector.frontends.swing.explorer.ProgramStateTreeModel;
 import gov.nasa.jpf.vm.ThreadInfo;
 import gov.nasa.jpf.vm.ThreadList;
@@ -8,7 +9,7 @@ import java.util.ArrayList;
 
 public class ExplorerAllThreadsNode extends ExplorerComplexNode {
   protected ExplorerAllThreadsNode(ProgramStateTreeModel model, ExplorerNode parent) {
-    super(model, parent);
+    super(model, Attachment.irrelevant(), parent);
   }
 
   @Override

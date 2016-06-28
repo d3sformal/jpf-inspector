@@ -30,4 +30,18 @@ public class ProgramStateTreeModel extends DefaultTreeModel {
   public JPFInspectorBackEndInterface getServer() {
     return server;
   }
+
+  boolean wasConnectedLastTime = false;
+  public boolean isConnectedToVM() {
+    boolean nowPaused = server.isPaused();
+    if (nowPaused && !wasConnectedLastTime) {
+      wasConnectedLastTime = nowPaused;
+      update();
+    }
+    if (!nowPaused && wasConnectedLastTime) {
+      wasConnectedLastTime = nowPaused;
+      explorerRoot.fireChanged();
+    }
+    return server.isPaused();
+  }
 }

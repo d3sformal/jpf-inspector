@@ -1,17 +1,25 @@
 package gov.nasa.jpf.inspector.frontends.swing.explorer.hierarchy;
 
+import gov.nasa.jpf.inspector.frontends.swing.explorer.Attachment;
+import gov.nasa.jpf.inspector.frontends.swing.explorer.ProgramStateTreeModel;
+
+import javax.management.modelmbean.ModelMBean;
 import javax.swing.tree.TreeNode;
 import java.util.List;
 
 public abstract class ExplorerNode implements TreeNode {
   protected ExplorerNode parent;
+  protected Attachment attachment;
   protected boolean wronglyExpanded;
+  protected final ProgramStateTreeModel model;
 
   public boolean isWronglyExpanded() {
     return wronglyExpanded;
   }
 
-  protected ExplorerNode(ExplorerNode parent) {
+  protected ExplorerNode(Attachment attachment, ProgramStateTreeModel model, ExplorerNode parent) {
+    this.attachment = attachment;
+    this.model = model;
     this.parent = parent;
   }
 
@@ -31,4 +39,10 @@ public abstract class ExplorerNode implements TreeNode {
    * @param oldNode An older version of this node.
    */
   public abstract boolean isRecognizableAs(ExplorerNode oldNode);
+
+  public void fireChanged() {
+    if (this.model != null) {
+      this.model.nodesChanged(this.parent, new int[]{this.parent.getIndex(this)});
+    }
+  }
 }

@@ -17,7 +17,7 @@ public class Attachment {
     this.kind = kind;
   }
   public static Attachment name(String name) {
-    return new Attachment(name, AttachmentKind.NONE);
+    return new Attachment(name, AttachmentKind.UNSPECIFIED);
   }
   public static Attachment instanceField(String name) {
     return new Attachment(name, AttachmentKind.INSTANCE_FIELD);
@@ -42,13 +42,27 @@ public class Attachment {
     return new Attachment("#" + objectRef, AttachmentKind.HEAP_ENTRY);
   }
 
+  public static Attachment irrelevant() {
+    return new Attachment("this does not matter", AttachmentKind.UNSPECIFIED);
+  }
+
+  public static Attachment stackSlot(String name) {
+    return new Attachment(name, AttachmentKind.STACK_SLOT);
+  }
+
+  public static Attachment arrayElement(int index) {
+    return new Attachment("["+ index + "]", AttachmentKind.ARRAY_ELEMENT);
+  }
+
   public enum AttachmentKind {
-    NONE,
+    PARENTLESS,
+    UNSPECIFIED,
     INSTANCE_FIELD,
     STATIC_FIELD,
     ARRAY_ELEMENT,
     STACK_FRAME,
     TOPMOST_STACK_FRAME,
+    STACK_SLOT,
     HEAP_ENTRY
   }
 }

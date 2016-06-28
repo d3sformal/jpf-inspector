@@ -1,10 +1,12 @@
 package gov.nasa.jpf.inspector.frontends.swing.explorer.hierarchy;
 
+import gov.nasa.jpf.inspector.frontends.swing.explorer.ProgramStateTreeModel;
+
 public class ExplorerDebugLeafNode extends ExplorerLeafNode {
   private final String name;
 
-  public ExplorerDebugLeafNode(String name, ExplorerNode parent) {
-    super(parent);
+  public ExplorerDebugLeafNode(String name, ProgramStateTreeModel model, ExplorerNode parent) {
+    super(null, model, parent);
 
     this.name = name;
   }

@@ -1,40 +1,45 @@
 package gov.nasa.jpf.inspector.frontends.swing.explorer.hierarchy;
 
 import gov.nasa.jpf.inspector.frontends.swing.explorer.Attachment;
+import gov.nasa.jpf.inspector.frontends.swing.explorer.ExplorerNodeFactory;
 import gov.nasa.jpf.inspector.frontends.swing.explorer.ProgramStateTreeModel;
 import gov.nasa.jpf.inspector.server.choicegenerators.ChoiceGeneratorsManager;
 import gov.nasa.jpf.inspector.utils.InstructionWrapper;
+import gov.nasa.jpf.vm.LocalVarInfo;
 import gov.nasa.jpf.vm.StackFrame;
 import gov.nasa.jpf.vm.ThreadInfo;
 
 import java.util.ArrayList;
 
 public class ExplorerStackFrameNode extends ExplorerComplexNode {
-  private Attachment attachment;
   private final ThreadInfo parentThread;
   private StackFrame stackFrame;
-
-  private String shortFormDescription;
 
   protected ExplorerStackFrameNode(Attachment attachment,
                                    ThreadInfo parentThread,
                                    StackFrame stackFrame,
                                    ProgramStateTreeModel model, ExplorerNode parent) {
-    super(model, parent);
-    this.attachment = attachment;
+    super(model, attachment, parent);
     this.parentThread = parentThread;
     this.stackFrame = stackFrame;
   }
 
   @Override
   protected ArrayList<ExplorerNode> populateChildren() {
-    return new ArrayList<>();
+    int stackSlotCount = stackFrame.getTopPos() + 1; // Only valid slots -- copied from StateStackFrame
+    ArrayList<ExplorerNode> children = new ArrayList<>();
+    for (int i = 0; i < stackSlotCount; i++) {
+      LocalVarInfo localVarInfo = stackFrame.getLocalVarInfo(i);
+      if (localVarInfo == null) {
+        localVarInfo = new LocalVarInfo("???", "I", "I", 0, stackFrame.getMethodInfo().getLastInsn().getPosition(), i);
+      }
+      children.add(ExplorerNodeFactory.createFromStackSlot(localVarInfo.getName(), stackFrame, localVarInfo, model, this));
+    }
+    return children;
   }
 
   @Override
   public void updateComplexNodeFromJpf(ExplorerNode newVersion) {
-    shortFormDescription = toString();
-
     if (attachment.getKind() == Attachment.AttachmentKind.TOPMOST_STACK_FRAME) {
       if (parentThread.getCallerStackFrame(0) != stackFrame) {
         stackFrame = parentThread.getCallerStackFrame(0);
@@ -68,3 +73,4 @@ public class ExplorerStackFrameNode extends ExplorerComplexNode {
     return this.stackFrame == other.stackFrame;
   }
 }
+// TODO (elsewhere) allow arrays that are direct heap entries to be browsable

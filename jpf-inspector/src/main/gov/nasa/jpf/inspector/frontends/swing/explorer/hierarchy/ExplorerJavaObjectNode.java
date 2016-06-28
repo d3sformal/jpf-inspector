@@ -10,15 +10,13 @@ import gov.nasa.jpf.vm.FieldInfo;
 
 import java.util.ArrayList;
 
-public class ExplorerJavaObject extends ExplorerComplexNode {
-  private Attachment attachment;
-  private final ElementInfo elementInfo;
+public class ExplorerJavaObjectNode extends ExplorerComplexNode {
+  protected ElementInfo elementInfo;
 
-  public ExplorerJavaObject(Attachment attachment, ElementInfo elementInfo,
-                            ProgramStateTreeModel model, ExplorerNode parent) {
-    super(model, parent);
+  public ExplorerJavaObjectNode(Attachment attachment, ElementInfo elementInfo,
+                                ProgramStateTreeModel model, ExplorerNode parent) {
+    super(model, attachment, parent);
 
-    this.attachment = attachment;
     this.elementInfo = elementInfo;
   }
 
@@ -39,6 +37,11 @@ public class ExplorerJavaObject extends ExplorerComplexNode {
 
   @Override
   public void updateComplexNodeFromJpf(ExplorerNode newVersion) {
+    ElementInfo newElementInfo = ((ExplorerJavaObjectNode)newVersion).elementInfo;
+    if (newElementInfo != elementInfo) {
+      model.nodesChanged(parent, new int[]{parent.getIndex(this)});
+      elementInfo = newElementInfo;
+    }
   }
 
   @Override
@@ -47,14 +50,20 @@ public class ExplorerJavaObject extends ExplorerComplexNode {
       return attachment.getName() + ": " + null;
     }
     String typeName = StateWritableValue.demangleTypeName(elementInfo.getType());
-    String shortFormValue = StateReadableValue.elementInfo2String(elementInfo);
-    return attachment.getName() + " (" + typeName + ") = " + shortFormValue;
+    if (model.isConnectedToVM()) {
+      String shortFormValue = StateReadableValue.elementInfo2String(elementInfo);
+      return attachment.getName() + " (" + typeName + ") = " + shortFormValue;
+    } else {
+      this.wronglyExpanded = true;
+      return "(value forgotten)";
+    }
   }
 
   @Override
   public boolean isRecognizableAs(ExplorerNode oldNode) {
-    return oldNode instanceof ExplorerJavaObject &&
-            ((ExplorerJavaObject)oldNode).elementInfo == this.elementInfo &&
-            ((ExplorerJavaObject)oldNode).attachment == this.attachment;
+    return oldNode instanceof ExplorerJavaObjectNode &&
+            ((ExplorerJavaObjectNode)oldNode).attachment.equals(this.attachment);
   }
 }
+
+// TODO (elsewhere) Shell crashes when viewing explorer with active nodes while JVM has already powered down

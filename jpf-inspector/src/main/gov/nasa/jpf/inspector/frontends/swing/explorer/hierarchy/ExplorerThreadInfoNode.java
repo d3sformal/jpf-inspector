@@ -11,7 +11,7 @@ public class ExplorerThreadInfoNode extends ExplorerComplexNode {
   private final ThreadInfo threadInfo;
 
   public ExplorerThreadInfoNode(ThreadInfo threadInfo, ProgramStateTreeModel model, ExplorerAllThreadsNode parent) {
-    super(model, parent);
+    super(model, Attachment.irrelevant(), parent);
     this.threadInfo = threadInfo;
   }
 

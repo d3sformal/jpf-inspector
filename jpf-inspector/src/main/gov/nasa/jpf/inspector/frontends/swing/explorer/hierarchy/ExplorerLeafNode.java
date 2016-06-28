@@ -1,11 +1,14 @@
 package gov.nasa.jpf.inspector.frontends.swing.explorer.hierarchy;
 
+import gov.nasa.jpf.inspector.frontends.swing.explorer.Attachment;
+import gov.nasa.jpf.inspector.frontends.swing.explorer.ProgramStateTreeModel;
+
 import javax.swing.tree.TreeNode;
 import java.util.Enumeration;
 
 public abstract class ExplorerLeafNode extends ExplorerNode {
-  protected ExplorerLeafNode(ExplorerNode parent) {
-    super(parent);
+  protected ExplorerLeafNode(Attachment attachment, ProgramStateTreeModel model, ExplorerNode parent) {
+    super(attachment, model, parent);
   }
 
   @Override
