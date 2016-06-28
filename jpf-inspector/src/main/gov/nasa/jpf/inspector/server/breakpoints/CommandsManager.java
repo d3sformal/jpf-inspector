@@ -138,7 +138,7 @@ public class CommandsManager implements CommandsInterface {
   }
 
   @Override
-  public void backwardStep (StepType type) throws JPFInspectorGenericErrorException {
+  public void backstep(StepType type) throws JPFInspectorGenericErrorException {
     initialStopTest(true, "cannot execute backward step");
 
     // Instantiate the creator and discover the instruction to backtrack to
@@ -214,6 +214,11 @@ public class CommandsManager implements CommandsInterface {
     // 3. It starts forward execution until it reaches the breakpoint we just created.
     // 4. It calls this.notifyBackwardStep().
     // 4a. In which the normal notifications-mode Inspector listener is reactived and the backstepping ends.
+  }
+
+  @Override
+  public void backFieldAccessStep(String fieldNameExpression) {
+    // TODO do something
   }
 
   @Override

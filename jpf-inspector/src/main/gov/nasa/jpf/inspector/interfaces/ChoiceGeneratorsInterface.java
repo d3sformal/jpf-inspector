@@ -11,6 +11,18 @@ import java.util.List;
  * Interfaces related to choice generators and managing behavior of CG
  */
 public interface ChoiceGeneratorsInterface {
+
+  /**
+   * Changes a thread's suppression status.
+   *
+   * Note: This is called from the command execution thread.
+   *
+   * @param threadId The ID to which the suppression status should be linked.
+   * @param newStatus The new suppression status.
+   * @return Whether the status was changed or not.
+   */
+  ThreadEnablingResult changeThreadSuppressionStatus(int threadId, ThreadSuppressionStatus newStatus);
+
   /**
    * Represents types of {@link ChoiceGenerator} in JPF.
    */

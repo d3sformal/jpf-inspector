@@ -7,24 +7,24 @@ public interface ChoiceGeneratorState {
   /**
    * @return Gets type or represented {@link ChoiceGenerator}
    */
-  public ChoiceGeneratorsInterface.CGTypes getChoiceGeneratorType();
+  ChoiceGeneratorsInterface.CGTypes getChoiceGeneratorType();
   
   /**
    * @return Get {@link ChoiceGenerator#getId()} of represented CG
    */
-  public String getChoiceGeneratorID();
+  String getChoiceGeneratorID();
   
   /**
    * @return Gets list of all possible choices of given {@link ChoiceGenerator}
    */
-  public String[] getListOfChoices();
+  String[] getListOfChoices();
   
   /**
    * @return Gets index in the list {@link #getListOfChoices()} of choices which JPF schedules for next execution
    */
-  public int getNextChoicePlannedToUse();
+  int getNextChoicePlannedToUse();
   /**
    * @return Gets index in the list {@link #getListOfChoices()} of choice which were used the trace which were backward stepped by user. 
    */
-  public int getDefaultForwardThreadChoice();
+  int getDefaultForwardThreadChoice();
 }

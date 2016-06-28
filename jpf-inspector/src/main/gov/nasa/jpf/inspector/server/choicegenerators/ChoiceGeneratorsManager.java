@@ -24,6 +24,8 @@ import gov.nasa.jpf.inspector.interfaces.InspectorCallbacks;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorException;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorGenericErrorException;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorNoVMConnected;
+import gov.nasa.jpf.inspector.interfaces.ThreadEnablingResult;
+import gov.nasa.jpf.inspector.interfaces.ThreadSuppressionStatus;
 import gov.nasa.jpf.inspector.server.breakpoints.CommandsManager;
 import gov.nasa.jpf.inspector.server.breakpoints.DefaultForwardTraceManager;
 import gov.nasa.jpf.inspector.server.expression.InspectorState;
@@ -36,7 +38,9 @@ import gov.nasa.jpf.vm.*;
 
 import java.io.PrintStream;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Manages choice generators and used choices.
@@ -46,44 +50,51 @@ public class ChoiceGeneratorsManager implements ChoiceGeneratorsInterface, Choic
   @SuppressWarnings("FieldCanBeLocal") // IDEA bug
   private final PrintStream out;
 
-  private final CommandsManager cmdMgr;
+  private final CommandsManager commandsManager;
   private final StopHolder stopHolder;
   @SuppressWarnings("FieldCanBeLocal") // IDEA bug
   private final JPFInspector inspector;
-  private final InspectorCallbacks callBacks;
+  private final InspectorCallbacks serverCallbacks;
   private final DefaultForwardTraceManager forwardTrace;
-  private Boolean waitForChoice = false; // / Flag which specifies whether the JPF is stopped due to prompt with CG (to client)
+  /**
+   * Flag which specifies whether the JPF is stopped due to prompt with CG (to client)
+   */
+  private Boolean waitForChoice = false;
 
   private final CGNotificationSpecification[] cgNotifications;
+  /**
+   * Maintains a list of disabled and enabled threads. This list is manipulated using the commands "enable thread"
+   * and "disable thread". If a thread index it not in this map, it means the thread is enabled by default.
+   *
+   * This map also functions as a lock for itself, because it may be accessed from multiple threads.
+   */
+  private final Map<Integer, ThreadSuppressionStatus> suppressionStatusMap;
 
-  public ChoiceGeneratorsManager (JPFInspector inspector, InspectorCallbacks callBacks, CommandsManager cmdMgr, StopHolder stopHolder,
+  public ChoiceGeneratorsManager (JPFInspector inspector, InspectorCallbacks serverCallbacks,
+                                  CommandsManager commandsManager, StopHolder stopHolder,
                                   DefaultForwardTraceManager forwardTrace) {
-    // Internal tests
-
     this.inspector = inspector;
-    this.callBacks = callBacks;
-    this.cmdMgr = cmdMgr;
+    this.serverCallbacks = serverCallbacks;
+    this.commandsManager = commandsManager;
     this.stopHolder = stopHolder;
     this.forwardTrace = forwardTrace;
 
     this.out = this.inspector.getDebugPrintStream();
 
+    // At the beginning, all notifications are disabled.
     cgNotifications = new CGNotificationSpecification[CGMode.values().length * CGTypes.values().length];
-    disableAllNotifications();
-  }
-
-  private void disableAllNotifications () {
     for (CGTypes type : CGTypes.values()) {
       for (CGMode mode : CGMode.values()) {
         CGNotificationSpecification spec = new CGNotificationSpecification(type, mode, false);
         cgNotifications[getIndexCGNotificationSpecification(spec)] = spec;
       }
     }
+    suppressionStatusMap = new HashMap<>();
   }
 
   @Override
   public synchronized List<ChoiceGeneratorWrapper> getUsedChoiceGenerators (boolean wait) throws JPFInspectorException {
-    cmdMgr.initialStopTest(wait, "can't get choice generators");
+    commandsManager.initialStopTest(wait, "can't get choice generators");
 
     VM vm = stopHolder.getJVM();
     JPFInspectorNoVMConnected.checkVM(vm);
@@ -98,6 +109,29 @@ public class ChoiceGeneratorsManager implements ChoiceGeneratorsInterface, Choic
 
     // TODO it appears to me that we are forgotting to resume the VM here
     return result;
+  }
+
+  @Override
+  public ThreadEnablingResult changeThreadSuppressionStatus(int threadId, ThreadSuppressionStatus newStatus) {
+    synchronized (suppressionStatusMap) {
+      // If not yet present, add it.
+      if (!suppressionStatusMap.containsKey(threadId)) {
+        suppressionStatusMap.put(threadId, ThreadSuppressionStatus.SCHEDULE_AS_NORMAL);
+      }
+
+      // Old status
+      ThreadSuppressionStatus oldStatus = suppressionStatusMap.get(threadId);
+
+      // Change
+      suppressionStatusMap.put(threadId, newStatus);
+
+      // Notify the caller about the result
+      if (oldStatus == newStatus) {
+        return ThreadEnablingResult.THREAD_STATE_UNCHANGED;
+      } else {
+        return ThreadEnablingResult.THREAD_SUCCESSFULLY_CHANGED_STATE;
+      }
+    }
   }
 
   @Override
@@ -131,7 +165,7 @@ public class ChoiceGeneratorsManager implements ChoiceGeneratorsInterface, Choic
   }
 
   @Override
-  public void notifyChoiceGeneratorAdvance (ChoiceGenerator<?> cg, InspectorState inspState) {
+  public void notifyChoiceGeneratorAdvance (ChoiceGenerator<?> cg, InspectorState inspState)  {
     if (DEBUG) {
       out.println(this.getClass().getSimpleName() + ".notifyChoiceGeneratorAdvance( cg=" + cg + ", inspState=" + inspState + ")");
     }
@@ -180,23 +214,23 @@ public class ChoiceGeneratorsManager implements ChoiceGeneratorsInterface, Choic
     int hashCode = cg.hashCode();
 
     // TODO Gather default choice if exists
-    callBacks.notifyChoiceGeneratorNewChoice(cgType, cg.getId(), hashCode, choices, currentChoice, ChoiceGeneratorsInterface.NO_DEFAULT_CHOICE);
+    serverCallbacks.notifyChoiceGeneratorNewChoice(cgType, cg.getId(), hashCode, choices, currentChoice, ChoiceGeneratorsInterface.NO_DEFAULT_CHOICE);
 
     if (askChoice) {
-      callBacks.specifyChoiceToUse(totalChoices - 1);
+      serverCallbacks.specifyChoiceToUse(totalChoices - 1);
 
       waitForChoice = true;
       stopHolder.stopExecution(inspState);
       waitForChoice = false;
 
       Object genChoice = cg.getNextChoice();
-      callBacks.notifyUsedChoice(cgType, cg.getId(), hashCode, cg.getProcessedNumberOfChoices(), (genChoice != null ? genChoice.toString() : "null"));
+      serverCallbacks.notifyUsedChoice(cgType, cg.getId(), hashCode, cg.getProcessedNumberOfChoices(), (genChoice != null ? genChoice.toString() : "null"));
     }
   }
 
   @Override
   public void selectChoice (int selectedChoice) throws JPFInspectorGenericErrorException {
-    cmdMgr.initialStopTest(false, "'cg select' command can be called only if execution is stopped");
+    commandsManager.initialStopTest(false, "'cg select' command can be called only if execution is stopped");
     VM vm = stopHolder.getJVM();
     assert vm != null;
 

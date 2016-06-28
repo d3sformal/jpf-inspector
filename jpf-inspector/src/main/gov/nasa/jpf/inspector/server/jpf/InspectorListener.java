@@ -55,7 +55,8 @@ public class InspectorListener extends ListenerAdapter {
 
   private boolean finished = false; // Holds true if searchFinished was called
 
-  public InspectorListener (JPFInspector inspector, CommandsManager cmdMgr, BreakpointHandler bpMgr, ChoiceGeneratorNotifications cgNotify,
+  public InspectorListener (JPFInspector inspector, CommandsManager cmdMgr, BreakpointHandler bpMgr,
+                            ChoiceGeneratorNotifications cgNotify,
                             DefaultForwardTraceManager dftMgr, boolean searchMultipleError) {
     this.inspector = inspector;
     mode = new InspectorListenerModeNotifications(inspector, cmdMgr, bpMgr, cgNotify, dftMgr, searchMultipleError);
@@ -82,6 +83,17 @@ public class InspectorListener extends ListenerAdapter {
   public ListenerAdapter getCurrentMode () {
     return mode;
   }
+
+
+  @Override
+  public void searchFinished (Search search) {
+    finished = true;
+    inspector.notifyJPFFinished();
+    mode.searchFinished(search);
+  }
+
+
+  //--------------------- Remaining methods are merely forwarding method calls. --------------/
 
   @Override
   public void stateAdvanced (Search search) {
@@ -150,12 +162,6 @@ public class InspectorListener extends ListenerAdapter {
     mode.searchConstraintHit(search);
   }
 
-  @Override
-  public void searchFinished (Search search) {
-    finished = true;
-    inspector.notifyJPFFinished();
-    mode.searchFinished(search);
-  }
 
   @Override
   public void publishStart (Publisher publisher) {

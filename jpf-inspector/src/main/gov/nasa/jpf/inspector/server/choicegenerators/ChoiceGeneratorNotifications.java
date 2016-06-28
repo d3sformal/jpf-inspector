@@ -24,14 +24,16 @@ import gov.nasa.jpf.vm.ChoiceGenerator;
 import gov.nasa.jpf.vm.VM;
 import gov.nasa.jpf.vm.VMListener;
 
+/**
+ * This interface is only implemented by {@link ChoiceGeneratorsManager}. It is used by the JPF thread (via the JPF
+ * Inspector listener) to allow the Inspector to intercept choice genrators and print or make choices.
+ */
 public interface ChoiceGeneratorNotifications {
-
-  // TODO something fishy may be going on here
   /**
-   * JPF Calls {@link VMListener#choiceGeneratorAdvanced(VM, ChoiceGenerator)}
+   * Called only from {@link VMListener#choiceGeneratorAdvanced(VM, ChoiceGenerator)} by the JPF thread.
    * 
-   * @param cg Choice generator that should by advanced
-   * @param inspState Representation of the JPF inspector and its state if CG.advance() occurs.
+   * @param cg Choice generator that should be advanced.
+   * @param inspState Representation of the JPF inspector and its state when CG.advance() occurs.
    */
   void notifyChoiceGeneratorAdvance(ChoiceGenerator<?> cg, InspectorState inspState);
   

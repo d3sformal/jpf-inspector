@@ -20,7 +20,7 @@ import gov.nasa.jpf.vm.*;
  * determines the number of transitions that must be backtracked, passes the number to the silent InspectorListener
  * and then leaves scope to be garbaged collected.
  *
- * All of this happens inside the {@link CommandsManager#backwardStep(CommandsInterface.StepType)} method.
+ * All of this happens inside the {@link CommandsManager#backstep(CommandsInterface.StepType)} method.
  */
 public final class BackwardBreakpointCreator {
 

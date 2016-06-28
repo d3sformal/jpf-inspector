@@ -95,6 +95,8 @@ allKeyWordsWithoutCreateBPandHitCount returns [String text]
     | a=TOKEN_BACK_STEP_IN { $text = $a.text; }
     | a=TOKEN_BACK_STEP_OUT { $text = $a.text; }
     | a=TOKEN_BACK_STEP_TRANSITION { $text = $a.text; }
+    | a=TOKEN_BACK_FIELD_ACCESS { $text = $a.text; }
+    | a=TOKEN_BACK_BREAKPOINT_HIT { $text = $a.text; }
     | a=TOKEN_CB_STATE_CHANGE { $text = $a.text; }
     | a=TOKEN_CB_GENERIC_ERROR { $text = $a.text; }
     | a=TOKEN_CB_GENERIC_INFO { $text = $a.text; }
@@ -222,8 +224,12 @@ cmdSingleSteps returns [CmdSingleStepping value]
     { $value = new CmdSingleStepping(false, StepType.ST_STEP_IN,      $intValue.ctx != null ? $intValue.value : 1); }
     | TOKEN_BACK_STEP_OUT                         (WS intValue)?
     { $value = new CmdSingleStepping(false, StepType.ST_STEP_OUT,     $intValue.ctx != null ? $intValue.value : 1); }
-    | TOKEN_BACK_STEP_TRANSITION (WS? c=cgType)?  (WS intValue)?
-    { $value = CmdSingleStepping.createCmdSingleSteppingTransition(false, $c.ctx != null ? $c.cgsType : null, $intValue.ctx != null ? $intValue.value : 1); }
+    | TOKEN_BACK_STEP_TRANSITION (WS? c=cgType)?
+    { $value = CmdSingleStepping.createCmdSingleSteppingTransition(false, $c.ctx != null ? $c.cgsType : null, 1); }
+    | TOKEN_BACK_BREAKPOINT_HIT
+    { $value = CmdSingleStepping.createBackBreakpointHit(); }
+    | TOKEN_BACK_FIELD_ACCESS (WS? field=allTextNoWS)
+    { $value = CmdSingleStepping.createBackFieldAccess($field.expr); }
     ;
 
 
@@ -403,6 +409,8 @@ TOKEN_BACK_STEP_OVER : 'back_step_over' | 'bso' ;
 TOKEN_BACK_STEP_IN : 'back_step_in' | 'bsi' ;
 TOKEN_BACK_STEP_OUT : 'back_step_out' | 'bsout' ;
 TOKEN_BACK_STEP_TRANSITION : 'back_step_transition' | 'bst' ;
+TOKEN_BACK_BREAKPOINT_HIT : 'back_breakpoint_hit' | 'bbhit';
+TOKEN_BACK_FIELD_ACCESS : 'back_field_access' | 'bfa';
 
 // Callback-related keywords
 TOKEN_CB_STATE_CHANGE : 'callback_state_change' | 'cb_state_changed' ;

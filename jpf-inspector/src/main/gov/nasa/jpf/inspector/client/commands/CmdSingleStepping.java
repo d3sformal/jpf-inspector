@@ -40,36 +40,51 @@ public class CmdSingleStepping extends ClientCommand {
    */
   private final boolean forward;
   private final StepType stepType;
+  private String fieldNameExpression = null;
   /**
    * Number of times to execute this command.
    */
   private final int stepCount;
 
-  public static CmdSingleStepping createCmdSingleSteppingTransition (boolean forward, CGTypeSpec type, Integer repeatCnt) {
+  public static CmdSingleStepping createBackBreakpointHit() {
+    return new CmdSingleStepping(false, StepType.BACK_BREAKPOINT_HIT, 1);
+  }
+  public static CmdSingleStepping createBackFieldAccess(String fieldNameExpression) {
+    return new CmdSingleStepping(false, StepType.BACK_FIELD_ACCESS, 1, fieldNameExpression);
+  }
+
+  public static CmdSingleStepping createCmdSingleSteppingTransition(boolean forward, CGTypeSpec typeOrNull, Integer repeatCnt) {
+    assert repeatCnt == 1;
+    CGTypeSpec type = typeOrNull;
     // Set default value
     if (type == null) {
       type = CGTypeSpec.CGS_ALL;
     }
 
     switch (type) {
-    case CGS_ALL:
-      return new CmdSingleStepping(forward, StepType.ST_TRANSITION_ALL, repeatCnt);
-    case CGS_DATA:
-      return new CmdSingleStepping(forward, StepType.ST_TRANSITION_DATA, repeatCnt);
-    case CGS_SCHEDULING:
-      return new CmdSingleStepping(forward, StepType.ST_TRANSITION_SCHED, repeatCnt);
-    default:
-      throw new RuntimeException("Internal error - Unsupported " + type.getClass().getSimpleName() + " value - " + type);
+      case CGS_ALL:
+        return new CmdSingleStepping(forward, StepType.ST_TRANSITION_ALL, repeatCnt);
+      case CGS_DATA:
+        return new CmdSingleStepping(forward, StepType.ST_TRANSITION_DATA, repeatCnt);
+      case CGS_SCHEDULING:
+        return new CmdSingleStepping(forward, StepType.ST_TRANSITION_SCHED, repeatCnt);
+      default:
+        throw new RuntimeException(
+                "Internal error - Unsupported " + type.getClass().getSimpleName() + " value - " + type);
     }
   }
 
   public CmdSingleStepping (boolean forward, StepType stepType, Integer repeatCnt) {
+    this(forward, stepType, repeatCnt, null);
+  }
+  public CmdSingleStepping (boolean forward, StepType stepType, Integer repeatCnt, String fieldNameExpression) {
     assert stepType != null;
     assert repeatCnt != null;
 
     this.forward = forward;
     this.stepType = stepType;
     this.stepCount = repeatCnt;
+    this.fieldNameExpression = fieldNameExpression;
   }
 
   @Override
@@ -86,7 +101,11 @@ public class CmdSingleStepping extends ClientCommand {
         if (forward) {
           inspector.forwardStep(stepType);
         } else {
-          inspector.backwardStep(stepType);
+          if (fieldNameExpression != null) {
+            inspector.backFieldAccessStep(fieldNameExpression);
+          } else {
+            inspector.backstep(stepType);
+          }
         }
       } catch (JPFInspectorException e) {
         outStream.println(e.getMessage());

@@ -97,8 +97,13 @@ public class JPFInspectorParallel extends JPFInspector {
   }
 
   @Override
-  public void backwardStep (StepType type) throws JPFInspectorException {
-    commandsManager.backwardStep(type);
+  public void backstep(StepType type) throws JPFInspectorException {
+    commandsManager.backstep(type);
+  }
+
+  @Override
+  public void backFieldAccessStep(String fieldNameExpression) {
+    commandsManager.backFieldAccessStep(fieldNameExpression);
   }
 
   @Override
@@ -125,6 +130,11 @@ public class JPFInspectorParallel extends JPFInspector {
   @Override
   public ProgramStateEntry evaluateStateExpression (String expr) throws JPFInspectorException {
     return stateManager.evaluateStateExpression(expr);
+  }
+
+  @Override
+  public ThreadEnablingResult changeThreadSuppressionStatus(int threadId, ThreadSuppressionStatus newStatus) {
+    return choiceGeneratorsManager.changeThreadSuppressionStatus(threadId, newStatus);
   }
 
   @Override

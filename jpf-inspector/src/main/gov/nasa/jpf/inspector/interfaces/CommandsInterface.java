@@ -20,12 +20,7 @@
 package gov.nasa.jpf.inspector.interfaces;
 
 
-import gov.nasa.jpf.JPF;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorException;
-import gov.nasa.jpf.inspector.server.expression.InspectorState;
-import gov.nasa.jpf.inspector.server.jpf.JPFInspector;
-import gov.nasa.jpf.inspector.server.jpf.StopHolder;
-import gov.nasa.jpf.search.Search;
 
 /**
  * The server must implement this interface and the client uses it to start or stop execution and to do stepping.
@@ -59,29 +54,69 @@ public interface CommandsInterface {
    */
   void requestTermination();
 
+
   /**
    * Indicates how many instructions should be skipped when stepping.
    * Full details explaining what each transition step means are in the documentation of Commands.
    */
   enum StepType {
+    /**
+     * Step to any choice generator.
+     */
     ST_TRANSITION_ALL,
+    /**
+     * Step to a data choice generator.
+     */
     ST_TRANSITION_DATA,
+    /**
+     * Step to a scheduling choice generator.
+     */
     ST_TRANSITION_SCHED,
     /**
      * Step a single instruction.
      */
     ST_INSTRUCTION,
     /**
-     * Step until you are on the next line.
+     * Step until you are on another line.
      */
     ST_LINE,
+    /**
+     * Step into a called method.
+     */
     ST_STEP_IN,
-    ST_STEP_OUT
+    /**
+     * Step out of the current method.
+     */
+    ST_STEP_OUT,
+    /**
+     * Step back until you reach the last breakpoint that was hit.
+     */
+    BACK_BREAKPOINT_HIT,
+    /**
+     * Step back until you reach a field access instruction for the given field.
+     */
+    BACK_FIELD_ACCESS,
   }
 
 
+  /**
+   * Starts a forward step.
+   *
+   * @param type How far should we step forward.
+   */
   void forwardStep(StepType type) throws JPFInspectorException;
 
-  void backwardStep(StepType type) throws JPFInspectorException;
+  /**
+   * Starts a backwards step.
+   * @param type How far should we backtrack.
+   */
+  void backstep(StepType type) throws JPFInspectorException;
+
+
+  /**
+   * Starts a back_field_access backwards step.
+   * @param fieldNameExpression Field name, see documentation for back_field_access.
+   */
+  void backFieldAccessStep(String fieldNameExpression);
 
 }
