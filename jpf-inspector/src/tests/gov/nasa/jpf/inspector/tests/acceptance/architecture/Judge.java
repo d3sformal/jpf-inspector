@@ -26,6 +26,9 @@ public final class Judge {
       for (int i = 0; i < actualLines.length; i++) {
         String actualLine = simplify(actualLines[i]);
         String expectedLine = simplify(expectedLines[i]);
+        if (expectedLine.contains("IGNOREDLINE")) {
+          continue;
+        }
         if (!actualLine.equals(expectedLine)) {
           Assert.assertEquals(expected, actual);
         }

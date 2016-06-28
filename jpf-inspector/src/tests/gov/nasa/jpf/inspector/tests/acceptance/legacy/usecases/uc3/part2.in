@@ -7,6 +7,6 @@ print #heap[356]
 print #heap[356].#static
 run
 thread_pc
-set #heap[0x148].pred2_i1 = 20
+set #heap[356].pred2_i1 = 20
 run
 wait

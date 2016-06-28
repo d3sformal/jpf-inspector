@@ -1,6 +1,6 @@
 target example: Crossing
 
-
+// TODO verify the "JPF TERMINATING" output at the end of part1
 command sequence
 ----------------
 cr bp position = Crossing.java:190

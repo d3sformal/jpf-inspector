@@ -44,7 +44,7 @@ public class CmdSet extends ClientCommand {
     try {
       inspector.setValue(expression);
 
-      outStream.print("Value set successfully.");
+      outStream.println("Value set successfully.");
 
     } catch (JPFInspectorParsingErrorException e) {
       outStream.println(e.getMessage());

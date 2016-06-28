@@ -1,0 +1,6 @@
+create breakpoint it=any
+run
+wait
+del bp 1
+run
+finish

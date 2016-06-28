@@ -31,7 +31,8 @@ public class InspectorListenerModeNotifications extends ListenerAdapter {
    */
   private final boolean searchMultipleError;
 
-  public InspectorListenerModeNotifications (JPFInspector inspector, CommandsManager commandsManager, BreakpointHandler breakpointHandler, ChoiceGeneratorNotifications cgNotify,
+  public InspectorListenerModeNotifications (JPFInspector inspector, CommandsManager commandsManager,
+                                             BreakpointHandler breakpointHandler, ChoiceGeneratorNotifications cgNotify,
                                              DefaultForwardTraceManager dftMgr, boolean searchMultipleError) {
     this.inspector = inspector;
     this.commandsManager = commandsManager;

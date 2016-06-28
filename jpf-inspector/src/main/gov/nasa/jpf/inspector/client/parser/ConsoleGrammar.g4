@@ -106,6 +106,7 @@ allKeyWordsWithoutCreateBPandHitCount returns [String text]
     | a=TOKEN_HELLO { $text = $a.text; }
     | a=TOKEN_HELP { $text = $a.text; }
     | a=TOKEN_WAIT { $text = $a.text; }
+    | a=TOKEN_FINISH { $text = $a.text; }
     | a=TOKEN_TERMINATE { $text = $a.text; }
     | a=TOKEN_BOTH { $text = $a.text; }
     | a=TOKEN_CHANGE { $text = $a.text; }
@@ -140,6 +141,7 @@ cmdExecution returns [ClientCommand value]
   | TOKEN_QUIT             WS? { $value = new CmdQuit(); }
   | TOKEN_TERMINATE   { $value = new CmdTerminate(); }
   | TOKEN_WAIT   { $value = new CmdWait(); }
+  | TOKEN_FINISH   { $value = new CmdFinish(); }
   | TOKEN_SET        WS? allText      { $value = new CmdSet($allText.text); }
   ;
 cmdInformational returns [ClientCommand value]
@@ -415,6 +417,7 @@ TOKEN_CB_CG_USED_CHOICE : 'callback_choice_generator_used_choice' | 'cb_cg_used_
 TOKEN_HELLO : 'hello';
 TOKEN_HELP : 'help';
 TOKEN_WAIT : 'wait';
+TOKEN_FINISH : 'finish';
 TOKEN_TERMINATE : 'terminate';
 TOKEN_QUIT : 'quit' | 'exit';
 

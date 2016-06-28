@@ -1,13 +1,7 @@
 create breakpoint it=any
 change bp 1 state =  log
-#run
-#wait
+run
+finish
 disable bp 1
 run
-wait
-change bp 1 state = en
-run
-wait
-del bp 1
-run
-wait
+finish
