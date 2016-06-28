@@ -26,7 +26,10 @@ public class LegacyUseCasesTest extends CorrectOutputAbstractTest {
   @Parameters(name = "{0}")
   public static Iterable<?> data() {
      return Arrays.asList(
-             getCase("legacy/usecases/uc1", "part1")
+             getCase("legacy/usecases/uc1", "part1"),
+             getCase("legacy/usecases/uc2", "part1"),
+             getCase("legacy/usecases/uc3", "part2"),
+             getCase("legacy/usecases/ucjpfw", "usecase")
            //  getCase("legacy/usecases/uc1", "usecase")
            //  getCase("legacy/usecases/uc2", "usecase"),
            //  getCase("legacy/usecases/uc3", "usecase"),

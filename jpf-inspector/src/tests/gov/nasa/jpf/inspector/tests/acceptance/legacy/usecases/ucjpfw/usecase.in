@@ -1,18 +1,15 @@
-cr bp pos=*Racer.java:35
+cr bp pos=*Racer.java:36
 run
 print #thread[0].#stackFrame[0]
-print #heap[0x13d]
+print #heap[347]
 so
 so
 so
 bso
 bso
-set #heap[0x13d].d = 0
-print #heap[0x13d]
+set #heap[347].d = 0
+print #heap[347]
+# The following command terminates the verification becauses a property is violated
 so
-so
-so
+wait
 rec print
-
-# Record execution will be a little harder to test automatically.
-# But it should be doable.

@@ -4,7 +4,7 @@ target example: Print02
 command sequence
 ----------------
 cr bp mi=Predecessor2:callMePred2
-
+# cr bp mi=*Predecessor2:callMePred2
 run 
  - normal breakpoint hit
 	INFO: Breakpoint hit [ 1 :  state=BP_STATE_ENABLED hits=1 hitsTotal=1 method_invoke=Predecessor2:callMePred2]
@@ -27,7 +27,7 @@ bsi
 	INFO: SuT is stopped
 		SuT  (Thread=0) executes the Print02.java:69 - return  Predecessor1$InnerPred1.callMePred1I1(I)V source:     }
 
-print #thread[0].#stackFrame[0]
+print #thread[0].#stac kFrame[0]
  - local variables of current method and fields of the receiver object
 	Predecessor3$InnerPred3.callMePred1I1 - (in file Print02.java:147) -   public class InnerPred3 extends InnerPred2 {
 	Stack slots
@@ -56,7 +56,8 @@ print #thread[0].#stackFrame[0]
 so
  - executed instruction
 	INFO: SuT is stopped
-		SuT  (Thread=0) executes the Print02.java:147 - return  Predecessor3$InnerPred3.callMePred1I1(I)V source:   public class InnerPred3 extends InnerPred2 {
+		SuT  (Thread=0) executes the Print02.java:147 - return  Predecessor3$InnerPred3.callMePred1I1(I)V source:   public class InnerPred3 extends InnerPred2 {
+
 
 print #heap[0x148]
  - all fields of given object (including superclasses) and their values

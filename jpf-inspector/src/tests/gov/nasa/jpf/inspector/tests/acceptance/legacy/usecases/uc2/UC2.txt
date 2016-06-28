@@ -4,6 +4,7 @@ target example: Crossing
 command sequence
 ----------------
 cr bp position = Crossing.java:190
+### cr bp position = *Crossing.java:194
 
 run
  - breakpoint hit
@@ -15,6 +16,7 @@ so
    INFO: SuT is stopped
     SuT  (Thread=0) executes the Crossing.java:192 - aload 4 source:       p1.move();
 
+### We are moving through p2:
 print #thread[0].#stackFrame[1]
  - previous stack frame of the main thread (synthetic method)
   ???.[main] - (in file [VM]:0)
@@ -33,12 +35,18 @@ sins
  - load static field ("Torch.side")
   SuT  (Thread=0) executes the Crossing.java:148 - getstatic source:     if (side == Torch.side) {
 
+### An additional sins:
+### sins
+
 bso
  - executed instruction
   INFO: SuT is stopped
     SuT  (Thread=0) executes the Crossing.java:192 - aload 4 source:       p1.move();
 
+### Up until here, it works correctly.
+
 cr bp pos = Crossing.java:86
+### cr bp pos = *Crossing.java:90
 
 run
  - breakpoint hit
@@ -49,11 +57,16 @@ step_out
  - executed instruction
    INFO: SuT is stopped
     SuT  (Thread=0) executes the Crossing.java:101 - ireturn Bridge.Cross()I source:     return time;
+### ^ This used to display the LAST instruction, we are now displaying the NEXT instruction,
+### so it's okay to display the line of the outer method
 
 print #thread[1].#stackFrame[0]
  - this is right because there is no thread with index 1
   ERR: There is no thread with index 1
 
+# Now, "si" must be called three times because we were still at the previous, addition, line
+# si
+# si
 si
  - executed instruction
   INFO: SuT is stopped
@@ -63,6 +76,7 @@ print #thread[0].#stackFrame[0]
  - inside native method 
   gov.nasa.jpf.jvm.Verify.ignoreIf - (in file gov/nasa/jpf/jvm/Verify.java:-1)
 
+################# At this point, we fail. (We hit a breakpoint, also the backwards step fails.
 bsi
  - current position
   INFO: SuT is stopped

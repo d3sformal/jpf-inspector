@@ -1,33 +1,9 @@
-package gov.nasa.jpf.inspector.tests.acceptance.legacy.usecases.uc3;//
-// Copyright (C) 2010 United States Government as represented by the
-// Administrator of the National Aeronautics and Space Administration
-// (NASA).  All Rights Reserved.
-// 
-// This software is distributed under the NASA Open Source Agreement
-// (NOSA), version 1.3.  The NOSA has been approved by the Open Source
-// Initiative.  See the file NOSA-1.3-JPF at the top of the distribution
-// directory tree for the complete NOSA document.
-// 
-// THE SUBJECT SOFTWARE IS PROVIDED "AS IS" WITHOUT ANY WARRANTY OF ANY
-// KIND, EITHER EXPRESSED, IMPLIED, OR STATUTORY, INCLUDING, BUT NOT
-// LIMITED TO, ANY WARRANTY THAT THE SUBJECT SOFTWARE WILL CONFORM TO
-// SPECIFICATIONS, ANY IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR
-// A PARTICULAR PURPOSE, OR FREEDOM FROM INFRINGEMENT, ANY WARRANTY THAT
-// THE SUBJECT SOFTWARE WILL BE ERROR FREE, OR ANY WARRANTY THAT
-// DOCUMENTATION, IF PROVIDED, WILL CONFORM TO THE SUBJECT SOFTWARE.
-//  
+package gov.nasa.jpf.inspector.tests.acceptance.legacy.usecases.uc3;
 
-/**
- * This class is intended for manual testing of the print command.
- * 
- * @author Alf
- */
 @SuppressWarnings("ALL")
 public class Print02 {
 
   public static void main (String[] args) {
-    // See Predecessor3.InnerPred3.callMePred3I3() method
-    System.out.println("create breakpoint pos=Print02.java:181");
 
     Predecessor3 p = new Predecessor3();
     p.callMePred1(10000);
@@ -58,11 +34,6 @@ class Predecessor1 {
     private final int pred1i1_i3 = 1103;
     protected int pred1i1_i4 = 1104;
 
-    // Not possible
-    // static int pred1i1_i11 = 1111;
-    // static public int pred1i1_i12 = 1112;
-    // static private int pred1i1_i13 = 1113;
-    // static protected int pred1i1_i14 = 1114;
 
     public void callMePred1I1 (int a) {
       System.out.println("# Predecessor1.InnerPred1.callMePred1I1(" + a + ")");
@@ -152,8 +123,6 @@ class Predecessor3 extends Predecessor2 {
     public int pred3i3_i2 = 1302;
     private final int pred3i3_i3 = 1303;
     protected int pred3i3_i4 = 1304;
-
-    // int Predecessor3 = 10;
 
     @Override
     public long callMePred3I3 (int a) {
