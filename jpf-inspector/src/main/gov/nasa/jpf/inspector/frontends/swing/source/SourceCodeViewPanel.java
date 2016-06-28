@@ -39,6 +39,10 @@ public class SourceCodeViewPanel extends AuxiliaryInspectorPanel {
   protected void commandExecutedOrCallbackReceived() {
     if (inspectorClient.isPaused()) {
       Instruction currentInstruction = inspectorClient.getServer().getCurrentInstruction();
+      if (currentInstruction == null) {
+        activeInstructionChanged("???", null, -1, null);
+        return;
+      }
       MethodInfo methodInfo = currentInstruction.getMethodInfo();
       if (methodInfo == null) {
         activeInstructionChanged(currentInstruction.getMnemonic(), null, currentInstruction.getLineNumber(), null);
