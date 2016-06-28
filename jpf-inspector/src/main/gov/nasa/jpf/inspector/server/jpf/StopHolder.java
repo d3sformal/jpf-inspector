@@ -134,6 +134,7 @@ public class StopHolder {
   }
 
   /**
+   *
    * Blocks until the JPF (SuT) becomes stopped. If JPF is already stopped, then returns immediately.
    *
    * This method is thread-safe.
