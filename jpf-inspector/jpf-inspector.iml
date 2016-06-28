@@ -26,5 +26,18 @@
       </library>
     </orderEntry>
     <orderEntry type="module" module-name="core8" />
+    <orderEntry type="module-library">
+      <library name="rsyntaxtextarea-2.6.0">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/lib/rsyntaxtextarea-2.6.0-SNAPSHOT.jar!/" />
+        </CLASSES>
+        <JAVADOC>
+          <root url="jar://$MODULE_DIR$/lib/rsyntaxtextarea-2.6.0-SNAPSHOT-javadoc.jar!/" />
+        </JAVADOC>
+        <SOURCES>
+          <root url="jar://$MODULE_DIR$/lib/rsyntaxtextarea-2.6.0-SNAPSHOT-sources.jar!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
   </component>
 </module>
