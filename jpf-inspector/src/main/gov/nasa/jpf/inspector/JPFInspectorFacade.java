@@ -35,7 +35,7 @@ import java.io.PrintStream;
  * This class merely constructs those classes by calling constructors directly.
  */
 public final class JPFInspectorFacade {
-
+  // TODO (elsewhere): The "finish" command still works kinda funky
   /**
    * Creates an instance of the JPFInspector back-end (server part).
    * 
