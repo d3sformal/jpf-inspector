@@ -19,7 +19,6 @@
 
 package gov.nasa.jpf.inspector.server.breakpoints;
 
-import com.sun.javafx.scene.text.HitInfo;
 import gov.nasa.jpf.ListenerAdapter;
 import gov.nasa.jpf.inspector.interfaces.*;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorGenericErrorException;
@@ -32,6 +31,8 @@ import gov.nasa.jpf.inspector.server.expression.expressions.ExpressionBreakpoint
 import gov.nasa.jpf.inspector.server.jpf.InspectorListener;
 import gov.nasa.jpf.inspector.server.jpf.JPFInspector;
 import gov.nasa.jpf.inspector.server.jpf.StopHolder;
+import gov.nasa.jpf.vm.Instruction;
+import gov.nasa.jpf.vm.Step;
 import gov.nasa.jpf.vm.Transition;
 
 import java.util.ArrayList;
@@ -377,10 +378,17 @@ public class BreakpointHandler implements BreakPointManagerInterface {
       breakExecutionBeforeNextInstruction = false;
 
       if (rememberTheNextBreakpointToBreakExecution) {
+        Instruction upcomingInstruction = inspState.getVM().getInstruction();
         // Store the current position for back_breakpoint_hit purposes.
         inspState.getVM().updatePath();
         Transition currentTransition = inspState.getVM().getCurrentTransition();
-        lastBreakpointHitLocation = new BreakpointHitLocation(currentTransition, inspState.getVM().getInstruction());
+        int instructionsToSkip = 0;
+        for (Step step : currentTransition) {
+          if (step.getInstruction().equals(upcomingInstruction)) {
+            instructionsToSkip++;
+          }
+        }
+        lastBreakpointHitLocation = new BreakpointHitLocation(currentTransition, upcomingInstruction, instructionsToSkip);
         rememberTheNextBreakpointToBreakExecution = false;
       }
       // Now break.

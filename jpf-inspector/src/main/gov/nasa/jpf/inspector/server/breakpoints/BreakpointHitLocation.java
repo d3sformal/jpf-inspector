@@ -10,11 +10,13 @@ import gov.nasa.jpf.vm.Transition;
 public class BreakpointHitLocation {
   private final Transition transition;
   private final Instruction instruction;
+  private int numberOfSkippedInstructions;
 
-  public BreakpointHitLocation(Transition transition, Instruction instruction) {
+  public BreakpointHitLocation(Transition transition, Instruction instruction, int numberOfSkippedInstructions) {
 
     this.transition = transition;
     this.instruction = instruction;
+    this.numberOfSkippedInstructions = numberOfSkippedInstructions;
   }
 
   public Instruction getInstruction() {
@@ -23,5 +25,9 @@ public class BreakpointHitLocation {
 
   public Transition getTransition() {
     return transition;
+  }
+
+  public int getNumberOfSkippedInstructions() {
+    return numberOfSkippedInstructions;
   }
 }

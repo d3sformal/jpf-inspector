@@ -27,7 +27,6 @@ public final class BackwardBreakpointCreator {
 
   private final ExpressionBoolean breakpointHitCondition;
   private final int numberOfTransitionsToBacktrack;
-  private final Step targetStep;
 
   /**
    * Initializes a new instance of the {@link BackwardBreakpointCreator}.
@@ -42,8 +41,6 @@ public final class BackwardBreakpointCreator {
     assert step != null;
     assert numberOfTransitionsToBacktrack > 0;
 
-    this.targetStep = step;
-
     int stepToBreakOn = MethodInstructionBacktracker.howManySameInstructionStepsUpToStep(transition, step);
 
     this.breakpointHitCondition = new ExpressionBreakpointInstruction(transition.getThreadIndex(),
@@ -51,6 +48,18 @@ public final class BackwardBreakpointCreator {
                                                                       stepToBreakOn);
     this.numberOfTransitionsToBacktrack = numberOfTransitionsToBacktrack;
 
+  }
+
+  public BackwardBreakpointCreator(Transition transition, Instruction instruction, int numberOfSkippedInstructions, int descendHowManyTransitions) {
+    assert transition != null;
+    assert instruction != null;
+    assert numberOfSkippedInstructions >= 0;
+    assert descendHowManyTransitions >= 1;
+
+    this.numberOfTransitionsToBacktrack = descendHowManyTransitions;
+    this.breakpointHitCondition = new ExpressionBreakpointInstruction(transition.getThreadIndex(),
+                                                                     instruction,
+                                                                     numberOfSkippedInstructions + 1);
   }
 
   /**
@@ -300,18 +309,24 @@ public final class BackwardBreakpointCreator {
     return vm.getPath();
   }
 
-  /**
-   * Gets the step to which we should backtrack.
-   */
-  public Step getTargetStep() {
-    return targetStep;
-  }
-
   public static BackwardBreakpointCreator getBackBreakpointHit(BreakpointHitLocation lastBreakpointHitLocation, InspectorState inspState) throws JPFInspectorGenericErrorException {
     if (lastBreakpointHitLocation == null) {
       throw new JPFInspectorGenericErrorException("No breakpoint was yet hit.");
     }
-    return null;
+    inspState.getVM().updatePath();
+    Path path = inspState.getVM().getPath();
+    int targetIndex = 0;
+    for (Transition transition : path) {
+      if (transition.equals(lastBreakpointHitLocation.getTransition())) {
+        break;
+      }
+      targetIndex++;
+    }
+    int descendHowManyTransitions = path.size() - targetIndex;
+    if (descendHowManyTransitions <= 0) {
+      throw new JPFInspectorGenericErrorException("The last breakpoint was not hit in a transition in the current transition path.");
+    }
+    return new BackwardBreakpointCreator(lastBreakpointHitLocation.getTransition(), lastBreakpointHitLocation.getInstruction(), lastBreakpointHitLocation.getNumberOfSkippedInstructions(), descendHowManyTransitions);
   }
 
   public static BackwardBreakpointCreator getBackwardStepTransition(InspectorState inspState, CommandsInterface.StepType type) throws JPFInspectorGenericErrorException {
