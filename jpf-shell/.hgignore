@@ -7,3 +7,5 @@ doc/*
 *.class
 *~
 *.orig
+local.properties
+jpf-shell.iml
