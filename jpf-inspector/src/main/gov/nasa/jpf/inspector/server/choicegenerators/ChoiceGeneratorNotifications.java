@@ -31,10 +31,11 @@ import gov.nasa.jpf.vm.VMListener;
 public interface ChoiceGeneratorNotifications {
   /**
    * Called only from {@link VMListener#choiceGeneratorAdvanced(VM, ChoiceGenerator)} by the JPF thread.
-   * 
+   *
    * @param cg Choice generator that should be advanced.
+   * @param vm The VM.
    * @param inspState Representation of the JPF inspector and its state when CG.advance() occurs.
    */
-  void notifyChoiceGeneratorAdvance(ChoiceGenerator<?> cg, InspectorState inspState);
+  void notifyChoiceGeneratorAdvance(ChoiceGenerator<?> cg, VM vm, InspectorState inspState);
   
 }

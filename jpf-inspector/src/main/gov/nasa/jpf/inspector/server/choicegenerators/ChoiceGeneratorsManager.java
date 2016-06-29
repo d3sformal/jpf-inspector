@@ -165,7 +165,7 @@ public class ChoiceGeneratorsManager implements ChoiceGeneratorsInterface, Choic
   }
 
   @Override
-  public void notifyChoiceGeneratorAdvance (ChoiceGenerator<?> cg, InspectorState inspState)  {
+  public void notifyChoiceGeneratorAdvance(ChoiceGenerator<?> cg, VM vm, InspectorState inspState)  {
     if (DEBUG) {
       out.println(this.getClass().getSimpleName() + ".notifyChoiceGeneratorAdvance( cg=" + cg + ", inspState=" + inspState + ")");
     }
@@ -186,22 +186,18 @@ public class ChoiceGeneratorsManager implements ChoiceGeneratorsInterface, Choic
         out.println(this.getClass().getSimpleName() + ".notifyChoiceGeneratorAdvance - using default choice ... dftChoice=" + dftChoice + ", cg=" + cg);
       }
     }
-
-    // Check whether send notification to client
-    boolean printChoice = cgNotifications[getIndexCGNotificationSpecification(cgType, CGMode.CG_MODE_PRINT)].isNotificationEnabled();
-    boolean askChoice = cgNotifications[getIndexCGNotificationSpecification(cgType, CGMode.CG_MODE_ASK)].isNotificationEnabled();
-    if (printChoice == false && askChoice == false) {
-      return; // No notification are selected
-    }
+    // Remember the current choice
+    int currentChoice = cg.getProcessedNumberOfChoices() - 1;
 
     // Obtain all possible choices
-    int currentChoice = cg.getProcessedNumberOfChoices() - 1;
     cg.reset();
     int totalChoices = cg.getTotalNumberOfChoices();
     String[] choices = new String[totalChoices];
+    Object[] choiceObjects = new Object[totalChoices];
     for (int i = 0; i < totalChoices; i++) {
       cg.advance();
       Object genChoice = cg.getNextChoice();
+      choiceObjects[i] = genChoice;
       choices[i] = (genChoice != null ? genChoice.toString() : "null");
     }
 
@@ -210,6 +206,37 @@ public class ChoiceGeneratorsManager implements ChoiceGeneratorsInterface, Choic
     for (int i = 0; i <= currentChoice; i++) {
       cg.advance();
     }
+
+    //out.println("Before: " + cg.getProcessedNumberOfChoices() + ", total: " + cg.getTotalNumberOfChoices());
+    if (cgType == CGTypes.CG_TYPE_SCHEDULING) {
+      // Skip disabled threads
+      for (int i = currentChoice; i < cg.getTotalNumberOfChoices(); i++) {
+        ThreadInfo threadInfo = (ThreadInfo)choiceObjects[i];
+        int targetId = threadInfo.getId();
+        if (isThreadDisabled(targetId)) {
+          out.println("Ignoring disabled thread " + targetId + ".");
+          cg.advance();
+          currentChoice++;
+        } else {
+          break;
+        }
+      }
+      //out.println("After: " + cg.getProcessedNumberOfChoices() + ", total: " + cg.getTotalNumberOfChoices());
+
+      if (currentChoice >= choices.length) {
+        // The fact that the thread was disabled exhausted this choice generator.
+        vm.ignoreState();
+      }
+    }
+
+    // Check whether send notification to client
+    boolean printChoice = cgNotifications[getIndexCGNotificationSpecification(cgType, CGMode.CG_MODE_PRINT)].isNotificationEnabled();
+    boolean askChoice = cgNotifications[getIndexCGNotificationSpecification(cgType, CGMode.CG_MODE_ASK)].isNotificationEnabled();
+    if (printChoice == false && askChoice == false) {
+      return; // No notification are selected
+    }
+
+
 
     int hashCode = cg.hashCode();
 
@@ -226,6 +253,11 @@ public class ChoiceGeneratorsManager implements ChoiceGeneratorsInterface, Choic
       Object genChoice = cg.getNextChoice();
       serverCallbacks.notifyUsedChoice(cgType, cg.getId(), hashCode, cg.getProcessedNumberOfChoices(), (genChoice != null ? genChoice.toString() : "null"));
     }
+  }
+
+  private boolean isThreadDisabled(int targetId) {
+    return suppressionStatusMap.containsKey(targetId) &&
+            suppressionStatusMap.get(targetId) == ThreadSuppressionStatus.DO_NOT_SCHEDULE;
   }
 
   @Override

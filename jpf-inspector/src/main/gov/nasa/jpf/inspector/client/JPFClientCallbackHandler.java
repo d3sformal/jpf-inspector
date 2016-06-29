@@ -201,6 +201,9 @@ public class JPFClientCallbackHandler implements InspectorCallbacks {
       result.append(choices[i]);
       result.append('\n');
     }
+    if (nextChoice == choices.length) {
+      result.append("\t > [exhausted]\n");
+    }
     out.print(result.toString());
     lastCallback = CallbackKind.CB_CG_NEW_CHOICE;
     callbackReceived();

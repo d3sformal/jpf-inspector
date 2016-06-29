@@ -64,13 +64,14 @@ print #thread[1].#stackFrame[0]
  - this is right because there is no thread with index 1
   ERR: There is no thread with index 1
 
-# Now, "si" must be called three times because we were still at the previous, addition, line
-# si
-# si
+# Now, "so" must be called twice because we were still at the previous, addition, line
+# so
+# so
 si
  - executed instruction
   INFO: SuT is stopped
     SuT  (Thread=0) executes the Crossing.java:203 - invokestatic gov.nasa.jpf.jvm.Verify.ignoreIf(Z)V source:       Verify.ignoreIf(total > 17); //with this DFS will also find error
+# The above is different, which is ok, because of what we display now
 
 print #thread[0].#stackFrame[0]
  - inside native method 

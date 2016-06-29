@@ -51,7 +51,7 @@ public class DiningPhil {
 
   public static void main(String[] args) {
 
-    int n = Verify.getInt(10,200);
+    int n = N;
 
     Verify.beginAtomic();
     Fork[] forks = new Fork[N];

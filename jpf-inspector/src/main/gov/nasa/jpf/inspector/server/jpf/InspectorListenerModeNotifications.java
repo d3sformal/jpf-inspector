@@ -195,7 +195,7 @@ public class InspectorListenerModeNotifications extends ListenerAdapter {
               + currentCG.getProcessedNumberOfChoices());
     }
     inspectorState.notifyListenerMethodCall(ListenerMethod.LM_CHOICE_GENERATOR_ADVANCED, vm);
-    cgNotify.notifyChoiceGeneratorAdvance(currentCG, inspectorState);
+    cgNotify.notifyChoiceGeneratorAdvance(currentCG, vm, inspectorState);
     breakpointHandler.checkBreakpoints(inspectorState);
 
   }

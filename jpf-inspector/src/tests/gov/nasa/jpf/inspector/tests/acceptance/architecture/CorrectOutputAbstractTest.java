@@ -10,12 +10,14 @@ import org.junit.Assert;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.TimeoutException;
 
+/**
+ * Tests deriving from this class run the Inspector using the command line shell, and compare its console output
+ * to an expected-output file.
+ */
 public abstract class CorrectOutputAbstractTest {
   public static final String BASEFOLDER = "jpf-inspector/src/tests/gov/nasa/jpf/inspector/tests/acceptance/";
-  protected CorrectOutputTestCase testCase;
+  private CorrectOutputTestCase testCase;
 
   public CorrectOutputAbstractTest(CorrectOutputTestCase testCase) {
     this.testCase = testCase;
@@ -30,11 +32,11 @@ public abstract class CorrectOutputAbstractTest {
     );
   }
 
-  protected static String readAllFile(String filename) {
+  private static String readAllFile(String filename) {
     // http://stackoverflow.com/a/10176143/1580088
-    File f = new File(filename);
+    File file = new File(filename);
     try {
-      byte[] bytes = Files.readAllBytes(f.toPath());
+      byte[] bytes = Files.readAllBytes(file.toPath());
       return new String(bytes,"UTF-8");
     } catch (IOException e) {
       e.printStackTrace();
@@ -60,7 +62,7 @@ public abstract class CorrectOutputAbstractTest {
     try {
       inputStream = new FileInputStream(inputFile);
     } catch (FileNotFoundException e) {
-      Assert.fail("Input file was not found.");
+      Assert.fail("Input file (" + inputFile + ") was not found.");
     }
     ByteArrayOutputStream baos = new ByteArrayOutputStream();
     PrintStream printStream = new PrintStream(baos);

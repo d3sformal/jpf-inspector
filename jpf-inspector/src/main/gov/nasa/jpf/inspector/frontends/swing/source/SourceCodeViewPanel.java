@@ -31,7 +31,7 @@ public class SourceCodeViewPanel extends AuxiliaryInspectorPanel {
     textArea = new RSyntaxTextArea();
     textArea.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_JAVA);
     textArea.setCodeFoldingEnabled(true);
-    textArea.setEnabled(false);
+    textArea.setEnabled(true);
     RTextScrollPane scrollPane = new RTextScrollPane(textArea);
     scrollPane.setIconRowHeaderEnabled(true);
     add(scrollPane);

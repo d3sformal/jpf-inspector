@@ -1,0 +1,7 @@
+disable thread 1
+
+create breakpoint property_violated
+
+run
+
+finish
