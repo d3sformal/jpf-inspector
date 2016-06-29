@@ -133,6 +133,10 @@ public class CmdSingleStepping extends ClientCommand {
     }
 
     switch (stepType) {
+      case BACK_BREAKPOINT_HIT:
+        return "back_breakpoint_hit";
+      case BACK_FIELD_ACCESS:
+        return "back_field_access " + fieldNameExpression;
     case ST_INSTRUCTION:
       return optionalDirection + "step_instruction" + optionalCount;
     case ST_LINE:

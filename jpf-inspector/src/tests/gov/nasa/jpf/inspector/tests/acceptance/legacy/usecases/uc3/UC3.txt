@@ -113,6 +113,8 @@ run
  - correct: no breakpoint hit
 	INFO: JPF Terminating
 
+########################################## PART 2
+
 run
  - new run and breakpoint hit
 	INFO: JPF created and connected, SuT is started

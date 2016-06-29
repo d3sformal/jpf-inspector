@@ -102,7 +102,7 @@ public class JPFInspectorParallel extends JPFInspector {
   }
 
   @Override
-  public void backFieldAccessStep(String fieldNameExpression) {
+  public void backFieldAccessStep(String fieldNameExpression) throws JPFInspectorGenericErrorException {
     commandsManager.backFieldAccessStep(fieldNameExpression);
   }
 

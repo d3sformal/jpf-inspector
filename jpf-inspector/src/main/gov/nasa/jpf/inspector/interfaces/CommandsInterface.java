@@ -21,6 +21,7 @@ package gov.nasa.jpf.inspector.interfaces;
 
 
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorException;
+import gov.nasa.jpf.inspector.exceptions.JPFInspectorGenericErrorException;
 
 /**
  * The server must implement this interface and the client uses it to start or stop execution and to do stepping.
@@ -117,6 +118,6 @@ public interface CommandsInterface {
    * Starts a back_field_access backwards step.
    * @param fieldNameExpression Field name, see documentation for back_field_access.
    */
-  void backFieldAccessStep(String fieldNameExpression);
+  void backFieldAccessStep(String fieldNameExpression) throws JPFInspectorGenericErrorException;
 
 }

@@ -7,6 +7,7 @@ import gov.nasa.jpf.inspector.interfaces.BreakpointStatus;
 import gov.nasa.jpf.inspector.interfaces.CommandsInterface;
 import gov.nasa.jpf.inspector.interfaces.InstructionPosition;
 import gov.nasa.jpf.inspector.server.breakpoints.BreakpointHandler;
+import gov.nasa.jpf.inspector.server.breakpoints.BreakpointHitLocation;
 import gov.nasa.jpf.inspector.server.breakpoints.CommandsManager;
 import gov.nasa.jpf.inspector.server.breakpoints.InstructionPositionImpl;
 import gov.nasa.jpf.inspector.server.expression.ExpressionBoolean;
@@ -304,5 +305,21 @@ public final class BackwardBreakpointCreator {
    */
   public Step getTargetStep() {
     return targetStep;
+  }
+
+  public static BackwardBreakpointCreator getBackBreakpointHit(BreakpointHitLocation lastBreakpointHitLocation, InspectorState inspState) throws JPFInspectorGenericErrorException {
+    if (lastBreakpointHitLocation == null) {
+      throw new JPFInspectorGenericErrorException("No breakpoint was yet hit.");
+    }
+    return null;
+  }
+
+  public static BackwardBreakpointCreator getBackwardStepTransition(InspectorState inspState, CommandsInterface.StepType type) throws JPFInspectorGenericErrorException {
+    throw new JPFInspectorGenericErrorException("Not yet implemented.");
+  }
+
+  public static BackwardBreakpointCreator getBackwardFieldAccess(String fieldNameExpression, InspectorState inspectorState) throws JPFInspectorGenericErrorException {
+
+    throw new JPFInspectorGenericErrorException("Not yet implemented.");
   }
 }

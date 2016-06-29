@@ -145,11 +145,13 @@ public class CommandsManager implements CommandsInterface {
     InspectorState inspState = stopHolder.getInspectorState();
     BackwardBreakpointCreator bbc;
     if (type == StepType.ST_TRANSITION_DATA) {
-      throw new RuntimeException("Not yet implemented.");
+      bbc = BackwardBreakpointCreator.getBackwardStepTransition(inspState, type);
     } else if (type == StepType.ST_TRANSITION_SCHED) {
-      throw new RuntimeException("Not yet implemented.");
+      bbc = BackwardBreakpointCreator.getBackwardStepTransition(inspState, type);
     } else if (type == StepType.ST_TRANSITION_ALL) {
-      throw new RuntimeException("Not yet implemented.");
+      bbc = BackwardBreakpointCreator.getBackwardStepTransition(inspState, type);
+    } else if (type == StepType.BACK_BREAKPOINT_HIT) {
+      bbc = BackwardBreakpointCreator.getBackBreakpointHit(breakpointHandler.getLastBreakpointHitLocation(), inspState);
     } else if (type == StepType.ST_INSTRUCTION) {
       bbc = BackwardBreakpointCreator.getBackwardStepInstruction(inspState);
     } else if (type == StepType.ST_LINE) {
@@ -165,12 +167,12 @@ public class CommandsManager implements CommandsInterface {
       throw new JPFInspectorGenericErrorException(
               "Backwards step not possible (there is no appropriate step left for this thread to backtrack to).");
     }
-    if (bbc.getTargetStep().getInstruction().getMethodInfo().isSynthetic()) {
-      throw new JPFInspectorGenericErrorException(
-              "It is not possible to backtrack into synthetic methods.");
-    }
 
+    createBackwardsBreakpointAndResumeExecution(inspState, bbc);
 
+  }
+
+  private void createBackwardsBreakpointAndResumeExecution(InspectorState inspState, BackwardBreakpointCreator bbc) throws JPFInspectorGenericErrorException {
     // Create the breakpoint on that specific instruction
     int bpID = bbc.createBreakpoint(breakpointHandler);
     BreakpointStatus breakpointStatus = breakpointHandler.getBreakpoint(bpID);
@@ -217,8 +219,14 @@ public class CommandsManager implements CommandsInterface {
   }
 
   @Override
-  public void backFieldAccessStep(String fieldNameExpression) {
-    // TODO do something
+  public void backFieldAccessStep(String fieldNameExpression) throws JPFInspectorGenericErrorException {
+    BackwardBreakpointCreator  bbc = BackwardBreakpointCreator.getBackwardFieldAccess(fieldNameExpression, stopHolder.getInspectorState());
+
+    if (bbc == null) {
+      throw new JPFInspectorGenericErrorException(
+              "Field-access backtracking not possible (there is no appropriate step left for this thread to backtrack to).");
+    }
+    createBackwardsBreakpointAndResumeExecution(stopHolder.getInspectorState(), bbc);
   }
 
   @Override

@@ -19,6 +19,7 @@
 
 package gov.nasa.jpf.inspector.server.breakpoints;
 
+import com.sun.javafx.scene.text.HitInfo;
 import gov.nasa.jpf.ListenerAdapter;
 import gov.nasa.jpf.inspector.interfaces.*;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorGenericErrorException;
@@ -31,6 +32,7 @@ import gov.nasa.jpf.inspector.server.expression.expressions.ExpressionBreakpoint
 import gov.nasa.jpf.inspector.server.jpf.InspectorListener;
 import gov.nasa.jpf.inspector.server.jpf.JPFInspector;
 import gov.nasa.jpf.inspector.server.jpf.StopHolder;
+import gov.nasa.jpf.vm.Transition;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -62,12 +64,14 @@ public class BreakpointHandler implements BreakPointManagerInterface {
    * This field is only accessed from the JPF thread.
    */
   private boolean breakExecutionBeforeNextInstruction = false;
+  private boolean rememberTheNextBreakpointToBreakExecution = false;
 
   private final Stack<BreakpointsMemento> bpMementos;
 
   protected final JPFInspector inspector;
   private final InspectorCallbacks serverCallbacks;
   private final StopHolder stopHolder;
+  private BreakpointHitLocation lastBreakpointHitLocation = null;
   /**
    * Used to parse hit condition expressions from clients
    */
@@ -261,15 +265,19 @@ public class BreakpointHandler implements BreakPointManagerInterface {
   /**
    * Checks whether any breakpoints were hit by the last step and therefore execution should be suspended.
    * @param inspState Common state of the Inspector and SuT
-   * @return true if any Breakpoint hit
-   * 
+   *
    * Note: Executed by the JPF thread.
    */
   public void checkBreakpoints (InspectorState inspState) {
     boolean bpHit = false;
+    boolean wasAtLeastOneNonInternal = false;
     synchronized (breakpoints) {
       for (InternalBreakpointHolder bp : breakpoints.values()) {
-        bpHit |= bp.evaluateBreakpoint(inspState);
+        boolean hit = bp.evaluateBreakpoint(inspState);
+        if (hit && bp.isUserBreakpoint()) {
+          wasAtLeastOneNonInternal = true;
+        }
+        bpHit |= hit;
       }
 
       if (bpHit) {
@@ -279,6 +287,9 @@ public class BreakpointHandler implements BreakPointManagerInterface {
 
     if (bpHit) {
       breakExecutionBeforeNextInstruction = true;
+      if (wasAtLeastOneNonInternal) {
+        this.rememberTheNextBreakpointToBreakExecution = true;
+      }
     }
   }
 
@@ -364,8 +375,26 @@ public class BreakpointHandler implements BreakPointManagerInterface {
   public void breakIfBreakScheduled(InspectorState inspState) {
     if (breakExecutionBeforeNextInstruction) {
       breakExecutionBeforeNextInstruction = false;
+
+      if (rememberTheNextBreakpointToBreakExecution) {
+        // Store the current position for back_breakpoint_hit purposes.
+        inspState.getVM().updatePath();
+        Transition currentTransition = inspState.getVM().getCurrentTransition();
+        lastBreakpointHitLocation = new BreakpointHitLocation(currentTransition, inspState.getVM().getInstruction());
+        rememberTheNextBreakpointToBreakExecution = false;
+      }
+      // Now break.
       stopHolder.stopExecution(inspState); // Execution has to be stopped outside a synchronized block.
     }
+  }
+
+  /**
+   * Gets the location of the instruction where we last stopped execution because of a breakpoint, or null
+   * if such a thing has yet to pass.
+   * @return The location of the breakpoint, or null.
+   */
+  public BreakpointHitLocation getLastBreakpointHitLocation() {
+    return lastBreakpointHitLocation;
   }
 
   /**
