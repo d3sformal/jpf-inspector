@@ -32,7 +32,7 @@ public class JPFShell_Images {
   
   private static HashMap<CommandIcon, URL> cimap= new HashMap<CommandIcon, URL>(){{
     put(CommandIcon.Test, getClass().getResource("test.png"));
-    put(CommandIcon.Verify, getClass().getResource("verify.png"));
+    put(CommandIcon.Verify, getClass().getResource("tick.png")); //verify.png
   }};
 
   /**
@@ -54,7 +54,7 @@ public class JPFShell_Images {
     put(StatusIcon.TestOff, getClass().getResource("teststatus_off.png"));
     put(StatusIcon.VerifyOn, getClass().getResource("verifystatus_on.png"));
     put(StatusIcon.VerifyOff, getClass().getResource("verifystatus_off.png"));
-    put(StatusIcon.Working, getClass().getResource("working.gif"));
+    put(StatusIcon.Working, getClass().getResource("reload.gif")); //working.gif
   }};
 
   public static ImageIcon getStatusIcon(StatusIcon si, String description){

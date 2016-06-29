@@ -1,0 +1,5 @@
+Tick icon, tick.png, comes from the Fugue Icons iconset by Yusuke Kamiyamane, licensed under CC Attribution 4.0,
+original source at http://p.yusukekamiyamane.com.
+
+Progress icons come from loading.io, a derivative work from Dots by Istiko Rahadi, licensed under BY-CC 3.0,
+original source at http://thenounproject.com/term/dots/21252/
