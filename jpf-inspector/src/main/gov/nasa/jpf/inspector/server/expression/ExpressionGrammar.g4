@@ -150,6 +150,9 @@ className returns [ClassName cn]
 fileName returns [String text]
     : fileNameText          { $text = $fileNameText.text; }
     ;
+classAndFieldName returns [FieldName fn]
+   : className WS? ':' WS? fieldName[$className.cn] { $fn = $fieldName.fn; }
+   ;
 fieldName [ClassName cn] returns [FieldName fn]
     : idf                   { $fn = new FieldName($idf.text, cn); }
     ;

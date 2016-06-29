@@ -20,9 +20,11 @@
 package gov.nasa.jpf.inspector.server.breakpoints;
 
 import gov.nasa.jpf.inspector.common.BreakpointCreationExpression;
+import gov.nasa.jpf.inspector.exceptions.JPFInspectorParsingErrorException;
 import gov.nasa.jpf.inspector.interfaces.*;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorGenericErrorException;
 import gov.nasa.jpf.inspector.server.expression.ExpressionBoolean;
+import gov.nasa.jpf.inspector.server.expression.ExpressionParser;
 import gov.nasa.jpf.inspector.server.expression.InspectorState;
 import gov.nasa.jpf.inspector.server.expression.expressions.ExpressionBreakpointChoiceGenerator;
 import gov.nasa.jpf.inspector.server.expression.expressions.ExpressionBreakpointInstructionType;
@@ -35,6 +37,7 @@ import gov.nasa.jpf.inspector.server.jpf.JPFInspector;
 import gov.nasa.jpf.inspector.server.jpf.StopHolder;
 import gov.nasa.jpf.inspector.server.pathanalysis.BackwardBreakpointCreator;
 import gov.nasa.jpf.inspector.utils.Debugging;
+import gov.nasa.jpf.inspector.utils.expressions.FieldName;
 import gov.nasa.jpf.vm.ChoiceGenerator;
 import gov.nasa.jpf.vm.ThreadInfo;
 import gov.nasa.jpf.search.Search;
@@ -67,6 +70,7 @@ public class CommandsManager implements CommandsInterface {
   private final InspectorCallbacks serverCallbacks;
   private final DefaultForwardTraceManager dftMgr;
   private final BreakpointHandler breakpointHandler;
+  private final ExpressionParser expressionParser;
 
   public CommandsManager (JPFInspector inspector, StopHolder stopHolder, BreakpointHandler breakpointHandler,
                           InspectorCallbacks serverCallbacks,
@@ -75,6 +79,7 @@ public class CommandsManager implements CommandsInterface {
     this.stopHolder = stopHolder;
     this.serverCallbacks = serverCallbacks;
     this.breakpointHandler = breakpointHandler;
+    this.expressionParser = new ExpressionParser(inspector);
     this.dftMgr = dftMgr;
     newJPF();
   }
@@ -220,13 +225,21 @@ public class CommandsManager implements CommandsInterface {
 
   @Override
   public void backFieldAccessStep(String fieldNameExpression) throws JPFInspectorGenericErrorException {
-    BackwardBreakpointCreator  bbc = BackwardBreakpointCreator.getBackwardFieldAccess(fieldNameExpression, stopHolder.getInspectorState());
+    try {
+      FieldName fieldName = expressionParser.getFieldName(fieldNameExpression);
 
-    if (bbc == null) {
+      BackwardBreakpointCreator bbc = BackwardBreakpointCreator.getBackwardFieldAccess(fieldName,
+                                                                                       stopHolder.getInspectorState());
+
+      if (bbc == null) {
+        throw new JPFInspectorGenericErrorException(
+                "Field-access backtracking not possible (there is no appropriate step left for this thread to backtrack to).");
+      }
+      createBackwardsBreakpointAndResumeExecution(stopHolder.getInspectorState(), bbc);
+    } catch (JPFInspectorParsingErrorException e) {
       throw new JPFInspectorGenericErrorException(
-              "Field-access backtracking not possible (there is no appropriate step left for this thread to backtrack to).");
+              "The argument to back_field_access must be of the form [classname]:[fieldname]. Parse error: " + e.toString());
     }
-    createBackwardsBreakpointAndResumeExecution(stopHolder.getInspectorState(), bbc);
   }
 
   @Override

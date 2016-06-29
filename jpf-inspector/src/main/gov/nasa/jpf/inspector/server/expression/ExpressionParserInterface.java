@@ -22,6 +22,7 @@ package gov.nasa.jpf.inspector.server.expression;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorGenericErrorException;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorParsingErrorException;
 import gov.nasa.jpf.inspector.server.expression.expressions.ExpressionStateAssignment;
+import gov.nasa.jpf.inspector.utils.expressions.FieldName;
 
 /**
  * A class implementing this interface encapsulates the ANTLR parser for expressions.
@@ -35,6 +36,8 @@ public interface ExpressionParserInterface {
   ExpressionStateRootNode getExpressionStateInterface(String expr) throws
           JPFInspectorParsingErrorException,
           JPFInspectorGenericErrorException;
+
+  FieldName getFieldName(String expr) throws JPFInspectorParsingErrorException, JPFInspectorGenericErrorException;
 
   /**
    * Parses the given expression as a breakpoint hit condition.

@@ -14,6 +14,7 @@ import gov.nasa.jpf.inspector.server.expression.ExpressionBoolean;
 import gov.nasa.jpf.inspector.server.expression.InspectorState;
 import gov.nasa.jpf.inspector.server.expression.expressions.ExpressionBreakpointInstruction;
 import gov.nasa.jpf.inspector.utils.Debugging;
+import gov.nasa.jpf.inspector.utils.expressions.FieldName;
 import gov.nasa.jpf.vm.*;
 
 /**
@@ -330,11 +331,21 @@ public final class BackwardBreakpointCreator {
   }
 
   public static BackwardBreakpointCreator getBackwardStepTransition(InspectorState inspState, CommandsInterface.StepType type) throws JPFInspectorGenericErrorException {
+    // TODO awaiting specification
     throw new JPFInspectorGenericErrorException("Not yet implemented.");
   }
 
-  public static BackwardBreakpointCreator getBackwardFieldAccess(String fieldNameExpression, InspectorState inspectorState) throws JPFInspectorGenericErrorException {
-
+  /**
+   * Creates a creator for the back_field_access backstepping command.
+   *
+   * Undoes all instructions until it reaches the GETFIELD, PUTFIELD, GETSTATIC or PUTSTATIC instruction inside which a choice generator was triggered. Then execution breaks at the instruction that immediately follows the field instruction, using the same choice as before.
+   *
+   * @param fieldName Only instructions associated with this field are eligible for the backwards breakpoint.
+   * @param inspectorState The current Inspector state.
+   */
+  public static BackwardBreakpointCreator getBackwardFieldAccess(FieldName fieldName, InspectorState inspectorState)
+          throws JPFInspectorGenericErrorException {
+    // TODO awaiting specification
     throw new JPFInspectorGenericErrorException("Not yet implemented.");
   }
 }

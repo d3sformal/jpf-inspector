@@ -27,6 +27,7 @@ import gov.nasa.jpf.inspector.server.expression.expressions.ExpressionStateAssig
 import gov.nasa.jpf.inspector.server.expression.generated.ExpressionGrammarLexer;
 import gov.nasa.jpf.inspector.server.expression.generated.ExpressionGrammarParser;
 import gov.nasa.jpf.inspector.server.jpf.JPFInspector;
+import gov.nasa.jpf.inspector.utils.expressions.FieldName;
 import gov.nasa.jpf.inspector.utils.parser.GenericErrorRuntimeException;
 import gov.nasa.jpf.inspector.utils.parser.JPFInspectorRuntimeParsingException;
 import gov.nasa.jpf.inspector.utils.parser.RecognitionRuntimeException;
@@ -73,6 +74,34 @@ public class ExpressionParser implements ExpressionParserInterface {
     }
 
   }
+  @Override
+  public FieldName getFieldName (String expr) throws JPFInspectorParsingErrorException, JPFInspectorGenericErrorException {
+    if (expr == null) {
+      return null;
+    }
+    expr = expr.trim();
+    // We want to process empty inputs (print) commands without parameters prints local variables
+
+    final ExpressionGrammarParser parser = getParser(expr);
+    try {
+      return parser.classAndFieldName().fn;
+
+    } catch (RecognitionRuntimeException e) {
+      throw new JPFInspectorParsingErrorException("Invalid input - " + e.getMessage(), expr, e.getRecognitionException());
+
+    } catch (AntlrParseException e) {
+      throw new JPFInspectorParsingErrorException("Parse error: " + e.getMessage(), expr, e.getColumn());
+    } catch (GenericErrorRuntimeException e) {
+      // Unwrap checked exception
+      throw e.getWrappedException();
+
+    } catch (JPFInspectorRuntimeParsingException e) {
+      // Unwrap checked exception
+      throw e.getParsingErrorException();
+    }
+
+  }
+
 
   @Override
   public ExpressionBooleanInterface getBreakpointExpression (String expr) throws JPFInspectorParsingErrorException, JPFInspectorGenericErrorException {
@@ -104,16 +133,7 @@ public class ExpressionParser implements ExpressionParserInterface {
 
   }
 
-  private ExpressionGrammarParser getParser (String expr) throws JPFInspectorParsingErrorException, JPFInspectorGenericErrorException {
-      ExpressionGrammarLexer lexer = new ExpressionGrammarLexer(new ANTLRInputStream(expr));
-      lexer.removeErrorListeners();
-      lexer.addErrorListener(ThrowingErrorListener.getInstance());
-      org.antlr.v4.runtime.CommonTokenStream tokens = new org.antlr.v4.runtime.CommonTokenStream(lexer);
-      ExpressionGrammarParser parser = new ExpressionGrammarParser(tokens);
-      parser.removeErrorListeners();
-      parser.addErrorListener(ThrowingErrorListener.getInstance());
-      return parser;
-  }
+
 
   @Override
   public ExpressionStateAssignment getExpressionAssignment (String expr) throws JPFInspectorParsingErrorException, JPFInspectorGenericErrorException {
@@ -141,7 +161,16 @@ public class ExpressionParser implements ExpressionParserInterface {
       throw e.getParsingErrorException();
     }
   }
-
+  private ExpressionGrammarParser getParser (String expr) throws JPFInspectorParsingErrorException, JPFInspectorGenericErrorException {
+    ExpressionGrammarLexer lexer = new ExpressionGrammarLexer(new ANTLRInputStream(expr));
+    lexer.removeErrorListeners();
+    lexer.addErrorListener(ThrowingErrorListener.getInstance());
+    org.antlr.v4.runtime.CommonTokenStream tokens = new org.antlr.v4.runtime.CommonTokenStream(lexer);
+    ExpressionGrammarParser parser = new ExpressionGrammarParser(tokens);
+    parser.removeErrorListeners();
+    parser.addErrorListener(ThrowingErrorListener.getInstance());
+    return parser;
+  }
 
   @Override
   public ExpressionFactory getExpressionFactory () {
