@@ -187,8 +187,9 @@ public class BasicShell extends Shell {
   public void installCommand(final ShellCommand command) {
     final CommandButton button = new CommandButton(command);
     button.addActionListener(new ActionListener() {
+      @Override
       public void actionPerformed(ActionEvent ae) {
-        new Thread(){
+        new Thread("Shell Command Thread"){
           @Override
           public void run(){
             ShellManager.getManager().fireCommand(command);

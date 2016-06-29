@@ -81,7 +81,7 @@ public class CmdRun extends ClientCommand {
             outStream.println(t.getMessage());
             t.printStackTrace(outStream);
           }
-        }).start();
+        }, "JPF Thread from CmdRun").start();
         inspector.waitUntilJpfBecomesConnected();
       } else {
         // JPF is running

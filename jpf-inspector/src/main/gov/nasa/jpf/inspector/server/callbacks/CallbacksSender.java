@@ -50,6 +50,7 @@ public class CallbacksSender extends Thread {
    * doing locking manually anyway, but I guess a second failsafe does not hurt.
    */
   private final List<CallbackCommand> callbackQueue;
+  private boolean outstandingRemovalsProcessed = true;
 
   public CallbacksSender (JPFInspector inspector, InspectorCallbacks clientCallbacks) {
     super(CallbacksSender.class.getSimpleName());
@@ -150,26 +151,34 @@ public class CallbacksSender extends Thread {
         }
       }
 
+      CallbackCommand topmostCallback = null;
       synchronized (callbackQueue) {
         if (!callbackQueue.isEmpty()) {
-          CallbackCommand topmostCallback = callbackQueue.remove(0);
+          topmostCallback = callbackQueue.remove(0);
+          outstandingRemovalsProcessed = false;
           if (DEBUG) {
             out.println(this.getClass().getSimpleName() + ".run() - CB to process topmostCallback=" + topmostCallback);
           }
-
-          if (topmostCallback.waitJPF2stop()) {
-            if (DEBUG) {
-              out.println(this.getClass().getSimpleName() + ".run() - waitUntilStopped");
-            }
-            stopHolder.waitUntilStopped();
+        }
+      }
+      if (topmostCallback != null) {
+        if (topmostCallback.waitJPF2stop()) {
+          if (DEBUG) {
+            out.println(this.getClass().getSimpleName() + ".run() - waitUntilStopped");
           }
+          stopHolder.waitUntilStopped();
+        }
+
+        synchronized (callbackQueue) {
           if (DEBUG) {
             out.println(this.getClass().getSimpleName() + ".run() - sending SB topmostCallback=" + topmostCallback);
           }
           topmostCallback.sendCallback(clientCallbacks);
+          outstandingRemovalsProcessed = true;
           callbackQueue.notifyAll(); // Notify any threads waiting for the callback queue to be empty.
         }
       }
+
     }
 
     synchronized (callbackQueue) {
@@ -267,7 +276,7 @@ public class CallbacksSender extends Thread {
     @Override
     public void waitUntilCallbackQueueIsEmpty() {
       synchronized (callbackQueue) {
-        while (!callbackQueue.isEmpty()) {
+        while (!callbackQueue.isEmpty() || !outstandingRemovalsProcessed) {
           try {
             callbackQueue.wait();
           } catch (InterruptedException e) {
