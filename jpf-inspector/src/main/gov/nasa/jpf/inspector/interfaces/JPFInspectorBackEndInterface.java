@@ -48,14 +48,17 @@ public interface JPFInspectorBackEndInterface extends
    * to the client.
    */
   InspectorServerCallbacks getServerCallbacks();
-
-
   /**
    * Blocks until JPF is connected with the Inspector. If JPF is already connected to the Inspector,
    * it returns immediately.
    */
   void waitUntilJpfBecomesConnected();
 
+  /**
+   * Gets the instruction that the JPF is currently stopped before. If the JPF is not running, or is in an inconsistent state,
+   * this will return null.
+   * @return The current program counter, or null.
+   */
   Instruction getCurrentInstruction();
 
   /**

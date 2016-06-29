@@ -146,6 +146,12 @@ public abstract class JPFInspector implements JPFInspectorBackEndInterface {
 
   @Override
   public Instruction getCurrentInstruction() {
+    if (jpf == null) {
+      return null;
+    }
+    if (jpf.getVM() == null) {
+      return null;
+    }
     return (jpf.getVM().getInstruction());
   }
 
