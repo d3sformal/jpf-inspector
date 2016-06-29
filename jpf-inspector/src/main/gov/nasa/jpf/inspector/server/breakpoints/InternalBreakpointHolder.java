@@ -24,7 +24,7 @@ import gov.nasa.jpf.inspector.interfaces.BreakpointState;
 import gov.nasa.jpf.inspector.interfaces.BreakpointStatus;
 import gov.nasa.jpf.inspector.interfaces.InspectorCallbacks;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorException;
-import gov.nasa.jpf.inspector.server.breakpoints.BreakpointHandler.BreakPointPartialMemento;
+import gov.nasa.jpf.inspector.server.breakpoints.BreakpointHandler.BreakpointPartialMemento;
 import gov.nasa.jpf.inspector.server.expression.ExpressionBooleanInterface;
 import gov.nasa.jpf.inspector.server.expression.InspectorState;
 import gov.nasa.jpf.inspector.utils.Debugging;
@@ -65,9 +65,18 @@ public class InternalBreakpointHolder implements Comparable<InternalBreakpointHo
 
   private final InspectorCallbacks callbacks;
 
-  protected final int bpID; // ID of the breakpoint
-  private final boolean userBP; // / Mark whether the breakpoint is visible to user or it's BP for the internal purposes of the checker
-  private final boolean singleHitBreakpoint; // / Remove this breakpoint on the first breakpointHit (this or some other BP)
+  /**
+   * ID of the breakpoint
+   */
+  protected final int bpID;
+  /**
+   * Marks whether the breakpoint is visible to user or it's BP for the internal purposes of the checker
+   */
+  private final boolean userBP;
+  /**
+   * If true, then remove this breakpoint on the first breakpointHit (this or some other breakpoint)
+   */
+  private final boolean singleHitBreakpoint;
 
   protected BreakPointModes bpMode = BreakPointModes.BP_MODE_NONE;
   protected BreakpointState breakpointState = BreakpointState.ENABLED;
@@ -228,40 +237,48 @@ public class InternalBreakpointHolder implements Comparable<InternalBreakpointHo
 
   }
 
-  public BreakPointPartialMemento createPartialMemento () {
-    return new InternalBreakPointHolderPartialMemento(bpHitCounter);
+  public BreakpointPartialMemento createPartialMemento () {
+    return new InternalBreakpointHolderPartialMemento(bpHitCounter);
   }
 
   /**
-   * Creates memento which restores Breakpoint into the initial state. Used if backtracked before definition of Breakpoint.
-   * 
-   * @return Memento which resets hitCounts
+   * Creates a memento which restores a breakpoint's path hit count to zero. This is used if we backtrack to a position
+   * before the definition of a breakpoint.
+   *
+   * @return Memento which resets path hit counts.
    */
-  public static BreakPointPartialMemento createInitialStateMemento () {
-    return new InternalBreakPointHolderPartialMemento(0);
+  public static BreakpointPartialMemento createInitialStateMemento () {
+    return new InternalBreakpointHolderPartialMemento(0);
   }
 
-  private static class InternalBreakPointHolderPartialMemento implements BreakPointPartialMemento {
+  /**
+   * The partial memento remembers a single breakpoint's path hit count.
+   */
+  private static class InternalBreakpointHolderPartialMemento implements BreakpointPartialMemento {
     private int bpHitCounter = 0;
 
-    public InternalBreakPointHolderPartialMemento (int bpHitCounter) {
+    public InternalBreakpointHolderPartialMemento(int bpHitCounter) {
       this.bpHitCounter = bpHitCounter;
     }
   }
 
-  public void setPartialMemento (BreakPointPartialMemento bpm) {
+  /**
+   * Restores this breakpoint's path hit count from a memento.
+   * @param bpm A memento that stores a path hit count.
+   */
+  public void setPathCounterFromMemento(BreakpointPartialMemento bpm) {
     if (bpm == null) {
       // Default setting
       bpHitCounter = 0;
       return;
     }
 
-    if (bpm instanceof InternalBreakPointHolderPartialMemento) {
-      InternalBreakPointHolderPartialMemento ibphm = (InternalBreakPointHolderPartialMemento) bpm;
+    if (bpm instanceof InternalBreakpointHolderPartialMemento) {
+      InternalBreakpointHolderPartialMemento ibphm = (InternalBreakpointHolderPartialMemento) bpm;
       bpHitCounter = ibphm.bpHitCounter;
     } else {
       throw new RuntimeException("Internal error - Unexpected usage invalid memento type " + bpm.getClass().getName() + " expecting "
-          + InternalBreakPointHolderPartialMemento.class.getSimpleName());
+          + InternalBreakpointHolderPartialMemento.class.getSimpleName());
     }
   }
 

@@ -55,21 +55,34 @@ public class BreakpointHandler implements BreakPointManagerInterface {
    * This object also acts as the mutex monitor for synchronizing access between the command thread and the JPF thread.
    */
   protected final Map<Integer, InternalBreakpointHolder> breakpoints;
+  /**
+   * Indicates whether execution should be stopped before the next instruction is executed. This field is set by
+   * {@link #checkBreakpoints(InspectorState)} and reset when the execution stops.
+   *
+   * This field is only accessed from the JPF thread.
+   */
+  private boolean breakExecutionBeforeNextInstruction = false;
 
-  private final Stack<BreakPointsMemento> bpMementos;
+  private final Stack<BreakpointsMemento> bpMementos;
 
   protected final JPFInspector inspector;
-  private final InspectorCallbacks callBacks;
+  private final InspectorCallbacks serverCallbacks;
   private final StopHolder stopHolder;
-  private final ExpressionParserInterface expParser; // / Used to parse Breakpoint expression from clients
-  private BreakPointsMemento transitionStartMemento; // / Memeto which holds states of breakpoints at the start of the transition
+  /**
+   * Used to parse hit condition expressions from clients
+   */
+  private final ExpressionParserInterface expParser;
+  /**
+   * Memento which holds states of breakpoints at the start of the transition
+   */
+  private BreakpointsMemento transitionStartMemento;
 
-  public BreakpointHandler(JPFInspector inspector, InspectorCallbacks callBacks, StopHolder stopHolder) {
+  public BreakpointHandler(JPFInspector inspector, InspectorCallbacks serverCallbacks, StopHolder stopHolder) {
     this.breakpoints = new TreeMap<>();
 
     this.bpMementos = new Stack<>();
     this.inspector = inspector;
-    this.callBacks = callBacks;
+    this.serverCallbacks = serverCallbacks;
     this.stopHolder = stopHolder;
     this.expParser = new ExpressionParser(inspector);
     this.transitionStartMemento = null;
@@ -81,7 +94,7 @@ public class BreakpointHandler implements BreakPointManagerInterface {
   public void newJPF () {
     // Set initial state for all breakpoints
     for (InternalBreakpointHolder bp : breakpoints.values()) {
-      bp.setPartialMemento(null);
+      bp.setPathCounterFromMemento(null);
     }
     bpMementos.clear();
   }
@@ -159,7 +172,7 @@ public class BreakpointHandler implements BreakPointManagerInterface {
         }
       }
       if (ibp == null) {
-        ibp = new InternalBreakpointHolder(newBP.getBPID(), callBacks, !hidden, firstHit);
+        ibp = new InternalBreakpointHolder(newBP.getBPID(), serverCallbacks, !hidden, firstHit);
       }
       ibp.modifyBPSettings(newBP, newBPExpression);
       breakpoints.put(ibp.getBPID(), ibp);
@@ -192,7 +205,7 @@ public class BreakpointHandler implements BreakPointManagerInterface {
         iah = (InternalAssertHolder) ibp;
       }
       if (iah == null) {
-        iah = new InternalAssertHolder(newAssert.getBPID(), callBacks, true, false, newAssert.getPosition(), newAssert.getCondition());
+        iah = new InternalAssertHolder(newAssert.getBPID(), serverCallbacks, true, false, newAssert.getPosition(), newAssert.getCondition());
       }
 
       iah.modifyAssertSettings(newAssert, newBPExpression);
@@ -252,7 +265,7 @@ public class BreakpointHandler implements BreakPointManagerInterface {
    * 
    * Note: Executed by the JPF thread.
    */
-  public boolean checkBreakpoints (InspectorState inspState) {
+  public void checkBreakpoints (InspectorState inspState) {
     boolean bpHit = false;
     synchronized (breakpoints) {
       for (InternalBreakpointHolder bp : breakpoints.values()) {
@@ -265,21 +278,20 @@ public class BreakpointHandler implements BreakPointManagerInterface {
     }
 
     if (bpHit) {
-      stopHolder.stopExecution(inspState); // Execution has to be stopped outside synchronized block
+      breakExecutionBeforeNextInstruction = true;
     }
-    return bpHit;
   }
 
   /**
-   * Checks if specified breakpoint hits.
+   * Checks if the specified breakpoint hits.
    * 
    * @param inspState Program state.
    * @param bpID ID of the breakpoint to check.
    * @return True if the breakpoint hits, false otherwise.
    * 
-   *  Note: If the breakpoint is single-hit, then single-hit breakpoints are removed.
+   *  Note: If the breakpoint is single-hit, then all single-hit breakpoints are removed.
    *
-   *  Note: Executed by the JPF thread.
+   *  Note: Executed by the JPF thread and only during a backstep.
    */
   public boolean checkBreakpoint (InspectorState inspState, int bpID) {
     boolean bpHit;
@@ -323,7 +335,7 @@ public class BreakpointHandler implements BreakPointManagerInterface {
     }
     // Save state of all BPs
     bpMementos.add(transitionStartMemento);
-    transitionStartMemento = new BreakPointsMemento();
+    transitionStartMemento = new BreakpointsMemento();
   }
 
   /**
@@ -344,48 +356,60 @@ public class BreakpointHandler implements BreakPointManagerInterface {
   }
 
   /**
-   * Empty public interface of the Breapkoints mementos
+   * Stops execution if such a thing was scheduled by a breakpoint triggering.
+   * This method is called by the JPF thread just as an instruction is about to be executed.
+   *
+   * @param inspState The current Inspector state.
    */
-  public interface BreakPointPartialMemento {
+  public void breakIfBreakScheduled(InspectorState inspState) {
+    if (breakExecutionBeforeNextInstruction) {
+      breakExecutionBeforeNextInstruction = false;
+      stopHolder.stopExecution(inspState); // Execution has to be stopped outside a synchronized block.
+    }
+  }
+
+  /**
+   * Marker interface for partial mementos which remember a single breakpoint's path hit count.
+   */
+  public interface BreakpointPartialMemento {
   }
 
   /**
    * Holds traversing related state (hit counts) of all breakpoints
    * 
    */
-  private class BreakPointsMemento {
-    // TODO confusing name here
-    private final Map<Integer, BreakPointPartialMemento> bpMementos = new HashMap<>();
+  private class BreakpointsMemento {
+    private final Map<Integer, BreakpointPartialMemento> partialMementos = new HashMap<>();
 
     /**
-     * Store state of all breakpoints
+     * Initializes a new memento by storing the current path hit count of all breakpoints.
      */
-    public BreakPointsMemento () {
-      synchronized (BreakpointHandler.this.breakpoints) {
+    public BreakpointsMemento() {
+      synchronized (breakpoints) {
         for (InternalBreakpointHolder bp : breakpoints.values()) {
-          BreakPointPartialMemento bpm = bp.createPartialMemento();
-          bpMementos.put(bp.getBPID(), bpm);
+          BreakpointPartialMemento bpm = bp.createPartialMemento();
+          partialMementos.put(bp.getBPID(), bpm);
         }
       }
     }
 
     /**
-     * Restore state of all breakpoints. If state state for given BP not exists, null is passed.
+     * Restores the path hit count of all breakpoints from this memento.
+     * If this memento does not contain information about an existing breakpoint, the path hit count is reset to zero.
      */
     public void restoreState () {
-      BreakPointPartialMemento bpResetMemento = InternalBreakpointHolder.createInitialStateMemento();
-      synchronized (BreakpointHandler.this.breakpoints) {
+      BreakpointPartialMemento bpResetMemento = InternalBreakpointHolder.createInitialStateMemento();
+      synchronized (breakpoints) {
 
         for (InternalBreakpointHolder bp : breakpoints.values()) {
           int bpID = bp.getBPID();
-          BreakPointPartialMemento bpm = bpMementos.get(bpID);
+          BreakpointPartialMemento bpm = partialMementos.get(bpID);
           if (bpm == null) {
             // We backtrack before place where memento has been defined -> reset the counts
             bpm = bpResetMemento;
           }
-          bp.setPartialMemento(bpm);
+          bp.setPathCounterFromMemento(bpm);
         }
-
       }
     }
   }

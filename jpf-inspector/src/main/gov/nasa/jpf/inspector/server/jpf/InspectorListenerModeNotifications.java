@@ -22,7 +22,7 @@ public class InspectorListenerModeNotifications extends ListenerAdapter {
   private final CommandsManager commandsManager;
   private final BreakpointHandler breakpointHandler;
   private final ChoiceGeneratorNotifications cgNotify;
-  private final DefaultForwardTraceManager dftMgr;
+  private final DefaultForwardTraceManager defaultForwardTraceManager;
 
   private final InspectorStateImpl inspectorState = new InspectorStateImpl();
 
@@ -33,12 +33,12 @@ public class InspectorListenerModeNotifications extends ListenerAdapter {
 
   public InspectorListenerModeNotifications (JPFInspector inspector, CommandsManager commandsManager,
                                              BreakpointHandler breakpointHandler, ChoiceGeneratorNotifications cgNotify,
-                                             DefaultForwardTraceManager dftMgr, boolean searchMultipleError) {
+                                             DefaultForwardTraceManager defaultForwardTraceManager, boolean searchMultipleError) {
     this.inspector = inspector;
     this.commandsManager = commandsManager;
     this.breakpointHandler = breakpointHandler;
     this.cgNotify = cgNotify;
-    this.dftMgr = dftMgr;
+    this.defaultForwardTraceManager = defaultForwardTraceManager;
     this.searchMultipleError = searchMultipleError;
 
   }
@@ -51,7 +51,7 @@ public class InspectorListenerModeNotifications extends ListenerAdapter {
     inspectorState.stateChanged(search, ListenerMethod.LM_STATE_ADVANCED);
     breakpointHandler.forwardJPFStep(inspectorState);
     breakpointHandler.checkBreakpoints(inspectorState);
-    dftMgr.forwardStep(search);
+    defaultForwardTraceManager.forwardStep(search);
     commandsManager.tryStop(inspectorState);
   }
 
@@ -71,7 +71,7 @@ public class InspectorListenerModeNotifications extends ListenerAdapter {
     }
     inspectorState.stateChanged(search, ListenerMethod.LM_STATE_BACKTRACKED);
     breakpointHandler.backwardJPFStep(inspectorState);
-    // dftMgr.extendTrace(search.getTransition());
+    // defaultForwardTraceManager.extendTrace(search.getTransition());
     commandsManager.tryStop(inspectorState);
   }
 
@@ -107,6 +107,7 @@ public class InspectorListenerModeNotifications extends ListenerAdapter {
     }
     inspectorState.notifyListenerMethodCall(ListenerMethod.LM_EXECUTE_INSTRUCTION, vm);
     breakpointHandler.checkBreakpoints(inspectorState);
+    breakpointHandler.breakIfBreakScheduled(inspectorState);
   }
 
 

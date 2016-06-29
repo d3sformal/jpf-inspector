@@ -53,6 +53,7 @@ Value set successfully.
 	2 : pred3_i13 (int) = 313
 	3 : pred3_i14 (int) = 314
 INFO: Breakpoint hit: [2 :  state=ENABLED hits=1 hitsTotal=1 (#heap[356].pred2_i1 > 45)]
+INFO: Breakpoint hit: [2 :  state=ENABLED hits=2 hitsTotal=2 (#heap[356].pred2_i1 > 45)]
 0 : gov/nasa/jpf/inspector/tests/acceptance/legacy/usecases/uc3/Print02.java:95:    System.out.println("# Predecessor2.callMePred2(" + a + ")");
 	gov.nasa.jpf.inspector.tests.acceptance.legacy.usecases.uc3.Predecessor2:callMePred2:0:getstatic java.lang.System.out
 Value set successfully.

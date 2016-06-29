@@ -1,0 +1,36 @@
+INFO: JPF created and connected, SuT is started
+INFO: Breakpoint hit: [1 :  state=ENABLED hits=5 hitsTotal=5 5<=hit_count thread_scheduled=both]
+1 : state=RUNNING priority=5
+2 : state=RUNNING priority=5
+2 : Thread-2 state=RUNNING priority=5
+	0 : gov.nasa.jpf.inspector.tests.acceptance.legacy.usecases.uc1.Event.signal_event - (in file gov/nasa/jpf/inspector/tests/acceptance/legacy/usecases/uc1/oldclassic.java:76) - }
+	1 : gov.nasa.jpf.inspector.tests.acceptance.legacy.usecases.uc1.SecondTask.run - (in file gov/nasa/jpf/inspector/tests/acceptance/legacy/usecases/uc1/oldclassic.java:133) - event1.signal_event();       // updates event1....
+	2 : gov.nasa.jpf.inspector.tests.acceptance.legacy.usecases.uc1.SecondTask.[run] - (in file gov/nasa/jpf/inspector/tests/acceptance/legacy/usecases/uc1/oldclassic.java:1) - package gov.nasa.jpf.inspector.tests.acceptance...
+INFO: SuT is stopped
+	SuT (thread 2) will now execute gov/nasa/jpf/inspector/tests/acceptance/legacy/usecases/uc1/oldclassic.java:135 (aload_0), source: if (count == event2.count) { // <race> ditto
+INFO: SuT is stopped
+	SuT (thread 2) will now execute gov/nasa/jpf/inspector/tests/acceptance/legacy/usecases/uc1/oldclassic.java:133 (aload_0), source: event1.signal_event();       // updates event1.count
+gov.nasa.jpf.inspector.tests.acceptance.legacy.usecases.uc1.SecondTask.run - (in file gov/nasa/jpf/inspector/tests/acceptance/legacy/usecases/uc1/oldclassic.java:133) - event1.signal_event();       // updates event1....
+Stack slots
+	0 : this (gov.nasa.jpf.inspector.tests.acceptance.legacy.usecases.uc1.SecondTask) = gov.nasa.jpf.inspector.tests.acceptance.legacy....
+Fields
+	0 : group (java.lang.ThreadGroup) = java.lang.ThreadGroup@176
+	1 : target (java.lang.Runnable) = null
+	2 : name (java.lang.String) = "Thread-2"
+	3 : priority (int) = 5
+	4 : isDaemon (boolean) = false
+	5 : interrupted (boolean) = false
+	6 : threadLocals (java.lang.ThreadLocal$Entry[]) = null
+	7 : permit (java.lang.Thread$Permit) = java.lang.Thread$Permit@379
+	8 : parkBlocker (java.lang.Object) = null
+	9 : stopException (java.lang.Throwable) = null
+	10 : uncaughtExceptionHandler (java.lang.Thread$UncaughtExceptionHandler) = null
+	11 : threadLocalRandomSeed (long) = 0
+	12 : threadLocalRandomProbe (int) = 0
+	13 : threadLocalRandomSecondarySeed (int) = 0
+	14 : event1 (gov.nasa.jpf.inspector.tests.acceptance.legacy.usecases.uc1.Event) = gov.nasa.jpf.inspector.tests.acceptance.legacy....
+	15 : event2 (gov.nasa.jpf.inspector.tests.acceptance.legacy.usecases.uc1.Event) = gov.nasa.jpf.inspector.tests.acceptance.legacy....
+	16 : count (int) = 2
+INFO: Breakpoint hit: [1 :  state=ENABLED hits=6 hitsTotal=6 5<=hit_count thread_scheduled=both]
+Breakpoint with ID 1 successfully deleted.
+INFO: JPF Terminating
