@@ -215,15 +215,12 @@ public final class BackwardBreakpointCreator {
    * @return Creator with all target information collected.
    */
   public static BackwardBreakpointCreator getBackwardStepIn (InspectorState inspectorState) {
-    ReturnInstructionChecker returnInstructionChecker = new ReturnInstructionChecker();
     Path path = updateAndGetPath(inspectorState);
 
     Transition currentTransition = path.getLast();
     if (currentTransition == null) {
       return null;
     }
-    int currentThread = currentTransition.getThreadIndex();
-    StepThreadBacktracker stepBacktracker = new StepThreadBacktracker(new TransitionThreadBacktracker(path, currentThread));
 
     Instruction currentInstruction = inspectorState.getVM().getInstruction();
     InstructionPosition currentLocation = InstructionPositionImpl.getInstructionPosition(currentInstruction);
@@ -231,49 +228,6 @@ public final class BackwardBreakpointCreator {
     MethodInstructionBacktracker methodInstructionBacktracker = new MethodInstructionBacktracker(path);
 
     return methodInstructionBacktracker.backtrackIn(currentLocation);
-    /*
-    // First step back.
-    // TODO we should ignore all instructions on the current line.... oh god
-    Step step = stepBacktracker.backstep();
-    // Undo instructions on the current line
-    while ((step != null) && currentLocation.hitPosition(step.getInstruction())) {
-      step = stepBacktracker.backstep();
-    }
-
-    if (step == null) {
-      return null; // We have reached the beginning of the thread.
-    }
-
-    // We are now either on the previous line or in the caller or in a callee.
-    if (step.getInstruction().getMethodInfo() != currentInstruction.getMethodInfo()) {
-      // TODO Check whether we are now in caller: If yes, continue as normal.
-
-      // We are in the caller or calleee - we should stop now.
-      return new BackwardBreakpointCreator(stepBacktracker.getCurrentTransition(), step, stepBacktracker.getBacktrackedTransitionCount());
-    }
-
-    // We are on the previous line - stop after the first instruction on given line or when method changes
-    InstructionPosition previousLinePosition = InstructionPositionImpl.getInstructionPosition(step.getInstruction());
-    Step previousStep = null;
-    Transition previousTransition = null;
-    int previousTransitionsToBacktrack = 0;
-    while ((step != null) && previousLinePosition.hitPosition(step.getInstruction())) {
-      previousStep = step;
-      previousTransition = stepBacktracker.getCurrentTransition();
-      previousTransitionsToBacktrack = stepBacktracker.getBacktrackedTransitionCount();
-      step = stepBacktracker.backstep();
-    }
-
-    if (step == null) {
-      return null; // We have reached the beginning of the thread or the method.
-    }
-
-    if (step.getInstruction().getMethodInfo() != currentInstruction.getMethodInfo() && returnInstructionChecker.isReturnStep(step) ) {
-      return new BackwardBreakpointCreator(stepBacktracker.getCurrentTransition(), step, stepBacktracker.getBacktrackedTransitionCount());
-    } else {
-      return new BackwardBreakpointCreator(previousTransition, previousStep, previousTransitionsToBacktrack);
-    }
-    */
   }
 
   /**
@@ -310,6 +264,20 @@ public final class BackwardBreakpointCreator {
     return vm.getPath();
   }
 
+  /**
+   * Returns a creator for back_breakpoint_hit.
+   *
+   * Undoes all instructions until it reaches the step, identified by an instruction and a transition,
+   * during which the last breakpoint was hit. Execution breaks just before that instruction.
+   *
+   * It is possible that such a step does not exist. For example, perhaps no breakpoint was yet hit.
+   * Or, the last breakpoint was already backtracked through and its step is not in the transition path.
+   * In that case, this command fails.
+   *
+   * @param lastBreakpointHitLocation Location in the transition path of where the last breakpoint hit,
+   *                                  or null if no breakpoint hit yet.
+   * @param inspState The Inspector state.
+   */
   public static BackwardBreakpointCreator getBackBreakpointHit(BreakpointHitLocation lastBreakpointHitLocation, InspectorState inspState) throws JPFInspectorGenericErrorException {
     if (lastBreakpointHitLocation == null) {
       throw new JPFInspectorGenericErrorException("No breakpoint was yet hit.");

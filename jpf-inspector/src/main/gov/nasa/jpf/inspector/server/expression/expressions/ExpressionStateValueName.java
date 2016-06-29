@@ -22,7 +22,6 @@ package gov.nasa.jpf.inspector.server.expression.expressions;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorException;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorInvalidNameException;
 import gov.nasa.jpf.inspector.server.programstate.*;
-import gov.nasa.jpf.inspector.server.programstate.StateReadableValue;
 import gov.nasa.jpf.vm.*;
 
 /**

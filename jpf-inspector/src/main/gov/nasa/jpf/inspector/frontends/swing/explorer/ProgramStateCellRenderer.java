@@ -2,12 +2,9 @@ package gov.nasa.jpf.inspector.frontends.swing.explorer;
 
 import gov.nasa.jpf.inspector.common.Constants;
 import gov.nasa.jpf.inspector.frontends.swing.explorer.hierarchy.ExplorerNode;
-import gov.nasa.jpf.inspector.frontends.swing.explorer.hierarchy.ExplorerRoot;
 
 import javax.swing.*;
 import javax.swing.tree.DefaultTreeCellRenderer;
-import javax.swing.tree.TreeCellRenderer;
-import javax.xml.soap.Node;
 import java.awt.*;
 
 public class ProgramStateCellRenderer extends DefaultTreeCellRenderer {

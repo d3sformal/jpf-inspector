@@ -16,11 +16,11 @@ public abstract class ClientCommand implements ClientCommandInterface {
   /**
    * The last recorder used to record the command
    */
-  protected CommandRecorder rec;
+  protected CommandRecorder recorder;
 
   @Override
   public void recordCommand (CommandRecorder rec) {
-    this.rec = rec;
+    this.recorder = rec;
     rec.recordCommand(this);
   }
 

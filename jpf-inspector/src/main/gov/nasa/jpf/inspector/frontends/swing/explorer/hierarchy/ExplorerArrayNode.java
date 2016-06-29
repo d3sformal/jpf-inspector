@@ -3,16 +3,17 @@ package gov.nasa.jpf.inspector.frontends.swing.explorer.hierarchy;
 import gov.nasa.jpf.inspector.frontends.swing.explorer.Attachment;
 import gov.nasa.jpf.inspector.frontends.swing.explorer.ExplorerNodeFactory;
 import gov.nasa.jpf.inspector.frontends.swing.explorer.ProgramStateTreeModel;
-import gov.nasa.jpf.inspector.frontends.swing.explorer.hierarchy.ExplorerComplexNode;
-import gov.nasa.jpf.inspector.frontends.swing.explorer.hierarchy.ExplorerNode;
-import gov.nasa.jpf.inspector.server.expression.InspectorState;
-import gov.nasa.jpf.inspector.utils.expressions.ClassName;
 import gov.nasa.jpf.vm.ClassInfo;
 import gov.nasa.jpf.vm.ElementInfo;
 import gov.nasa.jpf.vm.Heap;
 
 import java.util.ArrayList;
 
+/**
+ * Represents a Java array in the Explorer.
+ *
+ * Note that it inherits from {@link ExplorerJavaObjectNode}.
+ */
 public class ExplorerArrayNode extends ExplorerJavaObjectNode {
   public ExplorerArrayNode(Attachment attachment, ElementInfo elementInfo, ProgramStateTreeModel model, ExplorerNode parent) {
     super(attachment, elementInfo, model, parent);
@@ -26,13 +27,19 @@ public class ExplorerArrayNode extends ExplorerJavaObjectNode {
     ArrayList<ExplorerNode> elements = new ArrayList<>();
     int length = elementInfo.arrayLength();
     for (int i =0 ;i < length; i++) {
-      ExplorerNode arrayElement = null;
       Object value = getValue(arrayElementClass, elementInfo, i);
       elements.add(ExplorerNodeFactory.createFromArrayElement(i, arrayElementClass, value, model, parent));
     }
     return elements;
   }
 
+  /**
+   * Gets the value of an element of this array.
+   * @param componentClassInfo The type of elements of this array.
+   * @param arrayElementInfo The ElementInfo of the entire array.
+   * @param index The index of the element we want to retrieve.
+   * @return Value of an element of this array at the given index. The return value is ElementInfo for reference objects and an appropriate boxed primitive type for primitive types.
+   */
   public Object getValue (ClassInfo componentClassInfo, ElementInfo arrayElementInfo, int index) {
     String sig = componentClassInfo.getSignature();
 

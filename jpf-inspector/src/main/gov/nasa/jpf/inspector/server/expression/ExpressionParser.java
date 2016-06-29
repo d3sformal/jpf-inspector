@@ -161,7 +161,7 @@ public class ExpressionParser implements ExpressionParserInterface {
       throw e.getParsingErrorException();
     }
   }
-  private ExpressionGrammarParser getParser (String expr) throws JPFInspectorParsingErrorException, JPFInspectorGenericErrorException {
+  private static ExpressionGrammarParser getParser(String expr) throws JPFInspectorParsingErrorException, JPFInspectorGenericErrorException {
     ExpressionGrammarLexer lexer = new ExpressionGrammarLexer(new ANTLRInputStream(expr));
     lexer.removeErrorListeners();
     lexer.addErrorListener(ThrowingErrorListener.getInstance());

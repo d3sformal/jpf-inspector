@@ -31,6 +31,7 @@ import gov.nasa.jpf.inspector.interfaces.JPFInspectorBackEndInterface;
  * @author Alf
  *
  */
+@SuppressWarnings("AbstractClassExtendsConcreteClass")
 public abstract class JPFInspectorException extends Exception {
 
   private static final long serialVersionUID = -1872156091293046263L;

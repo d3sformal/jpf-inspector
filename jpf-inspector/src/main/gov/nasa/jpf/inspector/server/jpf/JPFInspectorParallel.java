@@ -20,7 +20,6 @@
 package gov.nasa.jpf.inspector.server.jpf;
 
 import gov.nasa.jpf.inspector.interfaces.*;
-import gov.nasa.jpf.inspector.interfaces.AssertCreationInformation;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorException;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorGenericErrorException;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorParsingErrorException;

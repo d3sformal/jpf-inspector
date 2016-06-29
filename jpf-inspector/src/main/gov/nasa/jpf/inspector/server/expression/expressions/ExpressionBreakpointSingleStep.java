@@ -19,9 +19,9 @@
 
 package gov.nasa.jpf.inspector.server.expression.expressions;
 
+import gov.nasa.jpf.inspector.exceptions.JPFInspectorGenericErrorException;
 import gov.nasa.jpf.inspector.interfaces.CommandsInterface.StepType;
 import gov.nasa.jpf.inspector.interfaces.InstructionPosition;
-import gov.nasa.jpf.inspector.exceptions.JPFInspectorGenericErrorException;
 import gov.nasa.jpf.inspector.server.breakpoints.BreakPointModes;
 import gov.nasa.jpf.inspector.server.breakpoints.InstructionPositionImpl;
 import gov.nasa.jpf.inspector.server.expression.ExpressionBooleanLeaf;
@@ -30,17 +30,10 @@ import gov.nasa.jpf.inspector.server.expression.InspectorState.ListenerMethod;
 import gov.nasa.jpf.inspector.server.jpf.JPFInspector;
 import gov.nasa.jpf.inspector.server.jpf.SearchInspectorExtension;
 import gov.nasa.jpf.inspector.server.jpf.StopHolder;
-import gov.nasa.jpf.vm.VM;
-import gov.nasa.jpf.vm.Path;
-import gov.nasa.jpf.vm.StackFrame;
-import gov.nasa.jpf.vm.ThreadInfo;
-import gov.nasa.jpf.vm.Transition;
-import gov.nasa.jpf.vm.Instruction;
-import gov.nasa.jpf.vm.bytecode.InvokeInstruction; // TODO change of invoke here
 import gov.nasa.jpf.search.DFSearch;
 import gov.nasa.jpf.search.Search;
-
-import java.util.Iterator;
+import gov.nasa.jpf.vm.*;
+import gov.nasa.jpf.vm.bytecode.InvokeInstruction;
 
 /**
  * Represents the "step_in" and "step_over" hit conditions. These are supposed to be internal and are undocumented.
@@ -189,7 +182,6 @@ public class ExpressionBreakpointSingleStep extends ExpressionBooleanLeaf {
       return breakIfNoNextLine;
     }
 
-    final Path path = vm.getPath();
     final Instruction impendingInstruction = vm.getInstruction();
     // final Step lastStep = vm.getSystemState().getTrail().getLastStep();
     // final Instruction xxx = lastStep.getInstruction();

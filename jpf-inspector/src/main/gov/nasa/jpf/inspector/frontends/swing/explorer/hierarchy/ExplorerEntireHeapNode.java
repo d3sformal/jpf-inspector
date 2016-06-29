@@ -7,12 +7,13 @@ import gov.nasa.jpf.vm.Heap;
 
 import java.util.ArrayList;
 
+/**
+ * Represents the single "Entire Heap" node in the Explorer.
+ */
 public class ExplorerEntireHeapNode extends ExplorerComplexNode {
-  ProgramStateTreeModel model;
 
   public ExplorerEntireHeapNode(ProgramStateTreeModel model, ExplorerNode parent) {
       super(model, Attachment.irrelevant(), parent);
-      this.model = model;
 
   }
 

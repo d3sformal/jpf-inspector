@@ -18,49 +18,50 @@ import org.junit.Test;
  * @author Alf
  * 
  */
+@SuppressWarnings("JavaDoc")
 public class NormalizedTextParsingTest  {
   private static final boolean DEBUG = false;
   private final PrintStream out = System.out;
 
-  private static final String createBPcmds[] = {
-    "cr bp name=log state =    log  10<=hit_count<15 this_text_is_not_test_because_it_is_parsed_by_server_part",
-    "create bp name=enable99 property_violated",
-    "create breakpoint name=enable state=en hc<16 property_violated",
-    "create breakpoint name=hit_count state=dis 3<=hit_count property_violated hit_count áeíóúý+-.", };
+  private static final String[] createBPcmds = {
+          "cr bp name=log state =    log  10<=hit_count<15 this_text_is_not_test_because_it_is_parsed_by_server_part",
+          "create bp name=enable99 property_violated",
+          "create breakpoint name=enable state=en hc<16 property_violated",
+          "create breakpoint name=hit_count state=dis 3<=hit_count property_violated hit_count áeíóúý+-.",};
 
   @Test
   public void cmdCreateBP () {
     testCommands(createBPcmds);
   }
 
-  private static final String deleteBPcmds[] = { "del bp 10", };
+  private static final String[] deleteBPcmds = {"del bp 10",};
 
   @Test
   public void cmdDeleteBP () {
     testCommands(deleteBPcmds);
   }
 
-  private static final String showBPcmds[] = { "sw bp", };
+  private static final String[] showBPcmds = {"sw bp",};
 
   @Test
   public void cmdShowBP () {
     testCommands(showBPcmds);
   }
 
-  private static final String cgTrackingsCmds[] = {
-    "en ask  sched cg",
-    "dis print  all cg",
-    "dis ask  data cg", };
+  private static final String[] cgTrackingsCmds = {
+          "en ask  sched cg",
+          "dis print  all cg",
+          "dis ask  data cg",};
 
   @Test
   public void cmdCGTracking () {
     testCommands(cgTrackingsCmds);
   }
 
-  private static final String selectChoiceCmds[] = {
-    "cg sel 3",
-    "cg sel *", // Default choice
-    "cg sel", // Use current choice
+  private static final String[] selectChoiceCmds = {
+          "cg sel 3",
+          "cg sel *", // Default choice
+          "cg sel", // Use current choice
   };
 
   @Test
@@ -68,51 +69,51 @@ public class NormalizedTextParsingTest  {
     testCommands(selectChoiceCmds);
   }
 
-  private static final String printCmds[] = {
-    "print Alf is great",
-    "print print enabled", };
+  private static final String[] printCmds = {
+          "print Alf is great",
+          "print print enabled",};
 
   @Test
   public void cmdPrint () {
     testCommands(printCmds);
   }
 
-  private static final String runCmds[] = {
-    "run",
-    "continue",
-    "break", };
+  private static final String[] runCmds = {
+          "run",
+          "continue",
+          "break",};
 
   @Test
   public void cmdRun () {
     testCommands(runCmds);
   }
 
-  private static final String singleSteppingCmds[] = {
-    "sins",
-    "bsins",
-    "so",
-    "bso",
-    "si",
-    "bsi",
-    "sout",
-    "bsout",
-    "st",
-    "bst",
-    "st all",
-    "bst all",
-    "st sched",
-    "bst sched",
-    "st data",
-    "bst data", };
+  private static final String[] singleSteppingCmds = {
+          "sins",
+          "bsins",
+          "so",
+          "bso",
+          "si",
+          "bsi",
+          "sout",
+          "bsout",
+          "st",
+          "bst",
+          "st all",
+          "bst all",
+          "st sched",
+          "bst sched",
+          "st data",
+          "bst data",};
 
   @Test
   public void cmdSingleStepping () {
     testCommands(singleSteppingCmds);
   }
 
-  private static final String statusThreadsCmds[] = {
-    "thread 3",
-    "ti" // thread info for all
+  private static final String[] statusThreadsCmds = {
+          "thread 3",
+          "ti" // thread info for all
   };
 
   @Test
@@ -120,9 +121,9 @@ public class NormalizedTextParsingTest  {
     testCommands(statusThreadsCmds);
   }
 
-  private static final String threadsPCcmds[] = {
-    "thread_pc 10",
-    "thpc" // all threads
+  private static final String[] threadsPCcmds = {
+          "thread_pc 10",
+          "thpc" // all threads
   };
 
   @Test
@@ -130,7 +131,7 @@ public class NormalizedTextParsingTest  {
     testCommands(threadsPCcmds);
   }
 
-  private static final String usedCGcmds[] = { "used cg", };
+  private static final String[] usedCGcmds = {"used cg",};
 
   @Test
   public void cmdUsedCG () {
@@ -173,7 +174,7 @@ public class NormalizedTextParsingTest  {
     }
   }
 
-  private void fail(String s) {
+  private static void fail(String s) {
     Assert.fail(s);
   }
 

@@ -1,4 +1,4 @@
-//
+// DO NOT CHANGE THE NUMBER OF LINES IN THIS FILE, SEE FURTHER.
 // Copyright (C) 2006 United States Government as represented by the
 // Administrator of the National Aeronautics and Space Administration
 // (NASA).  All Rights Reserved.
@@ -18,7 +18,7 @@
 //
 
 // Taken from jpf-core examples
-/**
+/* WHITESPACE IS SIGNIFICANT HERE: AUTOMATED TESTS USE LINE NUMBERS OF SPECIFIC STATEMENTS IN THIS FILE.
  * This is the famous Bridge-crossing puzzle. The aim is to see what the minimum
  * amount of time is for 4 people to cross with flash-light (torch): 10.5.2.1.
  * The answer is 17 for the given configuration.
@@ -40,13 +40,13 @@
 
 import gov.nasa.jpf.vm.Verify;
 
-class Constants {
+@SuppressWarnings("ALL") class Constants {
 
   public static final boolean east = true;
   public static final boolean west = false;
 }
 
-class Torch {
+@SuppressWarnings("ALL") class Torch {
 
   public static boolean side = Constants.east;
 
@@ -59,7 +59,7 @@ class Torch {
   }
 }
 
-class Bridge {
+@SuppressWarnings("ALL") class Bridge {
 
   static Person[] onBridge = new Person[2];
   static int numOnBridge = 0;
@@ -131,7 +131,7 @@ class Bridge {
   }
 }
 
-class Person {
+@SuppressWarnings("ALL") class Person {
   // person to cross the bridge
 
   int id;
@@ -157,7 +157,7 @@ class Person {
   }
 }
 
-public class Crossing {
+@SuppressWarnings("ALL") public class Crossing {
 
   public static native void setTotal(int time);
 

@@ -1,7 +1,7 @@
 package sooth;
 
 
-public class Stack {
+@SuppressWarnings("ALL") public class Stack {
   public void a() {
     int a = 1;
     b();

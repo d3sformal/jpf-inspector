@@ -23,7 +23,6 @@ import gov.nasa.jpf.inspector.client.commands.CmdBreakpointShow;
 import gov.nasa.jpf.inspector.frontends.swing.AuxiliaryInspectorPanel;
 import gov.nasa.jpf.inspector.interfaces.*;
 import gov.nasa.jpf.inspector.interfaces.ChoiceGeneratorsInterface.CGTypes;
-import gov.nasa.jpf.inspector.interfaces.InspectorStatusChange;
 
 import java.io.PrintStream;
 import java.util.List;

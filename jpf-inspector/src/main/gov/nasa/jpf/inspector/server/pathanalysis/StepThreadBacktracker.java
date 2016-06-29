@@ -1,7 +1,6 @@
 package gov.nasa.jpf.inspector.server.pathanalysis;
 
 import gov.nasa.jpf.inspector.utils.Debugging;
-import gov.nasa.jpf.vm.Backtracker;
 import gov.nasa.jpf.vm.Instruction;
 import gov.nasa.jpf.vm.Step;
 import gov.nasa.jpf.vm.Transition;

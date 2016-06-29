@@ -22,7 +22,7 @@
  * 
  * @author Alf
  */
-public class Print01 {
+@SuppressWarnings("ALL") public class Print01 {
 
   // Variables of various types
   public final boolean bool = true;

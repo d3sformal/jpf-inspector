@@ -19,18 +19,13 @@
 
 package gov.nasa.jpf.inspector.server.expression.expressions;
 
-import gov.nasa.jpf.inspector.exceptions.JPFInspectorGenericErrorException;
 import gov.nasa.jpf.inspector.server.breakpoints.BreakPointModes;
 import gov.nasa.jpf.inspector.server.expression.ExpressionBooleanLeaf;
 import gov.nasa.jpf.inspector.server.expression.InspectorState;
 import gov.nasa.jpf.inspector.server.expression.InspectorState.ListenerMethod;
-import gov.nasa.jpf.inspector.server.jpf.JPFInspector;
-import gov.nasa.jpf.inspector.server.jpf.StopHolder;
-import gov.nasa.jpf.vm.VM;
-import gov.nasa.jpf.vm.KernelState;
 import gov.nasa.jpf.vm.StackFrame;
 import gov.nasa.jpf.vm.ThreadInfo;
-import gov.nasa.jpf.vm.ThreadList;
+import gov.nasa.jpf.vm.VM;
 
 /**
  * Represents a hidden breakpoint condition used to implement the "step_out" command.
@@ -40,7 +35,7 @@ import gov.nasa.jpf.vm.ThreadList;
  * 
  * @author Alfifi
  */
-public class ExpressionBreakpointStepOut extends ExpressionBooleanLeaf {
+public final class ExpressionBreakpointStepOut extends ExpressionBooleanLeaf {
 
   /**
    * The active thread at the time the stepping was initiated.
@@ -72,54 +67,22 @@ public class ExpressionBreakpointStepOut extends ExpressionBooleanLeaf {
     this.threadNum = ti.getId();
     this.stackDepth = stackDepth;
 
-    int maxBreakingStackDepth = ti.countStackFrames() - stackDepth + 1;
-    if (maxBreakingStackDepth < 0) {
-      maxBreakingStackDepth = 0;
+    int newMaxBreakingStackDepth = ti.countStackFrames() - stackDepth + 1;
+    if (newMaxBreakingStackDepth < 0) {
+      newMaxBreakingStackDepth = 0;
     }
-    this.maxBreakingStackDepth = maxBreakingStackDepth;
+    this.maxBreakingStackDepth = newMaxBreakingStackDepth;
 
     // this.sf = ti.getCallerStackFrame(stackDepth);
   }
 
+
+
   /**
-   * This is apparently only used from the grammar and using grammar for stepping is completely undocumented,
-   * so why even have this here? Maybe for testing? or something?
+   * Creates the step-out breakpoint.
+   *
+   * @param ti Thread, which is considered (all other threads are ignored by this breakpoint).
    */
-  public static ExpressionBreakpointStepOut getStepOutToCaller (JPFInspector inspector, int threadId, int stackDepth) throws JPFInspectorGenericErrorException {
-    assert inspector != null;
-    StopHolder sh = inspector.getStopHolder();
-    assert sh != null;
-    InspectorState inspState = sh.getInspectorState();
-    if (inspState == null) {
-      throw new JPFInspectorGenericErrorException(
-          "cannot create given breakpoint, JPF has to be connected and stopped - program state is required to create given breakpoint.");
-    }
-
-    VM vm = inspState.getVM();
-    assert (vm != null);
-
-    // Find thread with given ThreadID
-    KernelState ks = vm.getKernelState();
-    ThreadList threadList = ks.getThreadList();
-
-    ThreadInfo ti = null;
-
-    for (ThreadInfo itTi : threadList) {
-      assert (itTi != null);
-
-      if (itTi.getId() == threadId) {
-        ti = itTi;
-        break;
-      }
-    }
-
-    if (ti == null) {
-      throw new JPFInspectorGenericErrorException("Thread with index " + threadId + " not exists");
-    }
-
-    return new ExpressionBreakpointStepOut(ti, stackDepth);
-  }
-
   public static ExpressionBreakpointStepOut getStepOutToCaller (ThreadInfo ti) {
     assert ti != null;
     return new ExpressionBreakpointStepOut(ti, 1);

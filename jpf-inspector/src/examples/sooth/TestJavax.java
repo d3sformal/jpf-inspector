@@ -3,7 +3,7 @@ package sooth;
 
 import java.util.HashSet;
 
-@SuppressWarnings({"unchecked", "MismatchedQueryAndUpdateOfCollection"})
+@SuppressWarnings("ALL")
 public class TestJavax {
   public static void main(String[] args) {
       java.util.HashSet hashSet = new HashSet();

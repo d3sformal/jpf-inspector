@@ -20,8 +20,6 @@
 package gov.nasa.jpf.inspector.common.pse;
 
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorException;
-import gov.nasa.jpf.inspector.interfaces.JPFInspectorBackEndInterface;
-import gov.nasa.jpf.inspector.server.programstate.StateNodeInterface;
 
 import java.io.Serializable;
 

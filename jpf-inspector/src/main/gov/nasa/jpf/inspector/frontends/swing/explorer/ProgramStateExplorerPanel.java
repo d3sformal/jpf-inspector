@@ -5,7 +5,6 @@ import gov.nasa.jpf.inspector.frontends.swing.AuxiliaryInspectorPanel;
 import javax.swing.*;
 import javax.swing.event.TreeExpansionEvent;
 import javax.swing.event.TreeExpansionListener;
-import javax.swing.tree.TreePath;
 import java.awt.*;
 
 /**

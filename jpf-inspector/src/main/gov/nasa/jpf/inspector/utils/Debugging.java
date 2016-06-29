@@ -2,10 +2,8 @@ package gov.nasa.jpf.inspector.utils;
 
 import gov.nasa.jpf.Config;
 import gov.nasa.jpf.JPF;
-import gov.nasa.jpf.shell.Shell;
 import gov.nasa.jpf.shell.ShellManager;
 
-import java.security.cert.TrustAnchor;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 

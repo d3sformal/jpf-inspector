@@ -11,6 +11,12 @@ import gov.nasa.jpf.vm.ThreadInfo;
 
 import java.util.ArrayList;
 
+/**
+ * Represents a stack frame node in the Explorer.
+ *
+ * A stack frame node can only be a child of a thread. The node uses the parent thread _and_ the stack frame object
+ * to get its children (stack slots) and its string representation.
+ */
 public class ExplorerStackFrameNode extends ExplorerComplexNode {
   private final ThreadInfo parentThread;
   private StackFrame stackFrame;
@@ -27,15 +33,15 @@ public class ExplorerStackFrameNode extends ExplorerComplexNode {
   @Override
   protected ArrayList<ExplorerNode> populateChildren() {
     int stackSlotCount = stackFrame.getTopPos() + 1; // Only valid slots -- copied from StateStackFrame
-    ArrayList<ExplorerNode> children = new ArrayList<>();
+    ArrayList<ExplorerNode> newChildren = new ArrayList<>();
     for (int i = 0; i < stackSlotCount; i++) {
       LocalVarInfo localVarInfo = stackFrame.getLocalVarInfo(i);
       if (localVarInfo == null) {
         localVarInfo = new LocalVarInfo("???", "I", "I", 0, stackFrame.getMethodInfo().getLastInsn().getPosition(), i);
       }
-      children.add(ExplorerNodeFactory.createFromStackSlot(localVarInfo.getName(), stackFrame, localVarInfo, model, this));
+      newChildren.add(ExplorerNodeFactory.createFromStackSlot(localVarInfo.getName(), stackFrame, localVarInfo, model, this));
     }
-    return children;
+    return newChildren;
   }
 
   @Override

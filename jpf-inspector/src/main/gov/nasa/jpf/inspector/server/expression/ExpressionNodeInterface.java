@@ -19,8 +19,6 @@
 
 package gov.nasa.jpf.inspector.server.expression;
 
-import java.util.List;
-
 /**
  * Represents a node in the expression abstract syntax tree.
  *

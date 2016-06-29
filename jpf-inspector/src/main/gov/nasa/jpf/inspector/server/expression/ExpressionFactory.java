@@ -195,15 +195,6 @@ public class ExpressionFactory {
     return new ExpressionBreakpointOperatorOr(left, right);
   }
 
-  public ExpressionBreakpointStepOut getBreakpointStepOut (int threadId, int stackDepth) throws GenericErrorRuntimeException {
-    try {
-      return ExpressionBreakpointStepOut.getStepOutToCaller(inspector, threadId, stackDepth);
-    } catch (JPFInspectorGenericErrorException e) {
-      // Rethrow as {@link RuntimeException} - have to be caught (in {@link ExpressionParser}).
-      throw new GenericErrorRuntimeException(e);
-    }
-  }
-
   public ExpressionBreakpointStateAdvanced getBreakpointStateAdvanced () {
     return new ExpressionBreakpointStateAdvanced();
   }

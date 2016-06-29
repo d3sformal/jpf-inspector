@@ -6,6 +6,10 @@ import gov.nasa.jpf.inspector.frontends.swing.explorer.ProgramStateTreeModel;
 import javax.swing.tree.TreeNode;
 import java.util.Enumeration;
 
+/**
+ * Base class for those nodes of the Program State Explorer that have no children.
+ * These nodes are: {@link ExplorerPrimitiveNode} and {@link ExplorerDebugLeafNode}.
+ */
 public abstract class ExplorerLeafNode extends ExplorerNode {
   protected ExplorerLeafNode(Attachment attachment, ProgramStateTreeModel model, ExplorerNode parent) {
     super(attachment, model, parent);
@@ -37,7 +41,7 @@ public abstract class ExplorerLeafNode extends ExplorerNode {
   }
 
   @Override
-  public final Enumeration children() {
+  public final Enumeration<ExplorerNode> children() {
     return null;
   }
 }

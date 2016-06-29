@@ -30,7 +30,7 @@ import java.io.PrintStream;
  */
 public class CmdAssertions extends ClientCommand {
 
-  boolean enable;
+  private boolean enable;
   public CmdAssertions (boolean enable, String classNameExpr) {
     this.enable = enable;
   }

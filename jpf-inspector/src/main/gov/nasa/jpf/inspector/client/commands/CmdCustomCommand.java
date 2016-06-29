@@ -133,7 +133,7 @@ public class CmdCustomCommand extends ClientCommand {
     }
   }
 
-  private String replaceMacroStyle(String realCommand, int numberOfRequiredParameters, String arguments, String[] argumentsArray) {
+  private static String replaceMacroStyle(String realCommand, int numberOfRequiredParameters, String arguments, String[] argumentsArray) {
     String result = realCommand.replace(CommandAlias.FULL_ARGUMENT_PATTERN, arguments);
     for (int i = 0; i < numberOfRequiredParameters; i++) {
       result = result.replace("{" + i + "}", argumentsArray[i]);

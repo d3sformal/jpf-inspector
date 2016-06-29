@@ -5,7 +5,6 @@ import gov.nasa.jpf.inspector.client.JPFInspectorClient;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorException;
 import gov.nasa.jpf.inspector.interfaces.JPFInspectorBackEndInterface;
 
-import java.io.OutputStream;
 import java.io.PrintStream;
 
 /**

@@ -56,8 +56,8 @@ public class CmdAssert extends ClientCommand {
         outStream.println("New assertion successfully created with ID " + createdAssert.getBPID() + ".");
       }
 
-      if (rec != null) {
-        rec.updateCommandRecord(this);
+      if (recorder != null) {
+        recorder.updateCommandRecord(this);
       }
 
     } catch (JPFInspectorParsingErrorException e) {

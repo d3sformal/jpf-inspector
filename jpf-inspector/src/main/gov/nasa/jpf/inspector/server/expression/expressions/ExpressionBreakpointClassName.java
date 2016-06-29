@@ -9,8 +9,6 @@ import gov.nasa.jpf.vm.ClassInfo;
 import gov.nasa.jpf.vm.Instruction;
 import gov.nasa.jpf.vm.MethodInfo;
 
-import java.util.Objects;
-
 /**
  * Represents the "class = [classname]" hit condition that hits before each instruction in the specified class.
  */

@@ -7,8 +7,8 @@ package gov.nasa.jpf.inspector.frontends.swing.explorer;
  * to the parent (for example, field name or array index).
  */
 public final class Attachment {
-  public final String name;
-  public final AttachmentKind kind;
+  private final String name;
+  private final AttachmentKind kind;
 
   @Override
   public boolean equals(Object obj) {

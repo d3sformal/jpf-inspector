@@ -4,7 +4,6 @@ nbproject/private/*
 build/*
 dist/*
 doc/*
-*.class
 *~
 *.orig
 src\main\gov\nasa\jpf\inspector\server\expression\parser\ExpressionGrammar.tokens

@@ -38,7 +38,6 @@ import gov.nasa.jpf.inspector.server.jpf.StopHolder;
 import gov.nasa.jpf.inspector.server.pathanalysis.BackwardBreakpointCreator;
 import gov.nasa.jpf.inspector.utils.Debugging;
 import gov.nasa.jpf.inspector.utils.expressions.FieldName;
-import gov.nasa.jpf.vm.ChoiceGenerator;
 import gov.nasa.jpf.vm.ThreadInfo;
 import gov.nasa.jpf.search.Search;
 

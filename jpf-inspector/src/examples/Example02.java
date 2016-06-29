@@ -23,7 +23,7 @@ import gov.nasa.jpf.vm.Verify;
  * @author Alf
  * 
  */
-public class Example02 {
+@SuppressWarnings("ALL") public class Example02 {
 
   public void divide () {
     int j = Verify.random(5);

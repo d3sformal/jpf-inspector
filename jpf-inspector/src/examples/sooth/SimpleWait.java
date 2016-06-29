@@ -1,5 +1,6 @@
 package sooth;
 
+@SuppressWarnings("ALL")
 public class SimpleWait {
   public static void main(String[] args) throws InterruptedException {
     System.out.println("Begin. ");

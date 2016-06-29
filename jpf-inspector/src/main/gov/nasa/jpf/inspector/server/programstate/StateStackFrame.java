@@ -48,6 +48,11 @@ public final class StateStackFrame extends StateNode {
    */
   protected final MethodInfo mi;
 
+  /**
+   * Initializes a new instance of a hierarchy-2 stack frame.
+   * @param sti Hierarchy-2 representation of the parent thread.
+   * @param stackFrameNum Index of the stack frame in the parent thread (0 is top).
+   */
   public StateStackFrame (StateThreadInfo sti, Integer stackFrameNum) throws JPFInspectorException {
     super(sti.getInspector());
 
@@ -58,13 +63,13 @@ public final class StateStackFrame extends StateNode {
       stackFrameIdx = stackFrameNum;
     }
 
-    StackFrame sf = ti.getCallerStackFrame(stackFrameIdx);
-    if (sf == null) {
+    StackFrame stackFrame = ti.getCallerStackFrame(stackFrameIdx);
+    if (stackFrame == null) {
       throw new JPFInspectorInvalidStackFrame(ti.getId(), stackFrameIdx);
     }
 
-    this.sf = sf;
-    this.mi = sf.getMethodInfo();
+    this.sf = stackFrame;
+    this.mi = stackFrame.getMethodInfo();
     assert (mi != null);
 
     setStateExpr(createStateExpression(sti, stackFrameIdx));
@@ -120,6 +125,9 @@ public final class StateStackFrame extends StateNode {
     return sti.getStateExpr() + '.' + PSEMethod.EXPRESSION_METHOD_KEY_WORD + '[' + stackFrameDepth + ']';
   }
 
+  /**
+   * Gets the JPF representation of the stack frame.
+   */
   public StackFrame getStackFrame () {
     return sf;
   }

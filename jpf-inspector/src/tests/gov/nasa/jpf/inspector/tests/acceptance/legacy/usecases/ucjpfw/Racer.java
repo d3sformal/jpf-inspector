@@ -18,7 +18,7 @@ package gov.nasa.jpf.inspector.tests.acceptance.legacy.usecases.ucjpfw;//
 //
 
 // Taken from jpf-core examples
-public class Racer implements Runnable {
+@SuppressWarnings("ALL") public class Racer implements Runnable {
 
      int d = 42;
 

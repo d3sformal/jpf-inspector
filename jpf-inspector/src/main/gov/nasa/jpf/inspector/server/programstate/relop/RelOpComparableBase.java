@@ -136,12 +136,8 @@ abstract class RelOpComparableBase implements RelationOperator {
    */
   public abstract boolean compare (String left, String right);
 
-  @Override
-  public abstract String getNormalizedText ();
-
   /**
-   * 
-   * @param value
+   *
    * @return Get null, if value does not represent floating point number, otherwise gets operand value converted to double.
    */
   protected static Double tryConvertToDouble (StateReadableValue value) {
@@ -152,7 +148,7 @@ abstract class RelOpComparableBase implements RelationOperator {
       assert (o != null);
       assert (o instanceof Float);
       Float f = (Float) o;
-      return Double.valueOf(f.doubleValue());
+      return f.doubleValue();
     }
 
     if (ciCache.ci_double.equals(valueCi) || ciCache.ci_Double.equals(valueCi)) {
@@ -166,8 +162,7 @@ abstract class RelOpComparableBase implements RelationOperator {
   }
 
   /**
-   * 
-   * @param value
+   *
    * @return Get null, if value does not represent integer type (byte, short, int, long), otherwise gets operand value converted to long.
    */
   protected static Long tryConvertToLong (StateReadableValue value) {
@@ -179,15 +174,15 @@ abstract class RelOpComparableBase implements RelationOperator {
       assert (o != null);
       assert (o instanceof Byte);
       Byte b = (Byte) o;
-      return Long.valueOf(b.longValue());
+      return b.longValue();
     }
 
     if (ciCache.ci_short.equals(valueCi) || ciCache.ci_Short.equals(valueCi)) {
       Object o = value.getValue();
       assert (o != null);
       assert (o instanceof Short);
-      Short s = (Short) o;
-      return Long.valueOf(s.longValue());
+      Short shortValue = (Short) o;
+      return shortValue.longValue();
     }
 
     if (ciCache.ci_int.equals(valueCi) || ciCache.ci_Int.equals(valueCi)) {
@@ -195,7 +190,7 @@ abstract class RelOpComparableBase implements RelationOperator {
       assert (o != null);
       assert (o instanceof Integer);
       Integer i = (Integer) o;
-      return Long.valueOf(i.longValue());
+      return i.longValue();
     }
 
     if (ciCache.ci_long.equals(valueCi) || ciCache.ci_Long.equals(valueCi)) {
@@ -209,7 +204,6 @@ abstract class RelOpComparableBase implements RelationOperator {
   }
 
   /**
-   * @param value
    * @return Get null, if value does not represent String value, otherwise gets operand value converted to String.
    */
   protected static String tryConvertToString (StateReadableValue value) {
@@ -226,7 +220,6 @@ abstract class RelOpComparableBase implements RelationOperator {
   }
 
   /**
-   * @param value
    * @return Get null, if value does not represent character value, otherwise gets operand value converted to Character.
    */
   protected static Character tryConvertToChar (StateReadableValue value) {

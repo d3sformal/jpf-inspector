@@ -1,7 +1,5 @@
 package extensibility;
 
-import gov.nasa.jpf.inspector.common.pse.PSEVariablePrimitive;
-import gov.nasa.jpf.inspector.common.pse.ProgramStateEntry;
 import gov.nasa.jpf.inspector.interfaces.CustomHitCondition;
 import gov.nasa.jpf.inspector.interfaces.JPFInspectorBackEndInterface;
 import gov.nasa.jpf.inspector.server.expression.InspectorState;

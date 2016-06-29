@@ -14,12 +14,12 @@ public class ExplorerAllThreadsNode extends ExplorerComplexNode {
 
   @Override
   protected ArrayList<ExplorerNode> populateChildren() {
-    ArrayList<ExplorerNode> children = new ArrayList<>();
+    ArrayList<ExplorerNode> newChildren = new ArrayList<>();
     ThreadList threadList = model.getVM().getThreadList();
     for (ThreadInfo threadInfo : threadList) {
-      children.add(new ExplorerThreadInfoNode(threadInfo, model, this));
+      newChildren.add(new ExplorerThreadInfoNode(threadInfo, model, this));
     }
-    return children;
+    return newChildren;
   }
 
   @Override

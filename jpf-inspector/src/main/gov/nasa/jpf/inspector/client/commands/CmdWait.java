@@ -3,7 +3,6 @@ package gov.nasa.jpf.inspector.client.commands;
 import gov.nasa.jpf.inspector.client.ClientCommand;
 import gov.nasa.jpf.inspector.client.JPFInspectorClient;
 import gov.nasa.jpf.inspector.interfaces.JPFInspectorBackEndInterface;
-import gov.nasa.jpf.shell.ShellManager;
 
 import java.io.PrintStream;
 

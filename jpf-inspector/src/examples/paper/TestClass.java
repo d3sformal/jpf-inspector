@@ -76,7 +76,7 @@ import java.util.Map;
  * 
  */
 
-class CacheManager {
+@SuppressWarnings("ALL") class CacheManager {
 
   private final FileLoader loader;
   private final Map<File, String> cache;
@@ -137,7 +137,7 @@ class CacheManager {
 /**
  * Loads files to cache in background thread
  */
-final class FileLoader extends Thread {
+@SuppressWarnings("ALL") final class FileLoader extends Thread {
   private File file = null;
   private String charset = "US-ASCII";
 
@@ -233,7 +233,7 @@ final class FileLoader extends Thread {
   }
 }
 
-public class TestClass {
+@SuppressWarnings("ALL") public class TestClass {
 
   public static void main (String[] args) {
 
@@ -262,7 +262,7 @@ public class TestClass {
         cm.terminate();
       }
     } catch (Throwable t) {
-      assert (false);
+      assert false;
     }
   }
 }

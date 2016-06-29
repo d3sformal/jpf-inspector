@@ -3,7 +3,7 @@ package gov.nasa.jpf.inspector.common;
 /**
  * Contains static information about the current Inspector client console.
  */
-public class ConsoleInformation {
+public final class ConsoleInformation {
   /**
    * Represents the maximum length that a one-line message can have.
    *
@@ -11,7 +11,7 @@ public class ConsoleInformation {
    * to ensure that it will fit on a single line, it should only display the first MAX_LINE_LENGTH
    * characters and then display an ellipsis (three dots).
    */
-  public static int MAX_LINE_LENGTH = 80;
+  public static final int MAX_LINE_LENGTH = 80;
   /**
    * Represents the maximum length that a user-input text can have before it's broken on another line.
    *
@@ -27,5 +27,5 @@ public class ConsoleInformation {
    * Notice the little arrow pointing at the position of the error. If the line the arrow is pointing to is greater
    * than MAX_ERROR_LINE_LENGTH, then it should be broken up into several lines.
    */
-  public static int MAX_ERROR_LINE_LENGTH = 50;
+  public static final int MAX_ERROR_LINE_LENGTH = 50;
 }

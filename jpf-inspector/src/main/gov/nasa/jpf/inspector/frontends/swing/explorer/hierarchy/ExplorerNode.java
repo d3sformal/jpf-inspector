@@ -3,9 +3,7 @@ package gov.nasa.jpf.inspector.frontends.swing.explorer.hierarchy;
 import gov.nasa.jpf.inspector.frontends.swing.explorer.Attachment;
 import gov.nasa.jpf.inspector.frontends.swing.explorer.ProgramStateTreeModel;
 
-import javax.management.modelmbean.ModelMBean;
 import javax.swing.tree.TreeNode;
-import java.util.List;
 
 public abstract class ExplorerNode implements TreeNode {
   protected ExplorerNode parent;

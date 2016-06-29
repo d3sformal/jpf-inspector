@@ -19,8 +19,9 @@ import gov.nasa.jpf.search.Search;
  * when the breakpoint created by the backwards step is hit.
  */
 public class InspectorListenerModeSilent extends ListenerAdapter {
-  private static final boolean DEBUG = true;
+  private static final boolean DEBUG = false;
 
+  @SuppressWarnings("FieldCanBeLocal") // IDEA bug
   private final JPFInspector inspector;
   private final CommandsManager commandsManager;
   private final BreakpointHandler breakpointHandler;
@@ -215,7 +216,7 @@ public class InspectorListenerModeSilent extends ListenerAdapter {
 
   @Override
   public void executeInstruction(VM vm, ThreadInfo currentThread, Instruction instructionToExecute) {
-    if (false) {
+    if (DEBUG) {
         inspector.getDebugPrintStream().println(
                 this.getClass().getSimpleName() + ".executeInstruction() inst=" + instructionToExecute );
     }
@@ -238,7 +239,7 @@ public class InspectorListenerModeSilent extends ListenerAdapter {
 
   @Override
   public void instructionExecuted(VM vm, ThreadInfo currentThread, Instruction nextInstruction, Instruction executedInstruction) {
-    if (false) {
+    if (DEBUG) {
       if ((executedInstruction.getMethodInfo().getClassInfo() != null) && (executedInstruction.getMethodInfo().getClassInfo().getSourceFileName() != null))
       {
         inspector.getDebugPrintStream().println(

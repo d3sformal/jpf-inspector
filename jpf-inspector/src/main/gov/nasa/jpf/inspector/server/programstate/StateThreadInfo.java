@@ -39,31 +39,35 @@ public final class StateThreadInfo extends StateNode {
   private final ThreadInfo ti;
 
   /**
-   * Initializes a new instance with reference depth 2.
+   * Initializes a new hierarchy-2 representation of the thread with the specified index.
+   *
+   * @param inspector The Inspector server.
+   * @param vm The virtual machine.
+   * @param threadNum Index of the thread.
    */
   public StateThreadInfo (JPFInspector inspector, VM vm, Integer threadNum) throws JPFInspectorException {
     super(inspector);
-    ThreadInfo ti;
+    ThreadInfo threadInfo;
     assert (vm != null);
 
     if (threadNum == null) {
-      ti = vm.getCurrentThread();
-      if (ti == null) {
+      threadInfo = vm.getCurrentThread();
+      if (threadInfo == null) {
         throw new JPFInspectorNoThread();
       }
     } else {
       ThreadList tl = vm.getKernelState().getThreadList();
-      ti = tl.getThreadInfoForId(threadNum);
+      threadInfo = tl.getThreadInfoForId(threadNum);
 
-      if (ti == null) {
+      if (threadInfo == null) {
         throw new JPFInspectorNoThread(threadNum);
       }
     }
 
-    assert ti != null; // Error should be reported before
+    assert threadInfo != null; // Error should be reported before
 
-    this.ti = ti;
-    setStateExpr(StateThreadInfo.createStateExpression(ti));
+    this.ti = threadInfo;
+    setStateExpr(StateThreadInfo.createStateExpression(threadInfo));
   }
 
   @Override
@@ -91,6 +95,9 @@ public final class StateThreadInfo extends StateNode {
     return new PSEThread(threadNum, state, threadName, threadTypeName, priority, isDaemon, refCallStack);
   }
 
+  /**
+   * Gets the JPF representation of the the thread.
+   */
   public ThreadInfo getThreadInfo () {
     return ti;
   }

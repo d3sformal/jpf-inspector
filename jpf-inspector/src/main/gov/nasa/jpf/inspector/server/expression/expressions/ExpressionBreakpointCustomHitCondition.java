@@ -1,16 +1,13 @@
 
 package gov.nasa.jpf.inspector.server.expression.expressions;
 
-import gov.nasa.jpf.inspector.common.pse.ProgramStateEntry;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorException;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorGenericErrorException;
 import gov.nasa.jpf.inspector.interfaces.CustomHitCondition;
 import gov.nasa.jpf.inspector.server.breakpoints.BreakPointModes;
 import gov.nasa.jpf.inspector.server.expression.ExpressionBooleanLeaf;
-import gov.nasa.jpf.inspector.server.expression.ExpressionStateRootNode;
 import gov.nasa.jpf.inspector.server.expression.InspectorState;
 import gov.nasa.jpf.inspector.server.jpf.JPFInspector;
-import gov.nasa.jpf.inspector.server.programstate.StateNodeInterface;
 import gov.nasa.jpf.inspector.utils.InspectorConfiguration;
 import gov.nasa.jpf.inspector.utils.expressions.Expressions;
 import gov.nasa.jpf.inspector.utils.parser.GenericErrorRuntimeException;

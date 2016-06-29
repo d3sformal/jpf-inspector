@@ -1,7 +1,6 @@
 package gov.nasa.jpf.inspector.frontends.swing.explorer;
 
 import gov.nasa.jpf.inspector.frontends.swing.explorer.hierarchy.*;
-import gov.nasa.jpf.util.json.Value;
 import gov.nasa.jpf.vm.*;
 
 public class ExplorerNodeFactory {

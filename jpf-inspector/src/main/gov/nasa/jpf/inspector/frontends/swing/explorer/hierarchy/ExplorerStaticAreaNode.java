@@ -9,21 +9,30 @@ import gov.nasa.jpf.vm.Statics;
 
 import java.util.ArrayList;
 
+/**
+ * Represents the single "Static Area" node that contains static representations of all classes loaded by the
+ * current class loader.
+ */
 public class ExplorerStaticAreaNode extends ExplorerComplexNode {
+  /**
+   * Initializes the single "Static Area" node.
+   * @param model The tree model.
+   * @param explorerRoot The parent of this node.
+   */
   public ExplorerStaticAreaNode(ProgramStateTreeModel model, ExplorerRoot explorerRoot) {
     super(model, Attachment.irrelevant(), explorerRoot);
   }
 
   @Override
   protected ArrayList<ExplorerNode> populateChildren() {
-    ArrayList<ExplorerNode> children = new ArrayList<>();
+    ArrayList<ExplorerNode> newChildren = new ArrayList<>();
     Statics statics = ClassLoaderInfo.getCurrentClassLoader().getStatics();
     for (ElementInfo elementInfo : statics) {
       String typeName = StateWritableValue.demangleTypeName(elementInfo.getType());
-      children.add(new ExplorerJavaObjectNode(Attachment.staticAreaEntry(typeName),
+      newChildren.add(new ExplorerJavaObjectNode(Attachment.staticAreaEntry(typeName),
                                               elementInfo, model, this));
     }
-    return children;
+    return newChildren;
   }
 
   @Override

@@ -436,7 +436,7 @@
   </target>
   <target name="doxygen" description="Generates Doxygen javadocs at Petr's personal computer.">
     <exec executable="doxygen" dir="../documentation">
-      <arg value="inspector-doxyfile"></arg>
+      <arg value="inspector-doxyfile"/>
     </exec>
   </target>
 </project>

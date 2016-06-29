@@ -2,7 +2,6 @@ package gov.nasa.jpf.inspector.tests.acceptance;
 
 import gov.nasa.jpf.inspector.tests.acceptance.architecture.CorrectOutputAbstractTest;
 import gov.nasa.jpf.inspector.tests.acceptance.architecture.CorrectOutputTestCase;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;

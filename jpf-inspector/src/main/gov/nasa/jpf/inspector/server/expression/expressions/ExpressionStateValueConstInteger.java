@@ -34,10 +34,13 @@ import gov.nasa.jpf.vm.ClassLoaderInfo;
  */
 public class ExpressionStateValueConstInteger extends ExpressionStateValueConst {
 
+  private static final int HEXADECIMAL = 16;
+
   /**
    * The value has to be string in one of the following formats
    * 10, +10, -10, 0xFF, +0xFF, -0xFF
    *
+   * @param value An integer value written as text.
    * @return Return value converted to integer or exception if value is out of the integer range or input is malformed.
    */
   public static int convertToIntegerWrapped (String value) {
@@ -67,7 +70,7 @@ public class ExpressionStateValueConstInteger extends ExpressionStateValueConst 
         val = val.substring(2);
       }
       try {
-        return Integer.valueOf(val,  16);
+        return Integer.valueOf(val, HEXADECIMAL);
       } catch (NumberFormatException nfe) {
         throw new JPFInspectorParsingErrorException("Invalid hex integer value. Value is probably out of the integer range.", value, 0);
       }
@@ -81,10 +84,14 @@ public class ExpressionStateValueConstInteger extends ExpressionStateValueConst 
     }
   }
 
-  // Checks if represented number starts with [+|-]?0x
+  /**
+   * Checks if represented number starts with [+|-]?0x
+   * @param value A string that might look like a hexadecimal integer.
+   * @return True if the string starts with 0x, +0x or -0x.
+   */
   public static boolean isHEX (String value) {
     assert value != null;
-    assert value.length() > 0;
+    assert !value.isEmpty();
 
     char c0 = value.charAt(0);
     if (c0 == '0') {
@@ -121,6 +128,10 @@ public class ExpressionStateValueConstInteger extends ExpressionStateValueConst 
 
   private final int value;
 
+  /**
+   * Initializes a new instance of {@link ExpressionStateValueConstInteger}.
+   * @param value The integer constant that this expression represents.
+   */
   public ExpressionStateValueConstInteger (int value) {
     this.value = value;
   }
@@ -131,7 +142,7 @@ public class ExpressionStateValueConstInteger extends ExpressionStateValueConst 
    */
   @Override
   public StateNodeInterface getResultExpression (JPFInspector inspector, InspectorState state) throws JPFInspectorException {
-    return new StateReadableConstValue(inspector, ClassLoaderInfo.getCurrentResolvedClassInfo("int"), Integer.valueOf(value));
+    return new StateReadableConstValue(inspector, ClassLoaderInfo.getCurrentResolvedClassInfo("int"), value);
   }
 
   /* @see gov.nasa.jpf.inspector.server.expression.ExpressionNodeInterface#getNormalizedExpression() */

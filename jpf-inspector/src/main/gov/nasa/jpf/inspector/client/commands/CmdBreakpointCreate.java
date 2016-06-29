@@ -52,8 +52,8 @@ public class CmdBreakpointCreate extends ClientCommand {
         outStream.println("New breakpoint successfully created with ID " + createdBP.getBPID() + ".");
       }
 
-      if (rec != null) {
-        rec.updateCommandRecord(this);
+      if (recorder != null) {
+        recorder.updateCommandRecord(this);
       }
 
     } catch (JPFInspectorParsingErrorException e) {
