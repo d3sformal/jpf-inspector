@@ -1,5 +1,3 @@
-*The JPF Inspector tool does not currently (as of May 2016) work with recent versions of JPF. This will be fixed very soon.*
-
 # JPF Inspector
 
 **JPF Inspector** is a tool for inspection and control of [Java Pathfinder](http://babelfish.arc.nasa.gov/trac/jpf/) execution. It supports breakpoints and single-step execution (forward and backward) at different levels of granularity, and it allows the user to examine and modify program state (threads, call stacks, and heap objects). Unlike with standard debuggers (GDB), it is also possible to control thread scheduling explicitly.
