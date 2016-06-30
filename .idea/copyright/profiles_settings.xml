@@ -1,5 +1,8 @@
 <component name="CopyrightManager">
   <settings default="">
+    <module2copyright>
+      <element module="jpf-inspector main code scope" copyright="APACHE-2.0-HUDECEK" />
+    </module2copyright>
     <LanguageOptions name="__TEMPLATE__">
       <option name="block" value="false" />
       <option name="separateBefore" value="true" />

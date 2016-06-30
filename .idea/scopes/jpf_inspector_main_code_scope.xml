@@ -1,0 +1,3 @@
+<component name="DependencyValidationManager">
+  <scope name="jpf-inspector main code scope" pattern="src[jpf-inspector]:*..*" />
+</component>
