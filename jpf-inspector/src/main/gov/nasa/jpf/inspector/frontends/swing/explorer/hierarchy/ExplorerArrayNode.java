@@ -37,10 +37,13 @@ public class ExplorerArrayNode extends ExplorerJavaObjectNode {
 
   @Override
   protected ArrayList<ExplorerNode> populateChildren() {
+    ArrayList<ExplorerNode> elements = new ArrayList<>();
+    if (elementInfo == null) {
+      return elements;
+    }
     ClassInfo arrayClass = elementInfo.getClassInfo();
     ClassInfo arrayElementClass = arrayClass.getComponentClassInfo();
 
-    ArrayList<ExplorerNode> elements = new ArrayList<>();
     int length = elementInfo.arrayLength();
     for (int i =0 ;i < length; i++) {
       Object value = getValue(arrayElementClass, elementInfo, i);

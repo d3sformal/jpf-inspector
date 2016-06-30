@@ -4,6 +4,7 @@
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/documentation/pages" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/jpf-shell" vcs="hg4idea" />
+    <mapping directory="$PROJECT_DIR$/jpf-symbc" vcs="hg4idea" />
     <mapping directory="D:\gsoc\documentation\wiki" vcs="Git" />
   </component>
 </project>

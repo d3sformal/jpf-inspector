@@ -16,15 +16,37 @@
 
 package gov.nasa.jpf.inspector.frontends.swing.explorer.hierarchy;
 
+import gov.nasa.jpf.inspector.frontends.swing.Icons;
 import gov.nasa.jpf.inspector.frontends.swing.explorer.Attachment;
 import gov.nasa.jpf.inspector.frontends.swing.explorer.ProgramStateTreeModel;
 
+import javax.swing.*;
 import javax.swing.tree.TreeNode;
 
+/**
+ * Represents a node in the graphical Explorer's tree view.
+ */
 public abstract class ExplorerNode implements TreeNode {
+  /**
+   * The parent node of this node.
+   */
   protected ExplorerNode parent;
+
+
+  /**
+   * The way in which this node is connected to its parent.
+   */
   protected Attachment attachment;
+  /**
+   * A node is "wrongly expanded" if the user attempted to expand it but JPF was not running or was not paused
+   * at the time the expansion occurred, therefore the list of children could not be retrieved.
+   *
+   * A node that is wrongly expanded displays a warning message to the user.
+   */
   protected boolean wronglyExpanded;
+  /**
+   * The tree model that this node belongs to.
+   */
   protected final ProgramStateTreeModel model;
 
   public boolean isWronglyExpanded() {
@@ -58,5 +80,34 @@ public abstract class ExplorerNode implements TreeNode {
     if (this.model != null) {
       this.model.nodesChanged(this.parent, new int[]{this.parent.getIndex(this)});
     }
+  }
+  public Attachment getAttachment() {
+    return attachment;
+  }
+
+  public Icon getIcon(boolean expanded) {
+    switch (attachment.getKind()) {
+      case STACK_FRAME:
+      case TOPMOST_STACK_FRAME:
+        return Icons.stackFrame;
+      case STACK_SLOT:
+        return Icons.stackSlot;
+      case ARRAY_ELEMENT:
+        return Icons.instanceField;
+      case INSTANCE_FIELD:
+        return Icons.instanceField;
+      case STATIC_FIELD:
+        return Icons.staticField;
+      case HEAP_ENTRY:
+      case STATIC_AREA_ENTRY:
+      case PARENTLESS:
+      case UNSPECIFIED:
+        if (expanded) {
+          return Icons.folderOpen;
+        } else {
+          return Icons.folderClosed;
+        }
+    }
+    throw new RuntimeException("This node has no icon.");
   }
 }

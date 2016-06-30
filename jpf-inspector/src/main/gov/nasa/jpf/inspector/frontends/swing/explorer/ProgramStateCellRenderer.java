@@ -17,10 +17,12 @@
 package gov.nasa.jpf.inspector.frontends.swing.explorer;
 
 import gov.nasa.jpf.inspector.common.Constants;
+import gov.nasa.jpf.inspector.frontends.swing.Icons;
 import gov.nasa.jpf.inspector.frontends.swing.explorer.hierarchy.ExplorerNode;
 
 import javax.swing.*;
 import javax.swing.tree.DefaultTreeCellRenderer;
+import javax.xml.soap.Node;
 import java.awt.*;
 
 /**
@@ -40,8 +42,14 @@ public class ProgramStateCellRenderer extends DefaultTreeCellRenderer {
 
     DefaultTreeCellRenderer item =
             (DefaultTreeCellRenderer) super.getTreeCellRendererComponent(tree, stringToDisplay, sel, expanded, leaf, row, hasFocus);
+
+    if (value instanceof ExplorerNode) {
+      ExplorerNode explorerNode = (ExplorerNode) value;
+      Attachment attachment = explorerNode.getAttachment();
+      setIcon(explorerNode.getIcon(expanded));
+    }
+
     item.setFont(Constants.fontMonospaced);
-    item.setToolTipText(stringToDisplay);
     return item;
   }
 }

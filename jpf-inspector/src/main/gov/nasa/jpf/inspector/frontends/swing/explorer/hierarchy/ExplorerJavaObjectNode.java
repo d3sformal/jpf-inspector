@@ -28,14 +28,22 @@ import gov.nasa.jpf.vm.StaticElementInfo;
 
 import java.util.ArrayList;
 
+/**
+ * Represents a Java reference object. Arrays are represented by a subclass of this node, {@link ExplorerArrayNode}.
+ */
 public class ExplorerJavaObjectNode extends ExplorerComplexNode {
+  /**
+   * JPF representation of this object.
+   */
   protected ElementInfo elementInfo;
+  private boolean isStaticRepresentationOnly;
 
   public ExplorerJavaObjectNode(Attachment attachment, ElementInfo elementInfo,
                                 ProgramStateTreeModel model, ExplorerNode parent) {
     super(model, attachment, parent);
 
     this.elementInfo = elementInfo;
+    this.isStaticRepresentationOnly = elementInfo instanceof StaticElementInfo;
   }
 
 
@@ -48,10 +56,13 @@ public class ExplorerJavaObjectNode extends ExplorerComplexNode {
     ClassInfo myClass = elementInfo.getClassInfo();
 
     // Instance fields
-    for (FieldInfo fieldInfo : myClass.getInstanceFields()) {
-       String fieldInfoName = fieldInfo.getName();
-       ExplorerNode child = ExplorerNodeFactory.createFromField(fieldInfoName, fieldInfo, elementInfo.getFields(), model, this);
-       localChildren.add(child);
+    if (!isStaticRepresentationOnly) {
+      for (FieldInfo fieldInfo : myClass.getInstanceFields()) {
+        String fieldInfoName = fieldInfo.getName();
+        ExplorerNode child = ExplorerNodeFactory.createFromField(fieldInfoName, fieldInfo, elementInfo.getFields(),
+                                                                 model, this);
+        localChildren.add(child);
+      }
     }
 
     // Static fields

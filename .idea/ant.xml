@@ -9,5 +9,6 @@
       </additionalClassPath>
     </buildFile>
     <buildFile url="file://$PROJECT_DIR$/jpf-shell/build.xml" />
+    <buildFile url="file://$PROJECT_DIR$/jpf-symbc/build.xml" />
   </component>
 </project>
