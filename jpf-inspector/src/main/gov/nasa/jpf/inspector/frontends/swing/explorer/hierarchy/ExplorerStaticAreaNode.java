@@ -42,7 +42,7 @@ public class ExplorerStaticAreaNode extends ExplorerComplexNode {
 
   @Override
   public String toString() {
-    return "Static Area [NOT YET WORKING]";
+    return "Statics";
   }
 
   @Override

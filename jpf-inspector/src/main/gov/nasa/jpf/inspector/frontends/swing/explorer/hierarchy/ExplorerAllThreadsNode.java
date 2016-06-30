@@ -7,6 +7,9 @@ import gov.nasa.jpf.vm.ThreadList;
 
 import java.util.ArrayList;
 
+/**
+ * Represents the single "All Threads" Explorer node.
+ */
 public class ExplorerAllThreadsNode extends ExplorerComplexNode {
   protected ExplorerAllThreadsNode(ProgramStateTreeModel model, ExplorerNode parent) {
     super(model, Attachment.irrelevant(), parent);
@@ -28,7 +31,7 @@ public class ExplorerAllThreadsNode extends ExplorerComplexNode {
 
   @Override
   public String toString() {
-    return "All Threads";
+    return "Threads";
   }
 
   @Override

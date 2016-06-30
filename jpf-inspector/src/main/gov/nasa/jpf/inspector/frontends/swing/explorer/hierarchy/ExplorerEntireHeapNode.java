@@ -19,7 +19,7 @@ public class ExplorerEntireHeapNode extends ExplorerComplexNode {
 
   @Override
   public String toString() {
-    return "The Heap";
+    return "Heap";
   }
 
   @Override

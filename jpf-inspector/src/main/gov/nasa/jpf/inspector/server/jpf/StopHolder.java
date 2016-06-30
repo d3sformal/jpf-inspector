@@ -27,7 +27,7 @@ import gov.nasa.jpf.vm.Instruction;
 import gov.nasa.jpf.vm.VM;
 
 /**
- * Handles resuming and stopping JPF execution.
+ * Handles resuming and stopping JPF execution. This is a very important class central to the server's operation.
  * 
  * This class also holds current state of the SuT (JVM).
  *
@@ -242,4 +242,11 @@ public class StopHolder {
     }
   }
 
+  /**
+   * Returns the StopHolder to the initial state it should be in when JPF is launched. We call this method because
+   * JPF may end and restart a number of times during a single execution of JPF Shell.
+   */
+  public void clearFlags() {
+    this.condTerminateAfterResume = false;
+  }
 }

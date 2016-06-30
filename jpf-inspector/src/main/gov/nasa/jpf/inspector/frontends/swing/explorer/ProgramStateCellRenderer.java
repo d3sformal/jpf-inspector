@@ -7,6 +7,9 @@ import javax.swing.*;
 import javax.swing.tree.DefaultTreeCellRenderer;
 import java.awt.*;
 
+/**
+ * Renders elements of the Explorer tree view. This is responsible for adding icons and additional text, and fonts.
+ */
 public class ProgramStateCellRenderer extends DefaultTreeCellRenderer {
   @Override
   public Component getTreeCellRendererComponent(JTree tree, Object value, boolean sel, boolean expanded,
@@ -22,6 +25,7 @@ public class ProgramStateCellRenderer extends DefaultTreeCellRenderer {
     DefaultTreeCellRenderer item =
             (DefaultTreeCellRenderer) super.getTreeCellRendererComponent(tree, stringToDisplay, sel, expanded, leaf, row, hasFocus);
     item.setFont(Constants.fontMonospaced);
+    item.setToolTipText(stringToDisplay);
     return item;
   }
 }

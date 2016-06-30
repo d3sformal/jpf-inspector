@@ -48,7 +48,7 @@ import java.io.PrintStream;
  */
 @SuppressWarnings("WeakerAccess")
 public abstract class JPFInspector implements JPFInspectorBackEndInterface {
-  protected static final boolean DEBUG = false;
+  private static final boolean DEBUG = false;
 
   /**
    * File where print debug outputs, if not file exists, or name is empty then standard output is used.
@@ -73,10 +73,24 @@ public abstract class JPFInspector implements JPFInspectorBackEndInterface {
   private final InspectorServerCallbacks serverCallbacks;
   private final StopHolder stopHolder;
 
+  /**
+   * The commands managers component.
+   */
   protected final CommandsManager commandsManager;
+  /**
+   * The breakpoint handler component.
+   */
   protected final BreakpointHandler breakpointHandler;
+  /**
+   * The state manager component. This component is responsible for handling user commands related to printing and modifying
+   * current program state.
+   */
   protected final ProgramStateManager stateManager;
+  /**
+   * The choice generator manager component. This component also handles thread suppression.
+   */
   protected final ChoiceGeneratorsManager choiceGeneratorsManager;
+
   private final DefaultForwardTraceManager defaultForwardTraceManager;
 
   /**
@@ -201,6 +215,8 @@ public abstract class JPFInspector implements JPFInspectorBackEndInterface {
       }
     }
 
+
+
     // Modify JPF Configuration
     jpf.getVM().recordSteps(true);
     Config jpfCfg = jpf.getConfig();
@@ -210,6 +226,7 @@ public abstract class JPFInspector implements JPFInspectorBackEndInterface {
     // setting, but it also referenced a change "to be propagated to the trunk" which never made it to the trunk.
     // I changed it to respect the property, hopefully that won't break it.
     boolean originalSearchMultipleErrors = jpfCfg.getBoolean("search.multiple_errors");
+    stopHolder.clearFlags();
 
     this.jpf = jpf;
     this.jpfHasLaunched = true;
