@@ -1,5 +1,7 @@
 <component name="CopyrightManager">
   <copyright>
     <option name="myName" value="NOSA-1.3" />
+    <option name="keyword" value="Copyright (C)" />
+    <option name="notice" value="Copyright (C) &amp;#36;today.year United States Government as represented by the&#10;Administrator of the National Aeronautics and Space Administration&#10;(NASA).  All Rights Reserved.&#10; &#10;This software is distributed under the NASA Open Source Agreement&#10;(NOSA), version 1.3.  The NOSA has been approved by the Open Source&#10;Initiative.  See the file NOSA-1.3-JPF at the top of the distribution&#10;directory tree for the complete NOSA document.&#10; &#10;THE SUBJECT SOFTWARE IS PROVIDED &quot;AS IS&quot; WITHOUT ANY WARRANTY OF ANY&#10;KIND, EITHER EXPRESSED, IMPLIED, OR STATUTORY, INCLUDING, BUT NOT&#10;LIMITED TO, ANY WARRANTY THAT THE SUBJECT SOFTWARE WILL CONFORM TO&#10;SPECIFICATIONS, ANY IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR&#10;A PARTICULAR PURPOSE, OR FREEDOM FROM INFRINGEMENT, ANY WARRANTY THAT&#10;THE SUBJECT SOFTWARE WILL BE ERROR FREE, OR ANY WARRANTY THAT&#10;DOCUMENTATION, IF PROVIDED, WILL CONFORM TO THE SUBJECT SOFTWARE." />
   </copyright>
 </component>
