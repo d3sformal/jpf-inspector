@@ -32,3 +32,14 @@ jpf-inspector/src/main/gov/nasa/jpf/inspector/server/expression/generated/Expres
 # Mercurial
 */.hg/*
 *workspace.xml*
+core8/.hg/
+documentation/img/screens/
+jpf-inspector/src/examples/symbolic/
+jpf-shell/.hg/
+
+# jpf-symbc
+jpf-symbc/build/
+jpf-symbc/local.properties
+
+# End of manual
+jpf-symbc/.hg/
