@@ -33,6 +33,9 @@ import java.io.PrintStream;
  */
 public final class JPFInspectorFacade {
   // TODO (elsewhere): The "finish" command still works kinda funky
+  // TODO (elsewhere): make moving shell tabs around work better... ie what happens when I close a tab in a child shell,
+  // TODO  and what happens when I close the last one...
+  // TODO  and what happens when I use the menu to reopen a close shell
   /**
    * Creates an instance of the JPFInspector back-end (server part).
    * 

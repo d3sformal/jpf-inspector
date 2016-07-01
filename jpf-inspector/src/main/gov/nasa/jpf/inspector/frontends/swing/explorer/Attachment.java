@@ -49,7 +49,7 @@ public final class Attachment {
     return new Attachment(Integer.toString(index), AttachmentKind.STACK_FRAME);
   }
   public static Attachment topmostStackFrame() {
-    return new Attachment("Topmost Stack Frame", AttachmentKind.TOPMOST_STACK_FRAME);
+    return new Attachment("Top Stack Frame", AttachmentKind.TOPMOST_STACK_FRAME);
   }
 
   public AttachmentKind getKind() {

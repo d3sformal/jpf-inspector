@@ -95,4 +95,3 @@ public class ExplorerStackFrameNode extends ExplorerComplexNode {
     return this.stackFrame == other.stackFrame;
   }
 }
-// TODO (elsewhere) allow arrays that are direct heap entries to be browsable
