@@ -59,7 +59,7 @@ public class ExplorerArrayNode extends ExplorerJavaObjectNode {
    * @param index The index of the element we want to retrieve.
    * @return Value of an element of this array at the given index. The return value is ElementInfo for reference objects and an appropriate boxed primitive type for primitive types.
    */
-  public Object getValue (ClassInfo componentClassInfo, ElementInfo arrayElementInfo, int index) {
+  private Object getValue (ClassInfo componentClassInfo, ElementInfo arrayElementInfo, int index) {
     String sig = componentClassInfo.getSignature();
 
     switch (sig.charAt(0)) {

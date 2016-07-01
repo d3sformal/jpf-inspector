@@ -24,6 +24,8 @@ import gov.nasa.jpf.inspector.server.expression.InspectorState;
 import gov.nasa.jpf.vm.Instruction;
 import gov.nasa.jpf.vm.VM;
 
+import java.util.concurrent.locks.ReentrantLock;
+
 /**
  * Handles resuming and stopping JPF execution. This is a very important class central to the server's operation.
  * 
@@ -48,9 +50,25 @@ public class StopHolder {
    * Guarded by class instance lock.
    */
   private boolean terminating = false;
+
   private boolean terminatingClientNotified = false;
   private boolean stopped = false;
   private boolean condTerminateAfterResume = false;
+
+  private boolean hasJpfStoppedAtLeastOnce;
+  private ReentrantLock lockJpfHasResumed;
+  public synchronized boolean tryAcquireResumeExclusionLock() {
+    /*
+    if (!hasJpfStoppedAtLeastOnce) {
+      return false; // We have not yet stopped, and so we are still either running, or in a pre-JPF-init state.
+    }
+    return lockJpfHasResumed.tryLock(); // If JPF is not running, we prevent it from running. If JPF is running, we fail.
+    */
+    return true;
+  }
+  public void releaseResumeExclusionLock() {
+   // lockJpfHasResumed.unlock();
+  }
 
   public StopHolder (JPFInspector inspector, InspectorCallbacks callbacks) {
     this.inspector = inspector;
@@ -78,11 +96,15 @@ public class StopHolder {
           stopped = true;
 
           callbacks.notifyStateChange(InspectorStatusChange.JPF_STOPPED, getLocationDetails(inspState));
+          //hasJpfStoppedAtLeastOnce = true;
 
           notifyAll(); // Notify all threads waiting for JPF to be stopped (they are woken up after the wait)
           wait();
 
           stopped = false;
+
+          //lockJpfHasResumed.lock();
+
           this.inspState = null;
 
           checkConditionTerminateAfterResume();
@@ -95,6 +117,7 @@ public class StopHolder {
         }
       }
     } // End of synchronized block
+
 
     // Cannot be in synchronized block when send and callback
     if (terminate) {
@@ -117,7 +140,11 @@ public class StopHolder {
    * Gets current state of the SuT or NULL if execution not stopped.
    */
   public VM getJVM () {
-    return inspState.getVM();
+    if (inspState == null) {
+      return null;
+    } else {
+      return inspState.getVM();
+    }
   }
 
   /**

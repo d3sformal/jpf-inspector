@@ -20,6 +20,7 @@ import gov.nasa.jpf.inspector.frontends.swing.explorer.Attachment;
 import gov.nasa.jpf.inspector.frontends.swing.explorer.ProgramStateTreeModel;
 import gov.nasa.jpf.vm.ElementInfo;
 import gov.nasa.jpf.vm.Heap;
+import gov.nasa.jpf.vm.VM;
 
 import java.util.ArrayList;
 
