@@ -37,7 +37,7 @@ public class LegacyUseCasesTest extends CorrectOutputAbstractTest {
              getCase("legacy/usecases/uc2", "part2"),
 
              // Use Case
-          // getCase("legacy/usecases/uc3", "part1"),
+             getCase("legacy/usecases/uc3", "part1"),
              getCase("legacy/usecases/uc3", "part2"),
 
              // Use case 4 -- requires back_step_transition
