@@ -140,19 +140,24 @@ public class CommandsManager implements CommandsInterface {
   }
 
   @Override
+  public void backstepTransition(StepType transitionKind, int count) throws JPFInspectorGenericErrorException {
+    initialStopTest(true, "cannot execute backward step");
+    InspectorState inspState = stopHolder.getInspectorState();
+    BackwardBreakpointCreator backwardBreakpointCreator = BackwardBreakpointCreator.getBackwardStepTransition(inspState,
+                                                                                                              transitionKind,
+                                                                                                              count);
+    assert backwardBreakpointCreator != null;
+    createBackwardsBreakpointAndResumeExecution(inspState, backwardBreakpointCreator);
+  }
+
+  @Override
   public void backstep(StepType type) throws JPFInspectorGenericErrorException {
     initialStopTest(true, "cannot execute backward step");
 
     // Instantiate the creator and discover the instruction to backtrack to
     InspectorState inspState = stopHolder.getInspectorState();
     BackwardBreakpointCreator bbc;
-    if (type == StepType.ST_TRANSITION_DATA) {
-      bbc = BackwardBreakpointCreator.getBackwardStepTransition(inspState, type);
-    } else if (type == StepType.ST_TRANSITION_SCHED) {
-      bbc = BackwardBreakpointCreator.getBackwardStepTransition(inspState, type);
-    } else if (type == StepType.ST_TRANSITION_ALL) {
-      bbc = BackwardBreakpointCreator.getBackwardStepTransition(inspState, type);
-    } else if (type == StepType.BACK_BREAKPOINT_HIT) {
+    if (type == StepType.BACK_BREAKPOINT_HIT) {
       bbc = BackwardBreakpointCreator.getBackBreakpointHit(breakpointHandler.getLastBreakpointHitLocation(), inspState);
     } else if (type == StepType.ST_INSTRUCTION) {
       bbc = BackwardBreakpointCreator.getBackwardStepInstruction(inspState);
@@ -174,7 +179,19 @@ public class CommandsManager implements CommandsInterface {
 
   }
 
+  /**
+   * This is a dark-magic method that does, roughly the following:
+   *
+   * 1. Creates a breakpoint based on the {@link BackwardBreakpointCreator} and adds it to the manager.
+   * 2. Enables the InspectorListener's silent mode.
+   * 3. Breaks the current transition.
+   * 4. Wakes up the JPF thread.
+   *
+   * @param inspState The current Inspector state.
+   * @param bbc The creator that we will call upon to create a backstepping breakpoint.
+   */
   private void createBackwardsBreakpointAndResumeExecution(InspectorState inspState, BackwardBreakpointCreator bbc) throws JPFInspectorGenericErrorException {
+    assert bbc != null;
     // Create the breakpoint on that specific instruction
     int bpID = bbc.createBreakpoint(breakpointHandler);
     BreakpointStatus breakpointStatus = breakpointHandler.getBreakpoint(bpID);
@@ -219,6 +236,8 @@ public class CommandsManager implements CommandsInterface {
     // 4. It calls this.notifyBackwardStep().
     // 4a. In which the normal notifications-mode Inspector listener is reactived and the backstepping ends.
   }
+
+
 
   @Override
   public void backFieldAccessStep(String fieldNameExpression) throws JPFInspectorGenericErrorException {

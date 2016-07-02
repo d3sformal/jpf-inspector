@@ -20,9 +20,9 @@ package gov.nasa.jpf.inspector.client.commands;
 import gov.nasa.jpf.inspector.client.ClientCommand;
 import gov.nasa.jpf.inspector.client.JPFInspectorClient;
 import gov.nasa.jpf.inspector.client.commands.CmdChoiceGeneratorsTracking.CGTypeSpec;
+import gov.nasa.jpf.inspector.exceptions.JPFInspectorException;
 import gov.nasa.jpf.inspector.interfaces.CommandsInterface.StepType;
 import gov.nasa.jpf.inspector.interfaces.JPFInspectorBackEndInterface;
-import gov.nasa.jpf.inspector.exceptions.JPFInspectorException;
 import gov.nasa.jpf.inspector.utils.InspectorConfiguration;
 
 import java.io.PrintStream;
@@ -52,7 +52,6 @@ public class CmdSingleStepping extends ClientCommand {
   }
 
   public static CmdSingleStepping createCmdSingleSteppingTransition(boolean forward, CGTypeSpec typeOrNull, Integer repeatCnt) {
-    assert repeatCnt == 1;
     CGTypeSpec type = typeOrNull;
     // Set default value
     if (type == null) {
@@ -94,29 +93,46 @@ public class CmdSingleStepping extends ClientCommand {
   public void execute(JPFInspectorClient client, JPFInspectorBackEndInterface inspector, PrintStream outStream) {
     assert inspector != null;
 
-    for (int i = 0; i < stepCount; i++) {
+    if (isBackwardsTransitionStep()) {
       try {
-        if (forward) {
-          inspector.forwardStep(stepType);
-        } else {
-          if (fieldNameExpression != null) {
-            inspector.backFieldAccessStep(fieldNameExpression);
-          } else {
-            inspector.backstep(stepType);
-          }
-        }
+        inspector.backstepTransition(stepType, stepCount);
       } catch (JPFInspectorException e) {
         outStream.println(e.getMessage());
         client.recordComment(e.getMessage());
       }
-      boolean isFinalStep = (i == (stepCount - 1));
-      if (!isFinalStep) {
-        inspector.waitUntilStopped();
+    } else {
+      for (int i = 0; i < stepCount; i++) {
+        try {
+          if (forward) {
+            inspector.forwardStep(stepType);
+          } else {
+            if (fieldNameExpression != null) {
+              inspector.backFieldAccessStep(fieldNameExpression);
+            } else {
+              inspector.backstep(stepType);
+            }
+          }
+        } catch (JPFInspectorException e) {
+          outStream.println(e.getMessage());
+          client.recordComment(e.getMessage());
+        }
+        boolean isFinalStep = (i == (stepCount - 1));
+        if (!isFinalStep) {
+          inspector.waitUntilStopped();
+        }
       }
     }
     if (InspectorConfiguration.getInstance().shouldWaitAfterRun()) {
       inspector.waitUntilStopped();
     }
+  }
+
+  private boolean isBackwardsTransitionStep() {
+    return !forward &&
+            (stepType == StepType.ST_TRANSITION_ALL ||
+                    stepType == StepType.ST_TRANSITION_DATA ||
+                    stepType == StepType.ST_TRANSITION_SCHED
+            );
   }
 
   @Override
@@ -153,4 +169,6 @@ public class CmdSingleStepping extends ClientCommand {
       throw new RuntimeException("Internal error: Unknown " + stepType.getClass().getName() + " entry: " + stepType);
     }
   }
+
+
 }

@@ -51,7 +51,7 @@ public final class BackwardBreakpointCreator {
    *
    * @param transition The transition containing the step we should backtrack to.
    * @param step Step that we should backtrack to. This step contains the instruction that we want to put a breakpoint on.
-   * @param numberOfTransitionsToBacktrack Number of transitions to backtrack.
+   * @param numberOfTransitionsToBacktrack Number of transitions to backtrack, including the current one.
    */
   protected BackwardBreakpointCreator(Transition transition, Step step, int numberOfTransitionsToBacktrack) {
     assert transition != null;
@@ -67,6 +67,14 @@ public final class BackwardBreakpointCreator {
 
   }
 
+  /**
+   * Initializes a new instance of the {@link BackwardBreakpointCreator}.
+   *
+   * @param transition The transition containing the step we should backtrack to.
+   * @param instruction The instruction that we want to put a breakpoint on.
+   * @param numberOfSkippedInstructions The number of steps containing the instruction that we want to put a breakpoint on, that are in the transition prior to the the step we want to break on, excluding the actual step we want to break on.
+   * @param descendHowManyTransitions Number of transitions to backtrack, including the final one.
+   */
   private BackwardBreakpointCreator(Transition transition, Instruction instruction, int numberOfSkippedInstructions, int descendHowManyTransitions) {
     assert transition != null;
     assert instruction != null;
@@ -335,7 +343,8 @@ public final class BackwardBreakpointCreator {
   }
 
   public static BackwardBreakpointCreator getBackwardStepTransition(InspectorState inspState,
-                                                                    CommandsInterface.StepType type)
+                                                                    CommandsInterface.StepType type,
+                                                                    int count)
           throws JPFInspectorGenericErrorException {
     // TODO awaiting specification
     throw new JPFInspectorGenericErrorException("Not yet implemented.");

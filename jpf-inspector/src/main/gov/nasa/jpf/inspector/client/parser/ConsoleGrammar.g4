@@ -224,8 +224,8 @@ cmdSingleSteps returns [CmdSingleStepping value]
     { $value = new CmdSingleStepping(false, StepType.ST_STEP_IN,      $intValue.ctx != null ? $intValue.value : 1); }
     | TOKEN_BACK_STEP_OUT                         (WS intValue)?
     { $value = new CmdSingleStepping(false, StepType.ST_STEP_OUT,     $intValue.ctx != null ? $intValue.value : 1); }
-    | TOKEN_BACK_STEP_TRANSITION (WS? c=cgType)?
-    { $value = CmdSingleStepping.createCmdSingleSteppingTransition(false, $c.ctx != null ? $c.cgsType : null, 1); }
+    | TOKEN_BACK_STEP_TRANSITION (WS? c=cgType)? (WS intValue)?
+    { $value = CmdSingleStepping.createCmdSingleSteppingTransition(false, $c.ctx != null ? $c.cgsType : null, $intValue.ctx != null ? $intValue.value : 1); }
     | TOKEN_BACK_BREAKPOINT_HIT
     { $value = CmdSingleStepping.createBackBreakpointHit(); }
     | TOKEN_BACK_FIELD_ACCESS (WS? field=allTextNoWS)

@@ -105,6 +105,8 @@ public interface CommandsInterface {
    */
   void forwardStep(StepType type) throws JPFInspectorException;
 
+  void backstepTransition(StepType transitionKind, int count) throws JPFInspectorGenericErrorException;
+
   /**
    * Starts a backwards step.
    * @param type How far should we backtrack.

@@ -110,6 +110,11 @@ public class JPFInspectorParallel extends JPFInspector {
   }
 
   @Override
+  public void backstepTransition(StepType transitionKind, int count) throws JPFInspectorGenericErrorException {
+    commandsManager.backstepTransition(transitionKind, count);
+  }
+
+  @Override
   public List<ChoiceGeneratorWrapper> getUsedChoiceGenerators (boolean wait) throws JPFInspectorException {
     return choiceGeneratorsManager.getUsedChoiceGenerators(wait);
   }
