@@ -23,6 +23,9 @@ import gov.nasa.jpf.vm.ThreadInfo;
 
 import java.util.ArrayList;
 
+/**
+ * Represents a thread in the visual Explorer.
+ */
 public class ExplorerThreadInfoNode extends ExplorerComplexNode {
   private final ThreadInfo threadInfo;
 
@@ -34,9 +37,12 @@ public class ExplorerThreadInfoNode extends ExplorerComplexNode {
   @Override
   protected ArrayList<ExplorerNode> populateChildren() {
     ArrayList<ExplorerNode> frames = new ArrayList<>();
-    frames.add(new ExplorerStackFrameNode(Attachment.topmostStackFrame(), threadInfo,
-                                          threadInfo.getCallerStackFrame(0),
-                                          model, this));
+    StackFrame topStackFrame = threadInfo.getCallerStackFrame(0);
+    if (topStackFrame != null) {
+      frames.add(new ExplorerStackFrameNode(Attachment.topmostStackFrame(), threadInfo,
+                                            topStackFrame,
+                                            model, this));
+    }
     for (int i = 0; i < threadInfo.getStackDepth(); i++) {
       StackFrame callerStackFrame = threadInfo.getCallerStackFrame(i);
       frames.add(new ExplorerStackFrameNode(Attachment.stackFrame(i), threadInfo,

@@ -254,7 +254,7 @@ public class CommandsManager implements CommandsInterface {
       createBackwardsBreakpointAndResumeExecution(stopHolder.getInspectorState(), bbc);
     } catch (JPFInspectorParsingErrorException e) {
       throw new JPFInspectorGenericErrorException(
-              "The argument to back_field_access must be of the form [classname]:[fieldname]. Parse error: " + e.toString());
+              "The argument to back_field_access must be of the form [classname]:[fieldname].\n" + e.getMessage());
     }
   }
 

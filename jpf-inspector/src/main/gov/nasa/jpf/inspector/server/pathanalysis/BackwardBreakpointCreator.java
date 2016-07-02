@@ -32,6 +32,7 @@ import gov.nasa.jpf.inspector.server.expression.expressions.ExpressionBreakpoint
 import gov.nasa.jpf.inspector.utils.Debugging;
 import gov.nasa.jpf.inspector.utils.expressions.FieldName;
 import gov.nasa.jpf.vm.*;
+import gov.nasa.jpf.vm.bytecode.FieldInstruction;
 
 /**
  * An instance of this class is created when a backwards-stepping command is executed. It creates a single breakpoint,
@@ -383,10 +384,10 @@ public final class BackwardBreakpointCreator {
       }
       throw new JPFInspectorGenericErrorException("The target transition has no steps and cannot be backtracked to.");
     }
-    BackwardBreakpointCreator backwardBreakpointCreator = new BackwardBreakpointCreator(targetTransition,
-                                                                                        targetTransition.getStep(0),
-                                                                                        descendHowManyTransitions);
-    return backwardBreakpointCreator;
+    BackwardBreakpointCreator bbc = new BackwardBreakpointCreator(targetTransition,
+                                                                  targetTransition.getStep(0),
+                                                                  descendHowManyTransitions);
+    return bbc;
   }
 
   /**
@@ -400,7 +401,41 @@ public final class BackwardBreakpointCreator {
   public static BackwardBreakpointCreator getBackwardFieldAccess(FieldName fieldName,
                                                                  InspectorState inspectorState)
           throws JPFInspectorGenericErrorException {
-    // TODO awaiting specification
-    throw new JPFInspectorGenericErrorException("Not yet implemented.");
+    Path path = updateAndGetPath(inspectorState);
+    Transition targetTransition = null;
+    int descendHowManyTransitions = 0;
+    for (int i = path.size() - 1; i >= 0; i--) {
+      Transition possibleTargetTransition = path.get(i);
+
+      if (possibleTargetTransition.getStepCount() <= 0) {
+        // This usually means that it's the CURRENT transition, i.e. we are just before the bottom half of the instruction
+        // that caused this transition. In that case, we backtrack.
+        // TODO update this in specification
+        continue;
+      }
+      Instruction firstInstruction = possibleTargetTransition.getStep(0).getInstruction();
+      if (firstInstruction instanceof FieldInstruction) {
+        FieldInfo fieldInfo = ((FieldInstruction)firstInstruction).getFieldInfo();
+        if (fieldName.isSameField(fieldInfo)) {
+          // Bingo!
+          targetTransition = possibleTargetTransition;
+          descendHowManyTransitions = path.size() - i;
+          break;
+        } else {
+          // It's a different field.
+        }
+      } else {
+        // We are only interested in field instructions.
+      }
+    }
+    if (targetTransition == null) {
+      throw new JPFInspectorGenericErrorException(
+              "No field matching the argument is accessed in the transition path.");
+    }
+    assert targetTransition.getStepCount() > 0;
+    BackwardBreakpointCreator bbc = new BackwardBreakpointCreator(targetTransition,
+                                                                  targetTransition.getStep(0),
+                                                                  descendHowManyTransitions);
+    return bbc;
   }
 }

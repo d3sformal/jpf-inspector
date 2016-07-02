@@ -79,6 +79,9 @@ public class ExplorerStackFrameNode extends ExplorerComplexNode {
   @Override
   public String toString() {
     InstructionWrapper instructionWrapper = ChoiceGeneratorsManager.createInstructionWrapper(stackFrame.getPC());
+    if (instructionWrapper == null) {
+      return attachment.getName() + ": (no program counter available)";
+    }
     return attachment.getName() + ": " + instructionWrapper.toString();
   }
 
