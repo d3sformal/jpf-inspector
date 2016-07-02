@@ -170,7 +170,7 @@ public abstract class JPFInspector implements JPFInspectorBackEndInterface {
   @Override
   public VM getVM() {
 
-    return stopHolder.getJVM();
+    return stopHolder.getVM();
   }
 
   /**

@@ -135,7 +135,7 @@ public class ProgramStateManager implements ProgramStateInterface {
   }
 
   private VM getJVM () throws JPFInspectorGenericErrorException {
-    VM vm = stopHolder.getJVM();
+    VM vm = stopHolder.getVM();
     if (vm == null) {
       throw new JPFInspectorGenericErrorException("Internal error - JVM not as a part of the state (JPF is not connected");
     }

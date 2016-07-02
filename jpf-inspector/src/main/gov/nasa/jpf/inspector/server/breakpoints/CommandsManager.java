@@ -276,11 +276,11 @@ public class CommandsManager implements CommandsInterface {
     } else if (type == StepType.ST_INSTRUCTION) {
       bpExpression = new ExpressionBreakpointInstructionType(InstructionType.ANY);
     } else if (type == StepType.ST_LINE) {
-      bpExpression = new ExpressionBreakpointSingleStep(inspector, stopHolder.getJVM(), LocationTypes.LT_POSITION_LEAVED_STEP_OVER);
+      bpExpression = new ExpressionBreakpointSingleStep(inspector, stopHolder.getVM(), LocationTypes.LT_POSITION_LEAVED_STEP_OVER);
     } else if (type == StepType.ST_STEP_IN) {
-      bpExpression = new ExpressionBreakpointSingleStep(inspector, stopHolder.getJVM(), LocationTypes.LT_POSITION_LEAVED_STEP_IN);
+      bpExpression = new ExpressionBreakpointSingleStep(inspector, stopHolder.getVM(), LocationTypes.LT_POSITION_LEAVED_STEP_IN);
     } else if (type == StepType.ST_STEP_OUT) {
-      ThreadInfo ti = stopHolder.getJVM().getCurrentThread();
+      ThreadInfo ti = stopHolder.getVM().getCurrentThread();
       bpExpression = ExpressionBreakpointStepOut.getStepOutToCaller(ti);
     } else {
       throw new RuntimeException("Unsupported " + type.getClass().getSimpleName() + " entry " + type);
