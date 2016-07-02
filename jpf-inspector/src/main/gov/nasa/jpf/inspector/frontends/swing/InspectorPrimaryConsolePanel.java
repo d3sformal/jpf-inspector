@@ -124,7 +124,6 @@ public class InspectorPrimaryConsolePanel extends ShellPanel implements VerifyCo
   }
 
   private void setUpQuickCommands() {
-    Icon standardIcon = null;
     @SuppressWarnings("ConstantConditions")
     InspectorToolbarCommand[] commands = {
             new InspectorToolbarCommand("Backstep Out", getQuickCommandIcon("BackStepOut"),

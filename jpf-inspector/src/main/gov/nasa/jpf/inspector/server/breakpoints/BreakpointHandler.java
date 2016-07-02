@@ -342,7 +342,7 @@ public class BreakpointHandler implements BreakPointManagerInterface {
    * 
    * @param inspState Common state of the Inspector and SuT
    */
-  public void forwardJPFStep (@SuppressWarnings("UnusedParameters") InspectorState inspState) {
+  public void forwardJPFStep (@SuppressWarnings("unused") InspectorState inspState) {
     if (DEBUG) {
       inspector.getDebugPrintStream().println(this.getClass().getSimpleName() + ".forwardJPFStep");
     }

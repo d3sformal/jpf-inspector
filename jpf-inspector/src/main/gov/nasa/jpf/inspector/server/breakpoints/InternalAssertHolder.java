@@ -44,7 +44,7 @@ public class InternalAssertHolder extends InternalBreakpointHolder {
 
   public void modifyAssertSettings(BreakpointCreationInformation newSettings,
                                    ExpressionBreakpointAssert bpExpAsser) {
-    super.modifyBPSettings(newSettings, bpExpAsser);
+    modifyBPSettings(newSettings, bpExpAsser);
   }
 
   @Override

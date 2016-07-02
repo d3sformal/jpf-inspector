@@ -32,8 +32,14 @@ import gov.nasa.jpf.vm.*;
  * Even when the user asks for a local variable or parameter by name, it is converted here to a stack slot index
  * and represented as this class in the second hierarchy.
  */
-public class StateValueStackSlot extends StateWritableValue {
+public final class StateValueStackSlot extends StateWritableValue {
+  /**
+   * If true, some debugging messages will be written to the Inspector debug stream.
+   */
   public static final boolean DEBUG = false;
+  /**
+   * This should actually never be used.
+   */
   public static final int INVALID_SLOT_INDEX = -1;
 
   private final StackFrame sf;

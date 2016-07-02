@@ -19,7 +19,11 @@ package gov.nasa.jpf.inspector.frontends.swing.explorer;
 import gov.nasa.jpf.inspector.frontends.swing.explorer.hierarchy.*;
 import gov.nasa.jpf.vm.*;
 
-public class ExplorerNodeFactory {
+/**
+ * This static class creates new nodes of the visual Explorer. We cannot use constructors directly because the logic
+ * that decides which class to create is complex - it depends, for example, on the {@link ElementInfo}'s properties.
+ */
+public final class ExplorerNodeFactory {
   /*
     The general procedure for creating a node of unspecified type is;
     1. Determine its class.

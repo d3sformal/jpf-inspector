@@ -125,21 +125,6 @@ public class StopHolder {
     }
   }
 
-  private boolean hasJpfStoppedAtLeastOnce;
-  private ReentrantLock lockJpfHasResumed;
-  public synchronized boolean tryAcquireResumeExclusionLock() {
-    /*
-    if (!hasJpfStoppedAtLeastOnce) {
-      return false; // We have not yet stopped, and so we are still either running, or in a pre-JPF-init state.
-    }
-    return lockJpfHasResumed.tryLock(); // If JPF is not running, we prevent it from running. If JPF is running, we fail.
-    */
-    return true;
-  }
-  public void releaseResumeExclusionLock() {
-   // lockJpfHasResumed.unlock();
-  }
-
   public StopHolder (JPFInspector inspector, InspectorCallbacks serverCallbacks) {
     this.inspector = inspector;
     this.serverCallbacks = serverCallbacks;

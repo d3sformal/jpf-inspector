@@ -39,6 +39,7 @@ import gov.nasa.jpf.vm.VM;
  * We are confident that the replacement is correct, though. If you feel the same way, then I guess you may remove
  * this comment.
  */
+@SuppressWarnings({"JavaDoc", "PublicField"})
 public class ClassInfoCache {
   private final VM vm; // VM to which cached values are related to.
 

@@ -27,7 +27,7 @@ import java.util.logging.Logger;
  * Contains debugging utilities for JPF Inspector.
  * In particular, it encapsulates logging. Use only this class to get loggers inside JPF Inspector.
  */
-public class Debugging {
+public final class Debugging {
   /**
    * Gets the logger that should be used inside JPF Inspector.
    *

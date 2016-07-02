@@ -30,9 +30,9 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * @author Alf
- * 
+ * Represents a character literal as a hierarchy-1 expression.
  */
+@SuppressWarnings("MagicNumber") // I'm not touching this...
 public class ExpressionStateValueConstChar extends ExpressionStateValueConst {
 
   public static char convertToCharWrapped (String str) throws JPFInspectorRuntimeParsingException {
@@ -88,11 +88,24 @@ public class ExpressionStateValueConstChar extends ExpressionStateValueConst {
     return result;
   }
 
+  /**
+   * Auxiliary class - we are using our own parser to parse escape characters inside the literal.
+   */
+  @SuppressWarnings("PublicField") // This is just a data holder object.
   public static final class CharParsingState {
-    public char[] strArr; // String to parse
-    public int pos; // Position where starts unparsed input (note modified by parsers)
+    /**
+     * String to parse
+     */
+    public final char[] strArr;
+    /**
+     * Position where starts unparsed input (note modified by parsers)
+     */
+    public int pos;
 
-    public Set<Character> bannedUnescapedCharacters; // List of chars which could not be used without escaping in plain text (for chars - ', for strings - ")
+    /**
+     * List of chars which could not be used without escaping in plain text (for chars - ', for strings - ")
+     */
+    public final Set<Character> bannedUnescapedCharacters;
 
     public CharParsingState (String str, char bannedUnsescapedChar) {
       this.strArr = str.toCharArray();

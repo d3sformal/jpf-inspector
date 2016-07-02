@@ -42,6 +42,7 @@ import java.util.Map.Entry;
 public class DefaultForwardTraceManager {
   private static final boolean DEBUG = false;
 
+  @SuppressWarnings("FieldCanBeLocal") // IDEA bug
   private final JPFInspector inspector;
 
   /**
@@ -152,32 +153,42 @@ public class DefaultForwardTraceManager {
 
     @Override
     public boolean equals (Object obj) {
-      if (this == obj)
+      if (this == obj) {
         return true;
-      if (obj == null)
+      }
+      if (obj == null) {
         return false;
-      if (getClass() != obj.getClass())
+      }
+      if (getClass() != obj.getClass()) {
         return false;
+      }
       CGStateMemento other = (CGStateMemento) obj;
       if (id == null) {
-        if (other.id != null)
+        if (other.id != null) {
           return false;
-      } else if (!id.equals(other.id))
+        }
+      } else if (!id.equals(other.id)) {
         return false;
+      }
 
       if (ins == null) {
-        if (other.ins != null)
+        if (other.ins != null) {
           return false;
-      } else if (!ins.equals(other.ins))
+        }
+      } else if (!ins.equals(other.ins)) {
         return false;
-      if (threadID != other.threadID)
+      }
+      if (threadID != other.threadID) {
         return false;
+      }
 
       if (selectedChoice == null) {
-        if (other.selectedChoice != null)
+        if (other.selectedChoice != null) {
           return false;
-      } else if (!selectedChoice.equals(other.selectedChoice))
+        }
+      } else if (!selectedChoice.equals(other.selectedChoice)) {
         return false;
+      }
 
       if (choices == null) {
         return other.choices == null;
@@ -274,25 +285,32 @@ public class DefaultForwardTraceManager {
 
     @Override
     public boolean equals (Object obj) {
-      if (this == obj)
+      if (this == obj) {
         return true;
-      if (obj == null)
+      }
+      if (obj == null) {
         return false;
-      if (getClass() != obj.getClass())
+      }
+      if (getClass() != obj.getClass()) {
         return false;
+      }
       TransitionMemento other = (TransitionMemento) obj;
-      if (stateID != other.stateID)
+      if (stateID != other.stateID) {
         return false;
+      }
 
       if (lastInst == null) {
-        if (other.lastInst != null)
+        if (other.lastInst != null) {
           return false;
-      } else if (!lastInst.equals(other.lastInst))
+        }
+      } else if (!lastInst.equals(other.lastInst)) {
         return false;
+      }
 
       if (cgs == null) {
-        if (other.cgs != null)
+        if (other.cgs != null) {
           return false;
+        }
       } else {
         if (other.cgs == null) {
           return false;
@@ -418,6 +436,7 @@ public class DefaultForwardTraceManager {
   }
 
   // User select different CG value then the default one
+  @SuppressWarnings("UnusedParameters") // This may have been useful before, and it's still not working fully correctly, so let's keep it for now.
   public void destroyTrace (boolean silent) {
     if (DEBUG) {
       inspector.getDebugPrintStream().println(this.getClass().getSimpleName() + ".destroyTrace();");

@@ -18,6 +18,7 @@
 //
 
 // Taken from jpf-core examples
+@SuppressWarnings("ALL")
 public class Racer implements Runnable {
 
      int d = 42;

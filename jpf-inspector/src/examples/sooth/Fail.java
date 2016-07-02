@@ -16,6 +16,7 @@
 
 package sooth;
 
+@SuppressWarnings("ALL")
 public class Fail {
   public static void nomain(String[] args) {
     testArrayProblem();

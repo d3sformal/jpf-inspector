@@ -35,7 +35,7 @@ import gov.nasa.jpf.vm.Heap;
 /**
  * Represents an element of an array in the second hierarchy.
  */
-public class StateValueArrayElement extends StateWritableValue {
+public final class StateValueArrayElement extends StateWritableValue {
 
   /**
    * Index of the represented element in the array

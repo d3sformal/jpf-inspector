@@ -59,10 +59,6 @@ public class CmdCustomCommand extends ClientCommand {
   private ClientCommandInterface aliasedCommand;
   private boolean isFailedCommand;
   private String errorMessage;
-  /**
-   * If alias, then this is the expanded value.
-   */
-  private String expandedCommand;
 
   /// METHODS
 
@@ -75,11 +71,14 @@ public class CmdCustomCommand extends ClientCommand {
     customCommand = InspectorConfiguration.getInstance().getCustomCommandIfAny(commandName);
     if (alias != null) {
       CommandParserInterface parser = CommandParserFactory.getClientCommandParser();
-      expandedCommand = alias.getValue();
+      /*
+    If alias, then this is the expanded value.
+   */
+      String expandedCommand = alias.getValue();
       expandedCommand = JPFInspectorClient.trimLeftWhitspace(expandedCommand);
       String[] argumentsArray = arguments.trim().split("\\W+");
       int numberOfArguments = argumentsArray.length;
-      if (arguments.trim().length() == 0) {
+      if (arguments.trim().isEmpty()) {
         numberOfArguments = 0;
       }
       if (alias.getNumberOfRequiredParameters() > numberOfArguments) {

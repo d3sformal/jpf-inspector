@@ -45,12 +45,18 @@ public class SearchWrapper extends Search implements SearchInspectorExtension {
   private JPFInspector inspector;
   private final Search search; // Wrapped search instance
 
+  /**
+   * As of July 2016, the JPF class Search had 49 methods. If more methods are added in the future, then this wrapper
+   * must be updated to account for them.
+   */
+  private static final int NUMBER_OF_METHOD_IN_CLASS_SEARCH = 49;
+
   static {
     // Checks whether never version of the Search class does not have new methods
     // If check fails use
     // Eclipse -> Source -> Generate delegate methods -> Search ->
     // to generate delegates for new methods ... and adds @Override
-    if (Search.class.getMethods().length != 49) {
+    if (Search.class.getMethods().length != NUMBER_OF_METHOD_IN_CLASS_SEARCH) {
       System.err.println("New version of Search class. Update SearchWrapper appropriately. (See comments)\n\t New search has "
           + Search.class.getMethods().length + " methods.");
       System.exit(1);
@@ -70,8 +76,9 @@ public class SearchWrapper extends Search implements SearchInspectorExtension {
   }
 
   /**
-   * @return Gets wrapped object
+   * Gets the wrapped Search object.
    */
+  @SuppressWarnings("unused")// May be used by external code.
   public Search getWrappedSearch () {
     return getWrappedSearch(Search.class);
   }
@@ -79,7 +86,7 @@ public class SearchWrapper extends Search implements SearchInspectorExtension {
   /**
    * Gets wrapped object with type checks. If provided type is incompatible ,null is returned.
    */
-  public <T> T getWrappedSearch (Class<T> type) {
+  private <T> T getWrappedSearch(Class<T> type) {
     if (type.isInstance(search)) {
       return type.cast(search);
     }

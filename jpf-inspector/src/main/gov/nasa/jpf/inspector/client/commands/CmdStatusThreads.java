@@ -67,7 +67,7 @@ public class CmdStatusThreads extends ClientCommand {
       if (threads == null) {
         return;
       }
-      if (threads.size() == 0) {
+      if (threads.isEmpty()) {
         outStream.println("No thread exists.");
         return;
       }

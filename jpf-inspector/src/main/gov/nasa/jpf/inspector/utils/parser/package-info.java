@@ -1,5 +1,4 @@
 //
-// Copyright (C) 2010-2011 Pavel Jančík
 // Copyright (C) 2016 Petr Hudeček
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,21 +14,7 @@
 //  limitations under the License.
 //
 
-package gov.nasa.jpf.inspector.interfaces;
-
 /**
- * All information about a specific assertion-type breakpoint. The user of this interface can merely read the information,
- * as this interface only provides getters.
+ * Contains runtime exceptions that are thrown by ANTLR wrapper classes.
  */
-public interface AssertStatus extends AssertCreationInformation, BreakpointStatus {
-
-  /**
-   * Gets fileName in normalized format.
-   */
-  String getNormalizedPosition();
-
-  /**
-   * Gets normalized assertion expression
-   */
-  String getNormalizedCondition();
-}
+package gov.nasa.jpf.inspector.utils.parser;

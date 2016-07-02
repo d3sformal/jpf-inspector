@@ -231,7 +231,7 @@ public abstract class StateWritableValue extends StateReadableValue {
       if (newVal != null) {
         if (ciCache.ci_byte.equals(ci)) {
           // Check if in range
-          if (newVal < Byte.MIN_VALUE || Byte.MAX_VALUE < newVal) {
+          if (newVal < Byte.MIN_VALUE || newVal > Byte.MAX_VALUE) {
             throw new JPFInspectorAssignmentOutOfRangeException(newVal, ci.getName());
           }
 
@@ -240,7 +240,7 @@ public abstract class StateWritableValue extends StateReadableValue {
 
         if (ciCache.ci_short.equals(ci)) {
           // Check if in range
-          if (newVal < Short.MIN_VALUE || Short.MAX_VALUE < newVal) {
+          if (newVal < Short.MIN_VALUE || newVal > Short.MAX_VALUE) {
             throw new JPFInspectorAssignmentOutOfRangeException(newVal, ci.getName());
           }
 
@@ -249,7 +249,7 @@ public abstract class StateWritableValue extends StateReadableValue {
 
         if (ciCache.ci_int.equals(ci)) {
           // Check if in range
-          if (newVal < Integer.MIN_VALUE || Integer.MAX_VALUE < newVal) {
+          if (newVal < Integer.MIN_VALUE || newVal > Integer.MAX_VALUE) {
             throw new JPFInspectorAssignmentOutOfRangeException(newVal, ci.getName());
           }
 

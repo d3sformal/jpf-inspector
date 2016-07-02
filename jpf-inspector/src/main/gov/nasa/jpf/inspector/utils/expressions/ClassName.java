@@ -64,8 +64,8 @@ public class ClassName {
       return wasTestedBefore;
     }
 
-    Matcher m = classNamePattern.matcher(cn);
-    Boolean nameMatch = m.matches();
+    Matcher matcher = classNamePattern.matcher(cn);
+    Boolean nameMatch = matcher.matches();
     classNamesMatches.put(cn, nameMatch);
     return nameMatch;
   }

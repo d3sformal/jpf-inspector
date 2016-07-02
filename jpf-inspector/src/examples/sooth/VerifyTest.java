@@ -2,6 +2,7 @@ package sooth;
 
 import gov.nasa.jpf.vm.Verify;
 
+@SuppressWarnings("ALL")
 public class VerifyTest {
   public static void main(String[] args) {
 

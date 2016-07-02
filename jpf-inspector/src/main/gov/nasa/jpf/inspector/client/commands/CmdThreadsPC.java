@@ -48,7 +48,7 @@ public class CmdThreadsPC extends ClientCommand {
         // Error
         return;
       }
-      if (places.size() == 0) {
+      if (places.isEmpty()) {
         outStream.println("No thread with a valid program counter.");
         return;
       }

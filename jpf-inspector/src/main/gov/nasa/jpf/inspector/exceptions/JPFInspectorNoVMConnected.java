@@ -23,7 +23,7 @@ import gov.nasa.jpf.vm.VM;
  * @author Alf
  * 
  */
-public class JPFInspectorNoVMConnected extends JPFInspectorException {
+public final class JPFInspectorNoVMConnected extends JPFInspectorException {
 
   private static final long serialVersionUID = -3191601258737187433L;
 

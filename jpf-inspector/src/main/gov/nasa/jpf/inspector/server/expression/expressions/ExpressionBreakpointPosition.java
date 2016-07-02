@@ -40,6 +40,7 @@ import gov.nasa.jpf.vm.bytecode.ReturnInstruction;
 // problem is connected with the DirectCalls (cinits) and reexecution of the same instruction !!
 public class ExpressionBreakpointPosition extends ExpressionBooleanLeaf {
   private static final boolean DEBUG = false;
+  @SuppressWarnings("FieldCanBeLocal") // IDEA bug
   private final JPFInspector inspector;
 
   private final InstructionPosition instPos;

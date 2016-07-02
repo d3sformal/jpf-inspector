@@ -34,19 +34,7 @@ public class MethodInstructionBacktracker {
   private final ReturnInstructionChecker returnChecker = new ReturnInstructionChecker();
   private final ThrowInstructionChecker throwChecker = new ThrowInstructionChecker();
 
-  /**
-   * Contains the value returned by the last call to {@link #backtrackToPreviousStepInMethod()}. If the method
-   * was not yet called, it is null.
-   */
-  private Step prevReturnedStep = null;
-  /**
-   * Contains the transition that contains the {@link #prevReturnedStep}.
-   */
-  private Transition prevReturnedStepTransition = null;
-  /**
-   * Indicates how many transitions must be backtracked in order to reach the {@link #prevReturnedStepTransition} transition.
-   */
-  private int prevReturnedTransition2Backrack = 0;
+
 
   /**
    * Initializes a new instance of {@link MethodInstructionBacktracker}.
@@ -111,14 +99,8 @@ public class MethodInstructionBacktracker {
    */
   private Step backtracker (int howManyMethodsToLeave) {
     int callStackDepth = howManyMethodsToLeave;
-    boolean hack_weAreFirstStep = true;
     // Simulation of the depth of the calls stack above (how many methods have been called by)
     // the method in the end of the path.
-
-    // Store previous state of the backtracker (at first, initialized to the current step).
-    prevReturnedStep = stepThreadBacktracker.getCurrentStep();
-    prevReturnedStepTransition = stepThreadBacktracker.getCurrentTransition();
-    prevReturnedTransition2Backrack = stepThreadBacktracker.getBacktrackedTransitionCount();
 
     // We always want to perform at least one backstep.
     Step step = stepThreadBacktracker.backstep();
@@ -218,39 +200,6 @@ public class MethodInstructionBacktracker {
 
     assert count >= 1;
     return count;
-  }
-
-  /**
-   * @return Gets result of previous (not last, but one before) {@link #backtrackToPreviousStepInMethod()} call.
-   */
-  private Step getPrevReturnedStep() {
-    return prevReturnedStep;
-  }
-
-  /**
-   * @return Gets transition in which {@link #getPrevReturnedStep()} step takes place.
-   */
-  private Transition getPrevReturnedStepTransition() {
-    return prevReturnedStepTransition;
-  }
-
-  /**
-   * @return Gets number of transitions (including the skipped transition in different threads) which were "backstepped" to obtain
-   *         {@link #getPrevReturnedStepTransition()}
-   */
-  public int getPrevReturnedTransition2Backrack () {
-    return prevReturnedTransition2Backrack;
-  }
-
-  /**
-   * @return Creates Backward breakpoint which represents {@link #getPrevReturnedStep()}.
-   */
-  public BackwardBreakpointCreator createBackwardBreakpointFromPreviousReturnedStep () {
-    if (prevReturnedStep == null || prevReturnedStepTransition == null) {
-      return null;
-    }
-
-    return new BackwardBreakpointCreator(prevReturnedStepTransition, prevReturnedStep, prevReturnedTransition2Backrack);
   }
 
   public BackwardBreakpointCreator backtrackIn(InstructionPosition currentLocation) {

@@ -17,7 +17,6 @@
 package gov.nasa.jpf.inspector.server.breakpoints;
 
 import gov.nasa.jpf.vm.Instruction;
-import gov.nasa.jpf.vm.Transition;
 
 /**
  * Represents a location in the transition path at which a breakpoint was hit.

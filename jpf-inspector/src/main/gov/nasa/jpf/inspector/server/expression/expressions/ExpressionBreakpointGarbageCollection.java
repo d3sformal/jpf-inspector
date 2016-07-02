@@ -37,8 +37,9 @@ public class ExpressionBreakpointGarbageCollection extends ExpressionBooleanLeaf
         (bpMode == BreakPointModes.BP_MODE_GC_END) ||
         (bpMode == BreakPointModes.BP_MODE_GC_BOTH)) {
       this.bpMode = bpMode;
-    } else
+    } else {
       throw new RuntimeException("Internal error - Unsupported bpMode(" + bpMode + ")");
+    }
   }
 
   @Override

@@ -18,7 +18,6 @@ package gov.nasa.jpf.inspector.frontends.swing.explorer.hierarchy;
 
 import gov.nasa.jpf.inspector.frontends.swing.explorer.Attachment;
 import gov.nasa.jpf.inspector.frontends.swing.explorer.ProgramStateTreeModel;
-import gov.nasa.jpf.vm.UncaughtException;
 
 import javax.swing.tree.TreeNode;
 import java.util.ArrayList;

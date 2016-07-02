@@ -39,7 +39,7 @@ import gov.nasa.jpf.vm.StaticElementInfo;
  * @author Alf
  * 
  */
-public class StateValueElementInfoField extends StateWritableValue {
+public final class StateValueElementInfoField extends StateWritableValue {
 
   private final ElementInfo ei;
   private final FieldInfo fieldInfo;
@@ -244,11 +244,13 @@ public class StateValueElementInfoField extends StateWritableValue {
 
     while (ci != null) {
       fi = ci.getDeclaredInstanceField(fieldName);
-      if (fi != null)
+      if (fi != null) {
         return fi;
+      }
       fi = ci.getDeclaredStaticField(fieldName);
-      if (fi != null)
+      if (fi != null) {
         return fi;
+      }
       ci = ci.getSuperClass();
     }
     return null;

@@ -313,7 +313,6 @@ public class CommandsManager implements CommandsInterface {
 
   /**
    * Tests if any JPF is associated. Test if the JPF is running or stopped. If JPF runs then it tries to stop or report error.running
-   *
    */
   public boolean initialStopTest (boolean wait, String msg) throws JPFInspectorGenericErrorException {
     if (inspector.getJPF() == null) {

@@ -1,5 +1,6 @@
 package sooth;
 
+@SuppressWarnings("ALL")
 public class Quick {
   public static void main(String[] args) {
     testArrayProblem();

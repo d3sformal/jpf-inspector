@@ -39,8 +39,9 @@ public class ExpressionBreakpointChoiceGenerator extends ExpressionBooleanLeaf {
         (bpMode == BreakPointModes.BP_MODE_CHOICE_DATA) ||
         (bpMode == BreakPointModes.BP_MODE_CHOICE_SCHEDULING)) {
       this.bpMode = bpMode;
-    } else
+    } else {
       throw new RuntimeException("Internal error - Unsupported bpMode(" + bpMode + ")");
+    }
   }
 
   @Override

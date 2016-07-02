@@ -53,6 +53,7 @@ import jline.Terminal;
  */
 public final class SwingTerminal extends Terminal {
   private static final boolean DEBUG = false;
+  private static final int SINGLE_BYTE_MASK = 0xFF;
 
   private final JEditorPane console; // Panel where writer s printed and where user writes commands.
   private final JScrollPane scroll; // Scrolling envelope of the console panel
@@ -152,7 +153,7 @@ public final class SwingTerminal extends Terminal {
 
 
     outUserTextPrintStream = new PrintStream(new JLineUserTextOutputStream(interpreter, console));
-    outSimplePrintStream = new PrintStream(new JLineSimpleOutputStream(interpreter, console));
+    outSimplePrintStream = new PrintStream(new JLineSimpleOutputStream(console));
   }
 
   @SuppressWarnings("FinalizeDeclaration")
@@ -264,7 +265,7 @@ public final class SwingTerminal extends Terminal {
 
     for (int i = 0; i < 4; i++) {
       int inByte = in.read();
-      character |= (inByte &  0xFF) << (8 * i);
+      character |= (inByte &  SINGLE_BYTE_MASK) << (8 * i);
     }
 
     return character;
@@ -379,7 +380,7 @@ public final class SwingTerminal extends Terminal {
     private void write (int singleCharacter) {
       try {
         for (int i = 0; i < 4; i++) {
-          output.write(singleCharacter & 0xFF);
+          output.write(singleCharacter & SINGLE_BYTE_MASK);
           singleCharacter >>>= 8;
         }
       } catch (IOException e) {
@@ -489,10 +490,13 @@ public final class SwingTerminal extends Terminal {
     }
   }
 
+  /**
+   * This output stream is used only at the very beginning of the application, to give an introduction message to the user
+   * before the prompt is first displayed.
+   */
   private static class JLineSimpleOutputStream extends OutputStream {
     private static Logger log = Debugging.getLogger(ShellManager.getManager().getConfig());
 
-    private final TextComponentFeeder interpreter;
     private final JTextComponent console;
 
     @Override
@@ -514,9 +518,8 @@ public final class SwingTerminal extends Terminal {
       TextComponentFeeder.addTextAtTheVeryEnd(str, console);
     }
 
-    public JLineSimpleOutputStream(TextComponentFeeder interpreter, JTextComponent console) {
+    public JLineSimpleOutputStream(JTextComponent console) {
       this.console = console;
-      this.interpreter = interpreter;
     }
   }
   /**
@@ -525,7 +528,7 @@ public final class SwingTerminal extends Terminal {
    * @author Alf
    * 
    */
-  public static class JLineUserTextOutputStream extends OutputStream {
+  private static class JLineUserTextOutputStream extends OutputStream {
     private static Logger log = Debugging.getLogger(ShellManager.getManager().getConfig());
 
     private final TextComponentFeeder interpreter;
