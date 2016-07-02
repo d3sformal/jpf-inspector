@@ -69,9 +69,9 @@ public abstract class ExplorerNode implements TreeNode {
 
   /**
    * This method is called by the event dispatch thread after the client informs it, via {@link SwingUtilities#invokeLater(Runnable)}, that program state may have changed and that it's possible that JPF
-   * is stopped now. However, it's not guaranteed that JPF is actually stopped.
+   * is stopped now. What is guaranteed is that this method is only called in response to a command completion
+   * or a callback. In addition, it is guaranteed that when this method runs, JPF is stopped.
    *
-   * What is guaranteed is that this method is only called in response to a command completion or a callback.
    * @param newVersion The way this node should look like according to the new JPF state
    */
   public abstract void updateFromJpf(ExplorerNode newVersion);

@@ -86,10 +86,10 @@ public class StopHolder {
    */
   public boolean preventJpfFromResuming() {
     accessLock.lock();
-    if (!stopped) {
-      return false;
-    }
     try {
+      if (!stopped || terminating || inspState == null) {
+        return false;
+      }
       hostageHolders++;
       return true;
     } finally {

@@ -18,6 +18,7 @@ package gov.nasa.jpf.inspector.frontends.swing.explorer.hierarchy;
 
 import gov.nasa.jpf.inspector.frontends.swing.explorer.Attachment;
 import gov.nasa.jpf.inspector.frontends.swing.explorer.ProgramStateTreeModel;
+import gov.nasa.jpf.vm.UncaughtException;
 
 import javax.swing.tree.TreeNode;
 import java.util.ArrayList;
@@ -37,23 +38,27 @@ public abstract class ExplorerComplexNode extends ExplorerNode {
     super(attachment, model, parent);
   }
 
+  /**
+   * A non-leaf Explorer node must override this method and then use the {@link #model} to discover what its children
+   * should be, create them and return them. Only direct children should be created, not their descendants.
+   *
+   * It is guaranteed that when this method is called, JPF is stopped.
+   */
   protected abstract ArrayList<ExplorerNode> populateChildren();
 
   private void ensureChildrenArePopulated() {
     if (children == null) {
-      if (!model.getServer().isPaused()) {
+      if (model.getServer().preventJpfFromResuming()) {
+        try {
+          children = populateChildren();
+        } finally {
+          model.getServer().permitJpfToResumeAgain();
+        }
+      } else {
         children = new ArrayList<>();
         this.wronglyExpanded = true;
         this.model.nodesChanged(parent, new int[]{parent.getIndex(this)});
-        return;
       }
-      if (model.getVM() == null) {
-        children = new ArrayList<>();
-        this.wronglyExpanded = true;
-        this.model.nodesChanged(parent, new int[]{parent.getIndex(this)});
-        return;
-      }
-      children = populateChildren();
     }
   }
 
@@ -89,7 +94,6 @@ public abstract class ExplorerComplexNode extends ExplorerNode {
             } else {
               oldChildren.remove(oldIndex);
               model.nodesWereRemoved(this, new int[] { oldIndex }, new Object[] { oldChild});
-              System.out.println("NODE REMOVED.");
               //noinspection AssignmentToForLoopParameter
               newIndex--;
             }
@@ -104,6 +108,13 @@ public abstract class ExplorerComplexNode extends ExplorerNode {
     }
   }
 
+  /**
+   * This is called from {@link #updateFromJpf(ExplorerNode)} only. A subclass must override this and modify itself
+   * based on the value of its new version that was created based on the new state of JPF. This is guaranteed to run
+   * only in response to a command or a callback, and only when JPF is stopped.
+   *
+   * @param newVersion New version of this node, based on an up-to-date JPF state.
+   */
   public abstract void updateComplexNodeFromJpf(ExplorerNode newVersion);
 
   @Override

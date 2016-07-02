@@ -98,14 +98,14 @@ public class ExplorerJavaObjectNode extends ExplorerComplexNode {
   public void updateComplexNodeFromJpf(ExplorerNode newVersion) {
     ElementInfo newElementInfo = ((ExplorerJavaObjectNode)newVersion).elementInfo;
     if (newElementInfo != elementInfo) {
-      this.fireChanged();
+      this.model.nodesChanged(parent, new int[]{parent.getIndex(this)});
       elementInfo = newElementInfo;
     }
 
     String newRepresentation = getToStringRepresentation();
     if (!Objects.equals(this.toStringRepresentation, newRepresentation)) {
       this.toStringRepresentation = newRepresentation;
-      this.fireChanged();
+      this.model.nodesChanged(parent, new int[]{parent.getIndex(this)});
     }
   }
 
