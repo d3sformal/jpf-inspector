@@ -54,7 +54,7 @@ public class ExplorerThreadInfoNode extends ExplorerComplexNode {
 
   @Override
   public void updateComplexNodeFromJpf(ExplorerNode newVersion) {
-
+    // Do nothing.
   }
 
   @Override

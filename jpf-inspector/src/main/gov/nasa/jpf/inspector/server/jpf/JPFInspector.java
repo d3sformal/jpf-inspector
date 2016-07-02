@@ -271,4 +271,15 @@ public abstract class JPFInspector implements JPFInspectorBackEndInterface {
     return listener;
   }
 
+
+  @Override
+  public boolean preventJpfFromResuming() {
+    return stopHolder.preventJpfFromResuming();
+  }
+
+
+  @Override
+  public void permitJpfToResumeAgain() {
+    stopHolder.permitJpfToResumeAgain();
+  }
 }

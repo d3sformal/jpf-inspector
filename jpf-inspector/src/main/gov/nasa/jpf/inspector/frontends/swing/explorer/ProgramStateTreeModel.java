@@ -60,10 +60,15 @@ public class ProgramStateTreeModel extends DefaultTreeModel {
    * is after a callback), any nodes that are no longer valid are removed or recalculated and redrawn, as appropriate.
    */
   public void update() {
-    if (server.isPaused()) {
-      this.explorerRoot.updateFromJpf(this.explorerRoot);
+    if (server.preventJpfFromResuming()) {
+      try {
+        this.explorerRoot.updateFromJpf(this.explorerRoot);
+      } finally {
+        server.permitJpfToResumeAgain();
+      }
     }
   }
+
 
   /**
    * Gets the Inspector server.

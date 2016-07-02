@@ -19,6 +19,9 @@ package gov.nasa.jpf.inspector.frontends.swing.explorer.hierarchy;
 import gov.nasa.jpf.inspector.frontends.swing.explorer.Attachment;
 import gov.nasa.jpf.inspector.frontends.swing.explorer.ProgramStateTreeModel;
 
+/**
+ * Represents a primitive value in the visual Explorer.
+ */
 public class ExplorerPrimitiveNode extends ExplorerLeafNode {
   private Object value;
 
@@ -27,8 +30,6 @@ public class ExplorerPrimitiveNode extends ExplorerLeafNode {
     this.value = value;
     this.attachment = attachment;
   }
-
-
 
   @Override
   public String toString() {

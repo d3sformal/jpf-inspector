@@ -67,24 +67,47 @@ public abstract class ExplorerNode implements TreeNode {
     return parent;
   }
 
+  /**
+   * This method is called by the event dispatch thread after the client informs it, via {@link SwingUtilities#invokeLater(Runnable)}, that program state may have changed and that it's possible that JPF
+   * is stopped now. However, it's not guaranteed that JPF is actually stopped.
+   *
+   * What is guaranteed is that this method is only called in response to a command completion or a callback.
+   * @param newVersion The way this node should look like according to the new JPF state
+   */
   public abstract void updateFromJpf(ExplorerNode newVersion);
 
   /**
    * Returns true if this node is just a newer version of the given node. For example, if this node represents
    * a Java array and an element of the array changes, the new array should still be recognizable as the old one.
+   *
+   * An object that changes its contents should remain recognizable. An object normally can't switch the class it's
+   * represented by in the Explorer - so the instanceof checks are mostly just to be on the safe side. An object
+   * that changes its attachment is no longer recognizable.
+   *
    * @param oldNode An older version of this node.
    */
   public abstract boolean isRecognizableAs(ExplorerNode oldNode);
 
+  /**
+   * Tells the treeview component that this node's display row has changed (i.e., its text changed).
+   */
   public void fireChanged() {
     if (this.model != null) {
       this.model.nodesChanged(this.parent, new int[]{this.parent.getIndex(this)});
     }
   }
+
+  /**
+   * Gets the way by which this node is attached to its parent.
+   */
   public Attachment getAttachment() {
     return attachment;
   }
 
+  /**
+   * Gets the icon that represents the relationship of this node to its parent.
+   * @param expanded Whether this node is currently expanded.
+   */
   public Icon getIcon(boolean expanded) {
     switch (attachment.getKind()) {
       case STACK_FRAME:

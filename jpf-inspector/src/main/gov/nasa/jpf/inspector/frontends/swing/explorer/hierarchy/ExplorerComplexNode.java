@@ -24,7 +24,13 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Enumeration;
 
+/**
+ * Base class for nodes of the visual Explorer treeview that have children.
+ */
 public abstract class ExplorerComplexNode extends ExplorerNode {
+  /**
+   * Child nodes of this node. For threads, these are stack frames. For objects, these are fields etc.
+   */
   protected ArrayList<ExplorerNode> children;
 
   protected ExplorerComplexNode(ProgramStateTreeModel model, Attachment attachment, ExplorerNode parent) {
@@ -62,40 +68,39 @@ public abstract class ExplorerComplexNode extends ExplorerNode {
     updateComplexNodeFromJpf(newVersion);
 
     if (children != null) {
-      childrenNeedToBeUpdated();
-    }
-  }
+      // Children exist, therefore they need to be updated, too.
 
-  private void childrenNeedToBeUpdated() {
-    ArrayList<ExplorerNode> newChildren = populateChildren();
-    ArrayList<ExplorerNode> oldChildren = children;
-    int oldIndex = 0;
-    for (int newIndex = 0; newIndex < newChildren.size(); newIndex++) {
-        if (oldIndex >= oldChildren.size()) {
-          // This is a new child, inserted at the end.
-          oldChildren.add(newChildren.get(newIndex));
-          model.nodesWereInserted(this, new int[]{oldChildren.size() - 1});
-          oldIndex++;
-        } else {
-          // Removal or change
-          ExplorerNode oldChild = oldChildren.get(oldIndex);
-          ExplorerNode newChild = newChildren.get(newIndex);
-          if (newChild.isRecognizableAs(oldChild)) {
-            oldChild.updateFromJpf(newChild);
+      ArrayList<ExplorerNode> newChildren = populateChildren();
+      ArrayList<ExplorerNode> oldChildren = children;
+      int oldIndex = 0;
+      for (int newIndex = 0; newIndex < newChildren.size(); newIndex++) {
+          if (oldIndex >= oldChildren.size()) {
+            // This is a new child, inserted at the end.
+            oldChildren.add(newChildren.get(newIndex));
+            model.nodesWereInserted(this, new int[]{oldChildren.size() - 1});
             oldIndex++;
           } else {
-            oldChildren.remove(oldIndex);
-            model.nodesWereRemoved(this, new int[] { oldIndex }, new Object[] { oldChild});
-            System.out.println("NODE REMOVED.");
-            //noinspection AssignmentToForLoopParameter
-            newIndex--;
+            // Removal or change
+            ExplorerNode oldChild = oldChildren.get(oldIndex);
+            ExplorerNode newChild = newChildren.get(newIndex);
+            if (newChild.isRecognizableAs(oldChild)) {
+              oldChild.updateFromJpf(newChild);
+              oldIndex++;
+            } else {
+              oldChildren.remove(oldIndex);
+              model.nodesWereRemoved(this, new int[] { oldIndex }, new Object[] { oldChild});
+              System.out.println("NODE REMOVED.");
+              //noinspection AssignmentToForLoopParameter
+              newIndex--;
+            }
           }
-        }
-    }
-    for (int remainingItemsIndex = oldIndex; remainingItemsIndex < children.size(); remainingItemsIndex++) {
-      ExplorerNode removedNode = children.get(oldIndex);
-      children.remove(oldIndex);
-      model.nodesWereRemoved(this, new int[]{oldIndex}, new Object[]{removedNode});
+      }
+      for (int remainingItemsIndex = oldIndex; remainingItemsIndex < children.size(); remainingItemsIndex++) {
+        ExplorerNode removedNode = children.get(oldIndex);
+        children.remove(oldIndex);
+        model.nodesWereRemoved(this, new int[]{oldIndex}, new Object[]{removedNode});
+      }
+
     }
   }
 

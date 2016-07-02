@@ -21,6 +21,7 @@ import gov.nasa.jpf.JPF;
 import gov.nasa.jpf.ListenerAdapter;
 import gov.nasa.jpf.inspector.interfaces.InspectorStatusChange;
 import gov.nasa.jpf.inspector.interfaces.InspectorCallbacks;
+import gov.nasa.jpf.inspector.interfaces.JPFInspectorBackEndInterface;
 import gov.nasa.jpf.inspector.server.expression.InspectorState;
 import gov.nasa.jpf.vm.Instruction;
 import gov.nasa.jpf.vm.VM;
@@ -68,6 +69,11 @@ public class StopHolder {
 
   private int hostageHolders = 0;
   /**
+   * Primary documentation at {@link JPFInspectorBackEndInterface#preventJpfFromResuming()}.
+   *
+   * Local copy of documentation:
+   * ---
+   *
    * If JPF is currently blocked, then it will be prevented from resuming until {@link #permitJpfToResumeAgain()} is
    * called. If JPF is currently running, this method will simply return false.
    *
@@ -92,6 +98,10 @@ public class StopHolder {
   }
 
   /**
+   * Primary documentation at {@link JPFInspectorBackEndInterface#permitJpfToResumeAgain()}.
+   *
+   * Local copy of documentation:
+   * ---
    * If JPF is currently paused and prevented from resuming, it will be woken up and allowed to resume.
    *
    * If multiple {@link #preventJpfFromResuming()} calls were made, all of them must be undone using this mehod before

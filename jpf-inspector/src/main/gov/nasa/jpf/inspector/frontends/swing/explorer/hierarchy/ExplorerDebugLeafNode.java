@@ -18,6 +18,9 @@ package gov.nasa.jpf.inspector.frontends.swing.explorer.hierarchy;
 
 import gov.nasa.jpf.inspector.frontends.swing.explorer.ProgramStateTreeModel;
 
+/**
+ * This is just a small node used for testing purposes.
+ */
 public class ExplorerDebugLeafNode extends ExplorerLeafNode {
   private final String name;
 

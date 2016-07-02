@@ -27,6 +27,7 @@ import gov.nasa.jpf.vm.FieldInfo;
 import gov.nasa.jpf.vm.StaticElementInfo;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 /**
  * Represents a Java reference object. Arrays are represented by a subclass of this node, {@link ExplorerArrayNode}.
@@ -37,13 +38,28 @@ public class ExplorerJavaObjectNode extends ExplorerComplexNode {
    */
   protected ElementInfo elementInfo;
   private boolean isStaticRepresentationOnly;
-
+  private String toStringRepresentation;
   public ExplorerJavaObjectNode(Attachment attachment, ElementInfo elementInfo,
                                 ProgramStateTreeModel model, ExplorerNode parent) {
     super(model, attachment, parent);
 
     this.elementInfo = elementInfo;
     this.isStaticRepresentationOnly = elementInfo instanceof StaticElementInfo;
+    this.toStringRepresentation = this.getToStringRepresentation();
+  }
+
+  private String getToStringRepresentation() {
+    if (elementInfo == null) {
+      return attachment.getName() + ": " + null;
+    }
+    String typeName = StateWritableValue.demangleTypeName(elementInfo.getType());
+    if (model.isConnectedToVM()) {
+      String shortFormValue = StateReadableValue.elementInfo2String(elementInfo);
+      return attachment.getName() + " (" + typeName + ") = " + shortFormValue;
+    } else {
+      this.wronglyExpanded = true;
+      return "(value forgotten)";
+    }
   }
 
 
@@ -82,24 +98,20 @@ public class ExplorerJavaObjectNode extends ExplorerComplexNode {
   public void updateComplexNodeFromJpf(ExplorerNode newVersion) {
     ElementInfo newElementInfo = ((ExplorerJavaObjectNode)newVersion).elementInfo;
     if (newElementInfo != elementInfo) {
-      model.nodesChanged(parent, new int[]{parent.getIndex(this)});
+      this.fireChanged();
       elementInfo = newElementInfo;
+    }
+
+    String newRepresentation = getToStringRepresentation();
+    if (!Objects.equals(this.toStringRepresentation, newRepresentation)) {
+      this.toStringRepresentation = newRepresentation;
+      this.fireChanged();
     }
   }
 
   @Override
   public String toString() {
-    if (elementInfo == null) {
-      return attachment.getName() + ": " + null;
-    }
-    String typeName = StateWritableValue.demangleTypeName(elementInfo.getType());
-    if (model.isConnectedToVM()) {
-      String shortFormValue = StateReadableValue.elementInfo2String(elementInfo);
-      return attachment.getName() + " (" + typeName + ") = " + shortFormValue;
-    } else {
-      this.wronglyExpanded = true;
-      return "(value forgotten)";
-    }
+    return this.toStringRepresentation;
   }
 
   @Override
@@ -108,5 +120,3 @@ public class ExplorerJavaObjectNode extends ExplorerComplexNode {
             ((ExplorerJavaObjectNode)oldNode).attachment.equals(this.attachment);
   }
 }
-
-// TODO (elsewhere) Shell crashes when viewing explorer with active nodes while JVM has already powered down

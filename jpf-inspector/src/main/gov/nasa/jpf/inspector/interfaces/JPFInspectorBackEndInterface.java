@@ -67,4 +67,28 @@ public interface JPFInspectorBackEndInterface extends
    * It is the caller's responsibility to only use the VM when the VM is paused.
    */
   VM getVM();
+
+  /**
+   * If JPF is currently blocked, then it will be prevented from resuming until {@link #permitJpfToResumeAgain()} is
+   * called. If JPF is currently running, this method will simply return false.
+   *
+   * If multiple calls to this method are made, then all of them must be undone using {@link #permitJpfToResumeAgain()}
+   * before JPF can resume again.
+   *
+   * Synchronized on the access lock.
+   *
+   * @return True if JPF is currently stopped and will be prevented from resuming; false otherwise.
+   */
+  boolean preventJpfFromResuming();
+
+  /**
+   * If JPF is currently paused and prevented from resuming, it will be woken up and allowed to resume.
+   *
+   * If multiple {@link #preventJpfFromResuming()} calls were made, all of them must be undone using this mehod before
+   * JPF resumes.
+   *
+   * Synchronized on the access lock.
+   * @throws IllegalStateException When JPF was not being prevented from resuming.
+   */
+  void permitJpfToResumeAgain();
 }
