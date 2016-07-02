@@ -24,13 +24,17 @@ import gov.nasa.jpf.vm.Transition;
  * The instruction is the instruction that was about to execute when the breakpoint interrupted the JPF thread.
  */
 public class BreakpointHitLocation {
-  private final Transition transition;
+  /**
+   * We store the index of the transition in path (i.e. the number of transitions before this transition, plus 1) instead
+   * of the actual transition, because backwards stepping would interfere with back_breakpoint_hit otherwise.
+   */
+  private final int indexOfTransitionInPath;
   private final Instruction instruction;
   private int numberOfSkippedInstructions;
 
-  public BreakpointHitLocation(Transition transition, Instruction instruction, int numberOfSkippedInstructions) {
+  public BreakpointHitLocation(int indexOfTransitionInPath, Instruction instruction, int numberOfSkippedInstructions) {
 
-    this.transition = transition;
+    this.indexOfTransitionInPath = indexOfTransitionInPath;
     this.instruction = instruction;
     this.numberOfSkippedInstructions = numberOfSkippedInstructions;
   }
@@ -39,8 +43,8 @@ public class BreakpointHitLocation {
     return instruction;
   }
 
-  public Transition getTransition() {
-    return transition;
+  public int getIndexOfTransitionInPath() {
+    return indexOfTransitionInPath;
   }
 
   public int getNumberOfSkippedInstructions() {

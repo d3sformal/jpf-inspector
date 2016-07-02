@@ -67,6 +67,9 @@ public class BreakpointHandler implements BreakPointManagerInterface {
 
   private final Stack<BreakpointsMemento> bpMementos;
 
+  /**
+   * The Inspector server.
+   */
   protected final JPFInspector inspector;
   private final InspectorCallbacks serverCallbacks;
   private final StopHolder stopHolder;
@@ -386,7 +389,7 @@ public class BreakpointHandler implements BreakPointManagerInterface {
             instructionsToSkip++;
           }
         }
-        lastBreakpointHitLocation = new BreakpointHitLocation(currentTransition, upcomingInstruction, instructionsToSkip);
+        lastBreakpointHitLocation = new BreakpointHitLocation(inspState.getVM().getPathLength() - 1, upcomingInstruction, instructionsToSkip);
         rememberTheNextBreakpointToBreakExecution = false;
       }
       // Now break.

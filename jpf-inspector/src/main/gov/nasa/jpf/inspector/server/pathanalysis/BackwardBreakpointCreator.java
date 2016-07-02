@@ -67,7 +67,7 @@ public final class BackwardBreakpointCreator {
 
   }
 
-  public BackwardBreakpointCreator(Transition transition, Instruction instruction, int numberOfSkippedInstructions, int descendHowManyTransitions) {
+  private BackwardBreakpointCreator(Transition transition, Instruction instruction, int numberOfSkippedInstructions, int descendHowManyTransitions) {
     assert transition != null;
     assert instruction != null;
     assert numberOfSkippedInstructions >= 0;
@@ -102,6 +102,7 @@ public final class BackwardBreakpointCreator {
   /**
    * Gets the hit condition which breaks where requested backward step should stop.
    */
+  @SuppressWarnings("unused") // Used for debugging.
   public ExpressionBoolean getBreakpointHitCondition() {
     return breakpointHitCondition;
   }
@@ -294,27 +295,48 @@ public final class BackwardBreakpointCreator {
    *                                  or null if no breakpoint hit yet.
    * @param inspState The Inspector state.
    */
-  public static BackwardBreakpointCreator getBackBreakpointHit(BreakpointHitLocation lastBreakpointHitLocation, InspectorState inspState) throws JPFInspectorGenericErrorException {
+  public static BackwardBreakpointCreator getBackBreakpointHit(BreakpointHitLocation lastBreakpointHitLocation,
+                                                               InspectorState inspState)
+          throws JPFInspectorGenericErrorException {
     if (lastBreakpointHitLocation == null) {
       throw new JPFInspectorGenericErrorException("No breakpoint was yet hit.");
     }
     inspState.getVM().updatePath();
     Path path = inspState.getVM().getPath();
-    int targetIndex = 0;
-    for (Transition transition : path) {
-      if (transition.equals(lastBreakpointHitLocation.getTransition())) {
-        break;
+    int targetTransitionIndex = lastBreakpointHitLocation.getIndexOfTransitionInPath();
+    if (path.size() <= targetTransitionIndex) {
+      throw new JPFInspectorGenericErrorException("You have already backtracked through the transition where the last breakpoint was hit (not enough transitions).");
+    }
+    Transition targetTransition = path.get(targetTransitionIndex);
+
+    int instructionsToSkip = lastBreakpointHitLocation.getNumberOfSkippedInstructions();
+    Step targetStep = null;
+    for (Step step : targetTransition) {
+      if (step.getInstruction().equals(lastBreakpointHitLocation.getInstruction())) {
+        if (instructionsToSkip == 0) {
+          targetStep = step;
+          break;
+        } else {
+          instructionsToSkip--;
+        }
       }
-      targetIndex++;
     }
-    int descendHowManyTransitions = path.size() - targetIndex;
-    if (descendHowManyTransitions <= 0) {
-      throw new JPFInspectorGenericErrorException("The last breakpoint was not hit in a transition in the current transition path.");
+    if (targetStep == null) {
+      throw new JPFInspectorGenericErrorException("You have already backtracked through the instruction where the last breakpoint was hit (target instruction not found).");
     }
-    return new BackwardBreakpointCreator(lastBreakpointHitLocation.getTransition(), lastBreakpointHitLocation.getInstruction(), lastBreakpointHitLocation.getNumberOfSkippedInstructions(), descendHowManyTransitions);
+
+    int descendHowManyTransitions = path.size() - targetTransitionIndex;
+    assert descendHowManyTransitions > 0;
+    BackwardBreakpointCreator backwardBreakpointCreator =
+            new BackwardBreakpointCreator(targetTransition, lastBreakpointHitLocation.getInstruction(),
+                                          lastBreakpointHitLocation.getNumberOfSkippedInstructions(),
+                                          descendHowManyTransitions);
+    return  backwardBreakpointCreator;
   }
 
-  public static BackwardBreakpointCreator getBackwardStepTransition(InspectorState inspState, CommandsInterface.StepType type) throws JPFInspectorGenericErrorException {
+  public static BackwardBreakpointCreator getBackwardStepTransition(InspectorState inspState,
+                                                                    CommandsInterface.StepType type)
+          throws JPFInspectorGenericErrorException {
     // TODO awaiting specification
     throw new JPFInspectorGenericErrorException("Not yet implemented.");
   }
@@ -327,7 +349,8 @@ public final class BackwardBreakpointCreator {
    * @param fieldName Only instructions associated with this field are eligible for the backwards breakpoint.
    * @param inspectorState The current Inspector state.
    */
-  public static BackwardBreakpointCreator getBackwardFieldAccess(FieldName fieldName, InspectorState inspectorState)
+  public static BackwardBreakpointCreator getBackwardFieldAccess(FieldName fieldName,
+                                                                 InspectorState inspectorState)
           throws JPFInspectorGenericErrorException {
     // TODO awaiting specification
     throw new JPFInspectorGenericErrorException("Not yet implemented.");
