@@ -344,26 +344,48 @@ public final class BackwardBreakpointCreator {
 
   public static BackwardBreakpointCreator getBackwardStepTransition(InspectorState inspState,
                                                                     CommandsInterface.StepType type,
-                                                                    int count)
+                                                                    int descendHowManyTransitions)
           throws JPFInspectorGenericErrorException {
-    assert count >= 1;
+    assert descendHowManyTransitions >= 1;
 
     Path path = updateAndGetPath(inspState);
-    int descendHowManyTransitions = count;
-    int targetTransitionIndex = path.size() - descendHowManyTransitions;
-    if (targetTransitionIndex < 0) {
-      throw new JPFInspectorGenericErrorException("There aren't that many transitions in the transition path (you requested " + descendHowManyTransitions + ", but there are only " + path.size() + ".");
+    Transition targetTransition = null;
+    int remainingTransitionsToSkip = descendHowManyTransitions - 1;
+    for (int i = path.size() - 1; i >= 0; i--) {
+      Transition possibleTargetTransition = path.get(i);
+      boolean correctType;
+      switch (type) {
+        case ST_TRANSITION_ALL: correctType = true; break;
+        case ST_TRANSITION_SCHED:
+          correctType = possibleTargetTransition.getChoiceGenerator() instanceof ThreadChoiceGenerator; break;
+        case ST_TRANSITION_DATA:
+          correctType = !(possibleTargetTransition.getChoiceGenerator() instanceof ThreadChoiceGenerator); break;
+        default:
+          throw new JPFInspectorGenericErrorException("This step type is not legal at this point.");
+      }
+      if (correctType) {
+        if (remainingTransitionsToSkip == 0) {
+          targetTransition = possibleTargetTransition;
+          break;
+        } else {
+          remainingTransitionsToSkip--;
+        }
+      }
     }
-    Transition targetTransition = path.get(targetTransitionIndex);
-
+    if (targetTransition == null) {
+      throw new JPFInspectorGenericErrorException(
+              "There aren't that many transitions beginning with the specified choice generator type in the transition path.");
+    }
 
     if (targetTransition.getStepCount() <= 0) {
-      if (count == 1) {
+      if (descendHowManyTransitions == 1) {
         throw new JPFInspectorGenericErrorException("You are already at the beginning of this transaction. Use 'back_step_transition 2' to backtrack further.");
       }
       throw new JPFInspectorGenericErrorException("The target transition has no steps and cannot be backtracked to.");
     }
-    BackwardBreakpointCreator backwardBreakpointCreator = new BackwardBreakpointCreator(targetTransition, targetTransition.getStep(0), descendHowManyTransitions);
+    BackwardBreakpointCreator backwardBreakpointCreator = new BackwardBreakpointCreator(targetTransition,
+                                                                                        targetTransition.getStep(0),
+                                                                                        descendHowManyTransitions);
     return backwardBreakpointCreator;
   }
 
