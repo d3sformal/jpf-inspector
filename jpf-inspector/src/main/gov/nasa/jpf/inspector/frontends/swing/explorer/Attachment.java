@@ -38,9 +38,7 @@ public final class Attachment {
     this.name = name;
     this.kind = kind;
   }
-  public static Attachment name(String name) {
-    return new Attachment(name, AttachmentKind.UNSPECIFIED);
-  }
+
   public static Attachment instanceField(String name) {
     return new Attachment(name, AttachmentKind.INSTANCE_FIELD);
   }

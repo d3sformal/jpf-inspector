@@ -271,6 +271,7 @@ public final class SwingTerminal extends Terminal {
     return character;
   }
 
+  @SuppressWarnings("SameParameterValue")
   private static boolean fontExists (String fontFamilyName) {
 
     GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
@@ -495,7 +496,7 @@ public final class SwingTerminal extends Terminal {
    * before the prompt is first displayed.
    */
   private static class JLineSimpleOutputStream extends OutputStream {
-    private static Logger log = Debugging.getLogger(ShellManager.getManager().getConfig());
+    private static final Logger log = Debugging.getLogger(ShellManager.getManager().getConfig());
 
     private final JTextComponent console;
 
@@ -529,7 +530,7 @@ public final class SwingTerminal extends Terminal {
    * 
    */
   private static class JLineUserTextOutputStream extends OutputStream {
-    private static Logger log = Debugging.getLogger(ShellManager.getManager().getConfig());
+    private static final Logger log = Debugging.getLogger(ShellManager.getManager().getConfig());
 
     private final TextComponentFeeder interpreter;
     private final JTextComponent console;

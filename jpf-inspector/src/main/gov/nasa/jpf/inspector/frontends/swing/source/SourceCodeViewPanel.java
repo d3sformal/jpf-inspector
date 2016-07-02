@@ -42,7 +42,7 @@ public class SourceCodeViewPanel extends AuxiliaryInspectorPanel {
   private final RSyntaxTextArea textArea;
 
   public SourceCodeViewPanel() {
-    super("Source", null, "View the source code of the currently executed instruction.");
+    super("Source", "View the source code of the currently executed instruction.");
     setLayout(new BorderLayout());
     textArea = new RSyntaxTextArea();
     textArea.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_JAVA);

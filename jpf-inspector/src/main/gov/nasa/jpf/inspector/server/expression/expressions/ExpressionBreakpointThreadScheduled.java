@@ -83,10 +83,6 @@ public class ExpressionBreakpointThreadScheduled extends ExpressionBooleanLeaf {
     return false;
   }
 
-  public Integer getThreadNum () {
-    return threadNum;
-  }
-
   @Override
   public BreakPointModes getBPMode () {
     return bpMode;

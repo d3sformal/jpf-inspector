@@ -117,9 +117,9 @@ abstract class RelOpEqualBase extends RelOpComparableBase {
     return compare(left.getReferenceValue(), right.getReferenceValue());
   }
 
-  public abstract boolean compare (boolean left, boolean right);
+  protected abstract boolean compare(boolean left, boolean right);
 
-  public abstract boolean compare (ElementInfo left, ElementInfo right);
+  protected abstract boolean compare(ElementInfo left, ElementInfo right);
 
   /**
    * @return Get null, if value does not represent bool value, otherwise gets operand value converted to Boolean.

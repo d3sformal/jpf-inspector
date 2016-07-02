@@ -104,9 +104,9 @@ public class BreakpointCreationExpression implements BreakpointCreationInformati
     }
   }
 
-  public void setBounds (int lower, int upper) {
-    lowerBound = lower;
-    upperBound = upper;
+  public void setSingleHitBounds () {
+    lowerBound = 1;
+    upperBound = 1;
   }
 
   private static String breakPointState2NormalizedString(BreakpointState bpState) {

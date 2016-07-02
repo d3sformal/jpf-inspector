@@ -51,9 +51,6 @@ public class JPFInspectorParsingErrorException extends JPFInspectorException {
     this.position = recognitionException.charPositionInLine;
   }
 
-  public String getExpression () {
-    return expression;
-  }
 
   public int getPosition () {
     return position;

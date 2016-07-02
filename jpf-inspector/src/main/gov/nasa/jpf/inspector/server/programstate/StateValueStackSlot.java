@@ -36,7 +36,7 @@ public final class StateValueStackSlot extends StateWritableValue {
   /**
    * If true, some debugging messages will be written to the Inspector debug stream.
    */
-  public static final boolean DEBUG = false;
+  private static final boolean DEBUG = false;
   /**
    * This should actually never be used.
    */

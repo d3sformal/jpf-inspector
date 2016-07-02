@@ -34,7 +34,7 @@ import java.util.logging.Logger;
  * 
  */
 public class TextComponentFeeder {
-  private static Logger log = Debugging.getLogger(ShellManager.getManager().getConfig());
+  private static final Logger log = Debugging.getLogger(ShellManager.getManager().getConfig());
 
   private int moveCursorLeft = 0;
 

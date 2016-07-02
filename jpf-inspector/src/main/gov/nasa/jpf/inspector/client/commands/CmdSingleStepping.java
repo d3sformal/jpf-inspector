@@ -74,7 +74,7 @@ public class CmdSingleStepping extends ClientCommand {
   public CmdSingleStepping (boolean forward, StepType stepType, Integer repeatCnt) {
     this(forward, stepType, repeatCnt, null);
   }
-  public CmdSingleStepping (boolean forward, StepType stepType, Integer repeatCnt, String fieldNameExpression) {
+  private CmdSingleStepping(boolean forward, StepType stepType, Integer repeatCnt, String fieldNameExpression) {
     assert stepType != null;
     assert repeatCnt != null;
 

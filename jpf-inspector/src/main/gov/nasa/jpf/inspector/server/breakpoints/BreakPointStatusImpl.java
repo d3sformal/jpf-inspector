@@ -74,11 +74,6 @@ public class BreakPointStatusImpl implements BreakpointStatus {
   }
 
   @Override
-  public BreakPointModes getBPMode () {
-    return bpMode;
-  }
-
-  @Override
   public String getName () {
     return bpName;
   }

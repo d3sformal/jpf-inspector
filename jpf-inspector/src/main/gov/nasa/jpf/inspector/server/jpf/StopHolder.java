@@ -63,9 +63,9 @@ public class StopHolder {
    * The access lock must never be held by a thread for a long time. It is used to ensure simplicity and methods should
    * use it to ensure that only a single method modifies a StopHolder's property at a time.
    */
-  private ReentrantLock accessLock = new ReentrantLock();
-  private Condition accessLockConditionVariable = accessLock.newCondition();
-  private Condition jpfResumePreventionConditionVariable = accessLock.newCondition();
+  private final ReentrantLock accessLock = new ReentrantLock();
+  private final Condition accessLockConditionVariable = accessLock.newCondition();
+  private final Condition jpfResumePreventionConditionVariable = accessLock.newCondition();
 
   private int hostageHolders = 0;
   /**

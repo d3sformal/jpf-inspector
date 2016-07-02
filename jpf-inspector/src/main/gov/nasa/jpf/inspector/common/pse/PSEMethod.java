@@ -57,7 +57,7 @@ public class PSEMethod extends ProgramStateEntry {
   /**
    * @return Gets representation of the instance (class in static case) on which current method operates
    */
-  public PSEVariableObject getThis () throws JPFInspectorException {
+  public PSEVariableObject getThis () {
     return refThis;
   }
 
@@ -68,7 +68,7 @@ public class PSEMethod extends ProgramStateEntry {
    * 
    * @return Gets list with represents values stored on the method stack.
    */
-  public PSEVariable[] getLocals () throws JPFInspectorException {
+  public PSEVariable[] getLocals () {
     return refLocals;
   }
 

@@ -31,7 +31,7 @@ import java.util.Objects;
  * each instruction in the given method.
  */
 public class ExpressionBreakpointMethodName extends ExpressionBooleanLeaf {
-  private MethodName methodName;
+  private final MethodName methodName;
 
   public ExpressionBreakpointMethodName(MethodName methodName) {
     this.methodName = methodName;

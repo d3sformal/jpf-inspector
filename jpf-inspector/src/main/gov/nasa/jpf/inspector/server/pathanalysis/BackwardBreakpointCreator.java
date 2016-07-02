@@ -98,10 +98,10 @@ public final class BackwardBreakpointCreator {
    */
   public int createBreakpoint (BreakpointHandler breakpointMgr) throws JPFInspectorGenericErrorException {
     BreakpointCreationExpression newBP = new BreakpointCreationExpression();
-    newBP.setBounds(1, 1);
+    newBP.setSingleHitBounds();
     newBP.setState(BreakpointState.ENABLED);
 
-    BreakpointStatus bps = breakpointMgr.createInternalBreakpoint(newBP, breakpointHitCondition, true);
+    BreakpointStatus bps = breakpointMgr.createInternalBreakpoint(newBP, breakpointHitCondition);
     if (bps == null) {
       throw new JPFInspectorGenericErrorException("Internal breakpoint could not be created.");
     }

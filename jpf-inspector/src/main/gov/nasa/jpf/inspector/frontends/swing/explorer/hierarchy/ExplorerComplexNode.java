@@ -114,7 +114,7 @@ public abstract class ExplorerComplexNode extends ExplorerNode {
    *
    * @param newVersion New version of this node, based on an up-to-date JPF state.
    */
-  public abstract void updateComplexNodeFromJpf(ExplorerNode newVersion);
+  protected abstract void updateComplexNodeFromJpf(ExplorerNode newVersion);
 
   @Override
   public final TreeNode getChildAt(int childIndex) {

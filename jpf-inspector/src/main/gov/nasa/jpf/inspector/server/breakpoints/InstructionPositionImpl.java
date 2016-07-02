@@ -19,8 +19,6 @@ package gov.nasa.jpf.inspector.server.breakpoints;
 
 import gov.nasa.jpf.inspector.interfaces.InstructionPosition;
 import gov.nasa.jpf.inspector.utils.expressions.FileName;
-import gov.nasa.jpf.vm.ClassInfo;
-import gov.nasa.jpf.vm.MethodInfo;
 import gov.nasa.jpf.vm.Instruction;
 
 /**
@@ -50,7 +48,7 @@ public class InstructionPositionImpl implements InstructionPosition {
   }
 
   // In this case we match at the same line as the instruction (not at given instruction)
-  public InstructionPositionImpl(Instruction instr) {
+  private InstructionPositionImpl(Instruction instr) {
     assert instr != null;
 
     this.fileName = new FileName(getInstructionFileName(instr));
@@ -72,34 +70,6 @@ public class InstructionPositionImpl implements InstructionPosition {
     this.methodName = instr.getMethodInfo().getName();
     this.instrOffset = instr.getInstructionIndex();
     this.instrName = instr.toString();
-  }
-
-  /**
-   * Notification that new Class has been loaded.
-   * We checks if this is not the represented class, and retrieve information in this case.
-   * 
-   * @param ci Loaded class
-   */
-  public void newClassLoaded (ClassInfo ci) {
-    assert ci != null;
-
-    if (!fileName.representsSingleFile()) {
-      // Group file names are ignored, we require 1:1 mapping
-      return;
-    }
-
-    if (fileName.isSameFile(ci.getSourceFileName())) {
-      // Represented class
-      for (MethodInfo mi : ci.getDeclaredMethodInfos()) {
-        // found the first instruction on given line
-        for (Instruction inst : mi.getInstructions()) {
-          if (inst.getLineNumber() == line) {
-            boundWithInstruction(inst);
-            return;
-          }
-        }
-      }
-    }
   }
 
   @Override

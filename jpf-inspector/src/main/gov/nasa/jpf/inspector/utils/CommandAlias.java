@@ -23,10 +23,10 @@ import java.util.regex.Pattern;
  * Represents a user-defined command alias, such as "c" for "continue".
  */
 public class CommandAlias {
-  private String key;
-  private String value;
-  private int numberOfRequiredParameters;
-  private boolean usesFullArgumentLine;
+  private final String key;
+  private final String value;
+  private final int numberOfRequiredParameters;
+  private final boolean usesFullArgumentLine;
   public static final String FULL_ARGUMENT_PATTERN = "{*}";
 
   public String getKey() {
@@ -41,7 +41,7 @@ public class CommandAlias {
     return numberOfRequiredParameters;
   }
 
-  private static Pattern patternNumericArgument = Pattern.compile("\\{[0-9]\\}");
+  private static final Pattern patternNumericArgument = Pattern.compile("\\{[0-9]\\}");
 
   public CommandAlias(String key, String value) {
     this.key = key;

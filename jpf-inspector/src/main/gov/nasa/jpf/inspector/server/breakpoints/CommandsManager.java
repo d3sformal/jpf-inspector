@@ -287,7 +287,7 @@ public class CommandsManager implements CommandsInterface {
     }
 
     assert (bpExpression != null);
-    breakpointHandler.createInternalBreakpoint(newBP, bpExpression, true);
+    breakpointHandler.createInternalBreakpoint(newBP, bpExpression);
 
     stopHolder.resumeExecution();
   }
@@ -314,7 +314,7 @@ public class CommandsManager implements CommandsInterface {
   /**
    * Tests if any JPF is associated. Test if the JPF is running or stopped. If JPF runs then it tries to stop or report error.running
    */
-  public boolean initialStopTest (boolean wait, String msg) throws JPFInspectorGenericErrorException {
+  public void initialStopTest (boolean wait, String msg) throws JPFInspectorGenericErrorException {
     if (inspector.getJPF() == null) {
       throw new JPFInspectorGenericErrorException("No JPF instance to observe");
     }
@@ -327,7 +327,6 @@ public class CommandsManager implements CommandsInterface {
         stopHolder.waitUntilStopped();
       }
     }
-    return wasStopped;
   }
 
 

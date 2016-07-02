@@ -78,7 +78,7 @@ public abstract class StateWritableValue extends StateReadableValue {
     return !ci.isPrimitive(); // All other types (arrays, objects) are stored on the heap
   }
 
-  public ElementInfo getReferenceValueImpl (int ref) {
+  protected ElementInfo getReferenceValueImpl(int ref) {
     if (isReference() == false) {
       return null;
     }
@@ -435,7 +435,7 @@ public abstract class StateWritableValue extends StateReadableValue {
     return getSimpleName(ci.getSignature());
   }
 
-  public static String getSimpleName (String typeNameSignature) {
+  private static String getSimpleName(String typeNameSignature) {
     String fullName = demangleTypeName(typeNameSignature);
 
     int lastDot = fullName.lastIndexOf('.');

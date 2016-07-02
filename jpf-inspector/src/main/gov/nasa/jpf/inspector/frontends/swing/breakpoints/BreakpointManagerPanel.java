@@ -39,7 +39,7 @@ public class BreakpointManagerPanel extends AuxiliaryInspectorPanel {
   private final JList<BreakpointStatus> breakpointStatusJList;
 
   public BreakpointManagerPanel() {
-    super("Breakpoints", null, "View and delete Inspector breakpoints.");
+    super("Breakpoints", "View and delete Inspector breakpoints.");
 
     // Create layout
     breakpointsListModel = new BreakpointsListModel();
@@ -87,6 +87,7 @@ public class BreakpointManagerPanel extends AuxiliaryInspectorPanel {
     listSelectionChanged(null);
   }
 
+  @SuppressWarnings({"UnusedParameters", "SameParameterValue"})
   private void listSelectionChanged(ListSelectionEvent listSelectionEvent) {
     java.util.List<BreakpointStatus> statuses = breakpointStatusJList.getSelectedValuesList();
     boolean canEnable = false;
@@ -107,6 +108,7 @@ public class BreakpointManagerPanel extends AuxiliaryInspectorPanel {
     buttonLogging.setEnabled(canLog);
   }
 
+  @SuppressWarnings("UnusedParameters")
   private void deleteBreakpoint(ActionEvent actionEvent) {
     java.util.List<BreakpointStatus> statuses = breakpointStatusJList.getSelectedValuesList();
     for (BreakpointStatus bpStatus : statuses) {

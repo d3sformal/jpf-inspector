@@ -24,7 +24,7 @@ import gov.nasa.jpf.inspector.server.expression.InspectorState;
 
 public class ExpressionBreakpointAssert extends ExpressionBooleanBinaryOperator {
 
-  public static final String TOKEN_ASSERT = "assert";
+  private static final String TOKEN_ASSERT = "assert";
 
   public ExpressionBreakpointAssert (ExpressionBooleanInterface position, ExpressionBooleanInterface condition) {
     super(position, condition);

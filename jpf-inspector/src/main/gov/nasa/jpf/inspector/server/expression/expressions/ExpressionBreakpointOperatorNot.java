@@ -28,7 +28,7 @@ import java.util.Objects;
  */
 public class ExpressionBreakpointOperatorNot extends ExpressionBoolean {
 
-  private ExpressionBoolean innerHitCondition;
+  private final ExpressionBoolean innerHitCondition;
 
   public ExpressionBreakpointOperatorNot(ExpressionBoolean inner) {
      innerHitCondition = inner;

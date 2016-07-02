@@ -22,6 +22,7 @@ import java.net.URL;
 /**
  * This class, upon static initialization, loads icons that are used from the Program State Explorer.
  */
+@SuppressWarnings({"WeakerAccess", "unused"}) // The icons are placeholders, probably.
 public final class Icons {
   public static final ImageIcon leaf;
   public static final ImageIcon folderOpen;

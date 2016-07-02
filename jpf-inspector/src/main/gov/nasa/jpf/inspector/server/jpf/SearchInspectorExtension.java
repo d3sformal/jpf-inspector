@@ -26,6 +26,18 @@ import gov.nasa.jpf.search.Search;
  *
  * See {@link DFSearchInspector} for a reference implementation, or use {@link SearchWrapper} if you don't
  * want to create your own Search subclass.
+ *
+ * The implementor MUST override the terminate method (from the class {@link Search}) and that method
+ * SHOULD contain the following code:
+ * <pre>
+ * {@code
+ * if (inspector != null) {
+ *   inspector.getStopHolder().terminating();
+ * }
+ * }
+ * </pre>
+ *
+ * Use the provided {@link #setInspector(JPFInspector)} method to gain access to the Inspector server object.
  */
 public interface SearchInspectorExtension {
 
@@ -34,17 +46,4 @@ public interface SearchInspectorExtension {
    * @param inspector The running JPF Inspector.
    */
   void setInspector(JPFInspector inspector);
-  
-  /**
-   * The implementor's terminate method (overriden from the class {@link Search}) must
-   * contain the code:
-   * <pre>
-   * {@code
-   * if (inspector != null) {
-   *   inspector.getStopHolder().terminating();
-   * }
-   * }
-   * </pre>
-   */
-  void terminate();
 }

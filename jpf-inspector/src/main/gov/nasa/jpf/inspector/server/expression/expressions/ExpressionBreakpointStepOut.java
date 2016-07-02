@@ -55,17 +55,15 @@ public final class ExpressionBreakpointStepOut extends ExpressionBooleanLeaf {
 
   /**
    * Creates the hit condition.
+   *  @param ti Thread which is considered (all other threads are ignored by this breakpoint)
    *
-   * @param ti Thread which is considered (all other threads are ignored by this breakpoint)
-   * @param stackDepth How many stack frames (from the current call stack) should be exited before the breakpoint hit (on the first such instruction).
-   *                   This is always 1.
    */
-  private ExpressionBreakpointStepOut(ThreadInfo ti, int stackDepth) {
-    assert stackDepth == 1;
+  private ExpressionBreakpointStepOut(ThreadInfo ti) {
+    assert 1 == 1;
     this.threadNum = ti.getId();
-    this.stackDepth = stackDepth;
+    this.stackDepth = 1;
 
-    int newMaxBreakingStackDepth = ti.countStackFrames() - stackDepth + 1;
+    int newMaxBreakingStackDepth = ti.countStackFrames() - 1 + 1;
     if (newMaxBreakingStackDepth < 0) {
       newMaxBreakingStackDepth = 0;
     }
@@ -83,7 +81,7 @@ public final class ExpressionBreakpointStepOut extends ExpressionBooleanLeaf {
    */
   public static ExpressionBreakpointStepOut getStepOutToCaller (ThreadInfo ti) {
     assert ti != null;
-    return new ExpressionBreakpointStepOut(ti, 1);
+    return new ExpressionBreakpointStepOut(ti);
   }
 
   @Override

@@ -24,8 +24,6 @@ import gov.nasa.jpf.inspector.server.expression.InspectorState;
 import gov.nasa.jpf.inspector.server.expression.InspectorState.ListenerMethod;
 import gov.nasa.jpf.inspector.server.jpf.JPFInspector;
 import gov.nasa.jpf.vm.VM;
-import gov.nasa.jpf.vm.Path;
-import gov.nasa.jpf.vm.Transition;
 import gov.nasa.jpf.vm.Instruction;
 import gov.nasa.jpf.jvm.bytecode.JSR;
 import gov.nasa.jpf.jvm.bytecode.JSR_W;
@@ -120,48 +118,6 @@ public class ExpressionBreakpointPosition extends ExpressionBooleanLeaf {
       return "SuT will now execute \"" + state.getVM().getInstruction().toString() + "\" at position " + instPos.toString() + ".";
     }
     return "";
-  }
-
-  /**
-   * Analyze the path and returns instruction such that the instruction was executed by specified thread, and then the thread executed exactly instCount
-   * instructions
-   * 
-   * @param tr
-   *        Last transition (The last instruction are not saved into the path but only into last transition)
-   * @param path
-   *        Path to analyze
-   * @param threadNum
-   *        Thread to process. All other threads are ignored.
-   * @param instCount
-   *        Number of instructions executed by JPF after returned instruction
-   */
-  public static Instruction getInstructionForThread (Transition tr, Path path, int threadNum, int instCount) {
-    assert path != null;
-    assert instCount >= 0;
-
-    int instInThread = 0; // Instructions executed by given thread counter
-    if (tr.getThreadIndex() == threadNum) {
-      instInThread += tr.getStepCount();
-
-      if (instInThread > instCount) {
-        return tr.getStep(instInThread - instCount - 1).getInstruction();
-      }
-    }
-
-    for (int i = path.size() - 1; i >= 0; i--) {
-      tr = path.get(i);
-      if (tr.getThreadIndex() != threadNum) {
-        continue; // Different thread was planned
-      }
-
-      instInThread += tr.getStepCount();
-
-      if (instInThread > instCount) {
-        return tr.getStep(instInThread - instCount - 1).getInstruction();
-      }
-    }
-
-    return null;
   }
 
   /**

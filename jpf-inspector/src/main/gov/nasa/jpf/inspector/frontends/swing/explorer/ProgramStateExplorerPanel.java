@@ -33,7 +33,7 @@ public class ProgramStateExplorerPanel extends AuxiliaryInspectorPanel {
   private final JTree jTree;
 
   public ProgramStateExplorerPanel() {
-    super("Explorer", null, "View all Java objects in the current program state.");
+    super("Explorer", "View all Java objects in the current program state.");
 
     setLayout(new BorderLayout());
     jTree = new JTree();

@@ -32,7 +32,6 @@ import gov.nasa.jpf.inspector.utils.parser.GenericErrorRuntimeException;
  * Represents a custom hit condition call, such as "custom1('a')".
  */
 public class ExpressionBreakpointCustomHitCondition extends ExpressionBooleanLeaf {
-  private static final boolean DEBUG = true;
   private final JPFInspector inspector;
   private final String name;
   private final Expressions parameters;

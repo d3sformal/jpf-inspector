@@ -17,7 +17,6 @@
 package gov.nasa.jpf.inspector.common.pse;
 
 import gov.nasa.jpf.inspector.client.commands.CmdPrint;
-import gov.nasa.jpf.inspector.exceptions.JPFInspectorException;
 import gov.nasa.jpf.inspector.utils.InstructionWrapper;
 
 import java.util.Objects;
@@ -68,7 +67,7 @@ public class ValuePrinter implements PSEVisitor<StringBuilder> {
 
 
   @Override
-  public StringBuilder visitPSEHeapEntryList (PSEHeapEntryList entry) throws JPFInspectorException {
+  public StringBuilder visitPSEHeapEntryList (PSEHeapEntryList entry) {
 
     for (PSEVariable var : entry.getHeapList()) {
       printVariableBasic(var);
@@ -77,7 +76,7 @@ public class ValuePrinter implements PSEVisitor<StringBuilder> {
   }
 
   @Override
-  public StringBuilder visitPSEMethod (PSEMethod pse) throws JPFInspectorException {
+  public StringBuilder visitPSEMethod (PSEMethod pse) {
     InstructionWrapper.toStringBuffer(pse.getCallInstruction(), sb);
     sb.append('\n');
 
@@ -105,7 +104,7 @@ public class ValuePrinter implements PSEVisitor<StringBuilder> {
 
 
   @Override
-  public StringBuilder visitPSEThread (PSEThread pse) throws JPFInspectorException {
+  public StringBuilder visitPSEThread (PSEThread pse) {
     sb.append(pse.getThreadNum());
     sb.append(" : ");
     sb.append(pse.getThreadName());
@@ -137,7 +136,7 @@ public class ValuePrinter implements PSEVisitor<StringBuilder> {
 
 
   @Override
-  public StringBuilder visitPSEVariableArray (PSEVariableArray var) throws JPFInspectorException {
+  public StringBuilder visitPSEVariableArray (PSEVariableArray var) {
     sb.append(var.getVarName());
     sb.append(" (");
     sb.append(var.getVarTypeName());
@@ -162,7 +161,7 @@ public class ValuePrinter implements PSEVisitor<StringBuilder> {
 
 
   @Override
-  public StringBuilder visitPSEVariableObject (PSEVariableObject var) throws JPFInspectorException {
+  public StringBuilder visitPSEVariableObject (PSEVariableObject var) {
     sb.append(var.getVarName());
     sb.append(" (");
     sb.append(var.getVarTypeName());

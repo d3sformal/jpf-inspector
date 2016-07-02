@@ -27,7 +27,7 @@ import java.util.List;
  */
 public class BreakpointsListModel extends AbstractListModel<BreakpointStatus> {
   private static final long serialVersionUID = 4657226277578293353L;
-  private List<BreakpointStatus> shownBreakpoints = new ArrayList<>();
+  private final List<BreakpointStatus> shownBreakpoints = new ArrayList<>();
 
   @Override
   public int getSize() {

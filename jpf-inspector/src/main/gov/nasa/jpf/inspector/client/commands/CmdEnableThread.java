@@ -29,7 +29,7 @@ import java.io.PrintStream;
  * be scheduled.
  */
 public final class CmdEnableThread extends ClientCommand {
-  private int threadId;
+  private final int threadId;
   private final ThreadSuppressionStatus newOption;
 
   private CmdEnableThread(int threadId, ThreadSuppressionStatus newOption) {

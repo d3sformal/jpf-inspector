@@ -21,14 +21,6 @@ package gov.nasa.jpf.inspector.common;
  */
 public final class ConsoleInformation {
   /**
-   * Represents the maximum length that a one-line message can have.
-   *
-   * If a server components wants to display a one-line message or other one-line expression and wants
-   * to ensure that it will fit on a single line, it should only display the first MAX_LINE_LENGTH
-   * characters and then display an ellipsis (three dots).
-   */
-  public static final int MAX_LINE_LENGTH = 80;
-  /**
    * Represents the maximum length that a user-input text can have before it's broken on another line.
    *
    * It works like this:

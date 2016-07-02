@@ -24,7 +24,7 @@ import java.util.List;
  * This is used as arguments to custom hit conditions.
  */
 public class Expressions  {
-  private List<String> expressions;
+  private final List<String> expressions;
 
   public Expressions() {
     expressions = new ArrayList<>();
@@ -44,14 +44,6 @@ public class Expressions  {
       }
     }
     return s;
-  }
-
-  public int size() {
-    return expressions.size();
-  }
-
-  public String  get(int index) {
-    return expressions.get(index);
   }
 
   public String[] toStringArray() {

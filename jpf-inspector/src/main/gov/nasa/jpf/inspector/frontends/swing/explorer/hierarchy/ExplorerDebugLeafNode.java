@@ -24,6 +24,7 @@ import gov.nasa.jpf.inspector.frontends.swing.explorer.ProgramStateTreeModel;
 public class ExplorerDebugLeafNode extends ExplorerLeafNode {
   private final String name;
 
+  @SuppressWarnings("unused") // Used only for debugging.
   public ExplorerDebugLeafNode(String name, ProgramStateTreeModel model, ExplorerNode parent) {
     super(null, model, parent);
 

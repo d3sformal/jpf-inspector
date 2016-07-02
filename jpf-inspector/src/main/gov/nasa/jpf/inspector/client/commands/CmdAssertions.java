@@ -28,7 +28,8 @@ import java.io.PrintStream;
  */
 public class CmdAssertions extends ClientCommand {
 
-  private boolean enable;
+  private final boolean enable;
+  @SuppressWarnings("UnusedParameters")
   public CmdAssertions (boolean enable, String classNameExpr) {
     this.enable = enable;
   }

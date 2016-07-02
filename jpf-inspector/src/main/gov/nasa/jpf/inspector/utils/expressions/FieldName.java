@@ -35,18 +35,6 @@ public class FieldName {
     this.className = className;
   }
   
-  public final String getFieldName() {
-    return fieldName;
-  }
-  
-  public final String getClassName() {
-    return className.getClassName();
-  }
-  
-  public final ClassName getClassNameClass() {
-    return className;
-  }
-  
   public boolean isSameField(FieldInfo fi) {
     assert fi != null;
     return fieldName.equals(fi.getName()) && className.isSameClass(fi.getClassInfo());

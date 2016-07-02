@@ -42,7 +42,7 @@ public class SimpleSourceCodeViewPanel extends AuxiliaryInspectorPanel {
   private final JEditorPane sourceCodeTextArea;
 
   public SimpleSourceCodeViewPanel() {
-    super("Source", null, "View the source code of the currently executed instruction.");
+    super("Source", "View the source code of the currently executed instruction.");
     setLayout(new BorderLayout());
     sourceCodeTextArea = new JEditorPane();
     sourceCodeTextArea.setFont(Constants.fontMonospaced);

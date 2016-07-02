@@ -44,7 +44,7 @@ public final class StateStackFrame extends StateNode {
   /**
    * The method associated with the stack frame.
    */
-  protected final MethodInfo mi;
+  private final MethodInfo mi;
 
   /**
    * Initializes a new instance of a hierarchy-2 stack frame.

@@ -39,8 +39,6 @@ public class JPFInspectorNullValueException extends JPFInspectorException {
 
   // While assigning value - Dereferencing null during unboxing of the value.
   public JPFInspectorNullValueException (ClassInfo ci) {
-    super("Dereferencing null value: The new value is null, but the null value cannot be assigned to a primitive type. Unboxing failed.");
-    // super("Dereferencing null pointer when unboxin value of the " + StateWritableValue.getSimpleName(ci) + " type.");
+    super("Dereferencing null value: The new value of type " + StateWritableValue.getSimpleName(ci) + " is null, but the null value cannot be assigned to a primitive type. Unboxing failed.");
   }
-
 }

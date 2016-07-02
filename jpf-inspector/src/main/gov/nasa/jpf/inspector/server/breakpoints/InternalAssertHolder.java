@@ -31,8 +31,8 @@ public class InternalAssertHolder extends InternalBreakpointHolder {
   private final String position;
   private final String condition;
 
-  public InternalAssertHolder (int newID, InspectorCallbacks callbacks, boolean userBP, boolean sigleHitBP, String position, String condition) {
-    super(newID, callbacks, userBP, sigleHitBP);
+  public InternalAssertHolder(int newID, InspectorCallbacks callbacks, String position, String condition) {
+    super(newID, callbacks, true, false);
     this.position = position;
     this.condition = condition;
   }

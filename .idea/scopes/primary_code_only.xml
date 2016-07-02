@@ -1,0 +1,3 @@
+<component name="DependencyValidationManager">
+  <scope name="primary code only" pattern="src[jpf-inspector]:*..*&amp;&amp;!src[jpf-inspector]:gov.nasa.jpf.inspector.server.expression.generated..*&amp;&amp;!src[jpf-inspector]:gov.nasa.jpf.inspector.client.parser.generated..*&amp;&amp;!src[jpf-inspector]:sooth..*&amp;&amp;!src[jpf-inspector]:extensibility..*&amp;&amp;!src[jpf-inspector]:paper..*" />
+</component>

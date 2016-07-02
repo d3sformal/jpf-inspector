@@ -29,7 +29,7 @@ public class BreakpointHitLocation {
    */
   private final int indexOfTransitionInPath;
   private final Instruction instruction;
-  private int numberOfSkippedInstructions;
+  private final int numberOfSkippedInstructions;
 
   public BreakpointHitLocation(int indexOfTransitionInPath, Instruction instruction, int numberOfSkippedInstructions) {
 

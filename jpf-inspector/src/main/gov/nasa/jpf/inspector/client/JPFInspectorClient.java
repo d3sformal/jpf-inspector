@@ -59,7 +59,7 @@ public class JPFInspectorClient implements JPFInspectorClientInterface {
     // Create the fully decorated callbacks handler.
     JPFClientCallbackHandler callbacks = new JPFClientCallbackHandler(listeners, callbackOutStream);
     CallbackRecordingDecorator cbRecDecorator = new CallbackRecordingDecorator(callbacks, recorder);
-    this.cbExecutionDecorator = new CallbackExecutionDecorator(recorder, cbRecDecorator, System.out);
+    this.cbExecutionDecorator = new CallbackExecutionDecorator(recorder, cbRecDecorator);
 
     this.outputStream = outStream;
     this.inspector = JPFInspectorFacade.getInspectorBackend(cbExecutionDecorator);

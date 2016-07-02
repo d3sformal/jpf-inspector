@@ -30,8 +30,8 @@ import javax.swing.tree.DefaultTreeModel;
  * overwritten. Collapsing a node does not delete its children.
  */
 public class ProgramStateTreeModel extends DefaultTreeModel {
-  private ExplorerRoot explorerRoot;
-  private JPFInspectorBackEndInterface server;
+  private final ExplorerRoot explorerRoot;
+  private final JPFInspectorBackEndInterface server;
 
   /**
    * Creates the model and initializes it.
@@ -75,19 +75,5 @@ public class ProgramStateTreeModel extends DefaultTreeModel {
    */
   public JPFInspectorBackEndInterface getServer() {
     return server;
-  }
-
-  boolean wasConnectedLastTime = false;
-  public boolean isConnectedToVM() {
-    boolean nowPaused = server.isPaused();
-    if (nowPaused && !wasConnectedLastTime) {
-      wasConnectedLastTime = true;
-      update();
-    }
-    if (!nowPaused && wasConnectedLastTime) {
-      wasConnectedLastTime = false;
-      explorerRoot.fireChanged();
-    }
-    return server.isPaused();
   }
 }

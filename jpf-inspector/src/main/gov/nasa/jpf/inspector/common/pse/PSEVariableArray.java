@@ -34,7 +34,7 @@ public class PSEVariableArray extends PSEVariable {
   /**
    * Content of the array
    */
-  private PSEVariable[] refArrayItems;
+  private final PSEVariable[] refArrayItems;
 
   /**
    * Creates full representation of the array with references to array entries
@@ -52,7 +52,7 @@ public class PSEVariableArray extends PSEVariable {
     return length;
   }
 
-  public PSEVariable[] getArrayItems () throws JPFInspectorException {
+  public PSEVariable[] getArrayItems () {
     return refArrayItems;
   }
 

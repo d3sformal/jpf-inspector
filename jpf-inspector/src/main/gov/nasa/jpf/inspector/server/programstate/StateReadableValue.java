@@ -38,7 +38,7 @@ import java.util.Arrays;
  */
 public abstract class StateReadableValue extends StateNode {
 
-  private boolean shouldExpandMembers;
+  private final boolean shouldExpandMembers;
 
   protected StateReadableValue(JPFInspector inspector, boolean shouldExpandMembers) {
     super(inspector);
@@ -121,10 +121,10 @@ public abstract class StateReadableValue extends StateNode {
    * @param definedIn The class this field was defined in, if field, if any. If not, then it's the empty string.
    * @return The hierarchy-3 representation.
    */
-  public static PSEVariable createPSEVariable(StateReadableValue value,
-                                              String varName,
-                                              int index,
-                                              String definedIn)
+  protected static PSEVariable createPSEVariable(StateReadableValue value,
+                                                 String varName,
+                                                 int index,
+                                                 String definedIn)
       throws JPFInspectorException {
 
     assert (value != null);
@@ -219,7 +219,7 @@ public abstract class StateReadableValue extends StateNode {
    * {@link ProgramStateEntry} should contain its fields and static fields (if object) or its elements (if array).
    * The return value of this method has no meaning for primitive types, threads, and stack frames.
    */
-  public boolean shouldExpandMembers() {
+  protected boolean shouldExpandMembers() {
     return shouldExpandMembers;
   }
 

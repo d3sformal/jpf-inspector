@@ -18,7 +18,6 @@
 package gov.nasa.jpf.inspector.common.pse;
 
 import gov.nasa.jpf.inspector.client.commands.CmdPrint;
-import gov.nasa.jpf.inspector.exceptions.JPFInspectorException;
 
 /**
  * This visitor is implemented only by a visitor in the {@link CmdPrint} class and it is used to print program
@@ -26,15 +25,15 @@ import gov.nasa.jpf.inspector.exceptions.JPFInspectorException;
  */
 public interface PSEVisitor<T> {
 
-  T visitPSEHeapEntryList(PSEHeapEntryList entry) throws JPFInspectorException;
+  T visitPSEHeapEntryList(PSEHeapEntryList entry);
 
-  T visitPSEMethod(PSEMethod entry) throws JPFInspectorException;
+  T visitPSEMethod(PSEMethod entry);
 
-  T visitPSEThread(PSEThread entry) throws JPFInspectorException;
+  T visitPSEThread(PSEThread entry);
 
-  T visitPSEVariableArray(PSEVariableArray entry) throws JPFInspectorException;
+  T visitPSEVariableArray(PSEVariableArray entry);
 
-  T visitPSEVariableObject(PSEVariableObject entry) throws JPFInspectorException;
+  T visitPSEVariableObject(PSEVariableObject entry);
 
-  T visitPSEVariablePrimitive(PSEVariablePrimitive entry) throws JPFInspectorException;
+  T visitPSEVariablePrimitive(PSEVariablePrimitive entry);
 }

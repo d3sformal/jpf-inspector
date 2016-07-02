@@ -40,12 +40,12 @@ import java.util.logging.Logger;
  * and the server and then that's pretty much the same thing as static access, and would be more messy.
  */
 public final class InspectorConfiguration {
-  private Logger logger;
+  private final Logger logger;
   private static InspectorConfiguration instance;
   private Map<String, Class<? extends CustomHitCondition>> customHitConditions;
   private Map<String, CustomCommand> customCommands;
   private Map<String, CommandAlias> aliases;
-  private Config config;
+  private final Config config;
 
   private InspectorConfiguration(Config config) {
     this.config = config;
@@ -166,8 +166,8 @@ public final class InspectorConfiguration {
     return instance;
   }
 
-  private boolean ignoreClassesFeature;
-  private String[] ignoredClasses;
+  private final boolean ignoreClassesFeature;
+  private final String[] ignoredClasses;
 
   /**
    * Returns true if breakpoints that happen while the topmost stack frame is of a method in the given class should be ignored.

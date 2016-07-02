@@ -28,9 +28,9 @@ import java.io.PrintStream;
  * a breakpoint's state.
  */
 public final class CmdBreakpointChange extends ClientCommand {
-  private String breakpointId;
-  private BreakpointState newState;
-  private String normalizedCommand;
+  private final String breakpointId;
+  private final BreakpointState newState;
+  private final String normalizedCommand;
 
   private CmdBreakpointChange(String breakpointId, BreakpointState newState, String normalizedCommand) {
     this.breakpointId = breakpointId;

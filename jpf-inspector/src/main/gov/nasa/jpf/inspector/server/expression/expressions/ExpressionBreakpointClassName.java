@@ -29,7 +29,7 @@ import gov.nasa.jpf.vm.MethodInfo;
  * Represents the "class = [classname]" hit condition that hits before each instruction in the specified class.
  */
 public class ExpressionBreakpointClassName extends ExpressionBooleanLeaf {
-  private ClassName className;
+  private final ClassName className;
 
   public ExpressionBreakpointClassName(ClassName className) {
     this.className = className;

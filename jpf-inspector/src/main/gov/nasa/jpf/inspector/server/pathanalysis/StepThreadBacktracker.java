@@ -170,16 +170,6 @@ class StepThreadBacktracker {
   }
 
   /**
-   * Gets result of the last {@link #backstep()} method call.
-   */
-  public Step getCurrentStep () {
-    if (currentTransitionStepIndex == BACKSTEP_NOT_YET_CALLED) {
-      return null;
-    }
-    return currentTransitionSteps[currentTransitionStepIndex];
-  }
-
-  /**
    * Gets the transition where the currently processed step is contained.
    */
   public Transition getCurrentTransition () {
@@ -195,44 +185,5 @@ class StepThreadBacktracker {
    */
   public int getBacktrackedTransitionCount() {
     return ttb.getBacksteppedTransitions();
-  }
-
-  /**
-   * @return Gets result of previous (not last, but one before) {@link #backstep()} call.
-   */
-  private Step getReturnedPrevStep() {
-    if (prevReturnedTransition == null) {
-      return null;
-    }
-    return prevReturnedTransition.getStep(prevReturnedStepIndex);
-  }
-
-  /**
-   * Gets transition of previous (not last, but one before) step returned by {@link #backstep()} call.
-   * 
-   * @return Gets transition of previous step.
-   */
-  private Transition getPrevReturnedTransition() {
-    return prevReturnedTransition;
-  }
-
-  /**
-   * @return Gets number of transitions (including the skipped transition in different threads) which were "backstepped" to obtain
-   * {@link #getPrevReturnedTransition()}
-   */
-  public int getPrevReturnedBackSteppedTransitions () {
-    return prevReturnedTransition2Backrack;
-  }
-
-  /**
-   * @return Creates Backward breakpoint which represents {@link StepThreadBacktracker#getReturnedPrevStep()}.
-   */
-  public BackwardBreakpointCreator createBackwardBreakpointFromPreviousReturnedStep () {
-    Step prevStep = backstep();
-    if (prevStep == null || prevReturnedTransition == null) {
-      return null;
-    }
-
-    return new BackwardBreakpointCreator(prevReturnedTransition, prevStep, prevReturnedTransition2Backrack);
   }
 }

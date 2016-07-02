@@ -117,22 +117,22 @@ abstract class RelOpComparableBase implements RelationOperator {
   /**
    * Compares two doubles.
    */
-  public abstract boolean compare (double left, double right);
+  protected abstract boolean compare(double left, double right);
 
   /**
    * Compares two longs.
    */
-  public abstract boolean compare (long left, long right);
+  protected abstract boolean compare(long left, long right);
 
   /**
    * Compares two chars.
    */
-  public abstract boolean compare (char left, char right);
+  protected abstract boolean compare(char left, char right);
 
   /**
    * Compares two Strings.
    */
-  public abstract boolean compare (String left, String right);
+  protected abstract boolean compare(String left, String right);
 
   /**
    *

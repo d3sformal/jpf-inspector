@@ -70,7 +70,7 @@ public final class StateElementInfo extends StateReadableValue {
                                                                   ElementInfo ei,
                                                                   boolean expandMembers) {
     assert (ei != null);
-    return new StateElementInfo(stateHeapEntryList.getInspector(), expandMembers, ei, ei.getClassInfo(), PSEVariable.EXPRESSION_VARIABLE_HEAP + '[' + ei.getObjectRef() + ']');
+    return new StateElementInfo(stateHeapEntryList.getInspector(), true, ei, ei.getClassInfo(), PSEVariable.EXPRESSION_VARIABLE_HEAP + '[' + ei.getObjectRef() + ']');
   }
 
   /**

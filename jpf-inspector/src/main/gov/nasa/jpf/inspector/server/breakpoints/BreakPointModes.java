@@ -37,8 +37,6 @@ public enum BreakPointModes {
   BP_MODE_OBJECT_RELEASED,
   BP_MODE_SPECIFIC_INSTRUCTION_TYPE,
   BP_MODE_EXCEPTION_THROWN,
-  BP_MODE_NOTIFY, // There was a "to-do" marker next to this value. I don't know why.
-  BP_MODE_SYNC_BLOCK, // There was a message here: "Thread is blocked". I don't know what it means.
   BP_MODE_POSITION_ONLY,
   BP_MODE_THREAD_SCHEDULED_IN,
   BP_MODE_THREAD_SCHEDULED_OUT,

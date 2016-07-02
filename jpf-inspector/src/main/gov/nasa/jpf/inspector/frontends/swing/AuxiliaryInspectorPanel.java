@@ -30,10 +30,14 @@ import java.util.List;
 public abstract class AuxiliaryInspectorPanel extends ShellPanel {
 
   private boolean firstTimeAddedToShell = true;
+  /**
+   * This panel must register itself as a listener in the Inspector client to catch callback-received and command-executed
+   * events.
+   */
   protected JPFInspectorClientInterface inspectorClient;
 
-  protected AuxiliaryInspectorPanel(String title, Icon icon, String tip) {
-    super(title, icon, tip);
+  protected AuxiliaryInspectorPanel(String title, String tip) {
+    super(title, null, tip);
 
   }
   @Override

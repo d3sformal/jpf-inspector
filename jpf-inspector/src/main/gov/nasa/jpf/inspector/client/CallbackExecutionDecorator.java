@@ -97,16 +97,14 @@ public final class CallbackExecutionDecorator implements InspectorCallbacks {
 
   /**
    * Initializes a new instance of this decorator.
-   * 
-   * @param syncObj Object used to synchronized Command and CallBacks thread
+   *  @param syncObj Object used to synchronized Command and CallBacks thread
    * @param cb Where to send/forward callbacks
-   * @param debugOutStream Debug output stream
    */
-  public CallbackExecutionDecorator (CommandRecorder syncObj, InspectorCallbacks cb, PrintStream debugOutStream) {
+  public CallbackExecutionDecorator(CommandRecorder syncObj, InspectorCallbacks cb) {
     this.syncObj = syncObj;
     this.cb = cb;
     this.mode = WORKING_MODE.WM_USER_COMMANDS;
-    this.debugOutStream = debugOutStream;
+    this.debugOutStream = System.out;
 
     this.isCBwaiting = false;
     this.error = false;
@@ -372,6 +370,7 @@ public final class CallbackExecutionDecorator implements InspectorCallbacks {
   public void nextCB_genericError () {
     waitForCB(CallbackKind.CB_GENERIC_ERROR);
   }
+  @SuppressWarnings("EmptyMethod")
   public void nextCB_genericInfo () {
     // Nothing to do (Generic infos are ignored)
   }

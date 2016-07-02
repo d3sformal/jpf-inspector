@@ -50,4 +50,5 @@ public class DFSearchInspector extends DFSearch implements SearchInspectorExtens
       inspector.getStopHolder().terminating();
     }
   }
+
 }

@@ -37,7 +37,7 @@ public class ExplorerJavaObjectNode extends ExplorerComplexNode {
    * JPF representation of this object.
    */
   protected ElementInfo elementInfo;
-  private boolean isStaticRepresentationOnly;
+  private final boolean isStaticRepresentationOnly;
   private String toStringRepresentation;
   public ExplorerJavaObjectNode(Attachment attachment, ElementInfo elementInfo,
                                 ProgramStateTreeModel model, ExplorerNode parent) {
@@ -53,13 +53,8 @@ public class ExplorerJavaObjectNode extends ExplorerComplexNode {
       return attachment.getName() + ": " + null;
     }
     String typeName = StateWritableValue.demangleTypeName(elementInfo.getType());
-    if (model.isConnectedToVM()) {
-      String shortFormValue = StateReadableValue.elementInfo2String(elementInfo);
-      return attachment.getName() + " (" + typeName + ") = " + shortFormValue;
-    } else {
-      this.wronglyExpanded = true;
-      return "(value forgotten)";
-    }
+    String shortFormValue = StateReadableValue.elementInfo2String(elementInfo);
+    return attachment.getName() + " (" + typeName + ") = " + shortFormValue;
   }
 
 

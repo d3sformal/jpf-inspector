@@ -17,8 +17,6 @@
 
 package gov.nasa.jpf.inspector.interfaces;
 
-import gov.nasa.jpf.inspector.server.breakpoints.BreakPointModes;
-
 /**
  * All information about a specific breakpoint. The user of this interface can merely read the information,
  * as this interface only provides getters.
@@ -40,8 +38,6 @@ public interface BreakpointStatus extends BreakpointCreationInformation {
    * Gets total number of the breakpoint invocation. How many times has been breakpoint reached
    */
   int getHitCounterTotal();
-
-  BreakPointModes getBPMode();
 
   /**
    * Additional information about the Breakpoint for user.

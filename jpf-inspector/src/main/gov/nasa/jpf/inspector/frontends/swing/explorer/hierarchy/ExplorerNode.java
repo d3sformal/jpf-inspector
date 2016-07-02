@@ -30,9 +30,7 @@ public abstract class ExplorerNode implements TreeNode {
   /**
    * The parent node of this node.
    */
-  protected ExplorerNode parent;
-
-
+  protected final ExplorerNode parent;
   /**
    * The way in which this node is connected to its parent.
    */
@@ -74,7 +72,7 @@ public abstract class ExplorerNode implements TreeNode {
    *
    * @param newVersion The way this node should look like according to the new JPF state
    */
-  public abstract void updateFromJpf(ExplorerNode newVersion);
+  protected abstract void updateFromJpf(ExplorerNode newVersion);
 
   /**
    * Returns true if this node is just a newer version of the given node. For example, if this node represents
@@ -86,22 +84,15 @@ public abstract class ExplorerNode implements TreeNode {
    *
    * @param oldNode An older version of this node.
    */
-  public abstract boolean isRecognizableAs(ExplorerNode oldNode);
+  protected abstract boolean isRecognizableAs(ExplorerNode oldNode);
 
   /**
    * Tells the treeview component that this node's display row has changed (i.e., its text changed).
    */
-  public void fireChanged() {
+  protected void fireChanged() {
     if (this.model != null) {
       this.model.nodesChanged(this.parent, new int[]{this.parent.getIndex(this)});
     }
-  }
-
-  /**
-   * Gets the way by which this node is attached to its parent.
-   */
-  public Attachment getAttachment() {
-    return attachment;
   }
 
   /**

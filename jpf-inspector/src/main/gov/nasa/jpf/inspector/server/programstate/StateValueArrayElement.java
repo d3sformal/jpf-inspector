@@ -40,7 +40,7 @@ public final class StateValueArrayElement extends StateWritableValue {
   /**
    * Index of the represented element in the array
    */
-  protected final int index;
+  private final int index;
   /**
    * Representation of the array
    */

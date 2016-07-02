@@ -50,7 +50,7 @@ import javax.swing.*;
  * 
  */
 public class InspectorPrimaryConsolePanel extends ShellPanel implements VerifyCommandListener {
-  private static Logger log = Debugging.getLogger();
+  private static final Logger log = Debugging.getLogger();
   private static final boolean DEBUG = false;
   private static final long serialVersionUID = 20110715L;
 

@@ -84,9 +84,8 @@ public class FileName {
    * 
    * <br>Note: Checks whether file name contains "*" char.
    */
+  @SuppressWarnings("unused") // Preserved for similarity to ClassName and FieldName
   public boolean representsSingleFile() {
     return ClassName.singleEntryName(fileName);
   }
-
-
 }

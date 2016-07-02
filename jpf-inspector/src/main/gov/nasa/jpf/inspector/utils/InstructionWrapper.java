@@ -25,6 +25,8 @@ import java.io.Serializable;
  * @author Alf
  * 
  */
+@SuppressWarnings({"unused", "FieldCanBeLocal"})
+// The instruction mnemonic and position might still be useful when we decide to change how the instruction is displayed
 public final class InstructionWrapper implements Serializable {
 
   private static final long serialVersionUID = 4575281022863840595L;
@@ -57,9 +59,6 @@ public final class InstructionWrapper implements Serializable {
     this.sourceCodeLine = currLineSource;
   }
 
-  public String getInstructionName () {
-    return instructionName;
-  }
 
   private String getClassName () {
     return className;
@@ -69,19 +68,16 @@ public final class InstructionWrapper implements Serializable {
     return methodName;
   }
 
-  public int getInstructionPosition () {
-    return instructionPosition;
-  }
 
-  public String getSourceFileName () {
+  private String getSourceFileName() {
     return fileName;
   }
 
-  public int getSourceFileLineNum () {
+  private int getSourceFileLineNum() {
     return fileLineNum;
   }
 
-  public String getSouceCodeLine () {
+  private String getSouceCodeLine() {
     return sourceCodeLine;
   }
 

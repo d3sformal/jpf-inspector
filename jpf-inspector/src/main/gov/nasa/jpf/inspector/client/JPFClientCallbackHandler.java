@@ -31,7 +31,7 @@ import java.util.List;
  * This class is created by the client.
  */
 public class JPFClientCallbackHandler implements InspectorCallbacks {
-  private List<AuxiliaryInspectorPanel> listeners;
+  private final List<AuxiliaryInspectorPanel> listeners;
   /**
    * Console where server notifications should be printed out.
    */

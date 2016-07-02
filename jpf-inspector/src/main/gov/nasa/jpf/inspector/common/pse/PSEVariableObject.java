@@ -32,11 +32,11 @@ public class PSEVariableObject extends PSEVariable {
    * Note: Previously, this comment said "sorted by field/slot index" but I don't understand how "slots" could come
    * in play here so I removed it.
    */
-  private PSEVariable[] refFields;
+  private final PSEVariable[] refFields;
   /**
    * Sorted by field index (static element fields)
    */
-  private PSEVariable[] refStaticFields;
+  private final PSEVariable[] refStaticFields;
 
   public PSEVariableObject(String varName,
                            String varTypeName, String varValue, boolean isStatic,
@@ -47,11 +47,11 @@ public class PSEVariableObject extends PSEVariable {
     this.refStaticFields = refStaticFields;
   }
 
-  public PSEVariable[] getFields () throws JPFInspectorException {
+  public PSEVariable[] getFields () {
     return refFields;
   }
 
-  public PSEVariable[] getStaticFields () throws JPFInspectorException {
+  public PSEVariable[] getStaticFields () {
     return refStaticFields;
   }
 

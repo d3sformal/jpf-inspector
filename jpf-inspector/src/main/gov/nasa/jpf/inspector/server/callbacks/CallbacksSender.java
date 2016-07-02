@@ -44,8 +44,8 @@ import java.util.List;
  * (Prevent creation of separate threads for each clientCallbacks and related non-determinism in clientCallbacks order due to scheduling)
  */
 public class CallbacksSender extends Thread {
-  protected static final boolean DEBUG = false;
-  protected PrintStream out;
+  private static final boolean DEBUG = false;
+  private final PrintStream out;
 
   private volatile boolean terminating;
   /**
@@ -121,7 +121,7 @@ public class CallbacksSender extends Thread {
     }
   }
 
-  public void terminate () {
+  private void terminate() {
     if (DEBUG) {
       out.println(this.getClass().getSimpleName() + ".terminate()");
     }

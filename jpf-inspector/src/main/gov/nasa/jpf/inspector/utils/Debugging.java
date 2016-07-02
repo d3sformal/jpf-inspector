@@ -48,19 +48,19 @@ public final class Debugging {
     return logger;
   }
 
+  /**
+   * Gets the logger that should be used inside JPF Inspector if the Inspector is launched via a Shell handled by
+   * the Shell Manager (which is the only way it can currently be launched).
+   *
+   * @return A logger for JPF Inspector.
+   */
   public static Logger getLogger() {
       return getLogger(ShellManager.getManager().getConfig());
   }
 
-  /**
-   * Gets the logger that should be used inside JPF Inspector if the Inspector is launched via a Shell handled by
-   * the Shell Manager (e.g. a graphical Swing shell).
-   * @return A logger for JPF Inspector.
-   */
-  public static Logger getSwingShellLogger() {
-    return getLogger(ShellManager.getManager().getConfig());
-  }
 
+
+  @SuppressWarnings("unused") // method is for debugging purposes
   public static void sleep(int milliseconds) {
     try {
       Thread.sleep(milliseconds);

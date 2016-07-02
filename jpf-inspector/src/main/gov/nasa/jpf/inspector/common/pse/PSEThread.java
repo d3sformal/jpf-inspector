@@ -57,7 +57,7 @@ public final class PSEThread extends ProgramStateEntry {
   private final int priority;
   private final boolean isDaemon;
 
-  private PSEMethod[] refCallStack; // Stack with called method in the represented thread
+  private final PSEMethod[] refCallStack; // Stack with called method in the represented thread
 
   public PSEThread(int threadNum, State state, String threadName,
                    String threadTypeName, int priority, boolean isDaemon, PSEMethod[] refCallStack) {

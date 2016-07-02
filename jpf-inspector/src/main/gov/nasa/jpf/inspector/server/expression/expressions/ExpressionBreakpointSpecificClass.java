@@ -45,10 +45,6 @@ public class ExpressionBreakpointSpecificClass extends ExpressionBooleanLeaf {
     this.mode = mode;
   }
 
-  public ClassName getClassName() {
-    return cn;
-  }
-
   @Override
   public boolean evaluateExpression(InspectorState state) {
     if ((mode == Mode.SC_MODE_CREATED && state.getListenerMethod() != ListenerMethod.LM_OBJECT_CREATED)

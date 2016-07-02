@@ -30,10 +30,10 @@ import java.util.Objects;
  */
 public class InspectorToolbarCommand extends ShellCommand {
 
-  private String name;
-  private String tooltip;
-  private Icon icon;
-  private String command;
+  private final String name;
+  private final String tooltip;
+  private final Icon icon;
+  private final String command;
   private final JPFInspectorClientInterface client;
   private final PrintStream consolePrintStream;
 

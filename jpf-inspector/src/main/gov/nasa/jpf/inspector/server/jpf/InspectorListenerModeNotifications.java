@@ -65,7 +65,7 @@ public class InspectorListenerModeNotifications extends ListenerAdapter {
       inspector.getDebugPrintStream().println(this.getClass().getSimpleName() + ".stateAdvanced()");
     }
     inspectorState.stateChanged(search, ListenerMethod.LM_STATE_ADVANCED);
-    breakpointHandler.forwardJPFStep(inspectorState);
+    breakpointHandler.forwardJPFStep();
     breakpointHandler.checkBreakpoints(inspectorState);
     defaultForwardTraceManager.forwardStep(search);
     commandsManager.tryStop(inspectorState);

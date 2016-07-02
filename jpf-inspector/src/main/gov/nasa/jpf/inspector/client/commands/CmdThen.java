@@ -30,8 +30,8 @@ import java.io.PrintStream;
  * a unified way of reporting whether they succeeded or failed.
  */
 public class CmdThen extends ClientCommand {
-  private ClientCommandInterface firstCommand;
-  private ClientCommandInterface secondCommand;
+  private final ClientCommandInterface firstCommand;
+  private final ClientCommandInterface secondCommand;
   public CmdThen(ClientCommandInterface firstCommand, ClientCommandInterface secondCommand) {
     this.firstCommand = firstCommand;
     this.secondCommand = secondCommand;
