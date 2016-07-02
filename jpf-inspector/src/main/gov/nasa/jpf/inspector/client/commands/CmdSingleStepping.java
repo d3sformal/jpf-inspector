@@ -92,6 +92,10 @@ public class CmdSingleStepping extends ClientCommand {
   @Override
   public void execute(JPFInspectorClient client, JPFInspectorBackEndInterface inspector, PrintStream outStream) {
     assert inspector != null;
+    if (stepCount <= 0) {
+      outStream.println("The number of repetitions must be 1 or greater.");
+      return;
+    }
 
     if (isBackwardsTransitionStep()) {
       try {

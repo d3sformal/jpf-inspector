@@ -346,8 +346,25 @@ public final class BackwardBreakpointCreator {
                                                                     CommandsInterface.StepType type,
                                                                     int count)
           throws JPFInspectorGenericErrorException {
-    // TODO awaiting specification
-    throw new JPFInspectorGenericErrorException("Not yet implemented.");
+    assert count >= 1;
+
+    Path path = updateAndGetPath(inspState);
+    int descendHowManyTransitions = count;
+    int targetTransitionIndex = path.size() - descendHowManyTransitions;
+    if (targetTransitionIndex < 0) {
+      throw new JPFInspectorGenericErrorException("There aren't that many transitions in the transition path (you requested " + descendHowManyTransitions + ", but there are only " + path.size() + ".");
+    }
+    Transition targetTransition = path.get(targetTransitionIndex);
+
+
+    if (targetTransition.getStepCount() <= 0) {
+      if (count == 1) {
+        throw new JPFInspectorGenericErrorException("You are already at the beginning of this transaction. Use 'back_step_transition 2' to backtrack further.");
+      }
+      throw new JPFInspectorGenericErrorException("The target transition has no steps and cannot be backtracked to.");
+    }
+    BackwardBreakpointCreator backwardBreakpointCreator = new BackwardBreakpointCreator(targetTransition, targetTransition.getStep(0), descendHowManyTransitions);
+    return backwardBreakpointCreator;
   }
 
   /**
