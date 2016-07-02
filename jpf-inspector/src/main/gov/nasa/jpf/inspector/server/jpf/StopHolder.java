@@ -64,6 +64,56 @@ public class StopHolder {
    */
   private ReentrantLock accessLock = new ReentrantLock();
   private Condition accessLockConditionVariable = accessLock.newCondition();
+  private Condition jpfResumePreventionConditionVariable = accessLock.newCondition();
+
+  private int hostageHolders = 0;
+  /**
+   * If JPF is currently blocked, then it will be prevented from resuming until {@link #permitJpfToResumeAgain()} is
+   * called. If JPF is currently running, this method will simply return false.
+   *
+   * If multiple calls to this method are made, then all of them must be undone using {@link #permitJpfToResumeAgain()}
+   * before JPF can resume again.
+   *
+   * Synchronized on the access lock.
+   *
+   * @return True if JPF is currently stopped and will be prevented from resuming; false otherwise.
+   */
+  public boolean preventJpfFromResuming() {
+    accessLock.lock();
+    if (!stopped) {
+      return false;
+    }
+    try {
+      hostageHolders++;
+      return true;
+    } finally {
+      accessLock.unlock();
+    }
+  }
+
+  /**
+   * If JPF is currently paused and prevented from resuming, it will be woken up and allowed to resume.
+   *
+   * If multiple {@link #preventJpfFromResuming()} calls were made, all of them must be undone using this mehod before
+   * JPF resumes.
+   *
+   * Synchronized on the access lock.
+   * @throws IllegalStateException When JPF was not being prevented from resuming.
+   */
+  public void permitJpfToResumeAgain() {
+    accessLock.lock();
+    try {
+      if (hostageHolders == 0) {
+        throw new IllegalStateException("Nobody was preventing JPF from resuming!");
+      }
+      hostageHolders--;
+      if (hostageHolders == 0) {
+        jpfResumePreventionConditionVariable.signalAll();
+      }
+    } finally {
+      accessLock.unlock();
+    }
+  }
 
   private boolean hasJpfStoppedAtLeastOnce;
   private ReentrantLock lockJpfHasResumed;
@@ -114,6 +164,10 @@ public class StopHolder {
 
           accessLockConditionVariable.signalAll(); // Notify all threads waiting for JPF to be stopped (they are woken up after the wait)
           accessLockConditionVariable.await();
+
+          while (hostageHolders > 0) {
+            jpfResumePreventionConditionVariable.await();
+          }
 
           stopped = false;
 
