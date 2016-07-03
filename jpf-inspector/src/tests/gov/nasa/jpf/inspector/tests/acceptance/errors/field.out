@@ -1,0 +1,12 @@
+INFO: JPF created and connected, SuT is started
+INFO: Breakpoint hit: [1 :  state=ENABLED hits=1 hitsTotal=1 method = mk]
+	In method "mk".
+instanceTest (gov.nasa.jpf.inspector.tests.acceptance.sut.ExpressionTest) = null
+	1 : field (int) = 5
+	1 : field (int) = 5
+ERR: No entry (field, local variable, parameter) with the name "invalid_field_name" exists (maybe we are inside a native method).
+ERR: Invalid field index (2). "ExpressionTest" has only 2 fields.
+arrayOfIntegers (int[]) = null
+ERR: Static field index 2 is out of bounds. The class "ExpressionTest" has only 2 static fields.
+Breakpoint with ID 1 successfully deleted.
+INFO: JPF Terminating

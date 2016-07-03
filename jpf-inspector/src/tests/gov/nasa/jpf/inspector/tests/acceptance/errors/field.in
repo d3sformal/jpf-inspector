@@ -1,0 +1,10 @@
+cr bp method=mk
+run && wait
+print #this.#field[0]
+print #this.#field[1]
+print #this.field
+print #this.invalid_field_name
+print #this.#field[2]
+print #this.#static[1]
+print #this.#static[2]
+del bp 1

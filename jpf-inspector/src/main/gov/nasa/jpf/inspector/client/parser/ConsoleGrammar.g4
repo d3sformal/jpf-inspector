@@ -55,7 +55,6 @@ allKeyWordsWithoutCreateBPandHitCount returns [String text]
     : a=TOKEN_ALL { $text = $a.text; }
     | a=TOKEN_ASK { $text = $a.text; }
     | a=TOKEN_ASSERT { $text = $a.text; }
-    | a=TOKEN_ASSERTIONS { $text = $a.text; }
     | a=TOKEN_BREAK { $text = $a.text; }
     | a=TOKEN_BREAKPOINT { $text = $a.text; }
     | a=TOKEN_CHOICE_GENERATORS { $text = $a.text; }
@@ -300,9 +299,7 @@ cmdRecord returns [ClientCommand value]
     ;
 
 cmdAssertions returns [ClientCommand value]
-    : TOKEN_ASSERTIONS WS enableOrDisable          (WS b=allText)?
-       { $value = new CmdAssertions($enableOrDisable.value, $b.ctx != null ? $b.expr : null); }
-    | TOKEN_ASSERT     WS a=allTextNoWS  WS b=allText
+    : TOKEN_ASSERT     WS a=allTextNoWS  WS b=allText
        { $value = new CmdAssert($a.expr, $b.expr); }
     ;
 
@@ -363,7 +360,6 @@ specialChar : SPECIAL_CHAR ;
 TOKEN_ALL : 'all' ;
 TOKEN_ASK : 'ask';
 TOKEN_ASSERT : 'assert' ;
-TOKEN_ASSERTIONS : 'assertions' ;
 TOKEN_BOTH : 'both';
 TOKEN_BREAK : 'break' ;
 TOKEN_BREAKPOINT : 'breakpoint' | 'bp' ;

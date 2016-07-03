@@ -10,13 +10,14 @@ import org.junit.Assert;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
+import java.nio.file.Paths;
 
 /**
  * Tests deriving from this class run the Inspector using the command line shell, and compare its console output
  * to an expected-output file.
  */
 public abstract class CorrectOutputAbstractTest {
-  public static final String BASEFOLDER = "jpf-inspector/src/tests/gov/nasa/jpf/inspector/tests/acceptance/";
+  public static final String BASEFOLDER = "./jpf-inspector/src/tests/gov/nasa/jpf/inspector/tests/acceptance/";
   private CorrectOutputTestCase testCase;
 
   public CorrectOutputAbstractTest(CorrectOutputTestCase testCase) {
@@ -62,6 +63,8 @@ public abstract class CorrectOutputAbstractTest {
     try {
       inputStream = new FileInputStream(inputFile);
     } catch (FileNotFoundException e) {
+      System.out.println("Working directory is: " +
+                                 Paths.get(".").toAbsolutePath().normalize().toString());
       Assert.fail("Input file (" + inputFile + ") was not found.");
     }
     ByteArrayOutputStream baos = new ByteArrayOutputStream();

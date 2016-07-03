@@ -209,16 +209,6 @@ public class ExpressionStateValueName extends ExpressionStateValue {
             // Class with given name exists
             resultingValue = StateElementInfo.createStaticClass(parent, sei.getClassInfo());
           }
-          /*
-          Code before migration:
-          JPF jpf = ssf.getInspector().getJPF();
-          StaticArea sa = jpf.getVM().getStaticArea();
-          StaticElementInfo sei = sa.get(varName);
-          if (sei != null) {
-            // Class with given name exists
-            srvi = StateElementInfo.createStaticClass(ssf, sei.getClassInfo());
-          }
-           */
         }
       }
     }
