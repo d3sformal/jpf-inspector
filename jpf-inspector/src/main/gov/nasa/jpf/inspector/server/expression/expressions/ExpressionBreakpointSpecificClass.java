@@ -31,9 +31,21 @@ import gov.nasa.jpf.vm.VM;
  * collector, or when an exception of the specified class is thrown.
  */
 public class ExpressionBreakpointSpecificClass extends ExpressionBooleanLeaf {
+  /**
+   * The kind of hit condition among those that are handled by this class.
+   */
   public enum Mode {
+    /**
+     * An object was created.
+     */
     SC_MODE_CREATED,
+    /**
+     * An object was released.
+     */
     SC_MODE_RELEASED,
+    /**
+     * An exception was thrown.
+     */
     SC_MODE_EXCEPTION_THROWN,
   }
 

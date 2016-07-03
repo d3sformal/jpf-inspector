@@ -23,6 +23,7 @@ import gov.nasa.jpf.inspector.interfaces.*;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorGenericErrorException;
 import gov.nasa.jpf.inspector.server.expression.ExpressionBoolean;
 import gov.nasa.jpf.inspector.server.expression.ExpressionParser;
+import gov.nasa.jpf.inspector.server.expression.ExpressionParserInterface;
 import gov.nasa.jpf.inspector.server.expression.InspectorState;
 import gov.nasa.jpf.inspector.server.expression.expressions.ExpressionBreakpointChoiceGenerator;
 import gov.nasa.jpf.inspector.server.expression.expressions.ExpressionBreakpointInstructionType;
@@ -67,7 +68,7 @@ public class CommandsManager implements CommandsInterface {
   private final InspectorCallbacks serverCallbacks;
   private final DefaultForwardTraceManager dftMgr;
   private final BreakpointHandler breakpointHandler;
-  private final ExpressionParser expressionParser;
+  private final ExpressionParserInterface expressionParser;
 
   public CommandsManager (JPFInspector inspector, StopHolder stopHolder, BreakpointHandler breakpointHandler,
                           InspectorCallbacks serverCallbacks,

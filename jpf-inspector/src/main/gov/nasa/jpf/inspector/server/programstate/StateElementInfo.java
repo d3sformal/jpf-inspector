@@ -61,14 +61,8 @@ public final class StateElementInfo extends StateReadableValue {
                                 PSEVariable.EXPRESSION_VARIABLE_HEAP + '[' + ei.getObjectRef() + ']');
   }
 
-  public static StateElementInfo createElementInfoRepresentation (StateHeapEntryList stateHeapEntryList,
+  public static StateElementInfo createElementInfoRepresentation(StateHeapEntryList stateHeapEntryList,
                                                                   ElementInfo ei) {
-    return createElementInfoRepresentation(stateHeapEntryList, ei, true);
-  }
-
-  private static StateElementInfo createElementInfoRepresentation(StateHeapEntryList stateHeapEntryList,
-                                                                  ElementInfo ei,
-                                                                  boolean expandMembers) {
     assert (ei != null);
     return new StateElementInfo(stateHeapEntryList.getInspector(), true, ei, ei.getClassInfo(), PSEVariable.EXPRESSION_VARIABLE_HEAP + '[' + ei.getObjectRef() + ']');
   }

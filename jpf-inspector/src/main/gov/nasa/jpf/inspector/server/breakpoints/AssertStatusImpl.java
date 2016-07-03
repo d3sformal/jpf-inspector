@@ -24,7 +24,7 @@ import gov.nasa.jpf.inspector.interfaces.BreakpointState;
  * @author Alf
  * 
  */
-public class AssertStatusImpl extends BreakPointStatusImpl implements AssertStatus {
+public class AssertStatusImpl extends BreakpointStatusImplementation implements AssertStatus {
 
   private static final long serialVersionUID = 4953042021810745621L;
 

@@ -70,6 +70,7 @@ public class BreakpointHandler implements BreakPointManagerInterface {
   /**
    * The Inspector server.
    */
+  @SuppressWarnings("FieldCanBeLocal") // IDEA bug
   private final JPFInspector inspector;
   private final InspectorCallbacks serverCallbacks;
   private final StopHolder stopHolder;

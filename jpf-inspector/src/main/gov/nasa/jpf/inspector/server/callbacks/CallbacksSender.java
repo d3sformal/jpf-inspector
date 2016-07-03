@@ -45,6 +45,7 @@ import java.util.List;
  */
 public class CallbacksSender extends Thread {
   private static final boolean DEBUG = false;
+  @SuppressWarnings("FieldCanBeLocal") // IDEA bug
   private final PrintStream out;
 
   private volatile boolean terminating;

@@ -27,8 +27,8 @@ public class PSEVariableShortForm extends PSEVariable {
   private static final long serialVersionUID = -2393412289253782599L;
 
   public PSEVariableShortForm(String varName, String varTypeName,
-                              String varValue, boolean isStatic, String definedIn, int index) {
-    super(varName, varTypeName, varValue, isStatic, definedIn, index);
+                              String varValue, int index) {
+    super(varName, varTypeName, varValue, index);
   }
 
   @Override

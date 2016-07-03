@@ -48,21 +48,6 @@ class StepThreadBacktracker {
   private int currentTransitionStepIndex = BACKSTEP_NOT_YET_CALLED;
 
   /**
-   * Index of the step (in PrevTransition) returned by previous (not last but one before the last
-   * {@link #backstep()}.
-   */
-  private int prevReturnedStepIndex = BACKSTEP_NOT_YET_CALLED;
-
-  /**
-   * Transition used to obtain previous (not last but one before the last) step returned by {@link #backstep()}.
-   */
-  private Transition prevReturnedTransition = null;
-  /**
-   * Number of transition to backtrack to obtain {@link #prevReturnedTransition}.
-   */
-  private int prevReturnedTransition2Backrack = 0;
-
-  /**
    * Initializes a new {@link StepThreadBacktracker} that only uses transitions given by the specified {@link TransitionThreadBacktracker}.
    *
    * @param ttb The {@link TransitionThreadBacktracker} that supplies transitions. The transition backtracker must be
@@ -83,9 +68,6 @@ class StepThreadBacktracker {
    * @return The step we backstepped to, or null if the backstep failed.
    */
   public Step backstep() {
-    prevReturnedStepIndex = currentTransitionStepIndex;
-    prevReturnedTransition = ttb.getCurrentTransition();
-    prevReturnedTransition2Backrack = ttb.getBacksteppedTransitions();
     Debugging.getLogger().info("Backtracking: Backstep: Commencing.");
     // If we are the start of a transition, and before we begin, we must request a new transition.
     if (currentTransitionStepIndex <= 0) {

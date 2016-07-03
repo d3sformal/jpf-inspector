@@ -248,6 +248,7 @@ cmdChoiceGenerators returns [ClientCommand value]
     | TOKEN_CHOICE_GENERATORS WS? TOKEN_SELECT cgChoice { $value = new CmdChoiceSelect($cgChoice.choice); }
     | TOKEN_ENABLE WS? TOKEN_THREAD WS? intValue { $value = CmdEnableThread.createEnableThreadCommand($intValue.value); }
     | TOKEN_DISABLE WS? TOKEN_THREAD WS? intValue { $value = CmdEnableThread.createDisableThreadCommand($intValue.value); }
+    | TOKEN_SHOW WS? TOKEN_CHOICE_GENERATORS { $value = new CmdShowChoiceGenerators(); }
     ;
 
 cgType returns [CmdChoiceGeneratorsTracking.CGTypeSpec cgsType]

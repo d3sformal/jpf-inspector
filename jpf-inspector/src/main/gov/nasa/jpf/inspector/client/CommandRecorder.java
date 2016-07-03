@@ -152,9 +152,7 @@ public class CommandRecorder {
 
     } catch (IOException e) {
       outStream.println("ERR: Could not read the file '" + fileName + "'. Recording will not play.\n\t" + e.getMessage());
-
     }
-
   }
 
   /**

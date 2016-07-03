@@ -74,10 +74,7 @@ public final class StateThreadInfo extends StateNode {
     int threadNum = ti.getId();
     State state = ti.getState();
     String threadName = ti.getName();
-    String threadTypeName = Constants.UNKNOWN_THREAD_TYPE_NAME;
-    if (ti.getClassInfo() != null) {
-      threadTypeName = ti.getClassInfo().getName();
-    }
+
 
     boolean isDaemon = ti.isDaemon();
     int priority = ti.getPriority();
@@ -90,7 +87,7 @@ public final class StateThreadInfo extends StateNode {
       refCallStack[i] = ssf.toHierarchy3();
     }
 
-    return new PSEThread(threadNum, state, threadName, threadTypeName, priority, isDaemon, refCallStack);
+    return new PSEThread(threadNum, state, threadName, priority, isDaemon, refCallStack);
   }
 
   /**

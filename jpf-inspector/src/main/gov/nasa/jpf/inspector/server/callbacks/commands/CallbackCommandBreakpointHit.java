@@ -20,6 +20,9 @@ import gov.nasa.jpf.inspector.interfaces.BreakpointStatus;
 import gov.nasa.jpf.inspector.interfaces.InspectorCallbacks;
 import gov.nasa.jpf.inspector.server.callbacks.CallbackCommand;
 
+/**
+ * Element of the callback-sender queue that executes the client's notifyBreakpointHit action.
+ */
 public class CallbackCommandBreakpointHit implements CallbackCommand {
 
   private final BreakpointStatus bp;

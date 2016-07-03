@@ -28,15 +28,12 @@ public class PSEVariablePrimitive extends PSEVariable {
 
   private static final long serialVersionUID = 6680525792762309903L;
 
-  private final Serializable wrappedValue;
-
   public PSEVariablePrimitive(String varName,
-                              String varTypeName, String varValue, boolean isStatic,
-                              String definedIn, int index, Object wrappedValue) {
-    super(varName, varTypeName, varValue, isStatic, definedIn, index);
+                              String varTypeName, String varValue,
+                              int index, Object wrappedValue) {
+    super(varName, varTypeName, varValue, index);
 
     checkPrimitiveType(wrappedValue);
-    this.wrappedValue = (Serializable) wrappedValue;
 
   }
 
@@ -51,13 +48,6 @@ public class PSEVariablePrimitive extends PSEVariable {
 
     assert wrappedValue instanceof Serializable;
 
-  }
-
-  /**
-   * Gets the Java primitive value, for example, an {@link Integer} or a {@link Boolean}.
-   */
-  public Object getWrappedValue () {
-    return wrappedValue;
   }
 
   @Override

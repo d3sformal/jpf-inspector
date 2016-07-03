@@ -171,9 +171,9 @@ public class InternalBreakpointHolder implements Comparable<InternalBreakpointHo
       bpExpressionNormalized = bpExpression.getNormalizedExpression();
     }
 
-    return new BreakPointStatusImpl(bpID, bpName, bpHitCounter, bpHitCounterTotal, lowerBound, upperBound,
-                                    breakpointState, bpMode, bpExpressionStr,
-                                    bpExpressionNormalized, details);
+    return new BreakpointStatusImplementation(bpID, bpName, bpHitCounter, bpHitCounterTotal, lowerBound, upperBound,
+                                              breakpointState, bpMode, bpExpressionStr,
+                                              bpExpressionNormalized, details);
   }
 
   /**

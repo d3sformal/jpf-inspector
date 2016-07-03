@@ -22,6 +22,9 @@ import gov.nasa.jpf.inspector.server.expression.ExpressionBooleanBinaryOperator;
 import gov.nasa.jpf.inspector.server.expression.ExpressionBooleanInterface;
 import gov.nasa.jpf.inspector.server.expression.InspectorState;
 
+/**
+ * Represents the pseudo-breakpoint that is created when the user uses the "assert" command.
+ */
 public class ExpressionBreakpointAssert extends ExpressionBooleanBinaryOperator {
 
   private static final String TOKEN_ASSERT = "assert";

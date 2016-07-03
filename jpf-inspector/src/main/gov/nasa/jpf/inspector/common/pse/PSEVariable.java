@@ -37,23 +37,27 @@ public abstract class PSEVariable extends ProgramStateEntry {
   public static final String EXPRESSION_SUPER = "#super";
 
 
-  private final String varName; // Name of represented variable
-  private final String varTypeName; // Type of represented variable
-  private final String varValue; // Text representation of the value of the variable
-
-  private final boolean isStatic; // true if represents static field
-  private final String definedIn; // ClassName (or ClassName.methodName) where the represented variable is defined (in case of field or localVariable) null otherwise
+  /**
+   * Name of represented variable
+   */
+  private final String varName;
+  /**
+   * Class name of the type of represented variable
+   */
+  private final String varTypeName;
+  /**
+   * Short-form ext representation of the value of the variable
+   */
+  private final String varValue;
 
   private final int index;
 
-  protected PSEVariable(String varName, String varTypeName, String varValue, boolean isStatic,
-                        String definedIn, int index) {
+  protected PSEVariable(String varName, String varTypeName, String varValue,
+                        int index) {
 
     this.varName = varName;
     this.varValue = varValue;
     this.varTypeName = varTypeName;
-    this.isStatic = isStatic;
-    this.definedIn = definedIn;
     this.index = index;
   }
 
@@ -81,13 +85,6 @@ public abstract class PSEVariable extends ProgramStateEntry {
   }
 
   /**
-   * Indicates whether this entry is a static field.
-   */
-  public boolean isStatic () {
-    return isStatic;
-  }
-
-  /**
    * Gets the index of this entry in its parent entry.
    * This might be:
    *  - stack slot index
@@ -99,10 +96,4 @@ public abstract class PSEVariable extends ProgramStateEntry {
     return index;
   }
 
-  /**
-   * Gets the name of the class this variable was defined in, if any.
-   */
-  public String getDefinedIn() {
-    return definedIn;
-  }
 }

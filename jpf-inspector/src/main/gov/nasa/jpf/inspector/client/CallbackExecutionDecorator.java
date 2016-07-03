@@ -93,7 +93,6 @@ public final class CallbackExecutionDecorator implements InspectorCallbacks {
   private InspectorStatusChange cbStateChange_expectedState = null;
 
   private boolean isCBwaiting;
-  private boolean error;
 
   /**
    * Initializes a new instance of this decorator.
@@ -107,11 +106,6 @@ public final class CallbackExecutionDecorator implements InspectorCallbacks {
     this.debugOutStream = System.out;
 
     this.isCBwaiting = false;
-    this.error = false;
-  }
-
-  public boolean getError () {
-    return error;
   }
 
   /**
@@ -133,7 +127,6 @@ public final class CallbackExecutionDecorator implements InspectorCallbacks {
 
         if (oldMode == WORKING_MODE.WM_USER_COMMANDS && newMode == WORKING_MODE.WM_EXECUTION_RECORD) {
           // Start new replay of execution record -> clear errors
-          error = false;
         }
       }
       return oldMode;
@@ -160,7 +153,6 @@ public final class CallbackExecutionDecorator implements InspectorCallbacks {
           // Null means any callback is possible
           if (!(CallbackKind.CB_ANY.equals(calledCallback) || method.equals(calledCallback))) {
             // Set error state
-            error = true;
           }
         }
       }
@@ -232,9 +224,7 @@ public final class CallbackExecutionDecorator implements InspectorCallbacks {
       if (mode == WORKING_MODE.WM_EXECUTION_RECORD) {
         waitUntilCBIsSpecified(CallbackKind.CB_STATE_CHANGE);
 
-        if (cbStateChange_expectedState != null && !newState.equals(cbStateChange_expectedState)) {
-          error = true;
-        }
+        assert  !(cbStateChange_expectedState != null && !newState.equals(cbStateChange_expectedState)) ;
       }
 
       cb.notifyStateChange(newState, details);

@@ -20,6 +20,9 @@ import gov.nasa.jpf.inspector.interfaces.InspectorStatusChange;
 import gov.nasa.jpf.inspector.interfaces.InspectorCallbacks;
 import gov.nasa.jpf.inspector.server.callbacks.CallbackCommand;
 
+/**
+ * Element of the callback-sender queue that executes the client's notifyStateChange action.
+ */
 public class CallbackCommandStateChanged implements CallbackCommand {
   private final String details;
   private final InspectorStatusChange state;

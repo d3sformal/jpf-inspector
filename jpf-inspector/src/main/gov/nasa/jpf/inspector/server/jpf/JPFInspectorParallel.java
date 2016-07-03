@@ -140,6 +140,11 @@ public class JPFInspectorParallel extends JPFInspector {
   }
 
   @Override
+  public Integer[] getSuppressedThreads() {
+    return choiceGeneratorsManager.getSuppressedThreads();
+  }
+
+  @Override
   public void modifyCGNotifications (CGNotificationSpecification spec) {
     choiceGeneratorsManager.modifyCGNotifications(spec);
   }

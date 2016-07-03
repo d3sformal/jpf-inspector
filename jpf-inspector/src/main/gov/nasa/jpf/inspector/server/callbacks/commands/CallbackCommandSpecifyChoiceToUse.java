@@ -19,6 +19,9 @@ package gov.nasa.jpf.inspector.server.callbacks.commands;
 import gov.nasa.jpf.inspector.interfaces.InspectorCallbacks;
 import gov.nasa.jpf.inspector.server.callbacks.CallbackCommand;
 
+/**
+ * Element of the callback-sender queue that executes the client's specifyChoiceToUse action.
+ */
 public class CallbackCommandSpecifyChoiceToUse implements CallbackCommand {
 
   private final int maxChoiceIndex;

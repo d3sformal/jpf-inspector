@@ -40,9 +40,9 @@ public class PSEVariableArray extends PSEVariable {
    * Creates full representation of the array with references to array entries
    */
   public PSEVariableArray(String varName, String varTypeName,
-                          String varValue, boolean isStatic,
-                          String definedIn, int index, int length, PSEVariable[] refArrayItems) {
-    super(varName, varTypeName, varValue, isStatic, definedIn, index);
+                          String varValue,
+                          int index, int length, PSEVariable[] refArrayItems) {
+    super(varName, varTypeName, varValue, index);
 
     this.length = length;
     this.refArrayItems = refArrayItems;

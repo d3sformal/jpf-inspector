@@ -40,6 +40,12 @@ public interface ChoiceGeneratorsInterface {
   ThreadEnablingResult changeThreadSuppressionStatus(int threadId, ThreadSuppressionStatus newStatus);
 
   /**
+   * Gets the indices of threads which were suppressed using {@link #changeThreadSuppressionStatus(int, ThreadSuppressionStatus)}
+   * and remain suppressed still.
+   */
+  Integer[] getSuppressedThreads();
+
+  /**
    * Represents types of {@link ChoiceGenerator} in JPF.
    */
   enum CGTypes {

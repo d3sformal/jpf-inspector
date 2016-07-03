@@ -39,9 +39,9 @@ public class PSEVariableObject extends PSEVariable {
   private final PSEVariable[] refStaticFields;
 
   public PSEVariableObject(String varName,
-                           String varTypeName, String varValue, boolean isStatic,
-                           String definedIn, int index, PSEVariable[] refFields, PSEVariable[] refStaticFields) {
-    super(varName, varTypeName, varValue, isStatic, definedIn, index);
+                           String varTypeName, String varValue,
+                           int index, PSEVariable[] refFields, PSEVariable[] refStaticFields) {
+    super(varName, varTypeName, varValue, index);
 
     this.refFields = refFields;
     this.refStaticFields = refStaticFields;

@@ -40,13 +40,6 @@ public class ValuePrinter implements PSEVisitor<StringBuilder> {
   }
 
   /**
-   * @return Gets a string buffer where data from visited program state entrieas are stored.
-   */
-  public StringBuilder getResult () {
-    return sb;
-  }
-
-  /**
    * Prints the short-form of a value.
    */
   private void printVariableBasic (PSEVariable var) {

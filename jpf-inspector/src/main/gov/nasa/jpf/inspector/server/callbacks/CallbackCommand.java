@@ -21,6 +21,9 @@ import gov.nasa.jpf.inspector.interfaces.InspectorCallbacks;
 /**
  * A callback command is a server-side class that sends a specific callback to the client. Each class corresponds
  * to a type of callback.
+ *
+ * These callbacks are put by the server into a queue from where the callback-sender thread executes them by sending
+ * them to the client.
  */
 public interface CallbackCommand {
   /**

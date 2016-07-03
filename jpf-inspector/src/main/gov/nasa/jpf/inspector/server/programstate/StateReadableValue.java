@@ -138,8 +138,8 @@ public abstract class StateReadableValue extends StateNode {
     // Primitive
     if (ci.isPrimitive()) {
       Object wrappedValue = value.getValue();
-      return new PSEVariablePrimitive(varName, varTypeName, wrappedValue.toString(), false,
-                                      definedIn, index, wrappedValue);
+      return new PSEVariablePrimitive(varName, varTypeName, wrappedValue.toString(),
+                                      index, wrappedValue);
     }
 
     final ElementInfo ei = value.getReferenceValue(); // may be null
@@ -153,7 +153,7 @@ public abstract class StateReadableValue extends StateNode {
 
       if (ei == null) {
         // It's a null value.
-        return new PSEVariableObject(varName, varTypeName, varValue, false, definedIn, index, new PSEVariable[0], new PSEVariable[0]);
+        return new PSEVariableObject(varName, varTypeName, varValue, index, new PSEVariable[0], new PSEVariable[0]);
       } else if (shouldExpandMembers) {
         int arrayLen;
         PSEVariable[] refArrayItems;
@@ -163,9 +163,9 @@ public abstract class StateReadableValue extends StateNode {
           StateValueArrayElement svae = StateValueArrayElement.createArrayElement(value, i, false);
           refArrayItems[i] = svae.toHierarchy3();
         }
-        return new PSEVariableArray(varName, varTypeName, varValue, false, definedIn, index, arrayLen, refArrayItems);
+        return new PSEVariableArray(varName, varTypeName, varValue, index, arrayLen, refArrayItems);
       } else {
-        return new PSEVariableShortForm(varName, varTypeName, varValue, false, definedIn, index);
+        return new PSEVariableShortForm(varName, varTypeName, varValue, index);
 
       }
     } else {
@@ -177,7 +177,7 @@ public abstract class StateReadableValue extends StateNode {
       if (ei == null) {
         // It's a null value.
         return new PSEVariableObject(varName, varTypeName, "null",
-                                     false, definedIn, index, new PSEVariable[0],
+                                     index, new PSEVariable[0],
                                      new PSEVariable[0]);
       }
       else if (shouldExpandMembers) {
@@ -206,10 +206,10 @@ public abstract class StateReadableValue extends StateNode {
           refStaticFields[i] = svae.toHierarchy3();
         }
         return new PSEVariableObject(varName, varTypeName, varValue,
-                                     false, definedIn, index, refFields,
+                                     index, refFields,
                                      refStaticFields);
       } else {
-        return new PSEVariableShortForm(varName, varTypeName, varValue, false, definedIn, index);
+        return new PSEVariableShortForm(varName, varTypeName, varValue, index);
       }
     }
   }

@@ -20,6 +20,9 @@ import org.antlr.v4.runtime.BaseErrorListener;
 import org.antlr.v4.runtime.RecognitionException;
 import org.antlr.v4.runtime.Recognizer;
 
+/**
+ * ANTLR uses this listener to throw {@link AntlrParseException} exceptions when it encoutners a parse error.
+ */
 public class ThrowingErrorListener extends BaseErrorListener {
   private static final ThrowingErrorListener instance = new ThrowingErrorListener();
 

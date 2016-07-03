@@ -20,6 +20,9 @@ import gov.nasa.jpf.inspector.interfaces.ChoiceGeneratorsInterface.CGTypes;
 import gov.nasa.jpf.inspector.interfaces.InspectorCallbacks;
 import gov.nasa.jpf.inspector.server.callbacks.CallbackCommand;
 
+/**
+ * Element of the callback-sender queue that executes the client's notifyChoiceGeneratorNewChoice action.
+ */
 public class CallbackCommandChoiceGeneratorNewChoice implements CallbackCommand {
 
   private final CGTypes cgType;

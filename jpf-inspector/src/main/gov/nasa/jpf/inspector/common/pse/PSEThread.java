@@ -48,10 +48,6 @@ public final class PSEThread extends ProgramStateEntry {
    * Name of represented thread, taken directly from {@link ThreadInfo#getName()}
    */
   private final String threadName;
-  /**
-   * Name of the class of the represented thread
-   */
-  private final String threadTypeName;
 
   // As used in standard Java
   private final int priority;
@@ -60,12 +56,11 @@ public final class PSEThread extends ProgramStateEntry {
   private final PSEMethod[] refCallStack; // Stack with called method in the represented thread
 
   public PSEThread(int threadNum, State state, String threadName,
-                   String threadTypeName, int priority, boolean isDaemon, PSEMethod[] refCallStack) {
+                   int priority, boolean isDaemon, PSEMethod[] refCallStack) {
 
     this.threadNum = threadNum;
     this.state = state;
     this.threadName = threadName;
-    this.threadTypeName = threadTypeName;
     this.priority = priority;
     this.isDaemon = isDaemon;
     this.refCallStack = refCallStack;
@@ -85,10 +80,6 @@ public final class PSEThread extends ProgramStateEntry {
 
   public String getThreadName () {
     return threadName;
-  }
-
-  public String getThreadTypeName () {
-    return threadTypeName;
   }
 
   public int getPriority () {

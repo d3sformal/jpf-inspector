@@ -133,6 +133,17 @@ public class ChoiceGeneratorsManager implements ChoiceGeneratorsInterface, Choic
   }
 
   @Override
+  public Integer[] getSuppressedThreads() {
+    List<Integer> suppressedThreads = new ArrayList<>();
+    for (Map.Entry<Integer, ThreadSuppressionStatus> entry : suppressionStatusMap.entrySet()) {
+      if (entry.getValue() == ThreadSuppressionStatus.DO_NOT_SCHEDULE) {
+        suppressedThreads.add(entry.getKey());
+      }
+    }
+    return suppressedThreads.toArray(new Integer[suppressedThreads.size()]);
+  }
+
+  @Override
   public void modifyCGNotifications (CGNotificationSpecification spec) {
     if (spec == null) {
       throw new IllegalArgumentException("Invalid parameter - " + this.getClass().getSimpleName()
@@ -322,7 +333,7 @@ public class ChoiceGeneratorsManager implements ChoiceGeneratorsInterface, Choic
 
     CGTypes cgType = (cg.isSchedulingPoint() ? CGTypes.CG_TYPE_SCHEDULING : CGTypes.CG_TYPE_DATA);
 
-    return new ChoiceGeneratorWrapper(cgType, cg.toString(), ti.getId(), createInstructionWrapper(inst), cg.getId());
+    return new ChoiceGeneratorWrapper(cgType, cg.toString(), createInstructionWrapper(inst));
   }
 
   public static InstructionWrapper createInstructionWrapper (Instruction inst) {

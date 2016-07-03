@@ -22,6 +22,9 @@ import gov.nasa.jpf.inspector.server.expression.ExpressionBooleanLeaf;
 import gov.nasa.jpf.inspector.server.expression.InspectorState;
 import gov.nasa.jpf.inspector.server.expression.InspectorState.ListenerMethod;
 
+/**
+ * Represents the hit condition "property_violated".
+ */
 public class ExpressionBreakpointPropertyViolated extends ExpressionBooleanLeaf {
 
   @Override

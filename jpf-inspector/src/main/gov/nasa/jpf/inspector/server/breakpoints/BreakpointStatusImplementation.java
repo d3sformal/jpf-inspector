@@ -20,13 +20,16 @@ package gov.nasa.jpf.inspector.server.breakpoints;
 import gov.nasa.jpf.inspector.interfaces.BreakpointState;
 import gov.nasa.jpf.inspector.interfaces.BreakpointStatus;
 
-public class BreakPointStatusImpl implements BreakpointStatus {
+
+/**
+ * Provides read-only information about a breakpoint.
+ */
+public class BreakpointStatusImplementation implements BreakpointStatus {
 
   private static final long serialVersionUID = 5739124503398446657L;
 
   private final int bpID; // ID of the breakpoint
 
-  private BreakPointModes bpMode = null;
   private BreakpointState bpState = null;
   private String bpName = null;
 
@@ -42,14 +45,13 @@ public class BreakPointStatusImpl implements BreakpointStatus {
   private String details = null;
 
   // Common constructor
-  public BreakPointStatusImpl (int bpID, String bpName, int bpHitCounter, int bpHitCounterTotal, Integer lowerBound, Integer upperBound,
-                               BreakpointState bpState, BreakPointModes bpMode, String bpExpression, String bpExpressionNormalized, String details) {
+  public BreakpointStatusImplementation(int bpID, String bpName, int bpHitCounter, int bpHitCounterTotal, Integer lowerBound, Integer upperBound,
+                                        BreakpointState bpState, BreakPointModes bpMode, String bpExpression, String bpExpressionNormalized, String details) {
     this.bpID = bpID;
     this.bpName = bpName;
     this.bpHitCounter = bpHitCounter;
     this.bpHitCounterTotal = bpHitCounterTotal;
     this.bpState = bpState;
-    this.bpMode = bpMode;
     this.bpExpression = bpExpression;
     this.bpExpressionNormalized = bpExpressionNormalized;
     this.upperBound = upperBound;

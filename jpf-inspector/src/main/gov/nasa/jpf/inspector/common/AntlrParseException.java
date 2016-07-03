@@ -16,6 +16,10 @@
 
 package gov.nasa.jpf.inspector.common;
 
+/**
+ * The runtime exception thrown by ANTLR itself when it encounters an error. This exception's data is then used
+ * by other exception classes.
+ */
 public class AntlrParseException extends RuntimeException {
   private final int column;
 

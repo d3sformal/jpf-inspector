@@ -35,17 +35,12 @@ public final class ChoiceGeneratorWrapper implements Serializable {
 
   private final String cgString; // Holds toString() of represented CG
 
-  private final int threadNum; // Thread which executes the instruction which caused the CG
-
-  private final String id;
   private final InstructionWrapper inst;
 
-  public ChoiceGeneratorWrapper (CGTypes cgType, String cgString, int threadNum, InstructionWrapper inst, String id) {
+  public ChoiceGeneratorWrapper(CGTypes cgType, String cgString, InstructionWrapper inst) {
     this.cgType = cgType;
     this.cgString = cgString;
-    this.threadNum = threadNum;
     this.inst = inst;
-    this.id = id;
   }
 
   public CGTypes getCgType () {
@@ -56,16 +51,8 @@ public final class ChoiceGeneratorWrapper implements Serializable {
     return cgString;
   }
 
-  public int getThreadNum () {
-    return threadNum;
-  }
-
   public InstructionWrapper getInstruction () {
     return inst;
-  }
-
-  public String getId () {
-    return id;
   }
 
 }

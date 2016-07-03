@@ -69,6 +69,9 @@ public class ExpressionBreakpointSingleStep extends ExpressionBooleanLeaf {
    */
   private final boolean breakIfNoNextLine;
 
+  /**
+   * Whether we should "step over" or "step in".
+   */
   public enum LocationTypes {
     /**
      * The breakpoint hits if the previous instruction (in the same method invocation)

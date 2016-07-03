@@ -85,30 +85,11 @@ public class CmdChoiceGeneratorsTracking extends ClientCommand {
     return sb.toString();
   }
 
-  public static String cgNotificationSpec2NormalizedString (CGNotificationSpecification spec) {
-    assert spec != null;
-
-    StringBuilder sb = new StringBuilder();
-    sb.append(choiceGeneratorTrackingMode2NormalizedString(spec.isNotificationEnabled()));
-    CGMode cgMode = spec.getNotificationMode();
-    if (cgMode != null) {
-      sb.append(' ');
-      sb.append(choiceGenetatorMode2NormalizedString(cgMode));
-    }
-    CGTypes cgType = spec.getNotificationType();
-    if (cgType != null) {
-      sb.append(' ');
-      sb.append(choiceGenetatorType2NormalizedString(cgType));
-    }
-    sb.append(" choice_generators");
-    return sb.toString();
-  }
-
   private static String choiceGeneratorTrackingMode2NormalizedString(boolean mode) {
     return mode ? "enable" : "disable";
   }
 
-  private static String choiceGenetatorMode2NormalizedString(CGMode cgMode) {
+  public static String choiceGenetatorMode2NormalizedString(CGMode cgMode) {
     assert (cgMode != null);
 
     switch (cgMode) {
@@ -121,7 +102,7 @@ public class CmdChoiceGeneratorsTracking extends ClientCommand {
     }
   }
 
-  private static String choiceGenetatorSpecType2NormalizedString(CGTypeSpec cgsType) {
+  public static String choiceGenetatorSpecType2NormalizedString(CGTypeSpec cgsType) {
     assert (cgsType != null);
 
     switch (cgsType) {
@@ -135,18 +116,4 @@ public class CmdChoiceGeneratorsTracking extends ClientCommand {
       throw new RuntimeException("Internal error: Unknown " + cgsType.getClass().getName() + " entry: " + cgsType);
     }
   }
-
-  private static String choiceGenetatorType2NormalizedString(CGTypes cgType) {
-    assert (cgType != null);
-
-    switch (cgType) {
-    case CG_TYPE_DATA:
-      return "data";
-    case CG_TYPE_SCHEDULING:
-      return "scheduling"; // sched
-    default:
-      throw new RuntimeException("Internal error: Unknown " + cgType.getClass().getName() + " entry: " + cgType);
-    }
-  }
-
 }
