@@ -7,9 +7,9 @@ INFO: SuT is stopped
 INFO: SuT is stopped
 	SuT (thread 0) will now execute gov/nasa/jpf/inspector/tests/acceptance/sut/MultiTransitionSinglePath.java:9 (iconst_1), source: int transitionStart = Verify.getInt(1, 2);
 INFO: SuT is stopped
-	SuT (thread 0) will now execute gov/nasa/jpf/inspector/tests/acceptance/sut/MultiTransitionSinglePath.java:9 (istore_2), source: int transitionStart = Verify.getInt(1, 2);
-INFO: SuT is stopped
 	SuT (thread 0) will now execute gov/nasa/jpf/inspector/tests/acceptance/sut/MultiTransitionSinglePath.java:10 (iload_1), source: int b = a + 4;
+INFO: SuT is stopped
+	SuT (thread 0) will now execute gov/nasa/jpf/inspector/tests/acceptance/sut/MultiTransitionSinglePath.java:11 (iload_3), source: int c = b - 8;
 Breakpoint with ID 1 successfully deleted.
 INFO: SuT is stopped
 	SuT (thread 0) will now execute gov/nasa/jpf/inspector/tests/acceptance/sut/MultiTransitionSinglePath.java:8 (istore_1), source: int a = 5;

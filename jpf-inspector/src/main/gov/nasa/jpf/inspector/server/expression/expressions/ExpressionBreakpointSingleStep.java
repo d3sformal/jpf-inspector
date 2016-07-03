@@ -49,10 +49,8 @@ public class ExpressionBreakpointSingleStep extends ExpressionBooleanLeaf {
    * Active thread when the breakpoint was set.
    */
   private final int threadNum;
-  /**
-   * Is used to determine correct return in to the calling method in case of Step-over
-   */
-  private final StackFrame initialStackFrame;
+
+  private final int initialStackDepth;
   /**
    * Transition that has to be present in the current Path (or {@link VM#getCurrentTransition()}.
    * This prevents backtracking before the choice when the breakpoint has been created
@@ -82,7 +80,7 @@ public class ExpressionBreakpointSingleStep extends ExpressionBooleanLeaf {
 
     this.initialPosition = InstructionPositionImpl.getInstructionPosition(vm.getInstruction());
     this.threadNum = vm.getCurrentThread().getId();
-    this.initialStackFrame = vm.getCurrentThread().getTopFrame();
+    this.initialStackDepth = vm.getCurrentThread().getStackDepth();
     this.initialTransition = vm.getCurrentTransition();
   }
 
@@ -109,6 +107,7 @@ public class ExpressionBreakpointSingleStep extends ExpressionBooleanLeaf {
     if (!checkPath(vm, initialTransition)) {
       if (DEBUG) {
         inspector.getDebugPrintStream().println("We backtracked using forward stepping!");
+        // TODO ask mentor if it's legal to backtrack using forward stepping
       }
       return true;
     }
@@ -128,12 +127,10 @@ public class ExpressionBreakpointSingleStep extends ExpressionBooleanLeaf {
 
     if (steppingKind == LocationTypes.LT_POSITION_LEAVED_STEP_OVER) {
       ThreadInfo currentThread = vm.getCurrentThread();
-      if (containsStackFrame(currentThread, initialStackFrame)) {
+      if (currentThread.getStackDepth() >= initialStackDepth) {
         // We haven't returned from the method yet.
-        // Stack frame of method which current instruction belongs to
-        StackFrame stackFrame = currentThread.getTopFrame();
 
-        if (stackFrame.equals(initialStackFrame)) {
+        if (currentThread.getStackDepth() == initialStackDepth) {
           // We are in the same method.
 
           //noinspection RedundantIfStatement (I think it's clearer this way.)
