@@ -195,8 +195,6 @@ cmdBreakpointsCreateParamsAtomNotTerminateIDF [ExpressionFactory expFactory] ret
               ($intValue.ctx !=null? $intValue.value : null)
               ); }
     | WS? TOKEN_STATE_ADVANCED       WS?                                                                  { $bp = expFactory.getBreakpointStateAdvanced(); }
-    | WS? TOKEN_STEP_IN              WS?                                                                  { $bp = expFactory.getBreakpointSingleStep(StepType.ST_STEP_IN); }
-    | WS? TOKEN_STEP_OVER            WS?                                                                  { $bp = expFactory.getBreakpointSingleStep(StepType.ST_LINE); }
     | WS? '(' a=cmdBreakpointsCreateParams1[expFactory] ')' WS?                                           { $bp = $a.bp; }
   
     | WS? TOKEN_SPECIFIC_INSTRUCTION WS? TOKEN_THREAD WS? '=' WS? tid=intValue WS? TOKEN_INSTRUCTION WS? '=' WS? className WS? ':' WS? methodName[$className.cn] WS? ':' WS? instIndex=intValue WS? TOKEN_HIT_COUNT WS? '=' WS? hc=intValue WS?  { $bp = expFactory.getBreakpointInstruction($tid.value, $methodName.mn, $instIndex.value, $hc.value); }

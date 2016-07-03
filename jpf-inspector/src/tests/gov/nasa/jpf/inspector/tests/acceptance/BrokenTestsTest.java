@@ -9,6 +9,10 @@ import org.junit.runners.Parameterized.Parameters;
 
 import java.util.Arrays;
 
+
+/**
+ * Runs tests that are designed to break the JPF shell or the testing system.
+ */
 @RunWith(Parameterized.class)
 public class BrokenTestsTest extends CorrectOutputAbstractTest {
 
@@ -23,15 +27,11 @@ public class BrokenTestsTest extends CorrectOutputAbstractTest {
 
   @Parameters(name = "{0}")
   public static Iterable<?> data() {
-     return Arrays.asList(
-             getCase("broken", "everstop"),
-             // TODO this test case is fishy and should probably say something else...
-             getCase("errors/missingmain", "fail")
-             // We won't test infinitely running test cases because we don't have a good means of timeout.
-     );
+    return Arrays.asList(
+            getCase("broken", "everstop"),
+            // TODO this test case is fishy and should probably say something else...
+            getCase("errors/missingmain", "fail")
+            // We won't test infinitely running test cases because we don't have a good means of timeout.
+    );
   }
-
-
-
-
 }

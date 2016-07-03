@@ -18,9 +18,9 @@
 package gov.nasa.jpf.inspector.server.breakpoints;
 
 import gov.nasa.jpf.ListenerAdapter;
-import gov.nasa.jpf.inspector.interfaces.*;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorGenericErrorException;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorParsingErrorException;
+import gov.nasa.jpf.inspector.interfaces.*;
 import gov.nasa.jpf.inspector.server.expression.ExpressionBooleanInterface;
 import gov.nasa.jpf.inspector.server.expression.ExpressionParser;
 import gov.nasa.jpf.inspector.server.expression.ExpressionParserInterface;
@@ -33,13 +33,7 @@ import gov.nasa.jpf.vm.Instruction;
 import gov.nasa.jpf.vm.Step;
 import gov.nasa.jpf.vm.Transition;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Stack;
-import java.util.TreeMap;
+import java.util.*;
 
 /**
  * Holds list of all breakpoints. Manages changes in the breakpoints.
@@ -104,6 +98,8 @@ public class BreakpointHandler implements BreakPointManagerInterface {
       bp.setPathCounterFromMemento(null);
     }
     bpMementos.clear();
+    breakExecutionBeforeNextInstruction = false;
+    rememberTheNextBreakpointToBreakExecution = false;
   }
 
   /**

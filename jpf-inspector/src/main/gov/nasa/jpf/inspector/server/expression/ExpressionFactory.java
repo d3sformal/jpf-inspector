@@ -17,11 +17,10 @@
 
 package gov.nasa.jpf.inspector.server.expression;
 
-import gov.nasa.jpf.inspector.interfaces.CommandsInterface.StepType;
+import gov.nasa.jpf.inspector.exceptions.JPFInspectorGenericErrorException;
 import gov.nasa.jpf.inspector.interfaces.CustomHitCondition;
 import gov.nasa.jpf.inspector.interfaces.InstructionPosition;
 import gov.nasa.jpf.inspector.interfaces.InstructionType;
-import gov.nasa.jpf.inspector.exceptions.JPFInspectorGenericErrorException;
 import gov.nasa.jpf.inspector.server.breakpoints.BreakPointModes;
 import gov.nasa.jpf.inspector.server.breakpoints.InstructionPositionImpl;
 import gov.nasa.jpf.inspector.server.expression.expressions.*;
@@ -195,15 +194,6 @@ public class ExpressionFactory {
 
   public ExpressionBreakpointStateAdvanced getBreakpointStateAdvanced () {
     return new ExpressionBreakpointStateAdvanced();
-  }
-
-  public ExpressionBreakpointSingleStep getBreakpointSingleStep (StepType stepType) throws GenericErrorRuntimeException {
-    try {
-      return ExpressionBreakpointSingleStep.createBreakpointSingleStep(inspector, stepType);
-    } catch (JPFInspectorGenericErrorException e) {
-      // Rethrow as {@link RuntimeException} - have to be caught (in {@link ExpressionParser}).
-      throw new GenericErrorRuntimeException(e);
-    }
   }
 
   public ExpressionBreakpointInstruction getBreakpointInstruction (int threadId, MethodName methodName,
