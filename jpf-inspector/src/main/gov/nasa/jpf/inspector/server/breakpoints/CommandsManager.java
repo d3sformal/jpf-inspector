@@ -231,6 +231,7 @@ public class CommandsManager implements CommandsInterface {
     search.getVM().ignoreState();
 
     // Resume execution -> now silent backtrack and "breakpoint hit in single forward step should occur"
+    this.inspector.getChoiceGeneratorsManager().resumeWasDueToStepping();
     stopHolder.resumeExecution();
 
     // The rest happens in the silent-mode Inspector listener.

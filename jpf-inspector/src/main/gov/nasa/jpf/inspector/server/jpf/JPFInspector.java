@@ -84,6 +84,14 @@ public abstract class JPFInspector implements JPFInspectorBackEndInterface {
    * current program state.
    */
   protected final ProgramStateManager stateManager;
+
+  /**
+   * Gets the choice generator manager component. This component also handles thread suppression.
+   */
+  public ChoiceGeneratorsManager getChoiceGeneratorsManager() {
+    return choiceGeneratorsManager;
+  }
+
   /**
    * The choice generator manager component. This component also handles thread suppression.
    */

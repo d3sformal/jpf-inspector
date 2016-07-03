@@ -17,11 +17,11 @@
 
 package gov.nasa.jpf.inspector.server.choicegenerators;
 
-import gov.nasa.jpf.inspector.interfaces.ChoiceGeneratorsInterface;
-import gov.nasa.jpf.inspector.interfaces.InspectorCallbacks;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorException;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorGenericErrorException;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorNoVMConnected;
+import gov.nasa.jpf.inspector.interfaces.ChoiceGeneratorsInterface;
+import gov.nasa.jpf.inspector.interfaces.InspectorCallbacks;
 import gov.nasa.jpf.inspector.interfaces.ThreadEnablingResult;
 import gov.nasa.jpf.inspector.interfaces.ThreadSuppressionStatus;
 import gov.nasa.jpf.inspector.server.breakpoints.CommandsManager;
@@ -55,9 +55,12 @@ public class ChoiceGeneratorsManager implements ChoiceGeneratorsInterface, Choic
   private final InspectorCallbacks serverCallbacks;
   private final DefaultForwardTraceManager forwardTrace;
   /**
-   * Flag which specifies whether the JPF is stopped due to prompt with CG (to client)
+   * Flag which specifies whether the JPF is stopped because we need the user to provide a choice for a choice generator.
+   * While JPF is stopped this way, we don't know what the next instruction will be and thus, stepping commands and thpc
+   * may not work correctly.
    */
   private Boolean waitForChoice = false;
+  private boolean resumeWasDueToStepping = false;
 
   private final CGNotificationSpecification[] cgNotifications;
   /**
@@ -256,8 +259,13 @@ public class ChoiceGeneratorsManager implements ChoiceGeneratorsInterface, Choic
       serverCallbacks.specifyChoiceToUse(totalChoices - 1);
 
       waitForChoice = true;
+      resumeWasDueToStepping = false;
       stopHolder.stopExecution(inspState);
       waitForChoice = false;
+      if (resumeWasDueToStepping) {
+        serverCallbacks.genericInfo("You used a backstepping command while execution was broken due to a choice generator prompt." +
+                                            " Such use is not supported and will probably not work. It is recommended that you use breakpoints for breaking execution.");
+      }
 
       Object genChoice = cg.getNextChoice();
       serverCallbacks.notifyUsedChoice(cgType, cg.getId(), hashCode, cg.getProcessedNumberOfChoices(), (genChoice != null ? genChoice.toString() : "null"));
@@ -344,5 +352,9 @@ public class ChoiceGeneratorsManager implements ChoiceGeneratorsInterface, Choic
 
     return new InstructionWrapper(inst.toString(), StateWritableValue.getFullClassName(ci), mi.getName(), inst.getPosition(), mi.getSourceFileName(), inst
         .getLineNumber(), inst.getSourceLine());
+  }
+
+  public void resumeWasDueToStepping() {
+    resumeWasDueToStepping = true;
   }
 }

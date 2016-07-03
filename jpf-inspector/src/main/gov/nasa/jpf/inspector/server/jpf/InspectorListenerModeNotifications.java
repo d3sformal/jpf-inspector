@@ -37,7 +37,7 @@ public class InspectorListenerModeNotifications extends ListenerAdapter {
   private final JPFInspector inspector;
   private final CommandsManager commandsManager;
   private final BreakpointHandler breakpointHandler;
-  private final ChoiceGeneratorNotifications cgNotify;
+  private final ChoiceGeneratorNotifications choiceGeneratorsInterceptor;
   private final DefaultForwardTraceManager defaultForwardTraceManager;
 
   private final InspectorStateImpl inspectorState = new InspectorStateImpl();
@@ -48,12 +48,14 @@ public class InspectorListenerModeNotifications extends ListenerAdapter {
   private final boolean searchMultipleError;
 
   public InspectorListenerModeNotifications (JPFInspector inspector, CommandsManager commandsManager,
-                                             BreakpointHandler breakpointHandler, ChoiceGeneratorNotifications cgNotify,
-                                             DefaultForwardTraceManager defaultForwardTraceManager, boolean searchMultipleError) {
+                                             BreakpointHandler breakpointHandler,
+                                             ChoiceGeneratorNotifications choiceGeneratorsInterceptor,
+                                             DefaultForwardTraceManager defaultForwardTraceManager,
+                                             boolean searchMultipleError) {
     this.inspector = inspector;
     this.commandsManager = commandsManager;
     this.breakpointHandler = breakpointHandler;
-    this.cgNotify = cgNotify;
+    this.choiceGeneratorsInterceptor = choiceGeneratorsInterceptor;
     this.defaultForwardTraceManager = defaultForwardTraceManager;
     this.searchMultipleError = searchMultipleError;
 
@@ -211,7 +213,7 @@ public class InspectorListenerModeNotifications extends ListenerAdapter {
               + currentCG.getProcessedNumberOfChoices());
     }
     inspectorState.notifyListenerMethodCall(ListenerMethod.LM_CHOICE_GENERATOR_ADVANCED, vm);
-    cgNotify.notifyChoiceGeneratorAdvance(currentCG, vm, inspectorState);
+    choiceGeneratorsInterceptor.notifyChoiceGeneratorAdvance(currentCG, vm, inspectorState);
     breakpointHandler.checkBreakpoints(inspectorState);
 
   }
