@@ -20,7 +20,6 @@ package gov.nasa.jpf.inspector.server.expression.expressions;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorGenericErrorException;
 import gov.nasa.jpf.inspector.interfaces.CommandsInterface.StepType;
 import gov.nasa.jpf.inspector.interfaces.InstructionPosition;
-import gov.nasa.jpf.inspector.server.breakpoints.BreakPointModes;
 import gov.nasa.jpf.inspector.server.breakpoints.InstructionPositionImpl;
 import gov.nasa.jpf.inspector.server.expression.ExpressionBooleanLeaf;
 import gov.nasa.jpf.inspector.server.expression.InspectorState;
@@ -278,11 +277,6 @@ public class ExpressionBreakpointSingleStep extends ExpressionBooleanLeaf {
       return "SuT leaves the position " + instPos.toString() + ".";
     }
     return "";
-  }
-
-  @Override
-  public BreakPointModes getBPMode () {
-    return BreakPointModes.BP_MODE_INTERNAL_STEP_OVER;
   }
 
   /**

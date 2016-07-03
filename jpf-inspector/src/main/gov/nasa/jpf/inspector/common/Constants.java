@@ -16,8 +16,6 @@
 
 package gov.nasa.jpf.inspector.common;
 
-import gov.nasa.jpf.inspector.common.pse.PSEThread;
-
 import java.awt.*;
 
 /**

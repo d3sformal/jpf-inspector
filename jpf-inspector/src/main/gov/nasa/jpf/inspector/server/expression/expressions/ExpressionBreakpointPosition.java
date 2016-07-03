@@ -18,7 +18,6 @@
 package gov.nasa.jpf.inspector.server.expression.expressions;
 
 import gov.nasa.jpf.inspector.interfaces.InstructionPosition;
-import gov.nasa.jpf.inspector.server.breakpoints.BreakPointModes;
 import gov.nasa.jpf.inspector.server.expression.ExpressionBooleanLeaf;
 import gov.nasa.jpf.inspector.server.expression.InspectorState;
 import gov.nasa.jpf.inspector.server.expression.InspectorState.ListenerMethod;
@@ -105,11 +104,6 @@ public class ExpressionBreakpointPosition extends ExpressionBooleanLeaf {
     return !prevInstrHitPos;
     // This ensures that we hit only if we are on the source line but the previous instruction
     // is NOT on the source line.
-  }
-
-  @Override
-  public BreakPointModes getBPMode () {
-    return BreakPointModes.BP_MODE_POSITION_ONLY;
   }
 
   @Override

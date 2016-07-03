@@ -17,8 +17,6 @@
 
 package gov.nasa.jpf.inspector.server.expression;
 
-import gov.nasa.jpf.inspector.server.breakpoints.BreakPointModes;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,11 +33,6 @@ public abstract class ExpressionBooleanBinaryOperator extends ExpressionBoolean 
 
     children.add(left);
     children.add(right);
-  }
-
-  @Override
-  public BreakPointModes getBPMode () {
-    return BreakPointModes.BP_MODE_USER_CONDITION;
   }
 
 }

@@ -17,7 +17,6 @@
 
 package gov.nasa.jpf.inspector.server.expression.expressions;
 
-import gov.nasa.jpf.inspector.server.breakpoints.BreakPointModes;
 import gov.nasa.jpf.inspector.server.expression.ExpressionBooleanLeaf;
 import gov.nasa.jpf.inspector.server.expression.InspectorState;
 import gov.nasa.jpf.inspector.server.expression.InspectorState.ListenerMethod;
@@ -35,11 +34,6 @@ public class ExpressionBreakpointStateAdvanced extends ExpressionBooleanLeaf {
   public boolean evaluateExpression (InspectorState state) {
     assert state != null;
     return (state.getListenerMethod() == ListenerMethod.LM_STATE_ADVANCED);
-  }
-
-  @Override
-  public BreakPointModes getBPMode () {
-    return BreakPointModes.BP_MODE_STATE_ADVANCED;
   }
 
   @Override

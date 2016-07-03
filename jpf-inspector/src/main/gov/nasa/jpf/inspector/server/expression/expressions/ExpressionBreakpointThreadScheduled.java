@@ -84,11 +84,6 @@ public class ExpressionBreakpointThreadScheduled extends ExpressionBooleanLeaf {
   }
 
   @Override
-  public BreakPointModes getBPMode () {
-    return bpMode;
-  }
-
-  @Override
   public String getNormalizedExpression () {
     StringBuilder sb = new StringBuilder(64);
     sb.append("thread_scheduled");

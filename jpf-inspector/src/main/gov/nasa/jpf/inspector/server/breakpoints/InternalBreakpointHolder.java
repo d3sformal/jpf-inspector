@@ -76,7 +76,6 @@ public class InternalBreakpointHolder implements Comparable<InternalBreakpointHo
    */
   private final boolean singleHitBreakpoint;
 
-  protected BreakPointModes bpMode = BreakPointModes.BP_MODE_NONE;
   protected BreakpointState breakpointState = BreakpointState.ENABLED;
   protected String bpName = "";
 
@@ -132,7 +131,6 @@ public class InternalBreakpointHolder implements Comparable<InternalBreakpointHo
     }
 
     if (newBPExpression != null) {
-      bpMode = newBPExpression.getBPMode();
       bpExpression = newBPExpression;
       bpExpressionStr = newSettings.getBPExpression();
     }
@@ -172,7 +170,7 @@ public class InternalBreakpointHolder implements Comparable<InternalBreakpointHo
     }
 
     return new BreakpointStatusImplementation(bpID, bpName, bpHitCounter, bpHitCounterTotal, lowerBound, upperBound,
-                                              breakpointState, bpMode, bpExpressionStr,
+                                              breakpointState, bpExpressionStr,
                                               bpExpressionNormalized, details);
   }
 

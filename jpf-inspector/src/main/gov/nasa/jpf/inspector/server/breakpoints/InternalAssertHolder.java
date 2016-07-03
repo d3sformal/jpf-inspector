@@ -67,7 +67,8 @@ public class InternalAssertHolder extends InternalBreakpointHolder {
       normalizedCondition = expAssert.getNormalizedCondition();
     }
 
-    return new AssertStatusImpl(bpID, bpName, bpHitCounter, bpHitCounterTotal, lowerBound, upperBound, breakpointState, bpMode, bpExpressionStr,
+    return new AssertStatusImpl(bpID, bpName, bpHitCounter, bpHitCounterTotal, lowerBound, upperBound, breakpointState,
+                                bpExpressionStr,
                                 bpExpressionNormalized, details, position, condition, normalizedPosition, normalizedCondition);
   }
 

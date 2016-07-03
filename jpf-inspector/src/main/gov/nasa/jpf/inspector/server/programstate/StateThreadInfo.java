@@ -17,7 +17,6 @@
 
 package gov.nasa.jpf.inspector.server.programstate;
 
-import gov.nasa.jpf.inspector.common.Constants;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorException;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorNoThread;
 import gov.nasa.jpf.inspector.server.expression.ExpressionParserInterface;

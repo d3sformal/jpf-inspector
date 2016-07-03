@@ -17,7 +17,6 @@
 
 package gov.nasa.jpf.inspector.server.expression.expressions;
 
-import gov.nasa.jpf.inspector.server.breakpoints.BreakPointModes;
 import gov.nasa.jpf.inspector.server.expression.ExpressionBooleanLeaf;
 import gov.nasa.jpf.inspector.server.expression.InspectorState;
 import gov.nasa.jpf.inspector.server.expression.InspectorState.ListenerMethod;
@@ -104,11 +103,6 @@ public final class ExpressionBreakpointStepOut extends ExpressionBooleanLeaf {
     }
 
     return false;
-  }
-
-  @Override
-  public BreakPointModes getBPMode () {
-    return BreakPointModes.BP_MODE_INTERNAL_STEP_OUT;
   }
 
   @Override

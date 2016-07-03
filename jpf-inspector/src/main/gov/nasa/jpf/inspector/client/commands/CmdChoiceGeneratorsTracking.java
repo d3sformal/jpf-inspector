@@ -89,7 +89,7 @@ public class CmdChoiceGeneratorsTracking extends ClientCommand {
     return mode ? "enable" : "disable";
   }
 
-  public static String choiceGenetatorMode2NormalizedString(CGMode cgMode) {
+  private static String choiceGenetatorMode2NormalizedString(CGMode cgMode) {
     assert (cgMode != null);
 
     switch (cgMode) {
@@ -102,7 +102,7 @@ public class CmdChoiceGeneratorsTracking extends ClientCommand {
     }
   }
 
-  public static String choiceGenetatorSpecType2NormalizedString(CGTypeSpec cgsType) {
+  private static String choiceGenetatorSpecType2NormalizedString(CGTypeSpec cgsType) {
     assert (cgsType != null);
 
     switch (cgsType) {

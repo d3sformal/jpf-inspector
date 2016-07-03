@@ -34,12 +34,12 @@ public class AssertStatusImpl extends BreakpointStatusImplementation implements 
   private final String normalizedPosition;
   private final String normalizedCondition;
 
-  public AssertStatusImpl (int bpID, String bpName, int bpHitCounter, int bpHitCounterTotal, Integer lowerBound,
-                           Integer upperBound, BreakpointState bpState,
-                           BreakPointModes bpMode, String bpExpression, String bpExpressionNormalized, String details,
-                           String position, String condition, String normalizedPosition,
-      String normalizedCondition) {
-    super(bpID, bpName, bpHitCounter, bpHitCounterTotal, lowerBound, upperBound, bpState, bpMode, bpExpression, bpExpressionNormalized, details);
+  public AssertStatusImpl(int bpID, String bpName, int bpHitCounter, int bpHitCounterTotal, Integer lowerBound,
+                          Integer upperBound, BreakpointState bpState,
+                          String bpExpression, String bpExpressionNormalized, String details,
+                          String position, String condition, String normalizedPosition,
+                          String normalizedCondition) {
+    super(bpID, bpName, bpHitCounter, bpHitCounterTotal, lowerBound, upperBound, bpState, bpExpression, bpExpressionNormalized, details);
 
     this.position = position;
     this.condition = condition;

@@ -328,7 +328,6 @@ public class ChoiceGeneratorsManager implements ChoiceGeneratorsInterface, Choic
       return null;
     }
 
-    ThreadInfo ti = cg.getThreadInfo();
     Instruction inst = cg.getInsn();
 
     CGTypes cgType = (cg.isSchedulingPoint() ? CGTypes.CG_TYPE_SCHEDULING : CGTypes.CG_TYPE_DATA);

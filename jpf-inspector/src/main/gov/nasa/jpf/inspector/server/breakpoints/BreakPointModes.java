@@ -22,45 +22,20 @@ package gov.nasa.jpf.inspector.server.breakpoints;
  * with the operator "and" and they should be avoided for any new hit conditions. Do not rely on them in new code.
  */
 public enum BreakPointModes {
-  BP_MODE_NONE, // / No condition is associated
   /**
    * On data choice, scheduler choice, execution end
    */
   BP_MODE_CHOICE_SCHEDULING, // New scheduling choice takes place
   BP_MODE_CHOICE_DATA, // New data choice takes place
   BP_MODE_CHOICE_BOTH,
-  BP_MODE_PROPERTY_VIOLATED,
   BP_MODE_GC_BEGIN,
   BP_MODE_GC_END,
   BP_MODE_GC_BOTH,
-  BP_MODE_OBJECT_CREATED,
-  BP_MODE_OBJECT_RELEASED,
-  BP_MODE_SPECIFIC_INSTRUCTION_TYPE,
-  BP_MODE_EXCEPTION_THROWN,
-  BP_MODE_POSITION_ONLY,
   BP_MODE_THREAD_SCHEDULED_IN,
   BP_MODE_THREAD_SCHEDULED_OUT,
   BP_MODE_THREAD_SCHEDULED_BOTH,
   BP_MODE_FIELD_ACCESS_READ,
   BP_MODE_FIELD_ACCESS_WRITE,
   BP_MODE_FIELD_ACCESS, // Both read or write
-  BP_MODE_METHOD_INVOKE,
-  BP_MODE_STATE_ADVANCED,
-  /**
-   * The breakpoint's mode is not important.
-   */
-  BP_MODE_USER_CONDITION,
-  /**
-   * No special meaning.
-   * Indicates the "specific_instruction" hit condition.
-   */
-  BP_MODE_INTERNAL_INSTRUCTION,
-  BP_MODE_INTERNAL_STEP_OUT,
-  BP_MODE_INTERNAL_STEP_OVER,
-  /**
-   * No special meaning.
-   * This enumeration exists for legacy reasons only so there is no reason to add additional enumeration values here
-   * for new hit conditions.
-   */
-  BP_UNIMPORTANT
+  BP_MODE_METHOD_INVOKE
 }

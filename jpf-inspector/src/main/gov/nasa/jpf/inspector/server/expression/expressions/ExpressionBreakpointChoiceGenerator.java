@@ -66,11 +66,6 @@ public class ExpressionBreakpointChoiceGenerator extends ExpressionBooleanLeaf {
   }
 
   @Override
-  public BreakPointModes getBPMode() {
-    return bpMode;
-  }
-
-  @Override
   public String getNormalizedExpression() {
     StringBuilder sb = new StringBuilder(20);
     sb.append("choice_generator=");

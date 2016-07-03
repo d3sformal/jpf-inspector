@@ -17,7 +17,6 @@
 package gov.nasa.jpf.inspector.server.expression.expressions;
 
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorException;
-import gov.nasa.jpf.inspector.server.breakpoints.BreakPointModes;
 import gov.nasa.jpf.inspector.server.expression.ExpressionBooleanLeaf;
 import gov.nasa.jpf.inspector.server.expression.InspectorState;
 import gov.nasa.jpf.inspector.utils.expressions.MethodName;
@@ -53,11 +52,6 @@ public class ExpressionBreakpointMethodName extends ExpressionBooleanLeaf {
       return false;
     }
     return methodName.isSameMethod(methodInfo);
-  }
-
-  @Override
-  public BreakPointModes getBPMode() {
-    return BreakPointModes.BP_UNIMPORTANT;
   }
 
   @Override

@@ -87,15 +87,6 @@ public abstract class ExplorerNode implements TreeNode {
   protected abstract boolean isRecognizableAs(ExplorerNode oldNode);
 
   /**
-   * Tells the treeview component that this node's display row has changed (i.e., its text changed).
-   */
-  protected void fireChanged() {
-    if (this.model != null) {
-      this.model.nodesChanged(this.parent, new int[]{this.parent.getIndex(this)});
-    }
-  }
-
-  /**
    * Gets the icon that represents the relationship of this node to its parent.
    * @param expanded Whether this node is currently expanded.
    */

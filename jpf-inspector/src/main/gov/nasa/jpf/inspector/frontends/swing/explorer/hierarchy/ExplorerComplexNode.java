@@ -154,13 +154,4 @@ public abstract class ExplorerComplexNode extends ExplorerNode {
     return Collections.enumeration(this.children);
   }
 
-  @Override
-  public void fireChanged() {
-    super.fireChanged();
-    if (children != null) {
-      for (ExplorerNode child : children) {
-        child.fireChanged();
-      }
-    }
-  }
 }

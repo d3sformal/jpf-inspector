@@ -18,7 +18,6 @@
 package gov.nasa.jpf.inspector.server.expression.expressions;
 
 import gov.nasa.jpf.inspector.interfaces.InstructionType;
-import gov.nasa.jpf.inspector.server.breakpoints.BreakPointModes;
 import gov.nasa.jpf.inspector.server.expression.ExpressionBooleanLeaf;
 import gov.nasa.jpf.inspector.server.expression.InspectorState;
 import gov.nasa.jpf.inspector.server.expression.InspectorState.ListenerMethod;
@@ -85,11 +84,6 @@ public class ExpressionBreakpointInstructionType extends ExpressionBooleanLeaf {
     } else {
       throw new RuntimeException("Internal error - Unknown enum " + InstructionType.class.getSimpleName() + " entry " + instType);
     }
-  }
-
-  @Override
-  public BreakPointModes getBPMode () {
-    return BreakPointModes.BP_MODE_SPECIFIC_INSTRUCTION_TYPE;
   }
 
   @Override

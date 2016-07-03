@@ -46,7 +46,7 @@ public class BreakpointStatusImplementation implements BreakpointStatus {
 
   // Common constructor
   public BreakpointStatusImplementation(int bpID, String bpName, int bpHitCounter, int bpHitCounterTotal, Integer lowerBound, Integer upperBound,
-                                        BreakpointState bpState, BreakPointModes bpMode, String bpExpression, String bpExpressionNormalized, String details) {
+                                        BreakpointState bpState, String bpExpression, String bpExpressionNormalized, String details) {
     this.bpID = bpID;
     this.bpName = bpName;
     this.bpHitCounter = bpHitCounter;

@@ -17,7 +17,6 @@
 package gov.nasa.jpf.inspector.server.expression.expressions;
 
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorException;
-import gov.nasa.jpf.inspector.server.breakpoints.BreakPointModes;
 import gov.nasa.jpf.inspector.server.expression.ExpressionBoolean;
 import gov.nasa.jpf.inspector.server.expression.InspectorState;
 
@@ -37,11 +36,6 @@ public class ExpressionBreakpointOperatorNot extends ExpressionBoolean {
   @Override
   public boolean evaluateExpression (InspectorState state) throws JPFInspectorException {
        return !innerHitCondition.evaluateExpression(state);
-  }
-
-  @Override
-  public BreakPointModes getBPMode() {
-    return BreakPointModes.BP_UNIMPORTANT;
   }
 
   @Override

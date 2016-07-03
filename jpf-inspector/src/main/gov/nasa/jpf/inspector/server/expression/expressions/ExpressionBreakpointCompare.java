@@ -18,7 +18,6 @@
 package gov.nasa.jpf.inspector.server.expression.expressions;
 
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorException;
-import gov.nasa.jpf.inspector.server.breakpoints.BreakPointModes;
 import gov.nasa.jpf.inspector.server.expression.ExpressionBooleanLeaf;
 import gov.nasa.jpf.inspector.server.expression.ExpressionStateRootNode;
 import gov.nasa.jpf.inspector.server.expression.InspectorState;
@@ -74,12 +73,6 @@ public class ExpressionBreakpointCompare extends ExpressionBooleanLeaf {
       detail = e.getMessage();
       throw e;
     }
-  }
-
-  /* @see gov.nasa.jpf.inspector.server.expression.ExpressionBooleanInterface#getBPMode() */
-  @Override
-  public BreakPointModes getBPMode () {
-    return BreakPointModes.BP_MODE_USER_CONDITION;
   }
 
   /* @see gov.nasa.jpf.inspector.server.expression.ExpressionBooleanInterface#getNormalizedExpression() */

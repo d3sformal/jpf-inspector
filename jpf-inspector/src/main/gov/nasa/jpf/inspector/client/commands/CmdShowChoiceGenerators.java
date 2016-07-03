@@ -64,6 +64,10 @@ public class CmdShowChoiceGenerators extends ClientCommand {
         outStream.println("Suppressing thread " + threadIndex + ".");
       }
     }
+    if (inspector.isPaused()) {
+      outStream.println();
+      outStream.println("To view actual choice generators used instead, execute 'used cg'.");
+    }
   }
 
   @Override
@@ -71,8 +75,4 @@ public class CmdShowChoiceGenerators extends ClientCommand {
     return "show choice_generators";
   }
 
-  @Override
-  public boolean isSafeToExecuteWhenNotPaused() {
-    return true;
-  }
 }

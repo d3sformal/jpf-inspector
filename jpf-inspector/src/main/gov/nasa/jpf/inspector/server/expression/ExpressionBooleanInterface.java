@@ -18,7 +18,6 @@
 package gov.nasa.jpf.inspector.server.expression;
 
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorException;
-import gov.nasa.jpf.inspector.server.breakpoints.BreakPointModes;
 
 /**
  * Represents a node in the expressions syntax tree.
@@ -32,12 +31,6 @@ public interface ExpressionBooleanInterface extends ExpressionNodeInterface {
    * Successors - logical operators, compare (any type)
    */
   boolean evaluateExpression(InspectorState state) throws JPFInspectorException;
-
-  /**
-   * Returns the breakpoint mode of the expression, if any.
-   * Breakpoint modes are used by some kinds of hit conditions internally.
-   */
-  BreakPointModes getBPMode();
 
   /**
    * Gets details related to the expression.

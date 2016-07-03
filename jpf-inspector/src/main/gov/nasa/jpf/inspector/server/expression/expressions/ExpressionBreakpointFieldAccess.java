@@ -82,11 +82,6 @@ public class ExpressionBreakpointFieldAccess extends ExpressionBooleanLeaf {
   }
 
   @Override
-  public BreakPointModes getBPMode() {
-    return bpMode;
-  }
-
-  @Override
   public String getNormalizedExpression() {
     StringBuilder result = new StringBuilder();
     if (bpMode == BreakPointModes.BP_MODE_FIELD_ACCESS) {

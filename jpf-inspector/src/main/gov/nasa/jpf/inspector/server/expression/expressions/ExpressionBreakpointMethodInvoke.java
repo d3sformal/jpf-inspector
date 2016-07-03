@@ -31,15 +31,11 @@ import gov.nasa.jpf.vm.bytecode.InvokeInstruction;
  */
 public class ExpressionBreakpointMethodInvoke extends ExpressionBooleanLeaf {
 
-  private BreakPointModes bpMode;
   private MethodName mn;
 
   public ExpressionBreakpointMethodInvoke(BreakPointModes bpMode, MethodName mn) {
-    if (bpMode == BreakPointModes.BP_MODE_METHOD_INVOKE) {
-      this.bpMode = bpMode;
-    } else {
-      throw new RuntimeException("Internal error - Unsupported bpMode(" + bpMode + ")");
-    }
+    assert bpMode == BreakPointModes.BP_MODE_METHOD_INVOKE;
+
     if (mn != null) {
       this.mn = mn;
     } else {
@@ -65,11 +61,6 @@ public class ExpressionBreakpointMethodInvoke extends ExpressionBooleanLeaf {
     InvokeInstruction iiInst = (InvokeInstruction) inst;
     return mn.isSameMethod(iiInst.getInvokedMethod());
 
-  }
-
-  @Override
-  public BreakPointModes getBPMode() {
-    return bpMode;
   }
 
   @Override
