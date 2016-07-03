@@ -17,10 +17,11 @@
 
 package gov.nasa.jpf.inspector.server.breakpoints;
 
+import gov.nasa.jpf.JPF;
 import gov.nasa.jpf.inspector.common.BreakpointCreationExpression;
+import gov.nasa.jpf.inspector.exceptions.JPFInspectorGenericErrorException;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorParsingErrorException;
 import gov.nasa.jpf.inspector.interfaces.*;
-import gov.nasa.jpf.inspector.exceptions.JPFInspectorGenericErrorException;
 import gov.nasa.jpf.inspector.server.expression.ExpressionBoolean;
 import gov.nasa.jpf.inspector.server.expression.ExpressionParser;
 import gov.nasa.jpf.inspector.server.expression.ExpressionParserInterface;
@@ -37,8 +38,8 @@ import gov.nasa.jpf.inspector.server.jpf.StopHolder;
 import gov.nasa.jpf.inspector.server.pathanalysis.BackwardBreakpointCreator;
 import gov.nasa.jpf.inspector.utils.Debugging;
 import gov.nasa.jpf.inspector.utils.expressions.FieldName;
-import gov.nasa.jpf.vm.ThreadInfo;
 import gov.nasa.jpf.search.Search;
+import gov.nasa.jpf.vm.ThreadInfo;
 
 /**
  * Handles start and stop commands, stepping, and stopping and resuming of the SuT.
@@ -99,6 +100,9 @@ public class CommandsManager implements CommandsInterface {
   @Override
   public void waitUntilStopped() {
     if (inspector.getJPF() == null) {
+      return;
+    }
+    if (inspector.getJPF().getStatus() == JPF.Status.DONE) {
       return;
     }
     inspector.getStopHolder().waitUntilStopped();

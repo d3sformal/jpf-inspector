@@ -164,6 +164,9 @@ public abstract class JPFInspector implements JPFInspectorBackEndInterface {
     if (jpf.getVM() == null) {
       return null;
     }
+    if (jpf.getVM().getCurrentThread() == null) {
+      return null;
+    }
     return (jpf.getVM().getInstruction());
   }
 
@@ -203,13 +206,19 @@ public abstract class JPFInspector implements JPFInspectorBackEndInterface {
     }
 
     if ((this.jpf != null) && (listener.getFinished() == false)) {
-      stopHolder.terminating();
-      // Currently there is running older instance ... we should terminate it
-      // TODO: Is not better to force previous instance to stop.
-      try {
-        wait();
-      } catch (InterruptedException e) {
-        throw new JPFInspectorGenericErrorException("Previous instance of the JPF is running");
+      if (this.jpf.getStatus() == JPF.Status.DONE) {
+        stopHolder.notifyClientTerminating();
+        getServerCallbacks().genericInfo("Previous JPF run encountered an error. Probably JPF itself crashed or failed to initialize correctly (maybe your application does not have a main method?).");
+      } else {
+        stopHolder.terminating();
+        // Currently there is running older instance ... we should terminate it
+        // If this turns out not to work way, maybe we should create a way to forcefully terminate the JPF thread
+        // or something
+        try {
+          wait();
+        } catch (InterruptedException e) {
+          throw new JPFInspectorGenericErrorException("Previous instance of the JPF is running");
+        }
       }
     }
 
@@ -234,6 +243,9 @@ public abstract class JPFInspector implements JPFInspectorBackEndInterface {
     listener = new InspectorListener(this, commandsManager, breakpointHandler, choiceGeneratorsManager,
                                      defaultForwardTraceManager, originalSearchMultipleErrors);
     jpf.addListener(listener);
+    Config config = jpf.getConfig();
+    InspectorConfigChangeListener inspectorConfigChangeListener = new InspectorConfigChangeListener(this, config);
+    jpf.getConfig().addChangeListener(inspectorConfigChangeListener);
 
     // Initialize instance of the JPF
     Search search = jpf.getSearch();
