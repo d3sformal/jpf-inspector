@@ -168,9 +168,6 @@ public class ValuePrinter implements PSEVisitor<StringBuilder> {
     }
     sb.append('\n');
 
-    // TODO (elsewhere) using the "&&" command, safe mode shouldn't be so overly strict (the command "commence && wait && print null" should be permitted.
-
-
     if (!Objects.equals(var.getVarValue(), "null")) {
       PSEVariable[] fields = var.getFields();
       PSEVariable[] staticFields = var.getStaticFields();

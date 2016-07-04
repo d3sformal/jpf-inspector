@@ -32,8 +32,6 @@ import java.util.Map;
 /*
  * Extract from this example is used in the "Advanced Debugging with JPF-Inspector" paper.
  *
- * TODO - Recorded execution (with commands bellow) is stored in the "TestClass-record.txt" file.
- *
  * # Stop if an error is discovered (assertion violation, null dereference, uncaught exception, etc.) 
  * create breakpoint property violated
  * # Start checking
@@ -43,10 +41,10 @@ import java.util.Map;
  * print
  * 
  * # Create dynamic assertion
- * assert pos=paper/TestClass.java:TODO this.charset == "UTF-8"
+ * assert pos=paper/TestClass.java:
  * 
  * # Backtrack before load File call
- * back_step_over  6 TODO - step number
+ * back_step_over  6
  * 
  * # Forward run, to check new assertion 
  * run

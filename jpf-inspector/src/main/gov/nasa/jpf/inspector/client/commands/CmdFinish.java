@@ -32,7 +32,6 @@ public class CmdFinish extends ClientCommand {
   @Override
   public void execute(JPFInspectorClient client, JPFInspectorBackEndInterface inspector, PrintStream outStream) {
     // TODO use verify command listener instead of active waiting
-    // TODO include "wait" functionality here
 
     inspector.waitUntilStopped();
     inspector.getServerCallbacks().waitUntilCallbackQueueIsEmpty();

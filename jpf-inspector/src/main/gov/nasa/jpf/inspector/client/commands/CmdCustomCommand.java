@@ -62,8 +62,6 @@ public class CmdCustomCommand extends ClientCommand {
 
   /// METHODS
 
-  // TODO (elsewhere): after I understand loadReferences lazily, see why "print #stackSlot[0]" fails (in ExpressionTest.java, both before and after calling the instance method)
-
   public CmdCustomCommand(String commandName, String arguments) {
     this.commandName = commandName.trim();
     this.arguments = arguments;

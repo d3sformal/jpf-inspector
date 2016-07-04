@@ -9,7 +9,6 @@ public class SimpleAssignments {
     simpleAssignments.testIt();
   }
   public void testIt() {
-    // TODO make this test work
     boolean sa_slot_boolean = false;
     char sa_slot_char = 'f';
     byte sa_slot_byte = Byte.MIN_VALUE;

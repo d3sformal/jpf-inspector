@@ -17,19 +17,14 @@
 
 package gov.nasa.jpf.inspector.server.programstate;
 
-import gov.nasa.jpf.inspector.exceptions.JPFInspectorException;
-import gov.nasa.jpf.inspector.exceptions.JPFInspectorInvalidStackFrame;
-import gov.nasa.jpf.inspector.server.choicegenerators.ChoiceGeneratorsManager;
 import gov.nasa.jpf.inspector.common.pse.PSEMethod;
 import gov.nasa.jpf.inspector.common.pse.PSEVariable;
 import gov.nasa.jpf.inspector.common.pse.PSEVariableObject;
+import gov.nasa.jpf.inspector.exceptions.JPFInspectorException;
+import gov.nasa.jpf.inspector.exceptions.JPFInspectorInvalidStackFrame;
+import gov.nasa.jpf.inspector.server.choicegenerators.ChoiceGeneratorsManager;
 import gov.nasa.jpf.inspector.utils.InstructionWrapper;
-import gov.nasa.jpf.vm.ClassInfo;
-import gov.nasa.jpf.vm.LocalVarInfo;
-import gov.nasa.jpf.vm.MethodInfo;
-import gov.nasa.jpf.vm.StackFrame;
-import gov.nasa.jpf.vm.ThreadInfo;
-import gov.nasa.jpf.vm.Instruction;
+import gov.nasa.jpf.vm.*;
 
 /**
  * Represent a stack frame using a {@link StackFrame} object.
@@ -84,7 +79,6 @@ public final class StateStackFrame extends StateNode {
 
     if (mi.isStatic() == false) {
       try {
-        // TODO there is some commented code here... check that it's really okay
         StateValueStackSlot svss = StateValueStackSlot.createHiddenThisSlotValue(this);
         PSEVariable refThisGeneric = svss.toHierarchy3();
 
@@ -96,9 +90,6 @@ public final class StateStackFrame extends StateNode {
         }
       } catch (JPFInspectorException e) {
         // The JPFInspectorInvalidSlotIndexException is thrown if stopped in native method such as join.
-
-        // getInspector().getDebugPrintStream().println(e);
-        // e.printStackTrace(getInspector().getDebugPrintStream());
       }
     }
     int stackSlots = sf.getTopPos() + 1; // Only valid slots
