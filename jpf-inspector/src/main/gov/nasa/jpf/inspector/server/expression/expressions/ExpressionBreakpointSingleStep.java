@@ -23,7 +23,10 @@ import gov.nasa.jpf.inspector.server.expression.ExpressionBooleanLeaf;
 import gov.nasa.jpf.inspector.server.expression.InspectorState;
 import gov.nasa.jpf.inspector.server.expression.InspectorState.ListenerMethod;
 import gov.nasa.jpf.inspector.server.jpf.JPFInspector;
-import gov.nasa.jpf.vm.*;
+import gov.nasa.jpf.vm.Instruction;
+import gov.nasa.jpf.vm.ThreadInfo;
+import gov.nasa.jpf.vm.Transition;
+import gov.nasa.jpf.vm.VM;
 import gov.nasa.jpf.vm.bytecode.InvokeInstruction;
 
 /**
@@ -197,15 +200,6 @@ public class ExpressionBreakpointSingleStep extends ExpressionBooleanLeaf {
 
     for (Transition pathTr : jvm.getPath()) {
       if (pathTr.equals(tr)) {
-        return true;
-      }
-    }
-    return false;
-  }
-
-  private static boolean containsStackFrame (ThreadInfo ti, StackFrame sf) {
-    for (StackFrame threadsSF : ti) {
-      if (threadsSF.equals(sf)) {
         return true;
       }
     }

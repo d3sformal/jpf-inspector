@@ -252,7 +252,7 @@ public abstract class JPFInspector implements JPFInspectorBackEndInterface {
                                      defaultForwardTraceManager, originalSearchMultipleErrors);
     jpf.addListener(listener);
     Config config = jpf.getConfig();
-    InspectorConfigChangeListener inspectorConfigChangeListener = new InspectorConfigChangeListener(this, config);
+    InspectorConfigChangeListener inspectorConfigChangeListener = new InspectorConfigChangeListener(this);
     jpf.getConfig().addChangeListener(inspectorConfigChangeListener);
 
     // Initialize instance of the JPF

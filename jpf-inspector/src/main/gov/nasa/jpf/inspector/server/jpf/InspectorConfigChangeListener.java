@@ -19,10 +19,14 @@ package gov.nasa.jpf.inspector.server.jpf;
 import gov.nasa.jpf.Config;
 import gov.nasa.jpf.ConfigChangeListener;
 
+/**
+ * This config change listener is used to handle the rare situation where JPF fails to initialize, for example, because
+ * the application class has no main method. In this case, we must end the Inspector's run as well.
+ */
 public class InspectorConfigChangeListener implements ConfigChangeListener {
   private final JPFInspector jpfInspector;
 
-  public InspectorConfigChangeListener(JPFInspector jpfInspector, Config config) {
+  public InspectorConfigChangeListener(JPFInspector jpfInspector) {
 
     this.jpfInspector = jpfInspector;
   }
