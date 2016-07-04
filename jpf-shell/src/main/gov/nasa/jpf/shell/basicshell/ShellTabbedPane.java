@@ -18,47 +18,39 @@
 package gov.nasa.jpf.shell.basicshell;
 
 
+import gov.nasa.jpf.shell.Shell;
+import gov.nasa.jpf.shell.ShellPanel;
 import gov.nasa.jpf.shell.util.DraggableTabPane;
-import gov.nasa.jpf.shell.*;
 import gov.nasa.jpf.shell.util.tabtearing.TabTransferData;
-import java.awt.BasicStroke;
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.RenderingHints;
+
+import javax.swing.*;
+import javax.swing.plaf.basic.BasicButtonUI;
+import java.awt.*;
 import java.awt.datatransfer.UnsupportedFlavorException;
 import java.awt.dnd.DragSourceDropEvent;
+import java.awt.dnd.DropTargetDropEvent;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.BorderFactory;
-import javax.swing.JButton;
-import javax.swing.JComponent;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.ToolTipManager;
-import javax.swing.plaf.basic.BasicButtonUI;
 
 /**
  * Here is my feeble attempt at a tearable tabs based on:
  * http://stackoverflow.com/questions/60269/how-to-implement-draggable-panel-using-java-swing
  * This supports full 'panel tearing allowing for tabs to be broken off into
  * their own shells and then joined back together.
+ *
+ * July 2016: There are some strange issues where sometimes this is still not working. It also seems like it's more
+ * common for it not to work when you drag a panel to another screen.
  */
 public class ShellTabbedPane extends DraggableTabPane {
 
   private Shell shell;
 
   public ShellTabbedPane(final Shell shell) {
-    super();
     this.shell = shell;
-
   }
 
   /**
@@ -75,14 +67,22 @@ public class ShellTabbedPane extends DraggableTabPane {
       return super.getToolTipText(me);
     }
   }
+  public Shell getShell() {
+    return shell;
+  }
+
+
+
 
   @Override
   public void dragDropEnd(DragSourceDropEvent dsde){
-    super.dragDropEnd(dsde); //Just incase there is something that
-                             //need to be taken care of
+    // This is called at the source shell when the drag completes
+    // It is called AFTER the drop method of the target.
 
-    //If the drop ended but it didn't succeed then we should break the panel
-    //into its own shell containing only this panel
+    super.dragDropEnd(dsde); // This is actually empty in the parent, so we could get rid of this line.
+
+    // If the drop ended but it didn't succeed then we should break the panel
+    // into its own shell containing only this panel
     if (dsde.getDropSuccess() == false) {
       try {
         TabTransferData transferData = (TabTransferData) dsde.getDragSourceContext().getTransferable().getTransferData(TAB_FLAVOR);
@@ -100,31 +100,50 @@ public class ShellTabbedPane extends DraggableTabPane {
         Logger.getLogger(ShellTabbedPane.class.getName()).log(Level.SEVERE, null, ex);
       }
     }
+    // If it succeeded, then the target shell is responsible for removing the panel from this shell.
 
-    //Now check if this shell needs to be closed up
+    // Now check if this shell needs to be closed up
     if (getTabCount() == 0) {
        getShell().dispose();
     }
 
   }
 
-  public Shell getShell() {
-    return shell;
-  }
+  @Override
+  public void drop(DropTargetDropEvent dtde) {
+    // We are receiving a new panel.
+    super.drop(dtde);
+    if (hack_lastDropOperationComponent != null) {
+        Component theComponent = hack_lastDropOperationComponent;
+        if (theComponent instanceof ShellPanelTabComponent) {
+          ShellPanelTabComponent tabComponent = (ShellPanelTabComponent)theComponent;
+          ShellPanel panel = tabComponent.getPanel();
 
-  public interface TabAcceptor {
-    boolean isDropAcceptable(ShellTabbedPane c, int i);
+
+          panel.getShell().silentlyRemovePanel(panel);
+          panel.setShell(this.shell);
+          panel.getShell().silentlyAddPanel(panel);
+
+        }
+    }
   }
 
   public void insertShellPanel(ShellPanel panel, int index){
     insertTab(panel.getTitle(), panel.getIcon(), panel, panel.getTip(), index);
+
     ShellPanelTabComponent shellPanelTabComponent = new ShellPanelTabComponent(panel);
     ToolTipManager.sharedInstance().unregisterComponent(shellPanelTabComponent);
     setTabComponentAt(index, shellPanelTabComponent);
   }
 
-  //From: http://java.sun.com/docs/books/tutorial/uiswing/examples/components/TabComponentsDemoProject/src/components/ButtonTabComponent.java
-  class ShellPanelTabComponent extends JPanel implements ActionListener{
+  /**
+   * From: http://java.sun.com/docs/books/tutorial/uiswing/examples/components/TabComponentsDemoProject/src/components/ButtonTabComponent.java
+   */
+  static class ShellPanelTabComponent extends JPanel implements ActionListener{
+
+    public ShellPanel getPanel() {
+      return panel;
+    }
 
     private ShellPanel panel;
     private JLabel label;
@@ -165,8 +184,8 @@ public class ShellTabbedPane extends DraggableTabPane {
 
     /**
      * Called when the close button is pressed on a tab component
-     * @param ae
      */
+    @Override
     public void actionPerformed(ActionEvent ae) {
       panel.getShell().removeShellPanel(panel);
     }
@@ -182,10 +201,7 @@ public class ShellTabbedPane extends DraggableTabPane {
   /**
    * Nothing more than a gray X button that turns red when you mouse over it.
    */
-  private class CloseButton extends JButton{
-
-    private ShellPanel panel;
-
+  private static class CloseButton extends JButton {
     public CloseButton(ShellPanel panel){
       final int size = 10;
       setUI(new BasicButtonUI());
@@ -195,7 +211,6 @@ public class ShellTabbedPane extends DraggableTabPane {
       setFocusable(false);
       setBorderPainted(false);
       setRolloverEnabled(true);
-      this.panel = panel;
     }
 
     @Override
@@ -232,10 +247,5 @@ public class ShellTabbedPane extends DraggableTabPane {
       g2.drawLine(offset, size-offset, size-offset, offset); //cross
       g2.dispose();
     }
-
-    public void actionPerformed(ActionEvent ae) {
-      panel.getShell().removeShellPanel(panel);
-    }
-
   };
 }

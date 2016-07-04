@@ -1,0 +1,5 @@
+This is information for maintainers of extensions that derive from jpf-shell.
+
+During the 2016 jpf-inspector update, the following breaking changes were made to jpf-shell:
+
+-

@@ -17,20 +17,18 @@
  */
 package gov.nasa.jpf.shell.util;
 
-import java.awt.*;
-import java.awt.dnd.*;
-
 import gov.nasa.jpf.shell.util.tabtearing.TabTransferData;
+
+import javax.swing.*;
+import java.awt.*;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.Transferable;
 import java.awt.datatransfer.UnsupportedFlavorException;
+import java.awt.dnd.*;
 import java.io.IOException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.Icon;
-import javax.swing.JTabbedPane;
-import javax.swing.UIManager;
 
 
 /**
@@ -38,7 +36,7 @@ import javax.swing.UIManager;
  * ie.) tabs can be dragged away into their own frame and then recombined into 
  * a single frame. This class isn't directly used by the jpf-shell project.
  * Instead it helps to separate the ugly swing code from the ugly jpf-shell code
- * in {@link gov.nasa.jpf.shell.ShellTabbedPane}.
+ * in {@link gov.nasa.jpf.shell.basicshell.ShellTabbedPane}.
  *
  */
 public class DraggableTabPane extends JTabbedPane implements DragSourceListener,
@@ -49,9 +47,10 @@ public class DraggableTabPane extends JTabbedPane implements DragSourceListener,
   public static final String NAME = "DraggableTabPaneTransferData";
   public static final DataFlavor TAB_FLAVOR = new DataFlavor(DataFlavor.javaJVMLocalObjectMimeType, NAME);
 
+  protected Component hack_lastDropOperationComponent;
   private int possibleDest = -1;
 
-  public DraggableTabPane() {
+  protected DraggableTabPane() {
     super();
     new DropTarget(this, DnDConstants.ACTION_COPY_OR_MOVE, this, true);
     new DragSource().createDefaultDragGestureRecognizer(this,
@@ -79,7 +78,7 @@ public class DraggableTabPane extends JTabbedPane implements DragSourceListener,
     return padding + getTabComponentAt(i).getWidth();
   }
 
-  public int indexOfDrop(Point dropLocation){
+  private int indexOfDrop(Point dropLocation){
     int i = indexAtLocation(dropLocation.x, dropLocation.y);
     if (i != -1) {
       //Found a location to drop this component into
@@ -95,68 +94,15 @@ public class DraggableTabPane extends JTabbedPane implements DragSourceListener,
     }
   }
 
-  protected boolean isDragDropAcceptable(List<DataFlavor> flavs) {
+  private static boolean isDragDropAcceptable(List<DataFlavor> flavs) {
     return flavs.contains(TAB_FLAVOR);
   }
 
-  //----- From DragGestureListener
-  /**
-   * Decide if the gesture is worth starting a DnD operation over.
-   * Just as long the mouse is clicked on a tab, then a drag is started
-   * @param dge
-   */
-  public void dragGestureRecognized(DragGestureEvent dge) {
-    //Check if there is a comp that is being dragged
-    Point compPt = dge.getDragOrigin();
-    int index = indexAtLocation(compPt.x, compPt.y);
-    if ( index != -1) {
-      Component comp =  getComponentAt(index);
-      dge.startDrag(DragSource.DefaultMoveDrop, new TabTransferrable(
-              getTitleAt(index), getIconAt(index), getToolTipTextAt(index),
-              getTabComponentAt(index), comp), this);
-
-      //Remove the panel since the tab is being dragged away
-      remove(comp);
-    }
-  }
-
-  
-  //--- From Drop TargetListener
-  public void dragEnter(DropTargetDragEvent dtde) {
-    if (isDragDropAcceptable(dtde.getCurrentDataFlavorsAsList())) {
-      dtde.acceptDrag(dtde.getDropAction());
-    } else {
-      dtde.rejectDrag();
-    }
-  }
-
-  /**
-   * Use this event to draw the destination marker for the TabPane
-   *
-   * @param dtde
-   */
-  public void dragOver(DropTargetDragEvent dtde) {
-    if (isDragDropAcceptable(dtde.getCurrentDataFlavorsAsList())) {
-      try {
-        TabTransferData ttd = (TabTransferData) dtde.getTransferable().getTransferData(TAB_FLAVOR);
-        int index = indexOfDrop(dtde.getLocation());
-        if (index >= 0) {
-          possibleDest = indexOfDrop(dtde.getLocation());
-          repaint();
-        }
-      } catch (UnsupportedFlavorException ex) {
-        Logger.getLogger(DraggableTabPane.class.getName()).log(Level.SEVERE, null, ex);
-      } catch (IOException ex) {
-        Logger.getLogger(DraggableTabPane.class.getName()).log(Level.SEVERE, null, ex);
-      }
-    }
-  }
-
-  @Override
   /**
    * This does the work on including an arrow during DnD to see where the
    * panel is going to drop.
    */
+  @Override
   protected void paintComponent(Graphics g){
     super.paintComponent(g);
 
@@ -203,11 +149,66 @@ public class DraggableTabPane extends JTabbedPane implements DragSourceListener,
 
   }
 
+  //----- From DragGestureListener
+  /**
+   * Decide if the gesture is worth starting a DnD operation over.
+   * Just as long the mouse is clicked on a tab, then a drag is started
+   */
+  @Override
+  public void dragGestureRecognized(DragGestureEvent dge) {
+    //Check if there is a comp that is being dragged
+    Point compPt = dge.getDragOrigin();
+    int index = indexAtLocation(compPt.x, compPt.y);
+    if ( index != -1) {
+      Component comp =  getComponentAt(index);
+      dge.startDrag(DragSource.DefaultMoveDrop, new TabTransferrable(
+              getTitleAt(index), getIconAt(index), getToolTipTextAt(index),
+              getTabComponentAt(index), comp), this);
+
+      //Remove the panel since the tab is being dragged away
+      remove(comp);
+    }
+  }
+
+  
+  //--- From DropTargetListener
+  @Override
+  public void dragEnter(DropTargetDragEvent dtde) {
+    if (isDragDropAcceptable(dtde.getCurrentDataFlavorsAsList())) {
+      dtde.acceptDrag(dtde.getDropAction());
+    } else {
+      dtde.rejectDrag();
+    }
+  }
+  /**
+   * Use this event to draw the destination marker for the TabPane
+   *
+   * @param dtde
+   */
+  @Override
+  public void dragOver(DropTargetDragEvent dtde) {
+    if (isDragDropAcceptable(dtde.getCurrentDataFlavorsAsList())) {
+      try {
+        TabTransferData ttd = (TabTransferData) dtde.getTransferable().getTransferData(TAB_FLAVOR);
+        int index = indexOfDrop(dtde.getLocation());
+        if (index >= 0) {
+          possibleDest = indexOfDrop(dtde.getLocation());
+          repaint();
+        }
+      } catch (UnsupportedFlavorException ex) {
+        Logger.getLogger(DraggableTabPane.class.getName()).log(Level.SEVERE, null, ex);
+      } catch (IOException ex) {
+        Logger.getLogger(DraggableTabPane.class.getName()).log(Level.SEVERE, null, ex);
+      }
+    }
+  }
   /***
    * A component is coming in for landing here
    * @param dtde
    */
+  @Override
   public void drop(DropTargetDropEvent dtde) {
+    hack_lastDropOperationComponent = null;
     if (!isDragDropAcceptable(dtde.getCurrentDataFlavorsAsList())) {
       dtde.dropComplete(false);
       return;
@@ -216,6 +217,7 @@ public class DraggableTabPane extends JTabbedPane implements DragSourceListener,
     int indexOfDrop = indexOfDrop(dtde.getLocation());
     if (indexOfDrop < 0) {
       possibleDest = -1;
+      dtde.dropComplete(false);
       repaint();
       return;
     }
@@ -233,6 +235,7 @@ public class DraggableTabPane extends JTabbedPane implements DragSourceListener,
       }
       setTabComponentAt(indexOfDrop, tdd.getTabComponent());
       setSelectedIndex(indexOfDrop);
+      hack_lastDropOperationComponent = tdd.getTabComponent();
     } catch (UnsupportedFlavorException ex) {
       Logger.getLogger(DraggableTabPane.class.getName()).log(Level.SEVERE, null, ex);
       dtde.dropComplete(false);
@@ -245,17 +248,22 @@ public class DraggableTabPane extends JTabbedPane implements DragSourceListener,
     possibleDest = -1;
     repaint();
   }
-
-
+  @Override
   public void dropActionChanged(DropTargetDragEvent dtde) {}
+  @Override
   public void dragExit(DropTargetEvent dte) {possibleDest = -1; repaint();}
 
   //----- From DragSourceListener --
   // These are called when this panel is the source of the DnD
+  @Override
   public void dragDropEnd(DragSourceDropEvent dsde) {}
+  @Override
   public void dragEnter(DragSourceDragEvent dsde) {}
+  @Override
   public void dragOver(DragSourceDragEvent dsde) {}
+  @Override
   public void dropActionChanged(DragSourceDragEvent dsde) {}
+  @Override
   public void dragExit(DragSourceEvent dse) {}
 
 }
@@ -268,14 +276,17 @@ class TabTransferrable implements Transferable {
     data = new TabTransferData(title, icon, tooltip, tabComponent, st);
   }
 
+  @Override
   public DataFlavor[] getTransferDataFlavors() {
     return new DataFlavor[]{DraggableTabPane.TAB_FLAVOR};
   }
 
+  @Override
   public boolean isDataFlavorSupported(DataFlavor flavor) {
     return flavor.getHumanPresentableName().equals(DraggableTabPane.NAME);
   }
 
+  @Override
   public Object getTransferData(DataFlavor flavor) throws
           UnsupportedFlavorException, IOException {
     if (!isDataFlavorSupported(flavor)) {

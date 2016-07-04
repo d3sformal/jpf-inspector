@@ -18,10 +18,9 @@
 package gov.nasa.jpf.shell;
 
 import gov.nasa.jpf.Config;
-import java.awt.Font;
-import javax.swing.Icon;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
+
+import javax.swing.*;
+import java.awt.*;
 
 /**
  * The most basic class for creating a swing UI using the jpf-shell mechanism.
@@ -43,6 +42,9 @@ public abstract class ShellPanel extends JPanel{
     protected Icon icon;
     protected String tip;
 
+   /**
+    * Unused and always false. {@link Shell#setVisibleInShell(ShellPanel, boolean)}  is never actually called.
+    */
     boolean currentlyVisible = false;
 
     public ShellPanel(String title, Icon icon, String tip){
@@ -57,10 +59,10 @@ public abstract class ShellPanel extends JPanel{
 
     /**
      * DO NOT USE THIS UNLESS YOU ARE IMPLEMENTING A SHELL. To move a ShellPanel
-     * from one panel to another instead call removeFromShell() on this panel
+     * from one shell to another, instead call removeFromShell() on this panel
      * and then use the new shell's {@link gov.nasa.jpf.shell.Shell#addShellPanel(gov.nasa.jpf.shell.ShellPanel)}
      * to add this panel.
-     * @param shell changes the return value of getShell()
+     * @param s changes the return value of getShell()
      */
     public void setShell(Shell s){
       shell = s;

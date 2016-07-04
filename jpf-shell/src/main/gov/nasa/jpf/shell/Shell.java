@@ -18,16 +18,12 @@
 
 package gov.nasa.jpf.shell;
 
-import gov.nasa.jpf.JPFShell;
 import gov.nasa.jpf.Config;
+import gov.nasa.jpf.JPFShell;
 import gov.nasa.jpf.shell.basicshell.BasicShell;
-import gov.nasa.jpf.shell.panels.ConfigPanel;
-import gov.nasa.jpf.shell.panels.PropertiesPanel;
-import gov.nasa.jpf.shell.panels.ReportPanel;
-import gov.nasa.jpf.shell.panels.SitePanel;
-import gov.nasa.jpf.shell.panels.TestConsolePanel;
-import gov.nasa.jpf.shell.panels.VerifyConsolePanel;
-import java.awt.Image;
+
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
@@ -35,14 +31,6 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import javax.swing.Box;
-import javax.swing.ImageIcon;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
 
 /**
  * The <code>Shell</code> class represents a JPF Shell.<br>
@@ -165,7 +153,7 @@ public abstract class Shell extends JFrame implements JPFShell, ShellFrame{
 
   /**
    * Removes a command from this shell and then un-installs it.
-   * @param the command to be removed
+   * @param command the command to be removed
    */
   public abstract void uninstallCommand(ShellCommand command);
 
@@ -282,12 +270,23 @@ public abstract class Shell extends JFrame implements JPFShell, ShellFrame{
     panelRemoval(panel);
   }
 
+  public final void silentlyRemovePanel(ShellPanel panel) {
+    panels.remove(panel);
+    panel.removedFromShell();
+  }
+  public final void silentlyAddPanel(ShellPanel panel) {
+    panels.add(panel);
+    panel.addedToShell();
+  }
+
   @Override
   public void dispose(){
-    for (ShellPanel panel : panels) {
-      panelRemoval(panel);
+    for (int i = panels.size() - 1; i >= 0; i--) {
+      removeShellPanel(panels.get(i));
     }
+    // Just in case:
     panels.clear();
+
     ShellManager.getManager().removeShell(Shell.this);
     super.dispose();
   }
