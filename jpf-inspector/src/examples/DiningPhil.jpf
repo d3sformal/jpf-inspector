@@ -1,6 +1,0 @@
-@using jpf-inspector
-shell=.shell.basicshell.BasicShell
-
-target = DiningPhil
-
-search.class = .search.DFSearch

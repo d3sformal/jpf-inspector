@@ -1,4 +1,4 @@
 @using jpf-inspector
 shell=.shell.basicshell.BasicShell
 
-target = Print01
+target = sooth.TutorialApplication
