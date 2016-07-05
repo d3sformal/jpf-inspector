@@ -44,14 +44,19 @@ public class CmdHelp extends ClientCommand {
     outStream.println("You may use the following hit conditions: ");
     outStream.println("garbage_collection = begin/end/both\n" +
                               "choice_generator = data/sched/both\n" +
-                              "instruction_type = any/invoke/return/field_access/field_read/field_write/condition/lock/array\n" +
+                              "instruction_type = any/invoke/return/field_access/field_read/field_write/condition/lock/array/local_access/local_read/local_write\n" +
                               "position = filename:linenumber\n" +
                               "property_violated\n" +
                               "thread_scheduled = in/out/both : threadnumber\n" +
                               "field_access = classname:fieldname\n" +
                               "field_read = classname:fieldname\n" +
                               "field_write = classname:fieldname\n" +
+                              "local_access = name\n" +
+                              "local_read = name\n" +
+                              "local_write = name\n" +
                               "method_invoke = classname:methodname\n" +
+                              "method = name\n" +
+                              "class = name\n" +
                               "object_created = classname\n" +
                               "object_released = classname\n" +
                               "exception_thrown = classname\n" +
@@ -59,6 +64,7 @@ public class CmdHelp extends ClientCommand {
                               "( hitcondition )\n" +
                               "hitcondition and hitcondition\n" +
                               "hitcondition or hitcondition\n" +
+                              "not hitcondition\n" +
                               "custom_hit_condition ( arguments )");
   }
 
@@ -131,12 +137,16 @@ public class CmdHelp extends ClientCommand {
     execution.add(new CommandHelpInfo("continue", "run, cont", "Starts or resumes execution."));
     execution.add(new CommandHelpInfo("break", null, "Suspends execution."));
     execution.add(new CommandHelpInfo("wait", null, "Blocks until JPF becomes stopped."));
+    execution.add(new CommandHelpInfo("finish", null, "Blocks until JPF terminates."));
     execution.add(new CommandHelpInfo("terminate", null, "Terminates JPF but keeps the shell open."));
     execution.add(new CommandHelpInfo("set [target] = [value]", null, "Modifies a variable's value."));
     categories.put("Execution commands", execution);
 
     ArrayList<CommandHelpInfo> breakpoints = new ArrayList<>();
     breakpoints.add(new CommandHelpInfo("create breakpoint [properties...] [hit condition]", "cr bp", "Creates a new breakpoint."));
+    breakpoints.add(new CommandHelpInfo("change breakpoint [id] state = [state]", "change bp", "Enables or disables a breakpoint."));
+    breakpoints.add(new CommandHelpInfo("disable breakpoint [id]", "dis bp", "Disables the breakpoint."));
+    breakpoints.add(new CommandHelpInfo("enable breakpoint [id]", "en bp", "Re-enables the breakpoint."));
     breakpoints.add(new CommandHelpInfo("show breakpoint", "sw bp", "Prints all breakpoints."));
     breakpoints.add(new CommandHelpInfo("delete breakpoint [id]", "del bp", "Deletes the breakpoint."));
     breakpoints.add(new CommandHelpInfo("assert [file]:[line] [condition]", null, "Creates a dynamic assertion."));
@@ -161,11 +171,16 @@ public class CmdHelp extends ClientCommand {
     stepping.add(new CommandHelpInfo("back_step_out", "bsout", "Undoes instructions until we return to caller."));
     stepping.add(new CommandHelpInfo("back_step_in", "bsi", "Undoes this and previous line or until a method call is undone."));
     stepping.add(new CommandHelpInfo("back_step_transition", "bst", "Undoes until a choice point is reached."));
+    stepping.add(new CommandHelpInfo("back_field_access [class]:[field]", "bfa", "Undoes until the field access is reached."));
+    stepping.add(new CommandHelpInfo("back_breakpoint_hit", "bbhit", "Undoes until the last breakpoint hit is reached."));
     categories.put("Stepping-related commands", stepping);
 
     ArrayList<CommandHelpInfo> choiceGenerators = new ArrayList<>();
     choiceGenerators.add(new CommandHelpInfo("[enable/disable] [data/sched] [ask/print] cg", null, "Sets what notifications about choice generators should be given to the user."));
+    choiceGenerators.add(new CommandHelpInfo("show choice_generators", "show cg", "Prints notification status of choice generators."));
     choiceGenerators.add(new CommandHelpInfo("cg select [index]", null, "Selects a choice for the current choice generator."));
+    choiceGenerators.add(new CommandHelpInfo("disable thread [index]", "dis t", "Suppresses a thread from being scheduled."));
+    choiceGenerators.add(new CommandHelpInfo("enable thread [index]", "en t", "Permits a thread to be scheduled."));
     choiceGenerators.add(new CommandHelpInfo("used choice_generators", "used cg", "Prints all choice generators in the transition path."));
     categories.put("Choice generators", choiceGenerators);
   }
