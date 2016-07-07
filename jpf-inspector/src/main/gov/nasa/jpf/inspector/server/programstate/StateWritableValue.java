@@ -284,6 +284,17 @@ public abstract class StateWritableValue extends StateReadableValue {
         ElementInfo eiNewVal = (ElementInfo) wrappedValue;
         newVal = eiNewVal.getFloatField(ciCache.fi_val_Float);
       }
+      if (ciCache.ci_double.equals(newValCI)) {
+        assert wrappedValue instanceof Double;
+        Double newDoubleValue = (Double)wrappedValue;
+        if (newDoubleValue.isNaN()) {
+          newVal = Float.NaN;
+        } else if (newDoubleValue == Double.POSITIVE_INFINITY) {
+          newVal = Float.POSITIVE_INFINITY;
+        } else if (newDoubleValue == Double.NEGATIVE_INFINITY) {
+          newVal = Float.NEGATIVE_INFINITY;
+        }
+      }
 
       if (newVal != null) {
         assignValueFloat(newVal);

@@ -185,6 +185,7 @@ public class LegacySimpleAssignmentsTest {
           TestInput.createPassingTestCopyVarValuePrefixBothVarNames("sa_field_box_test_float", "sa_field_Float", "4.0"),
           TestInput.createPassingTestCopyVarValuePrefixBothVarNames("sa_field_box_test_double", "sa_field_Double", "0.1"),
           TestInput.createPassingTestCopyVarValuePrefixBothVarNames("sa_field_box_test_double2", "sa_field_box_test_float", "4.0"),
+
           // String test
           TestInput.createPassingTestPrefixVarName("sa_field_string1", "\"is great\""),
 
@@ -263,10 +264,8 @@ public class LegacySimpleAssignmentsTest {
           TestInput.createPassingTestPrefixVarName("sa_slot_short", Short.valueOf(Short.MAX_VALUE).toString()),
           TestInput.createPassingTestPrefixVarName("sa_slot_int", Integer.valueOf(Integer.MAX_VALUE).toString()),
           TestInput.createPassingTestPrefixVarName("sa_slot_long", Long.valueOf(Long.MAX_VALUE).toString() + "L", Long.valueOf(Long.MAX_VALUE).toString()),
-          // TODO - Bad parsing floats *E21 - in scientific format - exponents
-          // TestInput.createPassingTestPrefixVarName("sa_slot_float", Float.valueOf(Float.MAX_VALUE).toString() + "f", Float.valueOf(Float.MAX_VALUE).toString()),
-          // TestInput.createPassingTestPrefixVarName("sa_slot_double", Double.valueOf(Double.MAX_VALUE).toString(), Double.valueOf(Double.MAX_VALUE).toString()),
-          TestInput.createPassingTestPrefixVarName("sa_slot_double", "0.3"),
+          TestInput.createPassingTestPrefixVarName("sa_slot_float", Float.valueOf(Float.MAX_VALUE).toString() + "f", Float.valueOf(Float.MAX_VALUE).toString()),
+          TestInput.createPassingTestPrefixVarName("sa_slot_double", Double.valueOf(Double.MAX_VALUE).toString(), Double.valueOf(Double.MAX_VALUE).toString()),
           TestInput.createPassingTestPrefixVarName("sa_slot_Object", "\"Overcasting test\""),
 
           // Array assigning tests
@@ -281,30 +280,14 @@ public class LegacySimpleAssignmentsTest {
           TestInput.createPassingTestPrefixVarName("sa_array_int[1]", Integer.valueOf(Integer.MIN_VALUE).toString()),
           TestInput.createPassingTestPrefixVarName("sa_array_long[0]", Long.valueOf(Long.MAX_VALUE).toString() + "L", Long.valueOf(Long.MAX_VALUE).toString()),
           TestInput.createPassingTestPrefixVarName("sa_array_long[1]", Long.valueOf(Long.MIN_VALUE).toString() + "L", Long.valueOf(Long.MIN_VALUE).toString()),
-          // TODO - Bad parsing floats *E21 - in scientific format - exponents
-          // Float.NEGATIVE_INFINITY,
-          // Float.NEGATIVE_INFINITY,
-          // Float.NEGATIVE_INFINITY,
-          // Float.MIN_VALUE,
-          // (float) (-Math.PI),
-          // 0.0f,
-          // (float) (Math.PI),
-          // Float.MAX_VALUE,
-          // Float.POSITIVE_INFINITY,
-          // Float.POSITIVE_INFINITY,
-          // Float.POSITIVE_INFINITY,
-          // Float.NaN,
-          // Float.NaN };
 
-          // TODO - not parsing
-          // TestInput.createPassingTestPrefixVarName("sa_array_float[0]", "NaN"),
-          // TODO - no conversion
-          // TestInput.createPassingTestPrefixVarName("sa_array_float[1]", "not-a-number"),
-          // TestInput.createPassingTestPrefixVarName("sa_array_float[2]", "+inf"),
-          // TestInput.createPassingTestPrefixVarName("sa_array_float[3]", "positive_infinity"),
-          // TestInput.createPassingTestPrefixVarName("sa_array_float[4]", "pos_inf"),
-          // ...
-          // TestInput.createPassingTestPrefixVarName("sa_array_float[4]", "+inf"),
+
+          TestInput.createPassingTestPrefixVarName("sa_array_float[0]", "NaN"),
+
+          TestInput.createPassingTestPrefixVarName("sa_array_float[1]", "not-a-number", "NaN"),
+          TestInput.createPassingTestPrefixVarName("sa_array_float[2]", "+inf", "Infinity"),
+          TestInput.createPassingTestPrefixVarName("sa_array_float[3]", "positive_infinity", "Infinity"),
+          TestInput.createPassingTestPrefixVarName("sa_array_float[4]", "pos_inf", "Infinity"),
 
           TestInput.createPassingTestPrefixVarName("sa_array_double[0]", "NaN"),
           TestInput.createPassingTestPrefixVarName("sa_array_double[1]", "not-a-number", "NaN"),
@@ -313,13 +296,9 @@ public class LegacySimpleAssignmentsTest {
           TestInput.createPassingTestPrefixVarName("sa_array_double[3]", "positive_infinity", "Infinity"),
           TestInput.createPassingTestPrefixVarName("sa_array_double[4]", "pos_inf", "Infinity"),
 
-          // TestInput.createPassingTestPrefixVarName("sa_slot_float", Float.valueOf(Float.MAX_VALUE).toString() + "f", Float.valueOf(Float.MAX_VALUE).toString()),
-          // TestInput.createPassingTestPrefixVarName("sa_slot_double", Double.valueOf(Double.MAX_VALUE).toString(), Double.valueOf(Double.MAX_VALUE).toString()),
           TestInput.createPassingTestCopyVarValuePrefixBothVarNames("sa_array_Object", "sa_field_Map", "null"),
-          // TODO - Not parsing (F) in PathFinder
-          // TestInput.createPassingTestPrefixVarName("sa_array2_String_String[0][0]", "\"Great Java PathFinder\""),
-          // TestInput.createPassingTestPrefixVarName("sa_array_String[0][0]", "\"Great Java PathFinder\""),
-          TestInput.createPassingTestPrefixVarName("sa_array2_String_String[0][0]", "\"Alf\""),
+
+          TestInput.createPassingTestPrefixVarName("sa_array2_String_String[0][0]", "\"Great Java PathFinder\""),
           TestInput.createPassingTestPrefixVarName("sa_array2_String_String[0][1]", "\"\""),
           TestInput.createPassingTestPrefixVarName("sa_array2_String_String[1][0]", "null"),
 
