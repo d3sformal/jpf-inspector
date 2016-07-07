@@ -110,7 +110,6 @@ public class ExpressionBreakpointSingleStep extends ExpressionBooleanLeaf {
     if (!checkPath(vm, initialTransition)) {
       if (DEBUG) {
         inspector.getDebugPrintStream().println("We backtracked using forward stepping!");
-        // TODO ask mentor if it's legal to backtrack using forward stepping
       }
       return true;
     }
