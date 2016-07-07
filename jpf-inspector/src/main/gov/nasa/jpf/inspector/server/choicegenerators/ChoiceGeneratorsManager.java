@@ -108,7 +108,6 @@ public class ChoiceGeneratorsManager implements ChoiceGeneratorsInterface, Choic
       result.add(createCGWrapper(cg));
     }
 
-    // TODO it appears to me that we are forgotting to resume the VM here
     return result;
   }
 
@@ -252,7 +251,9 @@ public class ChoiceGeneratorsManager implements ChoiceGeneratorsInterface, Choic
 
     int hashCode = cg.hashCode();
 
-    // TODO Gather default choice if exists
+    // There was a to-do item here that said:
+    // "Gather default choice if exists"
+    // However, I have no idea what it means.
     serverCallbacks.notifyChoiceGeneratorNewChoice(cgType, cg.getId(), hashCode, choices, currentChoice, ChoiceGeneratorsInterface.NO_DEFAULT_CHOICE);
 
     if (askChoice) {

@@ -73,7 +73,7 @@ public class CallInstructionChecker extends JVMInstructionVisitorAdapter {
   public void visit(INVOKEVIRTUAL ins) {
     isCallInstr = true;
 
-    //TODO 
+    //TODO This could be quite important for backstepping. But what does this code all mean???
     //  There is no guaranty that it is really the method that has been called
     //  we silently suppose that in case of MJI methods no overloading take place (so that the instruction consistently calls the same method)
     //MethodInfo invokedMethod = ins.getInvokedMethod();

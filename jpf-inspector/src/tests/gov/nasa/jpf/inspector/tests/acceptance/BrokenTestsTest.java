@@ -29,7 +29,6 @@ public class BrokenTestsTest extends CorrectOutputAbstractTest {
   public static Iterable<?> data() {
     return Arrays.asList(
             getCase("broken", "everstop"),
-            // TODO this test case is fishy and should probably say something else...
             getCase("errors/missingmain", "fail")
             // We won't test infinitely running test cases because we don't have a good means of timeout.
     );
