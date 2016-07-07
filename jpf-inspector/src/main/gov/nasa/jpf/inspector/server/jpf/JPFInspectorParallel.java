@@ -69,8 +69,8 @@ public class JPFInspectorParallel extends JPFInspector {
   }
 
   @Override
-  public BreakpointStatus createBreakPoint (BreakpointCreationInformation newBP) throws JPFInspectorParsingErrorException, JPFInspectorGenericErrorException {
-    return breakpointHandler.createBreakPoint(newBP);
+  public BreakpointStatus createBreakpoint(BreakpointCreationInformation newBP) throws JPFInspectorParsingErrorException, JPFInspectorGenericErrorException {
+    return breakpointHandler.createBreakpoint(newBP);
   }
 
   @Override
@@ -115,8 +115,8 @@ public class JPFInspectorParallel extends JPFInspector {
   }
 
   @Override
-  public List<ChoiceGeneratorWrapper> getUsedChoiceGenerators (boolean wait) throws JPFInspectorException {
-    return choiceGeneratorsManager.getUsedChoiceGenerators(wait);
+  public List<ChoiceGeneratorWrapper> getUsedChoiceGenerators() throws JPFInspectorException {
+    return choiceGeneratorsManager.getUsedChoiceGenerators();
   }
 
   @Override

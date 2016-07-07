@@ -39,7 +39,8 @@ public class CmdFinish extends ClientCommand {
     final VerifyCommand vc = vcList.get(0);
     while (vc.isVerifying()) {
       try {
-        // TODO use verify command listener instead of active waiting
+        // Yes, this is active waiting, but it allows us not to modify jpf-shell;
+        // AND it won't execute more than once anyway because we are already stopped and will terminate very soon.
         Thread.sleep(100);
       } catch (InterruptedException e) {
         Thread.currentThread().interrupt();

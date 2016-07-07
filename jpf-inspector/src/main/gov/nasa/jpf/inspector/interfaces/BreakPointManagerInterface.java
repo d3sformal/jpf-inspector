@@ -38,7 +38,7 @@ public interface BreakPointManagerInterface {
    * @param newBP Structure with new information about new BP.
    * @return Get informations about state of the created/modified breakpoint or null if error takes place.
    */
-  BreakpointStatus createBreakPoint(BreakpointCreationInformation newBP) throws JPFInspectorParsingErrorException, JPFInspectorGenericErrorException;
+  BreakpointStatus createBreakpoint(BreakpointCreationInformation newBP) throws JPFInspectorParsingErrorException, JPFInspectorGenericErrorException;
 
   /**
    * Creates new assertion (if breakpoint ID is set {@link BreakpointCreationInformation#BP_ID_NOT_DEFINED} or modifies existing assertion ( with same ID)

@@ -154,9 +154,7 @@ public interface ChoiceGeneratorsInterface {
   void selectChoice(int selectedChoice) throws JPFInspectorException;
 
   /**
-   * @param wait Specify behavior if the SuT is running when the command is invoked. If false error is reported, if try to stop the SuT is get result and resume
-   *        the SuT
    */
-  List<ChoiceGeneratorWrapper> getUsedChoiceGenerators(boolean wait) throws JPFInspectorException;
+  List<ChoiceGeneratorWrapper> getUsedChoiceGenerators() throws JPFInspectorException;
 
 }

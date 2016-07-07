@@ -146,7 +146,7 @@ public class CommandsManager implements CommandsInterface {
 
   @Override
   public void backstepTransition(StepType transitionKind, int count) throws JPFInspectorGenericErrorException {
-    initialStopTest(true, "cannot execute backward step");
+    stopHolder.waitUntilStopped();
     InspectorState inspState = stopHolder.getInspectorState();
     BackwardBreakpointCreator backwardBreakpointCreator = BackwardBreakpointCreator.getBackwardStepTransition(inspState,
                                                                                                               transitionKind,
@@ -157,7 +157,7 @@ public class CommandsManager implements CommandsInterface {
 
   @Override
   public void backstep(StepType type) throws JPFInspectorGenericErrorException {
-    initialStopTest(true, "cannot execute backward step");
+    stopHolder.waitUntilStopped();
 
     // Instantiate the creator and discover the instruction to backtrack to
     InspectorState inspState = stopHolder.getInspectorState();
@@ -266,7 +266,7 @@ public class CommandsManager implements CommandsInterface {
 
   @Override
   public void forwardStep (StepType type) throws JPFInspectorGenericErrorException {
-    initialStopTest(true, "cannot execute forward step");
+    stopHolder.waitUntilStopped();
 
     BreakpointCreationExpression newBP = new BreakpointCreationExpression();
     newBP.setBounds(null, null, "<=", 1);
@@ -316,24 +316,4 @@ public class CommandsManager implements CommandsInterface {
       serverCallbacks.genericError("Backward step failed (" + reason + ")");
     }
   }
-
-  /**
-   * Tests if any JPF is associated. Test if the JPF is running or stopped. If JPF runs then it tries to stop or report error.running
-   */
-  public void initialStopTest (boolean wait, String msg) throws JPFInspectorGenericErrorException {
-    if (inspector.getJPF() == null) {
-      throw new JPFInspectorGenericErrorException("No JPF instance to observe");
-    }
-    boolean wasStopped = stopHolder.isStopped();
-    if (!wasStopped) {
-      if (!wait) {
-        throw new JPFInspectorGenericErrorException("SuT is running - " + msg);
-      } else {
-        run = false;
-        stopHolder.waitUntilStopped();
-      }
-    }
-  }
-
-
 }

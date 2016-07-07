@@ -132,7 +132,7 @@ public class BreakpointHandler implements BreakPointManagerInterface {
    * @return Get informations about state of the created/modified breakpoint or null if error takes place.
    */
   @Override
-  public BreakpointStatus createBreakPoint (BreakpointCreationInformation newBP) throws JPFInspectorParsingErrorException, JPFInspectorGenericErrorException {
+  public BreakpointStatus createBreakpoint(BreakpointCreationInformation newBP) throws JPFInspectorParsingErrorException, JPFInspectorGenericErrorException {
 
     ExpressionBooleanInterface newBPExpression = expParser.getBreakpointExpression(newBP.getBPExpression());
 

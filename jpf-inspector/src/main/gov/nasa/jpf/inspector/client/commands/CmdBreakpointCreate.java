@@ -45,7 +45,7 @@ public class CmdBreakpointCreate extends ClientCommand {
   public void execute(JPFInspectorClient client, JPFInspectorBackEndInterface inspector, PrintStream outStream) {
     createdBP = null;
     try {
-      createdBP = inspector.createBreakPoint(creationExpression);
+      createdBP = inspector.createBreakpoint(creationExpression);
       if (createdBP != null) {
         outStream.println("New breakpoint successfully created with ID " + createdBP.getBPID() + ".");
       }

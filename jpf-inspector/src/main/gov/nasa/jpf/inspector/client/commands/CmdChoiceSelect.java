@@ -72,4 +72,8 @@ public class CmdChoiceSelect extends ClientCommand {
     return "choice_generators select " + choice;
   }
 
+  @Override
+  public boolean isSafeToExecuteWhenNotPaused() {
+    return false;
+  }
 }

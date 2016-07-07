@@ -113,7 +113,9 @@ public class DefaultForwardTraceManager {
           }
         }
       } else {
-        // TODO - ThreadInfo - pres ThreadCreate - not working - new instances + TI does not have equals
+        // Previously, there was a to-do item here that stated this:
+        // "ThreadInfo - pres ThreadCreate - not working - new instances + TI does not have equals"
+        // However, I have no idea what it means.
         if (selectedChoice.equals(cgOrigSelectedChoice)) {
           return cg.getProcessedNumberOfChoices();
         }
