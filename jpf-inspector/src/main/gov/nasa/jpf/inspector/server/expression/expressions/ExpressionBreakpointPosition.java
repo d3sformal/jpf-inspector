@@ -22,25 +22,25 @@ import gov.nasa.jpf.inspector.server.expression.ExpressionBooleanLeaf;
 import gov.nasa.jpf.inspector.server.expression.InspectorState;
 import gov.nasa.jpf.inspector.server.expression.InspectorState.ListenerMethod;
 import gov.nasa.jpf.inspector.server.jpf.JPFInspector;
-import gov.nasa.jpf.vm.VM;
 import gov.nasa.jpf.vm.Instruction;
-import gov.nasa.jpf.jvm.bytecode.JSR;
-import gov.nasa.jpf.jvm.bytecode.JSR_W;
-import gov.nasa.jpf.jvm.bytecode.RET;
-import gov.nasa.jpf.vm.bytecode.ReturnInstruction;
+import gov.nasa.jpf.vm.VM;
 
 /**
- * Represent expression (Breakpoint) that stops on given position in the program.
+ * Represents the "position = [filename]:[linenumber]" hit condition that hits just before the first instruction on the specified line.
  */
-
-// TODO the NEW instruction can stand in place of the call instruction (calls the constructor!!)
-// problem is connected with the DirectCalls (cinits) and reexecution of the same instruction !!
+// Previously, there were these to-do items:
+// "the NEW instruction can stand in place of the call instruction (calls the constructor)"
+// "problem is connected with the DirectCalls (cinits) and reexecution of the same instruction"
+// However, I am pretty sure they are no longer relevant.
 public class ExpressionBreakpointPosition extends ExpressionBooleanLeaf {
   private static final boolean DEBUG = false;
   @SuppressWarnings("FieldCanBeLocal") // IDEA bug
   private final JPFInspector inspector;
 
-  private final InstructionPosition instPos;
+  /**
+   * The file and line we are interested in.
+   */
+  private final InstructionPosition targetLocation;
 
   public ExpressionBreakpointPosition (JPFInspector inspector, InstructionPosition pos) {
     assert pos != null;
@@ -52,7 +52,7 @@ public class ExpressionBreakpointPosition extends ExpressionBooleanLeaf {
           ExpressionBreakpointPosition.class.getSimpleName() + "." + ExpressionBreakpointPosition.class.getSimpleName() + "(pos=" + pos + ")");
     }
 
-    this.instPos = pos;
+    this.targetLocation = pos;
   }
 
   @Override
@@ -68,91 +68,33 @@ public class ExpressionBreakpointPosition extends ExpressionBooleanLeaf {
     VM vm = state.getVM();
     assert vm != null;
 
-    int thisThread = vm.getCurrentThread().getId();
-
-    /*
-    // TODO this is NOT recommended by the Javadoc or jpf-core. What to do about it?
-    final Path path = vm.getPath();
-    */
     final Instruction thisInstruction = vm.getInstruction();
 
-
     // This represents whether we are the same file and line, but we still need to ensure that we are the FIRST
-    // instruction on this line. However, a line may contain multiple functions or classes even!, and may contain
-    // even multiple lines! (because file can be given as a wildcard).
-    final boolean lastInstrHitPos = instPos.hitPosition(thisInstruction);
-    if (lastInstrHitPos == false) {
+    // instruction on this line. By "first instruction", we mean "the first instruction on this line in the current method".
+    if (!targetLocation.hitPosition(thisInstruction)) {
       return false;
     }
 
-    if (DEBUG) {
-      inspector.getDebugPrintStream().println("\tlasInstr=" + instructionPosition(thisInstruction) + "\n\tlastInstrHitPos=" + lastInstrHitPos);
-    }
-
-    Instruction prevInstr = state.getLastExecutedInstruction(thisThread);
-    //Instruction prevInstr = getInstructionForThread(vm.getSystemState().getTrail(), path, thisThread, 1);
-    if (DEBUG) {
-      inspector.getDebugPrintStream().println("\tprevInstr=" + instructionPosition(prevInstr));
-    }
-
-
-    prevInstr = getPrevInstructionInSameMethod(prevInstr, thisInstruction);
-    final boolean prevInstrHitPos = instPos.hitPosition(prevInstr);
-    if (DEBUG) {
-      inspector.getDebugPrintStream().println("\tprevInstr=" + instructionPosition(prevInstr) + "\n\tprevInstrHitPos=" + prevInstrHitPos);
-    }
-    return !prevInstrHitPos;
-    // This ensures that we hit only if we are on the source line but the previous instruction
-    // is NOT on the source line.
+    int targetLine = targetLocation.getLineNumber();
+    Instruction firstInstructionOnThisLine = thisInstruction.getMethodInfo().getInstructionsForLine(targetLine)[0];
+    return thisInstruction.equals(firstInstructionOnThisLine);
   }
 
   @Override
   public String getDetails (InspectorState state) {
     if (state != null && evaluateExpression(state)) {
-      return "SuT will now execute \"" + state.getVM().getInstruction().toString() + "\" at position " + instPos.toString() + ".";
+      return "SuT will now execute \"" + state.getVM().getInstruction().toString() + "\" at position " + targetLocation.toString() + ".";
     }
     return "";
-  }
-
-  /**
-   * @param prevInstr
-   *        Instruction executed (by the same thread) immediately before the last instruction.
-   * @param lastInstr
-   *        Last execute instruction
-   * @return prevInstruction to executed in the same method as the lastInstr.
-   * 
-   *         Note: Method requires that the lastInstruction is executed directly after the prevInstr (in one thread)
-   */
-  private static Instruction getPrevInstructionInSameMethod(Instruction prevInstr, Instruction lastInstr) {
-    // Handle special cases Calls and JSR
-    if (prevInstr instanceof ReturnInstruction) {
-      // We should ignore instructions in called method, we focus on previous instruction in current method
-      prevInstr = lastInstr.getPrev();
-      // TODO ... problem with direct calls !!!
-      // assert prevInstr instanceof InvokeInstruction;
-    }
-
-    if (prevInstr instanceof RET) {
-      // We should ignore instructions in called subrutine, we focus on previous instruction in current method
-      prevInstr = lastInstr.getPrev();
-      assert (prevInstr instanceof JSR) || (prevInstr instanceof JSR_W);
-    }
-    return prevInstr;
-  }
-
-  public static String instructionPosition (Instruction inst) {
-    if (inst == null) {
-      return "(null)";
-    }
-    return inst.getMethodInfo().getSourceFileName() + ":" + inst.getLineNumber() + "(method=" + inst.getMethodInfo().getName() + ") - " + inst.toString();
   }
 
   @Override
   public String getNormalizedExpression () {
     String string = "position=" +
-            instPos.getFileName() +
+            targetLocation.getFileName() +
             ':' +
-            instPos.getLineNumber();
+            targetLocation.getLineNumber();
     return string;
   }
 

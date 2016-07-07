@@ -120,12 +120,7 @@ public class ExpressionBreakpointSingleStep extends ExpressionBooleanLeaf {
     // Whether we are at the same line as we were when the stepping started.
     final boolean weAreStillOnTheSameLine = initialPosition.hitPosition(impendingInstruction);
 
-    if (DEBUG) {
-      inspector.getDebugPrintStream().println(
-          "\tlasInstr=" + ExpressionBreakpointPosition.instructionPosition(impendingInstruction) + "\n\tlastInstrHitPos=" + weAreStillOnTheSameLine);
-    }
-
-    // The instruction that was last executed by this thread, if any.
+     // The instruction that was last executed by this thread, if any.
     Instruction prevInstr = state.getLastExecutedInstruction(currentThreadNumber);
 
     if (steppingKind == LocationTypes.LT_POSITION_LEAVED_STEP_OVER) {
