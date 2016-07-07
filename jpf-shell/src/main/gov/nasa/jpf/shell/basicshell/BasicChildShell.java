@@ -35,9 +35,7 @@ public class BasicChildShell extends BasicShell{
   public BasicChildShell(BasicShell masterShell) {
     super("JPF Child Shell");
     this.masterShell = masterShell;
-    System.out.println("Creating child shell with master " + this.masterShell.getClass().getName());
-    System.out.println("Tabbed pane is: " + this.getTabPane().getShell().getClass().getName());
-    this.addWindowListener(new WindowAdapter() {
+     this.addWindowListener(new WindowAdapter() {
       @Override
       public void windowClosed(WindowEvent e) {
         List<ShellPanel> panels = getPanels();

@@ -478,8 +478,6 @@ public class BasicShell extends Shell {
    */
   @Override
   public void removeShellPanel(final ShellPanel panel) {
-    System.out.println("Removing panel " + panel.getTitle()+ " from " + this.getClass().getName());
-    System.out.println("Panel count is: " + getPanels().size());
 
     int index = tabbedPane.indexOfComponent(panel);
     if (index > -1) {
