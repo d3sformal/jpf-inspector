@@ -229,7 +229,6 @@ public class JPFClientCallbackHandler implements InspectorCallbacks {
     if (showHintCgSelect) {
       showHintCgSelect = false;
       userText += "\n\tHint: Use the command 'cg select CHOICE_INDEX'.";
-      // TODO create command which will print list of possible choices
     }
     out.println(userText);
     lastCallback = CallbackKind.CB_CG_CHOICE_TO_USE;

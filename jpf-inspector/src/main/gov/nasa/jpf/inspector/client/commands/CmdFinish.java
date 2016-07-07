@@ -31,7 +31,6 @@ import java.util.List;
 public class CmdFinish extends ClientCommand {
   @Override
   public void execute(JPFInspectorClient client, JPFInspectorBackEndInterface inspector, PrintStream outStream) {
-    // TODO use verify command listener instead of active waiting
 
     inspector.waitUntilStopped();
     inspector.getServerCallbacks().waitUntilCallbackQueueIsEmpty();
@@ -40,6 +39,7 @@ public class CmdFinish extends ClientCommand {
     final VerifyCommand vc = vcList.get(0);
     while (vc.isVerifying()) {
       try {
+        // TODO use verify command listener instead of active waiting
         Thread.sleep(100);
       } catch (InterruptedException e) {
         Thread.currentThread().interrupt();

@@ -76,7 +76,6 @@ public class JPFInspectorClient implements JPFInspectorClientInterface {
     CommandParserInterface parser = CommandParserFactory.getRecordCommandParser();
     ClientCommandInterface cmd = parseCommand(cmdStr, parser, ExecutionContext.FROM_SWING_TERMINAL);
     executeCommand(cmd, ExecutionContext.FROM_SWING_TERMINAL);
-    // TODO possible refactoring: ExecutionContext can be an InspectorClient field, it is set only once anyway.
   }
 
   private ClientCommandInterface parseCommand(String cmdStr, CommandParserInterface parser, ExecutionContext context) {

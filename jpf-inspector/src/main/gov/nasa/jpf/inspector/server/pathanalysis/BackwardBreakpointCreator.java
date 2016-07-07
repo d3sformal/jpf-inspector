@@ -410,7 +410,6 @@ public final class BackwardBreakpointCreator {
       if (possibleTargetTransition.getStepCount() <= 0) {
         // This usually means that it's the CURRENT transition, i.e. we are just before the bottom half of the instruction
         // that caused this transition. In that case, we backtrack.
-        // TODO update this in specification
         continue;
       }
       Instruction firstInstruction = possibleTargetTransition.getStep(0).getInstruction();
