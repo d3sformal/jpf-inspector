@@ -180,6 +180,7 @@ public class CommandsManager implements CommandsInterface {
               "Backwards step not possible (there is no appropriate step left for this thread to backtrack to).");
     }
 
+
     createBackwardsBreakpointAndResumeExecution(inspState, bbc);
 
   }
@@ -197,6 +198,7 @@ public class CommandsManager implements CommandsInterface {
    */
   private void createBackwardsBreakpointAndResumeExecution(InspectorState inspState, BackwardBreakpointCreator bbc) throws JPFInspectorGenericErrorException {
     assert bbc != null;
+
     // Create the breakpoint on that specific instruction
     int bpID = bbc.createBreakpoint(breakpointHandler);
     BreakpointStatus breakpointStatus = breakpointHandler.getBreakpoint(bpID);

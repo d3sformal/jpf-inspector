@@ -23,11 +23,13 @@ import gov.nasa.jpf.inspector.server.expression.InspectorState;
 import gov.nasa.jpf.inspector.server.expression.InspectorState.ListenerMethod;
 import gov.nasa.jpf.inspector.server.jpf.JPFInspector;
 import gov.nasa.jpf.inspector.server.jpf.StopHolder;
+import gov.nasa.jpf.inspector.utils.Debugging;
 import gov.nasa.jpf.inspector.utils.expressions.ClassName;
 import gov.nasa.jpf.inspector.utils.expressions.MethodName;
 import gov.nasa.jpf.vm.*;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 /**
  * Represents the undocumented "specific_instruction" hit condition that hits when the specific instruction is about to be executed.
@@ -45,7 +47,7 @@ import java.util.ArrayList;
  * no optimization is permitted because we must count all the instructions we want to skip.
  */
 public class ExpressionBreakpointInstruction extends ExpressionBooleanLeaf {
-  private static final boolean DEBUG = false;
+  private static final boolean DEBUG = true;
 
   /**
    * We are only interested in the actions of this thread.
@@ -79,7 +81,7 @@ public class ExpressionBreakpointInstruction extends ExpressionBooleanLeaf {
    */
   public ExpressionBreakpointInstruction (int threadNum, Instruction instruction, int hitCount) {
     if (DEBUG) {
-      System.out.println(this.getClass().getSimpleName() + "." + this.getClass().getSimpleName() + "( threadNum=" + threadNum + ", instruction=" + instruction + "("
+      Debugging.getLogger().info(this.getClass().getSimpleName() + "(threadNum=" + threadNum + ", instruction=" + instruction + "("
           + (instruction != null ? instruction.getFilePos() : "?") + "), hitCount=" + hitCount + ")");
     }
     assert instruction != null;
@@ -100,6 +102,11 @@ public class ExpressionBreakpointInstruction extends ExpressionBooleanLeaf {
       assert ti.getId() == threadNum;
       if (ti.getId() == threadNum) {
         Instruction executedInstr = vm.getInstruction();
+        Debugging.getLogger().info("Backtracking: Forward stepping: Testing against the same thread (" + executedInstr.getMnemonic() + "," + executedInstr.getFileLocation() + ")");
+        if (Objects.equals(vm.getInstruction().getMnemonic(), "directcallreturn") &&
+                Objects.equals(vm.getInstruction().getFileLocation(), "java/lang/System.java:1")) {
+          Debugging.getLogger().warning("AFJGNFMSDGSFDGS");
+        }
         if (instruction.equals(executedInstr)) {
           count++;
           return count == hitCount;

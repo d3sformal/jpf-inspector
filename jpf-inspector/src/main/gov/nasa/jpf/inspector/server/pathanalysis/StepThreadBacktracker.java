@@ -68,19 +68,19 @@ class StepThreadBacktracker {
    * @return The step we backstepped to, or null if the backstep failed.
    */
   public Step backstep() {
-    Debugging.getLogger().info("Backtracking: Backstep: Commencing.");
+    Debugging.getLogger().info("Determining target instruction: Backstep: Commencing.");
     // If we are the start of a transition, and before we begin, we must request a new transition.
     if (currentTransitionStepIndex <= 0) {
       if (!requestPreviousTransition()) {
         return null;
       }
-      Debugging.getLogger().info("Backtracking: Backstep: Transition successfully requested. It has " + currentTransitionSteps.length + " steps.");
+      Debugging.getLogger().info("Determining target instruction: Backstep: Transition successfully requested. It has " + currentTransitionSteps.length + " steps.");
     }
     assert (currentTransitionStepIndex > 0); // Single instruction transition with bottom half of executed instruction??
 
     // Perform the backstep now.
     currentTransitionStepIndex--;
-    Debugging.getLogger().info("Backtracking: Backstepped into " + currentTransitionSteps[currentTransitionStepIndex].getInstruction() +" at line " + currentTransitionSteps[currentTransitionStepIndex].getLineString() + ".");
+    Debugging.getLogger().info("Determining target instruction: Backstepped into " + currentTransitionSteps[currentTransitionStepIndex].getInstruction() +" at line " + currentTransitionSteps[currentTransitionStepIndex].getLineString() + ".");
     return currentTransitionSteps[currentTransitionStepIndex];
   }
 

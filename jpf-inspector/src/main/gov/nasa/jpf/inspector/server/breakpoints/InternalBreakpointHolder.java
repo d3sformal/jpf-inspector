@@ -196,10 +196,11 @@ public class InternalBreakpointHolder implements Comparable<InternalBreakpointHo
       if (log.isLoggable(Level.FINE)) {
         log.fine("Now checking within class: " + topFrameMethodInfo.getClassName());
       }
-      if (InspectorConfiguration.getInstance().isClassIgnored(topFrameMethodInfo.getClassName())) {
+      if (this.userBP && InspectorConfiguration.getInstance().isClassIgnored(topFrameMethodInfo.getClassName())) {
         bpHitted = false;
       }
     }
+
 
     if (bpHitted) {
       bpHitCounter++;

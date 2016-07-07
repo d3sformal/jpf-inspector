@@ -35,7 +35,7 @@ import gov.nasa.jpf.search.Search;
  * when the breakpoint created by the backwards step is hit.
  */
 public class InspectorListenerModeSilent extends ListenerAdapter {
-  private static final boolean DEBUG = false;
+  private static final boolean DEBUG = true;
 
   @SuppressWarnings("FieldCanBeLocal") // IDEA bug
   private final JPFInspector inspector;
@@ -81,6 +81,9 @@ public class InspectorListenerModeSilent extends ListenerAdapter {
   }
 
 
+  /**
+   * Do NOT set this directly. Use {@link #setState(InternalState)} instead.
+   */
   private InternalState state = InternalState.WAIT_FOR_FIRST_INSTRUCTION_EXECUTED;
 
   /**
@@ -92,7 +95,7 @@ public class InspectorListenerModeSilent extends ListenerAdapter {
    */
   private void setState(InternalState newState) {
     if (DEBUG) {
-      inspector.getDebugPrintStream().println(state + " --> " + newState);
+      inspector.getDebugPrintStream().println("Backtracking: " + state + " --> " + newState);
     }
     state = newState;
   }
@@ -127,16 +130,17 @@ public class InspectorListenerModeSilent extends ListenerAdapter {
   @Override
   public void stateAdvanced (Search search) {
     if (DEBUG) {
-      inspector.getDebugPrintStream().println(this.getClass().getSimpleName() + ".stateAdvanced()");
+      inspector.getDebugPrintStream().println("Backtracking: State advanced. Extending forward trace.");
     }
-    if (state != InternalState.TRANSITION_END && state != InternalState.FORWARD_STEPS) {
-      // TODO Comparing to FORWARD_STEPS definitely should not be here.
-      // I just have no idea why stateAdvanced is called. It seems to happen when we move far enough
-      // near the root CG or something?
-      // Who knows. I'll need to find out.
+    if (state == InternalState.FORWARD_STEPS) {
+      reportError("The target instruction was not found in the target transition. Perhaps the backtracker did not make the right choice at the choice generator or something not part of a state changed the course of the transition. THE SYSTEM IS NOW IN AN INCONSISTENT STATE. Please execute 'terminate' or restart the Inspector.");
+      return;
+    }
+    if (state != InternalState.TRANSITION_END) {
       reportError("State can only be advanced in the first phase of the backstepping.");
       return;
     }
+
     setState(InternalState.BACKTRACKING);
     inspectorState.stateChanged(search, ListenerMethod.LM_STATE_ADVANCED);
     defaultForwardTraceManager.extendTrace(search.getTransition());
@@ -146,7 +150,7 @@ public class InspectorListenerModeSilent extends ListenerAdapter {
   @Override
   public void stateProcessed (Search search) {
     if (DEBUG) {
-      inspector.getDebugPrintStream().println(this.getClass().getSimpleName() + ".stateProcessed()");
+      inspector.getDebugPrintStream().println("Backtracking: State processed. Nothing will be done except moving to BACKTRACKING.");
     }
     if (state != InternalState.STATE_PROCESSED && // Multiple transition backtracking
         state != InternalState.TRANSITION_END) { // Initial CB -> state processed
@@ -160,7 +164,7 @@ public class InspectorListenerModeSilent extends ListenerAdapter {
   @Override
   public void stateBacktracked (Search search) {
     if (DEBUG) {
-      inspector.getDebugPrintStream().println(this.getClass().getSimpleName() + ".stateBacktracked()");
+      inspector.getDebugPrintStream().println("Backtracking: State backtracked.");
     }
     if (state != InternalState.BACKTRACKING && state != InternalState.TRANSITION_END) {
       // Initial CB is backtracked (advance or processed has been called before in forward stepping)
@@ -212,7 +216,6 @@ public class InspectorListenerModeSilent extends ListenerAdapter {
         cg.advance(cg.getTotalNumberOfChoices() - cg.getProcessedNumberOfChoices());
         cg = cg.getCascadedParent();
       }
-      Debugging.getLogger().info("CG: " + cg.getTotalNumberOfChoices());
       // CG undo last choice
       int processedChoices = cg.getProcessedNumberOfChoices();
       assert (processedChoices > 0) : "There are no processed choices.";

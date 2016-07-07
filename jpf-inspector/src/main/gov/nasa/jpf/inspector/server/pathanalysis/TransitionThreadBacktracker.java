@@ -75,14 +75,14 @@ class TransitionThreadBacktracker {
    * @return The transition that was backtracked to, or null if the backtracking faileed because no such transition exists.
    */
   public Transition backtrackToPreviousTransition() {
-    Debugging.getLogger().info("Backtracking: Transition backtracking commences.");
+    Debugging.getLogger().info("Determining target instruction: Transition backtracking commences.");
 
     // Iterate until we find a transition executed by the thread we are interested in.
     while (reversePathIterator.hasNext()) {
 
       // Update current state
       currentTransition = reversePathIterator.next();
-      Debugging.getLogger().info("Backtracking: Backtracked to transition labeled '" + currentTransition.getLabel() + "'");
+      Debugging.getLogger().info("Determining target instruction: Backtracked to transition labeled '" + currentTransition.getLabel() + "'");
       backsteppedTransitions++;
 
       if (currentTransition.getThreadIndex() == threadId) {

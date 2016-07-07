@@ -178,7 +178,7 @@ public final class BackwardBreakpointCreator {
 
     Instruction currentInstruction = inspectorState.getVM().getInstruction();
     InstructionPosition currentLocation = InstructionPositionImpl.getInstructionPosition(currentInstruction);
-    Debugging.getLogger().info("Backtracking: back_step_over first step: " + currentInstruction + " at line " + currentLocation.getLineNumber());
+    Debugging.getLogger().info("Determining target instruction: back_step_over first step: " + currentInstruction + " at line " + currentLocation.getLineNumber());
 
     // First step back.
     Step step = methodInstructionBacktracker.backtrackToPreviousStepInMethod();
