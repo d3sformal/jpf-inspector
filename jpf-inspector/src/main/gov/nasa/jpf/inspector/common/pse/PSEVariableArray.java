@@ -41,8 +41,8 @@ public class PSEVariableArray extends PSEVariable {
    */
   public PSEVariableArray(String varName, String varTypeName,
                           String varValue,
-                          int index, int length, PSEVariable[] refArrayItems) {
-    super(varName, varTypeName, varValue, index);
+                          int index, int length, PSEVariable[] refArrayItems, String attributes) {
+    super(varName, varTypeName, varValue, index, attributes);
 
     this.length = length;
     this.refArrayItems = refArrayItems;

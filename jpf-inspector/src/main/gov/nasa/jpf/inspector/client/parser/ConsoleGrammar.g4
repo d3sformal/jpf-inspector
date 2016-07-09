@@ -1,21 +1,20 @@
 //
-// Copyright (C) 2010 United States Government as represented by the
-// Administrator of the National Aeronautics and Space Administration
-// (NASA).  All Rights Reserved.
-// 
-// This software is distributed under the NASA Open Source Agreement
-// (NOSA), version 1.3.  The NOSA has been approved by the Open Source
-// Initiative.  See the file NOSA-1.3-JPF at the top of the distribution
-// directory tree for the complete NOSA document.
-// 
-// THE SUBJECT SOFTWARE IS PROVIDED "AS IS" WITHOUT ANY WARRANTY OF ANY
-// KIND, EITHER EXPRESSED, IMPLIED, OR STATUTORY, INCLUDING, BUT NOT
-// LIMITED TO, ANY WARRANTY THAT THE SUBJECT SOFTWARE WILL CONFORM TO
-// SPECIFICATIONS, ANY IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR
-// A PARTICULAR PURPOSE, OR FREEDOM FROM INFRINGEMENT, ANY WARRANTY THAT
-// THE SUBJECT SOFTWARE WILL BE ERROR FREE, OR ANY WARRANTY THAT
-// DOCUMENTATION, IF PROVIDED, WILL CONFORM TO THE SUBJECT SOFTWARE.
-//  
+// Copyright (C) 2010-2011 Pavel Jančík
+// Copyright (C) 2016 Petr Hudeček
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+//  Unless required by applicable law or agreed to in writing, software
+//  distributed under the License is distributed on an "AS IS" BASIS,
+//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//  See the License for the specific language governing permissions and
+//  limitations under the License.
+//
+
 grammar ConsoleGrammar;
 options {
     language=Java;
@@ -111,6 +110,8 @@ allKeyWordsWithoutCreateBPandHitCount returns [String text]
     | a=TOKEN_TERMINATE { $text = $a.text; }
     | a=TOKEN_BOTH { $text = $a.text; }
     | a=TOKEN_CHANGE { $text = $a.text; }
+    | a=TOKEN_SET_ATTR { $text = $a.text; }
+    | a=TOKEN_PRINT_ATTR { $text = $a.text; }
     ;
 
 // Can parse all Client commands as well as text representation of Callbacks - used for Record&Replay approach
@@ -143,11 +144,13 @@ cmdExecution returns [ClientCommand value]
   | TOKEN_TERMINATE   { $value = new CmdTerminate(); }
   | TOKEN_WAIT   { $value = new CmdWait(); }
   | TOKEN_FINISH   { $value = new CmdFinish(); }
-  | TOKEN_SET        WS? allText      { $value = new CmdSet($allText.text); }
+  | TOKEN_SET        WS? allText     { $value = new CmdSet($allText.text); }
+  | TOKEN_SET_ATTR   WS? allText     { $value = new CmdSetAttr($allText.text); }
   ;
 cmdInformational returns [ClientCommand value]
   : TOKEN_THREAD    (WS? intValue)?   { $value = new CmdStatusThreads($intValue.ctx != null ? $intValue.value : null); }
   | TOKEN_PRINT     (WS? allText)?    { $value = new CmdPrint($allText.text != null ? $allText.text : ""); }
+  | TOKEN_PRINT_ATTR (WS? allText)?   { $value = new CmdPrintAttr($allText.text != null ? $allText.text : ""); }
   | TOKEN_THREAD_PC (WS? intValue)?   { $value = new CmdThreadsPC($intValue.ctx != null ? $intValue.value : null); }
   | TOKEN_HELLO  { $value = new CmdHello(); }
   | TOKEN_HELP   { $value = new CmdHelp(); }
@@ -378,12 +381,14 @@ TOKEN_HIT_COUNT : 'hit_count' | 'hc' ;
 TOKEN_LOG : 'log' ;
 TOKEN_NAME : 'name' ;
 TOKEN_PRINT : 'print' ;
+TOKEN_PRINT_ATTR : 'print_attr';
 TOKEN_RECORD : 'record' | 'rec' ;
 TOKEN_RUN : 'run' ;
 TOKEN_RUNNING : 'running' ;
 TOKEN_SAVE : 'save' ;
 TOKEN_SELECT : 'select' | 'sel' ;
 TOKEN_SET : 'set' ;
+TOKEN_SET_ATTR : 'set_attr' | 'seta';
 TOKEN_SCHEDULING : 'scheduling' | 'sched' ;
 TOKEN_SHOW : 'show' | 'sw' ;
 TOKEN_STARTED : 'started' ;

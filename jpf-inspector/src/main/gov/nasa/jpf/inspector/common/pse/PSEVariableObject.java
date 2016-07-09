@@ -40,8 +40,8 @@ public class PSEVariableObject extends PSEVariable {
 
   public PSEVariableObject(String varName,
                            String varTypeName, String varValue,
-                           int index, PSEVariable[] refFields, PSEVariable[] refStaticFields) {
-    super(varName, varTypeName, varValue, index);
+                           int index, PSEVariable[] refFields, PSEVariable[] refStaticFields, String attributes) {
+    super(varName, varTypeName, varValue, index, attributes);
 
     this.refFields = refFields;
     this.refStaticFields = refStaticFields;

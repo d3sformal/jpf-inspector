@@ -163,4 +163,9 @@ public class JPFInspectorParallel extends JPFInspector {
   public void setValue (String expr) throws JPFInspectorException {
     stateManager.setValue(expr);
   }
+
+  @Override
+  public void setAttributeValue(String expression) throws JPFInspectorException {
+    attributesManager.setAttributeValue(expression);
+  }
 }

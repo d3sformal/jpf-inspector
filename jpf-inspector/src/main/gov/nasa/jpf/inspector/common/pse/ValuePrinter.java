@@ -18,6 +18,7 @@ package gov.nasa.jpf.inspector.common.pse;
 
 import gov.nasa.jpf.inspector.client.commands.CmdPrint;
 import gov.nasa.jpf.inspector.utils.InstructionWrapper;
+import gov.nasa.jpf.listener.VarTracker;
 
 import java.util.Objects;
 
@@ -50,7 +51,7 @@ public class ValuePrinter implements PSEVisitor<StringBuilder> {
     sb.append(" (");
     sb.append(var.getVarTypeName());
     sb.append(") = ");
-    String varValue = var.getVarValue();
+    String varValue = getValueToBeDisplayed(var);
     if (varValue.length() > MAX_LEN) {
       varValue = varValue.substring(0, MAX_LEN - 3) + "...";
     }
@@ -134,7 +135,7 @@ public class ValuePrinter implements PSEVisitor<StringBuilder> {
     sb.append(" (");
     sb.append(var.getVarTypeName());
     sb.append(") =");
-    String varValue = var.getVarValue();
+    String varValue = getValueToBeDisplayed(var);
     if (varValue != null) {
       if (varValue.length() > MAX_LEN) {
         varValue = varValue.substring(0, MAX_LEN - 3) + "...";
@@ -159,7 +160,7 @@ public class ValuePrinter implements PSEVisitor<StringBuilder> {
     sb.append(" (");
     sb.append(var.getVarTypeName());
     sb.append(") = ");
-    String varValue = var.getVarValue();
+    String varValue = getValueToBeDisplayed(var);
     if (varValue != null) {
       if (varValue.length() > MAX_LEN) {
         varValue = varValue.substring(0, MAX_LEN - 3) + "...";
@@ -193,6 +194,14 @@ public class ValuePrinter implements PSEVisitor<StringBuilder> {
       }
     }
     return sb;
+  }
+
+  protected String getValueToBeDisplayed(PSEVariable var) {
+    String value = var.getVarValue();
+    if (var.getAttributes() != null) {
+      value += " [" + var.getAttributes() + "]";
+    }
+    return value;
   }
 
   @Override

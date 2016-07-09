@@ -1,0 +1,7 @@
+
+
+jpf-inspector.attribute_adaptors+=,\
+  gov.nasa.jpf.inspector.symbolic.IntegerConverter,\
+  gov.nasa.jpf.inspector.symbolic.RealConverter,\
+  gov.nasa.jpf.inspector.symbolic.StringConverter,\
+  gov.nasa.jpf.inspector.symbolic.SymbolicExecutionAttributeAccessDetector

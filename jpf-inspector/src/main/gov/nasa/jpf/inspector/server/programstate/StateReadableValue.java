@@ -139,7 +139,7 @@ public abstract class StateReadableValue extends StateNode {
     if (ci.isPrimitive()) {
       Object wrappedValue = value.getValue();
       return new PSEVariablePrimitive(varName, varTypeName, wrappedValue.toString(),
-                                      index, wrappedValue);
+                                      index, wrappedValue, null);
     }
 
     final ElementInfo ei = value.getReferenceValue(); // may be null
@@ -153,7 +153,7 @@ public abstract class StateReadableValue extends StateNode {
 
       if (ei == null) {
         // It's a null value.
-        return new PSEVariableObject(varName, varTypeName, varValue, index, new PSEVariable[0], new PSEVariable[0]);
+        return new PSEVariableObject(varName, varTypeName, varValue, index, new PSEVariable[0], new PSEVariable[0], null);
       } else if (shouldExpandMembers) {
         int arrayLen;
         PSEVariable[] refArrayItems;
@@ -163,9 +163,9 @@ public abstract class StateReadableValue extends StateNode {
           StateValueArrayElement svae = StateValueArrayElement.createArrayElement(value, i, false);
           refArrayItems[i] = svae.toHierarchy3();
         }
-        return new PSEVariableArray(varName, varTypeName, varValue, index, arrayLen, refArrayItems);
+        return new PSEVariableArray(varName, varTypeName, varValue, index, arrayLen, refArrayItems, null);
       } else {
-        return new PSEVariableShortForm(varName, varTypeName, varValue, index);
+        return new PSEVariableShortForm(varName, varTypeName, varValue, index, null);
 
       }
     } else {
@@ -178,7 +178,7 @@ public abstract class StateReadableValue extends StateNode {
         // It's a null value.
         return new PSEVariableObject(varName, varTypeName, "null",
                                      index, new PSEVariable[0],
-                                     new PSEVariable[0]);
+                                     new PSEVariable[0], null);
       }
       else if (shouldExpandMembers) {
         // Not null and values of all fields are required
@@ -207,9 +207,9 @@ public abstract class StateReadableValue extends StateNode {
         }
         return new PSEVariableObject(varName, varTypeName, varValue,
                                      index, refFields,
-                                     refStaticFields);
+                                     refStaticFields, null);
       } else {
-        return new PSEVariableShortForm(varName, varTypeName, varValue, index);
+        return new PSEVariableShortForm(varName, varTypeName, varValue, index, null);
       }
     }
   }

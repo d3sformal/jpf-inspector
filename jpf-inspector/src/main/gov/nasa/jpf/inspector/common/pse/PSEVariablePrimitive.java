@@ -30,8 +30,8 @@ public class PSEVariablePrimitive extends PSEVariable {
 
   public PSEVariablePrimitive(String varName,
                               String varTypeName, String varValue,
-                              int index, Object wrappedValue) {
-    super(varName, varTypeName, varValue, index);
+                              int index, Object wrappedValue, String attributes) {
+    super(varName, varTypeName, varValue, index, attributes);
 
     checkPrimitiveType(wrappedValue);
 

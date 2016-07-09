@@ -46,19 +46,25 @@ public abstract class PSEVariable extends ProgramStateEntry {
    */
   private final String varTypeName;
   /**
-   * Short-form ext representation of the value of the variable
+   * Short-form text representation of the value of the variable
    */
   private final String varValue;
+  /**
+   * Text representation of all attributes of this variable, concatenated with commas.
+   * If null, then that means that no attributes are present.
+   */
+  private final String attributes;
 
   private final int index;
 
   protected PSEVariable(String varName, String varTypeName, String varValue,
-                        int index) {
+                        int index, String attributes) {
 
     this.varName = varName;
     this.varValue = varValue;
     this.varTypeName = varTypeName;
     this.index = index;
+    this.attributes = attributes;
   }
 
   /**
@@ -85,6 +91,12 @@ public abstract class PSEVariable extends ProgramStateEntry {
   }
 
   /**
+   * Gets the text representation of all attributes of this variable, concatenated with commas.
+   * If there are no attributes, returns null.
+   */
+  public String getAttributes() { return attributes; }
+
+  /**
    * Gets the index of this entry in its parent entry.
    * This might be:
    *  - stack slot index
@@ -95,5 +107,6 @@ public abstract class PSEVariable extends ProgramStateEntry {
   public int getIndex () {
     return index;
   }
+
 
 }

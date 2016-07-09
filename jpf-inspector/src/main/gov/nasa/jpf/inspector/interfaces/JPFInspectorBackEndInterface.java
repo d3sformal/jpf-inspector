@@ -30,7 +30,8 @@ public interface JPFInspectorBackEndInterface extends
         CommandsInterface,
         BreakPointManagerInterface,
         ProgramStateInterface,
-        ChoiceGeneratorsInterface {
+        ChoiceGeneratorsInterface,
+        AttributeManagerInterface{
 
   /**
    * New JPF can be bound only if previous one has finished (stops execution) or no JPF is bound.

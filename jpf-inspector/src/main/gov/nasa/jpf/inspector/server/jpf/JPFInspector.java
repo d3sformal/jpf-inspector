@@ -23,6 +23,7 @@ import gov.nasa.jpf.inspector.exceptions.JPFInspectorGenericErrorException;
 import gov.nasa.jpf.inspector.interfaces.InspectorCallbacks;
 import gov.nasa.jpf.inspector.interfaces.InspectorStatusChange;
 import gov.nasa.jpf.inspector.interfaces.JPFInspectorBackEndInterface;
+import gov.nasa.jpf.inspector.server.attributes.AttributesManager;
 import gov.nasa.jpf.inspector.server.breakpoints.BreakpointHandler;
 import gov.nasa.jpf.inspector.server.breakpoints.CommandsManager;
 import gov.nasa.jpf.inspector.server.breakpoints.DefaultForwardTraceManager;
@@ -86,6 +87,11 @@ public abstract class JPFInspector implements JPFInspectorBackEndInterface {
   protected final ProgramStateManager stateManager;
 
   /**
+   * Reads and writes attributes and detects attribute changes.
+   */
+  protected final AttributesManager attributesManager;
+
+  /**
    * Gets the choice generator manager component. This component also handles thread suppression.
    */
   public ChoiceGeneratorsManager getChoiceGeneratorsManager() {
@@ -132,6 +138,7 @@ public abstract class JPFInspector implements JPFInspectorBackEndInterface {
     // Construct components of the Inspector
     this.stopHolder = new StopHolder(this, serverCallbacks);
 
+    this.attributesManager = new AttributesManager(this);
     this.defaultForwardTraceManager = new DefaultForwardTraceManager(this);
     this.breakpointHandler = new BreakpointHandler(this, serverCallbacks, stopHolder);
     this.commandsManager = new CommandsManager(this, stopHolder, breakpointHandler, serverCallbacks,

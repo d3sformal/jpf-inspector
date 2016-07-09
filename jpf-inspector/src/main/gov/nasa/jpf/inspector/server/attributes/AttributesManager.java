@@ -1,4 +1,4 @@
-//
+///
 // Copyright (C) 2016 Petr Hudeček
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -12,27 +12,25 @@
 //  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
-//
+///
 
-package gov.nasa.jpf.inspector.common.pse;
+package gov.nasa.jpf.inspector.server.attributes;
 
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorException;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorGenericErrorException;
+import gov.nasa.jpf.inspector.interfaces.AttributeManagerInterface;
+import gov.nasa.jpf.inspector.server.jpf.JPFInspector;
 
-/**
- * Represents an array or an object without loaded elements or fields. Such an array or object is only intended
- * to be displayed to the user in its short form.
- */
-public class PSEVariableShortForm extends PSEVariable {
-  private static final long serialVersionUID = -2393412289253782599L;
+public class AttributesManager implements AttributeManagerInterface {
+  private JPFInspector inspector;
 
-  public PSEVariableShortForm(String varName, String varTypeName,
-                              String varValue, int index, String attributes) {
-    super(varName, varTypeName, varValue, index, attributes);
+  public AttributesManager(JPFInspector inspector) {
+
+    this.inspector = inspector;
   }
 
   @Override
-  public <T> T visit(PSEVisitor<T> visitor) throws JPFInspectorException {
-    throw new JPFInspectorGenericErrorException("Short-form variables may only be printed as part of a larger entry and not alone.");
+  public void setAttributeValue(String expression) throws JPFInspectorException {
+    throw new JPFInspectorGenericErrorException("Not yet implemented.");
   }
 }
