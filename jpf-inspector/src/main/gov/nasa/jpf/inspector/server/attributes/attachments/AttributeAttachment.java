@@ -14,11 +14,17 @@
 //  limitations under the License.
 ///
 
-package gov.nasa.jpf.inspector.interfaces;
+package gov.nasa.jpf.inspector.server.attributes.attachments;
 
-import gov.nasa.jpf.inspector.exceptions.JPFInspectorException;
+import gov.nasa.jpf.inspector.interfaces.attributes.AttributeToStringConverter;
+import gov.nasa.jpf.vm.ElementInfo;
+import gov.nasa.jpf.vm.FieldInfo;
 import gov.nasa.jpf.vm.StackFrame;
 
-public interface AttributeManagerInterface {
-  void setAttributeValue(String expression) throws JPFInspectorException;
+import java.util.Iterator;
+
+public abstract class AttributeAttachment {
+  public abstract Iterable<Object> getAttributes();
+
+  public abstract String convertToStringUsing(Object attribute, AttributeToStringConverter converter);
 }

@@ -33,12 +33,7 @@ public abstract class AbstractAttributeToStringConverter implements AttributeToS
   }
 
   @Override
-  public String operandToString(StackFrame stackFrame, int index, Object attribute) {
-    return attributeToString(attribute);
-  }
-
-  @Override
-  public String localVariableToString(StackFrame stackFrame, int index, Object attribute) {
+  public String stackSlotToString(StackFrame stackFrame, int index, Object attribute) {
     return attributeToString(attribute);
   }
 }

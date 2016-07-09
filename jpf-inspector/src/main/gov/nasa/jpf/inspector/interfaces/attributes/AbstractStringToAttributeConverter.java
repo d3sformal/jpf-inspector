@@ -34,12 +34,7 @@ public abstract class AbstractStringToAttributeConverter implements StringToAttr
   }
 
   @Override
-  public AttributeConversionResult convertForOperand(StackFrame stackFrame, int index, String newAttributeValue) {
-    return stringToAttribute(newAttributeValue);
-  }
-
-  @Override
-  public AttributeConversionResult convertForLocalVariable(StackFrame stackFrame, int index, String newAttributeValue) {
+  public AttributeConversionResult convertForStackSlot(StackFrame stackFrame, int index, String newAttributeValue) {
     return stringToAttribute(newAttributeValue);
   }
 }

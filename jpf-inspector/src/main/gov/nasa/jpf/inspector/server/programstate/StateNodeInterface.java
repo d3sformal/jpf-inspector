@@ -19,6 +19,7 @@ package gov.nasa.jpf.inspector.server.programstate;
 
 import gov.nasa.jpf.inspector.common.pse.ProgramStateEntry;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorException;
+import gov.nasa.jpf.inspector.server.attributes.AttributesManager;
 import gov.nasa.jpf.inspector.server.jpf.JPFInspector;
 
 /**
@@ -43,6 +44,7 @@ public interface StateNodeInterface {
    * The name "toHierarchy3" is temporary (I promise). Previously, this method was called "getResultExpression" which
    * was confusing because the method that transformed Expression classes (hierarchy 1) to state expressions (hierarchy 2)
    * was also called "getResultExpression".
+   * @param attributeManager The server's attribute manager is used for transforming attribute values to strings.
    */
-  ProgramStateEntry toHierarchy3() throws JPFInspectorException;
+  ProgramStateEntry toHierarchy3(AttributesManager attributeManager) throws JPFInspectorException;
 }

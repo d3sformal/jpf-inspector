@@ -23,6 +23,7 @@ import gov.nasa.jpf.inspector.exceptions.JPFInspectorNoSuperClassException;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorNotInnerClassException;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorNotInstanceException;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorNotSuperClassException;
+import gov.nasa.jpf.inspector.server.attributes.AttributesManager;
 import gov.nasa.jpf.inspector.server.jpf.JPFInspector;
 import gov.nasa.jpf.inspector.common.pse.PSEVariable;
 import gov.nasa.jpf.vm.ClassInfo;
@@ -120,11 +121,11 @@ public final class StateElementInfo extends StateReadableValue {
   }
 
   @Override
-  public PSEVariable toHierarchy3() throws JPFInspectorException {
+  public PSEVariable toHierarchy3(AttributesManager attributeManager) throws JPFInspectorException {
     final String varName = getStateExpr();
     final String definedIn = getStateExpr();
 
-    return StateReadableValue.createPSEVariable(this, varName, ei.getObjectRef(), definedIn);
+    return StateReadableValue.createPSEVariable(this, varName, ei.getObjectRef(), definedIn, null, attributeManager);
   }
 
   @Override

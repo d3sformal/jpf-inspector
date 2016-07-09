@@ -1,0 +1,2 @@
+@using jpf-symbc
+@include ../inspectortest.jpf

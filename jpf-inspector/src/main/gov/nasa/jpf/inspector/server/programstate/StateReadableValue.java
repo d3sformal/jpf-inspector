@@ -20,6 +20,7 @@ package gov.nasa.jpf.inspector.server.programstate;
 import gov.nasa.jpf.inspector.common.pse.*;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorException;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorNotSuperClassException;
+import gov.nasa.jpf.inspector.server.attributes.AttributesManager;
 import gov.nasa.jpf.inspector.server.jpf.JPFInspector;
 import gov.nasa.jpf.vm.*;
 
@@ -124,9 +125,12 @@ public abstract class StateReadableValue extends StateNode {
   protected static PSEVariable createPSEVariable(StateReadableValue value,
                                                  String varName,
                                                  int index,
-                                                 String definedIn)
+                                                 String definedIn,
+                                                 String attachmentAttributes,
+                                                 AttributesManager attributesManager)
       throws JPFInspectorException {
 
+    // TODO else add self (ElementInfo) attribute support
     assert (value != null);
     assert (definedIn != null) : "Use the empty string rather than null.";
     assert (varName != null) : "Use an arbirtrary string (such as ???) rather than null.";
@@ -139,7 +143,7 @@ public abstract class StateReadableValue extends StateNode {
     if (ci.isPrimitive()) {
       Object wrappedValue = value.getValue();
       return new PSEVariablePrimitive(varName, varTypeName, wrappedValue.toString(),
-                                      index, wrappedValue, null);
+                                      index, wrappedValue, attachmentAttributes);
     }
 
     final ElementInfo ei = value.getReferenceValue(); // may be null
@@ -153,7 +157,8 @@ public abstract class StateReadableValue extends StateNode {
 
       if (ei == null) {
         // It's a null value.
-        return new PSEVariableObject(varName, varTypeName, varValue, index, new PSEVariable[0], new PSEVariable[0], null);
+        return new PSEVariableObject(varName, varTypeName, varValue, index, new PSEVariable[0],
+                                     new PSEVariable[0], attachmentAttributes);
       } else if (shouldExpandMembers) {
         int arrayLen;
         PSEVariable[] refArrayItems;
@@ -161,11 +166,11 @@ public abstract class StateReadableValue extends StateNode {
         refArrayItems = new PSEVariable[arrayLen];
         for (int i = 0; i < arrayLen; i++) {
           StateValueArrayElement svae = StateValueArrayElement.createArrayElement(value, i, false);
-          refArrayItems[i] = svae.toHierarchy3();
+          refArrayItems[i] = svae.toHierarchy3(attributesManager);
         }
-        return new PSEVariableArray(varName, varTypeName, varValue, index, arrayLen, refArrayItems, null);
+        return new PSEVariableArray(varName, varTypeName, varValue, index, arrayLen, refArrayItems, attachmentAttributes);
       } else {
-        return new PSEVariableShortForm(varName, varTypeName, varValue, index, null);
+        return new PSEVariableShortForm(varName, varTypeName, varValue, index, attachmentAttributes);
 
       }
     } else {
@@ -178,7 +183,7 @@ public abstract class StateReadableValue extends StateNode {
         // It's a null value.
         return new PSEVariableObject(varName, varTypeName, "null",
                                      index, new PSEVariable[0],
-                                     new PSEVariable[0], null);
+                                     new PSEVariable[0], attachmentAttributes);
       }
       else if (shouldExpandMembers) {
         // Not null and values of all fields are required
@@ -192,7 +197,7 @@ public abstract class StateReadableValue extends StateNode {
             StateValueElementInfoField svae = StateValueElementInfoField.createFieldFromIndex(value,
                                                                                               i,
                                                                                               false);
-            refFields[i] = svae.toHierarchy3();
+            refFields[i] = svae.toHierarchy3(attributesManager);
           }
         } else {
           refFields = new PSEVariable[0];
@@ -203,19 +208,19 @@ public abstract class StateReadableValue extends StateNode {
           StateValueElementInfoField svae = StateValueElementInfoField.createStaticFieldFromIndex(value,
                                                                                                   i,
                                                                                                   false);
-          refStaticFields[i] = svae.toHierarchy3();
+          refStaticFields[i] = svae.toHierarchy3(attributesManager);
         }
         return new PSEVariableObject(varName, varTypeName, varValue,
                                      index, refFields,
-                                     refStaticFields, null);
+                                     refStaticFields, attachmentAttributes);
       } else {
-        return new PSEVariableShortForm(varName, varTypeName, varValue, index, null);
+        return new PSEVariableShortForm(varName, varTypeName, varValue, index, attachmentAttributes);
       }
     }
   }
 
   /**
-   * Returns true if, when the this instance's {@link #toHierarchy3()} method is called, the resulting
+   * Returns true if, when the this instance's {@link StateNodeInterface#toHierarchy3(gov.nasa.jpf.inspector.server.attributes.AttributesManager)} method is called, the resulting
    * {@link ProgramStateEntry} should contain its fields and static fields (if object) or its elements (if array).
    * The return value of this method has no meaning for primitive types, threads, and stack frames.
    */

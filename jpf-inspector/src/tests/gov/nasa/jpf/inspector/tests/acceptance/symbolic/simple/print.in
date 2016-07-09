@@ -1,0 +1,13 @@
+create breakpoint instruction_type=cond
+run && wait
+print
+print val
+print alpha
+print value
+print array
+print array[0]
+print_attr val
+print_attr alpha
+print_attr value
+print_attr array
+print_attr array[0]

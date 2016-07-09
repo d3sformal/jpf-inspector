@@ -19,6 +19,7 @@ package gov.nasa.jpf.inspector.server.programstate;
 
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorException;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorNoThread;
+import gov.nasa.jpf.inspector.server.attributes.AttributesManager;
 import gov.nasa.jpf.inspector.server.expression.ExpressionParserInterface;
 import gov.nasa.jpf.inspector.server.jpf.JPFInspector;
 import gov.nasa.jpf.inspector.common.pse.PSEMethod;
@@ -68,7 +69,7 @@ public final class StateThreadInfo extends StateNode {
   }
 
   @Override
-  public PSEThread toHierarchy3() throws JPFInspectorException {
+  public PSEThread toHierarchy3(AttributesManager attributeManager) throws JPFInspectorException {
 
     int threadNum = ti.getId();
     State state = ti.getState();
@@ -83,7 +84,7 @@ public final class StateThreadInfo extends StateNode {
     refCallStack = new PSEMethod[ti.getStackDepth()];
     for (int i = 0; i < ti.getStackDepth(); i++) {
       StateStackFrame ssf = new StateStackFrame(this, i);
-      refCallStack[i] = ssf.toHierarchy3();
+      refCallStack[i] = ssf.toHierarchy3(attributeManager);
     }
 
     return new PSEThread(threadNum, state, threadName, priority, isDaemon, refCallStack);

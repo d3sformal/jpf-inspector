@@ -1,0 +1,26 @@
+INFO: JPF created and connected, SuT is started
+INFO: Breakpoint hit: [1 :  state=ENABLED hits=1 hitsTotal=1 instruction_type=condition]
+	SuT (Thread=0) executes the gov/nasa/jpf/inspector/tests/acceptance/symbolic/simple/NumberExample.java:13 - if_icmpne 26
+gov.nasa.jpf.inspector.tests.acceptance.symbolic.simple.NumberExample.run - (in file gov/nasa/jpf/inspector/tests/acceptance/symbolic/simple/NumberExample.java:13) - if (alpha == 10) {
+Stack slots
+	0 : this (gov.nasa.jpf.inspector.tests.acceptance.symbolic.simple.NumberExample) = gov.nasa.jpf.inspector.tests.acceptance.symboli...
+	1 : val (int) = 1 [val_1_SYMINT]
+	2 : alpha (int) = 0 [(val_1_SYMINT + CONST_5)]
+	3 : ???-RawView-no Name or Type provided (int) = 0 [(val_1_SYMINT + CONST_5)]
+	4 : ???-RawView-no Name or Type provided (int) = 10
+Fields
+	0 : value (int) = 0 [((val_1_SYMINT + CONST_5) - CONST_3)]
+	1 : array (int[]) = [1]
+	1 : val (int) = 1 [val_1_SYMINT]
+	2 : alpha (int) = 0 [(val_1_SYMINT + CONST_5)]
+	0 : value (int) = 0 [((val_1_SYMINT + CONST_5) - CONST_3)]
+array (int[]) =[1], length=1
+	0 : [0] (int) = 1 [val_1_SYMINT]
+	0 : [0] (int) = 1 [val_1_SYMINT]
+	1 : val (int) = [val_1_SYMINT]
+	2 : alpha (int) = [(val_1_SYMINT + CONST_5)]
+	0 : value (int) = [((val_1_SYMINT + CONST_5) - CONST_3)]
+array (int[]) =[1], length=1
+	0 : [0] (int) = [val_1_SYMINT]
+	0 : [0] (int) = [val_1_SYMINT]
+INFO: JPF Terminating

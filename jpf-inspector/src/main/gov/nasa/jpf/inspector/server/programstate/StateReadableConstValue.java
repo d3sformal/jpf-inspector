@@ -22,6 +22,7 @@ import gov.nasa.jpf.inspector.exceptions.JPFInspectorException;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorNoSuperClassException;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorNotInstanceException;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorNotSuperClassException;
+import gov.nasa.jpf.inspector.server.attributes.AttributesManager;
 import gov.nasa.jpf.inspector.server.jpf.JPFInspector;
 import gov.nasa.jpf.inspector.common.pse.PSEVariable;
 import gov.nasa.jpf.vm.ClassInfo;
@@ -143,8 +144,8 @@ public class StateReadableConstValue extends StateReadableValue {
   }
 
   @Override
-  public ProgramStateEntry toHierarchy3() throws JPFInspectorException {
-    return StateReadableValue.createPSEVariable(this, "user constant", 0, "");
+  public ProgramStateEntry toHierarchy3(AttributesManager attributeManager) throws JPFInspectorException {
+    return StateReadableValue.createPSEVariable(this, "user constant", 0, "", null, attributeManager);
   }
 
 }

@@ -29,6 +29,7 @@ import gov.nasa.jpf.inspector.exceptions.JPFInspectorNotInstanceException;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorNotSuperClassException;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorNullValueException;
 import gov.nasa.jpf.inspector.common.pse.PSEVariable;
+import gov.nasa.jpf.inspector.server.attributes.AttributesManager;
 import gov.nasa.jpf.vm.ClassInfo;
 import gov.nasa.jpf.vm.ElementInfo;
 import gov.nasa.jpf.vm.FieldInfo;
@@ -223,11 +224,12 @@ public final class StateValueElementInfoField extends StateWritableValue {
   }
 
   @Override
-  public PSEVariable toHierarchy3() throws JPFInspectorException {
+  public PSEVariable toHierarchy3(AttributesManager attributeManager) throws JPFInspectorException {
     final String varName = fieldInfo.getName();
     final String definedIn = StateWritableValue.getSimpleName(fieldInfo.getClassInfo());
 
-    return StateReadableValue.createPSEVariable(this, varName, fieldInfo.getFieldIndex(), definedIn);
+    return StateReadableValue.createPSEVariable(this, varName, fieldInfo.getFieldIndex(), definedIn,
+                                                attributeManager.getAttachmentAttributes(ei, fieldInfo), attributeManager );
   }
 
   /**

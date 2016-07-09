@@ -24,6 +24,7 @@ import gov.nasa.jpf.inspector.exceptions.JPFInspectorNoSuperClassException;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorNotInstanceException;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorNotSuperClassException;
 import gov.nasa.jpf.inspector.common.pse.PSEVariable;
+import gov.nasa.jpf.inspector.server.attributes.AttributesManager;
 import gov.nasa.jpf.vm.*;
 
 /**
@@ -169,7 +170,7 @@ public final class StateValueStackSlot extends StateWritableValue {
   }
 
   @Override
-  public PSEVariable toHierarchy3() throws JPFInspectorException {
+  public PSEVariable toHierarchy3(AttributesManager attributeManager) throws JPFInspectorException {
     final MethodInfo mi = sf.getMethodInfo();
     assert (mi != null);
     final ClassInfo ciMethod = mi.getClassInfo(); // ClassInfo where the executed method is defined
@@ -177,7 +178,9 @@ public final class StateValueStackSlot extends StateWritableValue {
     final String varName = lvi.getName();
     final String definedIn = (ciMethod != null ? ciMethod.getSimpleName() + "." + mi.getName() : "[???]" + mi.getName());
 
-    return StateReadableValue.createPSEVariable(this, varName, index, definedIn);
+
+    return StateReadableValue.createPSEVariable(this, varName, index, definedIn,
+                                                attributeManager.getAttachmentAttributes(sf, index), attributeManager);
   }
 
   @Override

@@ -22,6 +22,5 @@ import gov.nasa.jpf.vm.StackFrame;
 public interface AttributeToStringConverter extends AttributeAdaptorBase {
   String objectToString(ElementInfo object, Object attribute);
   String fieldToString(ElementInfo owner, int index, Object attribute);
-  String operandToString(StackFrame stackFrame, int index, Object attribute);
-  String localVariableToString(StackFrame stackFrame, int index, Object attribute);
+  String stackSlotToString(StackFrame stackFrame, int index, Object attribute);
 }

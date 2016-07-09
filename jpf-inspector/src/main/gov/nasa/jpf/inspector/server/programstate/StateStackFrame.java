@@ -22,6 +22,7 @@ import gov.nasa.jpf.inspector.common.pse.PSEVariable;
 import gov.nasa.jpf.inspector.common.pse.PSEVariableObject;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorException;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorInvalidStackFrame;
+import gov.nasa.jpf.inspector.server.attributes.AttributesManager;
 import gov.nasa.jpf.inspector.server.choicegenerators.ChoiceGeneratorsManager;
 import gov.nasa.jpf.inspector.utils.InstructionWrapper;
 import gov.nasa.jpf.vm.*;
@@ -69,7 +70,7 @@ public final class StateStackFrame extends StateNode {
   }
 
   @Override
-  public PSEMethod toHierarchy3() throws JPFInspectorException {
+  public PSEMethod toHierarchy3(AttributesManager attributeManager) throws JPFInspectorException {
 
     Instruction inst = sf.getPC();
     InstructionWrapper instw = ChoiceGeneratorsManager.createInstructionWrapper(inst);
@@ -80,7 +81,7 @@ public final class StateStackFrame extends StateNode {
     if (mi.isStatic() == false) {
       try {
         StateValueStackSlot svss = StateValueStackSlot.createHiddenThisSlotValue(this);
-        PSEVariable refThisGeneric = svss.toHierarchy3();
+        PSEVariable refThisGeneric = svss.toHierarchy3(attributeManager);
 
         // can return also PSEVariablePrimitive ...
         // in case that there is no type information for the the fields (or the this field)
@@ -96,7 +97,7 @@ public final class StateStackFrame extends StateNode {
     refLocals = new PSEVariable[stackSlots];
     for (int i = 0; i < stackSlots; i++) {
       StateValueStackSlot svss = StateValueStackSlot.createSlotFromIndex(this, i);
-      refLocals[i] = svss.toHierarchy3();
+      refLocals[i] = svss.toHierarchy3(attributeManager);
     }
 
     return new PSEMethod(instw, refLocals, refThis);

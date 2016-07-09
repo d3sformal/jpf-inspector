@@ -21,6 +21,7 @@ import gov.nasa.jpf.inspector.common.pse.PSEHeapEntryList;
 import gov.nasa.jpf.inspector.common.pse.PSEVariable;
 import gov.nasa.jpf.inspector.common.pse.ProgramStateEntry;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorException;
+import gov.nasa.jpf.inspector.server.attributes.AttributesManager;
 import gov.nasa.jpf.inspector.server.jpf.JPFInspector;
 import gov.nasa.jpf.inspector.utils.expressions.ClassName;
 import gov.nasa.jpf.vm.ClassInfo;
@@ -55,10 +56,10 @@ public class StateHeapEntryList extends StateNode {
   }
 
   @Override
-  public ProgramStateEntry toHierarchy3() throws JPFInspectorException {
+  public ProgramStateEntry toHierarchy3(AttributesManager attributeManager) throws JPFInspectorException {
     List<PSEVariable> heapEntryList = new ArrayList<>(heapEntries.size());
     for (StateElementInfo sei : heapEntries) {
-      heapEntryList.add(sei.toHierarchy3());
+      heapEntryList.add(sei.toHierarchy3(attributeManager));
     }
     return new PSEHeapEntryList(heapEntryList);
   }

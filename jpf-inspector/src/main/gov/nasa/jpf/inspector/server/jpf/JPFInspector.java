@@ -143,7 +143,7 @@ public abstract class JPFInspector implements JPFInspectorBackEndInterface {
     this.breakpointHandler = new BreakpointHandler(this, serverCallbacks, stopHolder);
     this.commandsManager = new CommandsManager(this, stopHolder, breakpointHandler, serverCallbacks,
                                                defaultForwardTraceManager);
-    this.stateManager = new ProgramStateManager(this, stopHolder);
+    this.stateManager = new ProgramStateManager(this, stopHolder, this.attributesManager);
     this.choiceGeneratorsManager = new ChoiceGeneratorsManager(this, serverCallbacks, commandsManager, stopHolder,
                                                                defaultForwardTraceManager);
 

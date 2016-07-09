@@ -22,6 +22,7 @@ import gov.nasa.jpf.inspector.interfaces.InstructionPosition;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorException;
 import gov.nasa.jpf.inspector.interfaces.ProgramStateInterface;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorGenericErrorException;
+import gov.nasa.jpf.inspector.server.attributes.AttributesManager;
 import gov.nasa.jpf.inspector.server.breakpoints.InstructionPositionImpl;
 import gov.nasa.jpf.inspector.server.expression.ExpressionParser;
 import gov.nasa.jpf.inspector.server.expression.ExpressionParserInterface;
@@ -49,11 +50,13 @@ public class ProgramStateManager implements ProgramStateInterface {
   private final StopHolder stopHolder; // / Where JPF thread is blocked when Breakpoint or Stop command comes.
 
   private final ExpressionParserInterface parser;
+  private AttributesManager attributesManager;
 
-  public ProgramStateManager (JPFInspector inspector, StopHolder stopHolder) {
+  public ProgramStateManager(JPFInspector inspector, StopHolder stopHolder, AttributesManager attributesManager) {
     this.inspector = inspector;
     this.stopHolder = stopHolder;
     parser = new ExpressionParser(inspector);
+    this.attributesManager = attributesManager;
   }
 
   @Override
@@ -70,7 +73,7 @@ public class ProgramStateManager implements ProgramStateInterface {
     if (threadNum != null) {
       result = new HashMap<>(1);
       StateThreadInfo sti = new StateThreadInfo(inspector, vm, threadNum);
-      result.put(threadNum, sti.toHierarchy3());
+      result.put(threadNum, sti.toHierarchy3(this.attributesManager));
 
     } else {
       ThreadList tl = vm.getThreadList();
@@ -78,7 +81,7 @@ public class ProgramStateManager implements ProgramStateInterface {
 
       for (ThreadInfo ti : tl) {
         StateThreadInfo sti = new StateThreadInfo(inspector, vm, ti.getId());
-        result.put(ti.getId(), sti.toHierarchy3());
+        result.put(ti.getId(), sti.toHierarchy3(this.attributesManager));
       }
     }
 
@@ -131,7 +134,7 @@ public class ProgramStateManager implements ProgramStateInterface {
     StateNodeInterface sni = parsedExpr.getResultExpression(inspector, stopHolder.getInspectorState());
 
     // Create client representation of the state (hiearchy 3)
-    return sni.toHierarchy3();
+    return sni.toHierarchy3(this.attributesManager);
   }
 
   private VM getJVM () throws JPFInspectorGenericErrorException {
