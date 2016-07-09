@@ -23,7 +23,12 @@ import gov.nasa.jpf.inspector.interfaces.attributes.AttributeConversionResult;
 public class RealConverter extends AbstractStringToAttributeConverter {
   @Override
   public AttributeConversionResult stringToAttribute(String newAttributeValue) {
-    return AttributeConversionResult.failed("Converter not yet implemented.");
+    try {
+      double newDouble = Double.parseDouble(newAttributeValue);
+      return AttributeConversionResult.successful(new gov.nasa.jpf.symbc.numeric.RealConstant(newDouble));
+    } catch (NumberFormatException exception) {
+      return AttributeConversionResult.failed("Not a double: " + exception.getMessage());
+    }
   }
 
   @Override

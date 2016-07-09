@@ -14,22 +14,30 @@
 //  limitations under the License.
 ///
 
-package gov.nasa.jpf.inspector.symbolic;
+package gov.nasa.jpf.inspector.server.attributes.adaptors;
 
 import gov.nasa.jpf.inspector.client.JPFInspectorClientInterface;
+import gov.nasa.jpf.inspector.exceptions.JPFInspectorGenericErrorException;
 import gov.nasa.jpf.inspector.interfaces.attributes.AbstractStringToAttributeConverter;
 import gov.nasa.jpf.inspector.interfaces.attributes.AttributeConversionResult;
+import gov.nasa.jpf.inspector.server.attributes.attachments.AttributeAttachment;
+import gov.nasa.jpf.inspector.server.expression.ExpressionParser;
+import gov.nasa.jpf.inspector.server.expression.ExpressionStateRootNode;
+import gov.nasa.jpf.inspector.server.programstate.StateNodeInterface;
+import gov.nasa.jpf.inspector.server.programstate.StateWritableValue;
 
-public class StringConverter extends AbstractStringToAttributeConverter {
+import java.util.Objects;
+
+public class NullConverter extends AbstractStringToAttributeConverter {
+
   @Override
   public AttributeConversionResult stringToAttribute(String newAttributeValue) {
-
-    if (newAttributeValue.length() < 2 || newAttributeValue.charAt(0) != '"' || !newAttributeValue.endsWith("\"")) {
-      return AttributeConversionResult.failed("The value is not in double quotes.");
+    if (Objects.equals(newAttributeValue, "null")) {
+      return AttributeConversionResult.successful(null);
+    } else {
+      return AttributeConversionResult.failed("The new value was not 'null'.");
     }
-    String stringContents = newAttributeValue.substring(1, newAttributeValue.length()-2);
-    return AttributeConversionResult.successful(new gov.nasa.jpf.symbc.string.StringConstant(stringContents));
-    
+
   }
 
   @Override

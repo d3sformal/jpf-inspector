@@ -49,6 +49,6 @@ public class ArrayElementAttachment extends AttributeAttachment {
 
   @Override
   public void setAttribute(Object createdAttribute) {
-    arrayInfo.setElementAttr(index, createdAttribute);
+    arrayInfo.getModifiableInstance().setElementAttr(index, createdAttribute);
   }
 }

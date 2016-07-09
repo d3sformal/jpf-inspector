@@ -20,6 +20,7 @@ import gov.nasa.jpf.JPF;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorGenericErrorException;
 import gov.nasa.jpf.inspector.frontends.swing.AuxiliaryInspectorPanel;
 import gov.nasa.jpf.inspector.interfaces.JPFInspectorBackEndInterface;
+import gov.nasa.jpf.inspector.server.jpf.JPFInspector;
 
 /**
  * The client part of the JPF Inspector.
@@ -64,5 +65,5 @@ public interface JPFInspectorClientInterface {
   /**
    * Gets the Inspector server.
    */
-  JPFInspectorBackEndInterface getServer();
+  JPFInspector getServer();
 }

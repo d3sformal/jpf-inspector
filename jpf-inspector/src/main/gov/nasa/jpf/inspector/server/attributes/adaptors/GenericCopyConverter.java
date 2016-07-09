@@ -17,17 +17,52 @@
 package gov.nasa.jpf.inspector.server.attributes.adaptors;
 
 import gov.nasa.jpf.inspector.client.JPFInspectorClientInterface;
+import gov.nasa.jpf.inspector.exceptions.JPFInspectorException;
+import gov.nasa.jpf.inspector.exceptions.JPFInspectorGenericErrorException;
+import gov.nasa.jpf.inspector.exceptions.JPFInspectorParsingErrorException;
 import gov.nasa.jpf.inspector.interfaces.attributes.AbstractStringToAttributeConverter;
 import gov.nasa.jpf.inspector.interfaces.attributes.AttributeConversionResult;
+import gov.nasa.jpf.inspector.server.attributes.attachments.AttributeAttachment;
+import gov.nasa.jpf.inspector.server.expression.ExpressionFactory;
+import gov.nasa.jpf.inspector.server.expression.ExpressionParser;
+import gov.nasa.jpf.inspector.server.expression.ExpressionStateRootNode;
+import gov.nasa.jpf.inspector.server.programstate.StateNodeInterface;
+import gov.nasa.jpf.inspector.server.programstate.StateReadableValue;
+import gov.nasa.jpf.inspector.server.programstate.StateWritableValue;
 
 public class GenericCopyConverter extends AbstractStringToAttributeConverter {
+  private JPFInspectorClientInterface inspector;
+
   @Override
   public AttributeConversionResult stringToAttribute(String newAttributeValue) {
-    return AttributeConversionResult.failed("Converter not yet implemented.");
+    ExpressionParser expressionParser = new ExpressionParser(inspector.getServer());
+    try {
+      ExpressionStateRootNode root = expressionParser.getExpressionStateInterface(newAttributeValue);
+      StateNodeInterface resultExpression = root.getResultExpression(inspector.getServer(), inspector.getServer()
+              .getStopHolder()
+              .getInspectorState());
+      if (!(resultExpression instanceof StateWritableValue)) {
+        throw new JPFInspectorGenericErrorException("You referenced an object that cannot have attributes attached.");
+      }
+      StateWritableValue value = (StateWritableValue)resultExpression;
+      AttributeAttachment attributes = value.getAttributeAttachment();
+      Iterable<Object> iterable = attributes.getAttributes();
+      Object firstItem = null;
+      for (Object iterableItem : iterable) {
+        if (firstItem != null) {
+          throw new JPFInspectorGenericErrorException("The referenced object has multiple attributes. In JPF Inspector, a converter can only create a single attribute.");
+        }
+        firstItem = iterableItem;
+      }
+      return AttributeConversionResult.successful(firstItem);
+
+    } catch (Exception exception) {
+      return AttributeConversionResult.failed("Attribute could not be copied: " + exception.getMessage());
+    }
   }
 
   @Override
   public void initialize(JPFInspectorClientInterface inspector) {
-
+    this.inspector = inspector;
   }
 }

@@ -20,6 +20,7 @@ import gov.nasa.jpf.inspector.client.JPFInspectorClient;
 import gov.nasa.jpf.inspector.client.JPFInspectorClientInterface;
 import gov.nasa.jpf.inspector.interfaces.InspectorCallbacks;
 import gov.nasa.jpf.inspector.interfaces.JPFInspectorBackEndInterface;
+import gov.nasa.jpf.inspector.server.jpf.JPFInspector;
 import gov.nasa.jpf.inspector.server.jpf.JPFInspectorParallel;
 
 import java.io.PrintStream;
@@ -38,7 +39,7 @@ public final class JPFInspectorFacade {
    * @param callBacks The client's callback handler where the server should print its output.
    * @return New instance of the server part of the JPFInspector.
    */
-  public static JPFInspectorBackEndInterface getInspectorBackend (InspectorCallbacks callBacks) {
+  public static JPFInspector getInspectorBackend (InspectorCallbacks callBacks) {
     return new JPFInspectorParallel(callBacks);
   }
 

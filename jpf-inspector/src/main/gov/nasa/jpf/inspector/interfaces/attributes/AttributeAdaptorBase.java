@@ -18,6 +18,6 @@ package gov.nasa.jpf.inspector.interfaces.attributes;
 
 import gov.nasa.jpf.inspector.client.JPFInspectorClientInterface;
 
-interface AttributeAdaptorBase {
+public interface AttributeAdaptorBase {
   void initialize(JPFInspectorClientInterface inspector);
 }

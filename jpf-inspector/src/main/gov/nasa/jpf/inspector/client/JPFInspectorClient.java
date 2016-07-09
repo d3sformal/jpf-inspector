@@ -25,7 +25,7 @@ import gov.nasa.jpf.inspector.common.ConsoleInformation;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorGenericErrorException;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorParsingErrorException;
 import gov.nasa.jpf.inspector.frontends.swing.AuxiliaryInspectorPanel;
-import gov.nasa.jpf.inspector.interfaces.JPFInspectorBackEndInterface;
+import gov.nasa.jpf.inspector.server.jpf.JPFInspector;
 import gov.nasa.jpf.inspector.utils.InspectorConfiguration;
 
 import java.io.PrintStream;
@@ -39,7 +39,7 @@ import java.util.List;
  */
 public class JPFInspectorClient implements JPFInspectorClientInterface {
   private final PrintStream outputStream;
-  private final JPFInspectorBackEndInterface inspector;
+  private final JPFInspector inspector;
   private final CallbackExecutionDecorator cbExecutionDecorator;
 
   private final CommandRecorder recorder;
@@ -63,6 +63,7 @@ public class JPFInspectorClient implements JPFInspectorClientInterface {
 
     this.outputStream = outStream;
     this.inspector = JPFInspectorFacade.getInspectorBackend(cbExecutionDecorator);
+    InspectorConfiguration.initialize(this);
   }
 
   @Override
@@ -222,7 +223,7 @@ public class JPFInspectorClient implements JPFInspectorClientInterface {
   }
 
   @Override
-  public JPFInspectorBackEndInterface getServer() {
+  public JPFInspector getServer() {
     return this.inspector;
   }
 

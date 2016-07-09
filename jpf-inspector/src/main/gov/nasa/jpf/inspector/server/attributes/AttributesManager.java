@@ -64,7 +64,7 @@ public class AttributesManager implements AttributeManagerInterface {
     AttributeAttachment attachment = targetObject.getAttributeAttachment();
     String errorMessages = "";
     for (StringToAttributeConverter converter : stringToAttributeConverters) {
-      AttributeConversionResult acr = attachment.convertToAttributeUsing(expression, converter);
+      AttributeConversionResult acr = attachment.convertToAttributeUsing(parsedExpr.getNewAttributeValue().trim(), converter);
       if (acr.isSuccess()) {
         attachment.setAttribute(acr.getCreatedAttribute());
         return;

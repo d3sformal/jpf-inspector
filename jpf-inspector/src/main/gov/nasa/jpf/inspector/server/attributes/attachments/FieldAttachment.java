@@ -51,6 +51,6 @@ public class FieldAttachment extends AttributeAttachment  {
 
   @Override
   public void setAttribute(Object createdAttribute) {
-    objectInfo.setFieldAttr(field, createdAttribute);
+    objectInfo.getModifiableInstance().setFieldAttr(field, createdAttribute);
   }
 }

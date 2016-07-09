@@ -20,11 +20,17 @@ import gov.nasa.jpf.inspector.client.JPFInspectorClientInterface;
 import gov.nasa.jpf.inspector.interfaces.attributes.AbstractStringToAttributeConverter;
 import gov.nasa.jpf.inspector.interfaces.attributes.AttributeConversionResult;
 import gov.nasa.jpf.inspector.interfaces.attributes.StringToAttributeConverter;
+import gov.nasa.jpf.symbc.numeric.IntegerConstant;
 
 public class IntegerConverter extends AbstractStringToAttributeConverter {
   @Override
   public AttributeConversionResult stringToAttribute(String newAttributeValue) {
-    return AttributeConversionResult.failed("Converter not yet implemented.");
+    try {
+      int newInteger = Integer.parseInt(newAttributeValue);
+      return AttributeConversionResult.successful(new IntegerConstant(newInteger));
+    } catch (NumberFormatException exception) {
+      return AttributeConversionResult.failed("Not an integer: " + exception.getMessage());
+    }
   }
 
   @Override

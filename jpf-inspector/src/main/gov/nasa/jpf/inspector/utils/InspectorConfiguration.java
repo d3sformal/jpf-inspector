@@ -17,13 +17,12 @@
 package gov.nasa.jpf.inspector.utils;
 
 import gov.nasa.jpf.Config;
+import gov.nasa.jpf.inspector.client.JPFInspectorClient;
 import gov.nasa.jpf.inspector.client.JPFInspectorClientInterface;
 import gov.nasa.jpf.inspector.frontends.swing.InspectorToolbarCommand;
 import gov.nasa.jpf.inspector.interfaces.CustomCommand;
 import gov.nasa.jpf.inspector.interfaces.CustomHitCondition;
-import gov.nasa.jpf.inspector.interfaces.attributes.AttributeAccessDetector;
-import gov.nasa.jpf.inspector.interfaces.attributes.AttributeToStringConverter;
-import gov.nasa.jpf.inspector.interfaces.attributes.StringToAttributeConverter;
+import gov.nasa.jpf.inspector.interfaces.attributes.*;
 import gov.nasa.jpf.inspector.server.breakpoints.InternalBreakpointHolder;
 import gov.nasa.jpf.shell.ShellManager;
 
@@ -323,5 +322,17 @@ public final class InspectorConfiguration {
 
   public ArrayList<AttributeAccessDetector> getLoadedAttributeAccessDetectors() {
     return attributeAccessDetectors;
+  }
+
+  public static void initialize(JPFInspectorClient client) {
+    for (AttributeAdaptorBase adaptor : getInstance().attributeToStringConverters) {
+      adaptor.initialize(client);
+    }
+    for (AttributeAdaptorBase adaptor : getInstance().stringToAttributeConverters) {
+      adaptor.initialize(client);
+    }
+    for (AttributeAdaptorBase adaptor : getInstance().attributeAccessDetectors) {
+      adaptor.initialize(client);
+    }
   }
 }

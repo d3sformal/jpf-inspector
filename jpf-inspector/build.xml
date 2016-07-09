@@ -33,6 +33,7 @@
   <property name="jpf-core" value = "../jpf-core"/>
   <!-- if there is none, default to a 'jpf-shell' peer dir -->
   <property name="jpf-shell" value = "../jpf-shell"/>
+  <property name="jpf-symbc" value = "../jpf-symbc"/>
 
   <!-- get the jpf-core path properties -->
   <property file="${jpf-core}/jpf.properties"/>
@@ -66,6 +67,7 @@
     <pathelement path="${jpf-core.native_classpath}"/>
 
     <pathelement path="${jpf-shell}/build/main/"/>
+    <pathelement path="${jpf-symbc}/build/main/"/>
   </path>
 
   <!-- Build classpath settings -->
