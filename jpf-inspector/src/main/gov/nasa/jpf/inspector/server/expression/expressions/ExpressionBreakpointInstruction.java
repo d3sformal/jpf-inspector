@@ -104,8 +104,8 @@ public class ExpressionBreakpointInstruction extends ExpressionBooleanLeaf {
         Instruction executedInstr = vm.getInstruction();
         Debugging.getLogger().info("Backtracking: Forward stepping: Testing against the same thread (" + executedInstr.getMnemonic() + "," + executedInstr.getFileLocation() + ")");
         if (Objects.equals(vm.getInstruction().getMnemonic(), "directcallreturn") &&
-                Objects.equals(vm.getInstruction().getFileLocation(), "java/lang/System.java:1")) {
-          Debugging.getLogger().warning("AFJGNFMSDGSFDGS");
+                Objects.equals(vm.getInstruction().getFileLocation(), "sun/misc/SharedSecrets.java:1")) {
+
         }
         if (instruction.equals(executedInstr)) {
           count++;
