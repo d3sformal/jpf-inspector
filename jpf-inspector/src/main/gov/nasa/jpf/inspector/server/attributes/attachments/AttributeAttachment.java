@@ -16,7 +16,9 @@
 
 package gov.nasa.jpf.inspector.server.attributes.attachments;
 
+import gov.nasa.jpf.inspector.interfaces.attributes.AttributeConversionResult;
 import gov.nasa.jpf.inspector.interfaces.attributes.AttributeToStringConverter;
+import gov.nasa.jpf.inspector.interfaces.attributes.StringToAttributeConverter;
 import gov.nasa.jpf.vm.ElementInfo;
 import gov.nasa.jpf.vm.FieldInfo;
 import gov.nasa.jpf.vm.StackFrame;
@@ -27,4 +29,8 @@ public abstract class AttributeAttachment {
   public abstract Iterable<Object> getAttributes();
 
   public abstract String convertToStringUsing(Object attribute, AttributeToStringConverter converter);
+
+  public abstract AttributeConversionResult convertToAttributeUsing(String expression, StringToAttributeConverter converter);
+
+  public abstract void setAttribute(Object createdAttribute);
 }

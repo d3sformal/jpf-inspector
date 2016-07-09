@@ -25,6 +25,8 @@ import gov.nasa.jpf.inspector.exceptions.JPFInspectorNotInstanceException;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorNotSuperClassException;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorNullValueException;
 import gov.nasa.jpf.inspector.server.attributes.AttributesManager;
+import gov.nasa.jpf.inspector.server.attributes.attachments.ArrayElementAttachment;
+import gov.nasa.jpf.inspector.server.attributes.attachments.AttributeAttachment;
 import gov.nasa.jpf.inspector.server.expression.InspectorState;
 import gov.nasa.jpf.inspector.common.pse.PSEVariable;
 import gov.nasa.jpf.vm.ArrayFields;
@@ -220,6 +222,11 @@ public final class StateValueArrayElement extends StateWritableValue {
   @Override
   protected void assignValueRef (int newValRef) {
     ei.getModifiableInstance().setReferenceElement(index, newValRef);
+  }
+
+  @Override
+  public AttributeAttachment getAttributeAttachment() {
+    return new ArrayElementAttachment(this.ei, this.index);
   }
 
 }

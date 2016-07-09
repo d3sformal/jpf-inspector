@@ -22,6 +22,7 @@ import gov.nasa.jpf.vm.StackFrame;
 
 public interface StringToAttributeConverter extends AttributeAdaptorBase {
   AttributeConversionResult convertForObject(ElementInfo object, String newAttributeValue);
+  AttributeConversionResult convertForArrayElement(ElementInfo array, int index, String newAttributeValue);
   AttributeConversionResult convertForField(ElementInfo object, FieldInfo field, String newAttributeValue);
   AttributeConversionResult convertForStackSlot(StackFrame stackFrame, int index, String newAttributeValue);
 }

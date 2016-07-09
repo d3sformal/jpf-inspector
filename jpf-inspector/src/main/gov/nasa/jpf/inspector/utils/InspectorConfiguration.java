@@ -21,14 +21,14 @@ import gov.nasa.jpf.inspector.client.JPFInspectorClientInterface;
 import gov.nasa.jpf.inspector.frontends.swing.InspectorToolbarCommand;
 import gov.nasa.jpf.inspector.interfaces.CustomCommand;
 import gov.nasa.jpf.inspector.interfaces.CustomHitCondition;
+import gov.nasa.jpf.inspector.interfaces.attributes.AttributeAccessDetector;
+import gov.nasa.jpf.inspector.interfaces.attributes.AttributeToStringConverter;
+import gov.nasa.jpf.inspector.interfaces.attributes.StringToAttributeConverter;
 import gov.nasa.jpf.inspector.server.breakpoints.InternalBreakpointHolder;
 import gov.nasa.jpf.shell.ShellManager;
 
 import java.io.PrintStream;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -45,6 +45,10 @@ public final class InspectorConfiguration {
   private Map<String, Class<? extends CustomHitCondition>> customHitConditions;
   private Map<String, CustomCommand> customCommands;
   private Map<String, CommandAlias> aliases;
+  private final ArrayList<AttributeToStringConverter> attributeToStringConverters = new ArrayList<>();
+  private final ArrayList<StringToAttributeConverter> stringToAttributeConverters= new ArrayList<>();
+  private final ArrayList<AttributeAccessDetector> attributeAccessDetectors = new ArrayList<>();
+
   private final Config config;
 
   private InspectorConfiguration(Config config) {
@@ -65,6 +69,35 @@ public final class InspectorConfiguration {
     loadCustomCommands(config);
 
     loadAliases(config);
+
+    loadAttributeAdaptors(config);
+  }
+
+  private void loadAttributeAdaptors(Config config) {
+    Class<?>[] adaptors = config.getClasses("jpf-inspector.attribute_adaptors");
+    for (Class<?> adaptorClass : adaptors) {
+      Object adaptorInstance = instantiateClass(adaptorClass);
+      if (adaptorInstance == null) {
+        continue;
+      }
+      boolean isAtLeastOne = false;
+      if (adaptorInstance instanceof AttributeToStringConverter) {
+        isAtLeastOne = true;
+        attributeToStringConverters.add((AttributeToStringConverter)adaptorInstance);
+      }
+      if (adaptorInstance instanceof StringToAttributeConverter) {
+        isAtLeastOne = true;
+        stringToAttributeConverters.add((StringToAttributeConverter)adaptorInstance);
+      }
+      if (adaptorInstance instanceof AttributeAccessDetector) {
+        isAtLeastOne = true;
+        attributeAccessDetectors.add((AttributeAccessDetector)adaptorInstance);
+      }
+      if (!isAtLeastOne) {
+        logger.warning("Class '" + adaptorClass.getName() + "' does not implement any of the attribute adaptor interfaces " +
+                               "and thus it will not be loaded.");
+      }
+    }
   }
 
   private void loadAliases(Config config) {
@@ -278,5 +311,17 @@ public final class InspectorConfiguration {
               "", toolbarCommandCommand, inspectorClient, consolePrintStream));
     }
     return toolbarCommands;
+  }
+
+  public ArrayList<AttributeToStringConverter> getLoadedAttributeToStringConverters() {
+    return attributeToStringConverters;
+  }
+
+  public ArrayList<StringToAttributeConverter> getLoadedStringToAttributeConverters() {
+    return stringToAttributeConverters;
+  }
+
+  public ArrayList<AttributeAccessDetector> getLoadedAttributeAccessDetectors() {
+    return attributeAccessDetectors;
   }
 }

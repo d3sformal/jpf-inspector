@@ -54,6 +54,7 @@
 
     <!-- our own classes and libs come first -->
     <pathelement location="build/main"/>
+    <pathelement location="build/symbc"/>
     <!-- we don't have these
     <pathelement location="build/peers"/>
     -->
@@ -72,6 +73,7 @@
 
     <!-- our own classes and libs come first -->
     <pathelement location="build/main"/>
+    <pathelement location="build/symbc"/>
     <!-- we don't have these
     <pathelement location="build/peers"/>
     -->
@@ -100,6 +102,7 @@
 
 
     <available file="src/main"        type="dir" property="have_main"/>
+    <available file="src/symbc"       type="dir" property="have_symbc"/>
     <available file="src/annotations" type="dir" property="have_annotations"/>
     <available file="src/peers"       type="dir" property="have_peers"/>
     <available file="src/classes"     type="dir" property="have_classes"/>
@@ -250,11 +253,18 @@
 
   <target name="-compile-main" if="have_main" depends="generate-grammars">
     <mkdir dir="build/main"/>
+    <mkdir dir="build/symbc"/>
     <javac srcdir="src/main" destdir="build/main"
            debug="${debug}" source="${src_level}" deprecation="${deprecation}"
            encoding="UTF-8"
            classpathref="lib.path" includeantruntime="false">
     <compilerarg value="-Xlint:unchecked"/>
+    </javac>
+    <javac srcdir="src/symbc" destdir="build/symbc"
+           debug="${debug}" source="${src_level}" deprecation="${deprecation}"
+           encoding="UTF-8"
+           classpathref="lib.path" includeantruntime="false">
+      <compilerarg value="-Xlint:unchecked"/>
     </javac>
     <copy todir="build/main">
       <fileset dir="src/main" includes="**/*.png,**/*.gif" />

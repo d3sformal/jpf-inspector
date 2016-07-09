@@ -21,6 +21,18 @@ public class AttributeConversionResult {
   Object createdAttribute;
   String reasonForRefusal;
 
+  public boolean isSuccess() {
+    return success;
+  }
+
+  public Object getCreatedAttribute() {
+    return createdAttribute;
+  }
+
+  public String getReasonForRefusal() {
+    return reasonForRefusal;
+  }
+
   private AttributeConversionResult(boolean success, Object createdAttribute, String reasonForRefusal) {
     this.success = success;
     this.createdAttribute = createdAttribute;

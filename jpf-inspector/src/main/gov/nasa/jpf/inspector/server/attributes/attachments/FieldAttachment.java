@@ -16,7 +16,9 @@
 
 package gov.nasa.jpf.inspector.server.attributes.attachments;
 
+import gov.nasa.jpf.inspector.interfaces.attributes.AttributeConversionResult;
 import gov.nasa.jpf.inspector.interfaces.attributes.AttributeToStringConverter;
+import gov.nasa.jpf.inspector.interfaces.attributes.StringToAttributeConverter;
 import gov.nasa.jpf.util.ObjectList;
 import gov.nasa.jpf.vm.ElementInfo;
 import gov.nasa.jpf.vm.FieldInfo;
@@ -40,5 +42,15 @@ public class FieldAttachment extends AttributeAttachment  {
   @Override
   public String convertToStringUsing(Object attribute, AttributeToStringConverter converter) {
     return converter.fieldToString(objectInfo, field.getFieldIndex(), attribute);
+  }
+
+  @Override
+  public AttributeConversionResult convertToAttributeUsing(String expression, StringToAttributeConverter converter) {
+    return converter.convertForField(objectInfo, field, expression);
+  }
+
+  @Override
+  public void setAttribute(Object createdAttribute) {
+    objectInfo.setFieldAttr(field, createdAttribute);
   }
 }

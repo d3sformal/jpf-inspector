@@ -25,6 +25,8 @@ import gov.nasa.jpf.inspector.exceptions.JPFInspectorNotInstanceException;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorNotSuperClassException;
 import gov.nasa.jpf.inspector.common.pse.PSEVariable;
 import gov.nasa.jpf.inspector.server.attributes.AttributesManager;
+import gov.nasa.jpf.inspector.server.attributes.attachments.AttributeAttachment;
+import gov.nasa.jpf.inspector.server.attributes.attachments.StackSlotAttachment;
 import gov.nasa.jpf.vm.*;
 
 /**
@@ -260,6 +262,11 @@ public final class StateValueStackSlot extends StateWritableValue {
   @Override
   protected void assignValueRef (int newValRef) {
     sf.setLocalVariable(index, newValRef, true);
+  }
+
+  @Override
+  public AttributeAttachment getAttributeAttachment() {
+    return new StackSlotAttachment(this.sf, this.index);
   }
 
 }

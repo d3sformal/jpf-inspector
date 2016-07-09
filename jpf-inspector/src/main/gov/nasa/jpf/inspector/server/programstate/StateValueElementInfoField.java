@@ -30,6 +30,8 @@ import gov.nasa.jpf.inspector.exceptions.JPFInspectorNotSuperClassException;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorNullValueException;
 import gov.nasa.jpf.inspector.common.pse.PSEVariable;
 import gov.nasa.jpf.inspector.server.attributes.AttributesManager;
+import gov.nasa.jpf.inspector.server.attributes.attachments.AttributeAttachment;
+import gov.nasa.jpf.inspector.server.attributes.attachments.FieldAttachment;
 import gov.nasa.jpf.vm.ClassInfo;
 import gov.nasa.jpf.vm.ElementInfo;
 import gov.nasa.jpf.vm.FieldInfo;
@@ -329,6 +331,11 @@ public final class StateValueElementInfoField extends StateWritableValue {
   @Override
   protected void assignValueRef (int newValRef) {
     ei.getModifiableInstance().setReferenceField(fieldInfo, newValRef);
+  }
+
+  @Override
+  public AttributeAttachment getAttributeAttachment() {
+    return new FieldAttachment(this.ei, this.fieldInfo);
   }
 
 }

@@ -22,6 +22,7 @@ import gov.nasa.jpf.inspector.common.ThrowingErrorListener;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorGenericErrorException;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorParsingErrorException;
 import gov.nasa.jpf.inspector.server.expression.expressions.ExpressionStateAssignment;
+import gov.nasa.jpf.inspector.server.expression.expressions.ExpressionStateAttributeAssignment;
 import gov.nasa.jpf.inspector.server.expression.generated.ExpressionGrammarLexer;
 import gov.nasa.jpf.inspector.server.expression.generated.ExpressionGrammarParser;
 import gov.nasa.jpf.inspector.server.jpf.JPFInspector;
@@ -173,5 +174,33 @@ public class ExpressionParser implements ExpressionParserInterface {
   @Override
   public ExpressionFactory getExpressionFactory () {
     return expFactory;
+  }
+
+  public ExpressionStateAttributeAssignment getAttributeAssignment(String expr)
+          throws JPFInspectorParsingErrorException,
+          JPFInspectorGenericErrorException {
+    if (expr == null) {
+      return null;
+    }
+    expr = expr.trim();
+    // We want to process empty inputs (print) commands without parameters prints local variables
+
+    final ExpressionGrammarParser parser = getParser(expr);
+    try {
+      return parser.cmdStateAttributeAssignment(expFactory).expr;
+
+    } catch (RecognitionRuntimeException e) {
+      throw new JPFInspectorParsingErrorException("Invalid input - " + e.getMessage(), expr, e.getRecognitionException());
+
+    } catch (AntlrParseException e) {
+      throw new JPFInspectorParsingErrorException("Parse error: " + e.getMessage(), expr, e.getColumn());
+    }  catch (GenericErrorRuntimeException e) {
+      // Unwrap checked exception
+      throw e.getWrappedException();
+
+    } catch (JPFInspectorRuntimeParsingException e) {
+      // Unwrap checked exception
+      throw e.getParsingErrorException();
+    }
   }
 }

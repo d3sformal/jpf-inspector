@@ -16,7 +16,9 @@
 
 package gov.nasa.jpf.inspector.server.attributes.attachments;
 
+import gov.nasa.jpf.inspector.interfaces.attributes.AttributeConversionResult;
 import gov.nasa.jpf.inspector.interfaces.attributes.AttributeToStringConverter;
+import gov.nasa.jpf.inspector.interfaces.attributes.StringToAttributeConverter;
 import gov.nasa.jpf.util.ObjectList;
 import gov.nasa.jpf.vm.ElementInfo;
 
@@ -38,5 +40,15 @@ public class ArrayElementAttachment extends AttributeAttachment {
   @Override
   public String convertToStringUsing(Object attribute, AttributeToStringConverter converter) {
     return converter.fieldToString(arrayInfo, index, attribute);
+  }
+
+  @Override
+  public AttributeConversionResult convertToAttributeUsing(String expression, StringToAttributeConverter converter) {
+    return converter.convertForArrayElement(arrayInfo, index, expression);
+  }
+
+  @Override
+  public void setAttribute(Object createdAttribute) {
+    arrayInfo.setElementAttr(index, createdAttribute);
   }
 }
