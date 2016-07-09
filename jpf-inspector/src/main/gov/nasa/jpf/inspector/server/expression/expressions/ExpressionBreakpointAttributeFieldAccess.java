@@ -20,6 +20,7 @@ import gov.nasa.jpf.inspector.exceptions.JPFInspectorException;
 import gov.nasa.jpf.inspector.server.expression.AccessMode;
 import gov.nasa.jpf.inspector.server.expression.ExpressionBooleanLeaf;
 import gov.nasa.jpf.inspector.server.expression.InspectorState;
+import gov.nasa.jpf.inspector.utils.expressions.FieldName;
 import gov.nasa.jpf.jvm.bytecode.JVMLocalVariableInstruction;
 import gov.nasa.jpf.vm.Instruction;
 import gov.nasa.jpf.vm.VM;
@@ -31,13 +32,13 @@ import gov.nasa.jpf.vm.bytecode.StoreInstruction;
  */
 public class ExpressionBreakpointAttributeFieldAccess extends ExpressionBooleanLeaf {
   private final AccessMode accessMode;
-  private final String localName;
+  private final FieldName fieldName;
 
-  public ExpressionBreakpointAttributeFieldAccess(AccessMode accessMode, String localName) {
+  public ExpressionBreakpointAttributeFieldAccess(AccessMode accessMode, FieldName fieldName) {
     assert accessMode != null;
-    assert localName != null;
+    assert fieldName != null;
     this.accessMode = accessMode;
-    this.localName = localName;
+    this.fieldName = fieldName;
   }
 
   @Override

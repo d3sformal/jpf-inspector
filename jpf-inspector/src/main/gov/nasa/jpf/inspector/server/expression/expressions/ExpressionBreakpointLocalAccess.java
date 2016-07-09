@@ -17,6 +17,7 @@
 package gov.nasa.jpf.inspector.server.expression.expressions;
 
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorException;
+import gov.nasa.jpf.inspector.server.expression.AccessMode;
 import gov.nasa.jpf.inspector.server.expression.ExpressionBooleanLeaf;
 import gov.nasa.jpf.inspector.server.expression.InspectorState;
 import gov.nasa.jpf.jvm.bytecode.JVMLocalVariableInstruction;
@@ -29,10 +30,10 @@ import gov.nasa.jpf.vm.bytecode.StoreInstruction;
  * This family contains the hit conditions "local_access", "local_read" and "local_write".
  */
 public class ExpressionBreakpointLocalAccess extends ExpressionBooleanLeaf {
-  private final LocalAccessMode accessMode;
+  private final AccessMode accessMode;
   private final String localName;
 
-  public ExpressionBreakpointLocalAccess(LocalAccessMode accessMode, String localName) {
+  public ExpressionBreakpointLocalAccess(AccessMode accessMode, String localName) {
     assert accessMode != null;
     assert localName != null;
     this.accessMode = accessMode;
@@ -72,11 +73,11 @@ public class ExpressionBreakpointLocalAccess extends ExpressionBooleanLeaf {
   @Override
   public String getNormalizedExpression() {
     StringBuilder result = new StringBuilder();
-    if (accessMode == LocalAccessMode.ANY_ACCESS) {
+    if (accessMode == AccessMode.ANY_ACCESS) {
       result.append("local_access");
-    } else if (accessMode == LocalAccessMode.READ) {
+    } else if (accessMode == AccessMode.READ) {
       result.append("local_read");
-    } else if (accessMode == LocalAccessMode.WRITE) {
+    } else if (accessMode == AccessMode.WRITE) {
       result.append("local_write");
     } else {
       throw new RuntimeException("Internal error - Unsupported access mode (" + accessMode + ")");
@@ -85,23 +86,5 @@ public class ExpressionBreakpointLocalAccess extends ExpressionBooleanLeaf {
     result.append(localName);
 
     return result.toString();
-  }
-
-  /**
-   * Indicates what kind of instructions we are interested in.
-   */
-  public enum LocalAccessMode {
-    /**
-     * Any local variable instruction will do.
-     */
-    ANY_ACCESS,
-    /**
-     * Only in variable read instructions.
-     */
-    READ,
-    /**
-     * Only in variable write instructions.
-     */
-    WRITE
   }
 }

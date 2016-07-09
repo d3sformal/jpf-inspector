@@ -70,6 +70,9 @@ allKeyWordsIDFLike
     | TOKEN_LOCAL_ACCESS
     | TOKEN_LOCAL_READ
     | TOKEN_LOCAL_WRITE
+    | TOKEN_ATTRIBUTE_ACCESS
+    | TOKEN_ATTRIBUTE_READ
+    | TOKEN_ATTRIBUTE_WRITE
     | TOKEN_LOCK
     | TOKEN_METHOD
     | TOKEN_NAN
@@ -233,6 +236,16 @@ cmdBreakpointsCreateParamsAtomTerminateIDF [ExpressionFactory expFactory] return
     | WS? TOKEN_LOCAL_ACCESS WS? '=' WS? idf WS? { $bp = expFactory.getBreakpointLocalAccess($idf.text); }
     | WS? TOKEN_LOCAL_READ WS? '=' WS? idf WS? { $bp = expFactory.getBreakpointLocalRead($idf.text); }
     | WS? TOKEN_LOCAL_WRITE WS? '=' WS? idf WS? { $bp = expFactory.getBreakpointLocalWrite($idf.text); }
+    | WS? TOKEN_ATTRIBUTE_ACCESS WS? '=' WS? idf WS? { $bp = expFactory.getBreakpointAttrAccess($idf.text); }
+    | WS? TOKEN_ATTRIBUTE_READ WS? '=' WS? idf WS? { $bp = expFactory.getBreakpointAttrRead($idf.text); }
+    | WS? TOKEN_ATTRIBUTE_WRITE WS? '=' WS? idf WS? { $bp = expFactory.getBreakpointAttrWrite($idf.text); }
+    | WS? TOKEN_ATTRIBUTE_ACCESS WS? '=' WS? className WS? ':' WS? fieldName[$className.cn] WS?
+        { $bp = expFactory.getBreakpointAttrAccess($fieldName.fn); }
+    | WS? TOKEN_ATTRIBUTE_READ WS? '=' WS? className WS? ':' WS? fieldName[$className.cn] WS?
+        { $bp = expFactory.getBreakpointAttrRead($fieldName.fn); }
+    | WS? TOKEN_ATTRIBUTE_WRITE WS? '=' WS? className WS? ':' WS? fieldName[$className.cn] WS?
+        { $bp = expFactory.getBreakpointAttrWrite($fieldName.fn); }
+
     | l=cmdStateExpression1Value[expFactory]  relOp[expFactory] r=cmdStateExpression1Value[expFactory]
     { $bp = expFactory.getBreakpointCompare($l.expr, $relOp.relop, $r.expr); }
     ;
@@ -253,14 +266,14 @@ cmdGarbageCollectionSpec returns [BreakPointModes bpMode]
     : TOKEN_BEGIN { $bpMode  = BreakPointModes.BP_MODE_GC_BEGIN; }
     | TOKEN_END   { $bpMode  = BreakPointModes.BP_MODE_GC_END; }
     | TOKEN_BOTH  { $bpMode  = BreakPointModes.BP_MODE_GC_BOTH; }
-    | TOKEN_ALL       { $bpMode = BreakPointModes.BP_MODE_CHOICE_BOTH; }
+    | TOKEN_ALL   { $bpMode  = BreakPointModes.BP_MODE_GC_BOTH; }
     ;
 
 cmdChoiceGeneratorType returns [BreakPointModes bpMode]
     : TOKEN_DATA       { $bpMode = BreakPointModes.BP_MODE_CHOICE_DATA; }
     | TOKEN_SCHEDULING { $bpMode = BreakPointModes.BP_MODE_CHOICE_SCHEDULING; }
     | TOKEN_BOTH       { $bpMode = BreakPointModes.BP_MODE_CHOICE_BOTH; }
-    | TOKEN_ALL       { $bpMode = BreakPointModes.BP_MODE_CHOICE_BOTH; }
+    | TOKEN_ALL        { $bpMode = BreakPointModes.BP_MODE_CHOICE_BOTH; }
     ;
 
 cmdInstructionTypes returns [InstructionType instructionType]
@@ -283,11 +296,16 @@ cmdThreadScheduledDirection returns [BreakPointModes bpMode]
     : TOKEN_IN                { $bpMode = BreakPointModes.BP_MODE_THREAD_SCHEDULED_IN; }
     | TOKEN_OUT               { $bpMode = BreakPointModes.BP_MODE_THREAD_SCHEDULED_OUT; }
     | TOKEN_BOTH              { $bpMode = BreakPointModes.BP_MODE_THREAD_SCHEDULED_BOTH; }
-    | TOKEN_ALL       { $bpMode = BreakPointModes.BP_MODE_CHOICE_BOTH; }
+    | TOKEN_ALL               { $bpMode = BreakPointModes.BP_MODE_THREAD_SCHEDULED_BOTH; }
     ;
 
 cmdStateAssignment [ExpressionFactory expFactory] returns [ExpressionStateAssignment expr]
     : lval=cmdStateExpression1[$expFactory] SIGN_EQUALS rval=cmdStateExpression1[$expFactory] { $expr = $expFactory.getStateAssignment($lval.expr, $rval.expr); } EOF 
+    ;
+
+cmdStateAttributeAssignment  [ExpressionFactory expFactory] returns [ExpressionStateAttributeAssignment expr]
+    : lval=cmdStateExpression1[$expFactory] SIGN_EQUALS WS? rval=.*
+    { $expr = $expFactory.getStateAttributeAssignment($lval.expr, $rval.text); }
     ;
     
 cmdStateExpression [ExpressionFactory expFactory] returns [ExpressionStateRootNode expr]
@@ -603,6 +621,9 @@ TOKEN_X                         : 'x' | 'X' ;
 TOKEN_LOCAL_ACCESS : 'local_access' | 'la';
 TOKEN_LOCAL_READ : 'local_read' | 'lr';
 TOKEN_LOCAL_WRITE : 'local_write' | 'lw';
+TOKEN_ATTRIBUTE_READ : 'attr_read' | 'attribute_read' | 'ar';
+TOKEN_ATTRIBUTE_WRITE : 'attr_write' | 'attribute_write' | 'aw';
+TOKEN_ATTRIBUTE_ACCESS : 'attr_access' | 'attribute_access' | 'aa';
 TOKEN_METHOD : 'method';
 TOKEN_CLASS : 'class';
 TOKEN_NOT : 'not';

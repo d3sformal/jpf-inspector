@@ -112,10 +112,21 @@ public class ExpressionFactory {
   }
 
   public ExpressionBreakpointFieldAccess getBreakpointFieldAccess (BreakPointModes bpMode, FieldName fn) {
-    assert (bpMode == BreakPointModes.BP_MODE_FIELD_ACCESS) || (bpMode == BreakPointModes.BP_MODE_FIELD_ACCESS_READ)
+    assert (bpMode == BreakPointModes.BP_MODE_FIELD_ACCESS) ||
+           (bpMode == BreakPointModes.BP_MODE_FIELD_ACCESS_READ)
         || (bpMode == BreakPointModes.BP_MODE_FIELD_ACCESS_WRITE);
     assert fn != null;
-    return new ExpressionBreakpointFieldAccess(bpMode, fn);
+    switch (bpMode) {
+      case BP_MODE_FIELD_ACCESS:
+        return new ExpressionBreakpointFieldAccess(AccessMode.ANY_ACCESS, fn);
+      case BP_MODE_FIELD_ACCESS_READ:
+        return new ExpressionBreakpointFieldAccess(AccessMode.READ, fn);
+      case BP_MODE_FIELD_ACCESS_WRITE:
+        return new ExpressionBreakpointFieldAccess(AccessMode.WRITE, fn);
+      default:
+        // Will never happen.
+        throw new RuntimeException("Unsupported BP mode.");
+    }
   }
 
   public ExpressionBreakpointMethodInvoke getBreakpointMethodInvoke (BreakPointModes bpMode, MethodName mn) {
@@ -252,6 +263,10 @@ public class ExpressionFactory {
     return new ExpressionStateAssignment(lValue, rValue);
   }
 
+  public ExpressionStateAttributeAssignment getStateAttributeAssignment(ExpressionStateRootNode rootNode, String newValue) {
+    return new ExpressionStateAttributeAssignment(rootNode, newValue);
+  }
+
   public ExpressionBreakpointCompare getBreakpointCompare (ExpressionStateRootNode left,
                                                            RelationOperator relOper,
                                                            ExpressionStateRootNode right) {
@@ -276,12 +291,32 @@ public class ExpressionFactory {
     return new ExpressionBreakpointClassName(className);
   }
   public ExpressionBreakpointLocalAccess getBreakpointLocalAccess(String name) {
-    return new ExpressionBreakpointLocalAccess(ExpressionBreakpointLocalAccess.LocalAccessMode.ANY_ACCESS, name);
+    return new ExpressionBreakpointLocalAccess(AccessMode.ANY_ACCESS, name);
   }
   public ExpressionBreakpointLocalAccess getBreakpointLocalRead(String name) {
-    return new ExpressionBreakpointLocalAccess(ExpressionBreakpointLocalAccess.LocalAccessMode.READ, name);
+    return new ExpressionBreakpointLocalAccess(AccessMode.READ, name);
   }
   public ExpressionBreakpointLocalAccess getBreakpointLocalWrite(String name) {
-    return new ExpressionBreakpointLocalAccess(ExpressionBreakpointLocalAccess.LocalAccessMode.WRITE, name);
+    return new ExpressionBreakpointLocalAccess(AccessMode.WRITE, name);
   }
+  public ExpressionBreakpointAttributeLocalAccess getBreakpointAttrAccess(String name) {
+    return new ExpressionBreakpointAttributeLocalAccess(AccessMode.ANY_ACCESS, name);
+  }
+  public ExpressionBreakpointAttributeLocalAccess getBreakpointAttrRead(String name) {
+    return new ExpressionBreakpointAttributeLocalAccess(AccessMode.READ, name);
+  }
+  public ExpressionBreakpointAttributeLocalAccess getBreakpointAttrWrite(String name) {
+    return new ExpressionBreakpointAttributeLocalAccess(AccessMode.WRITE, name);
+  }
+  public ExpressionBreakpointAttributeFieldAccess getBreakpointAttrAccess(FieldName fieldName) {
+    return new ExpressionBreakpointAttributeFieldAccess(AccessMode.ANY_ACCESS, fieldName);
+  }
+  public ExpressionBreakpointAttributeFieldAccess getBreakpointAttrRead(FieldName fieldName) {
+    return new ExpressionBreakpointAttributeFieldAccess(AccessMode.READ, fieldName);
+  }
+  public ExpressionBreakpointAttributeFieldAccess getBreakpointAttrWrite(FieldName fieldName) {
+    return new ExpressionBreakpointAttributeFieldAccess(AccessMode.WRITE, fieldName);
+  }
+
+
 }

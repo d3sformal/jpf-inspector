@@ -17,18 +17,18 @@
 
 package gov.nasa.jpf.inspector.server.expression.expressions;
 
-import gov.nasa.jpf.inspector.server.breakpoints.BreakPointModes;
+import gov.nasa.jpf.inspector.server.expression.AccessMode;
 import gov.nasa.jpf.inspector.server.expression.ExpressionBooleanLeaf;
 import gov.nasa.jpf.inspector.server.expression.InspectorState;
 import gov.nasa.jpf.inspector.server.expression.InspectorState.ListenerMethod;
 import gov.nasa.jpf.inspector.utils.expressions.FieldName;
-import gov.nasa.jpf.vm.VM;
-import gov.nasa.jpf.vm.bytecode.FieldInstruction;
 import gov.nasa.jpf.jvm.bytecode.GETFIELD;
 import gov.nasa.jpf.jvm.bytecode.GETSTATIC;
-import gov.nasa.jpf.vm.Instruction;
 import gov.nasa.jpf.jvm.bytecode.PUTFIELD;
 import gov.nasa.jpf.jvm.bytecode.PUTSTATIC;
+import gov.nasa.jpf.vm.Instruction;
+import gov.nasa.jpf.vm.VM;
+import gov.nasa.jpf.vm.bytecode.FieldInstruction;
 
 /**
  * Represent the family of field access hit conditions that hit when the field is about to be referenced.
@@ -36,22 +36,13 @@ import gov.nasa.jpf.jvm.bytecode.PUTSTATIC;
  */
 public class ExpressionBreakpointFieldAccess extends ExpressionBooleanLeaf {
 
-  private BreakPointModes bpMode;
+  private AccessMode accessMode;
   private FieldName fn;
 
-  public ExpressionBreakpointFieldAccess(BreakPointModes bpMode, FieldName fn) {
-    if ((bpMode == BreakPointModes.BP_MODE_FIELD_ACCESS) ||
-        (bpMode == BreakPointModes.BP_MODE_FIELD_ACCESS_READ) ||
-        (bpMode == BreakPointModes.BP_MODE_FIELD_ACCESS_WRITE)) {
-      this.bpMode = bpMode;
-    } else {
-      throw new RuntimeException("Internal error - Unsupported bpMode(" + bpMode + ")");
-    }
-    if (fn != null) {
-      this.fn = fn;
-    } else {
-      throw new RuntimeException("Internal error - Unexpected null value");
-    }
+  public ExpressionBreakpointFieldAccess(AccessMode accessMode, FieldName fn) {
+    assert fn != null;
+    this.fn = fn;
+    this.accessMode = accessMode;
   }
 
   @Override
@@ -70,11 +61,11 @@ public class ExpressionBreakpointFieldAccess extends ExpressionBooleanLeaf {
     }
 
     FieldInstruction fiInst = (FieldInstruction) inst;
-    if (bpMode == BreakPointModes.BP_MODE_FIELD_ACCESS) {
+    if (accessMode == AccessMode.ANY_ACCESS) {
       return fn.isSameField(fiInst.getFieldInfo());
-    } else if (bpMode == BreakPointModes.BP_MODE_FIELD_ACCESS_READ) {
+    } else if (accessMode == AccessMode.READ) {
       return (fiInst instanceof GETFIELD) || (fiInst instanceof GETSTATIC) && fn.isSameField(fiInst.getFieldInfo());
-    } else if (bpMode == BreakPointModes.BP_MODE_FIELD_ACCESS_WRITE) {
+    } else if (accessMode == AccessMode.WRITE) {
       return (fiInst instanceof PUTFIELD) || (fiInst instanceof PUTSTATIC) && fn.isSameField(fiInst.getFieldInfo());
     }
 
@@ -84,15 +75,14 @@ public class ExpressionBreakpointFieldAccess extends ExpressionBooleanLeaf {
   @Override
   public String getNormalizedExpression() {
     StringBuilder result = new StringBuilder();
-    if (bpMode == BreakPointModes.BP_MODE_FIELD_ACCESS) {
+    if (accessMode == AccessMode.ANY_ACCESS) {
       result.append("field_access");
-    } else if (bpMode == BreakPointModes.BP_MODE_FIELD_ACCESS_READ) {
+    } else if (accessMode == AccessMode.READ) {
       result.append("field_read");
-    } else if (bpMode == BreakPointModes.BP_MODE_FIELD_ACCESS_WRITE) {
+    } else if (accessMode == AccessMode.WRITE) {
       result.append("field_write");
-    } else {
-      throw new RuntimeException("Internal error - Unsupported bpMode(" + bpMode + ")");
     }
+
     result.append('=');
     result.append(fn);
 
