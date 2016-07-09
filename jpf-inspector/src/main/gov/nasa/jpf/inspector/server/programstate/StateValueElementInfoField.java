@@ -44,6 +44,7 @@ public final class StateValueElementInfoField extends StateWritableValue {
   private final ElementInfo ei;
   private final FieldInfo fieldInfo;
 
+
   public static StateValueElementInfoField createInstanceNamedField (StateReadableValue srvi, String varName) throws JPFInspectorException {
 
     ClassInfo ci = srvi.getClassInfo();

@@ -49,12 +49,23 @@ public class ExpressionBreakpointAttributeFieldAccess extends ExpressionBooleanL
       return false;
     }
 
-    throw new RuntimeException("Internal error - Unsupported access mode");
+    throw new RuntimeException("Not yet implemented.");
   }
 
   @Override
   public String getNormalizedExpression() {
-    throw new RuntimeException("Internal error - Unsupported access mode");
+    StringBuilder result = new StringBuilder();
+    if (accessMode == AccessMode.ANY_ACCESS) {
+      result.append("attr_access");
+    } else if (accessMode == AccessMode.READ) {
+      result.append("attr_read");
+    } else if (accessMode == AccessMode.WRITE) {
+      result.append("attr_write");
+    }
 
+    result.append('=');
+    result.append(fieldName);
+
+    return result.toString();
   }
 }
