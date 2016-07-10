@@ -18,28 +18,90 @@ package gov.nasa.jpf.inspector.server.attributes.adaptors;
 
 import gov.nasa.jpf.inspector.client.JPFInspectorClientInterface;
 import gov.nasa.jpf.inspector.interfaces.attributes.AttributeAccessDetector;
+import gov.nasa.jpf.inspector.utils.Debugging;
 import gov.nasa.jpf.inspector.utils.expressions.FieldName;
-import gov.nasa.jpf.vm.Instruction;
+import gov.nasa.jpf.jvm.bytecode.*;
+import gov.nasa.jpf.vm.*;
+import gov.nasa.jpf.vm.bytecode.*;
+
+import java.util.Objects;
 
 public class CoreAttributeAccessDetector implements AttributeAccessDetector {
+
   @Override
   public boolean detectRead(Instruction impendingInstruction, FieldName fieldName) {
-    return false;
+    if (!(impendingInstruction instanceof GETFIELD) &&
+        !(impendingInstruction instanceof GETSTATIC)) {
+        return false;
+    }
+    FieldInstruction fieldInstruction = (FieldInstruction)impendingInstruction;
+    FieldInfo fieldInfo = fieldInstruction.getFieldInfo();
+    if (!fieldName.isSameField(fieldInfo)) {
+      return false;
+    }
+    ElementInfo owner = fieldInstruction.peekElementInfo(ThreadInfo.getCurrentThread());
+    Object fieldAttr = owner.getFieldAttr(fieldInfo);
+    return fieldAttr != null;
+  }
+
+
+  @Override
+  public boolean detectWrite(Instruction impendingInstruction, FieldName fieldName) {
+    if (!(impendingInstruction instanceof PUTFIELD) &&
+            !(impendingInstruction instanceof PUTSTATIC)) {
+      return false;
+    }
+    FieldInstruction fieldInstruction = (FieldInstruction)impendingInstruction;
+    FieldInfo fieldInfo = fieldInstruction.getFieldInfo();
+    if (!fieldName.isSameField(fieldInfo)) {
+      return false;
+    }
+    ElementInfo owner = fieldInstruction.peekElementInfo(ThreadInfo.getCurrentThread());
+    Object fieldAttr = owner.getFieldAttr(fieldInfo);
+    int sourceSlot = ((WriteInstruction)impendingInstruction).getValueSlot(ThreadInfo.getCurrentThread().getTopFrame());
+    Object slotAttr = ThreadInfo.getCurrentThread().getTopFrame().getSlotAttr(sourceSlot);
+    return fieldAttr != null || slotAttr != null;
   }
 
   @Override
   public boolean detectRead(Instruction impendingInstruction, String localVariable) {
-    return false;
-  }
-
-  @Override
-  public boolean detectWrite(Instruction impendingInstruction, FieldName fieldName) {
-    return false;
+    if (!(impendingInstruction instanceof LocalVariableInstruction) ||
+          impendingInstruction instanceof StoreInstruction) {
+      return false;
+    }
+    LocalVariableInstruction localVariableInstruction = (LocalVariableInstruction)impendingInstruction;
+    LocalVarInfo localVarInfo = localVariableInstruction.getLocalVarInfo();
+    if (localVarInfo == null) {
+      return false;
+    }
+    if (!Objects.equals(localVarInfo.getName(), localVariable))  {
+      return false;
+    }
+    int slot = localVariableInstruction.getLocalVariableSlot();
+    StackFrame topFrame = ThreadInfo.getCurrentThread().getTopFrame();
+    Object slotAttr = topFrame.getSlotAttr(slot);
+    return slotAttr != null;
   }
 
   @Override
   public boolean detectWrite(Instruction impendingInstruction, String localVariable) {
-    return false;
+    if (!(impendingInstruction instanceof LocalVariableInstruction) ||
+        !(impendingInstruction instanceof StoreInstruction)) {
+      return false;
+    }
+    LocalVariableInstruction localVariableInstruction = (LocalVariableInstruction)impendingInstruction;
+    LocalVarInfo localVarInfo = localVariableInstruction.getLocalVarInfo();
+    if (localVarInfo == null) {
+      return false;
+    }
+    if (!Objects.equals(localVarInfo.getName(), localVariable))  {
+      return false;
+    }
+    int targetSlot = localVariableInstruction.getLocalVariableSlot();
+    StackFrame topFrame = ThreadInfo.getCurrentThread().getTopFrame();
+    Object targetSlotAttr = topFrame.getSlotAttr(targetSlot);
+    Object sourceAttr = topFrame.getOperandAttr();
+    return targetSlotAttr != null || sourceAttr != null;
   }
 
   @Override

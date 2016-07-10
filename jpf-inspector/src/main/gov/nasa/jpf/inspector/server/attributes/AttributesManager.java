@@ -19,6 +19,7 @@ package gov.nasa.jpf.inspector.server.attributes;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorException;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorGenericErrorException;
 import gov.nasa.jpf.inspector.interfaces.AttributeManagerInterface;
+import gov.nasa.jpf.inspector.interfaces.attributes.AttributeAccessDetector;
 import gov.nasa.jpf.inspector.interfaces.attributes.AttributeConversionResult;
 import gov.nasa.jpf.inspector.interfaces.attributes.AttributeToStringConverter;
 import gov.nasa.jpf.inspector.interfaces.attributes.StringToAttributeConverter;
@@ -31,8 +32,10 @@ import gov.nasa.jpf.inspector.server.expression.expressions.ExpressionStateAttri
 import gov.nasa.jpf.inspector.server.jpf.JPFInspector;
 import gov.nasa.jpf.inspector.server.programstate.StateWritableValue;
 import gov.nasa.jpf.inspector.utils.InspectorConfiguration;
+import gov.nasa.jpf.inspector.utils.expressions.FieldName;
 import gov.nasa.jpf.vm.ElementInfo;
 import gov.nasa.jpf.vm.FieldInfo;
+import gov.nasa.jpf.vm.Instruction;
 import gov.nasa.jpf.vm.StackFrame;
 
 import java.util.ArrayList;
@@ -41,6 +44,7 @@ public class AttributesManager implements AttributeManagerInterface {
   private JPFInspector inspector;
   private ArrayList<AttributeToStringConverter> attributeToStringConverters = new ArrayList<>();
   private ArrayList<StringToAttributeConverter> stringToAttributeConverters = new ArrayList<>();
+  private ArrayList<AttributeAccessDetector> detectors = new ArrayList<>();
   private final ExpressionParser parser;
 
   // Initialization
@@ -48,6 +52,7 @@ public class AttributesManager implements AttributeManagerInterface {
     this.inspector = inspector;
     this.attributeToStringConverters = InspectorConfiguration.getInstance().getLoadedAttributeToStringConverters();
     this.stringToAttributeConverters = InspectorConfiguration.getInstance().getLoadedStringToAttributeConverters();
+    this.detectors = InspectorConfiguration.getInstance().getLoadedAttributeAccessDetectors();
     parser = new ExpressionParser(inspector);
   }
 
@@ -64,7 +69,8 @@ public class AttributesManager implements AttributeManagerInterface {
     AttributeAttachment attachment = targetObject.getAttributeAttachment();
     String errorMessages = "";
     for (StringToAttributeConverter converter : stringToAttributeConverters) {
-      AttributeConversionResult acr = attachment.convertToAttributeUsing(parsedExpr.getNewAttributeValue().trim(), converter);
+      AttributeConversionResult acr = attachment.convertToAttributeUsing(parsedExpr.getNewAttributeValue().trim(),
+                                                                         converter);
       if (acr.isSuccess()) {
         attachment.setAttribute(acr.getCreatedAttribute());
         return;
@@ -79,7 +85,6 @@ public class AttributesManager implements AttributeManagerInterface {
     throw new JPFInspectorGenericErrorException("No converter was able to parse the new attribute value." +
                                                         (errorMessages.isEmpty() ? "" : "\n" + errorMessages));
   }
-
 
 
   // Attribute to string
@@ -118,4 +123,40 @@ public class AttributesManager implements AttributeManagerInterface {
   }
 
   // Detection
+  public boolean detectRead(Instruction impendingInstruction, FieldName fieldName) {
+    for (AttributeAccessDetector detector : detectors) {
+      if (detector.detectRead(impendingInstruction, fieldName)) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  public boolean detectRead(Instruction impendingInstruction, String localVariable) {
+    for (AttributeAccessDetector detector : detectors) {
+      if (detector.detectRead(impendingInstruction, localVariable)) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  public boolean detectWrite(Instruction impendingInstruction, FieldName fieldName) {
+    for (AttributeAccessDetector detector : detectors) {
+      if (detector.detectWrite(impendingInstruction, fieldName)) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  public boolean detectWrite(Instruction impendingInstruction, String localVariable) {
+    for (AttributeAccessDetector detector : detectors) {
+      if (detector.detectWrite(impendingInstruction, localVariable)) {
+        return true;
+      }
+    }
+    return false;
+  }
+
 }

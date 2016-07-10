@@ -17,13 +17,12 @@
 package gov.nasa.jpf.inspector.server.expression.expressions;
 
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorException;
+import gov.nasa.jpf.inspector.server.attributes.AttributesManager;
 import gov.nasa.jpf.inspector.server.expression.AccessMode;
 import gov.nasa.jpf.inspector.server.expression.ExpressionBooleanLeaf;
 import gov.nasa.jpf.inspector.server.expression.InspectorState;
-import gov.nasa.jpf.jvm.bytecode.JVMLocalVariableInstruction;
+import gov.nasa.jpf.inspector.server.jpf.JPFInspector;
 import gov.nasa.jpf.vm.Instruction;
-import gov.nasa.jpf.vm.VM;
-import gov.nasa.jpf.vm.bytecode.StoreInstruction;
 
 /**
  * Represent the family of local variable access hit conditions that hit when the local variable is about to be referenced.
@@ -32,8 +31,10 @@ import gov.nasa.jpf.vm.bytecode.StoreInstruction;
 public class ExpressionBreakpointAttributeLocalAccess extends ExpressionBooleanLeaf {
   private final AccessMode accessMode;
   private final String localName;
+  private JPFInspector inspector;
 
-  public ExpressionBreakpointAttributeLocalAccess(AccessMode accessMode, String localName) {
+  public ExpressionBreakpointAttributeLocalAccess(JPFInspector inspector, AccessMode accessMode, String localName) {
+    this.inspector = inspector;
     assert accessMode != null;
     assert localName != null;
     this.accessMode = accessMode;
@@ -48,26 +49,19 @@ public class ExpressionBreakpointAttributeLocalAccess extends ExpressionBooleanL
       return false;
     }
 
-    VM vm = state.getVM();
-    Instruction inst = vm.getInstruction();
+    AttributesManager manager = inspector.getAttributesManager();
+    Instruction impendingInstruction = state.getVM().getInstruction();
 
-    if (!(inst instanceof JVMLocalVariableInstruction)) {
-      return false;
-    }
-    JVMLocalVariableInstruction jvmLocalVariableInstruction = (JVMLocalVariableInstruction)inst;
-    String variableName = jvmLocalVariableInstruction.getLocalVariableName();
-    if (!java.util.Objects.equals(variableName, localName)) {
-      return false;
-    }
     switch (accessMode) {
       case ANY_ACCESS:
-        return true;
+        return manager.detectRead(impendingInstruction, localName) ||
+               manager.detectWrite(impendingInstruction, localName);
       case READ:
-        return !(inst instanceof StoreInstruction);
+        return manager.detectRead(impendingInstruction, localName);
       case WRITE:
-        return (inst instanceof StoreInstruction);
+        return manager.detectWrite(impendingInstruction, localName);
     }
-    throw new RuntimeException("Internal error - Unsupported access mode (" + accessMode + ")");
+    throw new RuntimeException("Internal error - Unsupported access mode (" + accessMode + ").");
   }
 
   @Override

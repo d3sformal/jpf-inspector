@@ -17,14 +17,13 @@
 package gov.nasa.jpf.inspector.server.expression.expressions;
 
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorException;
+import gov.nasa.jpf.inspector.server.attributes.AttributesManager;
 import gov.nasa.jpf.inspector.server.expression.AccessMode;
 import gov.nasa.jpf.inspector.server.expression.ExpressionBooleanLeaf;
 import gov.nasa.jpf.inspector.server.expression.InspectorState;
+import gov.nasa.jpf.inspector.server.jpf.JPFInspector;
 import gov.nasa.jpf.inspector.utils.expressions.FieldName;
-import gov.nasa.jpf.jvm.bytecode.JVMLocalVariableInstruction;
 import gov.nasa.jpf.vm.Instruction;
-import gov.nasa.jpf.vm.VM;
-import gov.nasa.jpf.vm.bytecode.StoreInstruction;
 
 /**
  * Represent the family of local variable access hit conditions that hit when the local variable is about to be referenced.
@@ -33,8 +32,10 @@ import gov.nasa.jpf.vm.bytecode.StoreInstruction;
 public class ExpressionBreakpointAttributeFieldAccess extends ExpressionBooleanLeaf {
   private final AccessMode accessMode;
   private final FieldName fieldName;
+  private JPFInspector inspector;
 
-  public ExpressionBreakpointAttributeFieldAccess(AccessMode accessMode, FieldName fieldName) {
+  public ExpressionBreakpointAttributeFieldAccess(JPFInspector inspector, AccessMode accessMode, FieldName fieldName) {
+    this.inspector = inspector;
     assert accessMode != null;
     assert fieldName != null;
     this.accessMode = accessMode;
@@ -49,7 +50,19 @@ public class ExpressionBreakpointAttributeFieldAccess extends ExpressionBooleanL
       return false;
     }
 
-    throw new RuntimeException("Not yet implemented.");
+    AttributesManager manager = inspector.getAttributesManager();
+    Instruction impendingInstruction = state.getVM().getInstruction();
+
+    switch (accessMode) {
+      case ANY_ACCESS:
+        return manager.detectRead(impendingInstruction, fieldName) ||
+               manager.detectWrite(impendingInstruction, fieldName);
+      case READ:
+        return manager.detectRead(impendingInstruction, fieldName);
+      case WRITE:
+        return manager.detectWrite(impendingInstruction, fieldName);
+    }
+    throw new RuntimeException("Internal error - Unsupported access mode (" + accessMode + ").");
   }
 
   @Override

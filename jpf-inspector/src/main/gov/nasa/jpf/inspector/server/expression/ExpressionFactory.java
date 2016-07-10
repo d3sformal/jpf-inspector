@@ -300,22 +300,22 @@ public class ExpressionFactory {
     return new ExpressionBreakpointLocalAccess(AccessMode.WRITE, name);
   }
   public ExpressionBreakpointAttributeLocalAccess getBreakpointAttrAccess(String name) {
-    return new ExpressionBreakpointAttributeLocalAccess(AccessMode.ANY_ACCESS, name);
+    return new ExpressionBreakpointAttributeLocalAccess(inspector, AccessMode.ANY_ACCESS, name);
   }
   public ExpressionBreakpointAttributeLocalAccess getBreakpointAttrRead(String name) {
-    return new ExpressionBreakpointAttributeLocalAccess(AccessMode.READ, name);
+    return new ExpressionBreakpointAttributeLocalAccess(inspector, AccessMode.READ, name);
   }
   public ExpressionBreakpointAttributeLocalAccess getBreakpointAttrWrite(String name) {
-    return new ExpressionBreakpointAttributeLocalAccess(AccessMode.WRITE, name);
+    return new ExpressionBreakpointAttributeLocalAccess(inspector, AccessMode.WRITE, name);
   }
   public ExpressionBreakpointAttributeFieldAccess getBreakpointAttrAccess(FieldName fieldName) {
-    return new ExpressionBreakpointAttributeFieldAccess(AccessMode.ANY_ACCESS, fieldName);
+    return new ExpressionBreakpointAttributeFieldAccess(inspector, AccessMode.ANY_ACCESS, fieldName);
   }
   public ExpressionBreakpointAttributeFieldAccess getBreakpointAttrRead(FieldName fieldName) {
-    return new ExpressionBreakpointAttributeFieldAccess(AccessMode.READ, fieldName);
+    return new ExpressionBreakpointAttributeFieldAccess(inspector, AccessMode.READ, fieldName);
   }
   public ExpressionBreakpointAttributeFieldAccess getBreakpointAttrWrite(FieldName fieldName) {
-    return new ExpressionBreakpointAttributeFieldAccess(AccessMode.WRITE, fieldName);
+    return new ExpressionBreakpointAttributeFieldAccess(inspector, AccessMode.WRITE, fieldName);
   }
 
 

@@ -86,6 +86,10 @@ public abstract class JPFInspector implements JPFInspectorBackEndInterface {
    */
   protected final ProgramStateManager stateManager;
 
+  public AttributesManager getAttributesManager() {
+    return attributesManager;
+  }
+
   /**
    * Reads and writes attributes and detects attribute changes.
    */
