@@ -20,7 +20,6 @@ package gov.nasa.jpf.inspector.interfaces;
 import gov.nasa.jpf.JPF;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorGenericErrorException;
 import gov.nasa.jpf.inspector.server.callbacks.InspectorServerCallbacks;
-import gov.nasa.jpf.vm.Instruction;
 import gov.nasa.jpf.vm.VM;
 
 /**
