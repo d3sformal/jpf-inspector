@@ -19,8 +19,6 @@ package gov.nasa.jpf.inspector.server.programstate;
 
 import gov.nasa.jpf.JPFException;
 import gov.nasa.jpf.inspector.exceptions.*;
-import gov.nasa.jpf.inspector.interfaces.attributes.StringToAttributeConverter;
-import gov.nasa.jpf.inspector.server.attributes.AttributesManager;
 import gov.nasa.jpf.inspector.server.attributes.attachments.AttributeAttachment;
 import gov.nasa.jpf.inspector.server.expression.InspectorState;
 import gov.nasa.jpf.inspector.utils.ClassInfoCache;

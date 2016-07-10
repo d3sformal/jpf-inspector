@@ -19,18 +19,14 @@ package gov.nasa.jpf.inspector.server.attributes.attachments;
 import gov.nasa.jpf.inspector.interfaces.attributes.AttributeConversionResult;
 import gov.nasa.jpf.inspector.interfaces.attributes.AttributeToStringConverter;
 import gov.nasa.jpf.inspector.interfaces.attributes.StringToAttributeConverter;
-import gov.nasa.jpf.vm.ElementInfo;
-import gov.nasa.jpf.vm.FieldInfo;
-import gov.nasa.jpf.vm.StackFrame;
 
-import java.util.Iterator;
-
-public abstract class AttributeAttachment {
-  public abstract Iterable<Object> getAttributes();
-
-  public abstract String convertToStringUsing(Object attribute, AttributeToStringConverter converter);
-
-  public abstract AttributeConversionResult convertToAttributeUsing(String expression, StringToAttributeConverter converter);
-
-  public abstract void setAttribute(Object createdAttribute);
+/**
+ * Represents attributes attached to a target object in relation to its parent. One could say that the attribute belongs
+ * to a _relationship_. For example, a field, a stack slot or an array element, but not an ElementInfo object itself.
+ */
+public interface AttributeAttachment {
+  Iterable<Object> getAttributes();
+  String convertToStringUsing(Object attribute, AttributeToStringConverter converter);
+  AttributeConversionResult convertToAttributeUsing(String expression, StringToAttributeConverter converter);
+  void setAttribute(Object createdAttribute);
 }

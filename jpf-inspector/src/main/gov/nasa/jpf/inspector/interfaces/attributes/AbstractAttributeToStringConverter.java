@@ -19,8 +19,22 @@ package gov.nasa.jpf.inspector.interfaces.attributes;
 import gov.nasa.jpf.vm.ElementInfo;
 import gov.nasa.jpf.vm.StackFrame;
 
+/**
+ * This is an abstract base classes that users may extend in order to implement their own {@link AttributeToStringConverter}.
+ * The interface, {@link AttributeToStringConverter}, contains multiple methods that provide additional information to
+ * the converter, but most converters will probably find this information meaningless and will only be interested in
+ * the actual attribute values.
+ *
+ * For this reason, it is simpler to implement this class that provides only a single method,
+ * {@link #attributeToString(Object)}, for this purpose.
+ */
 public abstract class AbstractAttributeToStringConverter implements AttributeToStringConverter {
-  public abstract String attributeToString(Object attribute);
+  /**
+   * Converts an attribute object into a human-readable string, or returns null if it fails.
+   * @param attribute An attribute of a field, stack slot, array element or object. It is guaranteed not to be null.
+   * @return Human-readable description of the attribute, or null if this converter cannot handle this attribute.
+   */
+  protected abstract String attributeToString(Object attribute);
 
   @Override
   public String objectToString(ElementInfo object, Object attribute) {

@@ -54,13 +54,6 @@ public interface JPFInspectorBackEndInterface extends
   void waitUntilJpfBecomesConnected();
 
   /**
-   * Gets the instruction that the JPF is currently stopped before. If the JPF is not running, or is in an inconsistent state,
-   * this will return null.
-   * @return The current program counter, or null.
-   */
-  Instruction getCurrentInstruction();
-
-  /**
    * This may violate encapsulation, but, on the other hand, the Inspector's codebase is already too fragmented and
    * adding more interfaces and yet another hierarchy of data objects isn't worth it, but perhaps we'll think of an
    * alternative.

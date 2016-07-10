@@ -32,7 +32,7 @@ import gov.nasa.jpf.vm.Instruction;
 public class ExpressionBreakpointAttributeFieldAccess extends ExpressionBooleanLeaf {
   private final AccessMode accessMode;
   private final FieldName fieldName;
-  private JPFInspector inspector;
+  private final JPFInspector inspector;
 
   public ExpressionBreakpointAttributeFieldAccess(JPFInspector inspector, AccessMode accessMode, FieldName fieldName) {
     this.inspector = inspector;

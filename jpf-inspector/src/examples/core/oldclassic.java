@@ -40,7 +40,7 @@ package core;// Taken from jpf-core examples
  */
 
 //------- the test driver
-public class oldclassic {
+public final class oldclassic {
   public static void main (String[] args) {
     Event      new_event1 = new Event();
     Event      new_event2 = new Event();
@@ -54,6 +54,7 @@ public class oldclassic {
 }
 
 //------- shared objects implemented as monitors
+@SuppressWarnings("ALL")
 class Event {
   int count = 0;
 
@@ -110,7 +111,7 @@ class FirstTask extends Thread {
   }
 }
 
-@SuppressWarnings("InfiniteLoopStatement")
+@SuppressWarnings("ALL")
 class SecondTask extends Thread {
   Event event1;
   Event event2;

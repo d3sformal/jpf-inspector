@@ -23,7 +23,7 @@ import gov.nasa.jpf.util.ObjectList;
 import gov.nasa.jpf.vm.ElementInfo;
 import gov.nasa.jpf.vm.FieldInfo;
 
-public class FieldAttachment extends AttributeAttachment  {
+public class FieldAttachment implements AttributeAttachment {
 
   private final ElementInfo objectInfo;
   private final FieldInfo field;

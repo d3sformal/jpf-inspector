@@ -22,7 +22,7 @@ import gov.nasa.jpf.inspector.interfaces.attributes.StringToAttributeConverter;
 import gov.nasa.jpf.util.ObjectList;
 import gov.nasa.jpf.vm.StackFrame;
 
-public class StackSlotAttachment extends AttributeAttachment{
+public class StackSlotAttachment implements AttributeAttachment {
   private final StackFrame stackFrame;
   private final int index;
 

@@ -1,5 +1,4 @@
 //
-// Copyright (C) 2010-2011 Pavel Jančík
 // Copyright (C) 2016 Petr Hudeček
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,21 +13,11 @@
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
 //
-package gov.nasa.jpf.inspector.common.pse;
-
-import gov.nasa.jpf.inspector.client.commands.CmdPrint;
 
 /**
- * This is a visitor class that is used by the command {@link CmdPrint} to convert {@link ProgramStateEntry} objects
- * to text on the console.
+ * Contains classes that will only be compiled and used when jpf-symbc is also present. These are various
+ * attribute adaptors that allow JPF Inspector to work with symbolic values more effectively.
+ *
+ * In particular, these classes permit to convert strings typed in by the user into jpf-symbc symbolic values.
  */
-public class PrintAttrPrinter extends ValuePrinter {
-  @Override
-  protected String getValueToBeDisplayed(PSEVariable var) {
-    String value = var.getVarValue();
-    if (var.getAttributes() != null) {
-      value = "[" + var.getAttributes() + "]";
-    }
-    return value;
-  }
-}
+package gov.nasa.jpf.inspector.symbolic;

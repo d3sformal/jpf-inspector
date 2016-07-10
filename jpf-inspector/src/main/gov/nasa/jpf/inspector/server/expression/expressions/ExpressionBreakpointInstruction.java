@@ -29,7 +29,6 @@ import gov.nasa.jpf.inspector.utils.expressions.MethodName;
 import gov.nasa.jpf.vm.*;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
 /**
  * Represents the undocumented "specific_instruction" hit condition that hits when the specific instruction is about to be executed.
@@ -103,10 +102,6 @@ public class ExpressionBreakpointInstruction extends ExpressionBooleanLeaf {
       if (ti.getId() == threadNum) {
         Instruction executedInstr = vm.getInstruction();
         Debugging.getLogger().info("Backtracking: Forward stepping: Testing against the same thread (" + executedInstr.getMnemonic() + "," + executedInstr.getFileLocation() + ")");
-        if (Objects.equals(vm.getInstruction().getMnemonic(), "directcallreturn") &&
-                Objects.equals(vm.getInstruction().getFileLocation(), "sun/misc/SharedSecrets.java:1")) {
-
-        }
         if (instruction.equals(executedInstr)) {
           count++;
           return count == hitCount;

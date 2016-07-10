@@ -18,7 +18,6 @@ package gov.nasa.jpf.inspector.server.attributes.adaptors;
 
 import gov.nasa.jpf.inspector.client.JPFInspectorClientInterface;
 import gov.nasa.jpf.inspector.interfaces.attributes.AttributeAccessDetector;
-import gov.nasa.jpf.inspector.utils.Debugging;
 import gov.nasa.jpf.inspector.utils.expressions.FieldName;
 import gov.nasa.jpf.jvm.bytecode.*;
 import gov.nasa.jpf.vm.*;

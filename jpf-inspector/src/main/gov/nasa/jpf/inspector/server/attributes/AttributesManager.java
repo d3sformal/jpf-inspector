@@ -41,7 +41,7 @@ import gov.nasa.jpf.vm.StackFrame;
 import java.util.ArrayList;
 
 public class AttributesManager implements AttributeManagerInterface {
-  private JPFInspector inspector;
+  private final JPFInspector inspector;
   private ArrayList<AttributeToStringConverter> attributeToStringConverters = new ArrayList<>();
   private ArrayList<StringToAttributeConverter> stringToAttributeConverters = new ArrayList<>();
   private ArrayList<AttributeAccessDetector> detectors = new ArrayList<>();

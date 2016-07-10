@@ -51,6 +51,7 @@ import gov.nasa.jpf.vm.Verify;
 //
 // run
 
+@SuppressWarnings("ALL")
 public class Example01 {
 
   // Stores value and print it later

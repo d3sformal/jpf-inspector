@@ -19,7 +19,6 @@ package gov.nasa.jpf.inspector;
 import gov.nasa.jpf.inspector.client.JPFInspectorClient;
 import gov.nasa.jpf.inspector.client.JPFInspectorClientInterface;
 import gov.nasa.jpf.inspector.interfaces.InspectorCallbacks;
-import gov.nasa.jpf.inspector.interfaces.JPFInspectorBackEndInterface;
 import gov.nasa.jpf.inspector.server.jpf.JPFInspector;
 import gov.nasa.jpf.inspector.server.jpf.JPFInspectorParallel;
 

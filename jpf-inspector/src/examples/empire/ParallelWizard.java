@@ -16,6 +16,7 @@
 
 package empire;
 
+@SuppressWarnings("ALL")
 public class ParallelWizard {
   public static void criticalSection() {
     counter = 0;

@@ -18,7 +18,6 @@ package gov.nasa.jpf.inspector.common.pse;
 
 import gov.nasa.jpf.inspector.client.commands.CmdPrint;
 import gov.nasa.jpf.inspector.utils.InstructionWrapper;
-import gov.nasa.jpf.listener.VarTracker;
 
 import java.util.Objects;
 

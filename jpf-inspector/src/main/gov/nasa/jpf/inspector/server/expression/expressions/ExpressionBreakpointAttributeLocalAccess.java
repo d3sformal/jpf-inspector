@@ -31,7 +31,7 @@ import gov.nasa.jpf.vm.Instruction;
 public class ExpressionBreakpointAttributeLocalAccess extends ExpressionBooleanLeaf {
   private final AccessMode accessMode;
   private final String localName;
-  private JPFInspector inspector;
+  private final JPFInspector inspector;
 
   public ExpressionBreakpointAttributeLocalAccess(JPFInspector inspector, AccessMode accessMode, String localName) {
     this.inspector = inspector;

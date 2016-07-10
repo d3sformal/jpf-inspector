@@ -17,17 +17,13 @@
 package gov.nasa.jpf.inspector.server.attributes.adaptors;
 
 import gov.nasa.jpf.inspector.client.JPFInspectorClientInterface;
-import gov.nasa.jpf.inspector.exceptions.JPFInspectorException;
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorGenericErrorException;
-import gov.nasa.jpf.inspector.exceptions.JPFInspectorParsingErrorException;
 import gov.nasa.jpf.inspector.interfaces.attributes.AbstractStringToAttributeConverter;
 import gov.nasa.jpf.inspector.interfaces.attributes.AttributeConversionResult;
 import gov.nasa.jpf.inspector.server.attributes.attachments.AttributeAttachment;
-import gov.nasa.jpf.inspector.server.expression.ExpressionFactory;
 import gov.nasa.jpf.inspector.server.expression.ExpressionParser;
 import gov.nasa.jpf.inspector.server.expression.ExpressionStateRootNode;
 import gov.nasa.jpf.inspector.server.programstate.StateNodeInterface;
-import gov.nasa.jpf.inspector.server.programstate.StateReadableValue;
 import gov.nasa.jpf.inspector.server.programstate.StateWritableValue;
 
 public class GenericCopyConverter extends AbstractStringToAttributeConverter {

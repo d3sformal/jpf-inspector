@@ -17,14 +17,8 @@
 package gov.nasa.jpf.inspector.server.attributes.adaptors;
 
 import gov.nasa.jpf.inspector.client.JPFInspectorClientInterface;
-import gov.nasa.jpf.inspector.exceptions.JPFInspectorGenericErrorException;
 import gov.nasa.jpf.inspector.interfaces.attributes.AbstractStringToAttributeConverter;
 import gov.nasa.jpf.inspector.interfaces.attributes.AttributeConversionResult;
-import gov.nasa.jpf.inspector.server.attributes.attachments.AttributeAttachment;
-import gov.nasa.jpf.inspector.server.expression.ExpressionParser;
-import gov.nasa.jpf.inspector.server.expression.ExpressionStateRootNode;
-import gov.nasa.jpf.inspector.server.programstate.StateNodeInterface;
-import gov.nasa.jpf.inspector.server.programstate.StateWritableValue;
 
 import java.util.Objects;
 

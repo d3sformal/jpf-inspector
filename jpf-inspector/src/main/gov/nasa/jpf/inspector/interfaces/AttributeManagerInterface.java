@@ -17,7 +17,6 @@
 package gov.nasa.jpf.inspector.interfaces;
 
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorException;
-import gov.nasa.jpf.vm.StackFrame;
 
 public interface AttributeManagerInterface {
   void setAttributeValue(String expression) throws JPFInspectorException;

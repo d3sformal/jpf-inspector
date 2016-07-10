@@ -24,7 +24,6 @@ import gov.nasa.jpf.inspector.interfaces.ChoiceGeneratorsInterface;
 import gov.nasa.jpf.inspector.interfaces.InspectorCallbacks;
 import gov.nasa.jpf.inspector.interfaces.ThreadEnablingResult;
 import gov.nasa.jpf.inspector.interfaces.ThreadSuppressionStatus;
-import gov.nasa.jpf.inspector.server.breakpoints.CommandsManager;
 import gov.nasa.jpf.inspector.server.breakpoints.DefaultForwardTraceManager;
 import gov.nasa.jpf.inspector.server.expression.InspectorState;
 import gov.nasa.jpf.inspector.server.jpf.JPFInspector;
@@ -48,7 +47,6 @@ public class ChoiceGeneratorsManager implements ChoiceGeneratorsInterface, Choic
   @SuppressWarnings("FieldCanBeLocal") // IDEA bug
   private final PrintStream out;
 
-  private final CommandsManager commandsManager;
   private final StopHolder stopHolder;
   @SuppressWarnings("FieldCanBeLocal") // IDEA bug
   private final JPFInspector inspector;
@@ -71,12 +69,11 @@ public class ChoiceGeneratorsManager implements ChoiceGeneratorsInterface, Choic
    */
   private final Map<Integer, ThreadSuppressionStatus> suppressionStatusMap;
 
-  public ChoiceGeneratorsManager (JPFInspector inspector, InspectorCallbacks serverCallbacks,
-                                  CommandsManager commandsManager, StopHolder stopHolder,
-                                  DefaultForwardTraceManager forwardTrace) {
+  public ChoiceGeneratorsManager(JPFInspector inspector, InspectorCallbacks serverCallbacks,
+                                 StopHolder stopHolder,
+                                 DefaultForwardTraceManager forwardTrace) {
     this.inspector = inspector;
     this.serverCallbacks = serverCallbacks;
-    this.commandsManager = commandsManager;
     this.stopHolder = stopHolder;
     this.forwardTrace = forwardTrace;
 

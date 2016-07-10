@@ -32,7 +32,7 @@ import gov.nasa.jpf.inspector.server.programstate.StateWritableValue;
 public class ExpressionStateAttributeAssignment {
 
   private final ExpressionStateRootNode assignToHere;
-  private String newAttributeValue;
+  private final String newAttributeValue;
 
   public ExpressionStateAttributeAssignment(ExpressionStateRootNode assignToHere, String newAttributeValue) {
     this.assignToHere = assignToHere;

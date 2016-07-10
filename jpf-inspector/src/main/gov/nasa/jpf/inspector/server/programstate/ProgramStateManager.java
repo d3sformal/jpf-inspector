@@ -50,7 +50,7 @@ public class ProgramStateManager implements ProgramStateInterface {
   private final StopHolder stopHolder; // / Where JPF thread is blocked when Breakpoint or Stop command comes.
 
   private final ExpressionParserInterface parser;
-  private AttributesManager attributesManager;
+  private final AttributesManager attributesManager;
 
   public ProgramStateManager(JPFInspector inspector, StopHolder stopHolder, AttributesManager attributesManager) {
     this.inspector = inspector;

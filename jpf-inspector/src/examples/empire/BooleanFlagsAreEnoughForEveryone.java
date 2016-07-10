@@ -16,6 +16,7 @@
 
 package empire;
 
+@SuppressWarnings("ALL")
 public class BooleanFlagsAreEnoughForEveryone {
   static boolean flag;
   public static void main(String[] args) throws InterruptedException {

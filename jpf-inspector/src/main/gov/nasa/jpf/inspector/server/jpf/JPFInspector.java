@@ -148,7 +148,7 @@ public abstract class JPFInspector implements JPFInspectorBackEndInterface {
     this.commandsManager = new CommandsManager(this, stopHolder, breakpointHandler, serverCallbacks,
                                                defaultForwardTraceManager);
     this.stateManager = new ProgramStateManager(this, stopHolder, this.attributesManager);
-    this.choiceGeneratorsManager = new ChoiceGeneratorsManager(this, serverCallbacks, commandsManager, stopHolder,
+    this.choiceGeneratorsManager = new ChoiceGeneratorsManager(this, serverCallbacks, stopHolder,
                                                                defaultForwardTraceManager);
 
     // Run the callback thread
@@ -175,7 +175,11 @@ public abstract class JPFInspector implements JPFInspectorBackEndInterface {
     jpfHasLaunched = false;
   }
 
-  @Override
+  /**
+   * Gets the instruction that the JPF is currently stopped before. If the JPF is not running, or is in an inconsistent state,
+   * this will return null.
+   * @return The current program counter, or null.
+   */
   public Instruction getCurrentInstruction() {
     if (jpf == null) {
       return null;
@@ -262,7 +266,6 @@ public abstract class JPFInspector implements JPFInspectorBackEndInterface {
     listener = new InspectorListener(this, commandsManager, breakpointHandler, choiceGeneratorsManager,
                                      defaultForwardTraceManager, originalSearchMultipleErrors);
     jpf.addListener(listener);
-    Config config = jpf.getConfig();
     InspectorConfigChangeListener inspectorConfigChangeListener = new InspectorConfigChangeListener(this);
     jpf.getConfig().addChangeListener(inspectorConfigChangeListener);
 

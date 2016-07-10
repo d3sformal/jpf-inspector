@@ -22,7 +22,7 @@ import gov.nasa.jpf.inspector.interfaces.attributes.StringToAttributeConverter;
 import gov.nasa.jpf.util.ObjectList;
 import gov.nasa.jpf.vm.ElementInfo;
 
-public class ArrayElementAttachment extends AttributeAttachment {
+public class ArrayElementAttachment implements AttributeAttachment {
   private final ElementInfo arrayInfo;
   private final int index;
 
