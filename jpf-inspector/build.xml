@@ -418,6 +418,7 @@
            fork="yes"
            forkmode="perTest"
            maxmemory="1024m"
+           dir=".."
           >
       <formatter type="plain" usefile="${junit.usefile}"/>
 
@@ -431,7 +432,7 @@
 
       </classpath>
 
-      <batchtest todir="build/tests">
+      <batchtest todir="build/tests" fork="true">
         <fileset dir="build/tests">
           <exclude name="**/JPF_*.class"/>
           <exclude name="**/infrastructure/*.class"/>

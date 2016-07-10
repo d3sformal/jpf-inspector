@@ -9,3 +9,6 @@ symbolic.method=gov.nasa.jpf.inspector.tests.acceptance.symbolic.simple.NumberEx
 search.multiple_errors = true
 
 listener = gov.nasa.jpf.symbc.SymbolicListener
+
+
+shell=gov.nasa.jpf.inspector.frontends.cmd.CommandLineShell
