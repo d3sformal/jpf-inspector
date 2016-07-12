@@ -54,6 +54,12 @@ public class CmdHelp extends ClientCommand {
                               "local_access = name\n" +
                               "local_read = name\n" +
                               "local_write = name\n" +
+                              "attr_access = classname:fieldname\n" +
+                              "attr_read = classname:fieldname\n" +
+                              "attr_write = classname:fieldname\n" +
+                              "attr_access = name\n" +
+                              "attr_read = name\n" +
+                              "attr_write = name\n" +
                               "method_invoke = classname:methodname\n" +
                               "method = name\n" +
                               "class = name\n" +
@@ -130,6 +136,7 @@ public class CmdHelp extends ClientCommand {
     informationalCommands.add(new CommandHelpInfo("thread [id]", "ti", "Prints info about a thread.."));
     informationalCommands.add(new CommandHelpInfo("thread_pc [id]", "thpc", "Prints current instruction of a thread."));
     informationalCommands.add(new CommandHelpInfo("print [expression]", null, "Evaluates an expression."));
+    informationalCommands.add(new CommandHelpInfo("print_attr [expression]", null, "Evaluates an expression, but prefers to print attributes, not values."));
     categories.put("Informational commands", informationalCommands);
 
     ArrayList<CommandHelpInfo> execution = new ArrayList<>();
@@ -140,6 +147,7 @@ public class CmdHelp extends ClientCommand {
     execution.add(new CommandHelpInfo("finish", null, "Blocks until JPF terminates."));
     execution.add(new CommandHelpInfo("terminate", null, "Terminates JPF but keeps the shell open."));
     execution.add(new CommandHelpInfo("set [target] = [value]", null, "Modifies a variable's value."));
+    execution.add(new CommandHelpInfo("set_attr [target] = [value]", "seta", "Modifies a variable's attribute."));
     categories.put("Execution commands", execution);
 
     ArrayList<CommandHelpInfo> breakpoints = new ArrayList<>();
