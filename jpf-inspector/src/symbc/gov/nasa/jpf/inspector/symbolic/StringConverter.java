@@ -31,7 +31,7 @@ public class StringConverter extends AbstractStringToAttributeConverter {
     if (newAttributeValue.length() < 2 || newAttributeValue.charAt(0) != '"' || !newAttributeValue.endsWith("\"")) {
       return AttributeConversionResult.failed("The value is not in double quotes.");
     }
-    String stringContents = newAttributeValue.substring(1, newAttributeValue.length()-2);
+    String stringContents = newAttributeValue.substring(1, newAttributeValue.length()-1);
     return AttributeConversionResult.successful(new gov.nasa.jpf.symbc.string.StringConstant(stringContents));
     
   }
