@@ -110,6 +110,7 @@
     <available file="src/classes"     type="dir" property="have_classes"/>
     <available file="src/tests"       type="dir" property="have_tests"/>
     <available file="src/examples"    type="dir" property="have_examples"/>
+    <available file="${jpf-symbc}"    type="dir" property="jpf_symbc_exists" />
 
     <condition property="have_jvm_code">
       <or>
@@ -147,16 +148,7 @@
           description="compile all JPF Inspector sources" >
   </target>
 
-  <!--
-  This is probably meaningless:
-  <path id="classpath">
-    <fileset dir="${dir.lib}">
-      <include name="**/*.jar"/>
-    </fileset>
-  </path>
-  -->
-
-  <!-- GRAMMAR GENERATING PARTS !-->
+  <!-- GRAMMAR GENERATING PARTS -->
   <!-- Console grammar -->
   <fileset id="-generate-main-console-grammar-generated-files" dir="${dir-console-grammar-target}">
     <include name="ConsoleGrammar*.java"/>
@@ -174,11 +166,11 @@
   </target>
   
   <target name="-generate-main-console-grammar-check" depends="-generate-main-console-grammar-outdated">
-    <!-- Check if it's needed to regenerate grammars !-->
+    <!-- Check if it's needed to regenerate grammars -->
     <condition property="-generate-main-console-grammar-generate">
       <not>
         <available file="${dir-console-grammar-target}/ConsoleGrammarLexer.java"/>
-        <!-- if not found than parser not generated or was outdated and thus removed by -grammar.outdated target !-->
+        <!-- if not found than parser not generated or was outdated and thus removed by -grammar.outdated target -->
       </not>
     </condition>
   </target>
@@ -190,13 +182,6 @@
       <arg line="-o ${dir-console-grammar-target} ${dir-console-grammar-source}/ConsoleGrammar.g4"/>
     </java>
   </target>
-
-
-
-
-
-
-
 
   <!-- Expression grammar -->
   <fileset id="-generate-main-server-expression-grammar-generated-files" dir="${dir-server-expression-grammar-target}">
@@ -255,22 +240,29 @@
 
   <target name="-compile-main" if="have_main" depends="generate-grammars">
     <mkdir dir="build/main"/>
-    <mkdir dir="build/symbc"/>
     <javac srcdir="src/main" destdir="build/main"
            debug="${debug}" source="${src_level}" deprecation="${deprecation}"
            encoding="UTF-8"
            classpathref="lib.path" includeantruntime="false">
     <compilerarg value="-Xlint:unchecked"/>
     </javac>
+
+    <copy todir="build/main">
+      <fileset dir="src/main" includes="**/*.png,**/*.gif" />
+    </copy>
+  </target>
+
+  <target name="-compile-symbc">
+    <mkdir dir="build/symbc"/>
     <javac srcdir="src/symbc" destdir="build/symbc"
            debug="${debug}" source="${src_level}" deprecation="${deprecation}"
            encoding="UTF-8"
            classpathref="lib.path" includeantruntime="false">
       <compilerarg value="-Xlint:unchecked"/>
     </javac>
-    <copy todir="build/main">
-      <fileset dir="src/main" includes="**/*.png,**/*.gif" />
-    </copy>
+  </target>
+  <target name="-compile-symbc-if-exists" if="jpf_symbc_exists">
+    <antcall target="-compile-symbc"></antcall>
   </target>
 
   <target name="-compile-peers" if="have_peers" depends="-compile-main" >
@@ -319,7 +311,10 @@
   <!-- ======================= MISC SECTION ================================ -->
   
   <!-- build jars -->
-  <target name="build" depends="compile,-jar-jvm,-jar-jpf,-jar-annotations"
+  <target name="build-with-symbc" depends="compile, -compile-symbc, -jar-jvm, -jar-jpf, -jar-annotations"
+          description="builds the Inspector including support for jpf-symbc (requires jpf-symbc)">
+  </target>
+  <target name="build" depends="compile, -compile-symbc-if-exists, -jar-jvm,-jar-jpf,-jar-annotations"
         description="generate the ${ant.project.name} jar files" >
   </target>
 
