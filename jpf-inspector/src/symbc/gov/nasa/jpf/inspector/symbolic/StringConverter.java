@@ -19,7 +19,11 @@ package gov.nasa.jpf.inspector.symbolic;
 import gov.nasa.jpf.inspector.client.JPFInspectorClientInterface;
 import gov.nasa.jpf.inspector.interfaces.attributes.AbstractStringToAttributeConverter;
 import gov.nasa.jpf.inspector.interfaces.attributes.AttributeConversionResult;
+import gov.nasa.jpf.symbc.string.StringConstant;
 
+/**
+ * SPF-related converter that converts a string (e.g. "hello") into a symbolic string constant ({@link StringConstant}).
+ */
 public class StringConverter extends AbstractStringToAttributeConverter {
   @Override
   public AttributeConversionResult stringToAttribute(String newAttributeValue) {

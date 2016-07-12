@@ -18,6 +18,15 @@ package gov.nasa.jpf.inspector.interfaces.attributes;
 
 import gov.nasa.jpf.inspector.client.JPFInspectorClientInterface;
 
+/**
+ * Base class for attribute adaptors that allows them to gain access to the JPF Inspector.
+ */
 public interface AttributeAdaptorBase {
+  /**
+   * This method is called once, immediately after instantiation. Adaptors that need to use the Inspector instance
+   * should store it as a member field. There is only ever a single Inspector client instance over the course of
+   * Inspector run.
+   * @param inspector The single JPF Inspector client.
+   */
   void initialize(JPFInspectorClientInterface inspector);
 }

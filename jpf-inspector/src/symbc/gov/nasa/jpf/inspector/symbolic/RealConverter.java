@@ -19,7 +19,11 @@ package gov.nasa.jpf.inspector.symbolic;
 import gov.nasa.jpf.inspector.client.JPFInspectorClientInterface;
 import gov.nasa.jpf.inspector.interfaces.attributes.AbstractStringToAttributeConverter;
 import gov.nasa.jpf.inspector.interfaces.attributes.AttributeConversionResult;
+import gov.nasa.jpf.symbc.numeric.RealConstant;
 
+/**
+ * SPF-related converter that converts a string (e.g. 243.12) into a symbolic double constant ({@link RealConstant}).
+ */
 public class RealConverter extends AbstractStringToAttributeConverter {
   @Override
   public AttributeConversionResult stringToAttribute(String newAttributeValue) {

@@ -22,6 +22,9 @@ import gov.nasa.jpf.inspector.interfaces.attributes.StringToAttributeConverter;
 import gov.nasa.jpf.util.ObjectList;
 import gov.nasa.jpf.vm.StackFrame;
 
+/**
+ * Accesses information associated with a stack slot.
+ */
 public class StackSlotAttachment implements AttributeAttachment {
   private final StackFrame stackFrame;
   private final int index;

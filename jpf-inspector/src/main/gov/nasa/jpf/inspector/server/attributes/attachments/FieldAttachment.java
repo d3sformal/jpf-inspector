@@ -23,6 +23,9 @@ import gov.nasa.jpf.util.ObjectList;
 import gov.nasa.jpf.vm.ElementInfo;
 import gov.nasa.jpf.vm.FieldInfo;
 
+/**
+ * Accesses attributes associated with a field of an object.
+ */
 public class FieldAttachment implements AttributeAttachment {
 
   private final ElementInfo objectInfo;

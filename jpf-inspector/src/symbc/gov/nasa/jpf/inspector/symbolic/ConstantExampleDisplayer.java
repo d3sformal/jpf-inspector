@@ -18,11 +18,15 @@ package gov.nasa.jpf.inspector.symbolic;
 
 import gov.nasa.jpf.inspector.client.JPFInspectorClientInterface;
 import gov.nasa.jpf.inspector.interfaces.attributes.AbstractAttributeToStringConverter;
-import gov.nasa.jpf.inspector.interfaces.attributes.AbstractStringToAttributeConverter;
+import gov.nasa.jpf.inspector.interfaces.attributes.AttributeToStringConverter;
 import gov.nasa.jpf.symbc.numeric.IntegerConstant;
 import gov.nasa.jpf.symbc.numeric.RealConstant;
 import gov.nasa.jpf.symbc.string.StringConstant;
 
+/**
+ * This is an example {@link AttributeToStringConverter} implementation that provides a different human-readable
+ * representation of constants of _jpf-symbc_ than their original _toString()_ methods.
+ */
 public class ConstantExampleDisplayer extends AbstractAttributeToStringConverter {
   @Override
   public String attributeToString(Object attribute) {
@@ -40,6 +44,6 @@ public class ConstantExampleDisplayer extends AbstractAttributeToStringConverter
 
   @Override
   public void initialize(JPFInspectorClientInterface inspector) {
-
+    // Unused.
   }
 }

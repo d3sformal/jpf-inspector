@@ -40,6 +40,13 @@ import gov.nasa.jpf.vm.StackFrame;
 
 import java.util.ArrayList;
 
+/**
+ * The attribute manager has multiple functions, all related to processing attributes:
+ *
+ * - Its {@link #setAttributeValue(String)} modifies attributes in response to client commands
+ * - Its {@link #convertAttributeToString(AttributeAttachment, Object)} and its public accessors return attributes as a human-readable string.
+ * - Its _detectRead_ and _detectWrite_ methods determine whether the _attr_access_ family of hit conditions should hit.
+ */
 public class AttributesManager implements AttributeManagerInterface {
   private final JPFInspector inspector;
   private ArrayList<AttributeToStringConverter> attributeToStringConverters = new ArrayList<>();

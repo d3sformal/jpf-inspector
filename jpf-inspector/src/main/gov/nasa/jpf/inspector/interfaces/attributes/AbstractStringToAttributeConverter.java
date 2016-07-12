@@ -20,13 +20,17 @@ import gov.nasa.jpf.vm.ElementInfo;
 import gov.nasa.jpf.vm.FieldInfo;
 import gov.nasa.jpf.vm.StackFrame;
 
+/**
+ * This is an abstract base classes that users may extend in order to implement their own {@link StringToAttributeConverter}.
+ * The interface, {@link StringToAttributeConverter}, contains multiple methods that provide additional information to
+ * the converter, but most converters will probably find this information meaningless and will only be interested in
+ * the actual string expression.
+ *
+ * For this reason, it is simpler to implement this class that provides only a single method,
+ * {@link #stringToAttribute(String)}, for this purpose.
+ */
 public abstract class AbstractStringToAttributeConverter implements StringToAttributeConverter {
-  public abstract AttributeConversionResult stringToAttribute(String newAttributeValue);
-
-  @Override
-  public AttributeConversionResult convertForObject(ElementInfo object, String newAttributeValue) {
-    return stringToAttribute(newAttributeValue);
-  }
+  protected abstract AttributeConversionResult stringToAttribute(String newAttributeValue);
 
   @Override
   public AttributeConversionResult convertForField(ElementInfo object, FieldInfo field, String newAttributeValue) {

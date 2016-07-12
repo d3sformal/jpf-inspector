@@ -14,10 +14,9 @@
 //  limitations under the License.
 ///
 
-package gov.nasa.jpf.inspector.interfaces.attributes;
-
-public interface AttributeAdaptor extends
-  AttributeAccessDetector,
-  StringToAttributeConverter,
-  AttributeToStringConverter {
-}
+/**
+ * This package deals with reading and setting attributes and provides also the utility attachment classes.
+ *
+ * Main work happens in {@link gov.nasa.jpf.inspector.server.attributes.AttributesManager}.
+ */
+package gov.nasa.jpf.inspector.server.attributes;

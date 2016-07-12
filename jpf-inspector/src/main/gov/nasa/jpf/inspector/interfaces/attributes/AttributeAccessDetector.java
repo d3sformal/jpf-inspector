@@ -19,6 +19,9 @@ package gov.nasa.jpf.inspector.interfaces.attributes;
 import gov.nasa.jpf.inspector.utils.expressions.FieldName;
 import gov.nasa.jpf.vm.Instruction;
 
+/**
+ * An attribute adaptor that determines additional instructions that should trigger an attribute access hit condition.
+ */
 public interface AttributeAccessDetector extends AttributeAdaptorBase {
   boolean detectRead(Instruction impendingInstruction, FieldName fieldName);
   boolean detectRead(Instruction impendingInstruction, String localVariable);

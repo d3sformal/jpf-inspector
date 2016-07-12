@@ -219,7 +219,13 @@ public abstract class JPFInspector implements JPFInspectorBackEndInterface {
     return jpf;
   }
 
-  @Override
+  /**
+   * New JPF can be bound only if previous one has finished (stops execution) or no JPF is bound.
+   *
+   * @param jpf
+   *        Instance of the JPF that should the Inspector use. JPF mustn't be running. (The {@link JPF#run()} method is not called.)
+   * @throws JPFInspectorGenericErrorException -Error when connection new JPF occur (previous connected JPF instance is still running, ..)
+   */
   public synchronized void bindWithJPF (JPF jpf) throws JPFInspectorGenericErrorException {
     if (DEBUG) {
       getDebugPrintStream().println("  " + JPFInspector.class.getSimpleName() + ".boundWithJPF(jpf=" + jpf + " )");

@@ -18,6 +18,11 @@ package gov.nasa.jpf.inspector.interfaces;
 
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorException;
 
+/**
+ * The attribute manager interface handles the "set_attr" commands.
+ *
+ * The attribute manager itself has more capabilities, but these don't need to be exposed to the client.
+ */
 public interface AttributeManagerInterface {
   void setAttributeValue(String expression) throws JPFInspectorException;
 }

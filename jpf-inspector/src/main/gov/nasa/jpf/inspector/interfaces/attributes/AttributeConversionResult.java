@@ -67,6 +67,7 @@ public final class AttributeConversionResult {
    * Creates a new {@link AttributeConversionResult} that reports a failed conversion without a reason given.
    * @return The result that should be reported to JPF server.
    */
+  @SuppressWarnings("unused") // We don't use it now, but it costs us nothing to keep it here.
   public static AttributeConversionResult failed() {
     return new AttributeConversionResult(false, null, null);
   }

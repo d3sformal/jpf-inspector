@@ -17,13 +17,18 @@
 
 package gov.nasa.jpf.inspector.interfaces;
 
-import gov.nasa.jpf.JPF;
-import gov.nasa.jpf.inspector.exceptions.JPFInspectorGenericErrorException;
+import gov.nasa.jpf.inspector.client.JPFInspectorClientInterface;
 import gov.nasa.jpf.inspector.server.callbacks.InspectorServerCallbacks;
 import gov.nasa.jpf.vm.VM;
 
 /**
- * Interface provided by JPFInspector back-end ("server") part. Low level interface.
+ * Interface provided by JPFInspector back-end ("server") part.
+ *
+ * The server itself contains more capabilities than those exposed by this interface (and the interfaces it extends).
+ * However, these other capabilities don't usually need to be used from within the client.
+ *
+ * Note that the client and the server are still rather tightly coupled and in case of need, one can use the method
+ * {@link JPFInspectorClientInterface#getServer()} to gain access to the full server, not just this partial interface.
  */
 public interface JPFInspectorBackEndInterface extends
         CommandsInterface,
@@ -32,14 +37,6 @@ public interface JPFInspectorBackEndInterface extends
         ChoiceGeneratorsInterface,
         AttributeManagerInterface{
 
-  /**
-   * New JPF can be bound only if previous one has finished (stops execution) or no JPF is bound.
-   * 
-   * @param jpf
-   *        Instance of the JPF that should the Inspector use. JPF mustn't be running. (The {@link JPF#run()} method is not called.)
-   * @throws JPFInspectorGenericErrorException -Error when connection new JPF occur (previous connected JPF instance is still running, ..)
-   */
-  void bindWithJPF(JPF jpf) throws JPFInspectorGenericErrorException;
 
   /**
    * Gets the server-side serializer of callbacks. When this serializer's methods are called, new callbacks are sent

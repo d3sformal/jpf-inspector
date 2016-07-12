@@ -21,6 +21,9 @@ import gov.nasa.jpf.inspector.interfaces.attributes.AbstractStringToAttributeCon
 import gov.nasa.jpf.inspector.interfaces.attributes.AttributeConversionResult;
 import gov.nasa.jpf.symbc.numeric.IntegerConstant;
 
+/**
+ * SPF-related converter that converts a string (e.g. 4512) into a symbolic integer constant.
+ */
 public class IntegerConverter extends AbstractStringToAttributeConverter {
   @Override
   public AttributeConversionResult stringToAttribute(String newAttributeValue) {

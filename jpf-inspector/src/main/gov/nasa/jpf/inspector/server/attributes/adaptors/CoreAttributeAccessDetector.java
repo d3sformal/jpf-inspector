@@ -25,6 +25,9 @@ import gov.nasa.jpf.vm.bytecode.*;
 
 import java.util.Objects;
 
+/**
+ * Provides attribute access detection for changes that happen in _jpf-core_ instructions.
+ */
 public class CoreAttributeAccessDetector implements AttributeAccessDetector {
 
   @Override

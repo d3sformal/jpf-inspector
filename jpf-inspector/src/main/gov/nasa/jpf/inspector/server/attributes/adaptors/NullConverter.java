@@ -22,6 +22,10 @@ import gov.nasa.jpf.inspector.interfaces.attributes.AttributeConversionResult;
 
 import java.util.Objects;
 
+/**
+ * A simple converter that converts the string "null" into a null attribute object, effectively clearing all attributes
+ * of the target object.
+ */
 public class NullConverter extends AbstractStringToAttributeConverter {
 
   @Override
@@ -36,6 +40,6 @@ public class NullConverter extends AbstractStringToAttributeConverter {
 
   @Override
   public void initialize(JPFInspectorClientInterface inspector) {
-
+    // Unused.
   }
 }

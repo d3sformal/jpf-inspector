@@ -26,6 +26,11 @@ import gov.nasa.jpf.inspector.server.expression.ExpressionStateRootNode;
 import gov.nasa.jpf.inspector.server.programstate.StateNodeInterface;
 import gov.nasa.jpf.inspector.server.programstate.StateWritableValue;
 
+/**
+ * This converter evaluates its string as an Inspector expression (e.g. "#thread[2].#stackSlot[3]") and copies the attribute
+ * of that expression (in this case, a stack slot) into the target object. If the argument object has no attributes,
+ * then the target object's attributes are cleared.
+ */
 public class GenericCopyConverter extends AbstractStringToAttributeConverter {
   private JPFInspectorClientInterface inspector;
 

@@ -25,6 +25,9 @@ import gov.nasa.jpf.inspector.interfaces.JPFInspectorBackEndInterface;
 
 import java.io.PrintStream;
 
+/**
+ * Represent the command "set_attr" which sets the attribute of a field, array element or stack slot.
+ */
 public class CmdSetAttr extends ClientCommand {
   private final String expression;
 

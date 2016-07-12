@@ -22,6 +22,9 @@ import gov.nasa.jpf.inspector.interfaces.attributes.StringToAttributeConverter;
 import gov.nasa.jpf.util.ObjectList;
 import gov.nasa.jpf.vm.ElementInfo;
 
+/**
+ * Accesses attributes associated with an element of an array.
+ */
 public class ArrayElementAttachment implements AttributeAttachment {
   private final ElementInfo arrayInfo;
   private final int index;

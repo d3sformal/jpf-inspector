@@ -14,9 +14,7 @@
 //  limitations under the License.
 ///
 
-package gov.nasa.jpf.inspector.interfaces.attributes;
-
-public interface StringAttributeTwoWayConverter extends
-        StringToAttributeConverter,
-        AttributeToStringConverter {
-}
+/**
+ * Provides attribute adaptors that are independent of _jpf-symbc_ and are always active within _jpf-inspector_.
+ */
+package gov.nasa.jpf.inspector.server.attributes.adaptors;
