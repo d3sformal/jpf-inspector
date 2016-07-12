@@ -130,7 +130,6 @@ public abstract class StateReadableValue extends StateNode {
                                                  AttributesManager attributesManager)
       throws JPFInspectorException {
 
-    // TODO else add self (ElementInfo) attribute support
     assert (value != null);
     assert (definedIn != null) : "Use the empty string rather than null.";
     assert (varName != null) : "Use an arbirtrary string (such as ???) rather than null.";
