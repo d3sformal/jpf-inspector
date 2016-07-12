@@ -24,6 +24,9 @@ import gov.nasa.jpf.inspector.exceptions.JPFInspectorParsingErrorException;
 import gov.nasa.jpf.inspector.common.pse.ProgramStateEntry;
 import gov.nasa.jpf.inspector.common.pse.PSEThread;
 import gov.nasa.jpf.inspector.utils.ChoiceGeneratorWrapper;
+import gov.nasa.jpf.vm.ElementInfo;
+import gov.nasa.jpf.vm.FieldInfo;
+import gov.nasa.jpf.vm.StackFrame;
 
 import java.util.List;
 import java.util.Map;
@@ -167,5 +170,20 @@ public class JPFInspectorParallel extends JPFInspector {
   @Override
   public void setAttributeValue(String expression) throws JPFInspectorException {
     attributesManager.setAttributeValue(expression);
+  }
+
+  @Override
+  public String getAttachmentAttributes(ElementInfo ei, int index) {
+    return attributesManager.getAttachmentAttributes(ei, index);
+  }
+
+  @Override
+  public String getAttachmentAttributes(ElementInfo ei, FieldInfo fieldInfo) {
+    return attributesManager.getAttachmentAttributes(ei, fieldInfo);
+  }
+
+  @Override
+  public String getAttachmentAttributes(StackFrame sf, int index) {
+    return attributesManager.getAttachmentAttributes(sf, index);
   }
 }

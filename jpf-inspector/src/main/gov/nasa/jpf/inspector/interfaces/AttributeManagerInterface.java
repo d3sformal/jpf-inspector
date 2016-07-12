@@ -17,6 +17,9 @@
 package gov.nasa.jpf.inspector.interfaces;
 
 import gov.nasa.jpf.inspector.exceptions.JPFInspectorException;
+import gov.nasa.jpf.vm.ElementInfo;
+import gov.nasa.jpf.vm.FieldInfo;
+import gov.nasa.jpf.vm.StackFrame;
 
 /**
  * The attribute manager interface handles the "set_attr" commands.
@@ -25,4 +28,7 @@ import gov.nasa.jpf.inspector.exceptions.JPFInspectorException;
  */
 public interface AttributeManagerInterface {
   void setAttributeValue(String expression) throws JPFInspectorException;
+  String getAttachmentAttributes(ElementInfo ei, int index);
+  String getAttachmentAttributes(ElementInfo ei, FieldInfo fieldInfo);
+  String getAttachmentAttributes(StackFrame sf, int index);
 }

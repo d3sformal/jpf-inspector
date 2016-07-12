@@ -19,6 +19,8 @@ package gov.nasa.jpf.inspector.frontends.swing.explorer.hierarchy;
 import gov.nasa.jpf.inspector.frontends.swing.explorer.Attachment;
 import gov.nasa.jpf.inspector.frontends.swing.explorer.ProgramStateTreeModel;
 
+import java.util.Objects;
+
 /**
  * Represents a primitive value in the visual Explorer.
  */
@@ -33,12 +35,21 @@ public class ExplorerPrimitiveNode extends ExplorerLeafNode {
 
   @Override
   public String toString() {
-    return attachment.getName() + ": " + value.toString();
+    return attachment.getName() + ": " + value.toString() + (this.getAttachmentAttributes() != null ? " [" + this.getAttachmentAttributes() + "]" : "");
   }
 
   @Override
   public void updateFromJpf(ExplorerNode newVersion) {
+     boolean changeExists =
+             !Objects.equals(this.value, ((ExplorerPrimitiveNode)newVersion).value) ||
+             !Objects.equals(this.getAttachmentAttributes(), newVersion.getAttachmentAttributes());
      this.value = ((ExplorerPrimitiveNode)newVersion).value;
+     this.setAttachmentAttributes(newVersion.getAttachmentAttributes());
+
+   if (changeExists) {
+      model.nodesChanged(parent, new int[]{parent.getIndex(this)});
+   }
+
   }
 
   @Override

@@ -47,7 +47,10 @@ public class ExplorerArrayNode extends ExplorerJavaObjectNode {
     int length = elementInfo.arrayLength();
     for (int i =0 ;i < length; i++) {
       Object value = getValue(arrayElementClass, elementInfo, i);
-      elements.add(ExplorerNodeFactory.createFromArrayElement(i, arrayElementClass, value, model, parent));
+      ExplorerNode arrayElement = ExplorerNodeFactory.createFromArrayElement(i, arrayElementClass, value, model,
+                                                                                 this);
+      arrayElement.setAttachmentAttributes(model.getServer().getAttachmentAttributes(elementInfo, i));
+      elements.add(arrayElement);
     }
     return elements;
   }

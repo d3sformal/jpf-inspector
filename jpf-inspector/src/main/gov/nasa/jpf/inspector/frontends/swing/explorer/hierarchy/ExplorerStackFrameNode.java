@@ -55,7 +55,10 @@ public class ExplorerStackFrameNode extends ExplorerComplexNode {
       if (localVarInfo == null) {
         localVarInfo = new LocalVarInfo("???", "I", "I", 0, stackFrame.getMethodInfo().getLastInsn().getPosition(), i);
       }
-      newChildren.add(ExplorerNodeFactory.createFromStackSlot(localVarInfo.getName(), stackFrame, localVarInfo, model, this));
+      ExplorerNode stackSlot = ExplorerNodeFactory.createFromStackSlot(localVarInfo.getName(), stackFrame,
+                                                                           localVarInfo, model, this);
+      stackSlot.setAttachmentAttributes(model.getServer().getAttachmentAttributes(stackFrame, i));
+      newChildren.add(stackSlot);
     }
     return newChildren;
   }

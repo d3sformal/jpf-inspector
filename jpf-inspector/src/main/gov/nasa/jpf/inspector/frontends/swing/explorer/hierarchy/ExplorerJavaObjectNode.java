@@ -54,7 +54,8 @@ public class ExplorerJavaObjectNode extends ExplorerComplexNode {
     }
     String typeName = StateWritableValue.demangleTypeName(elementInfo.getType());
     String shortFormValue = StateReadableValue.elementInfo2String(elementInfo);
-    return attachment.getName() + " (" + typeName + ") = " + shortFormValue;
+    return attachment.getName() + " (" + typeName + ") = " + shortFormValue + (this.getAttachmentAttributes() != null ?
+    " [" + this.getAttachmentAttributes() + "]" : "");
   }
 
 
@@ -72,6 +73,7 @@ public class ExplorerJavaObjectNode extends ExplorerComplexNode {
         String fieldInfoName = fieldInfo.getName();
         ExplorerNode child = ExplorerNodeFactory.createFromField(fieldInfoName, fieldInfo, elementInfo.getFields(),
                                                                  model, this);
+        child.setAttachmentAttributes(model.getServer().getAttachmentAttributes(elementInfo, fieldInfo));
         localChildren.add(child);
       }
     }
@@ -83,6 +85,7 @@ public class ExplorerJavaObjectNode extends ExplorerComplexNode {
       String fieldInfoName = staticField.getName();
       StaticElementInfo staticElementInfo = myClass.getStaticElementInfo();
       ExplorerNode child = ExplorerNodeFactory.createFromStaticField(fieldInfoName, staticField, staticElementInfo.getFields(), model, this);
+      child.setAttachmentAttributes(model.getServer().getAttachmentAttributes(staticElementInfo, staticField));
       localChildren.add(child);
     }
 
@@ -93,8 +96,9 @@ public class ExplorerJavaObjectNode extends ExplorerComplexNode {
   public void updateComplexNodeFromJpf(ExplorerNode newVersion) {
     ElementInfo newElementInfo = ((ExplorerJavaObjectNode)newVersion).elementInfo;
     if (newElementInfo != elementInfo) {
-      this.model.nodesChanged(parent, new int[]{parent.getIndex(this)});
       elementInfo = newElementInfo;
+      this.setAttachmentAttributes(newVersion.getAttachmentAttributes());
+      this.model.nodesChanged(parent, new int[]{parent.getIndex(this)});
     }
 
     String newRepresentation = getToStringRepresentation();

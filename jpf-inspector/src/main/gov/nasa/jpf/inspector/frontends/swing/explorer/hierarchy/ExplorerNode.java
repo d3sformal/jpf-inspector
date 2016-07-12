@@ -47,6 +47,9 @@ public abstract class ExplorerNode implements TreeNode {
    */
   protected final ProgramStateTreeModel model;
 
+
+  private String attachmentAttributes;
+
   public boolean isWronglyExpanded() {
     return wronglyExpanded;
   }
@@ -114,5 +117,13 @@ public abstract class ExplorerNode implements TreeNode {
         }
     }
     throw new RuntimeException("This node has no icon.");
+  }
+
+  protected String getAttachmentAttributes() {
+    return attachmentAttributes;
+  }
+
+  protected void setAttachmentAttributes(String attachmentAttributes) {
+    this.attachmentAttributes = attachmentAttributes;
   }
 }

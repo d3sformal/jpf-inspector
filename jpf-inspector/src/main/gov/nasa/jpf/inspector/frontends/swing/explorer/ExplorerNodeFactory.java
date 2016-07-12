@@ -49,7 +49,8 @@ public final class ExplorerNodeFactory {
   }
 
   public static ExplorerNode createFromField(String name, FieldInfo fieldInfo, Fields fields,
-                                             ProgramStateTreeModel model,  ExplorerJavaObjectNode parent) {
+                                             ProgramStateTreeModel model,
+                                             ExplorerJavaObjectNode parent) {
     return createNode(Attachment.instanceField(name), fieldInfo.getValueObject(fields), fieldInfo.getTypeClassInfo(),
                       model, parent);
 
@@ -67,7 +68,7 @@ public final class ExplorerNodeFactory {
   public static ExplorerNode createFromArrayElement(int index,
                                                     ClassInfo componentClass,
                                                     Object componentValue,
-                                                    ProgramStateTreeModel model,  ExplorerNode parent) {
+                                                    ProgramStateTreeModel model,  ExplorerArrayNode parent) {
     return createNode(Attachment.arrayElement(index), componentValue, componentClass, model, parent);
   }
 

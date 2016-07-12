@@ -116,15 +116,18 @@ public class AttributesManager implements AttributeManagerInterface {
     return String.join(",", attributeStrings);
   }
 
+  @Override
   public String getAttachmentAttributes(StackFrame sf, int index) {
     AttributeAttachment attributeAttachment = new StackSlotAttachment(sf, index);
     return getAttachmentAttributes(attributeAttachment);
   }
 
+  @Override
   public String getAttachmentAttributes(ElementInfo ei, FieldInfo fieldInfo) {
     return getAttachmentAttributes(new FieldAttachment(ei, fieldInfo));
   }
 
+  @Override
   public String getAttachmentAttributes(ElementInfo ei, int index) {
     return getAttachmentAttributes(new ArrayElementAttachment(ei, index));
   }
