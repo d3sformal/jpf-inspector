@@ -29,6 +29,7 @@ import gov.nasa.jpf.inspector.utils.expressions.MethodName;
 import gov.nasa.jpf.vm.*;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 /**
  * Represents the undocumented "specific_instruction" hit condition that hits when the specific instruction is about to be executed.
@@ -37,10 +38,8 @@ import java.util.ArrayList;
  * 
  * Note: Should only be used during the transition it was created for.
  *
- * Note: Doesn't support backtracking, that is done by other class.
- *
- * Note: The way this is is used is that the Inspector backtracks the current transition, restarts the choice generator
- * to a previous state and reexecutes the same choice again.
+ * Note: The way this is is used is that the Inspector backtracks some transitions, restarts the choice generator
+ * to a previous state and reexecutes the same choice again in the transition where this breakpoint should happen.
  *
  * Note: The Inspector has to call {@link #evaluateExpression(InspectorState)} before each instruction to be executed,
  * no optimization is permitted because we must count all the instructions we want to skip.
@@ -63,11 +62,11 @@ public class ExpressionBreakpointInstruction extends ExpressionBooleanLeaf {
    */
   private final Instruction instruction;
   /**
-   * How many times we have hit this instruction already.
+   * The number of instructions, of any kind, we have already went through.
    */
   private int count = 0;
   /**
-   * At which hit should we finally trigger? (i.e. we should skip a number of hits equal to `{@link #hitCount} - 1`)
+   * Index of the step before which we want to stop.
    */
   private final int hitCount;
 
@@ -76,7 +75,7 @@ public class ExpressionBreakpointInstruction extends ExpressionBooleanLeaf {
    *
    * @param threadNum The thread to observe. Instructions from different threads are ignored and should not actually happen.
    * @param instruction The specific instruction that we want to break on.
-   * @param hitCount At which hit should we finally trigger? (i.e. we should skip a number of hits equal to `hitCount - 1`)
+   * @param hitCount At which step should we finally trigger? (i.e. we should skip a number of steps equal to `hitCount - 1`)
    */
   public ExpressionBreakpointInstruction (int threadNum, Instruction instruction, int hitCount) {
     if (DEBUG) {
@@ -84,7 +83,7 @@ public class ExpressionBreakpointInstruction extends ExpressionBooleanLeaf {
           + (instruction != null ? instruction.getFilePos() : "?") + "), hitCount=" + hitCount + ")");
     }
     assert instruction != null;
-    assert hitCount > 0;
+    assert hitCount >= 0;
     this.threadNum = threadNum;
     this.instruction = instruction;
     this.hitCount = hitCount;
@@ -102,43 +101,18 @@ public class ExpressionBreakpointInstruction extends ExpressionBooleanLeaf {
       if (ti.getId() == threadNum) {
         Instruction executedInstr = vm.getInstruction();
         Debugging.getLogger().info("Backtracking: Forward stepping: Testing against the same thread (" + executedInstr.getMnemonic() + "," + executedInstr.getFileLocation() + ")");
-        if (instruction.equals(executedInstr)) {
-          count++;
-          return count == hitCount;
+        if (count == hitCount) {
+          if (Objects.equals(instruction.getMnemonic(), executedInstr.getMnemonic())) {
+            return true;
+          } else {
+            Debugging.getLogger().severe("The new transition that was created after backstepping does not have the same instructions as the last one. Are you sure your application is deterministic?");
+            return true;
+          }
         }
+        count++;
       }
     }
     return false;
-  }
-
-
-  /**
-   * This is a legacy method that does not serve any use. Deleting it won't cause any problems.
-   *
-   * Analyze given transition and create BreakpointExpression that hits on the last but one instruction in given transition.
-   *
-   * @param tr Transition to analyze. Cann't be null.
-   * @return BreakpointExpression. If there is no place where put the BP (only one executed instruction) returns null.
-   */
-  @SuppressWarnings("unused") // The method is useless, but I'd rather not risk removing something I'll need later because backstepping is tricky.
-  static ExpressionBreakpointInstruction getBPonPreviousInstruction (Transition tr) {
-    assert tr != null;
-    int instrIndex = tr.getStepCount() - 1;
-    if (instrIndex < 1) {
-      return null;
-    }
-    Step penultimateStep = tr.getStep(instrIndex);
-    Instruction penultimateInstr = penultimateStep.getInstruction();
-
-    int sameInstrCount = 1; // One for the final instruction where we hit the BP
-    // Count how many time the instruction takes place in the transition (due to cycle repetitions etc.)
-    for (Step currentStep = tr.getStep(0); !currentStep.equals(penultimateStep); currentStep = currentStep.getNext()) {
-      if (penultimateInstr.equals(currentStep.getInstruction())) {
-        sameInstrCount++;
-      }
-    }
-
-    return new ExpressionBreakpointInstruction(tr.getThreadIndex(), penultimateInstr, sameInstrCount);
   }
 
   /**

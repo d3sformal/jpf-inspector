@@ -59,13 +59,26 @@ public final class BackwardBreakpointCreator {
     assert step != null;
     assert numberOfTransitionsToBacktrack > 0;
 
-    int stepToBreakOn = MethodInstructionBacktracker.howManySameInstructionStepsUpToStep(transition, step);
+    int stepToBreakOn = getStepIndex(transition, step);
+
+    Debugging.getLogger().info(step.toString());
 
     this.breakpointHitCondition = new ExpressionBreakpointInstruction(transition.getThreadIndex(),
                                                                       step.getInstruction(),
                                                                       stepToBreakOn);
     this.numberOfTransitionsToBacktrack = numberOfTransitionsToBacktrack;
 
+  }
+
+  private static int getStepIndex(Transition transition, Step step) {
+    int index = 0;
+    for (Step transitionStep : transition) {
+      if (step.equals(transitionStep)) {
+        return index;
+      }
+      index++;
+    }
+    throw new RuntimeException("The transition '" + transition + "' does not contain the step '" + step + "'.");
   }
 
   /**
@@ -121,6 +134,15 @@ public final class BackwardBreakpointCreator {
    */
   public int getTransitionsToBacktrack () {
     return numberOfTransitionsToBacktrack;
+  }
+
+  /**
+   * Gets the current JPF transition path <b>including</b> the current transition.
+   */
+  private static Path updateAndGetPath(InspectorState insp) {
+    VM vm = insp.getVM();
+    vm.updatePath();
+    return vm.getPath();
   }
 
   // The following methods create the creator based on the backstep type that was requested.
@@ -281,14 +303,6 @@ public final class BackwardBreakpointCreator {
     return new BackwardBreakpointCreator(currentTransition, callerStep, currentTransition2backstep);
   }
 
-  /**
-   * Gets the current JPF transition path <b>including</b> the current transition.
-   */
-  private static Path updateAndGetPath(InspectorState insp) {
-    VM vm = insp.getVM();
-    vm.updatePath();
-    return vm.getPath();
-  }
 
   /**
    * Returns a creator for back_breakpoint_hit.
@@ -337,8 +351,8 @@ public final class BackwardBreakpointCreator {
     int descendHowManyTransitions = path.size() - targetTransitionIndex;
     assert descendHowManyTransitions > 0;
     BackwardBreakpointCreator backwardBreakpointCreator =
-            new BackwardBreakpointCreator(targetTransition, lastBreakpointHitLocation.getInstruction(),
-                                          lastBreakpointHitLocation.getNumberOfSkippedInstructions(),
+            new BackwardBreakpointCreator(targetTransition,
+                                          targetStep,
                                           descendHowManyTransitions);
     return  backwardBreakpointCreator;
   }
