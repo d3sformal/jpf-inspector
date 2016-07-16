@@ -1,0 +1,4 @@
+target = gov.nasa.jpf.inspector.tests.acceptance.sut.MultiTransitionSinglePath
+
+@include ../inspectortest.jpf
+

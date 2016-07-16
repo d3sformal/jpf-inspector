@@ -18,3 +18,4 @@
 shell=.shell.basicshell.BasicShell
 
 target = empire.BooleanFlagsAreEnoughForEveryone
+

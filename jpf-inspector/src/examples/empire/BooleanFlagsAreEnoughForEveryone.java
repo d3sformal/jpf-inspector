@@ -18,7 +18,7 @@ package empire;
 
 @SuppressWarnings("ALL")
 public class BooleanFlagsAreEnoughForEveryone {
-  static boolean flag;
+  static volatile boolean flag;
   public static void main(String[] args) throws InterruptedException {
     Thread1 thread1 = new Thread1();
     Thread1 thread2 = new Thread1();
@@ -30,11 +30,9 @@ public class BooleanFlagsAreEnoughForEveryone {
   static class Thread1 extends Thread {
     @Override
     public void run() {
-      ParallelWizard.criticalSection();
-      /*
       while (flag != false) {
         ;
-      }*/
+      }
       flag = true;
       ParallelWizard.criticalSection();
       flag = false;
