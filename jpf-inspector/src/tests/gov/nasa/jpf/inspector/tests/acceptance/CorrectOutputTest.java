@@ -35,6 +35,7 @@ public class CorrectOutputTest extends CorrectOutputAbstractTest {
           getCase("bugfix", "number"),
           getCase("legacy", "AssertSimpleTest"),
           getCase("legacy", "BreakpointTest"),
+          getCase("bugfix", "used_cg"),
           getCase("features/fixheap", "heap"),
           getCase("features/decimal", "decimal")
      );

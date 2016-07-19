@@ -85,4 +85,8 @@ public class CmdUsedChoiceGenerators extends ClientCommand {
     return sb.toString();
   }
 
+  @Override
+  public boolean isSafeToExecuteWhenNotPaused() {
+    return false;
+  }
 }
