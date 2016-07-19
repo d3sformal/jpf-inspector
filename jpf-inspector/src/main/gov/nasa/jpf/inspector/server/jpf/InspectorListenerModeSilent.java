@@ -35,9 +35,8 @@ import gov.nasa.jpf.search.Search;
  * when the breakpoint created by the backwards step is hit.
  */
 public class InspectorListenerModeSilent extends ListenerAdapter {
-  private static final boolean DEBUG = true;
+  private static final boolean DEBUG = false;
 
-  @SuppressWarnings("FieldCanBeLocal") // IDEA bug
   private final JPFInspector inspector;
   private final CommandsManager commandsManager;
   private final BreakpointHandler breakpointHandler;

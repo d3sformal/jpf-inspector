@@ -27,7 +27,8 @@ public class SteppingTest extends CorrectOutputAbstractTest {
   @Parameters(name = "{0}")
   public static Iterable<?> data() {
      return Arrays.asList(
-          getCase("stepping", "st")
+          getCase("stepping", "st"),
+          getCase("stepping","verify_bsins")
      );
   }
 }

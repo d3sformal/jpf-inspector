@@ -107,6 +107,9 @@ class StepThreadBacktracker {
 
     // Move to older transition
     Transition currentTransition = ttb.backtrackToPreviousTransition();
+    while (currentTransition != null && currentTransition.getStepCount() == 0) {
+      currentTransition = ttb.backtrackToPreviousTransition();
+    }
     if (currentTransition == null) {
       // We have processed whole trace for given thread
       currentTransitionSteps = null;
@@ -114,9 +117,13 @@ class StepThreadBacktracker {
       return false;
     }
 
+
+
+
     currentTransitionSteps = transition2StepArray(currentTransition);
     currentTransitionStepIndex = currentTransitionSteps.length;
-    assert currentTransitionStepIndex > 0;
+    Debugging.getLogger().warning("Transition: " + currentTransition);
+    assert currentTransitionStepIndex > 0 : "The transition has no steps.";
     if (currentTransitionStepIndex > 0) {
       // Check if the last step in current transition is not the bottom half
       // of the first step in previous (consequent) transition
