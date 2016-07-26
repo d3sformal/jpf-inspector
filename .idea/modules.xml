@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/core8/core8.iml" filepath="$PROJECT_DIR$/core8/core8.iml" />
+      <module fileurl="file://$PROJECT_DIR$/jpf-core/core8.iml" filepath="$PROJECT_DIR$/jpf-core/core8.iml" />
       <module fileurl="file://$PROJECT_DIR$/jpf-inspector/jpf-inspector.iml" filepath="$PROJECT_DIR$/jpf-inspector/jpf-inspector.iml" />
       <module fileurl="file://$PROJECT_DIR$/jpf-shell/jpf-shell.iml" filepath="$PROJECT_DIR$/jpf-shell/jpf-shell.iml" />
       <module fileurl="file://$PROJECT_DIR$/jpf-symbc/jpf-symbc.iml" filepath="$PROJECT_DIR$/jpf-symbc/jpf-symbc.iml" />

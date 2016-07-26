@@ -26,7 +26,7 @@
         </SOURCES>
       </library>
     </orderEntry>
-    <orderEntry type="module" module-name="core8" />
+    <orderEntry type="module" module-name="jpf-core" />
     <orderEntry type="module-library">
       <library name="rsyntaxtextarea-2.6.0">
         <CLASSES>

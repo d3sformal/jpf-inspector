@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="AntConfiguration">
-    <buildFile url="file://$PROJECT_DIR$/core6/build.xml" />
-    <buildFile url="file://$PROJECT_DIR$/core8/build.xml" />
     <buildFile url="file://$PROJECT_DIR$/jpf-inspector/build.xml">
       <additionalClassPath>
         <entry path="file://$APPLICATION_HOME_DIR$/lib" />
       </additionalClassPath>
     </buildFile>
     <buildFile url="file://$PROJECT_DIR$/jpf-shell/build.xml" />
-    <buildFile url="file://$PROJECT_DIR$/jpf-symbc/build.xml" />
+    <buildFile url="file://$PROJECT_DIR$/jpf-core/build.xml" />
   </component>
 </project>
