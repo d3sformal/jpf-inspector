@@ -447,4 +447,26 @@
       <arg value="inspector-doxyfile"/>
     </exec>
   </target>
+  <target name="simple-package" description="Creates an archive that contains a ready-to-run JPF distribution that includes the Inspector.">
+    <delete>
+      <fileset dir="../simple-distribution">
+        <include name="**" />
+      </fileset>
+    </delete>
+    <copy todir="../simple-distribution/jpf-core">
+      <fileset dir="../jpf-core" includes="**" />
+    </copy>
+    <copy todir="../simple-distribution/jpf-shell">
+      <fileset dir="../jpf-shell" includes="**" />
+    </copy>
+    <copy todir="../simple-distribution/jpf-inspector">
+      <fileset dir="." includes="**" />
+    </copy>
+    <copy todir="../simple-distribution/HelloWorld">
+      <fileset dir="../HelloWorld" includes="**" />
+    </copy>
+    <copy todir="../simple-distribution" file="../site.properties" />
+    <copy todir="../simple-distribution" file="../HelloWorldReadme.txt" />
+    <zip destfile="../jpf-inspector-stable.zip" basedir="../simple-distribution" />
+  </target>
 </project>

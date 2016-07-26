@@ -1,0 +1,7 @@
+target = SimpleHelloWorld
+
+jpf-core.classpath+=;../HelloWorld
+jpf-core.sourcepath+=;../HelloWorld
+
+@using jpf-inspector
+shell=.shell.basicshell.BasicShell
