@@ -2,46 +2,23 @@
 documentation/wiki/
 documentation/pages/
 
-# Miscellaneous
-core8/.version
-core8/file
-core8/lib/
-
 # Built classes
-core8/build/
+jpf-core/build/
 jpf-shell/build/
 jpf-inspector/build/
-core6/build/
-
+jpf-symbc/build
 
 # IDE-specific
 intellij-project-output/
 .idea/workspace.xml
-/.idea/workspace.xml
 
 # Grammar
 jpf-inspector/src/main/gov/nasa/jpf/inspector/client/parser/generated/ConsoleGrammar*
 jpf-inspector/src/main/gov/nasa/jpf/inspector/server/expression/generated/ExpressionGrammar*
-/jpf-inspector/src/main/gov/nasa/jpf/inspector/server/expression/generated/ExpressionGrammarLexer.tokens
-/jpf-inspector/src/main/gov/nasa/jpf/inspector/server/expression/generated/ExpressionGrammarListener.java
-/jpf-inspector/src/main/gov/nasa/jpf/inspector/server/expression/generated/ExpressionGrammarParser.java
-/jpf-inspector/src/main/gov/nasa/jpf/inspector/server/expression/generated/ExpressionGrammar.tokens
-/jpf-inspector/src/main/gov/nasa/jpf/inspector/server/expression/generated/ExpressionGrammarBaseListener.java
-/jpf-inspector/src/main/gov/nasa/jpf/inspector/server/expression/generated/ExpressionGrammarLexer.java
 
 # Mercurial
 */.hg/*
-*workspace.xml*
-core8/.hg/
-documentation/img/screens/
-jpf-inspector/src/examples/symbolic/
-jpf-shell/.hg/
 
-# jpf-symbc
-jpf-symbc/build/
-jpf-symbc/local.properties
-
-# End of manual
-jpf-symbc/.hg/
-# dummy
-
+# Simple distribution
+HelloWorld/*.class
+simple-distribution
