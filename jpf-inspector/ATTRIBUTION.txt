@@ -3,6 +3,7 @@ Quick Toolbar Action Icons
 Quick toolbar action icons come from the Fugue Icons iconset by Yusuke Kamiyamane, licensed under CC Attribution 4.0,
 original source at http://p.yusukekamiyamane.com. Icon "Back Step Over" is derivative work.
 
+Other icons used require no attribution.
 
 ANTLR4
 ------

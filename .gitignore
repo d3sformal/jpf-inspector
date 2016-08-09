@@ -17,7 +17,10 @@ jpf-inspector/src/main/gov/nasa/jpf/inspector/client/parser/generated/ConsoleGra
 jpf-inspector/src/main/gov/nasa/jpf/inspector/server/expression/generated/ExpressionGrammar*
 
 # Mercurial
-*/.hg/*
+jpf-inspector/.hg
+jpf-shell/.hg
+jpf-symbc/.hg
+jpf-core/.hg
 
 # Simple distribution
 HelloWorld/*.class

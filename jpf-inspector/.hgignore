@@ -1,14 +1,5 @@
 syntax: glob
-jpf-shell.zip
-nbproject/private/*
 build/*
 dist/*
-doc/*
-*~
-*.orig
-src\main\gov\nasa\jpf\inspector\server\expression\parser\ExpressionGrammar.tokens
-src\main\gov\nasa\jpf\inspector\server\expression\parser\ExpressionGrammarLexer.java
-src\main\gov\nasa\jpf\inspector\server\expression\parser\ExpressionGrammarParser.java
-src\main\gov\nasa\jpf\inspector\client\parser\ConsoleGrammar.tokens
-src\main\gov\nasa\jpf\inspector\client\parser\ConsoleGrammarLexer.java
-src\main\gov\nasa\jpf\inspector\client\parser\ConsoleGrammarParser.java
+src/main/gov/nasa/jpf/inspector/server/expression/generated
+src/main/gov/nasa/jpf/inspector/client/parser/generated

@@ -55,6 +55,6 @@
         </SOURCES>
       </library>
     </orderEntry>
-    <orderEntry type="module" module-name="core8" />
+    <orderEntry type="module" module-name="jpf-core" />
   </component>
 </module>
