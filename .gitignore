@@ -3,9 +3,9 @@ documentation/wiki/
 documentation/pages/
 
 # Built classes
-jpf-core/build/
-jpf-shell/build/
-jpf-inspector/build/
+jpf-core/build
+jpf-shell/build
+jpf-inspector/build
 jpf-symbc/build
 
 # IDE-specific
