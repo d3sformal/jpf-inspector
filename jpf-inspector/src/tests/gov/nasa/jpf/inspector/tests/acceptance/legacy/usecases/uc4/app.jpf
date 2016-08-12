@@ -1,5 +1,0 @@
-target = gov.nasa.jpf.inspector.tests.acceptance.legacy.usecases.uc4.DiningPhil
-
-@include ../usecases.jpf
-
-jpf-inspector.ignore_breakpoints_in_ignored_classes = false
