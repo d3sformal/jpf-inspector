@@ -1,0 +1,16 @@
+INFO: JPF created and connected, SuT is started
+IGNOREDLINE: ChoiceGeneratorAdvance - scheduling CG - ROOT (0x71c8d6ba) :
+	 >0-ThreadInfo [name=main,id=0,state=RUNNING]
+Execution is halted. Specify which choice to use (0-0):
+	Hint: Use the command 'cg select CHOICE_INDEX'.
+IGNOREDLINE: ChoiceGeneratorAdvance used values - scheduling CG - ROOT (0x71c8d6ba) : >1-ThreadInfo [name=main,id=0,state=RUNNING]
+IGNOREDLINE: ChoiceGeneratorAdvance - scheduling CG - START (0x5291ab79) :
+	 >0-ThreadInfo [name=main,id=0,state=RUNNING]
+	  1-ThreadInfo [name=Thread-1,id=1,state=RUNNING]
+Execution is halted. Specify which choice to use (0-1):
+IGNOREDLINE: ChoiceGeneratorAdvance used values - scheduling CG - START (0x5291ab79) : >2-ThreadInfo [name=Thread-1,id=1,state=RUNNING]
+IGNOREDLINE: ChoiceGeneratorAdvance - scheduling CG - TERMINATE (0x4e6b4b4b) :
+	 >0-ThreadInfo [name=main,id=0,state=RUNNING]
+Execution is halted. Specify which choice to use (0-0):
+IGNOREDLINE: ChoiceGeneratorAdvance used values - scheduling CG - TERMINATE (0x4e6b4b4b) : >1-ThreadInfo [name=main,id=0,state=RUNNING]
+INFO: JPF Terminating

@@ -40,13 +40,11 @@ public class LegacyUseCasesTest extends CorrectOutputAbstractTest {
              getCase("legacy/usecases/uc3", "part1"),
              getCase("legacy/usecases/uc3", "part2"),
 
-             // Use case 4 - not used because it's really hard to figure out what it's actually supposed to print
-             //  getCase("legacy/usecases/uc4", "usecase"),
-
              // Use case 4 (updated)
              getCase("legacy/usecases/uc4new", "print"),
              getCase("legacy/usecases/uc4new", "st"),
              getCase("legacy/usecases/uc4new", "bst"),
+             getCase("legacy/usecases/uc4new", "askcg"),
 
              // Use case JPF W
              getCase("legacy/usecases/ucjpfw", "usecase")
