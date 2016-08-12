@@ -1,0 +1,124 @@
+target example: DiningPhil
+
+
+command sequence
+----------------
+cr bp 10 <= hc it=lock
+
+enable ask all cg
+
+run
+ - execution stopped at choice generator
+	INFO: Unsupported search class (not all features will be available) - Use DFSearchInspector
+	INFO: JPF created and connected, SuT is started
+	ChoiceGeneratorAdvance - scheduling CG - <root> (b02928) : 
+		 >0-ThreadInfo [name=main,id=0,state=RUNNING]
+	Execution is halted. Specify which choice to use (0-0)
+		Hint: Use 'cg select CHOICE_INDEX' command
+
+cg select 0
+ - selected the first option (and only option)
+ - breakpoint hit
+	ChoiceGeneratorAdvance used values - scheduling CG - <root> (b02928) : >1-ThreadInfo [name=main,id=0,state=RUNNING]
+	INFO: Breakpoint hit [ 1 :  state=BP_STATE_ENABLED hits=10 hitsTotal=10 10<=hit_count instruction_type=lock]	
+		SuT (Thread=0) executes the java/lang/ThreadGroup.java:100 - monitorexit
+
+step_transition
+	INFO: Breakpoint hit [ 1 :  state=BP_STATE_ENABLED hits=11 hitsTotal=11 10<=hit_count instruction_type=lock]
+		SuT (Thread=0) executes the java/lang/ThreadGroup.java:3 - monitorenter
+
+run
+ - another breakpoint hit inside java.lang.ThreadGroup
+
+run
+ - another choice to make here
+	ChoiceGeneratorAdvance - scheduling CG - end atomic (1f54c5f) : 
+		 >0-ThreadInfo [name=main,id=0,state=RUNNING]
+		  1-ThreadInfo [name=Thread-1,id=1,state=RUNNING]
+		  2-ThreadInfo [name=Thread-2,id=2,state=RUNNING]
+		  3-ThreadInfo [name=Thread-3,id=3,state=RUNNING]
+		  4-ThreadInfo [name=Thread-4,id=4,state=RUNNING]
+		  5-ThreadInfo [name=Thread-5,id=5,state=RUNNING]
+		  6-ThreadInfo [name=Thread-6,id=6,state=RUNNING]
+	Execution is halted. Specify which choice to use (0-6)
+
+cg select 1
+ - selected the first philosopher thread
+ - breakpoint hit inside the philosopher code
+	ChoiceGeneratorAdvance used values - scheduling CG - end atomic (1f54c5f) : >2-ThreadInfo [name=Thread-1,id=1,state=RUNNING]
+	INFO: Breakpoint hit [ 1 :  state=BP_STATE_ENABLED hits=13 hitsTotal=13 10<=hit_count instruction_type=lock]
+		SuT (Thread=1) executes the DiningPhil.java:41 - monitorenter
+
+print #thread[1].#stackFrame[0]
+ - stack frame of the first philosopher thread
+ - slots are local variables
+	DiningPhil$Philosopher.run - (in file DiningPhil.java:41) -       synchronized (left) {
+	Stack slots
+		0 : this (DiningPhil$Philosopher) = DiningPhil$Philosopher@150
+		1 : ???-RawView-no Name or Type provided (int) = 327
+		2 : ???-RawView-no Name or Type provided (int) = 0
+		3 : ???-RawView-no Name or Type provided (int) = 0
+		4 : ???-RawView-no Name or Type provided (int) = 0
+		5 : ???-RawView-no Name or Type provided (int) = 327
+	Fields
+		0 : id (int) = 1
+		1 : group (java.lang.ThreadGroup) = java.lang.ThreadGroup@1
+		2 : target (java.lang.Runnable) = null
+		3 : name (java.lang.String) = "Thread-1"
+		4 : priority (int) = 5
+		5 : isDaemon (boolean) = false
+		6 : interrupted (boolean) = false
+		7 : threadLocals (java.lang.ThreadLocal$ThreadLocalMap) = null
+		8 : inheritableThreadLocals (java.lang.ThreadLocal$ThreadLocalMap) = null
+		9 : permit (java.lang.Thread$Permit) = java.lang.Thread$Permit@161
+		10 : parkBlocker (java.lang.Object) = null
+		11 : stopException (java.lang.Throwable) = null
+		12 : uncaughtExceptionHandler (java.lang.Thread$UncaughtExceptionHandler) = null
+		13 : left (DiningPhil$Fork) = DiningPhil$Fork@147
+		14 : right (DiningPhil$Fork) = DiningPhil$Fork@148
+
+print #heap[336].left
+ - object fields (there are none)
+	left (DiningPhil$Fork) = DiningPhil$Fork@147
+  		No instance and static fields
+
+st
+ - another user choice
+	ChoiceGeneratorAdvance - scheduling CG - monitorEnter (46d228) : 
+		 >0-ThreadInfo [name=main,id=0,state=RUNNING]
+		  1-ThreadInfo [name=Thread-1,id=1,state=RUNNING]
+		  2-ThreadInfo [name=Thread-2,id=2,state=RUNNING]
+		  3-ThreadInfo [name=Thread-3,id=3,state=RUNNING]
+		  4-ThreadInfo [name=Thread-4,id=4,state=RUNNING]
+		  5-ThreadInfo [name=Thread-5,id=5,state=RUNNING]
+		  6-ThreadInfo [name=Thread-6,id=6,state=RUNNING]
+	Execution is halted. Specify which choice to use (0-6)
+
+cg select 1
+ - another breakpoint hit at monitor enter
+	ChoiceGeneratorAdvance used values - scheduling CG - monitorEnter (46d228) : >2-ThreadInfo [name=Thread-1,id=1,state=RUNNING]
+	INFO: SuT is stopped
+		SuT  (Thread=1) executes the DiningPhil.java:41 - monitorenter source:       synchronized (left) {
+
+bst
+
+run
+
+print #heap[336].right
+
+used cg
+
+disable cg
+
+enable print scheduling cg
+
+run
+
+back_step_transition
+
+st
+
+del bp 1
+
+run
+

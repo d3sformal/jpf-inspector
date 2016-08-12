@@ -1,0 +1,8 @@
+target = gov.nasa.jpf.inspector.tests.acceptance.legacy.usecases.uc4new.Transitions
+
+@include ../usecases.jpf
+
+vm.shared.break_on_exposure = false
+vm.shared.never_break_types = *
+vm.shared.never_break_fields = gov.nasa.jpf.inspector.tests.acceptance.legacy.usecases.uc4new.Transitions.*
+vm.shared.sync_detection = false
