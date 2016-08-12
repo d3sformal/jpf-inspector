@@ -50,7 +50,7 @@ public class ExpressionStateValueArrayIndex extends ExpressionStateValue {
 
   @Override
   public String getNormalizedExpression () {
-    return '[' + elementIndex + ']' + getChild().getNormalizedExpression();
+    return '[' + elementIndex + ']' + (getChild() != null ? getChild().getNormalizedExpression() : "");
   }
 
 }

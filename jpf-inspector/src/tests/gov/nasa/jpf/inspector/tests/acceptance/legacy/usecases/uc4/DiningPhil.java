@@ -47,13 +47,12 @@ public class DiningPhil {
     }
   }
   
-  static final int N = 6;
+  static final int N = 2;
 
   public static void main(String[] args) {
 
     int n = N;
 
-    Verify.beginAtomic();
     Fork[] forks = new Fork[N];
     for (int i = 0; i < N; i++) {
       forks[i] = new Fork();
@@ -61,6 +60,5 @@ public class DiningPhil {
     for (int i = 0; i < N; i++) {
       new Philosopher(forks[i], forks[(i + 1) % N]);
     }
-    Verify.endAtomic();
   }
 }

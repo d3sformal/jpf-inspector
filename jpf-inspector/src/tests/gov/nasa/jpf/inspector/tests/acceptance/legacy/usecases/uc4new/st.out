@@ -1,0 +1,31 @@
+INFO: JPF created and connected, SuT is started
+INFO: Breakpoint hit: [1 :  state=ENABLED hits=1 hitsTotal=1 hit_count<=1 instruction_type=any]
+	SuT (Thread=0) executes the gov/nasa/jpf/inspector/tests/acceptance/legacy/usecases/uc4new/Transitions.java:0 - invokestatic gov.nasa.jpf.inspector.tests.acceptance.legacy.usecases.uc4new.Transitions.<clinit>()V
+INFO: SuT is stopped
+	SuT (thread 0) will now execute java/lang/Thread.java:-1 (executenative JPF_java_lang_Thread.start____V), source unavailable
+INFO: SuT is stopped
+	SuT (thread 1) will now execute gov/nasa/jpf/inspector/tests/acceptance/legacy/usecases/uc4new/Transitions.java:0 (runstart), source unavailable
+#thread[1].#stackFrame[0].Transitions.Transitions (gov.nasa.jpf.inspector.tests.acceptance.legacy.usecases.uc4new.Transitions) = gov.nasa.jpf.inspector.tests.acceptance.legacy....
+  No instance fields
+  Static fields
+	0 : lastOperation (java.lang.String) = "MAIN: BEFORE JOIN"
+INFO: SuT is stopped
+	SuT (thread 0) will now execute java/lang/Thread.java:-1 (executenative JPF_java_lang_Thread.join____V), source unavailable
+#thread[0].#stackFrame[0].Transitions.Transitions (gov.nasa.jpf.inspector.tests.acceptance.legacy.usecases.uc4new.Transitions) = gov.nasa.jpf.inspector.tests.acceptance.legacy....
+  No instance fields
+  Static fields
+	0 : lastOperation (java.lang.String) = "AUXILIARY: RUNNING"
+INFO: SuT is stopped
+	SuT (thread 1) will now execute gov/nasa/jpf/inspector/tests/acceptance/legacy/usecases/uc4new/Transitions.java:0 (runstart), source unavailable
+#thread[1].#stackFrame[0].Transitions.Transitions (gov.nasa.jpf.inspector.tests.acceptance.legacy.usecases.uc4new.Transitions) = gov.nasa.jpf.inspector.tests.acceptance.legacy....
+  No instance fields
+  Static fields
+	0 : lastOperation (java.lang.String) = "MAIN: BEFORE START"
+INFO: SuT is stopped
+	SuT (thread 0) will now execute java/lang/Thread.java:-1 (executenative JPF_java_lang_Thread.start____V), source unavailable
+#thread[0].#stackFrame[0].Transitions.Transitions (gov.nasa.jpf.inspector.tests.acceptance.legacy.usecases.uc4new.Transitions) = gov.nasa.jpf.inspector.tests.acceptance.legacy....
+  No instance fields
+  Static fields
+	0 : lastOperation (java.lang.String) = "AUXILIARY: RUNNING"
+INFO: JPF Terminating
+ERR: This command may only be used when JPF has started and is paused. If JPF is not already started, then start it using 'run' and if it is already running, then pause it using 'break'. Then you will be able to execute this command. Alternatively, you may disable safe mode in the configuration file by setting 'jpf-inspector.safe-mode = false'.
