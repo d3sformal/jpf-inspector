@@ -1,0 +1,25 @@
+create breakpoint pos=*:9
+show breakpoint
+run
+# Loop: 5 times
+ # Iteration
+ wait
+ run
+ # Iteration
+ wait
+ run
+ # Iteration
+ wait
+ run
+ # Iteration
+ wait
+ run
+ # Iteration
+ wait
+ run
+
+# Termination:
+wait
+show breakpoint
+# This should fail (because we already terminated):
+print #thread

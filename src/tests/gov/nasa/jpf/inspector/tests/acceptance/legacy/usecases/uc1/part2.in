@@ -1,0 +1,24 @@
+cr bp 5 <= hc ts=both
+
+run
+# Breakpoint hit five times before execution is stopped.
+
+ti
+print #thread[2]
+# Pass the return instruction
+sins
+back_step_over
+
+print
+
+continue
+
+wait
+
+del bp 1
+run
+wait
+# Now the program has terminated.
+
+
+# I'm not sure about this... but with conditions such as "thread_scheduled", who knows what changed since JPF6

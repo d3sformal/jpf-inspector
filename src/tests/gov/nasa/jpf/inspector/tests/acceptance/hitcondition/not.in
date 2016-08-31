@@ -1,0 +1,5 @@
+cr bp it = any and b == 9 and not a == 5
+run
+wait
+thpc
+del bp 1

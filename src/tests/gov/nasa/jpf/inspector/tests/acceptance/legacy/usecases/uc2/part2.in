@@ -1,0 +1,29 @@
+cr bp pos = *Crossing.java:90
+run
+step_out
+print #thread[1].#stackFrame[0]
+so
+so
+si
+print #thread[0].#stackFrame[0]
+so
+bso
+bso
+run
+assert *Crossing.java:217 finished == false
+step_instruction
+bsins
+print #thread[0].#stackFrame[5]
+print #thread[0]
+cr bp choice_generator = data
+cr bp position = *Crossing.java:194
+continue
+print #thread[0].#stackFrame[1]
+print #thread[0].#stackFrame[0]
+print #thread[0].#stackFrame[0].p2
+print #thread[0].#stackFrame[0].isNative
+bsout
+run
+sout
+sins
+wait

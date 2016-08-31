@@ -1,0 +1,17 @@
+@using jpf-symbc
+
+target=symbolic.NumberExample
+
+symbolic.method=symbolic.NumberExample.run(sym)
+
+listener = gov.nasa.jpf.symbc.SymbolicListener
+
+classpath+=${jpf-symbc}/build/examples
+
+symbolic.debug=true
+
+@using jpf-inspector
+
+shell=.shell.basicshell.BasicShell
+
+search.multiple_errors = true

@@ -1,0 +1,5 @@
+The thread 1 is now disabled.
+The thread 1 is now enabled.
+INFO: JPF created and connected, SuT is started
+INFO: Breakpoint hit: [1 :  state=ENABLED hits=1 hitsTotal=1 property_violated]
+INFO: JPF Terminating

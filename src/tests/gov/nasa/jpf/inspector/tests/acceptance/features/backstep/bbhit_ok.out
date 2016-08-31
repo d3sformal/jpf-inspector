@@ -1,0 +1,18 @@
+INFO: JPF created and connected, SuT is started
+INFO: Breakpoint hit: [1 :  state=ENABLED hits=1 hitsTotal=1 local_write=a]
+INFO: SuT is stopped
+	SuT (thread 0) will now execute gov/nasa/jpf/inspector/tests/acceptance/sut/MultiTransitionSinglePath.java:9 (iconst_1), source: int transitionStart = Verify.getInt(1, 2);
+INFO: SuT is stopped
+	SuT (thread 0) will now execute gov/nasa/jpf/inspector/tests/acceptance/sut/MultiTransitionSinglePath.java:8 (istore_1), source: int a = 5;
+INFO: SuT is stopped
+	SuT (thread 0) will now execute gov/nasa/jpf/inspector/tests/acceptance/sut/MultiTransitionSinglePath.java:9 (iconst_1), source: int transitionStart = Verify.getInt(1, 2);
+INFO: SuT is stopped
+	SuT (thread 0) will now execute gov/nasa/jpf/inspector/tests/acceptance/sut/MultiTransitionSinglePath.java:10 (iload_1), source: int b = a + 4;
+INFO: SuT is stopped
+	SuT (thread 0) will now execute gov/nasa/jpf/inspector/tests/acceptance/sut/MultiTransitionSinglePath.java:11 (iload_3), source: int c = b - 8;
+Breakpoint with ID 1 successfully deleted.
+INFO: SuT is stopped
+	SuT (thread 0) will now execute gov/nasa/jpf/inspector/tests/acceptance/sut/MultiTransitionSinglePath.java:8 (istore_1), source: int a = 5;
+0 : gov/nasa/jpf/inspector/tests/acceptance/sut/MultiTransitionSinglePath.java:8:    int a = 5;
+	gov.nasa.jpf.inspector.tests.acceptance.sut.MultiTransitionSinglePath:main:1:istore_1
+INFO: JPF Terminating

@@ -1,0 +1,60 @@
+INFO: JPF created and connected, SuT is started
+INFO: Breakpoint hit: [1 :  state=ENABLED hits=1 hitsTotal=1 position=*Racer.java:36]
+	SuT will now execute "sipush" at position *Racer.java:36.
+gov.nasa.jpf.inspector.tests.acceptance.legacy.usecases.ucjpfw.Racer.main - (in file gov/nasa/jpf/inspector/tests/acceptance/legacy/usecases/ucjpfw/Racer.java:36) - doSomething(1000);                   // (3)
+Stack slots
+	0 : args (java.lang.String[]) = []
+	1 : racer (gov.nasa.jpf.inspector.tests.acceptance.legacy.usecases.ucjpfw.Racer) = gov.nasa.jpf.inspector.tests.acceptance.legacy....
+	2 : t (java.lang.Thread) = java.lang.Thread@348
+	3 : ???-RawView-no Name or Type provided (int) = 0
+#heap[347] (gov.nasa.jpf.inspector.tests.acceptance.legacy.usecases.ucjpfw.Racer) = gov.nasa.jpf.inspector.tests.acceptance.legacy....
+  Instance fields
+	0 : d (int) = 42
+INFO: SuT is stopped
+	SuT (thread 0) will now execute gov/nasa/jpf/inspector/tests/acceptance/legacy/usecases/ucjpfw/Racer.java:37 (sipush), source: int c = 420 / racer.d;               // (4)
+INFO: SuT is stopped
+	SuT (thread 0) will now execute gov/nasa/jpf/inspector/tests/acceptance/legacy/usecases/ucjpfw/Racer.java:38 (getstatic java.lang.System.out), source: System.out.println(c);
+INFO: SuT is stopped
+	SuT (thread 0) will now execute gov/nasa/jpf/inspector/tests/acceptance/legacy/usecases/ucjpfw/Racer.java:39 (return  gov.nasa.jpf.inspector.tests.acceptance.legacy.usecases.ucjpfw.Racer.main([Ljava/lang/String;)V), source: }
+INFO: SuT is stopped
+	SuT (thread 0) will now execute gov/nasa/jpf/inspector/tests/acceptance/legacy/usecases/ucjpfw/Racer.java:38 (getstatic java.lang.System.out), source: System.out.println(c);
+INFO: SuT is stopped
+	SuT (thread 0) will now execute gov/nasa/jpf/inspector/tests/acceptance/legacy/usecases/ucjpfw/Racer.java:37 (sipush), source: int c = 420 / racer.d;               // (4)
+Value set successfully.
+#heap[347] (gov.nasa.jpf.inspector.tests.acceptance.legacy.usecases.ucjpfw.Racer) = gov.nasa.jpf.inspector.tests.acceptance.legacy....
+  Instance fields
+	0 : d (int) = 0
+INFO: JPF Terminating
+[[IGNORED LINE]]
+# Target: gov.nasa.jpf.inspector.tests.acceptance.legacy.usecases.ucjpfw.Racer
+#
+create breakpoint pos=*Racer.java:36
+run
+callback_state_change state=started
+callback_breakpoint_hit
+callback_state_change state=stopped
+print #thread[0].#stackFrame[0]
+print #heap[347]
+step_over
+callback_state_change state=running
+callback_state_change state=stopped
+step_over
+callback_state_change state=running
+callback_state_change state=stopped
+step_over
+callback_state_change state=running
+callback_state_change state=stopped
+back_step_over
+callback_state_change state=running
+callback_state_change state=stopped
+back_step_over
+callback_state_change state=running
+callback_state_change state=stopped
+set #heap[347].d = 0
+print #heap[347]
+# The following command terminates the verification becauses a property is violated
+step_over
+callback_state_change state=running
+callback_state_change state=terminating
+wait
+record print

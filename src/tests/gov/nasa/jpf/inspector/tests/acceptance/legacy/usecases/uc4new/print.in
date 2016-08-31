@@ -1,0 +1,2 @@
+enable print cg
+run && wait

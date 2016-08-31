@@ -1,0 +1,5 @@
+INFO: JPF created and connected, SuT is started
+INFO: Breakpoint hit: [1 :  state=ENABLED hits=1 hitsTotal=1 ( instruction_type=any ) and ( (#thread.#stackFrame.a == 5) )]
+	SuT (Thread=0) executes the gov/nasa/jpf/inspector/tests/acceptance/sut/Singlepath.java:5 - iload_1
+Breakpoint with ID 1 successfully deleted.
+INFO: JPF Terminating

@@ -1,0 +1,36 @@
+Breakpoint with ID 1 is now a logging breakpoint.
+INFO: JPF created and connected, SuT is started
+INFO: Logging breakpoint hit: [1 :  state=LOGGING hits=1 hitsTotal=1 instruction_type=any]
+	SuT (Thread=0) executes the gov/nasa/jpf/inspector/tests/acceptance/sut/Singlepath.java:0 - invokestatic gov.nasa.jpf.inspector.tests.acceptance.sut.Singlepath.main([Ljava/lang/String;)V
+INFO: Logging breakpoint hit: [1 :  state=LOGGING hits=2 hitsTotal=2 instruction_type=any]
+	SuT (Thread=0) executes the gov/nasa/jpf/inspector/tests/acceptance/sut/Singlepath.java:4 - iconst_5
+INFO: Logging breakpoint hit: [1 :  state=LOGGING hits=3 hitsTotal=3 instruction_type=any]
+	SuT (Thread=0) executes the gov/nasa/jpf/inspector/tests/acceptance/sut/Singlepath.java:4 - istore_1
+INFO: Logging breakpoint hit: [1 :  state=LOGGING hits=4 hitsTotal=4 instruction_type=any]
+	SuT (Thread=0) executes the gov/nasa/jpf/inspector/tests/acceptance/sut/Singlepath.java:5 - iload_1
+INFO: Logging breakpoint hit: [1 :  state=LOGGING hits=5 hitsTotal=5 instruction_type=any]
+	SuT (Thread=0) executes the gov/nasa/jpf/inspector/tests/acceptance/sut/Singlepath.java:5 - iconst_4
+INFO: Logging breakpoint hit: [1 :  state=LOGGING hits=6 hitsTotal=6 instruction_type=any]
+	SuT (Thread=0) executes the gov/nasa/jpf/inspector/tests/acceptance/sut/Singlepath.java:5 - iadd
+INFO: Logging breakpoint hit: [1 :  state=LOGGING hits=7 hitsTotal=7 instruction_type=any]
+	SuT (Thread=0) executes the gov/nasa/jpf/inspector/tests/acceptance/sut/Singlepath.java:5 - istore_2
+INFO: Logging breakpoint hit: [1 :  state=LOGGING hits=8 hitsTotal=8 instruction_type=any]
+	SuT (Thread=0) executes the gov/nasa/jpf/inspector/tests/acceptance/sut/Singlepath.java:6 - iload_2
+INFO: Logging breakpoint hit: [1 :  state=LOGGING hits=9 hitsTotal=9 instruction_type=any]
+	SuT (Thread=0) executes the gov/nasa/jpf/inspector/tests/acceptance/sut/Singlepath.java:6 - bipush
+INFO: Logging breakpoint hit: [1 :  state=LOGGING hits=10 hitsTotal=10 instruction_type=any]
+	SuT (Thread=0) executes the gov/nasa/jpf/inspector/tests/acceptance/sut/Singlepath.java:6 - isub
+INFO: Logging breakpoint hit: [1 :  state=LOGGING hits=11 hitsTotal=11 instruction_type=any]
+	SuT (Thread=0) executes the gov/nasa/jpf/inspector/tests/acceptance/sut/Singlepath.java:6 - istore_3
+INFO: Logging breakpoint hit: [1 :  state=LOGGING hits=12 hitsTotal=12 instruction_type=any]
+	SuT (Thread=0) executes the gov/nasa/jpf/inspector/tests/acceptance/sut/Singlepath.java:7 - iconst_3
+INFO: Logging breakpoint hit: [1 :  state=LOGGING hits=13 hitsTotal=13 instruction_type=any]
+	SuT (Thread=0) executes the gov/nasa/jpf/inspector/tests/acceptance/sut/Singlepath.java:7 - istore_1
+INFO: Logging breakpoint hit: [1 :  state=LOGGING hits=14 hitsTotal=14 instruction_type=any]
+	SuT (Thread=0) executes the gov/nasa/jpf/inspector/tests/acceptance/sut/Singlepath.java:8 - return  gov.nasa.jpf.inspector.tests.acceptance.sut.Singlepath.main([Ljava/lang/String;)V
+INFO: Logging breakpoint hit: [1 :  state=LOGGING hits=15 hitsTotal=15 instruction_type=any]
+	SuT (Thread=0) executes the gov/nasa/jpf/inspector/tests/acceptance/sut/Singlepath.java:3 - directcallreturn
+INFO: JPF Terminating
+Breakpoint with ID 1 is now disabled.
+INFO: JPF created and connected, SuT is started
+INFO: JPF Terminating

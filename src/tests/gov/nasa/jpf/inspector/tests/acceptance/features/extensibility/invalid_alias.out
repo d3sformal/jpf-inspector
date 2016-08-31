@@ -1,0 +1,11 @@
+ERR: Parse error: no viable alternative at input 'ThisIsNotAValidHitCondition'
+ThisIsNotAValidHitCondition
+                           ^
+ERR: The alias 'badbreak2' was expanded but its expansion could not be parsed.
+The expansion was: 'create show breakpoint in this command "show" is not correct'.
+Error: ERR: Parse error: mismatched input 'show' expecting TOKEN_BREAKPOINT.
+
+Hello to you, too, dear user! The JPF Inspector command loop is working!
+ERR: Parse error: no viable alternative at input 'ThisIsNotAValidHitCondition'
+ThisIsNotAValidHitCondition
+                           ^

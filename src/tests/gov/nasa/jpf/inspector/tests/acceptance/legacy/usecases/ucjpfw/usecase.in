@@ -1,0 +1,15 @@
+cr bp pos=*Racer.java:36
+run
+print #thread[0].#stackFrame[0]
+print #heap[347]
+so
+so
+so
+bso
+bso
+set #heap[347].d = 0
+print #heap[347]
+# The following command terminates the verification becauses a property is violated
+so
+wait
+rec print

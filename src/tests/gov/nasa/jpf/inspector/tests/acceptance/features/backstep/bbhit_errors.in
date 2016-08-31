@@ -1,0 +1,29 @@
+# All bbhit's in this file cause an error.
+
+# Not yet running:
+back_breakpoint_hit && wait
+
+cr bp local_write = a
+run && wait
+
+# Not yet in transition:
+back_breakpoint_hit && wait
+
+step_over && wait
+
+# Multistep not permitted:
+back_breakpoint_hit 1 && wait
+
+# Incorrect abbreviation:
+back_bbhit && wait
+
+cr bp local_write = c
+run && wait
+bso && wait
+# Instruction in the future:
+bbhit && wait
+bso && wait
+bso && wait
+
+# Transition in the future:
+bbhit && wait

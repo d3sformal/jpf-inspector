@@ -1,0 +1,12 @@
+cr bp mi=*Predecessor2:callMePred2
+run
+print #heap[356]
+cr bp #heap[356].pred2_i1 > 45
+set #heap[356].pred2_i1 = 50
+print #heap[356]
+print #heap[356].#static
+run
+thread_pc
+set #heap[356].pred2_i1 = 20
+run
+wait

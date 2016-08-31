@@ -1,0 +1,9 @@
+# No suppression:
+disable thread 1
+en t 1
+
+create breakpoint property_violated
+
+run
+
+finish

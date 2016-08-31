@@ -1,0 +1,7 @@
+create breakpoint it=any
+change bp 1 state =  log
+run
+finish
+disable bp 1
+run
+finish

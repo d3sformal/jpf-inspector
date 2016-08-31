@@ -1,0 +1,19 @@
+INFO: JPF created and connected, SuT is started
+INFO: Breakpoint hit: [1 :  state=ENABLED hits=1 hitsTotal=1 position=*Crossing.java:194]
+	SuT will now execute "aload 4" at position *Crossing.java:194.
+INFO: SuT is stopped
+	SuT (thread 0) will now execute gov/nasa/jpf/inspector/tests/acceptance/legacy/usecases/uc2/Crossing.java:195 (aload 5), source: p2.move();
+gov.nasa.jpf.inspector.tests.acceptance.legacy.usecases.uc2.Crossing.[main] - (in file gov/nasa/jpf/inspector/tests/acceptance/legacy/usecases/uc2/Crossing.java:0)
+Stack slots
+	0 : ???-RawView-no Name or Type provided (int) = 187
+INFO: SuT is stopped
+	SuT (thread 0) will now execute gov/nasa/jpf/inspector/tests/acceptance/legacy/usecases/uc2/Crossing.java:149 (aload_0), source: if (side == Torch.side) {
+INFO: SuT is stopped
+	SuT (thread 0) will now execute gov/nasa/jpf/inspector/tests/acceptance/legacy/usecases/uc2/Crossing.java:149 (getfield gov.nasa.jpf.inspector.tests.acceptance.legacy.usecases.uc2.Person.side), source: if (side == Torch.side) {
+INFO: SuT is stopped
+	SuT (thread 0) will now execute gov/nasa/jpf/inspector/tests/acceptance/legacy/usecases/uc2/Crossing.java:149 (getstatic gov.nasa.jpf.inspector.tests.acceptance.legacy.usecases.uc2.Torch.side), source: if (side == Torch.side) {
+INFO: SuT is stopped
+	SuT (thread 0) will now execute gov/nasa/jpf/inspector/tests/acceptance/legacy/usecases/uc2/Crossing.java:149 (if_icmpne 21), source: if (side == Torch.side) {
+INFO: SuT is stopped
+	SuT (thread 0) will now execute gov/nasa/jpf/inspector/tests/acceptance/legacy/usecases/uc2/Crossing.java:195 (aload 5), source: p2.move();
+INFO: JPF Terminating

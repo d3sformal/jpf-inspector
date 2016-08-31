@@ -1,0 +1,9 @@
+cr bp position = *Crossing.java:194
+run
+so
+print #thread[0].#stackFrame[1]
+step_in
+sins
+sins
+sins
+bso

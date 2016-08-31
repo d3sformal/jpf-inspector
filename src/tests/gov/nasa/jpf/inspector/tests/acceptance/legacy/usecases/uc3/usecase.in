@@ -1,0 +1,25 @@
+cr bp mi=*Predecessor2:callMePred2
+run
+si
+sout
+thread_pc
+bsi
+print #thread[0].#stackFrame[0]
+so
+print #heap[0x148]
+set #heap[0x148].pred1_i4 = 44
+cr bp method_invoke=Predecessor3:callMePred3
+print #heap[0x148]
+bso
+back_step_out
+run
+run
+print #heap[0x148]
+cr bp #heap[0x148].pred2_i1 > 45
+set #heap[0x148].pred2_i1 = 50
+print #heap[0x148]
+print #heap[0x148].#static
+run
+thread_pc
+set #heap[0x148].pred2_i1 = 20
+run

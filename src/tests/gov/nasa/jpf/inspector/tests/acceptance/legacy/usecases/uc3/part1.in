@@ -1,0 +1,27 @@
+cr bp mi=*Predecessor2:callMePred2
+run
+si
+sout
+thread_pc
+
+bsins
+bsins
+bsins
+bsins
+
+bsins
+bsins
+bsins
+bsins
+
+bsins
+bsins
+bsins
+bsins
+
+print #thread[0].#stackFrame[0]
+print #heap[356]
+set #heap[356].pred1_i4 = 44
+print #heap[356]
+run
+wait

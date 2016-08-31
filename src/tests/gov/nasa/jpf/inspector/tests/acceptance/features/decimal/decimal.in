@@ -1,0 +1,7 @@
+create breakpoint it=any
+run
+wait
+print #heap[sun.misc.Unsafe]
+del bp 1
+run
+wait

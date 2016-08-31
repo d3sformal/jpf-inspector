@@ -1,0 +1,25 @@
+# All bbhit's in this file work well.
+
+
+cr bp local_write = a
+run && wait
+
+so && wait
+
+bbhit && wait
+
+# back at a = 5
+
+so && wait
+so && wait
+so && wait
+
+del bp 1
+back_breakpoint_hit && wait
+
+# back at a = 5
+
+thpc
+run && wait
+
+

@@ -1,0 +1,14 @@
+Hello to you, too, dear user! The JPF Inspector command loop is working!
+Hello to you, too, dear user! The JPF Inspector command loop is working!
+ERR: The alias 'cycle2' contains itself in its own value (perhaps after several expansions). This is a cyclic dependency which cannot be resolved. The alias cannot be used.
+ERR: The alias 'cycle2' contains itself in its own value (perhaps after several expansions). This is a cyclic dependency which cannot be resolved. The alias cannot be used.
+ERR: The alias 'cycle3' contains itself in its own value (perhaps after several expansions). This is a cyclic dependency which cannot be resolved. The alias cannot be used.
+ERR: The alias 'cycle4' contains itself in its own value (perhaps after several expansions). This is a cyclic dependency which cannot be resolved. The alias cannot be used.
+Hello to you, too, dear user! The JPF Inspector command loop is working!
+Hello to you, too, dear user! The JPF Inspector command loop is working!
+ERR: The alias 'cycle2' contains itself in its own value (perhaps after several expansions). This is a cyclic dependency which cannot be resolved. The alias cannot be used.
+ERR: The alias 'cycle2' contains itself in its own value (perhaps after several expansions). This is a cyclic dependency which cannot be resolved. The alias cannot be used.
+Hello to you, too, dear user! The JPF Inspector command loop is working!
+ERR: The alias 'cycle3' contains itself in its own value (perhaps after several expansions). This is a cyclic dependency which cannot be resolved. The alias cannot be used.
+ERR: The alias 'cycle2' contains itself in its own value (perhaps after several expansions). This is a cyclic dependency which cannot be resolved. The alias cannot be used.
+Hello to you, too, dear user! The JPF Inspector command loop is working!

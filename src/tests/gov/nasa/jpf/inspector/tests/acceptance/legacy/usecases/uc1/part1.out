@@ -1,0 +1,66 @@
+INFO: JPF created and connected, SuT is started
+INFO: Breakpoint hit: [1 :  state=ENABLED hits=1 hitsTotal=1 field_access=*SecondTask:count]
+0 : main state=RUNNING priority=5
+1 : state=NEW priority=5
+2 : state=NEW priority=5
+1 :  state=ENABLED hits=1 hitsTotal=1 field_access=*SecondTask:count
+2 :  state=ENABLED hits=0 hitsTotal=0 thread_scheduled=out:1
+Breakpoint with ID 2 successfully deleted.
+0 : main state=RUNNING priority=5
+	0 : gov.nasa.jpf.inspector.tests.acceptance.legacy.usecases.uc1.SecondTask.<init> - (in file gov/nasa/jpf/inspector/tests/acceptance/legacy/usecases/uc1/oldclassic.java:120) - int   count = 0;  // bad optimization - local c...
+	1 : gov.nasa.jpf.inspector.tests.acceptance.legacy.usecases.uc1.oldclassic.main - (in file gov/nasa/jpf/inspector/tests/acceptance/legacy/usecases/uc1/oldclassic.java:52) - SecondTask task2 = new SecondTask(new_event1, n...
+	2 : gov.nasa.jpf.inspector.tests.acceptance.legacy.usecases.uc1.oldclassic.[main] - (in file gov/nasa/jpf/inspector/tests/acceptance/legacy/usecases/uc1/oldclassic.java:0)
+INFO: SuT is stopped
+	SuT (thread 0) will now execute gov/nasa/jpf/inspector/tests/acceptance/legacy/usecases/uc1/oldclassic.java:123 (aload_0), source: this.event1 = e1;
+INFO: SuT is stopped
+	SuT (thread 0) will now execute gov/nasa/jpf/inspector/tests/acceptance/legacy/usecases/uc1/oldclassic.java:124 (aload_0), source: this.event2 = e2;
+0 : gov/nasa/jpf/inspector/tests/acceptance/legacy/usecases/uc1/oldclassic.java:124:    this.event2 = e2;
+	gov.nasa.jpf.inspector.tests.acceptance.legacy.usecases.uc1.SecondTask:<init>:8:aload_0
+INFO: Logging breakpoint hit: [5 :  state=LOGGING hits=1 hitsTotal=1 field_write=*Event:count]
+INFO: Logging breakpoint hit: [5 :  state=LOGGING hits=2 hitsTotal=2 field_write=*Event:count]
+INFO: Breakpoint hit: [1 :  state=ENABLED hits=2 hitsTotal=2 field_access=*SecondTask:count]
+INFO: Logging breakpoint hit: [5 :  state=LOGGING hits=3 hitsTotal=3 field_write=*Event:count]
+ERR: There is no thread with the index 0.
+1 : Thread-1 state=WAITING priority=5
+	0 : java.lang.Object.wait - (in file java/lang/Object.java:-1)
+	1 : gov.nasa.jpf.inspector.tests.acceptance.legacy.usecases.uc1.Event.wait_for_event - (in file gov/nasa/jpf/inspector/tests/acceptance/legacy/usecases/uc1/oldclassic.java:80) - wait();
+	2 : gov.nasa.jpf.inspector.tests.acceptance.legacy.usecases.uc1.FirstTask.run - (in file gov/nasa/jpf/inspector/tests/acceptance/legacy/usecases/uc1/oldclassic.java:107) - event1.wait_for_event();
+	3 : gov.nasa.jpf.inspector.tests.acceptance.legacy.usecases.uc1.FirstTask.[run] - (in file gov/nasa/jpf/inspector/tests/acceptance/legacy/usecases/uc1/oldclassic.java:1) - package gov.nasa.jpf.inspector.tests.acceptance...
+INFO: SuT is stopped
+	SuT (thread 2) will now execute gov/nasa/jpf/inspector/tests/acceptance/legacy/usecases/uc1/oldclassic.java:132 (getstatic java.lang.System.out), source: System.out.println("  2");
+1 : java/lang/Object.java:-1
+	java.lang.Object:wait:0:executenative JPF_java_lang_Object.wait____V
+2 : gov/nasa/jpf/inspector/tests/acceptance/legacy/usecases/uc1/oldclassic.java:132:      System.out.println("  2");
+	gov.nasa.jpf.inspector.tests.acceptance.legacy.usecases.uc1.SecondTask:run:5:getstatic java.lang.System.out
+INFO: SuT is stopped
+	SuT (thread 2) will now execute gov/nasa/jpf/inspector/tests/acceptance/legacy/usecases/uc1/oldclassic.java:129 (aload_0), source: count = event2.count;          // <race> violates event2 monitor encapsulation
+1 : java/lang/Object.java:-1
+	java.lang.Object:wait:0:executenative JPF_java_lang_Object.wait____V
+2 : gov/nasa/jpf/inspector/tests/acceptance/legacy/usecases/uc1/oldclassic.java:129:    count = event2.count;          // <race> violates event2 monitor encapsulation
+	gov.nasa.jpf.inspector.tests.acceptance.legacy.usecases.uc1.SecondTask:run:0:aload_0
+1 : state=WAITING priority=5
+2 : state=RUNNING priority=5
+Breakpoint with ID 1 successfully deleted.
+5 :  state=LOGGING hits=3 hitsTotal=3 field_write=*Event:count
+INFO: Logging breakpoint hit: [5 :  state=LOGGING hits=4 hitsTotal=4 field_write=*Event:count]
+INFO: Logging breakpoint hit: [5 :  state=LOGGING hits=5 hitsTotal=5 field_write=*Event:count]
+INFO: Logging breakpoint hit: [5 :  state=LOGGING hits=6 hitsTotal=6 field_write=*Event:count]
+INFO: Logging breakpoint hit: [5 :  state=LOGGING hits=7 hitsTotal=7 field_write=*Event:count]
+INFO: Logging breakpoint hit: [5 :  state=LOGGING hits=8 hitsTotal=8 field_write=*Event:count]
+INFO: Logging breakpoint hit: [5 :  state=LOGGING hits=9 hitsTotal=9 field_write=*Event:count]
+INFO: Logging breakpoint hit: [5 :  state=LOGGING hits=10 hitsTotal=10 field_write=*Event:count]
+INFO: Logging breakpoint hit: [5 :  state=LOGGING hits=11 hitsTotal=11 field_write=*Event:count]
+INFO: Logging breakpoint hit: [5 :  state=LOGGING hits=12 hitsTotal=12 field_write=*Event:count]
+INFO: Logging breakpoint hit: [5 :  state=LOGGING hits=13 hitsTotal=13 field_write=*Event:count]
+INFO: Logging breakpoint hit: [5 :  state=LOGGING hits=14 hitsTotal=14 field_write=*Event:count]
+INFO: Logging breakpoint hit: [5 :  state=LOGGING hits=15 hitsTotal=15 field_write=*Event:count]
+INFO: Logging breakpoint hit: [5 :  state=LOGGING hits=16 hitsTotal=16 field_write=*Event:count]
+INFO: Logging breakpoint hit: [5 :  state=LOGGING hits=17 hitsTotal=17 field_write=*Event:count]
+INFO: Logging breakpoint hit: [5 :  state=LOGGING hits=16 hitsTotal=18 field_write=*Event:count]
+INFO: Logging breakpoint hit: [5 :  state=LOGGING hits=17 hitsTotal=19 field_write=*Event:count]
+INFO: Logging breakpoint hit: [5 :  state=LOGGING hits=16 hitsTotal=20 field_write=*Event:count]
+INFO: Logging breakpoint hit: [5 :  state=LOGGING hits=17 hitsTotal=21 field_write=*Event:count]
+INFO: Logging breakpoint hit: [5 :  state=LOGGING hits=16 hitsTotal=22 field_write=*Event:count]
+INFO: Logging breakpoint hit: [5 :  state=LOGGING hits=17 hitsTotal=23 field_write=*Event:count]
+INFO: Logging breakpoint hit: [5 :  state=LOGGING hits=17 hitsTotal=24 field_write=*Event:count]
+INFO: JPF Terminating

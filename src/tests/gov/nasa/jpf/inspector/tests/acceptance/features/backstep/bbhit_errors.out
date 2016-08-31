@@ -1,0 +1,21 @@
+ERR: This command may only be used when JPF has started and is paused. If JPF is not already started, then start it using 'run' and if it is already running, then pause it using 'break'. Then you will be able to execute this command. Alternatively, you may disable safe mode in the configuration file by setting 'jpf-inspector.safe-mode = false'.
+INFO: JPF created and connected, SuT is started
+INFO: Breakpoint hit: [1 :  state=ENABLED hits=1 hitsTotal=1 local_write=a]
+ERR: You have already backtracked through the instruction where the last breakpoint was hit (target instruction not found).
+INFO: SuT is stopped
+	SuT (thread 0) will now execute gov/nasa/jpf/inspector/tests/acceptance/sut/MultiTransitionSinglePath.java:9 (iconst_1), source: int transitionStart = Verify.getInt(1, 2);
+ERR: Parse error: extraneous input '1' expecting {<EOF>, '&&', WS}
+back_breakpoint_hit 1 && wait
+                    ^
+ERR: 'back_bbhit' is not recognized as an internal command, alias or a custom command.
+INFO: Breakpoint hit: [3 :  state=ENABLED hits=1 hitsTotal=1 local_write=c]
+INFO: SuT is stopped
+	SuT (thread 0) will now execute gov/nasa/jpf/inspector/tests/acceptance/sut/MultiTransitionSinglePath.java:10 (iload_1), source: int b = a + 4;
+ERR: You have already backtracked through the instruction where the last breakpoint was hit (target instruction not found).
+INFO: SuT is stopped
+	SuT (thread 0) will now execute gov/nasa/jpf/inspector/tests/acceptance/sut/MultiTransitionSinglePath.java:9 (iconst_1), source: int transitionStart = Verify.getInt(1, 2);
+INFO: SuT is stopped
+	SuT (thread 0) will now execute gov/nasa/jpf/inspector/tests/acceptance/sut/MultiTransitionSinglePath.java:8 (iconst_5), source: int a = 5;
+ERR: You have already backtracked through the transition where the last breakpoint was hit (not enough transitions).
+INFO: Breakpoint hit: [1 :  state=ENABLED hits=2 hitsTotal=2 local_write=a]
+INFO: JPF Terminating

@@ -1,0 +1,104 @@
+INFO: JPF created and connected, SuT is started
+INFO: Breakpoint hit: [1 :  state=ENABLED hits=1 hitsTotal=1 method_invoke=*Predecessor2:callMePred2]
+INFO: SuT is stopped
+	SuT (thread 0) will now execute gov/nasa/jpf/inspector/tests/acceptance/legacy/usecases/uc3/Print02.java:95 (getstatic java.lang.System.out), source: System.out.println("# Predecessor2.callMePred2(" + a + ")");
+INFO: SuT is stopped
+	SuT (thread 0) will now execute gov/nasa/jpf/inspector/tests/acceptance/legacy/usecases/uc3/Print02.java:51 (return  gov.nasa.jpf.inspector.tests.acceptance.legacy.usecases.uc3.Predecessor1.callMePred1(I)V), source: }
+0 : gov/nasa/jpf/inspector/tests/acceptance/legacy/usecases/uc3/Print02.java:51:  }
+	gov.nasa.jpf.inspector.tests.acceptance.legacy.usecases.uc3.Predecessor1:callMePred1:17:return  gov.nasa.jpf.inspector.tests.acceptance.legacy.usecases.uc3.Predecessor1.callMePred1(I)V
+INFO: SuT is stopped
+	SuT (thread 0) will now execute gov/nasa/jpf/inspector/tests/acceptance/legacy/usecases/uc3/Print02.java:97 (return  gov.nasa.jpf.inspector.tests.acceptance.legacy.usecases.uc3.Predecessor2.callMePred2(I)V), source: }
+INFO: SuT is stopped
+	SuT (thread 0) will now execute gov/nasa/jpf/inspector/tests/acceptance/legacy/usecases/uc3/Print02.java:162 (return  gov.nasa.jpf.inspector.tests.acceptance.legacy.usecases.uc3.Predecessor3.callMePred3(I)V), source: }
+INFO: SuT is stopped
+	SuT (thread 0) will now execute gov/nasa/jpf/inspector/tests/acceptance/legacy/usecases/uc3/Print02.java:119 (return  gov.nasa.jpf.inspector.tests.acceptance.legacy.usecases.uc3.Predecessor3$InnerPred3.callMePred1I1(I)V), source: public class InnerPred3 extends InnerPred2 {
+INFO: SuT is stopped
+	SuT (thread 0) will now execute gov/nasa/jpf/inspector/tests/acceptance/legacy/usecases/uc3/Print02.java:41 (return  gov.nasa.jpf.inspector.tests.acceptance.legacy.usecases.uc3.Predecessor1$InnerPred1.callMePred1I1(I)V), source: }
+INFO: SuT is stopped
+	SuT (thread 0) will now execute gov/nasa/jpf/inspector/tests/acceptance/legacy/usecases/uc3/Print02.java:119 (return  gov.nasa.jpf.inspector.tests.acceptance.legacy.usecases.uc3.Predecessor3$InnerPred3.callMePred2I2(I)V), source: public class InnerPred3 extends InnerPred2 {
+INFO: SuT is stopped
+	SuT (thread 0) will now execute gov/nasa/jpf/inspector/tests/acceptance/legacy/usecases/uc3/Print02.java:86 (return  gov.nasa.jpf.inspector.tests.acceptance.legacy.usecases.uc3.Predecessor2$InnerPred2.callMePred2I2(I)V), source: }
+INFO: SuT is stopped
+	SuT (thread 0) will now execute gov/nasa/jpf/inspector/tests/acceptance/legacy/usecases/uc3/Print02.java:85 (pop2), source: callMePred3I3(a + 1);
+INFO: SuT is stopped
+	SuT (thread 0) will now execute gov/nasa/jpf/inspector/tests/acceptance/legacy/usecases/uc3/Print02.java:152 (lreturn gov.nasa.jpf.inspector.tests.acceptance.legacy.usecases.uc3.Predecessor3$InnerPred3.callMePred3I3(I)J), source: return -10;
+INFO: SuT is stopped
+	SuT (thread 0) will now execute gov/nasa/jpf/inspector/tests/acceptance/legacy/usecases/uc3/Print02.java:152 (ldc2_w), source: return -10;
+INFO: SuT is stopped
+	SuT (thread 0) will now execute gov/nasa/jpf/ConsoleOutputStream.java:-1 (nativereturn gov.nasa.jpf.ConsoleOutputStream.println(Ljava/lang/String;)V), source unavailable
+INFO: SuT is stopped
+	SuT (thread 0) will now execute gov/nasa/jpf/ConsoleOutputStream.java:-1 (executenative JPF_gov_nasa_jpf_ConsoleOutputStream.println__Ljava_lang_String_2__V), source unavailable
+INFO: SuT is stopped
+	SuT (thread 0) will now execute gov/nasa/jpf/inspector/tests/acceptance/legacy/usecases/uc3/Print02.java:150 (invokevirtual java.io.PrintStream.println(Ljava/lang/String;)V), source: System.out.println("# The commands should show all fields defined in Predecessor3, Predecessor2, Predecessor1 and a parameter a.");
+gov.nasa.jpf.inspector.tests.acceptance.legacy.usecases.uc3.Predecessor3$InnerPred3.callMePred3I3 - (in file gov/nasa/jpf/inspector/tests/acceptance/legacy/usecases/uc3/Print02.java:150) - System.out.println("# The commands should show ...
+Stack slots
+	0 : this (gov.nasa.jpf.inspector.tests.acceptance.legacy.usecases.uc3.Predecessor3$InnerPred3) = gov.nasa.jpf.inspector.tests.acceptance.legacy....
+	1 : a (int) = 10005
+	2 : b (int) = 10
+	3 : ???-RawView-no Name or Type provided (int) = 244
+	4 : ???-RawView-no Name or Type provided (int) = 455
+Fields
+	0 : a (int) = 1001
+	1 : pred1i1_i1 (int) = 1101
+	2 : pred1i1_i2 (int) = 1102
+	3 : pred1i1_i3 (int) = 1103
+	4 : pred1i1_i4 (int) = 1104
+	5 : this$0 (gov.nasa.jpf.inspector.tests.acceptance.legacy.usecases.uc3.Predecessor1) = gov.nasa.jpf.inspector.tests.acceptance.legacy....
+	6 : a (int) = 1002
+	7 : pred2i2_i1 (int) = 1201
+	8 : pred2i2_i2 (int) = 1202
+	9 : pred2i2_i3 (int) = 1203
+	10 : pred2i2_i4 (int) = 1204
+	11 : this$0 (gov.nasa.jpf.inspector.tests.acceptance.legacy.usecases.uc3.Predecessor2) = gov.nasa.jpf.inspector.tests.acceptance.legacy....
+	12 : a (int) = 1003
+	13 : pred3i3_i1 (int) = 1301
+	14 : pred3i3_i2 (int) = 1302
+	15 : pred3i3_i3 (int) = 1303
+	16 : pred3i3_i4 (int) = 1304
+	17 : this$0 (gov.nasa.jpf.inspector.tests.acceptance.legacy.usecases.uc3.Predecessor3) = gov.nasa.jpf.inspector.tests.acceptance.legacy....
+#heap[356] (gov.nasa.jpf.inspector.tests.acceptance.legacy.usecases.uc3.Predecessor3) = gov.nasa.jpf.inspector.tests.acceptance.legacy....
+  Instance fields
+	0 : pred1_i1 (int) = 101
+	1 : pred1_i2 (int) = 102
+	2 : pred1_i3 (int) = 103
+	3 : pred1_i4 (int) = 104
+	4 : a (int) = 1
+	5 : a (int) = 2
+	6 : pred2_i1 (int) = 201
+	7 : pred2_i2 (int) = 202
+	8 : pred2_i3 (int) = 203
+	9 : pred2_i4 (int) = 204
+	10 : a (int) = 3
+	11 : pred3_i1 (int) = 301
+	12 : pred3_i2 (int) = 302
+	13 : pred3_i3 (int) = 303
+	14 : pred3_i4 (int) = 304
+  Static fields
+	0 : pred3_i11 (int) = 311
+	1 : pred3_i12 (int) = 312
+	2 : pred3_i13 (int) = 313
+	3 : pred3_i14 (int) = 314
+Value set successfully.
+#heap[356] (gov.nasa.jpf.inspector.tests.acceptance.legacy.usecases.uc3.Predecessor3) = gov.nasa.jpf.inspector.tests.acceptance.legacy....
+  Instance fields
+	0 : pred1_i1 (int) = 101
+	1 : pred1_i2 (int) = 102
+	2 : pred1_i3 (int) = 103
+	3 : pred1_i4 (int) = 44
+	4 : a (int) = 1
+	5 : a (int) = 2
+	6 : pred2_i1 (int) = 201
+	7 : pred2_i2 (int) = 202
+	8 : pred2_i3 (int) = 203
+	9 : pred2_i4 (int) = 204
+	10 : a (int) = 3
+	11 : pred3_i1 (int) = 301
+	12 : pred3_i2 (int) = 302
+	13 : pred3_i3 (int) = 303
+	14 : pred3_i4 (int) = 304
+  Static fields
+	0 : pred3_i11 (int) = 311
+	1 : pred3_i12 (int) = 312
+	2 : pred3_i13 (int) = 313
+	3 : pred3_i14 (int) = 314
+INFO: JPF Terminating

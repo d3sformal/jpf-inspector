@@ -1,0 +1,9 @@
+enable ask sched cg
+run
+wait
+cg select 0
+wait
+cg select 1
+wait
+cg select 0
+wait

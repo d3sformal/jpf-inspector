@@ -1,0 +1,12 @@
+New assertion successfully created with ID 1.
+INFO: JPF created and connected, SuT is started
+INFO: Assertion violated: [assert *AssertSimpleTest.java:9 (#thread.#stackFrame[0].i < 3)]
+0 : gov/nasa/jpf/inspector/tests/acceptance/legacy/AssertSimpleTest.java:9:    return; // <- must be at line 9
+	gov.nasa.jpf.inspector.tests.acceptance.legacy.AssertSimpleTest:main:7:return  gov.nasa.jpf.inspector.tests.acceptance.legacy.AssertSimpleTest.main([Ljava/lang/String;)V
+	1 : ???-RawView-no Name or Type provided (int) = 3
+INFO: Assertion violated: [assert *AssertSimpleTest.java:9 (#thread.#stackFrame[0].i < 3)]
+0 : gov/nasa/jpf/inspector/tests/acceptance/legacy/AssertSimpleTest.java:9:    return; // <- must be at line 9
+	gov.nasa.jpf.inspector.tests.acceptance.legacy.AssertSimpleTest:main:7:return  gov.nasa.jpf.inspector.tests.acceptance.legacy.AssertSimpleTest.main([Ljava/lang/String;)V
+	1 : ???-RawView-no Name or Type provided (int) = 4
+INFO: JPF Terminating
+ERR: This command may only be used when JPF has started and is paused. If JPF is not already started, then start it using 'run' and if it is already running, then pause it using 'break'. Then you will be able to execute this command. Alternatively, you may disable safe mode in the configuration file by setting 'jpf-inspector.safe-mode = false'.

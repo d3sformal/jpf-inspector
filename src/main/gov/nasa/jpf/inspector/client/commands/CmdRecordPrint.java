@@ -1,0 +1,50 @@
+//
+// Copyright (C) 2010-2011 Pavel Jančík
+// Copyright (C) 2016 Petr Hudeček
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+//  Unless required by applicable law or agreed to in writing, software
+//  distributed under the License is distributed on an "AS IS" BASIS,
+//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//  See the License for the specific language governing permissions and
+//  limitations under the License.
+//
+
+package gov.nasa.jpf.inspector.client.commands;
+
+import gov.nasa.jpf.inspector.client.ClientCommand;
+import gov.nasa.jpf.inspector.client.CommandRecorder;
+import gov.nasa.jpf.inspector.client.JPFInspectorClient;
+import gov.nasa.jpf.inspector.interfaces.JPFInspectorBackEndInterface;
+
+import java.io.PrintStream;
+
+/**
+ * Represents the 'record print' command that prints all recorded commands to the Inspector console.
+ * @author Alf *
+ */
+public class CmdRecordPrint extends ClientCommand {
+
+  @Override
+  public void execute(JPFInspectorClient client, JPFInspectorBackEndInterface inspector, PrintStream outStream) {
+    CommandRecorder rec = client.getCommandRecorder();
+    String recordedCmds = rec.getRecordedEvents();
+    outStream.print(recordedCmds);
+
+    // Previously, this line was not commented.
+    // This caused the recorded commands to be printed into the log again, which does not seem very useful.
+    // However, it may be useful for some use cases I could not think of so I'll leave it here for now.
+    // rec.addComment(recordedCmds);
+  }
+
+  @Override
+  public String getNormalizedCommand () {
+    return "record print";
+  }
+
+}

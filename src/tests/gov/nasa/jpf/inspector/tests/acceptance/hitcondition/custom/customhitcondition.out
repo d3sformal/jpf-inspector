@@ -1,0 +1,8 @@
+ERR: The only argument must be a line number.
+ERR: There must be exactly one argument.
+INFO: JPF created and connected, SuT is started
+INFO: Breakpoint hit: [1 :  state=ENABLED hits=1 hitsTotal=1 line(7)]
+	These are details of the example custom hit condition.
+INFO: Breakpoint hit: [1 :  state=ENABLED hits=2 hitsTotal=2 line(7)]
+	These are details of the example custom hit condition.
+INFO: JPF Terminating

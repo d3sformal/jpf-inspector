@@ -1,0 +1,63 @@
+create breakpoint   pv and pv
+create breakpoint pv or pv
+create breakpoint it=cond and(mi=pos:pos)
+create breakpoint ((it=cond)and(mi=pos:pos)) or pv
+create breakpoint state_advanced
+create breakpoint sa
+create breakpoint    method_invoke = Agent   : Alf009
+create breakpoint mi=mil.pentagon.target.Main:hit
+create breakpoint mi=pos:pos
+create breakpoint mi=mi:mi
+create breakpoint mi=field_access.fr:field_access
+create breakpoint mi=cg.both.cgdata.Alf:garbage_collection
+create breakpoint mi=cg.both.cgdata.Cg$Runner:garbage_collection
+create breakpoint    thread_scheduled = both : 0
+create breakpoint ts=in:1
+create breakpoint ts=out
+create breakpoint    object_created = cia.Bond007
+create breakpoint  objc = objc.object_created.object_released.Class.print
+create breakpoint  object_released = thread.this$MyClass
+create breakpoint objr=pv.property_violated.mi.array$none
+create breakpoint exception_thrown=java.lang.RuntimeException
+create breakpoint et=et.notify.block.me.Now
+create breakpoint    field_access =   MyClass : fw
+create breakpoint field=My*:x
+create breakpoint fa=field:DEBUG
+create breakpoint field_read=fw_fw3 : r42
+create breakpoint fr          =*:init5
+create breakpoint field_write =   *x*:field_write
+create breakpoint fw=field_access   : a12345
+create breakpoint    garbage_collection =   both
+create breakpoint gc=begin
+create breakpoint   gc     =end
+create breakpoint    instruction_type =   any
+create breakpoint it=none
+create breakpoint   inst_type     =invoke
+create breakpoint   it=inv
+create breakpoint   it=ret
+create breakpoint   it=return
+create breakpoint   it=field_access
+create breakpoint   it=field
+create breakpoint   it=fa
+create breakpoint   it=field_read
+create breakpoint   it=fr
+create breakpoint   it=field_write
+create breakpoint   it=fw
+create breakpoint   it=condition
+create breakpoint   it=cond
+create breakpoint   it=lock
+create breakpoint   it=array
+create breakpoint    position = Alf:009
+create breakpoint pos=gov/nasa/jpf/inspector/JPFInspector    :  13
+create breakpoint pos=gc:1
+create breakpoint pos=pos:1
+create breakpoint pos=field_write:2
+create breakpoint pos=it:3
+create breakpoint pos=inv:4
+create breakpoint pos=invit:5
+create breakpoint    property_violated
+create breakpoint pv
+create breakpoint    choice_generator =   both
+create breakpoint cg=data
+create breakpoint   cg     =sched
+sw breakpoint

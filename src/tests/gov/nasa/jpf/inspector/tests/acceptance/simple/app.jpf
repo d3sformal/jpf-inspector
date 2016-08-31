@@ -1,0 +1,5 @@
+target = gov.nasa.jpf.inspector.tests.acceptance.sut.Singlepath
+
+@include ../inspectortest.jpf
+
+jpf-inspector.batch_mode.echo_input = true

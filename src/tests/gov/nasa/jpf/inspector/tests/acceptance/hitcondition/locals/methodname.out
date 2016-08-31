@@ -1,0 +1,7 @@
+INFO: JPF created and connected, SuT is started
+INFO: Breakpoint hit: [1 :  state=ENABLED hits=1 hitsTotal=1 method = inside]
+	In method "inside".
+INFO: Breakpoint hit: [1 :  state=ENABLED hits=2 hitsTotal=2 method = inside]
+	In method "inside".
+Breakpoint with ID 1 successfully deleted.
+INFO: JPF Terminating

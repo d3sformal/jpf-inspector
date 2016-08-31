@@ -1,0 +1,17 @@
+assert *AssertSimpleTest.java:9 #stackFrame[0].i < 3
+
+run
+# Assert should trigger twice:
+  # Iteration:
+  wait
+  thread_pc 0
+  print #stackFrame[0].i
+  run
+  # Iteration:
+  wait
+  thread_pc 0
+  print #stackFrame[0].i
+  run
+wait
+# This should fail because we have alrady terminated:
+print #thread

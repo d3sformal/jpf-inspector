@@ -1,0 +1,14 @@
+commence
+st
+st
+print Transitions.#static
+bst 2
+print Transitions.#static
+st
+print Transitions.#static
+st
+print Transitions.#static
+st
+print Transitions.#static
+bst 3
+print Transitions.#static

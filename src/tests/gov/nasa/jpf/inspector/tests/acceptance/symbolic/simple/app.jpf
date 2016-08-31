@@ -1,0 +1,11 @@
+@include ../symbolic.jpf
+
+target=gov.nasa.jpf.inspector.tests.acceptance.symbolic.simple.NumberExample
+
+symbolic.method=gov.nasa.jpf.inspector.tests.acceptance.symbolic.simple.NumberExample.run(sym)
+
+#symbolic.debug=true
+
+search.multiple_errors = true
+
+listener = gov.nasa.jpf.symbc.SymbolicListener

@@ -1,0 +1,16 @@
+INFO: JPF created and connected, SuT is started
+IGNOREDLINE: ChoiceGeneratorAdvance - scheduling CG - ROOT (0x15fbbce1) : (ignored because the hex numbers keep chaging)
+	 >0-ThreadInfo [name=main,id=0,state=RUNNING]
+IGNOREDLINE: ChoiceGeneratorAdvance - scheduling CG - START (0x5eec0676) :
+	 >0-ThreadInfo [name=main,id=0,state=RUNNING]
+	  1-ThreadInfo [name=Thread-1,id=1,state=RUNNING]
+IGNOREDLINE: ChoiceGeneratorAdvance - scheduling CG - JOIN (0x7f9ef050) :
+	 >0-ThreadInfo [name=Thread-1,id=1,state=RUNNING]
+IGNOREDLINE: ChoiceGeneratorAdvance - scheduling CG - TERMINATE (0x25b73c3d) :
+	 >0-ThreadInfo [name=main,id=0,state=RUNNING]
+IGNOREDLINE: ChoiceGeneratorAdvance - scheduling CG - START (0x5eec0676) :
+	  0-ThreadInfo [name=main,id=0,state=RUNNING]
+	 >1-ThreadInfo [name=Thread-1,id=1,state=RUNNING]
+IGNOREDLINE: ChoiceGeneratorAdvance - scheduling CG - TERMINATE (0x2035f94e) :
+	 >0-ThreadInfo [name=main,id=0,state=RUNNING]
+INFO: JPF Terminating

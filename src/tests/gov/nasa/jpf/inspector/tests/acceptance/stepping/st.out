@@ -1,0 +1,24 @@
+INFO: JPF created and connected, SuT is started
+INFO: Breakpoint hit: [1 :  state=ENABLED hits=1 hitsTotal=1 hit_count<=1 instruction_type=any]
+	SuT (Thread=0) executes the gov/nasa/jpf/inspector/tests/acceptance/sut/MultiTransitionSinglePath.java:0 - invokestatic gov.nasa.jpf.inspector.tests.acceptance.sut.MultiTransitionSinglePath.main([Ljava/lang/String;)V
+INFO: SuT is stopped
+	SuT (thread 0) will now execute gov/nasa/jpf/vm/Verify.java:-1 (executenative JPF_gov_nasa_jpf_vm_Verify.getInt__II__I), source unavailable
+INFO: SuT is stopped
+	SuT (thread 0) will now execute gov/nasa/jpf/vm/Verify.java:-1 (nativereturn gov.nasa.jpf.vm.Verify.getInt(II)I), source unavailable
+INFO: SuT is stopped
+	SuT (thread 0) will now execute gov/nasa/jpf/inspector/tests/acceptance/sut/MultiTransitionSinglePath.java:9 (istore_2), source: int transitionStart = Verify.getInt(1, 2);
+INFO: SuT is stopped
+	SuT (thread 0) will now execute gov/nasa/jpf/inspector/tests/acceptance/sut/MultiTransitionSinglePath.java:10 (iload_1), source: int b = a + 4;
+0 : gov/nasa/jpf/inspector/tests/acceptance/sut/MultiTransitionSinglePath.java:10:    int b = a + 4;
+	gov.nasa.jpf.inspector.tests.acceptance.sut.MultiTransitionSinglePath:main:6:iload_1
+INFO: SuT is stopped
+	SuT (thread 0) will now execute gov/nasa/jpf/vm/Verify.java:-1 (executenative JPF_gov_nasa_jpf_vm_Verify.getInt__II__I), source unavailable
+INFO: SuT is stopped
+	SuT (thread 0) will now execute gov/nasa/jpf/vm/Verify.java:-1 (executenative JPF_gov_nasa_jpf_vm_Verify.getInt__II__I), source unavailable
+INFO: SuT is stopped
+	SuT (thread 0) will now execute gov/nasa/jpf/vm/Verify.java:-1 (executenative JPF_gov_nasa_jpf_vm_Verify.getInt__II__I), source unavailable
+INFO: SuT is stopped
+	SuT (thread 0) will now execute gov/nasa/jpf/vm/Verify.java:-1 (executenative JPF_gov_nasa_jpf_vm_Verify.getInt__II__I), source unavailable
+INFO: SuT is stopped
+	SuT (thread 0) will now execute gov/nasa/jpf/vm/Verify.java:-1 (executenative JPF_gov_nasa_jpf_vm_Verify.getInt__II__I), source unavailable
+INFO: JPF Terminating
