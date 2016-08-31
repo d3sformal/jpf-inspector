@@ -4,7 +4,7 @@
 
 ## Quick Start
 
-This project has an extensive documentation at this repository's GitHub wiki. 
+This project has an extensive documentation at [**this repository's GitHub wiki**](https://github.com/d3sformal/jpf-inspector/wiki). 
 
 You could start with the following articles:
 
