@@ -3,6 +3,8 @@
 **[Java Pathfinder (JPF)](http://babelfish.arc.nasa.gov/trac/jpf/)** is a framework for formal checking of Java programs. Its core consists of a virtual machine for Java bytecode, running itself on Java; this allows JPF to instrument the code and provide its own functionality for critical instructions. JPF is very extensible and many modules exist for various kinds of verification such as symbolic execution. JPF Inspector is one such JPF module that focuses on debugging capability.
 
 ## Quick Start
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fd3sformal%2Fjpf-inspector.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fd3sformal%2Fjpf-inspector?ref=badge_shield)
+
 
 This project has an extensive documentation at [**this repository's GitHub wiki**](https://github.com/d3sformal/jpf-inspector/wiki). 
 
@@ -12,3 +14,7 @@ You could start with the following articles:
 * [Tutorial](https://github.com/d3sformal/jpf-inspector/wiki/Tutorial)
 
 The User Guide also contains instructions on how to install JPF Inspector into your system.
+
+
+## License
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fd3sformal%2Fjpf-inspector.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fd3sformal%2Fjpf-inspector?ref=badge_large)
